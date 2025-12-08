@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDTx5DTprVwp7za5cZow4jTw_wtNSR6DCA",
@@ -13,41 +12,48 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
 export const db = getFirestore(app);
 
-// Upload visitor image
-export const uploadVisitorImage = async (imageBlob: Blob): Promise<string> => {
-  const timestamp = Date.now();
-  const fileName = `visitors/${timestamp}.jpg`;
-  const storageRef = ref(storage, fileName);
+// ImgBB API key
+const IMGBB_API_KEY = "44703e31685d651902ca04050f8d5bd7";
+
+// Upload image to ImgBB and return URL
+export const uploadToImgBB = async (imageBlob: Blob): Promise<string> => {
+  const formData = new FormData();
+  formData.append('image', imageBlob);
   
-  await uploadBytes(storageRef, imageBlob);
-  const downloadURL = await getDownloadURL(storageRef);
-  return downloadURL;
+  const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+    method: 'POST',
+    body: formData
+  });
+  
+  const data = await response.json();
+  if (data.success) {
+    return data.data.url;
+  }
+  throw new Error('ImgBB upload failed');
 };
 
-// Get all visitor images
-export const getVisitorImages = async (): Promise<string[]> => {
-  const listRef = ref(storage, 'visitors');
-  const result = await listAll(listRef);
+// Save visitor image URL to Firestore
+export const saveVisitorImage = async (imageUrl: string): Promise<void> => {
+  await addDoc(collection(db, "visitors"), {
+    imageUrl,
+    timestamp: Date.now()
+  });
+};
+
+// Get all visitor images from Firestore
+export const getVisitorImages = async (): Promise<{ imageUrl: string; timestamp: number }[]> => {
+  const q = query(collection(db, "visitors"), orderBy("timestamp", "desc"));
+  const snapshot = await getDocs(q);
   
-  const urls = await Promise.all(
-    result.items.map(item => getDownloadURL(item))
-  );
-  
-  return urls;
+  return snapshot.docs.map(doc => ({
+    imageUrl: doc.data().imageUrl,
+    timestamp: doc.data().timestamp
+  }));
 };
 
 // Verify admin password
-export const verifyAdminPassword = async (password: string): Promise<boolean> => {
-  // Password is stored as PATELIMPEX
-  const correctPassword = "PATELIMPEX";
-  return password === correctPassword;
-};
-
-// Store admin password in Firestore (call once to initialize)
-export const initializeAdminPassword = async () => {
-  const docRef = doc(db, "config", "admin");
-  await setDoc(docRef, { password: "PATELIMPEX" });
+export const verifyAdminPassword = (password: string): boolean => {
+  return password === "PATELIMPEX";
 };

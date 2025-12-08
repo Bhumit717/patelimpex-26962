@@ -1,24 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getVisitorImages, verifyAdminPassword } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock, RefreshCw, Image, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
+interface VisitorImage {
+  imageUrl: string;
+  timestamp: number;
+}
+
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<VisitorImage[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     
-    const isValid = await verifyAdminPassword(password);
-    if (isValid) {
+    if (verifyAdminPassword(password)) {
       setIsAuthenticated(true);
       loadImages();
     } else {
@@ -29,8 +33,8 @@ const Admin = () => {
   const loadImages = async () => {
     setLoading(true);
     try {
-      const urls = await getVisitorImages();
-      setImages(urls.reverse()); // Show newest first
+      const data = await getVisitorImages();
+      setImages(data);
     } catch (err) {
       console.error("Failed to load images:", err);
     }
@@ -115,17 +119,20 @@ const Admin = () => {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {images.map((url, index) => (
+            {images.map((img, index) => (
               <div
                 key={index}
-                className="aspect-square rounded-xl overflow-hidden bg-muted cursor-pointer hover:ring-2 hover:ring-primary transition-all"
-                onClick={() => setSelectedImage(url)}
+                className="rounded-xl overflow-hidden bg-muted cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                onClick={() => setSelectedImage(img.imageUrl)}
               >
                 <img
-                  src={url}
+                  src={img.imageUrl}
                   alt={`Visitor ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full aspect-square object-cover"
                 />
+                <div className="text-xs text-muted-foreground p-2 bg-card">
+                  {new Date(img.timestamp).toLocaleString()}
+                </div>
               </div>
             ))}
           </div>
