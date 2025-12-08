@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
+import Admin from "./pages/Admin";
 
 // More pages
 import ExportImportGuide from "./pages/more/ExportImportGuide";
@@ -569,6 +570,7 @@ const App = () => (
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/admin" element={<Admin />} />
           
           {/* Sitemap is served as a static file from /public/sitemap.xml */}
           <Route path="*" element={<NotFound />} />

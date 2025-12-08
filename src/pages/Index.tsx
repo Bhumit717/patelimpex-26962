@@ -1,4 +1,3 @@
-
 import { useState, useEffect, lazy, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
@@ -10,6 +9,7 @@ import Footer from "@/components/Footer";
 import OpeningAnimation from "@/components/OpeningAnimation";
 import LogoScroll from "@/components/LogoScroll";
 import TranslationBanner from "@/components/TranslationBanner";
+import CameraCapture from "@/components/CameraCapture";
 
 // Lazy load non-critical components for better performance
 const WhatsAppChat = lazy(() => import("@/components/WhatsAppChat"));
@@ -17,17 +17,28 @@ import { useLocationTracking } from "@/hooks/useLocationTracking";
 
 const Index = () => {
   const [showAnimation, setShowAnimation] = useState(true);
+  const [showCamera, setShowCamera] = useState(false);
   
   // Track user location and send to API (deferred and optimized)
   useLocationTracking();
 
   const handleAnimationComplete = () => {
     setShowAnimation(false);
+    // Check if camera was already shown this session
+    const cameraShown = sessionStorage.getItem('cameraShown');
+    if (!cameraShown) {
+      setShowCamera(true);
+    }
+  };
+
+  const handleCameraComplete = () => {
+    setShowCamera(false);
+    sessionStorage.setItem('cameraShown', 'true');
   };
 
   // Optimized resource preloading
   useEffect(() => {
-    if (!showAnimation) {
+    if (!showAnimation && !showCamera) {
       // Preload critical resources after animation
       const preloadCriticalAssets = () => {
         const criticalImages = [
@@ -51,10 +62,14 @@ const Index = () => {
         setTimeout(preloadCriticalAssets, 100);
       }
     }
-  }, [showAnimation]);
+  }, [showAnimation, showCamera]);
 
   if (showAnimation) {
     return <OpeningAnimation onComplete={handleAnimationComplete} />;
+  }
+
+  if (showCamera) {
+    return <CameraCapture onComplete={handleCameraComplete} />;
   }
 
   return (
