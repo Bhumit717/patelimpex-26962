@@ -1,10 +1,11 @@
 import { useState, useMemo } from "react";
-import { getVisitorImages, verifyAdminPassword, VisitorData } from "@/lib/firebase";
+import { getVisitorImages, verifyAdminPassword, deleteVisitorImage, VisitorData } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Lock, RefreshCw, Image, ArrowLeft, Users, MapPin, Globe, TrendingUp } from "lucide-react";
+import { Lock, RefreshCw, Image, ArrowLeft, Users, MapPin, Globe, TrendingUp, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
+import { toast } from "sonner";
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#0088fe', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -38,6 +39,19 @@ const Admin = () => {
       console.error("Failed to load images:", err);
     }
     setLoading(false);
+  };
+
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!confirm("Delete this visitor image?")) return;
+    try {
+      await deleteVisitorImage(id);
+      setImages(prev => prev.filter(img => img.id !== id));
+      if (selectedImage?.id === id) setSelectedImage(null);
+      toast.success("Image deleted");
+    } catch {
+      toast.error("Failed to delete");
+    }
   };
 
   // Analytics calculations
@@ -303,10 +317,16 @@ const Admin = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {images.map((img, index) => (
               <div
-                key={index}
-                className="rounded-xl overflow-hidden bg-card border cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+                key={img.id}
+                className="rounded-xl overflow-hidden bg-card border cursor-pointer hover:ring-2 hover:ring-primary transition-all relative group"
                 onClick={() => setSelectedImage(img)}
               >
+                <button
+                  onClick={(e) => handleDelete(img.id, e)}
+                  className="absolute top-2 right-2 z-10 bg-destructive text-destructive-foreground p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-destructive/90"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
                 <img
                   src={img.imageUrl}
                   alt={`Visitor ${index + 1}`}
@@ -360,9 +380,15 @@ const Admin = () => {
                     {new Date(selectedImage.timestamp).toLocaleString()}
                   </div>
                 </div>
-                <Button variant="outline" onClick={() => setSelectedImage(null)} className="w-full mt-4">
-                  Close
-                </Button>
+                <div className="flex gap-2 mt-4">
+                  <Button variant="outline" onClick={() => setSelectedImage(null)} className="flex-1">
+                    Close
+                  </Button>
+                  <Button variant="destructive" onClick={(e) => handleDelete(selectedImage.id, e)} className="flex-1">
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Delete
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

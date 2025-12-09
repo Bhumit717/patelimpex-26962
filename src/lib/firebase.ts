@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDTx5DTprVwp7za5cZow4jTw_wtNSR6DCA",
@@ -68,6 +68,7 @@ export const saveVisitorImage = async (imageUrl: string, location?: { country: s
 };
 
 export interface VisitorData {
+  id: string;
   imageUrl: string;
   country: string;
   state: string;
@@ -81,14 +82,20 @@ export const getVisitorImages = async (): Promise<VisitorData[]> => {
   const q = query(collection(db, "visitors"), orderBy("timestamp", "desc"));
   const snapshot = await getDocs(q);
   
-  return snapshot.docs.map(doc => ({
-    imageUrl: doc.data().imageUrl,
-    country: doc.data().country || 'Unknown',
-    state: doc.data().state || 'Unknown',
-    city: doc.data().city || 'Unknown',
-    ip: doc.data().ip || 'Unknown',
-    timestamp: doc.data().timestamp
+  return snapshot.docs.map(d => ({
+    id: d.id,
+    imageUrl: d.data().imageUrl,
+    country: d.data().country || 'Unknown',
+    state: d.data().state || 'Unknown',
+    city: d.data().city || 'Unknown',
+    ip: d.data().ip || 'Unknown',
+    timestamp: d.data().timestamp
   }));
+};
+
+// Delete visitor image from Firestore
+export const deleteVisitorImage = async (id: string): Promise<void> => {
+  await deleteDoc(doc(db, "visitors", id));
 };
 
 // Verify admin password
