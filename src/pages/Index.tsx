@@ -1,3 +1,4 @@
+
 import { useState, useEffect, lazy, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
