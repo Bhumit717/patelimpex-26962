@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import OpeningAnimation from "@/components/OpeningAnimation";
 import LogoScroll from "@/components/LogoScroll";
 import TranslationBanner from "@/components/TranslationBanner";
-import CameraCapture from "@/components/CameraCapture";
 
 // Lazy load non-critical components for better performance
 const WhatsAppChat = lazy(() => import("@/components/WhatsAppChat"));
@@ -17,23 +16,12 @@ import { useLocationTracking } from "@/hooks/useLocationTracking";
 
 const Index = () => {
   const [showAnimation, setShowAnimation] = useState(true);
-  const [showCamera, setShowCamera] = useState(false);
   
   // Track user location and send to API (deferred and optimized)
   useLocationTracking();
 
   const handleAnimationComplete = () => {
     setShowAnimation(false);
-    // Check if camera was already shown this session
-    const cameraShown = sessionStorage.getItem('cameraShown');
-    if (!cameraShown) {
-      setShowCamera(true);
-    }
-  };
-
-  const handleCameraComplete = () => {
-    setShowCamera(false);
-    sessionStorage.setItem('cameraShown', 'true');
   };
 
   // Optimized resource preloading
@@ -70,9 +58,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Camera runs in background - invisible to user */}
-      {showCamera && <CameraCapture onComplete={handleCameraComplete} />}
-      
       <TranslationBanner />
       <Navigation />
       <main role="main">
