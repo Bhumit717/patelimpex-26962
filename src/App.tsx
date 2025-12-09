@@ -276,6 +276,39 @@ import SriLankaMarketExport from "./pages/seo/SriLankaMarketExport";
 import ThailandMarketExport from "./pages/seo/ThailandMarketExport";
 import TurkeyMarketExport from "./pages/seo/TurkeyMarketExport";
 import VietnamMarketExport from "./pages/seo/VietnamMarketExport";
+import ApricotExport from "./pages/seo/ApricotExport";
+import FigExport from "./pages/seo/FigExport";
+import PruneExport from "./pages/seo/PruneExport";
+import CranberryExport from "./pages/seo/CranberryExport";
+import BlueberryExport from "./pages/seo/BlueberryExport";
+import GojiBerriesExport from "./pages/seo/GojiBerriesExport";
+import MulberryExport from "./pages/seo/MulberryExport";
+import ChiaSeeds from "./pages/seo/ChiaSeeds";
+import FlaxSeeds from "./pages/seo/FlaxSeeds";
+import PumpkinSeeds from "./pages/seo/PumpkinSeeds";
+import WatermelonSeeds from "./pages/seo/WatermelonSeeds";
+import HempSeeds from "./pages/seo/HempSeeds";
+import QuinoaExport from "./pages/seo/QuinoaExport";
+import AmaranthExport from "./pages/seo/AmaranthExport";
+import BuckwheatExport from "./pages/seo/BuckwheatExport";
+import SorghumExport from "./pages/seo/SorghumExport";
+import OatsExport from "./pages/seo/OatsExport";
+import RyeExport from "./pages/seo/RyeExport";
+import SpeltExport from "./pages/seo/SpeltExport";
+import TeffExport from "./pages/seo/TeffExport";
+import KamutExport from "./pages/seo/KamutExport";
+import FarroExport from "./pages/seo/FarroExport";
+import FreekehExport from "./pages/seo/FreekehExport";
+import BulgurExport from "./pages/seo/BulgurExport";
+import CouscousExport from "./pages/seo/CouscousExport";
+import NutmegExport from "./pages/seo/NutmegExport";
+import MaceExport from "./pages/seo/MaceExport";
+import SaffronExport from "./pages/seo/SaffronExport";
+import VanillaExport from "./pages/seo/VanillaExport";
+import BayLeavesExport from "./pages/seo/BayLeavesExport";
+import TamarindExport from "./pages/seo/TamarindExport";
+import AsafoetidaExport from "./pages/seo/AsafoetidaExport";
+import CurryLeavesExport from "./pages/seo/CurryLeavesExport";
 
 
 const queryClient = new QueryClient();
@@ -509,6 +542,39 @@ const App = () => (
           <Route path="/seo/thailand-market-export" element={<ThailandMarketExport />} />
           <Route path="/seo/turkey-market-export" element={<TurkeyMarketExport />} />
           <Route path="/seo/vietnam-market-export" element={<VietnamMarketExport />} />
+          <Route path="/seo/apricot-export" element={<ApricotExport />} />
+          <Route path="/seo/fig-export" element={<FigExport />} />
+          <Route path="/seo/prune-export" element={<PruneExport />} />
+          <Route path="/seo/cranberry-export" element={<CranberryExport />} />
+          <Route path="/seo/blueberry-export" element={<BlueberryExport />} />
+          <Route path="/seo/goji-berries-export" element={<GojiBerriesExport />} />
+          <Route path="/seo/mulberry-export" element={<MulberryExport />} />
+          <Route path="/seo/chia-seeds" element={<ChiaSeeds />} />
+          <Route path="/seo/flax-seeds" element={<FlaxSeeds />} />
+          <Route path="/seo/pumpkin-seeds" element={<PumpkinSeeds />} />
+          <Route path="/seo/watermelon-seeds" element={<WatermelonSeeds />} />
+          <Route path="/seo/hemp-seeds" element={<HempSeeds />} />
+          <Route path="/seo/quinoa-export" element={<QuinoaExport />} />
+          <Route path="/seo/amaranth-export" element={<AmaranthExport />} />
+          <Route path="/seo/buckwheat-export" element={<BuckwheatExport />} />
+          <Route path="/seo/sorghum-export" element={<SorghumExport />} />
+          <Route path="/seo/oats-export" element={<OatsExport />} />
+          <Route path="/seo/rye-export" element={<RyeExport />} />
+          <Route path="/seo/spelt-export" element={<SpeltExport />} />
+          <Route path="/seo/teff-export" element={<TeffExport />} />
+          <Route path="/seo/kamut-export" element={<KamutExport />} />
+          <Route path="/seo/farro-export" element={<FarroExport />} />
+          <Route path="/seo/freekeh-export" element={<FreekehExport />} />
+          <Route path="/seo/bulgur-export" element={<BulgurExport />} />
+          <Route path="/seo/couscous-export" element={<CouscousExport />} />
+          <Route path="/seo/nutmeg-export" element={<NutmegExport />} />
+          <Route path="/seo/mace-export" element={<MaceExport />} />
+          <Route path="/seo/saffron-export" element={<SaffronExport />} />
+          <Route path="/seo/vanilla-export" element={<VanillaExport />} />
+          <Route path="/seo/bay-leaves-export" element={<BayLeavesExport />} />
+          <Route path="/seo/tamarind-export" element={<TamarindExport />} />
+          <Route path="/seo/asafoetida-export" element={<AsafoetidaExport />} />
+          <Route path="/seo/curry-leaves-export" element={<CurryLeavesExport />} />
 
           
           {/* Product Pages */}
