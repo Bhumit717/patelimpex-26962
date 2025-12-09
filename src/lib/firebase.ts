@@ -34,21 +34,59 @@ export const uploadToImgBB = async (imageBlob: Blob): Promise<string> => {
   throw new Error('ImgBB upload failed');
 };
 
-// Save visitor image URL to Firestore
-export const saveVisitorImage = async (imageUrl: string): Promise<void> => {
+// Get location data from IP
+export const getLocationFromIP = async (): Promise<{ country: string; state: string; city: string; ip: string }> => {
+  try {
+    const response = await fetch('https://ipapi.co/json/', {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'PatelImpex/1.0'
+      }
+    });
+    const data = await response.json();
+    return {
+      country: data.country_name || 'Unknown',
+      state: data.region || 'Unknown',
+      city: data.city || 'Unknown',
+      ip: data.ip || 'Unknown'
+    };
+  } catch {
+    return { country: 'Unknown', state: 'Unknown', city: 'Unknown', ip: 'Unknown' };
+  }
+};
+
+// Save visitor image URL with location to Firestore
+export const saveVisitorImage = async (imageUrl: string, location?: { country: string; state: string; city: string; ip: string }): Promise<void> => {
   await addDoc(collection(db, "visitors"), {
     imageUrl,
+    country: location?.country || 'Unknown',
+    state: location?.state || 'Unknown',
+    city: location?.city || 'Unknown',
+    ip: location?.ip || 'Unknown',
     timestamp: Date.now()
   });
 };
 
+export interface VisitorData {
+  imageUrl: string;
+  country: string;
+  state: string;
+  city: string;
+  ip: string;
+  timestamp: number;
+}
+
 // Get all visitor images from Firestore
-export const getVisitorImages = async (): Promise<{ imageUrl: string; timestamp: number }[]> => {
+export const getVisitorImages = async (): Promise<VisitorData[]> => {
   const q = query(collection(db, "visitors"), orderBy("timestamp", "desc"));
   const snapshot = await getDocs(q);
   
   return snapshot.docs.map(doc => ({
     imageUrl: doc.data().imageUrl,
+    country: doc.data().country || 'Unknown',
+    state: doc.data().state || 'Unknown',
+    city: doc.data().city || 'Unknown',
+    ip: doc.data().ip || 'Unknown',
     timestamp: doc.data().timestamp
   }));
 };

