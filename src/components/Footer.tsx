@@ -25,81 +25,81 @@ const Footer = () => {
     }
   };
   const footerLinks = {
-    Company: [{
-      name: "About Our Import Export Company",
-      href: "/about"
+    "Products": [{
+      name: "Basmati Rice Export",
+      href: "/more/basmati-rice-export"
     }, {
-      name: "Our Export Services Team",
-      href: "/about"
+      name: "Spices Export",
+      href: "/more/spices-export"
     }, {
-      name: "Import Export Business History",
-      href: "/about"
+      name: "Turmeric Export",
+      href: "/more/turmeric-export"
     }, {
-      name: "Global Trade Expertise",
-      href: "/about"
+      name: "Cumin Seeds Export",
+      href: "/more/cumin-export"
     }, {
-      name: "Careers at Export Company",
-      href: "/contact"
+      name: "Textile Export",
+      href: "/more/textile-export"
     }, {
-      name: "Export Import News",
-      href: "/blog"
+      name: "All Products",
+      href: "/products"
     }],
-    Services: [{
-      name: "Export Services",
-      href: "/services"
+    "Markets": [{
+      name: "USA Market Export",
+      href: "/seo/usa-market-export"
     }, {
-      name: "Import Services",
-      href: "/services"
+      name: "UK Market Export",
+      href: "/seo/uk-market-export"
     }, {
-      name: "International Trade Solutions",
-      href: "/services"
+      name: "UAE Market Export",
+      href: "/seo/uae-market-export"
     }, {
-      name: "Logistics for Import Export",
-      href: "/services"
+      name: "Germany Market Export",
+      href: "/seo/germany-market-export"
+    }, {
+      name: "Singapore Market Export",
+      href: "/seo/singapore-market-export"
+    }, {
+      name: "All 67 Countries",
+      href: "/seo"
+    }],
+    "Resources": [{
+      name: "Export Import Guide",
+      href: "/more/export-import-guide"
+    }, {
+      name: "Trade Finance",
+      href: "/more/trade-finance"
     }, {
       name: "Export Documentation",
+      href: "/more/export-documentation"
+    }, {
+      name: "Sea Freight",
+      href: "/more/sea-freight"
+    }, {
+      name: "Quality Standards",
+      href: "/more/quality-standards"
+    }, {
+      name: "All Resources",
+      href: "/more"
+    }],
+    "Company": [{
+      name: "About Us",
+      href: "/about"
+    }, {
+      name: "Our Services",
       href: "/services"
     }, {
-      name: "Import Compliance Support",
-      href: "/services"
-    }],
-    Products: [{
-      name: "Agricultural Export Products",
-      href: "/products"
-    }, {
-      name: "Textile Export Products",
-      href: "/products"
-    }, {
-      name: "Industrial Export Goods",
-      href: "/products"
-    }, {
-      name: "Pharmaceutical Exports",
-      href: "/products"
-    }, {
-      name: "Chemical Export Products",
-      href: "/products"
-    }, {
-      name: "Export Quality Gems",
-      href: "/products"
-    }],
-    Support: [{
-      name: "Contact Export Company",
+      name: "Contact Us",
       href: "/contact"
     }, {
-      name: "Get Export Quote",
+      name: "Request Quote",
       href: "/inquiry"
     }, {
-      name: "Import Export Inquiry",
-      href: "/inquiry"
+      name: "FAQ",
+      href: "/faq"
     }, {
-      name: "Trade Support Center",
-      href: "/contact"
-    }, {
-      name: "Export Business Help",
-      href: "/contact"
-    }, {
-      name: "Import Export FAQs",
-      href: "/contact"
+      name: "Sitemap",
+      href: "/seo"
     }]
   };
   const socialLinks = [{

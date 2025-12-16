@@ -20,11 +20,17 @@ const Navigation = () => {
     name: "Products",
     href: "/products"
   }, {
+    name: "Resources",
+    href: "/more"
+  }, {
     name: "Blog",
     href: "/blog"
   }, {
     name: "FAQ",
     href: "/faq"
+  }, {
+    name: "Sitemap",
+    href: "/seo"
   }, {
     name: "Contact",
     href: "/contact"
