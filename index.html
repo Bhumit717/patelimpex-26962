@@ -69,6 +69,7 @@
   <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="PL6KTxPwwk94U11mhxYrS3SBaGBN0zCYBjii1wrlb0I" />
   <meta name="google-site-verification" content="XNcFltDevxwvqtyqqexhCtKIdZHx8DjixQcqRNb2ZEc" />
+  <meta name="google-site-verification" content="dB_bYmdqYpV1g_7n_N7LBh--9DRygOZlPNdwUAww3aQ" />
 
   <title>Patel Impex | Leading Import Export Company in India | Global Trade Solutions | International Business Services</title>
 </head>
@@ -78,24 +79,13 @@
     <!-- Defer main application script for better performance -->
     <script type="module" src="/src/main.tsx" defer></script>
     
-    <!-- Load Google Analytics asynchronously after main content -->
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VJ1WRYEGW9"></script>
     <script>
-      // Initialize Google Analytics
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-2V84H3BM6L', {
-        page_title: document.title,
-        page_location: window.location.href
-      });
-      
-      // Load GA script after page load to not block rendering
-      window.addEventListener('load', function() {
-        const gaScript = document.createElement('script');
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-2V84H3BM6L';
-        gaScript.async = true;
-        document.head.appendChild(gaScript);
-      });
+      gtag('config', 'G-VJ1WRYEGW9');
     </script>
   </body>
 </html>
