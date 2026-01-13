@@ -88,7 +88,7 @@ const About = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center group/stat cursor-pointer transform hover:scale-105 transition-all duration-300">
-                  <div className="bg-gray-800/50 rounded-[50px] p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-ai-primary/20 hover:border-ai-primary/40 hover:shadow-ai-primary/20">
+                  <div className="bg-gray-800/50 rounded-[50px] p-6 shadow-[0_5px_15px_rgba(139,92,246,0.2)] hover:shadow-[0_8px_25px_rgba(139,92,246,0.3)] transition-all duration-300 border border-ai-primary/20 hover:border-ai-primary/40">
                     <stat.icon className={`h-10 w-10 ${stat.color} mx-auto mb-4 group-hover/stat:scale-110 transition-transform duration-300`} />
                     <div className="text-3xl font-black text-white mb-2 group-hover/stat:text-ai-primary transition-colors duration-300">
                       {stat.number}
@@ -108,7 +108,7 @@ const About = () => {
           </div>
 
           <div className="relative group">
-            <div className="relative overflow-hidden rounded-[50px] shadow-2xl transform group-hover:scale-105 transition-all duration-700 border border-ai-primary/20">
+            <div className="relative overflow-hidden rounded-[50px] shadow-[0_5px_15px_rgba(139,92,246,0.2)] transform group-hover:scale-105 transition-all duration-700 border border-ai-primary/20">
               <img
                 src="/lovable-uploads/388b7837-d349-4307-9ccb-6fe86933060f.png"
                 alt="International shipping containers with various country flags"
@@ -118,7 +118,7 @@ const About = () => {
             </div>
             
             {/* Floating achievement card */}
-            <div className="absolute -bottom-8 -left-8 bg-gradient-to-r from-ai-primary to-ai-secondary text-white p-8 rounded-[50px] shadow-2xl transform hover:scale-105 transition-all duration-300 border-4 border-gray-800">
+            <div className="absolute -bottom-8 -left-8 bg-gradient-to-r from-ai-primary to-ai-secondary text-white p-8 rounded-[50px] shadow-[0_5px_15px_rgba(139,92,246,0.3)] transform hover:scale-105 transition-all duration-300 border-4 border-gray-800">
               <div className="text-center">
                 <Zap className="h-8 w-8 mx-auto mb-2" />
                 <div className="text-4xl font-black mb-2">15+</div>
@@ -128,7 +128,7 @@ const About = () => {
             </div>
 
             {/* Floating trust badge */}
-            <div className="absolute -top-6 -right-6 bg-gray-800/90 backdrop-blur-sm p-6 rounded-[50px] shadow-xl border border-ai-primary/30 transform hover:scale-105 transition-all duration-300">
+            <div className="absolute -top-6 -right-6 bg-gray-800/90 backdrop-blur-sm p-6 rounded-[50px] shadow-[0_5px_15px_rgba(139,92,246,0.2)] border border-ai-primary/30 transform hover:scale-105 transition-all duration-300">
               <div className="text-center">
                 <Award className="h-8 w-8 text-ai-primary mx-auto mb-2" />
                 <div className="text-xs font-bold text-white">ISO Certified</div>

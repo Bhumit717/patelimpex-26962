@@ -95,7 +95,7 @@ const EnhancedProductCategoryTemplate = ({
               <Link
                 key={index}
                 to={product.link}
-                className="group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-transparent"
+                className="group bg-white rounded-[50px] overflow-hidden shadow-[0_5px_15px_rgba(59,130,246,0.15)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] transition-all duration-500 hover:-translate-y-2 border border-transparent"
               >
                 <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-6 flex items-center justify-center">
                   <img

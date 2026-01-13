@@ -85,7 +85,7 @@ const Hero = () => {
                 { number: "15+", label: "Years Experience", description: "Years in import export business" },
                 { number: "50+", label: "Countries Reached", description: "Countries served by our export company" },
               ].map((stat, index) => (
-              <div key={index} className="text-center group cursor-pointer min-h-[80px] p-2 bg-gray-800/50 rounded-[50px]" role="article" aria-label={`${stat.description}: ${stat.number}`} tabIndex={0}>
+              <div key={index} className="text-center group cursor-pointer min-h-[80px] p-2 bg-gray-800/50 rounded-[50px] shadow-[0_5px_15px_rgba(139,92,246,0.2)]" role="article" aria-label={`${stat.description}: ${stat.number}`} tabIndex={0}>
                   <div className="text-3xl lg:text-4xl font-bold text-white mb-2 group-hover:text-ai-primary transition-colors duration-300" aria-label={`${stat.number} ${stat.label}`}>
                     {stat.number}
                   </div>
@@ -113,7 +113,7 @@ const Hero = () => {
               },
             ].map((item, index) => (
               <article key={index} className="group cursor-pointer transform hover:scale-105 transition-all duration-300" role="article" aria-label={`${item.title} service feature`} tabIndex={0}>
-                <div className={`${item.bgColor} p-8 rounded-[50px] border border-ai-primary/20 hover:border-ai-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-ai-primary/20 focus:ring-2 focus:ring-ai-primary focus:outline-none min-h-[200px]`}>
+                <div className={`${item.bgColor} p-8 rounded-[50px] border border-ai-primary/20 hover:border-ai-primary/40 transition-all duration-300 shadow-[0_5px_15px_rgba(139,92,246,0.2)] hover:shadow-[0_8px_25px_rgba(139,92,246,0.3)] focus:ring-2 focus:ring-ai-primary focus:outline-none min-h-[200px]`}>
                   <div className={`w-16 h-16 bg-gradient-to-r ${item.color} rounded-[25px] flex items-center justify-center mb-6`} aria-hidden="true">
                     <item.icon className="h-8 w-8 text-white" />
                   </div>

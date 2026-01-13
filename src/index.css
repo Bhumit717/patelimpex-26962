@@ -156,6 +156,19 @@ All colors MUST be HSL.
     border: 1px solid hsl(var(--ai-primary) / 0.3);
   }
   
+  /* Box shadow utilities */
+  .box-shadow-blue {
+    box-shadow: 0 5px 15px hsla(217, 91%, 60%, 0.15);
+  }
+  
+  .box-shadow-blue-hover {
+    box-shadow: 0 8px 25px hsla(217, 91%, 60%, 0.25);
+  }
+  
+  .box-shadow-dark {
+    box-shadow: 0 5px 15px hsla(210, 11%, 0%, 0.2);
+  }
+  
   .animate-scroll-infinite {
     animation: scroll-infinite 20s linear infinite;
   }

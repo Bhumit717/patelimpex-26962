@@ -70,7 +70,7 @@ const Services = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border border-ai-primary/20 shadow-lg bg-gray-800/50 backdrop-blur-sm relative overflow-hidden rounded-[50px]">
+          {services.map((service, index) => <Card key={index} className="group hover:shadow-[0_8px_25px_rgba(139,92,246,0.3)] transition-all duration-500 hover:-translate-y-4 border border-ai-primary/20 shadow-[0_5px_15px_rgba(139,92,246,0.2)] bg-gray-800/50 backdrop-blur-sm relative overflow-hidden rounded-[50px]">
               {/* Static gradient overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
               
