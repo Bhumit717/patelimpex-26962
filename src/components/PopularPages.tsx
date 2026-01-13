@@ -101,7 +101,7 @@ const PopularPages = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {Object.entries(popularLinks).map(([category, links]) => {
           const Icon = icons[category];
-          return <div key={category} className="bg-gray-800/50 rounded-[50px] p-6 border border-ai-primary/20 hover:border-ai-primary/40 transition-all duration-300">
+          return <div key={category} className="bg-gray-800/50 rounded-[50px] p-6 border border-ai-primary/20 hover:border-ai-primary/40 transition-all duration-300 shadow-[0_5px_15px_rgba(139,92,246,0.2)] hover:shadow-[0_8px_25px_rgba(139,92,246,0.3)]">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 bg-gradient-to-r from-ai-primary to-ai-secondary rounded-[25px] flex items-center justify-center">
                     <Icon className="h-5 w-5 text-white" />

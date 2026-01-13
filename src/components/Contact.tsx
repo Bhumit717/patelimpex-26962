@@ -142,7 +142,7 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <Card 
                   key={index} 
-                  className="bg-gray-800/50 border-transparent hover:shadow-xl shadow-lg transition-all duration-300 rounded-[50px]"
+                  className="bg-gray-800/50 border-transparent hover:shadow-[0_8px_25px_rgba(139,92,246,0.3)] shadow-[0_5px_15px_rgba(139,92,246,0.2)] transition-all duration-300 rounded-[50px]"
                 >
                   <CardHeader className="pb-3">
                     <div className="flex items-center space-x-3">
@@ -166,7 +166,7 @@ const Contact = () => {
             </div>
 
             {/* Embedded Google Map */}
-            <div className="h-64 bg-gray-800 rounded-[50px] overflow-hidden border border-transparent shadow-2xl">
+            <div className="h-64 bg-gray-800 rounded-[50px] overflow-hidden border border-transparent shadow-[0_5px_15px_rgba(139,92,246,0.2)]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0!2d70.8040941!3d22.1622576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395835617fada2e3%3A0x7046141c800ddc54!2sPATEL%20IMPEX!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
                 width="100%"
@@ -181,7 +181,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-gray-800/50 border-ai-primary/20 shadow-xl rounded-[50px]">
+          <Card className="bg-gray-800/50 border-ai-primary/20 shadow-[0_5px_15px_rgba(139,92,246,0.2)] rounded-[50px]">
             <CardHeader>
               <h3 className="text-2xl text-white">Send Message</h3>
             </CardHeader>

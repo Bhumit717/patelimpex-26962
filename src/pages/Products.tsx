@@ -146,7 +146,7 @@ const Products = () => {
               {/* Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
                 {stats.map((stat, index) => (
-                  <div key={index} className="bg-white p-6 rounded-[50px] shadow-lg border border-gray-100">
+                  <div key={index} className="bg-white p-6 rounded-[50px] shadow-[0_5px_15px_rgba(59,130,246,0.15)] border border-gray-100">
                     <stat.icon className="h-8 w-8 text-blue-600 mx-auto mb-3" />
                     <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
                     <div className="text-sm text-gray-600">{stat.label}</div>
@@ -165,7 +165,7 @@ const Products = () => {
                 <Link
                   key={index}
                   to={product.link}
-                  className="group relative bg-white rounded-[50px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100"
+                  className="group relative bg-white rounded-[50px] overflow-hidden shadow-[0_5px_15px_rgba(59,130,246,0.15)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] transition-all duration-500 hover:-translate-y-2 border border-gray-100"
                 >
                   {/* Image Section */}
                   <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-6 flex items-center justify-center rounded-t-[50px]">
@@ -212,7 +212,7 @@ const Products = () => {
             <div className="text-center mt-12">
               <Link
                 to="/contact"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-bold rounded-[50px] shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-bold rounded-[50px] shadow-[0_5px_15px_rgba(59,130,246,0.3)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:scale-105 group"
               >
                 <Package className="h-5 w-5 mr-2" />
                 Request Quote

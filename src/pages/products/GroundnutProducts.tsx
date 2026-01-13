@@ -1,29 +1,32 @@
 import ProductCategoryTemplate from "@/components/ProductCategoryTemplate";
-import groundnutImg from "@/assets/products/groundnut.png";
+import boldRunnerImg from "@/assets/products/bold-runner-groundnut.png";
+import javaSpanishImg from "@/assets/products/java-spanish-groundnut.png";
+import tjGroundnutImg from "@/assets/products/tj-groundnut.png";
+import g10g20Img from "@/assets/products/g10-g20-groundnut.png";
 
 const GroundnutProducts = () => {
   const products = [
     {
       name: "Bold/Runner/Virginia Groundnut",
-      image: groundnutImg,
+      image: boldRunnerImg,
       link: "/products/bold-runner-groundnut",
       description: "Larger, elongated kernels, often used in confectionery and peanut butter.",
     },
     {
       name: "Java/Spanish Groundnut",
-      image: groundnutImg,
+      image: javaSpanishImg,
       link: "/products/java-spanish-groundnut",
       description: "Smaller, rounder kernels, preferred for snacks and oil extraction.",
     },
     {
       name: "TJ (Tikkam Jawar) Groundnut",
-      image: groundnutImg,
+      image: tjGroundnutImg,
       link: "/products/tj-groundnut",
       description: "Specific varieties like TJ 37 and TJ Pathavada, known for their quality.",
     },
     {
       name: "G10 & G20 Premium Groundnut",
-      image: groundnutImg,
+      image: g10g20Img,
       link: "/products/g10-g20-groundnut",
       description: "Premium varieties of Java peanuts with reddish, shiny appearance and strong shells.",
     },

@@ -115,7 +115,7 @@ const EnhancedProductDetailTemplate = ({
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Image Gallery */}
             <div className="space-y-4">
-              <div className="relative aspect-square rounded-[50px] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-transparent shadow-xl">
+              <div className="relative aspect-square rounded-[50px] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-transparent shadow-[0_5px_15px_rgba(59,130,246,0.15)]">
                 <img
                   src={images[selectedImage]}
                   alt={`${name} - Image ${selectedImage + 1}`}
@@ -206,7 +206,7 @@ const EnhancedProductDetailTemplate = ({
 
               {/* Available Formats */}
               {formats && formats.length > 0 && (
-                <div className="bg-gray-50 rounded-[50px] p-6 shadow-lg border border-transparent">
+                <div className="bg-gray-50 rounded-[50px] p-6 shadow-[0_5px_15px_rgba(59,130,246,0.15)] border border-transparent">
                   <h3 className="font-bold text-gray-900 mb-3">Available Formats</h3>
                   <div className="flex flex-wrap gap-2">
                       {formats.map((format, index) => (
@@ -222,7 +222,7 @@ const EnhancedProductDetailTemplate = ({
               )}
 
               {/* Specifications */}
-              <div className="bg-white border border-transparent rounded-[50px] overflow-hidden shadow-xl">
+              <div className="bg-white border border-transparent rounded-[50px] overflow-hidden shadow-[0_5px_15px_rgba(59,130,246,0.15)]">
                 <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 rounded-t-[50px]">
                   <h3 className="font-bold text-gray-900">Specifications</h3>
                 </div>
@@ -240,7 +240,7 @@ const EnhancedProductDetailTemplate = ({
 
           {/* Uses & Benefits */}
           <div className="mt-16 grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-[50px] p-8 shadow-xl border border-transparent">
+            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-[50px] p-8 shadow-[0_5px_15px_rgba(59,130,246,0.15)] border border-transparent">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Uses & Benefits</h2>
               <ul className="space-y-3">
                 {uses.map((use, index) => (
@@ -252,7 +252,7 @@ const EnhancedProductDetailTemplate = ({
               </ul>
             </div>
 
-            <div className="bg-white border border-transparent rounded-[50px] p-8 shadow-xl">
+            <div className="bg-white border border-transparent rounded-[50px] p-8 shadow-[0_5px_15px_rgba(59,130,246,0.15)]">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Export Information</h2>
               <div className="space-y-4">
                 {exportInfo.map((info, index) => (
