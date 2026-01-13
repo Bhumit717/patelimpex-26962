@@ -1,0 +1,175 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Performance optimizations */
+.lcp-element {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 200px;
+}
+
+/* Critical path CSS for above-the-fold content */
+.hero-section {
+  contain: layout style paint;
+}
+
+/* Optimize loading states */
+.loading-skeleton {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 210 11% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 11% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 11% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 210 11% 4%;
+
+    --secondary: 210 11% 8%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 11% 8%;
+    --muted-foreground: 210 40% 60%;
+
+    --accent: 210 11% 10%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 11% 15%;
+    --input: 210 11% 15%;
+    --ring: 210 40% 98%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 210 11% 4%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 210 11% 4%;
+    --sidebar-accent: 210 11% 8%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 11% 15%;
+    --sidebar-ring: 210 40% 98%;
+
+    /* AI Theme Colors */
+    --ai-primary: 271 91% 65%;
+    --ai-secondary: 195 100% 50%;
+    --ai-accent: 330 100% 70%;
+    --ai-glow: 271 91% 65%;
+    --ai-neon: 120 100% 50%;
+    --ai-cyber: 300 100% 60%;
+  }
+
+  .dark {
+    --background: 210 11% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 11% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 11% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 210 11% 4%;
+
+    --secondary: 210 11% 8%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 11% 8%;
+    --muted-foreground: 210 40% 60%;
+
+    --accent: 210 11% 10%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 11% 15%;
+    --input: 210 11% 15%;
+    --ring: 210 40% 98%;
+    --sidebar-background: 210 11% 4%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 210 11% 4%;
+    --sidebar-accent: 210 11% 8%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 11% 15%;
+    --sidebar-ring: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(210, 11%, 4%) 0%, hsl(210, 11%, 6%) 100%);
+    min-height: 100vh;
+    font-display: swap;
+  }
+}
+
+/* AI Theme Utilities */
+@layer utilities {
+  .ai-gradient {
+    background: linear-gradient(135deg, hsl(var(--ai-primary)) 0%, hsl(var(--ai-secondary)) 50%, hsl(var(--ai-accent)) 100%);
+  }
+  
+  .ai-glow {
+    box-shadow: 0 0 20px hsl(var(--ai-glow) / 0.3);
+  }
+  
+  .ai-text-glow {
+    text-shadow: 0 0 10px hsl(var(--ai-glow) / 0.5);
+  }
+  
+  .dark-card {
+    background: linear-gradient(135deg, hsl(210, 11%, 6%) 0%, hsl(210, 11%, 8%) 100%);
+  }
+  
+  .ai-border {
+    border: 1px solid hsl(var(--ai-primary) / 0.3);
+  }
+  
+  .animate-scroll-infinite {
+    animation: scroll-infinite 20s linear infinite;
+  }
+  
+  .animate-scroll-fast {
+    animation: scroll-infinite 10s linear infinite;
+  }
+  
+  @keyframes scroll-infinite {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
