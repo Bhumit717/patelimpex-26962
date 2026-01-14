@@ -101,6 +101,20 @@ import RiceProductsPage from "./pages/products/RiceProductsPage";
 import GroundnutProductsPage from "./pages/products/GroundnutProductsPage";
 import CottonProductsPage from "./pages/products/CottonProductsPage";
 
+// Cotton Subproduct Pages
+import RawCottonDetail from "./pages/products/RawCottonDetail";
+import CottonYarnDetail from "./pages/products/CottonYarnDetail";
+import ComberNoilDetail from "./pages/products/ComberNoilDetail";
+import CottonCardingDetail from "./pages/products/CottonCardingDetail";
+import ProcessedCottonDetail from "./pages/products/ProcessedCottonDetail";
+import CottonRovingDetail from "./pages/products/CottonRovingDetail";
+
+// Groundnut Subproduct Pages
+import BoldRunnerGroundnutDetail from "./pages/products/BoldRunnerGroundnutDetail";
+import JavaSpanishGroundnutDetail from "./pages/products/JavaSpanishGroundnutDetail";
+import TJGroundnutDetail from "./pages/products/TJGroundnutDetail";
+import G10G20GroundnutDetail from "./pages/products/G10G20GroundnutDetail";
+
 // Product Pages - Other
 import OrganicPesticidesExport from "./pages/products/OrganicPesticidesExport";
 import BioFertilizersExport from "./pages/products/BioFertilizersExport";
@@ -539,6 +553,20 @@ const App = () => (
           <Route path="/products/rice" element={<RiceProductsPage />} />
           <Route path="/products/groundnut" element={<GroundnutProductsPage />} />
           <Route path="/products/cotton" element={<CottonProductsPage />} />
+          
+          {/* Cotton Subproduct Routes */}
+          <Route path="/products/raw-cotton" element={<RawCottonDetail />} />
+          <Route path="/products/cotton-yarn" element={<CottonYarnDetail />} />
+          <Route path="/products/comber-noil-cotton" element={<ComberNoilDetail />} />
+          <Route path="/products/cotton-carding-dropping" element={<CottonCardingDetail />} />
+          <Route path="/products/processed-cotton" element={<ProcessedCottonDetail />} />
+          <Route path="/products/cotton-roving" element={<CottonRovingDetail />} />
+          
+          {/* Groundnut Subproduct Routes */}
+          <Route path="/products/bold-runner-groundnut" element={<BoldRunnerGroundnutDetail />} />
+          <Route path="/products/java-spanish-groundnut" element={<JavaSpanishGroundnutDetail />} />
+          <Route path="/products/tj-groundnut" element={<TJGroundnutDetail />} />
+          <Route path="/products/g10-g20-groundnut" element={<G10G20GroundnutDetail />} />
           
           {/* Other Product Pages */}
           <Route path="/products/organic-pesticides-export" element={<OrganicPesticidesExport />} />
