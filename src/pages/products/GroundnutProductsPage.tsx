@@ -1,12 +1,15 @@
 import EnhancedProductCategoryTemplate from "@/components/EnhancedProductCategoryTemplate";
-import groundnutImg from "@/assets/products/groundnut.png";
+import boldRunnerImg from "@/assets/products/bold-runner-groundnut.png";
+import javaSpanishImg from "@/assets/products/java-spanish-groundnut.png";
+import tjGroundnutImg from "@/assets/products/tj-groundnut.png";
+import g10g20Img from "@/assets/products/g10-g20-groundnut.png";
 
 const GroundnutProductsPage = () => {
   const products = [
-    { name: "Bold/Runner/Virginia Groundnut", image: groundnutImg, link: "/products/groundnut/bold-runner", description: "Large, elongated kernels for confectionery & peanut butter" },
-    { name: "Java/Spanish Groundnut", image: groundnutImg, link: "/products/groundnut/java-spanish", description: "Smaller, rounder kernels for snacks and oil" },
-    { name: "TJ Groundnut (TJ 37, TJ Pathavada)", image: groundnutImg, link: "/products/groundnut/tj-variety", description: "Premium quality Indian varieties" },
-    { name: "G10 & G20 Premium Java", image: groundnutImg, link: "/products/groundnut/g10-g20", description: "Reddish, shiny appearance with strong shells" },
+    { name: "Bold/Runner/Virginia Groundnut", image: boldRunnerImg, link: "/products/bold-runner-groundnut", description: "Large, elongated kernels for confectionery & peanut butter" },
+    { name: "Java/Spanish Groundnut", image: javaSpanishImg, link: "/products/java-spanish-groundnut", description: "Smaller, rounder kernels for snacks and oil extraction" },
+    { name: "TJ Groundnut (TJ 37, TJ Pathavada)", image: tjGroundnutImg, link: "/products/tj-groundnut", description: "Premium quality Indian varieties known for taste" },
+    { name: "G10 & G20 Premium Java", image: g10g20Img, link: "/products/g10-g20-groundnut", description: "Reddish, shiny appearance with strong shells" },
   ];
 
   return (

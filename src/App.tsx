@@ -115,6 +115,14 @@ import JavaSpanishGroundnutDetail from "./pages/products/JavaSpanishGroundnutDet
 import TJGroundnutDetail from "./pages/products/TJGroundnutDetail";
 import G10G20GroundnutDetail from "./pages/products/G10G20GroundnutDetail";
 
+// Rice Subproduct Pages
+import GoldenSellaBasmatiRice1121Detail from "./pages/products/GoldenSellaBasmatiRice1121Detail";
+import WhiteSellaBasmatiRice1121Detail from "./pages/products/WhiteSellaBasmatiRice1121Detail";
+import SteamBasmatiRice1121Detail from "./pages/products/SteamBasmatiRice1121Detail";
+import IR64ParboiledRiceDetail from "./pages/products/IR64ParboiledRiceDetail";
+import IR64RawRiceDetail from "./pages/products/IR64RawRiceDetail";
+import SonaMasooriRiceDetail from "./pages/products/SonaMasooriRiceDetail";
+
 // Product Pages - Other
 import OrganicPesticidesExport from "./pages/products/OrganicPesticidesExport";
 import BioFertilizersExport from "./pages/products/BioFertilizersExport";
@@ -567,6 +575,14 @@ const App = () => (
           <Route path="/products/java-spanish-groundnut" element={<JavaSpanishGroundnutDetail />} />
           <Route path="/products/tj-groundnut" element={<TJGroundnutDetail />} />
           <Route path="/products/g10-g20-groundnut" element={<G10G20GroundnutDetail />} />
+          
+          {/* Rice Subproduct Routes */}
+          <Route path="/products/golden-sella-basmati-rice-1121" element={<GoldenSellaBasmatiRice1121Detail />} />
+          <Route path="/products/white-sella-basmati-rice-1121" element={<WhiteSellaBasmatiRice1121Detail />} />
+          <Route path="/products/steam-basmati-rice-1121" element={<SteamBasmatiRice1121Detail />} />
+          <Route path="/products/ir64-parboiled-rice" element={<IR64ParboiledRiceDetail />} />
+          <Route path="/products/ir64-raw-rice" element={<IR64RawRiceDetail />} />
+          <Route path="/products/sona-masoori-rice" element={<SonaMasooriRiceDetail />} />
           
           {/* Other Product Pages */}
           <Route path="/products/organic-pesticides-export" element={<OrganicPesticidesExport />} />
