@@ -1,14 +1,19 @@
 import EnhancedProductCategoryTemplate from "@/components/EnhancedProductCategoryTemplate";
-import riceImg from "@/assets/products/rice.png";
+import goldenSellaImg from "@/assets/products/golden-sella-rice.png";
+import whiteSellaImg from "@/assets/products/white-sella-rice.png";
+import steamBasmatiImg from "@/assets/products/steam-basmati-rice.png";
+import ir64ParboiledImg from "@/assets/products/ir64-parboiled-rice.png";
+import ir64RawImg from "@/assets/products/ir64-raw-rice.png";
+import sonaMasooriImg from "@/assets/products/sona-masoori-rice.png";
 
 const RiceProductsPage = () => {
   const products = [
-    { name: "1121 Golden Sella Basmati Rice", image: riceImg, link: "/products/rice/golden-sella-1121", description: "Premium parboiled basmati with golden hue" },
-    { name: "1121 White Sella Basmati Rice", image: riceImg, link: "/products/rice/white-sella-1121", description: "Creamy white parboiled basmati" },
-    { name: "1121 Steam Basmati Rice", image: riceImg, link: "/products/rice/steam-1121", description: "Steam processed premium basmati" },
-    { name: "IR64 Parboiled Rice", image: riceImg, link: "/products/rice/ir64-parboiled", description: "Non-basmati parboiled variety" },
-    { name: "IR64 Raw Rice", image: riceImg, link: "/products/rice/ir64-raw", description: "Non-basmati white rice" },
-    { name: "Sona Masoori Rice", image: riceImg, link: "/products/rice/sona-masoori", description: "Lightweight South Indian variety" },
+    { name: "1121 Golden Sella Basmati Rice", image: goldenSellaImg, link: "/products/golden-sella-basmati-rice-1121", description: "Premium parboiled basmati with golden hue" },
+    { name: "1121 White Sella Basmati Rice", image: whiteSellaImg, link: "/products/white-sella-basmati-rice-1121", description: "Creamy white parboiled basmati" },
+    { name: "1121 Steam Basmati Rice", image: steamBasmatiImg, link: "/products/steam-basmati-rice-1121", description: "Steam processed premium basmati" },
+    { name: "IR64 Parboiled Rice", image: ir64ParboiledImg, link: "/products/ir64-parboiled-rice", description: "Non-basmati parboiled variety" },
+    { name: "IR64 Raw Rice", image: ir64RawImg, link: "/products/ir64-raw-rice", description: "Non-basmati white rice" },
+    { name: "Sona Masoori Rice", image: sonaMasooriImg, link: "/products/sona-masoori-rice", description: "Lightweight South Indian variety" },
   ];
 
   return (

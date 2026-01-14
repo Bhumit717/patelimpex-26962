@@ -1,14 +1,19 @@
 import EnhancedProductCategoryTemplate from "@/components/EnhancedProductCategoryTemplate";
-import cottonImg from "@/assets/products/cotton.png";
+import rawCottonImg from "@/assets/products/raw-cotton.png";
+import cottonYarnImg from "@/assets/products/cotton-yarn.png";
+import comberNoilImg from "@/assets/products/comber-noil-cotton.png";
+import cottonCardingImg from "@/assets/products/cotton-carding.png";
+import processedCottonImg from "@/assets/products/processed-cotton.png";
+import cottonRovingImg from "@/assets/products/cotton-roving.png";
 
 const CottonProductsPage = () => {
   const products = [
-    { name: "Raw Cotton", image: cottonImg, link: "/products/cotton/raw-cotton", description: "Unprocessed cotton directly from farms" },
-    { name: "Cotton Yarn", image: cottonImg, link: "/products/cotton/cotton-yarn", description: "Spun cotton yarn for textiles" },
-    { name: "Comber Noil Cotton", image: cottonImg, link: "/products/cotton/comber-noil", description: "Short fiber cotton from combing process" },
-    { name: "Cotton Carding Dropping", image: cottonImg, link: "/products/cotton/carding-dropping", description: "Cotton waste from carding machines" },
-    { name: "Processed Cotton", image: cottonImg, link: "/products/cotton/processed", description: "Cleaned and processed cotton fiber" },
-    { name: "Cotton Roving", image: cottonImg, link: "/products/cotton/roving", description: "Intermediate product before spinning" },
+    { name: "Raw Cotton", image: rawCottonImg, link: "/products/raw-cotton", description: "Unprocessed cotton fiber sourced from Gujarat, MP, Maharashtra" },
+    { name: "Cotton Yarn", image: cottonYarnImg, link: "/products/cotton-yarn", description: "High-quality spun cotton yarn for textile manufacturing" },
+    { name: "Comber Noil Cotton", image: comberNoilImg, link: "/products/comber-noil-cotton", description: "Short fiber cotton waste used in industrial applications" },
+    { name: "Cotton Carding Dropping", image: cottonCardingImg, link: "/products/cotton-carding-dropping", description: "Byproduct of cotton carding for stuffing and insulation" },
+    { name: "Processed Cotton", image: processedCottonImg, link: "/products/processed-cotton", description: "Clean, processed cotton ready for spinning" },
+    { name: "Cotton Roving", image: cottonRovingImg, link: "/products/cotton-roving", description: "Semi-processed cotton strand ready for spinning into yarn" },
   ];
 
   return (
