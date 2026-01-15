@@ -1,5 +1,5 @@
 import EnhancedProductDetailTemplate from "@/components/EnhancedProductDetailTemplate";
-import psylliumHuskImg from "@/assets/products/psyllium-husk.png";
+import psylliumSeedsImg from "@/assets/products/psyllium-seeds.png";
 
 const PsylliumHuskDetailPage = () => {
   return (
@@ -7,7 +7,7 @@ const PsylliumHuskDetailPage = () => {
       category="Herbs & Ayurvedic"
       name="Psyllium Husk"
       description="Psyllium Husk is the outer covering of the seeds of Plantago ovata and is widely used as a natural laxative and dietary fiber supplement. Patel Impex exports high-purity psyllium husk with controlled sifting and grading to ensure optimal swelling and fiber content."
-      images={[psylliumHuskImg]}
+      images={[psylliumSeedsImg]}
       hsCode="1211.90"
       specifications={[
         { label: "Origin", value: "India (Gujarat, Rajasthan)" },
