@@ -13,13 +13,13 @@ const IsabgolProducts = () => {
     },
     {
       name: "Psyllium Husk Powder",
-      image: psylliumPowderImg,
+      image: psylliumSeedsImg,
       link: "/products/psyllium-husk/powder",
       description: "Finely ground psyllium husk, ideal for capsules and supplements.",
     },
     {
       name: "Psyllium Seeds",
-      image: psylliumSeedsImg,
+      image: psylliumPowderImg,
       link: "/products/psyllium-husk/seeds",
       description: "Whole psyllium seeds from Plantago ovata, source of natural fiber.",
     },
