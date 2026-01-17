@@ -1,5 +1,5 @@
 import EnhancedProductDetailTemplate from "@/components/EnhancedProductDetailTemplate";
-import psylliumPowderImg from "@/assets/products/psyllium-powder.png";
+import psylliumHuskImg from "@/assets/products/psyllium-husk.png";
 
 const PsylliumPowderDetailPage = () => {
   return (
@@ -7,7 +7,7 @@ const PsylliumPowderDetailPage = () => {
       category="Herbs & Ayurvedic"
       name="Psyllium Husk Powder"
       description="Psyllium Husk Powder is finely ground psyllium husk, offering superior dispersibility and ease of use in supplements, beverages, and food products. Patel Impex provides premium-grade powder with consistent mesh size and high fiber content."
-      images={[psylliumPowderImg]}
+      images={[psylliumHuskImg]}
       hsCode="1211.90"
       specifications={[
         { label: "Origin", value: "India (Gujarat, Rajasthan)" },

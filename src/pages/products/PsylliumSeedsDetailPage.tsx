@@ -1,5 +1,5 @@
 import EnhancedProductDetailTemplate from "@/components/EnhancedProductDetailTemplate";
-import psylliumHuskWhiteImg from "@/assets/products/psyllium-husk-white.png";
+import psylliumPowderImg from "@/assets/products/psyllium-powder.png";
 
 const PsylliumSeedsDetailPage = () => {
   return (
@@ -7,7 +7,7 @@ const PsylliumSeedsDetailPage = () => {
       category="Herbs & Ayurvedic"
       name="Psyllium Seeds"
       description="Psyllium Seeds (Plantago ovata seeds) are the whole seeds from which psyllium husk is derived. Rich in soluble fiber, these seeds are used in traditional medicine and modern health supplements for digestive wellness."
-      images={[psylliumHuskWhiteImg]}
+      images={[psylliumPowderImg]}
       hsCode="1211.90"
       specifications={[
         { label: "Origin", value: "India (Gujarat, Rajasthan)" },
