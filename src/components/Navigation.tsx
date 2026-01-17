@@ -22,6 +22,9 @@ const Navigation = () => {
     name: "Products",
     href: "/products"
   }, {
+    name: "Certificates",
+    href: "/more/certification-services"
+  }, {
     name: "News",
     href: "/news"
   }, {
@@ -29,11 +32,9 @@ const Navigation = () => {
     href: "/blog",
     subItems: [
       { name: "Resources", href: "/more" },
-      { name: "Sitemap", href: "/seo" }
+      { name: "Sitemap", href: "/seo" },
+      { name: "FAQ", href: "/faq" }
     ]
-  }, {
-    name: "FAQ",
-    href: "/faq"
   }, {
     name: "Contact",
     href: "/contact"
@@ -182,7 +183,7 @@ const Navigation = () => {
         </div>
 
         {/* Ultra Pro Mobile Menu with Advanced Animations */}
-        <div id="mobile-menu" className={`md:hidden transition-all duration-500 transform origin-top ${isOpen ? 'max-h-[32rem] opacity-100 scale-y-100' : 'max-h-0 opacity-0 scale-y-95 overflow-hidden'}`} role="menu" aria-label="Mobile navigation menu">
+        <div id="mobile-menu" className={`md:hidden transition-all duration-500 transform origin-top ${isOpen ? 'max-h-[40rem] opacity-100 scale-y-100' : 'max-h-0 opacity-0 scale-y-95 overflow-hidden'}`} role="menu" aria-label="Mobile navigation menu">
           <div className="bg-white border-t border-blue-100 px-4 pt-4 pb-6 space-y-2 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-teal-50 opacity-50" aria-hidden="true"></div>
             
@@ -192,9 +193,18 @@ const Navigation = () => {
                   <Link to={item.href} className={`block px-4 py-4 text-base font-bold rounded-2xl transition-all duration-300 relative group focus:ring-2 focus:ring-blue-500 focus:outline-none ${location.pathname === item.href ? 'text-blue-600 bg-gradient-to-r from-blue-50 to-teal-50 scale-105' : 'text-slate-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-teal-50 hover:scale-105'}`} onClick={() => setIsOpen(false)} role="menuitem">
                     <span className="relative z-10">{item.name}</span>
                   </Link>
-                  <div className="ml-4 space-y-1">
+                  <div className="ml-4 space-y-1 relative z-20">
                     {item.subItems.map((subItem) => (
-                      <Link key={subItem.name} to={subItem.href} className={`block px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 ${location.pathname === subItem.href ? 'text-blue-600 bg-blue-50' : 'text-slate-600 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-teal-50'}`} onClick={() => setIsOpen(false)} role="menuitem">
+                      <Link 
+                        key={subItem.name} 
+                        to={subItem.href} 
+                        className={`block px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-300 relative z-20 ${location.pathname === subItem.href ? 'text-blue-600 bg-blue-50' : 'text-slate-600 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-teal-50'}`} 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsOpen(false);
+                        }} 
+                        role="menuitem"
+                      >
                         {subItem.name}
                       </Link>
                     ))}

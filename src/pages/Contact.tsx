@@ -98,8 +98,7 @@ const Contact = () => {
   };
 
   const openGoogleMaps = () => {
-    const address = "Rajkot, Gujarat, India";
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    const mapsUrl = "https://www.google.com/maps/place/PATEL+IMPEX/@22.1622576,70.8040941,17z";
     window.open(mapsUrl, '_blank');
   };
 
@@ -107,7 +106,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Address",
-      details: ["Rajkot, Gujarat, India"],
+      details: ["Veraval, Rajkot, Gujarat, India"],
       clickable: true,
       onClick: openGoogleMaps
     },
@@ -177,19 +176,18 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Map placeholder */}
+              {/* Embedded Google Map */}
               <div className="h-80 bg-slate-200 rounded-2xl overflow-hidden border border-blue-200">
-                <div 
-                  className="w-full h-full bg-gradient-to-br from-blue-500 to-teal-500 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={openGoogleMaps}
-                >
-                  <div className="text-white text-center">
-                    <MapPin className="h-16 w-16 mx-auto mb-4" />
-                    <p className="text-xl font-bold mb-2">Click to View on Google Maps</p>
-                    <p className="text-sm opacity-90">Location: Rajkot, Gujarat, India</p>
-                    <ExternalLink className="h-8 w-8 mx-auto mt-4" />
-                  </div>
-                </div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0!2d70.8040941!3d22.1622576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395835617fada2e3%3A0x7046141c800ddc54!2sPATEL%20IMPEX!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="PATEL IMPEX Location - Veraval, Rajkot"
+                />
               </div>
             </div>
 
