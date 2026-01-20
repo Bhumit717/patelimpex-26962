@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
+import { Helmet } from 'react-helmet';
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import WhatsAppChat from "@/components/WhatsAppChat";
 import { ArrowRight, CheckCircle, Truck, Award, Users, Globe, Package, BarChart3, ShieldCheck } from 'lucide-react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { seoPagesData } from '../../seo_data';
-import SEOHead from "@/components/SEOHead";
 
 const DynamicSEOProductPage = () => {
     const { slug } = useParams();
@@ -77,13 +77,22 @@ const DynamicSEOProductPage = () => {
 
     return (
         <div className="min-h-screen bg-slate-50">
-            <SEOHead
-                title={`${title} | Premium Quality | Patel Impex`}
-                description={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`}
-                canonicalUrl={`/seo/${slug}`}
-                ogImage="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80"
-                jsonLd={[schemaOrg, faqSchema]}
-            />
+            <Helmet>
+                <title>{title} | Premium Quality | Patel Impex</title>
+                <meta name="description" content={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`} />
+                <meta name="keywords" content={`${product}, export ${product} to ${country}, ${product} supplier, ${country} importers of ${product}, Indian ${product} exporter, bulk ${product} supplier, agro products export, Patel Impex, buy ${product} in ${country}`} />
+                <link rel="canonical" href={`https://patelimpex.com/seo/${slug}`} />
+                <meta property="og:title" content={`${title} | Premium Quality | Patel Impex`} />
+                <meta property="og:description" content={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`} />
+                <meta property="og:image" content="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" />
+                <meta property="og:type" content="product" />
+                <script type="application/ld+json">
+                    {JSON.stringify(schemaOrg)}
+                </script>
+                <script type="application/ld+json">
+                    {JSON.stringify(faqSchema)}
+                </script>
+            </Helmet>
             <Navigation />
             <div className="relative pt-20">
                 <div className="absolute inset-0 z-0">

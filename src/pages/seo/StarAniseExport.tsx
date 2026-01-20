@@ -1,21 +1,26 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import WhatsAppChat from "@/components/WhatsAppChat";
 import { ArrowRight, Star, Leaf, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SEOHead from "@/components/SEOHead";
 
 const StarAniseExport = () => {
   return (
     <div className="min-h-screen bg-slate-50">
-      <SEOHead
-        title="Star Anise Exporter from India | Buy Bulk Star Anise | Patel Impex"
-        description="Patel Impex is a leading supplier and exporter of Star Anise from India. Best quality Star Anise at competitive prices for global markets."
-        canonicalUrl="/seo/star-anise-export"
-        ogImage="https://images.unsplash.com/photo-1588612143735-a774617dfb8f?auto=format&fit=crop&q=80"
-        jsonLd={{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What is the minimum order quantity for Star Anise export to Global Markets?", "acceptedAnswer": { "@type": "Answer", "text": "Our minimum order quantity for Star Anise to Global Markets typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Global Markets market." } }, { "@type": "Question", "name": "What documents do you provide for importing Star Anise into Global Markets?", "acceptedAnswer": { "@type": "Answer", "text": "We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Global Markets customs authorities." } }, { "@type": "Question", "name": "What are the shipping times from India to Global Markets?", "acceptedAnswer": { "@type": "Answer", "text": "Transit times to Global Markets typically range from 40 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Star Anise." } }, { "@type": "Question", "name": "Can you provide customized packaging for Star Anise in Global Markets?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer fully customizable packaging options for Star Anise, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Global Markets's labeling and packaging regulations." } }] }}
-      />
+      <Helmet>
+        <title>Star Anise Exporter from India | Buy Bulk Star Anise | Patel Impex</title>
+        <meta name="description" content="Patel Impex is a leading supplier and exporter of Star Anise from India. Best quality Star Anise at competitive prices for global markets." />
+        <link rel="canonical" href="https://patelimpex.com/seo/star-anise-export" />
+        <meta property="og:title" content="Star Anise Exporter from India | Buy Bulk Star Anise | Patel Impex" />
+        <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Star Anise from India. Best quality Star Anise at competitive prices for global markets." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1588612143735-a774617dfb8f?auto=format&fit=crop&q=80" />
+
+        <script type="application/ld+json">
+          {`{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the minimum order quantity for Star Anise export to Global Markets?","acceptedAnswer":{"@type":"Answer","text":"Our minimum order quantity for Star Anise to Global Markets typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Global Markets market."}},{"@type":"Question","name":"What documents do you provide for importing Star Anise into Global Markets?","acceptedAnswer":{"@type":"Answer","text":"We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Global Markets customs authorities."}},{"@type":"Question","name":"What are the shipping times from India to Global Markets?","acceptedAnswer":{"@type":"Answer","text":"Transit times to Global Markets typically range from 40 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Star Anise."}},{"@type":"Question","name":"Can you provide customized packaging for Star Anise in Global Markets?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer fully customizable packaging options for Star Anise, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Global Markets's labeling and packaging regulations."}}]}`}
+        </script>
+      </Helmet>
       <Navigation />
       <div className="pt-32 pb-20 bg-green-900 text-white text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Indian <span className="text-yellow-400">Star Anise</span> Export</h1>
