@@ -4,12 +4,13 @@ import { Truck, Ship, Plane, FileText, Shield, Clock, ArrowRight, CheckCircle, G
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 
 const Services = () => {
   const services = [
     {
       icon: Ship,
-      title: "Sea Freight Solutions", 
+      title: "Sea Freight Solutions",
       description: "Cost-effective ocean shipping for bulk cargo and containers with complete door-to-door tracking and insurance coverage.",
       features: ["FCL & LCL Container Shipping", "Bulk Cargo Handling", "Port-to-Port Services", "Door-to-Door Delivery"],
       price: "Starting from $800/TEU",
@@ -38,7 +39,7 @@ const Services = () => {
       icon: FileText,
       title: "Trade Documentation",
       description: "Complete export-import documentation services with expert compliance support and customs clearance assistance.",
-import SEOHead from "@/components/SEOHead";
+
       features: ["Export-Import Documentation", "Customs Clearance Support", "Trade License Assistance", "Certificate of Origin"],
       price: "Starting from $150",
       color: "from-ai-cyber to-ai-neon",
@@ -73,7 +74,7 @@ import SEOHead from "@/components/SEOHead";
 
   const benefits = [
     "ISO 9001:2015 Certified Quality Management",
-    "15+ Years of International Trade Expertise", 
+    "15+ Years of International Trade Expertise",
     "Network Spanning 50+ Countries Globally",
     "End-to-End Trade Solution Provider",
     "Competitive Pricing with No Hidden Costs",
@@ -84,7 +85,7 @@ import SEOHead from "@/components/SEOHead";
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       <SEOHead title="Export Import Services | Patel Impex" description="Comprehensive export import services including logistics, documentation, and market research." canonicalUrl="/services" />
       <Navigation />
-      
+
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           {/* Header */}
@@ -102,21 +103,21 @@ import SEOHead from "@/components/SEOHead";
             {services.map((service, index) => (
               <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-ai-primary/20 shadow-lg bg-gray-800/50 relative overflow-hidden">
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-                
+
                 <CardHeader className="relative z-10 pb-4">
                   <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                     <service.icon className="h-8 w-8 text-white" />
                   </div>
-                  
+
                   <CardTitle className="text-2xl font-bold text-white mb-3 group-hover:text-ai-primary transition-colors duration-300">
                     {service.title}
                   </CardTitle>
-                  
+
                   <CardDescription className="text-gray-300 text-base leading-relaxed">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
-                
+
                 <CardContent className="relative z-10 pt-0">
                   <ul className="space-y-3 mb-6">
                     {service.features.map((feature, idx) => (
@@ -126,11 +127,11 @@ import SEOHead from "@/components/SEOHead";
                       </li>
                     ))}
                   </ul>
-                  
+
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-2xl font-bold text-ai-primary">{service.price}</span>
                   </div>
-                  
+
                   <Link to="/inquiry">
                     <Button variant="ghost" className="w-full group/btn justify-between hover:bg-ai-primary/10 transition-all duration-300 text-white border border-ai-primary/30">
                       <span className="font-semibold">Get Quote</span>
@@ -150,7 +151,7 @@ import SEOHead from "@/components/SEOHead";
                 A streamlined approach to international trade that ensures efficiency, transparency, and success at every step.
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((step, index) => (
                 <div key={index} className="text-center group">

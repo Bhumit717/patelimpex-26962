@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 import { ArrowRight, BookOpen, Briefcase, Globe, Truck, FileText, DollarSign, Shield, Users, BarChart3, Target, Zap, Award, Package, Ship, Plane, Building, Factory, Wheat, Spade, Scale, Calendar } from "lucide-react";
 
 const More = () => {
@@ -160,7 +161,7 @@ const More = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <SEOHead title="More Resources | Patel Impex" description="Explore more resources and information about international trade." canonicalUrl="/more" />
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -173,7 +174,7 @@ const More = () => {
               Export Import Resources
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Comprehensive guides, market insights, and expert knowledge to help you succeed in international trade. 
+              Comprehensive guides, market insights, and expert knowledge to help you succeed in international trade.
               Access {totalPages}+ specialized pages covering every aspect of export-import business.
             </p>
           </div>
@@ -192,7 +193,7 @@ const More = () => {
                 <h2 className="text-3xl font-bold mb-4">{category.title}</h2>
                 <p className="text-xl text-muted-foreground">{category.description}</p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {category.pages.map((page, pageIndex) => (
                   <Card key={pageIndex} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
@@ -227,7 +228,7 @@ const More = () => {
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
             Our export-import experts are ready to help you navigate international trade successfully
-import SEOHead from "@/components/SEOHead";
+
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button size="lg" asChild>

@@ -24,6 +24,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import SEOHead from "@/components/SEOHead";
 
 const FAQ = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -287,7 +288,7 @@ const FAQ = () => {
 
   const filteredFAQs = faqSections.map(section => ({
     ...section,
-    faqs: section.faqs.filter(faq => 
+    faqs: section.faqs.filter(faq =>
       faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
       faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -301,7 +302,7 @@ const FAQ = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50">
       <SEOHead title="Frequently Asked Questions | Patel Impex" description="Find answers to common questions about our export process and products." canonicalUrl="/faq" />
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-transparent to-teal-600/10"></div>
@@ -326,9 +327,9 @@ const FAQ = () => {
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
               Find answers to common questions about export-import business, international trade, and our comprehensive services
-import SEOHead from "@/components/SEOHead";
+
             </p>
-            
+
             {/* Search Bar */}
             <div className="max-w-md mx-auto relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
@@ -351,8 +352,8 @@ import SEOHead from "@/components/SEOHead";
             {filteredFAQs.map((section, sectionIndex) => (
               <div key={sectionIndex} className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={section.image} 
+                  <img
+                    src={section.image}
                     alt={section.title}
                     className="w-full h-full object-cover"
                   />
