@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { DollarSign, CreditCard, Shield, TrendingUp, Building, Handshake } from "lucide-react";
 import financeImage from "@/assets/export-finance-banking.jpg";
-
+import SEOHead from "@/components/SEOHead";
 const TradeFinance = () => {
   const financeOptions = [
     { type: "Letter of Credit", desc: "Bank guarantee for international payments", icon: Shield },
@@ -19,7 +19,7 @@ const TradeFinance = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <SEOHead title="Trade Finance | Patel Impex" description="Trade Finance - Expert services and information by Patel Impex." canonicalUrl="/more/trade-finance" />
       <Navigation />
-      
+
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -39,10 +39,10 @@ const TradeFinance = () => {
               </Button>
             </div>
             <div>
-              <img 
-                src={financeImage} 
+              <img
+                src={financeImage}
                 alt="Trade Finance - Export import banking and financial services"
-import SEOHead from "@/components/SEOHead";
+
                 className="rounded-lg shadow-xl w-full h-[400px] object-cover"
               />
             </div>

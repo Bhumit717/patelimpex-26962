@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { BookOpen, FileText, Globe, Truck, DollarSign, Shield, CheckCircle, ArrowRight, Download, Users } from "lucide-react";
 import exportGuideImage from "@/assets/export-consultation.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const ExportImportGuide = () => {
   const guideSteps = [
@@ -22,7 +23,7 @@ const ExportImportGuide = () => {
       ]
     },
     {
-      step: "2", 
+      step: "2",
       title: "Legal Documentation",
       description: "Prepare all necessary export-import documentation and licenses",
       icon: FileText,
@@ -91,7 +92,7 @@ const ExportImportGuide = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <SEOHead title="Export Import Guide | Patel Impex" description="Export Import Guide - Expert services and information by Patel Impex." canonicalUrl="/more/export-import-guide" />
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -118,8 +119,8 @@ const ExportImportGuide = () => {
               </div>
             </div>
             <div className="relative">
-              <img 
-                src={exportGuideImage} 
+              <img
+                src={exportGuideImage}
                 alt="Export Import Guide - International trade consultation and documentation"
                 className="rounded-lg shadow-2xl w-full h-[400px] object-cover"
               />
@@ -140,7 +141,7 @@ const ExportImportGuide = () => {
               Follow our proven methodology to establish successful international trade operations
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {guideSteps.map((step, index) => (
               <Card key={index} className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
@@ -230,10 +231,10 @@ const ExportImportGuide = () => {
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Learn how to overcome typical export-import challenges with proven solutions
-import SEOHead from "@/components/SEOHead";
+
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {commonChallenges.map((item, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow duration-300">

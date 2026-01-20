@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Package, Clock, CheckCircle, FileText, Shield, Users } from "lucide-react";
 import customsImage from "@/assets/global-export-shipping.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const CustomsClearance = () => {
   const clearanceSteps = [
@@ -19,7 +20,7 @@ const CustomsClearance = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <SEOHead title="Customs Clearance | Patel Impex" description="Customs Clearance - Expert services and information by Patel Impex." canonicalUrl="/more/customs-clearance" />
       <Navigation />
-      
+
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -33,15 +34,15 @@ const CustomsClearance = () => {
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
                 Expedite your import and export shipments with our expert customs clearance services. Minimize delays and ensure compliance with all regulations.
-import SEOHead from "@/components/SEOHead";
+
               </p>
               <Button size="lg" asChild>
                 <Link to="/contact">Get Clearance Support</Link>
               </Button>
             </div>
             <div>
-              <img 
-                src={customsImage} 
+              <img
+                src={customsImage}
                 alt="Customs Clearance - Fast and efficient cargo processing"
                 className="rounded-lg shadow-xl w-full h-[400px] object-cover"
               />
