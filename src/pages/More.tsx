@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import SEOHead from "@/components/SEOHead";
 import { ArrowRight, BookOpen, Briefcase, Globe, Truck, FileText, DollarSign, Shield, Users, BarChart3, Target, Zap, Award, Package, Ship, Plane, Building, Factory, Wheat, Spade, Scale, Calendar } from "lucide-react";
 
 const More = () => {
@@ -228,7 +227,7 @@ const More = () => {
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
             Our export-import experts are ready to help you navigate international trade successfully
-
+            import SEOHead from "@/components/SEOHead";
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button size="lg" asChild>

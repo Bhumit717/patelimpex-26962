@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { BookOpen, FileText, Globe, Truck, DollarSign, Shield, CheckCircle, ArrowRight, Download, Users } from "lucide-react";
 import exportGuideImage from "@/assets/export-consultation.jpg";
-import SEOHead from "@/components/SEOHead";
 
 const ExportImportGuide = () => {
   const guideSteps = [
@@ -231,7 +230,7 @@ const ExportImportGuide = () => {
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Learn how to overcome typical export-import challenges with proven solutions
-
+              import SEOHead from "@/components/SEOHead";
             </p>
           </div>
 

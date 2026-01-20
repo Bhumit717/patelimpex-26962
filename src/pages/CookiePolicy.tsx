@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet";
-import SEOHead from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppChat from "@/components/WhatsAppChat";
@@ -12,7 +11,7 @@ const CookiePolicy = () => {
       <Helmet>
         <title>Cookie Policy | Patel Impex - How We Use Cookies</title>
         <meta name="description" content="Learn about Patel Impex cookie usage. Understand how we use cookies to improve your experience on our import export website." />
-
+        import SEOHead from "@/components/SEOHead";
         <link rel="canonical" href="https://patelimpex.com/cookie-policy" />
       </Helmet>
 

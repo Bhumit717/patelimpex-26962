@@ -1,6 +1,4 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { useLocationTracking } from "@/hooks/useLocationTracking";
-import SEOHead from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -15,7 +13,8 @@ import PopularPages from "@/components/PopularPages";
 
 // Lazy load non-critical components for better performance
 const WhatsAppChat = lazy(() => import("@/components/WhatsAppChat"));
-
+import { useLocationTracking } from "@/hooks/useLocationTracking";
+import SEOHead from "@/components/SEOHead";
 const Index = () => {
   const [showAnimation, setShowAnimation] = useState(true);
 

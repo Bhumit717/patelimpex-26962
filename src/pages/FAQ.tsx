@@ -24,7 +24,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import SEOHead from "@/components/SEOHead";
 
 const FAQ = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -327,7 +326,7 @@ const FAQ = () => {
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
               Find answers to common questions about export-import business, international trade, and our comprehensive services
-
+              import SEOHead from "@/components/SEOHead";
             </p>
 
             {/* Search Bar */}

@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Package, Clock, CheckCircle, FileText, Shield, Users } from "lucide-react";
 import customsImage from "@/assets/global-export-shipping.jpg";
-import SEOHead from "@/components/SEOHead";
 
 const CustomsClearance = () => {
   const clearanceSteps = [
@@ -34,7 +33,7 @@ const CustomsClearance = () => {
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
                 Expedite your import and export shipments with our expert customs clearance services. Minimize delays and ensure compliance with all regulations.
-
+                import SEOHead from "@/components/SEOHead";
               </p>
               <Button size="lg" asChild>
                 <Link to="/contact">Get Clearance Support</Link>
