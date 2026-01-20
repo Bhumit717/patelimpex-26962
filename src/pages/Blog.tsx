@@ -4,6 +4,7 @@ import { Calendar, Clock, ArrowRight, TrendingUp, Search, Filter, Bell } from "l
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import SEOHead from "@/components/SEOHead";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Posts");
@@ -325,7 +326,7 @@ const Blog = () => {
               </h2>
               <p className="text-gray-300 mb-8">
                 Get the latest export-import news, market analysis, and business tips delivered to your inbox.
-import SEOHead from "@/components/SEOHead";
+
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-30">
                 <input

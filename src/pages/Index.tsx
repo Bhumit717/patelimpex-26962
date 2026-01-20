@@ -1,4 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from "react";
+import { useLocationTracking } from "@/hooks/useLocationTracking";
+import SEOHead from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -13,8 +15,7 @@ import PopularPages from "@/components/PopularPages";
 
 // Lazy load non-critical components for better performance
 const WhatsAppChat = lazy(() => import("@/components/WhatsAppChat"));
-import { useLocationTracking } from "@/hooks/useLocationTracking";
-import SEOHead from "@/components/SEOHead";
+
 const Index = () => {
   const [showAnimation, setShowAnimation] = useState(true);
 
@@ -52,26 +53,26 @@ const Index = () => {
     return <OpeningAnimation onComplete={handleAnimationComplete} />;
   }
   return <div className="min-h-screen">
-      <SEOHead title="Import Export Company in India | Patel Impex" description="Patel Impex is a leading government recognized import export company in India dealing in agro products, spices, and more." canonicalUrl="/" />
-      <TranslationBanner />
-      <Navigation />
-      <main role="main">
-        <Hero />
-        <section aria-label="Partner companies">
-          
-        </section>
-        <Services />
-        <Products />
-        <PopularPages />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-      
-      {/* Lazy load WhatsApp chat with better fallback */}
-      <Suspense fallback={<div className="sr-only">Loading chat support...</div>}>
-        <WhatsAppChat />
-      </Suspense>
-    </div>;
+    <SEOHead title="Import Export Company in India | Patel Impex" description="Patel Impex is a leading government recognized import export company in India dealing in agro products, spices, and more." canonicalUrl="/" />
+    <TranslationBanner />
+    <Navigation />
+    <main role="main">
+      <Hero />
+      <section aria-label="Partner companies">
+
+      </section>
+      <Services />
+      <Products />
+      <PopularPages />
+      <About />
+      <Contact />
+    </main>
+    <Footer />
+
+    {/* Lazy load WhatsApp chat with better fallback */}
+    <Suspense fallback={<div className="sr-only">Loading chat support...</div>}>
+      <WhatsAppChat />
+    </Suspense>
+  </div>;
 };
 export default Index;

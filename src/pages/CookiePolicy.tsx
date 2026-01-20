@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppChat from "@/components/WhatsAppChat";
@@ -11,14 +12,14 @@ const CookiePolicy = () => {
       <Helmet>
         <title>Cookie Policy | Patel Impex - How We Use Cookies</title>
         <meta name="description" content="Learn about Patel Impex cookie usage. Understand how we use cookies to improve your experience on our import export website." />
-import SEOHead from "@/components/SEOHead";
+
         <link rel="canonical" href="https://patelimpex.com/cookie-policy" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Navigation />
         <WhatsAppChat />
-        
+
         <main className="pt-32 pb-16">
           <div className="container mx-auto px-4">
             {/* Header */}
@@ -60,7 +61,7 @@ import SEOHead from "@/components/SEOHead";
                     <Settings className="h-8 w-8 text-blue-600 mr-4" />
                     <h2 className="text-2xl font-bold text-slate-800">Types of Cookies We Use</h2>
                   </div>
-                  
+
                   <div className="space-y-6">
                     {/* Essential Cookies */}
                     <div className="bg-green-50 border border-green-200 rounded-lg p-4">
@@ -135,7 +136,7 @@ import SEOHead from "@/components/SEOHead";
                       <li>• Clear existing cookies from your device</li>
                       <li>• Set preferences for specific websites</li>
                     </ul>
-                    
+
                     <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                       <p className="text-yellow-800 text-sm">
                         <strong>Note:</strong> Disabling essential cookies may affect website functionality and your user experience.

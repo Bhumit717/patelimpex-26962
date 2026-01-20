@@ -1,4 +1,4 @@
-
+import SEOHead from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { CheckCircle, Users, Award, Clock, Target, Globe2, TrendingUp, Shield } from "lucide-react";
@@ -22,7 +22,7 @@ const About = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <SEOHead title="About Us | Patel Impex" description="Learn about Patel Impex, our journey, values, and mission in the global import-export industry." canonicalUrl="/about" />
       <Navigation />
-      
+
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           {/* Hero Section */}
@@ -59,12 +59,12 @@ const About = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
                 alt="Global business meeting - Patel Impex import export business team"
-import SEOHead from "@/components/SEOHead";
+
                 className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
                 loading="lazy"
                 decoding="async"
