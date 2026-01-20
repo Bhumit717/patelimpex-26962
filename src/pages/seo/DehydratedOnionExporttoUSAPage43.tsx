@@ -21,6 +21,10 @@ const DehydratedOnionExporttoUSAPage43 = () => {
         <script type="application/ld+json">
           {JSON.stringify({"@context":"https://schema.org","@type":"Product","name":"Dehydrated Onion for Export to U S A","description":"Premium quality Dehydrated Onion available for export to U S A. ISO certified supplier.","brand":{"@type":"Brand","name":"Patel Impex"},"offers":{"@type":"Offer","url":"https://patelimpex.com/seo/dehydrated-onion-export-to-u-s-a","availability":"https://schema.org/InStock"}})}
         </script>
+      
+        <script type="application/ld+json">
+          {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the minimum order quantity for Dehydrated Onion export to U S A?","acceptedAnswer":{"@type":"Answer","text":"Our minimum order quantity for Dehydrated Onion to U S A typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the U S A market."}},{"@type":"Question","name":"What documents do you provide for importing Dehydrated Onion into U S A?","acceptedAnswer":{"@type":"Answer","text":"We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by U S A customs authorities."}},{"@type":"Question","name":"What are the shipping times from India to U S A?","acceptedAnswer":{"@type":"Answer","text":"Transit times to U S A typically range from 35 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Dehydrated Onion."}},{"@type":"Question","name":"Can you provide customized packaging for Dehydrated Onion in U S A?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer fully customizable packaging options for Dehydrated Onion, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with U S A's labeling and packaging regulations."}}]}
+        </script>
       </Helmet>
       <Navigation />
       <div className="relative pt-20">
@@ -52,6 +56,31 @@ const DehydratedOnionExporttoUSAPage43 = () => {
               </div>
             </div>
             <div className="relative"><img src="https://images.unsplash.com/photo-1532336414008-82923c530dad?auto=format&fit=crop&q=80" alt="Patel Impex Export" className="relative rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500" /></div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What is the minimum order quantity for Dehydrated Onion export to U S A?</h3>
+              <p className="text-slate-600 leading-relaxed">Our minimum order quantity for Dehydrated Onion to U S A typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the U S A market.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What documents do you provide for importing Dehydrated Onion into U S A?</h3>
+              <p className="text-slate-600 leading-relaxed">We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by U S A customs authorities.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What are the shipping times from India to U S A?</h3>
+              <p className="text-slate-600 leading-relaxed">Transit times to U S A typically range from 35 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Dehydrated Onion.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Can you provide customized packaging for Dehydrated Onion in U S A?</h3>
+              <p className="text-slate-600 leading-relaxed">Yes, we offer fully customizable packaging options for Dehydrated Onion, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with U S A's labeling and packaging regulations.</p>
+            </div>
           </div>
         </div>
       </div>

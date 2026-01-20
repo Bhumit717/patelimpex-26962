@@ -21,6 +21,10 @@ const SpicesExportToThailandPage109 = () => {
         <script type="application/ld+json">
           {JSON.stringify({"@context":"https://schema.org","@type":"Product","name":"Spices for Export to Thailand","description":"Premium quality Spices available for export to Thailand. ISO certified supplier.","brand":{"@type":"Brand","name":"Patel Impex"},"offers":{"@type":"Offer","url":"https://patelimpex.com/seo/spices-export-to-thailand","availability":"https://schema.org/InStock"}})}
         </script>
+      
+        <script type="application/ld+json">
+          {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the minimum order quantity for Spices export to Thailand?","acceptedAnswer":{"@type":"Answer","text":"Our minimum order quantity for Spices to Thailand typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Thailand market."}},{"@type":"Question","name":"What documents do you provide for importing Spices into Thailand?","acceptedAnswer":{"@type":"Answer","text":"We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Thailand customs authorities."}},{"@type":"Question","name":"What are the shipping times from India to Thailand?","acceptedAnswer":{"@type":"Answer","text":"Transit times to Thailand typically range from 34 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Spices."}},{"@type":"Question","name":"Can you provide customized packaging for Spices in Thailand?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer fully customizable packaging options for Spices, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Thailand's labeling and packaging regulations."}}]}
+        </script>
       </Helmet>
       <Navigation />
       <div className="relative pt-20">
@@ -52,6 +56,31 @@ const SpicesExportToThailandPage109 = () => {
               </div>
             </div>
             <div className="relative"><img src="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" alt="Patel Impex Export" className="relative rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500" /></div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What is the minimum order quantity for Spices export to Thailand?</h3>
+              <p className="text-slate-600 leading-relaxed">Our minimum order quantity for Spices to Thailand typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Thailand market.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What documents do you provide for importing Spices into Thailand?</h3>
+              <p className="text-slate-600 leading-relaxed">We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Thailand customs authorities.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What are the shipping times from India to Thailand?</h3>
+              <p className="text-slate-600 leading-relaxed">Transit times to Thailand typically range from 34 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Spices.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Can you provide customized packaging for Spices in Thailand?</h3>
+              <p className="text-slate-600 leading-relaxed">Yes, we offer fully customizable packaging options for Spices, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Thailand's labeling and packaging regulations.</p>
+            </div>
           </div>
         </div>
       </div>

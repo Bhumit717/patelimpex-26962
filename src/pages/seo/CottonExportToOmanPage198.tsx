@@ -21,6 +21,10 @@ const CottonExportToOmanPage198 = () => {
         <script type="application/ld+json">
           {JSON.stringify({"@context":"https://schema.org","@type":"Product","name":"Cotton for Export to Oman","description":"Premium quality Cotton available for export to Oman. ISO certified supplier.","brand":{"@type":"Brand","name":"Patel Impex"},"offers":{"@type":"Offer","url":"https://patelimpex.com/seo/cotton-export-to-oman","availability":"https://schema.org/InStock"}})}
         </script>
+      
+        <script type="application/ld+json">
+          {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the minimum order quantity for Cotton export to Oman?","acceptedAnswer":{"@type":"Answer","text":"Our minimum order quantity for Cotton to Oman typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Oman market."}},{"@type":"Question","name":"What documents do you provide for importing Cotton into Oman?","acceptedAnswer":{"@type":"Answer","text":"We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Oman customs authorities."}},{"@type":"Question","name":"What are the shipping times from India to Oman?","acceptedAnswer":{"@type":"Answer","text":"Transit times to Oman typically range from 43 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Cotton."}},{"@type":"Question","name":"Can you provide customized packaging for Cotton in Oman?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer fully customizable packaging options for Cotton, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Oman's labeling and packaging regulations."}}]}
+        </script>
       </Helmet>
       <Navigation />
       <div className="relative pt-20">
@@ -52,6 +56,31 @@ const CottonExportToOmanPage198 = () => {
               </div>
             </div>
             <div className="relative"><img src="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" alt="Patel Impex Export" className="relative rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500" /></div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What is the minimum order quantity for Cotton export to Oman?</h3>
+              <p className="text-slate-600 leading-relaxed">Our minimum order quantity for Cotton to Oman typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Oman market.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What documents do you provide for importing Cotton into Oman?</h3>
+              <p className="text-slate-600 leading-relaxed">We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Oman customs authorities.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What are the shipping times from India to Oman?</h3>
+              <p className="text-slate-600 leading-relaxed">Transit times to Oman typically range from 43 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Cotton.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Can you provide customized packaging for Cotton in Oman?</h3>
+              <p className="text-slate-600 leading-relaxed">Yes, we offer fully customizable packaging options for Cotton, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Oman's labeling and packaging regulations.</p>
+            </div>
           </div>
         </div>
       </div>

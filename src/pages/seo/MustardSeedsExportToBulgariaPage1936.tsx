@@ -21,6 +21,10 @@ const MustardSeedsExportToBulgariaPage1936 = () => {
         <script type="application/ld+json">
           {JSON.stringify({"@context":"https://schema.org","@type":"Product","name":"Mustard Seeds for Export to Bulgaria","description":"Premium quality Mustard Seeds available for export to Bulgaria. ISO certified supplier.","brand":{"@type":"Brand","name":"Patel Impex"},"offers":{"@type":"Offer","url":"https://patelimpex.com/seo/mustard-seeds-export-to-bulgaria","availability":"https://schema.org/InStock"}})}
         </script>
+      
+        <script type="application/ld+json">
+          {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the minimum order quantity for Mustard Seeds export to Bulgaria?","acceptedAnswer":{"@type":"Answer","text":"Our minimum order quantity for Mustard Seeds to Bulgaria typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Bulgaria market."}},{"@type":"Question","name":"What documents do you provide for importing Mustard Seeds into Bulgaria?","acceptedAnswer":{"@type":"Answer","text":"We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Bulgaria customs authorities."}},{"@type":"Question","name":"What are the shipping times from India to Bulgaria?","acceptedAnswer":{"@type":"Answer","text":"Transit times to Bulgaria typically range from 21 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Mustard Seeds."}},{"@type":"Question","name":"Can you provide customized packaging for Mustard Seeds in Bulgaria?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer fully customizable packaging options for Mustard Seeds, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Bulgaria's labeling and packaging regulations."}}]}
+        </script>
       </Helmet>
       <Navigation />
       <div className="relative pt-20">
@@ -52,6 +56,31 @@ const MustardSeedsExportToBulgariaPage1936 = () => {
               </div>
             </div>
             <div className="relative"><img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt="Patel Impex Export" className="relative rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500" /></div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What is the minimum order quantity for Mustard Seeds export to Bulgaria?</h3>
+              <p className="text-slate-600 leading-relaxed">Our minimum order quantity for Mustard Seeds to Bulgaria typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Bulgaria market.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What documents do you provide for importing Mustard Seeds into Bulgaria?</h3>
+              <p className="text-slate-600 leading-relaxed">We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Bulgaria customs authorities.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What are the shipping times from India to Bulgaria?</h3>
+              <p className="text-slate-600 leading-relaxed">Transit times to Bulgaria typically range from 21 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Mustard Seeds.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Can you provide customized packaging for Mustard Seeds in Bulgaria?</h3>
+              <p className="text-slate-600 leading-relaxed">Yes, we offer fully customizable packaging options for Mustard Seeds, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Bulgaria's labeling and packaging regulations.</p>
+            </div>
           </div>
         </div>
       </div>

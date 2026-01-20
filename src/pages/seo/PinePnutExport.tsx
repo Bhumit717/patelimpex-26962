@@ -16,6 +16,10 @@ const PinePnutExport = () => {
         <meta property="og:title" content="Pine Pnut Exporter from India | Buy Bulk Pine Pnut | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Pine Pnut from India. Best quality Pine Pnut at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />
+      
+        <script type="application/ld+json">
+          {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the minimum order quantity for Pine Pnut export to Global Markets?","acceptedAnswer":{"@type":"Answer","text":"Our minimum order quantity for Pine Pnut to Global Markets typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Global Markets market."}},{"@type":"Question","name":"What documents do you provide for importing Pine Pnut into Global Markets?","acceptedAnswer":{"@type":"Answer","text":"We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Global Markets customs authorities."}},{"@type":"Question","name":"What are the shipping times from India to Global Markets?","acceptedAnswer":{"@type":"Answer","text":"Transit times to Global Markets typically range from 45 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Pine Pnut."}},{"@type":"Question","name":"Can you provide customized packaging for Pine Pnut in Global Markets?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer fully customizable packaging options for Pine Pnut, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Global Markets's labeling and packaging regulations."}}]}
+        </script>
       </Helmet>
       <Navigation />
       <div className="pt-32 pb-20 bg-green-900 text-white text-center">
@@ -40,6 +44,31 @@ const PinePnutExport = () => {
                 <h3 className="text-xl font-bold mb-2">Certified</h3>
                 <p className="text-slate-600">Meets international export standards.</p>
             </div>
+        </div>
+      </div>
+      
+      <div className="py-16 bg-slate-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What is the minimum order quantity for Pine Pnut export to Global Markets?</h3>
+              <p className="text-slate-600 leading-relaxed">Our minimum order quantity for Pine Pnut to Global Markets typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the Global Markets market.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What documents do you provide for importing Pine Pnut into Global Markets?</h3>
+              <p className="text-slate-600 leading-relaxed">We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by Global Markets customs authorities.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">What are the shipping times from India to Global Markets?</h3>
+              <p className="text-slate-600 leading-relaxed">Transit times to Global Markets typically range from 45 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your Pine Pnut.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="text-lg font-semibold text-slate-800 mb-3">Can you provide customized packaging for Pine Pnut in Global Markets?</h3>
+              <p className="text-slate-600 leading-relaxed">Yes, we offer fully customizable packaging options for Pine Pnut, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with Global Markets's labeling and packaging regulations.</p>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
