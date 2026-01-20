@@ -2,6 +2,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { CheckCircle, Users, Award, Clock, Target, Globe2, TrendingUp, Shield } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const About = () => {
   const milestones = [
@@ -64,10 +65,10 @@ const About = () => {
               <img
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
                 alt="Global business meeting - Patel Impex import export business team"
-                import SEOHead from "@/components/SEOHead";
-              className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
-              loading="lazy"
-              decoding="async"
+
+                className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
                 <div className="text-3xl font-black text-blue-600">$500M+</div>
