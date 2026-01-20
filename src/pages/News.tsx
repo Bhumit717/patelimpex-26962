@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, ExternalLink, Globe, TrendingUp, Newspaper, RefreshCw, ChevronLeft, ChevronRight, Zap, Clock } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Helmet } from "react-helmet";
 
 interface NewsArticle {
@@ -144,19 +145,19 @@ const News = () => {
   const fetchNews = async () => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await fetch(
         `https://newsdata.io/api/1/latest?apikey=${API_KEY}&q=import%20export%20trade&language=en`,
         { signal: AbortSignal.timeout(10000) }
       );
-      
+
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`);
       }
-      
+
       const data: NewsDataResponse = await response.json();
-      
+
       if (data.status === "success" && data.results && data.results.length > 0) {
         setArticles(data.results);
         setUsingFallback(false);
@@ -206,7 +207,7 @@ const News = () => {
       </Helmet>
 
       <Navigation />
-      
+
       <main className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 pt-32 pb-20">
         {/* Hero Section */}
         <section className="container mx-auto px-4 mb-16">
@@ -214,7 +215,7 @@ const News = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-teal-500/5" />
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
-            
+
             <div className="relative z-10">
               <div className="inline-flex items-center px-4 py-2 bg-blue-500/20 rounded-full border border-blue-500/30 mb-6">
                 <Zap className="h-4 w-4 text-blue-400 mr-2" />
@@ -222,16 +223,15 @@ const News = () => {
                   {usingFallback ? "Industry Insights" : "Live Updates"}
                 </span>
               </div>
-              
+
               <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
                   Trade News
                 </span>
               </h1>
-              
+
               <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
                 Stay ahead with import export news and global trade insights
-import SEOHead from "@/components/SEOHead";
               </p>
 
               <div className="flex flex-wrap justify-center gap-4">
@@ -320,18 +320,18 @@ import SEOHead from "@/components/SEOHead";
                           </div>
                         )}
                       </div>
-                      
+
                       <CardContent className="p-6 space-y-4">
                         <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
                           {article.title}
                         </h3>
-                        
+
                         {article.description && (
                           <p className="text-gray-400 text-sm line-clamp-3">
                             {article.description}
                           </p>
                         )}
-                        
+
                         <div className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-gray-700">
                           <div className="flex items-center gap-2">
                             <Clock className="h-3 w-3" />
@@ -359,7 +359,7 @@ import SEOHead from "@/components/SEOHead";
                     <ChevronLeft className="h-4 w-4 mr-2" />
                     Previous
                   </Button>
-                  
+
                   <div className="flex items-center gap-2">
                     {[...Array(totalPages)].map((_, i) => {
                       const pageNum = i + 1;
@@ -367,11 +367,10 @@ import SEOHead from "@/components/SEOHead";
                         <button
                           key={pageNum}
                           onClick={() => setCurrentPage(pageNum)}
-                          className={`w-10 h-10 rounded-lg font-semibold transition-all duration-300 ${
-                            pageNum === currentPage
+                          className={`w-10 h-10 rounded-lg font-semibold transition-all duration-300 ${pageNum === currentPage
                               ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30'
                               : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
-                          }`}
+                            }`}
                         >
                           {pageNum}
                         </button>
@@ -393,9 +392,9 @@ import SEOHead from "@/components/SEOHead";
 
               {/* Refresh Button */}
               <div className="text-center mt-12">
-                <Button 
-                  onClick={fetchNews} 
-                  variant="outline" 
+                <Button
+                  onClick={fetchNews}
+                  variant="outline"
                   className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
                 >
                   <RefreshCw className="h-4 w-4 mr-2" />
