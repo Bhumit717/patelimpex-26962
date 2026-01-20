@@ -2,32 +2,50 @@ import React, { useMemo } from 'react';
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import WhatsAppChat from "@/components/WhatsAppChat";
-import { ArrowRight, CheckCircle, Truck, Award, Users, Globe, Package, BarChart3, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle, Truck, Award, Users, Globe, Package, BarChart3, ShieldCheck, Leaf, Star, Anchor, Sun, Zap, Box } from 'lucide-react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { seoPagesData } from '../../seo_data';
 import SEOHead from "@/components/SEOHead";
+import { generatePageContent } from '@/utils/seoContentGenerator';
 
 const DynamicSEOProductPage = () => {
     const { slug } = useParams();
 
-    const pageData = useMemo(() => {
-        return seoPagesData.find(p => p.slug === slug);
+    // Find page data
+    const pageIndex = useMemo(() => {
+        return seoPagesData.findIndex(p => p.slug === slug);
     }, [slug]);
 
+    const pageData = seoPagesData[pageIndex];
+
     if (!pageData) {
-        // If slug not found in our data, redirect to 404 or products
         return <Navigate to="/404" replace />;
     }
 
     const { product, country } = pageData;
     const title = `${product} Export to ${country}`;
 
+    // Generate content & design config
+    const content = useMemo(() => {
+        return generatePageContent(slug || '', pageData);
+    }, [slug, pageData]);
+
+    const { introText, featureTitle, features, faqs, design } = content;
+
+    // Apply CSS Variables for dynamic coloring
+    const pageStyle = {
+        '--primary': design.palette.primary,
+        '--secondary': design.palette.secondary,
+        '--accent': design.palette.accent,
+        '--bg': design.palette.bg,
+    } as React.CSSProperties;
+
     // Dynamic JSON-LD
     const schemaOrg = {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": `${product} for Export to ${country}`,
-        "description": `Premium quality ${product} available for export to ${country}. ISO certified supplier.`,
+        "description": introText,
         "brand": { "@type": "Brand", "name": "Patel Impex" },
         "offers": {
             "@type": "Offer",
@@ -39,112 +57,195 @@ const DynamicSEOProductPage = () => {
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": `What is the minimum order quantity for ${product} export to ${country}?`,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": `Our minimum order quantity for ${product} to ${country} typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the ${country} market.`
-                }
-            },
-            {
-                "@type": "Question",
-                "name": `What documents do you provide for importing ${product} into ${country}?`,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": `We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by ${country} customs authorities.`
-                }
-            },
-            {
-                "@type": "Question",
-                "name": `What are the shipping times from India to ${country}?`,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": `Transit times to ${country} typically range from 20-35 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your ${product}.`
-                }
-            },
-            {
-                "@type": "Question",
-                "name": `Can you provide customized packaging for ${product} in ${country}?`,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": `Yes, we offer fully customizable packaging options for ${product}, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with ${country}'s labeling and packaging regulations.`
-                }
-            }
-        ]
+        "mainEntity": faqs.map(f => ({
+            "@type": "Question",
+            "name": f.question,
+            "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+        }))
+    };
+
+    // --- RENDER HELPERS ---
+
+    const renderHero = () => {
+        const commonContent = (
+            <>
+                <span className="inline-block py-2 px-4 rounded-full text-sm font-bold mb-6 backdrop-blur-md border border-white/20 text-white bg-white/10 uppercase tracking-widest">
+                    Exporting Global Excellence
+                </span>
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight drop-shadow-xl">
+                    {product} <span className="text-[var(--accent)]">/</span> {country}
+                </h1>
+                <p className="text-xl text-white/90 mb-10 leading-relaxed font-light max-w-xl">
+                    {introText}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                    <Link to="/contact" className={`px-8 py-4 ${design.borderRadius} font-bold bg-[var(--primary)] text-white hover:brightness-110 transition-all shadow-xl hover:scale-105`}>
+                        Request Quote
+                    </Link>
+                    <Link to="/products" className={`px-8 py-4 ${design.borderRadius} font-bold bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm transition-all`}>
+                        View Details
+                    </Link>
+                </div>
+            </>
+        );
+
+        if (design.heroStyle === 'centered') {
+            return (
+                <div className="relative pt-20">
+                    <div className="absolute inset-0 z-0 bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt={title} className="w-full h-[70vh] object-cover opacity-40 mix-blend-overlay" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] to-transparent" />
+                    </div>
+                    <div className="relative z-10 container mx-auto px-6 h-[60vh] flex flex-col justify-center items-center text-center">
+                        {commonContent}
+                    </div>
+                </div>
+            );
+        }
+
+        if (design.heroStyle === 'split_right') {
+            return (
+                <div className="relative pt-20 bg-slate-900 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-transparent z-10 w-full sm:w-2/3" />
+                    <img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt={title} className="absolute inset-0 w-full h-full object-cover opacity-60 ml-auto sm:w-2/3" />
+                    <div className="relative z-20 container mx-auto px-6 py-24 sm:py-32">
+                        <div className="max-w-2xl">{commonContent}</div>
+                    </div>
+                </div>
+            );
+        }
+
+        if (design.heroStyle === 'card_overlay') {
+            return (
+                <div className="relative pt-32 pb-48 bg-slate-900">
+                    <img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt={title} className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                    <div className="relative z-10 container mx-auto px-6 flex justify-center">
+                        <div className={`bg-white/10 backdrop-blur-xl border border-white/20 p-12 ${design.borderRadius} max-w-3xl text-center`}>
+                            {commonContent}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // Default 'split_left' or 'minimal' fallback
+        return (
+            <div className="relative pt-20 bg-[var(--primary)]">
+                <div className="absolute inset-0 bg-slate-900 mix-blend-multiply opacity-50" />
+                <div className="container mx-auto px-6 py-24 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                    <div>{commonContent}</div>
+                    <div className={`hidden lg:block relative h-[500px] ${design.borderRadius} overflow-hidden shadow-2xl rotate-3 transform hover:rotate-0 transition-all duration-700`}>
+                        <img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt={title} className="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const renderFeatures = () => {
+        const icons = [CheckCircle, Globe, Truck, Package, ShieldCheck, Leaf];
+
+        if (design.featureStyle === 'list_icons') {
+            return (
+                <div className="max-w-3xl mx-auto space-y-8">
+                    {features.map((f, i) => {
+                        const Icon = icons[i % icons.length];
+                        return (
+                            <div key={i} className="flex gap-6 items-start group">
+                                <div className={`w-12 h-12 shrink-0 ${design.borderRadius} flex items-center justify-center bg-[var(--accent)] text-[var(--primary)] group-hover:scale-110 transition-transform`}>
+                                    <Icon className="w-6 h-6" />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-[var(--secondary)] mb-2">{f.title}</h3>
+                                    <p className="text-slate-600 leading-relaxed">{f.description}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+
+        if (design.featureStyle === 'zigzag') {
+            return (
+                <div className="space-y-16">
+                    {features.map((f, i) => {
+                        const Icon = icons[i % icons.length];
+                        return (
+                            <div key={i} className={`flex flex-col md:flex-row gap-8 items-center ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                                <div className={`flex-1 p-8 bg-white ${design.borderRadius} shadow-sm border border-[var(--accent)]`}>
+                                    <Icon className="w-8 h-8 text-[var(--primary)] mb-4" />
+                                    <h3 className="text-2xl font-bold text-[var(--secondary)] mb-3">{f.title}</h3>
+                                    <p className="text-slate-600">{f.description}</p>
+                                </div>
+                                <div className="flex-1 opacity-20">
+                                    <div className={`w-full h-48 ${design.borderRadius} bg-[var(--primary)] pattern-dots`} />
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+
+        // Default 'grid_cards'
+        return (
+            <div className="grid md:grid-cols-3 gap-8">
+                {features.map((f, i) => {
+                    const Icon = icons[i % icons.length];
+                    return (
+                        <div key={i} className={`bg-white p-8 ${design.borderRadius} shadow-lg hover:shadow-xl transition-shadow border-t-4 border-[var(--primary)]`}>
+                            <Icon className="w-10 h-10 text-[var(--primary)] mb-6" />
+                            <h3 className="text-lg font-bold text-[var(--secondary)] mb-3">{f.title}</h3>
+                            <p className="text-slate-600 text-sm leading-relaxed">{f.description}</p>
+                        </div>
+                    );
+                })}
+            </div>
+        );
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div style={pageStyle} className="min-h-screen bg-[var(--bg)] font-sans">
             <SEOHead
                 title={`${title} | Premium Quality | Patel Impex`}
-                description={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`}
+                description={introText.substring(0, 160)}
                 canonicalUrl={`/seo/${slug}`}
                 ogImage="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80"
                 jsonLd={[schemaOrg, faqSchema]}
             />
             <Navigation />
-            <div className="relative pt-20">
-                <div className="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt={title} className="w-full h-[60vh] object-cover opacity-20" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900/60" />
+
+            {renderHero()}
+
+            <div className="py-24 container mx-auto px-6">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold text-[var(--secondary)] mb-4">{featureTitle}</h2>
+                    <div className="w-24 h-1 bg-[var(--primary)] mx-auto" />
                 </div>
-                <div className="relative z-10 container mx-auto px-6 pt-32 pb-24 text-center">
-                    <span className="inline-block py-1 px-3 rounded-full bg-orange-500/20 text-orange-400 text-sm font-medium mb-6 backdrop-blur-sm border border-orange-500/30">Trusted Global Exporter</span>
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Premium <span className="text-orange-500">{product}</span> Export to <span className="text-blue-400">{country}</span></h1>
-                    <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-10">Your reliable partner for exporting finest quality {product} to {country}. We ensure international standards, timely delivery, and competitive pricing.</p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link to="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-semibold transition-all group">Get A Quote <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></Link>
-                        <Link to="/products" className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full font-semibold transition-all backdrop-blur-sm">View Products</Link>
-                    </div>
-                </div>
+                {renderFeatures()}
             </div>
-            <div className="py-24 bg-white">
-                <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <h2 className="text-3xl font-bold text-slate-900 mb-6">Why Choose Our {product} for {country}?</h2>
-                            <p className="text-slate-600 mb-8 text-lg leading-relaxed">As a leading exporter to {country}, Patel Impex understands the specific quality and documentation requirements of the region. Our {product} is sourced from the best farms, processed in hygienic facilities, and packed to preserve freshness during transit to {country}.</p>
-                            <div className="grid sm:grid-cols-2 gap-6">
-                                <div className="flex items-start gap-3"><div className="p-2 bg-orange-100 rounded-lg text-orange-600 shrink-0"><CheckCircle className="w-5 h-5" /></div><div><h3 className="font-semibold text-slate-900 mb-1">Premium Quality</h3><p className="text-sm text-slate-600">Selected best grade</p></div></div>
-                                <div className="flex items-start gap-3"><div className="p-2 bg-blue-100 rounded-lg text-blue-600 shrink-0"><Globe className="w-5 h-5" /></div><div><h3 className="font-semibold text-slate-900 mb-1">{country} Compliant</h3><p className="text-sm text-slate-600">Meets import regulations</p></div></div>
-                                <div className="flex items-start gap-3"><div className="p-2 bg-green-100 rounded-lg text-green-600 shrink-0"><Truck className="w-5 h-5" /></div><div><h3 className="font-semibold text-slate-900 mb-1">Timely Delivery</h3><p className="text-sm text-slate-600">Efficient logistics network</p></div></div>
-                                <div className="flex items-start gap-3"><div className="p-2 bg-purple-100 rounded-lg text-purple-600 shrink-0"><Package className="w-5 h-5" /></div><div><h3 className="font-semibold text-slate-900 mb-1">Export Packaging</h3><p className="text-sm text-slate-600">Secure & customized</p></div></div>
+
+            <div className="py-24 bg-[var(--accent)]/30">
+                <div className="container mx-auto px-6 max-w-4xl">
+                    <h2 className="text-3xl font-bold text-center text-[var(--secondary)] mb-12">Expert Insights</h2>
+                    <div className={`grid md:grid-cols-2 gap-6`}>
+                        {faqs.map((f, i) => (
+                            <div key={i} className={`bg-white p-6 ${design.borderRadius} shadow-sm`}>
+                                <h3 className="font-bold text-[var(--primary)] mb-2 flex items-start gap-2">
+                                    <span className="text-black/20">0{i + 1}.</span> {f.question}
+                                </h3>
+                                <p className="text-slate-600 text-sm pl-8">{f.answer}</p>
                             </div>
-                        </div>
-                        <div className="relative"><img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt="Patel Impex Export" className="relative rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500" /></div>
+                        ))}
                     </div>
                 </div>
             </div>
 
-            <div className="py-16 bg-slate-50">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
-                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">What is the minimum order quantity for {product} export to {country}?</h3>
-                            <p className="text-slate-600 leading-relaxed">Our minimum order quantity for {product} to {country} typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the {country} market.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">What documents do you provide for importing {product} into {country}?</h3>
-                            <p className="text-slate-600 leading-relaxed">We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by {country} customs authorities.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">What are the shipping times from India to {country}?</h3>
-                            <p className="text-slate-600 leading-relaxed">Transit times to {country} typically range from 20-35 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your {product}.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">Can you provide customized packaging for {product} in {country}?</h3>
-                            <p className="text-slate-600 leading-relaxed">Yes, we offer fully customizable packaging options for {product}, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with {country}'s labeling and packaging regulations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <Footer />
             <WhatsAppChat />
         </div>
     );
 };
+
 export default DynamicSEOProductPage;
