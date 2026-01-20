@@ -4,6 +4,7 @@ import { Truck, Ship, Plane, FileText, Shield, Clock, ArrowRight, CheckCircle, G
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 
 const Services = () => {
   const services = [
@@ -38,7 +39,7 @@ const Services = () => {
       icon: FileText,
       title: "Trade Documentation",
       description: "Complete export-import documentation services with expert compliance support and customs clearance assistance.",
-      import SEOHead from "@/components/SEOHead";
+
       features: ["Export-Import Documentation", "Customs Clearance Support", "Trade License Assistance", "Certificate of Origin"],
       price: "Starting from $150",
       color: "from-ai-cyber to-ai-neon",

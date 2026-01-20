@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Award, CheckCircle, Globe, Shield, FileText, Users, ExternalLink, Download } from "lucide-react";
@@ -48,7 +49,6 @@ const CertificationServices = () => {
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Patel Impex is a fully licensed and government-registered export-import company.
-              import SEOHead from "@/components/SEOHead";
               View our official certifications and registrations below.
             </p>
           </div>

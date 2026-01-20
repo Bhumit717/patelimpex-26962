@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
+import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { DollarSign, CreditCard, Shield, TrendingUp, Building, Handshake } from "lucide-react";
@@ -42,8 +43,7 @@ const TradeFinance = () => {
               <img
                 src={financeImage}
                 alt="Trade Finance - Export import banking and financial services"
-                import SEOHead from "@/components/SEOHead";
-              className="rounded-lg shadow-xl w-full h-[400px] object-cover"
+                className="rounded-lg shadow-xl w-full h-[400px] object-cover"
               />
             </div>
           </div>
