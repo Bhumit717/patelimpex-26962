@@ -71,10 +71,10 @@ ${data.message || 'No additional message'}
     try {
       const formattedMessage = formatQuoteRequestWithEmojis(formData);
       console.log('Formatted quote request:', formattedMessage);
-      
+
       const apiUrl1 = `https://api.callmebot.com/text.php?source=web&user=@bhumitnasit&text=${encodeURIComponent(formattedMessage)}`;
       const apiUrl2 = `https://api.callmebot.com/text.php?source=web&user=@PATEL111206&text=${encodeURIComponent(formattedMessage)}`;
-      
+
       // Make API calls to both endpoints in background using fetch
       fetch(apiUrl1, { mode: 'no-cors' })
         .then(() => console.log('Quote request sent successfully to API 1'))
@@ -83,7 +83,7 @@ ${data.message || 'No additional message'}
       fetch(apiUrl2, { mode: 'no-cors' })
         .then(() => console.log('Quote request sent successfully to API 2'))
         .catch((error) => console.log('API 2 call completed:', error));
-      
+
       // Reset form
       setFormData({
         companyName: '',
@@ -98,16 +98,16 @@ ${data.message || 'No additional message'}
         timeline: '',
         message: ''
       });
-      
+
       toast({
         title: "Quote request sent successfully! ✅",
         description: "We'll provide you a detailed quote within 24 hours. 🚀",
       });
-      
+
       console.log('Quote form submitted successfully');
     } catch (error) {
       console.error('Error sending quote request:', error);
-      
+
       toast({
         title: "Quote request sent! ✅",
         description: "We'll provide you a detailed quote within 24 hours. 🚀",
@@ -141,26 +141,26 @@ ${data.message || 'No additional message'}
   ];
 
   const countries = [
-    "United States", "United Kingdom", "Canada", "Australia", "Germany", "France", 
-    "Netherlands", "Belgium", "Italy", "Spain", "Sweden", "Norway", "Denmark", 
+    "United States", "United Kingdom", "Canada", "Australia", "Germany", "France",
+    "Netherlands", "Belgium", "Italy", "Spain", "Sweden", "Norway", "Denmark",
     "UAE", "Saudi Arabia", "Qatar", "Kuwait", "Japan", "Singapore", "South Korea",
     "Malaysia", "Thailand", "Vietnam", "Bangladesh", "Sri Lanka", "Nepal", "Other"
   ];
 
   const productCategories = [
-    "Textiles & Apparel", "Agricultural Products", "Chemicals & Pharmaceuticals", 
-    "Engineering Goods", "Electronics & IT", "Gems & Jewelry", "Leather Products", 
-    "Handicrafts", "Marine Products", "Plastic Products", "Sports Goods", 
+    "Textiles & Apparel", "Agricultural Products", "Chemicals & Pharmaceuticals",
+    "Engineering Goods", "Electronics & IT", "Gems & Jewelry", "Leather Products",
+    "Handicrafts", "Marine Products", "Plastic Products", "Sports Goods",
     "Medical Equipment", "Automotive Parts", "Home Textiles", "Spices & Food Products", "Other"
   ];
 
   const budgetRanges = [
-    "Under $10,000", "$10,000 - $50,000", "$50,000 - $100,000", 
+    "Under $10,000", "$10,000 - $50,000", "$50,000 - $100,000",
     "$100,000 - $500,000", "$500,000 - $1,000,000", "Above $1,000,000", "Flexible"
   ];
 
   const timelines = [
-    "Immediate (Within 2 weeks)", "1 Month", "2-3 Months", 
+    "Immediate (Within 2 weeks)", "1 Month", "2-3 Months",
     "3-6 Months", "6-12 Months", "Long Term (12+ Months)", "Flexible"
   ];
 
@@ -168,7 +168,7 @@ ${data.message || 'No additional message'}
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <SEOHead title="Send Inquiry | Patel Impex" description="Send us your trade inquiry and get a quick quotation." canonicalUrl="/inquiry" />
       <Navigation />
-      
+
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -210,26 +210,26 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Company Name *
                     </label>
-                    <Input 
+                    <Input
                       name="companyName"
                       value={formData.companyName}
                       onChange={handleInputChange}
-                      placeholder="Your Company Name" 
+                      placeholder="Your Company Name"
                       required
-                      className="bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Contact Person *
                     </label>
-                    <Input 
+                    <Input
                       name="contactPerson"
                       value={formData.contactPerson}
                       onChange={handleInputChange}
-                      placeholder="John Doe" 
+                      placeholder="John Doe"
                       required
-                      className="bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -239,27 +239,27 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Email Address *
                     </label>
-                    <Input 
-                      type="email" 
+                    <Input
+                      type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="john@company.com" 
+                      placeholder="john@company.com"
                       required
-                      className="bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Phone Number *
                     </label>
-                    <Input 
+                    <Input
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+1 234 567 8900" 
+                      placeholder="+1 234 567 8900"
                       required
-                      className="bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -269,12 +269,12 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Country *
                     </label>
-                    <select 
+                    <select
                       name="country"
                       value={formData.country}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 focus:border-blue-500 focus:ring-blue-500"
+                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="">Select Country</option>
                       {countries.map((country, index) => (
@@ -286,12 +286,12 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Product Category *
                     </label>
-                    <select 
+                    <select
                       name="productCategory"
                       value={formData.productCategory}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 focus:border-blue-500 focus:ring-blue-500"
+                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="">Select Category</option>
                       {productCategories.map((category, index) => (
@@ -306,12 +306,12 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Inquiry Type *
                     </label>
-                    <select 
+                    <select
                       name="inquiryType"
                       value={formData.inquiryType}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 focus:border-blue-500 focus:ring-blue-500"
+                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="">Select Type</option>
                       <option value="Import">Import</option>
@@ -323,12 +323,12 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Quantity Required
                     </label>
-                    <Input 
+                    <Input
                       name="quantity"
                       value={formData.quantity}
                       onChange={handleInputChange}
-                      placeholder="1000 units, 10 tons, etc." 
-                      className="bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="1000 units, 10 tons, etc."
+                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
                 </div>
@@ -338,11 +338,11 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Budget Range
                     </label>
-                    <select 
+                    <select
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 focus:border-blue-500 focus:ring-blue-500"
+                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="">Select Budget Range</option>
                       {budgetRanges.map((budget, index) => (
@@ -354,11 +354,11 @@ ${data.message || 'No additional message'}
                     <label className="block text-sm font-semibold text-slate-700 mb-2">
                       Timeline
                     </label>
-                    <select 
+                    <select
                       name="timeline"
                       value={formData.timeline}
                       onChange={handleInputChange}
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 focus:border-blue-500 focus:ring-blue-500"
+                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="">Select Timeline</option>
                       {timelines.map((timeline, index) => (
@@ -372,17 +372,17 @@ ${data.message || 'No additional message'}
                   <label className="block text-sm font-semibold text-slate-700 mb-2">
                     Additional Requirements
                   </label>
-                  <Textarea 
+                  <Textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Please provide any additional details about your requirements, specifications, or questions..."
-                    className="min-h-[120px] bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+                    className="min-h-[120px] bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white py-4 text-lg font-semibold group"
                 >
