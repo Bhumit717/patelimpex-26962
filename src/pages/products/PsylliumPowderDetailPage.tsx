@@ -31,6 +31,10 @@ const PsylliumPowderDetailPage = () => {
         { label: "Supply Ability", value: "300+ MT per month" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
         { label: "Container Capacity", value: "14-15 MT per 20' FCL" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["80 Mesh", "100 Mesh", "200 Mesh", "Organic Certified", "Pharmaceutical Grade"]}
       breadcrumbs={[

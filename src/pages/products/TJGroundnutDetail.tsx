@@ -29,8 +29,12 @@ const TJGroundnutDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "Vietnam, Philippines, Indonesia, UAE" },
         { label: "Supply Ability", value: "500+ MT per month" },
-        { label: "Container Capacity", value: "22-24 MT per 40' FCL" },
+        { label: "Container Capacity", value: "22-24 MT per 20' FCL" },
         { label: "Quality", value: "Hand-sorted, Premium Grade" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["TJ 37 Raw", "TJ Pathavada", "Blanched TJ", "Roasted TJ"]}
       breadcrumbs={[

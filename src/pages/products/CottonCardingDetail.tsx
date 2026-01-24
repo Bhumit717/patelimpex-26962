@@ -29,8 +29,12 @@ const CottonCardingDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "China, Vietnam, Thailand, Turkey" },
         { label: "Supply Ability", value: "500+ MT per month" },
-        { label: "Container Capacity", value: "22-24 MT per 40' FCL" },
+        { label: "Container Capacity", value: "22-24 MT per 20' FCL" },
         { label: "Pricing", value: "Competitive bulk rates" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Clean Dropping", "Mixed Dropping", "Color Sorted"]}
       breadcrumbs={[

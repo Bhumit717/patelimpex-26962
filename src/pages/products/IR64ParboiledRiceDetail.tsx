@@ -29,8 +29,12 @@ const IR64ParboiledRiceDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "Africa, Bangladesh, Sri Lanka" },
         { label: "Supply Ability", value: "5000+ MT per month" },
-        { label: "Container Capacity", value: "27 MT per 40' FCL" },
+        { label: "Container Capacity", value: "27 MT per 20' FCL" },
         { label: "Pricing", value: "Competitive bulk rates" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["5% Broken", "15% Broken", "25% Broken", "100% Broken"]}
       breadcrumbs={[

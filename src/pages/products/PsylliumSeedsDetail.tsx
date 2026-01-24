@@ -30,6 +30,10 @@ const PsylliumSeedsDetail = () => {
         { label: "Major Export Markets", value: "Europe, USA, Middle East, Asia" },
         { label: "Supply Ability", value: "Large quantities available seasonally" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       backLink="/products/psyllium-husk-products"
       backLinkText="Back to Psyllium Products"

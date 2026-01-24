@@ -29,8 +29,12 @@ const ComberNoilDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "China, Bangladesh, Indonesia, Pakistan" },
         { label: "Supply Ability", value: "300+ MT per month" },
-        { label: "Container Capacity", value: "20-22 MT per 40' FCL" },
+        { label: "Container Capacity", value: "20-22 MT per 20' FCL" },
         { label: "Quality Grades", value: "A, B, C Grades available" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Grade A (Premium)", "Grade B (Standard)", "Grade C (Economy)"]}
       breadcrumbs={[

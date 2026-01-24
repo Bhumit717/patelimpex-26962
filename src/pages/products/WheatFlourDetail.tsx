@@ -30,6 +30,10 @@ const WheatFlourDetail = () => {
         { label: "Major Export Markets", value: "Malaysia, Indonesia, UAE, Saudi Arabia, Africa" },
         { label: "Container Capacity", value: "23-24 MT per 20' FT Container" },
         { label: "Private Labeling", value: "Yes, as per customer requirement" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       backLink="/#products"
       backLinkText="Back to Products"

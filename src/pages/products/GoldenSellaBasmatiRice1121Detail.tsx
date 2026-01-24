@@ -29,8 +29,12 @@ const GoldenSellaBasmatiRice1121Detail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "UAE, Saudi Arabia, Iraq, Yemen" },
         { label: "Supply Ability", value: "2000+ MT per month" },
-        { label: "Container Capacity", value: "25 MT per 40' FCL" },
+        { label: "Container Capacity", value: "25 MT per 20' FCL" },
         { label: "Private Labeling", value: "Yes, custom packaging available" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["2% Broken", "5% Broken", "Sortex Clean"]}
       breadcrumbs={[

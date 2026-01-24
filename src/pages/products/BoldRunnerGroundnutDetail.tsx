@@ -29,8 +29,12 @@ const BoldRunnerGroundnutDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "Indonesia, Vietnam, UAE, Philippines" },
         { label: "Supply Ability", value: "1000+ MT per month" },
-        { label: "Container Capacity", value: "22-24 MT per 40' FCL" },
+        { label: "Container Capacity", value: "22-24 MT per 20' FCL" },
         { label: "Season", value: "October to March" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Raw Kernels", "Blanched", "Roasted", "Split"]}
       breadcrumbs={[

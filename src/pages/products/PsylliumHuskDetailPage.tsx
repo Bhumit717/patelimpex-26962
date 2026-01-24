@@ -31,6 +31,10 @@ const PsylliumHuskDetailPage = () => {
         { label: "Supply Ability", value: "500+ MT per month" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
         { label: "Container Capacity", value: "15-16 MT per 20' FCL" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["85% Purity", "95% Purity", "98% Purity", "99% Purity", "Organic Certified"]}
       breadcrumbs={[

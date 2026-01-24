@@ -29,8 +29,12 @@ const RawCottonDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "China, Bangladesh, Vietnam, Indonesia" },
         { label: "Supply Ability", value: "1000+ MT per month" },
-        { label: "Container Capacity", value: "18-20 MT per 40' FCL" },
+        { label: "Container Capacity", value: "18-20 MT per 20' FCL" },
         { label: "Season", value: "October to March (Peak)" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Long Staple (28mm+)", "Medium Staple (24-28mm)", "Short Staple (20-24mm)"]}
       breadcrumbs={[

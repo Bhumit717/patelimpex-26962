@@ -29,8 +29,11 @@ const IR64RawRiceDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "Africa, Middle East, SE Asia" },
         { label: "Supply Ability", value: "4000+ MT per month" },
-        { label: "Container Capacity", value: "27 MT per 40' FCL" },
+        { label: "Container Capacity", value: "27 MT per 20' FCL" },
         { label: "Payment Terms", value: "LC, TT" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["5% Broken", "15% Broken", "25% Broken", "Sortex"]}
       breadcrumbs={[

@@ -30,6 +30,10 @@ const PsylliumHuskPowderDetail = () => {
         { label: "Major Export Markets", value: "USA, UK, Germany, Australia, Japan" },
         { label: "Supply Ability", value: "Bulk shipments available year-round" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       backLink="/products/psyllium-husk-products"
       backLinkText="Back to Psyllium Products"

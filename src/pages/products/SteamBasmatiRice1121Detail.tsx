@@ -29,8 +29,12 @@ const SteamBasmatiRice1121Detail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "USA, UK, Canada, UAE, Singapore" },
         { label: "Supply Ability", value: "1000+ MT per month" },
-        { label: "Container Capacity", value: "24 MT per 40' FCL" },
+        { label: "Container Capacity", value: "24 MT per 20' FCL" },
         { label: "Premium Grade", value: "XXL, 1% Broken" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["1% Broken Premium", "2% Broken", "Organic Certified"]}
       breadcrumbs={[

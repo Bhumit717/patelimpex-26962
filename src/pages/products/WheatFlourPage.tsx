@@ -33,6 +33,10 @@ const WheatFlourPage = () => {
         { label: "Container Capacity", value: "23-24 MT per 20' FT Container" },
         { label: "Private Labeling", value: "Yes, as per customer requirement" },
         { label: "Supply Ability", value: "1000+ MT per month" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["All Purpose Flour (Maida)", "Whole Wheat Flour (Atta)", "Semolina (Suji)", "Bread Flour", "Pastry Flour"]}
       breadcrumbs={[

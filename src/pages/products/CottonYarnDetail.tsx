@@ -29,8 +29,12 @@ const CottonYarnDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "Bangladesh, Egypt, Turkey, Portugal" },
         { label: "Supply Ability", value: "500+ MT per month" },
-        { label: "Container Capacity", value: "12-14 MT per 40' FCL" },
+        { label: "Container Capacity", value: "12-14 MT per 20' FCL" },
         { label: "Private Labeling", value: "Yes, custom cones available" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Carded Yarn", "Combed Yarn", "Compact Yarn", "Slub Yarn"]}
       breadcrumbs={[

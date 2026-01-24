@@ -31,6 +31,10 @@ const PsylliumSeedsDetailPage = () => {
         { label: "Supply Ability", value: "400+ MT per month" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
         { label: "Container Capacity", value: "18-20 MT per 20' FCL" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Machine Cleaned", "Double Cleaned", "Organic Certified"]}
       breadcrumbs={[

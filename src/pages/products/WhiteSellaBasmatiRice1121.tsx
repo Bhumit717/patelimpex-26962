@@ -30,6 +30,10 @@ const WhiteSellaBasmatiRice1121 = () => {
         { label: "Major Export Markets", value: "UAE, Kuwait, Qatar, UK, USA" },
         { label: "Supply Ability", value: "1000+ MT per month" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       backLink="/products/rice-products"
       backLinkText="Back to Rice Products"

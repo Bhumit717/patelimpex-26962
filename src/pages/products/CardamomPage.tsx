@@ -32,6 +32,10 @@ const CardamomPage = () => {
         { label: "Supply Ability", value: "Bulk shipments available year-round" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
         { label: "Container Capacity", value: "12-14 MT per 20' FCL" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["8mm Bold", "7mm Bold", "6mm Regular", "Powder", "Green/Bleached"]}
       breadcrumbs={[

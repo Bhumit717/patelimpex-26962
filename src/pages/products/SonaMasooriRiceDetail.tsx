@@ -29,8 +29,12 @@ const SonaMasooriRiceDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "USA, UK, Singapore, Malaysia, UAE" },
         { label: "Supply Ability", value: "1500+ MT per month" },
-        { label: "Container Capacity", value: "25 MT per 40' FCL" },
+        { label: "Container Capacity", value: "25 MT per 20' FCL" },
         { label: "Varieties", value: "BPT 5204, HMT" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Old Crop (Aged)", "New Crop", "Organic Certified"]}
       breadcrumbs={[

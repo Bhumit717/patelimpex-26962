@@ -31,6 +31,10 @@ const FennelSeedsPage = () => {
         { label: "Supply Ability", value: "Bulk shipments available year-round" },
         { label: "Private Labeling", value: "Yes, customized packaging available" },
         { label: "Container Capacity", value: "16-18 MT per 20' FCL" },
+        { label: "Payment Terms", value: "T/T, L/C, CAD" },
+        { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
+        { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
+        { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
       formats={["Whole Seeds", "Ground Powder", "Bold Grade", "Medium Grade", "Small Grade"]}
       breadcrumbs={[
