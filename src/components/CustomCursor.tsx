@@ -51,8 +51,8 @@ export const CustomCursor = () => {
                     position: "fixed",
                     top: 0,
                     left: 0,
-                    width: "32px",
-                    height: "32px", // Keeping it small as requested
+                    width: "16px",
+                    height: "16px", // Reduced to half
                     transform: `translate(${position.x}px, ${position.y}px)`,
                     pointerEvents: "none",
                     zIndex: 9999,
@@ -63,8 +63,8 @@ export const CustomCursor = () => {
                     // Adjusting offsets to center or tip-align if necessary. 
                     // For a container box, centering or top-left might depend on the image visual. 
                     // Let's assume top-left corner is the pointer.
-                    marginTop: "-5px", // Slight offset to not block exact click point
-                    marginLeft: "-5px",
+                    marginTop: "-2px", // Adjusted offset for smaller size
+                    marginLeft: "-2px",
                 }}
                 className={`custom-cursor ${isHovering ? "hovering" : ""}`}
             >

@@ -89,17 +89,12 @@ const Services = () => {
           </CardHeader>
 
           <CardContent className="relative z-10 pt-0">
-            <ul className="space-y-3 mb-6">
+            <ul className="space-y-3">
               {service.features.map((feature, idx) => <li key={idx} className="flex items-center text-gray-300 hover:text-ai-primary transition-colors duration-300">
                 <div className="w-2 h-2 bg-gradient-to-r from-ai-primary to-ai-secondary rounded-full mr-3 flex-shrink-0"></div>
                 <span className="font-medium">{feature}</span>
               </li>)}
             </ul>
-
-            <Button variant="ghost" className="w-full group/btn justify-between hover:bg-ai-primary/10 transition-all duration-300 text-white border border-ai-primary/30 rounded-[50px]">
-              <span className="font-semibold">Learn More</span>
-              <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-            </Button>
           </CardContent>
         </Card>)}
       </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail, Sparkles, Zap, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import GoogleTranslate from "@/components/GoogleTranslate";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +57,7 @@ const Navigation = () => {
     {/* Ultra Pro Contact Bar with Advanced Animations */}
     <div className="bg-gradient-to-r from-blue-50 via-teal-50 to-blue-50 text-slate-700 py-2 md:py-3 px-4 border-b border-blue-100 relative overflow-hidden" role="complementary" aria-label="Contact information and certifications">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" aria-hidden="true"></div>
-      <div className="container mx-auto flex justify-between items-center text-sm relative z-10">
+      <div className="container mx-auto flex flex-wrap justify-center md:justify-between items-center text-sm relative z-10 gap-2">
         <div className="flex items-center flex-wrap gap-2 sm:gap-8">
           <a href="tel:+917984133417" className="flex items-center space-x-2 sm:space-x-3 hover:text-blue-600 transition-all duration-300 cursor-pointer group" aria-label="Call Patel Impex at +91 798 41 33 417">
             <div className="relative">
@@ -74,8 +75,8 @@ const Navigation = () => {
           </a>
 
         </div>
-        <div className="hidden md:flex items-center space-x-4" role="text" aria-label="Company certification">
-
+        <div className="flex items-center space-x-4" role="text" aria-label="Company certification">
+          <GoogleTranslate />
         </div>
       </div>
     </div>

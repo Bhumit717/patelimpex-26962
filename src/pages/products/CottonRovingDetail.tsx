@@ -29,7 +29,7 @@ const CottonRovingDetail = () => {
       exportInfo={[
         { label: "Major Export Markets", value: "Bangladesh, Egypt, Ethiopia, Vietnam" },
         { label: "Supply Ability", value: "200+ MT per month" },
-        { label: "Container Capacity", value: "10-12 MT per 20' FCL" },
+        { label: "Container Capacity", value: "22 MT per 20' FCL" },
         { label: "Custom Specs", value: "Available on request" },
         { label: "Payment Terms", value: "T/T, L/C, CAD" },
         { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
