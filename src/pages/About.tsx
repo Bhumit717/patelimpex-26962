@@ -120,7 +120,7 @@ const About = () => {
           {/* Stats */}
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {[
-              { icon: Users, number: "1120+", label: "Global Clients", color: "text-blue-600" },
+              { icon: Users, number: "100+", label: "Global Clients", color: "text-blue-600" },
               { icon: Award, number: "15+", label: "Years Experience", color: "text-teal-600" },
               { icon: Globe2, number: "50+", label: "Countries Served", color: "text-blue-600" },
               { icon: Clock, number: "24/7", label: "Support Available", color: "text-teal-600" },
