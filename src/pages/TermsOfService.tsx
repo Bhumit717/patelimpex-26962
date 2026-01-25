@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppChat from "@/components/WhatsAppChat";
@@ -11,14 +12,14 @@ const TermsOfService = () => {
       <Helmet>
         <title>Terms of Service | Patel Impex - Legal Terms & Conditions</title>
         <meta name="description" content="Review Patel Impex terms of service. Legal terms and conditions for using our import export services, website, and business agreements." />
-import SEOHead from "@/components/SEOHead";
+
         <link rel="canonical" href="https://patelimpex.com/terms-of-service" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Navigation />
         <WhatsAppChat />
-        
+
         <main className="pt-32 pb-16">
           <div className="container mx-auto px-4">
             {/* Header */}

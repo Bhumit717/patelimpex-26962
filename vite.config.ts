@@ -23,11 +23,10 @@ export default defineConfig(({ mode }) => ({
   build: {
     minify: 'esbuild',
     cssCodeSplit: true,
-    sourcemap: true,
-    target: 'es2020', // Modern ES6+ target for better performance
+    sourcemap: false,
+    target: 'es2020',
     rollupOptions: {
       output: {
-        // Improved chunking strategy for better caching
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-popover', '@radix-ui/react-accordion'],
@@ -35,7 +34,6 @@ export default defineConfig(({ mode }) => ({
           'data-fetching': ['@tanstack/react-query'],
           'icons': ['lucide-react'],
         },
-        // Better asset naming for caching
         assetFileNames: (assetInfo) => {
           if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
           const info = assetInfo.name.split('.');
@@ -52,8 +50,7 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
-    // Reduce chunk size warnings threshold
-    chunkSizeWarningLimit: 800,
+    chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'lucide-react', '@tanstack/react-query'],

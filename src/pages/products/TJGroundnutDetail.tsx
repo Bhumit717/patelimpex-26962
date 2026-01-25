@@ -1,5 +1,5 @@
 import EnhancedProductDetailTemplate from "@/components/EnhancedProductDetailTemplate";
-import tjGroundnutImg from "@/assets/products/tj-groundnut.png";
+import tjGroundnutImg from "@/assets/products/groundnut.png";
 
 const TJGroundnutDetail = () => {
   return (

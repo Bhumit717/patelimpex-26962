@@ -1,7 +1,7 @@
 import ProductCategoryTemplate from "@/components/ProductCategoryTemplate";
 import boldRunnerImg from "@/assets/products/bold-runner-groundnut.png";
 import javaSpanishImg from "@/assets/products/java-spanish-groundnut.png";
-import tjGroundnutImg from "@/assets/products/tj-groundnut.png";
+import tjGroundnutImg from "@/assets/products/groundnut.png";
 import g10g20Img from "@/assets/products/g10-g20-groundnut.png";
 
 const GroundnutProducts = () => {

@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Globe, Star, TrendingUp, Users, Building, Award } from "lucide-react";
 import americaImage from "@/assets/global-export-shipping.jpg";
+import SEOHead from "@/components/SEOHead";
 
 const AmericanMarkets = () => {
   const americanMarkets = [
@@ -21,7 +22,7 @@ const AmericanMarkets = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <SEOHead title="American Markets | Patel Impex" description="American Markets - Expert services and information by Patel Impex." canonicalUrl="/more/american-markets" />
       <Navigation />
-      
+
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -35,15 +36,15 @@ const AmericanMarkets = () => {
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
                 Penetrate high-value American markets from North to South America. Access developed economies with strong purchasing power and diverse import needs.
-import SEOHead from "@/components/SEOHead";
+
               </p>
               <Button size="lg" asChild>
                 <Link to="/contact">Access American Markets</Link>
               </Button>
             </div>
             <div>
-              <img 
-                src={americaImage} 
+              <img
+                src={americaImage}
                 alt="Americas Export Markets - High-value trade opportunities"
                 className="rounded-lg shadow-xl w-full h-[400px] object-cover"
               />
