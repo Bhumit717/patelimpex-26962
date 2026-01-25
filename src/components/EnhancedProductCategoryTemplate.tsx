@@ -65,7 +65,7 @@ const EnhancedProductCategoryTemplate = ({
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#e9edf3]">
       <SEOHead
         title={metaTitle || `${title} Exporter India | Patel Impex`}
         description={metaDescription || description.substring(0, 160)}
@@ -73,43 +73,45 @@ const EnhancedProductCategoryTemplate = ({
         jsonLd={jsonLd}
       />
       <Navigation />
-      
+
       <main className="pt-24">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-teal-600 py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-white mb-4">
+        <div className="py-16">
+          <div className="container mx-auto px-4 text-center">
+            <div className="mb-4">
               <Breadcrumbs items={breadcrumbs.map(item => ({ ...item, href: item.href }))} />
             </div>
-            <p className="text-blue-100 text-sm mb-2">{category}</p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h1>
-            <p className="text-xl text-blue-100 max-w-3xl">{description}</p>
+            <div className="inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] mb-6">
+              <span className="text-blue-600 text-sm font-semibold">{category}</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-black text-slate-800 mb-6">{title}</h1>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">{description}</p>
           </div>
         </div>
 
         {/* Products Grid */}
-        <div className="container mx-auto px-4 py-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">Our {title} Range</h2>
+        <div className="container mx-auto px-4 pb-16">
+          <h2 className="text-2xl font-bold text-slate-800 mb-8 pl-4 border-l-4 border-blue-600">Our {title} Range</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product, index) => (
               <Link
                 key={index}
                 to={product.link}
-                className="group bg-white rounded-[50px] overflow-hidden shadow-[0_5px_15px_rgba(59,130,246,0.15)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] transition-all duration-500 hover:-translate-y-2 border border-transparent"
+                className="group nm-card !p-0 overflow-hidden hover:-translate-y-2 transition-transform duration-300"
               >
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-6 flex items-center justify-center">
+                <div className="relative h-64 overflow-hidden bg-slate-100 p-6 flex items-center justify-center">
                   <img
                     src={product.image}
                     alt={product.name}
                     className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <div className="p-8">
+                  <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">
                     {product.name}
                   </h3>
                   {product.description && (
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
+                    <p className="text-slate-600 text-sm mb-6 line-clamp-2">{product.description}</p>
                   )}
                   <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700">
                     <span>View Details</span>

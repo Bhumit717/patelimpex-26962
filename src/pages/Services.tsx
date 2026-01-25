@@ -82,7 +82,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-[#e9edf3]">
       <SEOHead title="Export Import Services | Patel Impex" description="Comprehensive export import services including logistics, documentation, and market research." canonicalUrl="/services" />
       <Navigation />
 
@@ -90,10 +90,10 @@ const Services = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-20">
-            <h1 className="text-5xl lg:text-6xl font-black text-white mb-6">
-              Our <span className="text-transparent bg-gradient-to-r from-ai-primary to-ai-secondary bg-clip-text">Services</span>
+            <h1 className="text-5xl lg:text-6xl font-black text-slate-800 mb-6">
+              Our <span className="text-transparent bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text">Services</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
               Comprehensive import-export solutions designed to streamline your international trade operations. From logistics to documentation, we handle every aspect of global commerce with expertise and reliability.
             </p>
           </div>
@@ -101,53 +101,49 @@ const Services = () => {
           {/* Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {services.map((service, index) => (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-ai-primary/20 shadow-lg bg-gray-800/50 relative overflow-hidden">
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-
-                <CardHeader className="relative z-10 pb-4">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <service.icon className="h-8 w-8 text-white" />
+              <div key={index} className="nm-card group hover:-translate-y-2 transition-transform duration-300 !p-0 overflow-hidden">
+                <div className="p-8">
+                  <div className="w-16 h-16 rounded-[20px] bg-[#e9edf3] shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="h-8 w-8 text-blue-600" />
                   </div>
 
-                  <CardTitle className="text-2xl font-bold text-white mb-3 group-hover:text-ai-primary transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                     {service.title}
-                  </CardTitle>
+                  </h3>
 
-                  <CardDescription className="text-gray-300 text-base leading-relaxed">
+                  <p className="text-slate-600 text-base leading-relaxed mb-6">
                     {service.description}
-                  </CardDescription>
-                </CardHeader>
+                  </p>
 
-                <CardContent className="relative z-10 pt-0">
                   <ul className="space-y-3 mb-6">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-300 hover:text-ai-primary transition-colors duration-300">
-                        <CheckCircle className="w-4 h-4 text-ai-primary mr-3 flex-shrink-0" />
+                      <li key={idx} className="flex items-center text-slate-600">
+                        <CheckCircle className="w-4 h-4 text-teal-500 mr-3 flex-shrink-0" />
                         <span className="font-medium text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-ai-primary">{service.price}</span>
+                    <span className="text-xl font-bold text-blue-600">{service.price}</span>
                   </div>
 
                   <Link to="/inquiry">
-                    <Button variant="ghost" className="w-full group/btn justify-between hover:bg-ai-primary/10 transition-all duration-300 text-white border border-ai-primary/30">
-                      <span className="font-semibold">Get Quote</span>
-                      <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                    <Button className="nm-btn w-full !text-slate-700 hover:text-blue-600 group/btn">
+                      Get Quote
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
                     </Button>
                   </Link>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
 
           {/* Process Section */}
           <div className="mb-20">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-white mb-6">Our Process</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <h2 className="text-4xl font-bold text-slate-800 mb-6">Our Process</h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                 A streamlined approach to international trade that ensures efficiency, transparency, and success at every step.
               </p>
             </div>
@@ -156,33 +152,30 @@ const Services = () => {
               {processSteps.map((step, index) => (
                 <div key={index} className="text-center group">
                   <div className="relative mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-r from-ai-primary to-ai-secondary rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                      <span className="text-2xl font-black text-white">{step.step}</span>
+                    <div className="w-20 h-20 rounded-full bg-[#e9edf3] shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-2xl font-black text-blue-600">{step.step}</span>
                     </div>
-                    {index < processSteps.length - 1 && (
-                      <div className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-ai-primary/30 to-ai-secondary/30 -translate-x-10"></div>
-                    )}
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-ai-primary transition-colors">{step.title}</h3>
-                  <p className="text-gray-300">{step.desc}</p>
+                  <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">{step.title}</h3>
+                  <p className="text-slate-600">{step.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Benefits Section */}
-          <div className="bg-gray-800/50 rounded-3xl p-12 shadow-2xl mb-20 border border-ai-primary/20">
+          <div className="nm-card p-12 mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-white mb-6">Why Choose Patel Exports?</h2>
-                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                <h2 className="text-4xl font-bold text-slate-800 mb-6">Why Choose Patel Exports?</h2>
+                <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                   With over 15 years of experience in international trade, we bring unmatched expertise and reliability to your global business operations.
                 </p>
                 <div className="grid gap-4">
                   {benefits.map((benefit, index) => (
                     <div key={index} className="flex items-center space-x-3 group">
-                      <CheckCircle className="h-6 w-6 text-ai-primary flex-shrink-0 group-hover:scale-110 transition-transform" />
-                      <span className="text-gray-300 font-medium">{benefit}</span>
+                      <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="text-slate-600 font-medium">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -191,32 +184,32 @@ const Services = () => {
                 <img
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80"
                   alt="International business meeting"
-                  className="w-full h-[400px] object-cover rounded-2xl shadow-xl"
+                  className="w-full h-[400px] object-cover rounded-[30px] nm-bg border-4 border-[#e9edf3]"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-ai-primary to-ai-secondary text-white p-6 rounded-xl shadow-xl">
-                  <Globe className="h-8 w-8 mb-2" />
-                  <div className="text-2xl font-black">50+</div>
-                  <div className="text-sm">Countries Served</div>
+                <div className="absolute -bottom-6 -right-6 nm-bg p-6 rounded-[20px] shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                  <Globe className="h-8 w-8 mb-2 text-blue-600" />
+                  <div className="text-2xl font-black text-slate-800">50+</div>
+                  <div className="text-sm text-slate-600">Countries Served</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-gradient-to-r from-ai-primary to-ai-secondary rounded-3xl p-12 text-white">
-            <h2 className="text-4xl font-bold mb-6">Ready to Expand Globally?</h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          <div className="text-center nm-card p-12 bg-[#e9edf3]">
+            <h2 className="text-4xl font-bold mb-6 text-slate-800">Ready to Expand Globally?</h2>
+            <p className="text-xl mb-8 text-slate-600 max-w-2xl mx-auto">
               Get started with a free consultation and discover how we can help your business reach international markets successfully.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link to="/inquiry">
-                <Button size="lg" className="bg-white text-ai-primary hover:bg-gray-100 font-bold transform hover:scale-105 transition-all duration-300">
+                <Button className="nm-btn !w-auto text-slate-700">
                   Get Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-ai-primary transform hover:scale-105 transition-all duration-300">
+                <Button className="nm-btn !w-auto text-slate-700">
                   Contact Us
                 </Button>
               </Link>

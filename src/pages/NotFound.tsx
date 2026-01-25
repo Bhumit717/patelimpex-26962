@@ -21,30 +21,30 @@ const NotFound = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-[#e9edf3] flex flex-col">
       {/* Header */}
-      <header className="border-b border-border/40 bg-background/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary to-primary/80 rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">P</span>
+      <header className="nm-card !rounded-none !p-4 !m-0 z-10">
+        <div className="container mx-auto">
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="w-10 h-10 rounded-[10px] bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+              <span className="text-blue-600 font-black text-xl">P</span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              PATEL IMPEX
+            <span className="text-2xl font-black text-slate-800">
+              Patel<span className="text-blue-600">Impex</span>
             </span>
           </Link>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-12 flex-grow flex flex-col justify-center">
         <div className="max-w-4xl mx-auto text-center">
           {/* 404 Animation */}
           <div className="relative mb-8">
-            <div className="text-[12rem] font-bold text-primary/10 leading-none select-none">
+            <div className="text-[12rem] font-black text-slate-200 leading-none select-none drop-shadow-sm">
               404
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-6xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent animate-pulse">
+              <div className="text-6xl font-black text-blue-600">
                 404
               </div>
             </div>
@@ -52,32 +52,34 @@ const NotFound = () => {
 
           {/* Main Message */}
           <div className="mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">
               Oops! Page Not Found
             </h1>
-            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
-              The page you're looking for doesn't exist. But don't worry, PATEL IMPEX has everything you need just a click away.
+            <p className="text-xl text-slate-600 mb-6 max-w-2xl mx-auto">
+              The page you're looking for doesn't exist. But don't worry, Patel Impex has everything you need just a click away.
             </p>
-            <p className="text-sm text-muted-foreground/80 font-mono bg-muted/50 inline-block px-3 py-1 rounded-md">
-              Requested URL: {location.pathname}
-            </p>
+            <div className="inline-block px-4 py-2 rounded-lg bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+              <p className="text-sm text-slate-500 font-mono">
+                Requested URL: {location.pathname}
+              </p>
+            </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center mb-16">
-            <Button asChild size="lg" className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary">
+          <div className="flex flex-wrap gap-6 justify-center mb-16">
+            <Button asChild className="nm-btn !w-auto !px-8 text-slate-700">
               <Link to="/">
                 <Home className="w-5 h-5 mr-2" />
                 Go Home
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild className="nm-btn !w-auto !px-8 text-slate-700">
               <Link to="/products">
                 <Search className="w-5 h-5 mr-2" />
                 Browse Products
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild className="nm-btn !w-auto !px-8 text-slate-700">
               <Link to="/contact">
                 <Phone className="w-5 h-5 mr-2" />
                 Contact Us
@@ -87,7 +89,7 @@ const NotFound = () => {
 
           {/* Popular Pages */}
           <div className="mb-16">
-            <h2 className="text-2xl font-semibold mb-8 text-foreground">
+            <h2 className="text-2xl font-bold mb-8 text-slate-800">
               Popular Pages
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -95,12 +97,12 @@ const NotFound = () => {
                 <Link
                   key={index}
                   to={page.path}
-                  className="group p-6 rounded-xl border border-border bg-card hover:bg-accent transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                  className="nm-card group hover:-translate-y-1 transition-transform cursor-pointer"
                 >
-                  <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-bold text-lg mb-2 text-slate-800 group-hover:text-blue-600 transition-colors">
                     {page.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-slate-500">
                     {page.description}
                   </p>
                 </Link>
@@ -109,22 +111,22 @@ const NotFound = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-gradient-to-r from-muted/50 to-muted/30 rounded-2xl p-8 border border-border/50">
-            <h3 className="text-xl font-semibold mb-6 text-foreground">
+          <div className="nm-card p-8 bg-[#e9edf3]">
+            <h3 className="text-xl font-bold mb-6 text-slate-800">
               Need Help? We're Here for You
             </h3>
             <div className="grid md:grid-cols-3 gap-6 text-sm">
-              <div className="flex items-center justify-center space-x-3 text-muted-foreground">
-                <Phone className="w-4 h-4 text-primary" />
-                <span>+91 XXXX XXXXXX</span>
+              <div className="flex items-center justify-center space-x-3 text-slate-600">
+                <Phone className="w-4 h-4 text-blue-600" />
+                <span>+91 798 41 33 417</span>
               </div>
-              <div className="flex items-center justify-center space-x-3 text-muted-foreground">
-                <Mail className="w-4 h-4 text-primary" />
+              <div className="flex items-center justify-center space-x-3 text-slate-600">
+                <Mail className="w-4 h-4 text-teal-600" />
                 <span>info@patelimpex.com</span>
               </div>
-              <div className="flex items-center justify-center space-x-3 text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span>Gujarat, India</span>
+              <div className="flex items-center justify-center space-x-3 text-slate-600">
+                <MapPin className="w-4 h-4 text-purple-600" />
+                <span>Rajkot, Gujarat, India</span>
               </div>
             </div>
           </div>

@@ -299,13 +299,12 @@ const FAQ = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50">
+    <div className="min-h-screen bg-[#e9edf3]">
       <SEOHead title="Frequently Asked Questions | Patel Impex" description="Find answers to common questions about our export process and products." canonicalUrl="/faq" />
       <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-transparent to-teal-600/10"></div>
         <div className="container mx-auto max-w-6xl relative z-10">
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
@@ -320,10 +319,8 @@ const FAQ = () => {
           </Breadcrumb>
 
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
-                Frequently Asked Questions
-              </span>
+            <h1 className="text-4xl md:text-6xl font-black mb-6 text-slate-800">
+              Frequently Asked <span className="text-blue-600">Questions</span>
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
               Find answers to common questions about export-import business, international trade, and our comprehensive services
@@ -331,13 +328,13 @@ const FAQ = () => {
 
             {/* Search Bar */}
             <div className="max-w-md mx-auto relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
-              <Input
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 h-5 w-5" />
+              <input
                 type="text"
                 placeholder="Search FAQs..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 pr-4 py-3 rounded-full border-2 border-blue-200 focus:border-blue-500 transition-colors"
+                className="nm-input !rounded-full pl-12 pr-4 py-3 w-full"
               />
             </div>
           </div>
@@ -349,17 +346,17 @@ const FAQ = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="grid gap-12">
             {filteredFAQs.map((section, sectionIndex) => (
-              <div key={sectionIndex} className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <div key={sectionIndex} className="nm-card !p-0 overflow-hidden">
                 <div className="relative h-64 overflow-hidden">
                   <img
                     src={section.image}
                     alt={section.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
                   <div className="absolute bottom-6 left-6 text-white">
                     <div className="flex items-center mb-2">
-                      <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm mr-3">
+                      <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm mr-3 shadow-sm">
                         {section.icon}
                       </div>
                       <h2 className="text-2xl font-bold">{section.title}</h2>
@@ -367,15 +364,15 @@ const FAQ = () => {
                   </div>
                 </div>
 
-                <div className="p-8">
+                <div className="p-8 bg-[#e9edf3]">
                   <div className="space-y-4">
                     {section.faqs.map((faq, faqIndex) => {
                       const globalIndex = sectionIndex * 100 + faqIndex;
                       return (
-                        <div key={faqIndex} className="border border-slate-200 rounded-xl overflow-hidden">
+                        <div key={faqIndex} className="nm-insert rounded-xl overflow-hidden">
                           <button
                             onClick={() => toggleFAQ(globalIndex)}
-                            className="w-full px-6 py-4 text-left bg-gradient-to-r from-blue-50 to-teal-50 hover:from-blue-100 hover:to-teal-100 transition-all duration-300 flex justify-between items-center group"
+                            className="w-full px-6 py-4 text-left flex justify-between items-center group bg-[#e9edf3] hover:text-blue-600 transition-colors"
                           >
                             <span className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
                               {faq.question}
@@ -387,7 +384,7 @@ const FAQ = () => {
                             )}
                           </button>
                           {openFAQ === globalIndex && (
-                            <div className="px-6 py-4 bg-white border-t border-slate-100">
+                            <div className="px-6 py-4 border-t border-white bg-[#e9edf3]/50">
                               <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
                             </div>
                           )}
@@ -403,13 +400,11 @@ const FAQ = () => {
       </section>
 
       {/* Internal Pages Directory */}
-      <section className="py-16 px-4 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                Explore Our Comprehensive Resources
-              </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-800">
+              Explore Our Comprehensive Resources
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Discover detailed guides, market insights, and specialized services across our extensive knowledge base
@@ -418,9 +413,11 @@ const FAQ = () => {
 
           {/* Market & Services Pages */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="nm-card p-6">
               <div className="flex items-center mb-4">
-                <MapPin className="h-6 w-6 text-blue-600 mr-3" />
+                <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center mr-3">
+                  <MapPin className="h-5 w-5 text-blue-600" />
+                </div>
                 <h3 className="text-xl font-bold text-slate-800">Market Guides</h3>
               </div>
               <p className="text-slate-600 mb-4">
@@ -437,16 +434,18 @@ const FAQ = () => {
                   </Link>
                 ))}
               </div>
-              <Link to="/more" className="inline-block mt-4">
-                <Button variant="outline" size="sm">
+              <Link to="/more" className="inline-block mt-6">
+                <Button className="nm-btn !px-4 !py-2 !h-auto text-sm text-slate-700">
                   View All Market Guides
                 </Button>
               </Link>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="nm-card p-6">
               <div className="flex items-center mb-4">
-                <Package className="h-6 w-6 text-teal-600 mr-3" />
+                <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center mr-3">
+                  <Package className="h-5 w-5 text-teal-600" />
+                </div>
                 <h3 className="text-xl font-bold text-slate-800">Product & Service Pages</h3>
               </div>
               <p className="text-slate-600 mb-4">
@@ -463,8 +462,8 @@ const FAQ = () => {
                   </Link>
                 ))}
               </div>
-              <Link to="/seo" className="inline-block mt-4">
-                <Button variant="outline" size="sm">
+              <Link to="/seo" className="inline-block mt-6">
+                <Button className="nm-btn !px-4 !py-2 !h-auto text-sm text-slate-700">
                   View All Services
                 </Button>
               </Link>
@@ -472,20 +471,20 @@ const FAQ = () => {
           </div>
 
           {/* Quick Access Links */}
-          <div className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-xl p-8 text-white text-center">
-            <h3 className="text-2xl font-bold mb-4">Need Personalized Assistance?</h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+          <div className="nm-card p-8 text-center bg-[#e9edf3]">
+            <h3 className="text-2xl font-bold mb-4 text-slate-800">Need Personalized Assistance?</h3>
+            <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
               Our export specialists are ready to help you navigate international trade complexities and find the perfect solutions for your business needs.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-6">
               <Link to="/contact">
-                <Button className="bg-white text-blue-600 hover:bg-blue-50">
+                <Button className="nm-btn text-blue-600 !w-auto">
                   <Phone className="h-4 w-4 mr-2" />
                   Contact Expert
                 </Button>
               </Link>
               <Link to="/inquiry">
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+                <Button className="nm-btn text-teal-600 !w-auto">
                   <Heart className="h-4 w-4 mr-2" />
                   Get Quote
                 </Button>

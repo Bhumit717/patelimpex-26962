@@ -18,65 +18,65 @@ import SEOHead from "@/components/SEOHead";
 
 const Products = () => {
   const products = [
-    { 
-      name: "Isabgol (Psyllium)", 
-      image: psylliumHuskImg, 
+    {
+      name: "Isabgol (Psyllium)",
+      image: psylliumHuskImg,
       link: "/products/psyllium-husk",
       specs: ["95%+ Purity", "25 kg Bags", "Husk/Powder/Seeds"],
       hsn: "1211.90"
     },
-    { 
-      name: "Fennel Seeds", 
-      image: fennelSeedsImg, 
+    {
+      name: "Fennel Seeds",
+      image: fennelSeedsImg,
       link: "/products/fennel-seeds",
       specs: ["99% Purity", "25 kg Bags", "Bold/Medium"],
       hsn: "0909.61"
     },
-    { 
-      name: "Cardamom", 
-      image: cardamomImg, 
+    {
+      name: "Cardamom",
+      image: cardamomImg,
       link: "/products/cardamom",
       specs: ["8mm Bold", "25 kg Boxes", "Green/Bleached"],
       hsn: "0908.31"
     },
-    { 
-      name: "Cumin Seeds", 
-      image: cuminSeedsImg, 
+    {
+      name: "Cumin Seeds",
+      image: cuminSeedsImg,
       link: "/products/cumin-seeds",
       specs: ["99% Purity", "25/50 kg Bags", "Machine Cleaned"],
       hsn: "0909.31"
     },
-    { 
-      name: "Groundnut", 
-      image: groundnutImg, 
+    {
+      name: "Groundnut",
+      image: groundnutImg,
       link: "/products/groundnut",
       specs: ["40-50 Count", "25/50 kg Bags", "Bold/Java/TJ"],
       hsn: "1202.42"
     },
-    { 
-      name: "Soybeans", 
-      image: soybeanImg, 
+    {
+      name: "Soybeans",
+      image: soybeanImg,
       link: "/products/soybeans",
       specs: ["46-48% Protein", "50 kg PP Bags", "Non-GMO"],
       hsn: "1201.90"
     },
-    { 
-      name: "Rice", 
-      image: riceImg, 
+    {
+      name: "Rice",
+      image: riceImg,
       link: "/products/rice",
       specs: ["Basmati & Non-Basmati", "25/50 kg Bags", "Multiple Varieties"],
       hsn: "1006.30"
     },
-    { 
-      name: "Cotton", 
-      image: cottonImg, 
+    {
+      name: "Cotton",
+      image: cottonImg,
       link: "/products/cotton",
       specs: ["28-30mm Staple", "170 kg Bales", "Multiple Grades"],
       hsn: "5201.00"
     },
-    { 
-      name: "Wheat Flour", 
-      image: wheatFlourImg, 
+    {
+      name: "Wheat Flour",
+      image: wheatFlourImg,
       link: "/products/wheat-flour",
       specs: ["10-12% Protein", "25/50 kg Bags", "White Refined"],
       hsn: "1101.00"
@@ -121,37 +121,31 @@ const Products = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-[#e9edf3]">
         <Navigation />
-        
-        {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-100/50 rounded-full blur-3xl" />
-          </div>
 
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 bg-[#e9edf3] relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-[50px] mb-6">
+              <div className="inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] mb-6">
                 <Leaf className="h-4 w-4 text-blue-600 mr-2" />
-                <span className="text-blue-700 text-sm font-semibold">Premium Quality Exports</span>
+                <span className="text-slate-600 text-sm font-semibold">Premium Quality Exports</span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
+              <h1 className="text-4xl md:text-5xl font-black mb-6 text-slate-800">
                 Our <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Premium Products</span>
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                 Quality agricultural commodities exported from India to 50+ countries worldwide
               </p>
-              
+
               {/* Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
                 {stats.map((stat, index) => (
-                  <div key={index} className="bg-white p-6 rounded-[50px] shadow-[0_5px_15px_rgba(59,130,246,0.15)] border border-gray-100">
+                  <div key={index} className="nm-card p-6">
                     <stat.icon className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-                    <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
+                    <div className="text-3xl font-bold text-slate-800">{stat.value}</div>
+                    <div className="text-sm text-slate-600">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -160,38 +154,38 @@ const Products = () => {
         </section>
 
         {/* Products Grid */}
-        <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <section className="py-20 bg-[#e9edf3] relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {products.map((product, index) => (
                 <Link
                   key={index}
                   to={product.link}
-                  className="group relative bg-white rounded-[50px] overflow-hidden shadow-[0_5px_15px_rgba(59,130,246,0.15)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] transition-all duration-500 hover:-translate-y-2 border border-gray-100"
+                  className="group relative nm-card !p-0 overflow-hidden hover:-translate-y-2 transition-transform duration-300"
                 >
                   {/* Image Section */}
-                  <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 p-6 flex items-center justify-center rounded-t-[50px]">
+                  <div className="relative h-64 overflow-hidden bg-slate-100 p-6 flex items-center justify-center">
                     <img
                       src={product.image}
                       alt={product.name}
                       className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-[25px]">
+                    <div className="absolute top-4 right-4 px-3 py-1 bg-[#e9edf3] text-blue-600 text-xs font-semibold rounded-full shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
                       HSN: {product.hsn}
                     </div>
                   </div>
-                  
+
                   {/* Content Section */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors">
                       {product.name}
                     </h3>
-                    
+
                     {/* Specs */}
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-2 mb-6">
                       {product.specs.map((spec, i) => (
-                        <div key={i} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                        <div key={i} className="flex items-center text-sm text-slate-600">
+                          <CheckCircle className="h-4 w-4 text-teal-600 mr-2 flex-shrink-0" />
                           <span>{spec}</span>
                         </div>
                       ))}
@@ -203,9 +197,6 @@ const Products = () => {
                       <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
                     </div>
                   </div>
-
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </Link>
               ))}
             </div>
@@ -214,11 +205,11 @@ const Products = () => {
             <div className="text-center mt-12">
               <Link
                 to="/contact"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white font-bold rounded-[50px] shadow-[0_5px_15px_rgba(59,130,246,0.3)] hover:shadow-[0_8px_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:scale-105 group"
+                className="nm-btn inline-flex items-center !w-auto text-slate-700"
               >
                 <Package className="h-5 w-5 mr-2" />
                 Request Quote
-                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight className="h-5 w-5 ml-2 transition-transform duration-300" />
               </Link>
             </div>
           </div>

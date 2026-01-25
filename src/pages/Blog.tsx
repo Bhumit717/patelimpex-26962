@@ -140,93 +140,79 @@ const Blog = () => {
     : blogPosts.filter(post => post.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <div className="min-h-screen bg-[#e9edf3] relative overflow-hidden">
       <SEOHead title="Latest News & Insights | Patel Impex" description="Stay updated with the latest trends in international trade and global markets." canonicalUrl="/blog" />
-      {/* AI background effects */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-px h-16 bg-gradient-to-b from-ai-primary to-transparent animate-digital-rain"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
 
       <Navigation />
 
-      <section className="pt-32 pb-20 relative z-10">
+      <section className="pt-32 pb-20 relative z-10 w-full animate-fade-in">
         <div className="container mx-auto px-4">
           {/* Header */}
-          <div className="text-center mb-16 animate-fade-in">
-            <h1 className="text-5xl lg:text-6xl font-black text-white mb-6 animate-ai-text-glow">
-              Trade <span className="text-transparent bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent bg-clip-text animate-text-shimmer">Insights</span>
+          <div className="text-center mb-16">
+            <h1 className="text-5xl lg:text-6xl font-black text-slate-800 mb-6">
+              Trade <span className="text-transparent bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text">Insights</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed animate-hologram">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Stay ahead in international trade with expert insights, market analysis, and practical guides for successful global business expansion.
             </p>
           </div>
 
           {/* Search and Filter Section */}
-          <div className="flex flex-col md:flex-row gap-4 mb-12 justify-center items-center animate-slide-up">
+          <div className="flex flex-col md:flex-row gap-4 mb-12 justify-center items-center">
             <div className="relative">
               <input
                 type="text"
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 pr-4 py-3 bg-gray-800/50 border border-ai-primary/30 rounded-full text-white placeholder-gray-400 focus:outline-none focus:border-ai-primary focus:ring-2 focus:ring-ai-primary/20 w-80 animate-glow"
+                className="nm-input !rounded-full pl-12 pr-4 py-3 w-80"
               />
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-ai-primary" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
             </div>
-            <Button onClick={handleSearch} className="bg-gradient-to-r from-ai-primary to-ai-secondary hover:from-ai-secondary hover:to-ai-accent text-white animate-ai-pulse-glow">
+            <Button onClick={handleSearch} className="nm-btn !w-auto !rounded-full text-slate-700">
               <Search className="h-4 w-4 mr-2" />
               Search
             </Button>
           </div>
 
           {/* Featured Post */}
-          <div className="mb-16 animate-slide-up">
-            <div className="bg-gray-800/50 rounded-3xl border border-ai-primary/20 shadow-2xl overflow-hidden hover:shadow-3xl hover:border-ai-primary/40 transition-all duration-500 animate-dark-card-glow">
+          <div className="mb-16">
+            <div className="nm-card !p-0 overflow-hidden group">
               <div className="grid lg:grid-cols-2 gap-0">
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden h-[400px]">
                   <img
                     src={featuredPost.image}
                     alt={featuredPost.title}
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute top-6 left-6">
-                    <span className="bg-gradient-to-r from-ai-primary to-ai-secondary text-white px-4 py-2 rounded-full text-sm font-medium animate-neon-flicker">
+                    <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                       Featured
                     </span>
                   </div>
                 </div>
-                <div className="p-12 flex flex-col justify-center">
-                  <div className="flex items-center space-x-4 text-sm text-gray-400 mb-4 animate-fade-in">
-                    <span className="bg-ai-primary/20 text-ai-primary px-3 py-1 rounded-full font-medium border border-ai-primary/30">
+                <div className="p-12 flex flex-col justify-center bg-[#e9edf3]">
+                  <div className="flex items-center space-x-4 text-sm text-slate-500 mb-4">
+                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium border border-blue-200">
                       {featuredPost.category}
                     </span>
                     <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-ai-primary" />
-                      <span className="text-gray-300">{featuredPost.date}</span>
+                      <Calendar className="h-4 w-4 text-slate-400" />
+                      <span>{featuredPost.date}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-ai-secondary" />
-                      <span className="text-gray-300">{featuredPost.readTime}</span>
+                      <Clock className="h-4 w-4 text-slate-400" />
+                      <span>{featuredPost.readTime}</span>
                     </div>
                   </div>
-                  <h2 className="text-3xl font-bold text-white mb-4 hover:text-ai-primary transition-colors cursor-pointer animate-ai-text-glow">
+                  <h2 className="text-3xl font-bold text-slate-800 mb-4 hover:text-blue-600 transition-colors cursor-pointer">
                     {featuredPost.title}
                   </h2>
-                  <p className="text-lg text-gray-300 mb-6 leading-relaxed animate-hologram">
+                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                     {featuredPost.excerpt}
                   </p>
                   <Link to="#" className="w-fit">
-                    <Button className="bg-gradient-to-r from-ai-primary to-ai-secondary hover:from-ai-secondary hover:to-ai-accent text-white group animate-ai-pulse-glow">
+                    <Button className="nm-btn !w-auto text-slate-700 group">
                       Read Full Article
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -237,16 +223,15 @@ const Blog = () => {
           </div>
 
           {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12 animate-bounce-in">
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
             {categories.map((category, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 animate-circuit-pulse ${selectedCategory === category
-                  ? 'bg-gradient-to-r from-ai-primary to-ai-secondary text-white shadow-lg border border-ai-primary/50'
-                  : 'bg-gray-800/50 text-gray-300 hover:bg-ai-primary/10 hover:text-ai-primary border border-gray-700 hover:border-ai-primary/30'
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${selectedCategory === category
+                  ? 'bg-[#e9edf3] text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
+                  : 'bg-[#e9edf3] text-slate-600 hover:text-blue-600 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]'
                   }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {category}
               </button>
@@ -255,10 +240,10 @@ const Blog = () => {
 
           {/* Filter indicator */}
           {selectedCategory !== "All Posts" && (
-            <div className="text-center mb-8 animate-fade-in">
-              <div className="inline-flex items-center px-4 py-2 bg-ai-primary/20 border border-ai-primary/30 rounded-full">
-                <Filter className="h-4 w-4 text-ai-primary mr-2" />
-                <span className="text-ai-primary font-medium">Filtered by: {selectedCategory}</span>
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-600 font-medium">
+                <Filter className="h-4 w-4 mr-2" />
+                Filtered by: {selectedCategory}
               </div>
             </div>
           )}
@@ -266,49 +251,49 @@ const Blog = () => {
           {/* Blog Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post, index) => (
-              <article key={index} className="bg-gray-800/50 rounded-2xl border border-ai-primary/20 shadow-lg hover:shadow-xl hover:border-ai-primary/40 transition-all duration-300 group hover:scale-105 overflow-hidden animate-dark-card-glow" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative overflow-hidden">
+              <article key={index} className="nm-card !p-0 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                <div className="relative overflow-hidden h-48 border-b border-white">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-gray-900/90 backdrop-blur-sm text-ai-primary px-3 py-1 rounded-full text-xs font-medium border border-ai-primary/30">
+                    <span className="bg-white/90 backdrop-blur-sm text-blue-600 px-3 py-1 rounded-full text-xs font-medium shadow-sm">
                       {post.category}
                     </span>
                   </div>
                 </div>
 
                 <div className="p-6">
-                  <div className="flex items-center space-x-4 text-xs text-gray-400 mb-3">
+                  <div className="flex items-center space-x-4 text-xs text-slate-400 mb-3">
                     <div className="flex items-center space-x-1">
-                      <Calendar className="h-3 w-3 text-ai-primary" />
+                      <Calendar className="h-3 w-3" />
                       <span>{post.date}</span>
                     </div>
                     <div className="flex items-center space-x-1">
-                      <Clock className="h-3 w-3 text-ai-secondary" />
+                      <Clock className="h-3 w-3" />
                       <span>{post.readTime}</span>
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-ai-primary transition-colors line-clamp-2 animate-ai-text-glow">
+                  <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
-                  <p className="text-gray-300 mb-4 line-clamp-3">
+                  <p className="text-slate-600 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="bg-gray-700/50 text-ai-primary text-xs px-2 py-1 rounded-full border border-ai-primary/20 animate-neon-flicker">
+                      <span key={tagIndex} className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded-full border border-slate-200">
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <Link to="#" className="inline-flex items-center text-ai-primary font-medium hover:text-ai-secondary transition-colors group/link">
+                  <Link to="#" className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group/link">
                     Read More
                     <ArrowRight className="ml-1 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                   </Link>
@@ -318,26 +303,28 @@ const Blog = () => {
           </div>
 
           {/* Newsletter Section */}
-          <div className="mt-20 bg-gradient-to-r from-ai-primary/20 via-ai-secondary/20 to-ai-accent/20 rounded-3xl p-12 border border-ai-primary/30 animate-dark-card-glow relative z-10">
-            <div className="text-center max-w-2xl mx-auto relative z-20">
-              <Bell className="h-12 w-12 text-ai-primary mx-auto mb-4" />
-              <h2 className="text-3xl font-bold text-white mb-4 animate-ai-text-glow">
+          <div className="mt-20 nm-card p-12 text-center relative overflow-hidden">
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <div className="w-16 h-16 rounded-full bg-[#e9edf3] shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] flex items-center justify-center mx-auto mb-6">
+                <Bell className="h-8 w-8 text-blue-600" />
+              </div>
+              <h2 className="text-3xl font-bold text-slate-800 mb-4">
                 Subscribe to Trade Insights
               </h2>
-              <p className="text-gray-300 mb-8">
+              <p className="text-slate-600 mb-8">
                 Get the latest export-import news, market analysis, and business tips delivered to your inbox.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-30">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <input
                   type="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="px-6 py-3 bg-gray-800/50 border border-ai-primary/30 rounded-full text-white placeholder-gray-400 focus:outline-none focus:border-ai-primary focus:ring-2 focus:ring-ai-primary/20 w-full sm:w-80 relative z-30"
+                  className="nm-input w-full sm:w-80"
                 />
                 <Button
                   onClick={handleSubscribe}
-                  className="bg-gradient-to-r from-ai-primary to-ai-secondary hover:from-ai-secondary hover:to-ai-accent text-white px-8 animate-ai-pulse-glow relative z-30"
+                  className="nm-btn !w-auto min-w-[140px] text-slate-700"
                 >
                   <Bell className="h-4 w-4 mr-2" />
                   Subscribe

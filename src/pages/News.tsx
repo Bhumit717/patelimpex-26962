@@ -208,44 +208,40 @@ const News = () => {
 
       <Navigation />
 
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 pt-32 pb-20">
+      <main className="min-h-screen bg-[#e9edf3] pt-32 pb-20">
         {/* Hero Section */}
         <section className="container mx-auto px-4 mb-16">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-teal-600/20 border border-white/10 p-12 text-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-teal-500/5" />
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
-
+          <div className="relative overflow-hidden rounded-[30px] nm-bg shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] p-12 text-center border-4 border-[#e9edf3]">
             <div className="relative z-10">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-500/20 rounded-full border border-blue-500/30 mb-6">
-                <Zap className="h-4 w-4 text-blue-400 mr-2" />
-                <span className="text-blue-300 text-sm font-medium">
+              <div className="inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] mb-6">
+                <Zap className="h-4 w-4 text-blue-600 mr-2" />
+                <span className="text-slate-600 text-sm font-medium">
                   {usingFallback ? "Industry Insights" : "Live Updates"}
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-black text-slate-800 mb-6">
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 bg-clip-text text-transparent">
                   Trade News
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">
                 Stay ahead with import export news and global trade insights
               </p>
 
               <div className="flex flex-wrap justify-center gap-4">
-                <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-lg border border-white/10">
-                  <Newspaper className="h-5 w-5 text-blue-400" />
-                  <span className="text-gray-300">Latest Articles</span>
+                <div className="flex items-center gap-2 px-4 py-2 bg-[#e9edf3] rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                  <Newspaper className="h-5 w-5 text-blue-600" />
+                  <span className="text-slate-600">Latest Articles</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-lg border border-white/10">
-                  <Globe className="h-5 w-5 text-purple-400" />
-                  <span className="text-gray-300">Global Coverage</span>
+                <div className="flex items-center gap-2 px-4 py-2 bg-[#e9edf3] rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                  <Globe className="h-5 w-5 text-purple-600" />
+                  <span className="text-slate-600">Global Coverage</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-lg border border-white/10">
-                  <TrendingUp className="h-5 w-5 text-teal-400" />
-                  <span className="text-gray-300">Trade Trends</span>
+                <div className="flex items-center gap-2 px-4 py-2 bg-[#e9edf3] rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                  <TrendingUp className="h-5 w-5 text-teal-600" />
+                  <span className="text-slate-600">Trade Trends</span>
                 </div>
               </div>
             </div>
@@ -257,24 +253,24 @@ const News = () => {
           {loading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(9)].map((_, i) => (
-                <Card key={i} className="bg-gray-800/50 border-gray-700 overflow-hidden">
-                  <Skeleton className="h-48 w-full bg-gray-700" />
+                <div key={i} className="nm-card p-0 overflow-hidden h-96">
+                  <Skeleton className="h-48 w-full bg-slate-200" />
                   <CardContent className="p-6 space-y-4">
-                    <Skeleton className="h-6 w-3/4 bg-gray-700" />
-                    <Skeleton className="h-4 w-full bg-gray-700" />
-                    <Skeleton className="h-4 w-2/3 bg-gray-700" />
+                    <Skeleton className="h-6 w-3/4 bg-slate-200" />
+                    <Skeleton className="h-4 w-full bg-slate-200" />
+                    <Skeleton className="h-4 w-2/3 bg-slate-200" />
                   </CardContent>
-                </Card>
+                </div>
               ))}
             </div>
           ) : error ? (
             <div className="text-center py-20">
-              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-red-500/20 flex items-center justify-center">
-                <Newspaper className="h-12 w-12 text-red-400" />
+              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center shadow-[inset_4px_4px_8px_#d1d5db,inset_-4px_-4px_8px_#ffffff]">
+                <Newspaper className="h-12 w-12 text-red-500" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">Unable to Load News</h2>
-              <p className="text-gray-400 mb-6">{error}</p>
-              <Button onClick={loadStaticNews} className="bg-blue-600 hover:bg-blue-700">
+              <h2 className="text-2xl font-bold text-slate-800 mb-4">Unable to Load News</h2>
+              <p className="text-slate-500 mb-6">{error}</p>
+              <Button onClick={loadStaticNews} className="nm-btn !w-auto text-slate-700">
                 <RefreshCw className="h-4 w-4 mr-2" />
                 Load Sample News
               </Button>
@@ -290,8 +286,8 @@ const News = () => {
                     rel={article.link !== "#" ? "noopener noreferrer" : undefined}
                     className="group block"
                   >
-                    <Card className="h-full bg-gray-800/50 border-gray-700 overflow-hidden hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2">
-                      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-700 to-gray-800">
+                    <div className="h-full nm-card !p-0 overflow-hidden transition-all duration-500 hover:-translate-y-2">
+                      <div className="relative h-48 overflow-hidden bg-slate-200">
                         {article.image_url ? (
                           <img
                             src={article.image_url}
@@ -302,47 +298,46 @@ const News = () => {
                             }}
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600/20 to-purple-600/20">
-                            <Newspaper className="h-16 w-16 text-gray-500" />
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100">
+                            <Newspaper className="h-16 w-16 text-slate-400" />
                           </div>
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
                         <div className="absolute top-3 left-3 flex gap-2">
                           {article.category?.slice(0, 2).map((cat, i) => (
-                            <span key={i} className="px-2 py-1 bg-blue-600/80 text-white text-xs font-semibold rounded capitalize">
+                            <span key={i} className="px-2 py-1 bg-white/90 backdrop-blur-sm text-blue-600 text-xs font-semibold rounded capitalize shadow-sm">
                               {cat}
                             </span>
                           ))}
                         </div>
                         {article.link !== "#" && (
                           <div className="absolute top-3 right-3">
-                            <ExternalLink className="h-5 w-5 text-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <ExternalLink className="h-5 w-5 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
                         )}
                       </div>
 
                       <CardContent className="p-6 space-y-4">
-                        <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-2">
+                        <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2">
                           {article.title}
                         </h3>
 
                         {article.description && (
-                          <p className="text-gray-400 text-sm line-clamp-3">
+                          <p className="text-slate-500 text-sm line-clamp-3">
                             {article.description}
                           </p>
                         )}
 
-                        <div className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-gray-700">
+                        <div className="flex items-center justify-between text-xs text-slate-400 pt-4 border-t border-gray-200">
                           <div className="flex items-center gap-2">
                             <Clock className="h-3 w-3" />
                             <span>{formatDate(article.pubDate)}</span>
                           </div>
-                          <span className="text-blue-400 font-medium">
+                          <span className="text-blue-500 font-medium">
                             {article.source_name || article.source_id}
                           </span>
                         </div>
                       </CardContent>
-                    </Card>
+                    </div>
                   </a>
                 ))}
               </div>
@@ -353,11 +348,9 @@ const News = () => {
                   <Button
                     onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                     disabled={currentPage === 1}
-                    variant="outline"
-                    className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white disabled:opacity-50"
+                    className="nm-btn !w-10 !h-10 !p-0 flex items-center justify-center disabled:opacity-50"
                   >
-                    <ChevronLeft className="h-4 w-4 mr-2" />
-                    Previous
+                    <ChevronLeft className="h-4 w-4 text-slate-600" />
                   </Button>
 
                   <div className="flex items-center gap-2">
@@ -367,9 +360,9 @@ const News = () => {
                         <button
                           key={pageNum}
                           onClick={() => setCurrentPage(pageNum)}
-                          className={`w-10 h-10 rounded-lg font-semibold transition-all duration-300 ${pageNum === currentPage
-                              ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30'
-                              : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
+                          className={`w-10 h-10 rounded-[10px] font-semibold transition-all duration-300 ${pageNum === currentPage
+                            ? 'bg-[#e9edf3] text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
+                            : 'bg-[#e9edf3] text-slate-500 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] hover:text-blue-600'
                             }`}
                         >
                           {pageNum}
@@ -381,11 +374,9 @@ const News = () => {
                   <Button
                     onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                     disabled={currentPage === totalPages}
-                    variant="outline"
-                    className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white disabled:opacity-50"
+                    className="nm-btn !w-10 !h-10 !p-0 flex items-center justify-center disabled:opacity-50"
                   >
-                    Next
-                    <ChevronRight className="h-4 w-4 ml-2" />
+                    <ChevronRight className="h-4 w-4 text-slate-600" />
                   </Button>
                 </div>
               )}
@@ -394,8 +385,7 @@ const News = () => {
               <div className="text-center mt-12">
                 <Button
                   onClick={fetchNews}
-                  variant="outline"
-                  className="border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white"
+                  className="nm-btn !w-auto text-slate-700 hover:text-blue-600"
                 >
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Refresh News

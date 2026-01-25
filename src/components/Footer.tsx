@@ -119,41 +119,49 @@ const Footer = () => {
     color: "hover:bg-pink-600"
   }];
   const certifications = ["ISO 9001:2015 Certified", "Export House Certificate", "FSSAI Licensed"];
-  return <footer className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 text-white">
+  return <footer className="bg-[#e9edf3] text-slate-800 border-t border-white">
     <div className="container mx-auto px-4 py-16">
       <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-8">
         {/* Company Info */}
         <div className="lg:col-span-2 space-y-6">
           <div>
-            <Link to="/" className="text-3xl font-bold text-white mb-4 block hover:text-blue-400 transition-colors">
-              Patel<span className="text-teal-400">Impex</span>
+            <Link to="/" className="text-3xl font-bold text-slate-800 mb-4 block hover:text-blue-600 transition-colors">
+              Patel<span className="text-teal-600">Impex</span>
             </Link>
-            <p className="text-slate-300 leading-relaxed text-lg">
+            <p className="text-slate-600 leading-relaxed text-lg">
               Your premier partner for international trade solutions. Connecting Indian excellence with global markets through expert export-import services since 2010.
             </p>
           </div>
 
           <div className="space-y-3">
-            <div className="flex items-center space-x-3 text-slate-300 hover:text-blue-400 transition-colors cursor-pointer">
-              <MapPin className="h-5 w-5 text-teal-400" />
+            <div className="flex items-center space-x-3 text-slate-600 hover:text-blue-600 transition-colors cursor-pointer">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+                <MapPin className="h-4 w-4 text-teal-600" />
+              </div>
               <span>Rajkot, Gujarat, India</span>
             </div>
-            <div className="flex items-center space-x-3 text-slate-300 hover:text-blue-400 transition-colors cursor-pointer">
-              <Phone className="h-5 w-5 text-teal-400" />
+            <div className="flex items-center space-x-3 text-slate-600 hover:text-blue-600 transition-colors cursor-pointer">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+                <Phone className="h-4 w-4 text-teal-600" />
+              </div>
               <span>+91 (798) 41 33 417</span>
             </div>
-            <div className="flex items-center space-x-3 text-slate-300 hover:text-blue-400 transition-colors cursor-pointer">
-              <Mail className="h-5 w-5 text-teal-400" />
+            <div className="flex items-center space-x-3 text-slate-600 hover:text-blue-600 transition-colors cursor-pointer">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+                <Mail className="h-4 w-4 text-teal-600" />
+              </div>
               <span>info@patelimpex.com</span>
             </div>
-            <div className="flex items-center space-x-3 text-slate-300">
-              <Globe className="h-5 w-5 text-teal-400" />
+            <div className="flex items-center space-x-3 text-slate-600">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+                <Globe className="h-4 w-4 text-teal-600" />
+              </div>
               <span>100+ Global Clients Worldwide</span>
             </div>
           </div>
 
           <div className="flex space-x-3">
-            {socialLinks.map((social, index) => <a key={index} href={social.href} aria-label={social.label} className={`w-12 h-12 bg-slate-700 rounded-[50px] flex items-center justify-center ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg`}>
+            {socialLinks.map((social, index) => <a key={index} href={social.href} aria-label={social.label} className={`w-12 h-12 bg-[#e9edf3] rounded-full flex items-center justify-center text-slate-600 shadow-[6px_6px_10px_#cfd6e0,-6px_-6px_10px_#ffffff] transition-all duration-300 hover:scale-110 active:shadow-[inset_4px_4px_8px_#cfd6e0,inset_-4px_-4px_8px_#ffffff] hover:text-blue-600`}>
               <social.icon className="h-5 w-5" />
             </a>)}
           </div>
@@ -161,12 +169,12 @@ const Footer = () => {
 
         {/* Footer Links */}
         {Object.entries(footerLinks).map(([title, links]) => <div key={title}>
-          <h4 className="text-lg font-bold mb-6 text-white">{title}</h4>
-          <ul className="space-y-3">
+          <h4 className="text-lg font-bold mb-6 text-slate-800">{title}</h4>
+          <ul className="space-y-4">
             {links.map((link, index) => <li key={index}>
-              <Link to={link.href} className="text-slate-300 hover:text-blue-400 transition-colors duration-200 flex items-center group">
-                <ArrowRight className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                {link.name}
+              <Link to={link.href} className="block w-full px-4 py-3 bg-[#e9edf3] rounded-xl shadow-[4px_4px_8px_#cfd6e0,-4px_-4px_8px_#ffffff] text-slate-600 text-sm font-medium hover:text-blue-600 transition-all hover:bg-white hover:shadow-[6px_6px_12px_#cfd6e0,-6px_-6px_12px_#ffffff] active:translate-y-[1px] active:shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] flex items-center justify-between group">
+                <span>{link.name}</span>
+                <ArrowRight className="h-4 w-4 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-blue-500" />
               </Link>
             </li>)}
           </ul>
@@ -174,16 +182,16 @@ const Footer = () => {
       </div>
 
       {/* Certifications */}
-      <div className="border-t border-slate-700 mt-12 pt-8">
+      <div className="border-t border-slate-300 mt-12 pt-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
 
-          <div className="text-center md:text-right">
-            <h4 className="text-lg font-bold mb-2 text-white">Newsletter</h4>
-            <p className="text-slate-300 mb-4">Get trade insights & opportunities</p>
+          <div className="text-center md:text-right w-full md:w-auto">
+            <h4 className="text-lg font-bold mb-2 text-slate-800">Newsletter</h4>
+            <p className="text-slate-600 mb-4">Get trade insights & opportunities</p>
             <form onSubmit={handleNewsletterSubmit} className="flex space-x-2">
-              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter your email" required className="px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 flex-1 md:w-64 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" />
-              <button type="submit" disabled={isSubmitting} className="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105 font-medium disabled:opacity-50">
-                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter your email" required className="nm-input !py-3 flex-1 md:w-64" />
+              <button type="submit" disabled={isSubmitting} className="nm-btn !w-auto !px-6 text-sm">
+                {isSubmitting ? '...' : 'Subscribe'}
               </button>
             </form>
           </div>
@@ -191,20 +199,20 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-slate-700 mt-8 pt-8 text-center">
+      <div className="border-t border-slate-300 mt-8 pt-8 text-center">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-slate-400">
+          <p className="text-slate-500">
             © 2026 Patel Impex , All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm">
-            <Link to="/privacy-policy" className="text-slate-400 hover:text-blue-400 transition-colors duration-200">Privacy Policy</Link>
-            <Link to="/terms-of-service" className="text-slate-400 hover:text-blue-400 transition-colors duration-200">Terms of Service</Link>
-            <Link to="/cookie-policy" className="text-slate-400 hover:text-blue-400 transition-colors duration-200">Cookie Policy</Link>
-            <Link to="/contact" className="text-slate-400 hover:text-blue-400 transition-colors duration-200">Contact</Link>
+            <Link to="/privacy-policy" className="text-slate-500 hover:text-blue-600 transition-colors duration-200">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-slate-500 hover:text-blue-600 transition-colors duration-200">Terms of Service</Link>
+            <Link to="/cookie-policy" className="text-slate-500 hover:text-blue-600 transition-colors duration-200">Cookie Policy</Link>
+            <Link to="/contact" className="text-slate-500 hover:text-blue-600 transition-colors duration-200">Contact</Link>
           </div>
         </div>
-        <div className="mt-4 pt-4 border-t border-slate-700">
-          <p className="text-slate-500 text-sm">
+        <div className="mt-4 pt-4 border-t border-slate-300">
+          <p className="text-slate-400 text-sm">
             Designed for global trade excellence • Made in India 🇮🇳 • Serving the world 🌍
           </p>
         </div>

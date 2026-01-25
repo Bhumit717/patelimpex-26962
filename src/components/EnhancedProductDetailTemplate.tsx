@@ -118,7 +118,7 @@ const EnhancedProductDetailTemplate = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-[#e9edf3]">
       <SEOHead
         title={metaTitle || `${name} Exporter India | Patel Impex`}
         description={metaDescription || description.substring(0, 160)}
@@ -135,7 +135,7 @@ const EnhancedProductDetailTemplate = ({
 
           <Link
             to={backLink}
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-6 transition-colors"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors font-medium"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             {backLinkText}
@@ -143,36 +143,36 @@ const EnhancedProductDetailTemplate = ({
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Image Gallery */}
-            <div className="space-y-4">
-              <div className="relative aspect-square rounded-[50px] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 border border-transparent shadow-[0_5px_15px_rgba(59,130,246,0.15)]">
+            <div className="space-y-6">
+              <div className="relative aspect-square rounded-[30px] overflow-hidden bg-white p-2 nm-inset">
                 <img
                   src={images[selectedImage]}
                   alt={`${name} - Image ${selectedImage + 1}`}
-                  className="w-full h-full object-contain p-8"
+                  className="w-full h-full object-contain mix-blend-multiply"
                 />
                 {hsCode && (
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded-[25px] shadow-lg">
+                  <div className="absolute top-6 right-6 px-4 py-1.5 bg-[#e9edf3] text-blue-600 text-sm font-bold rounded-full shadow-[3px_3px_6px_#cfd6e0,-3px_-3px_6px_#ffffff]">
                     HSN: {hsCode}
                   </div>
                 )}
               </div>
 
               {images.length > 1 && (
-                <div className="flex gap-2 overflow-x-auto pb-2">
+                <div className="flex gap-4 overflow-x-auto pb-2">
                   {images.map((img, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`flex-shrink-0 w-20 h-20 rounded-[25px] overflow-hidden border-2 transition-all ${selectedImage === index
-                          ? "border-blue-600 ring-2 ring-blue-200"
-                          : "border-gray-200 hover:border-gray-300"
+                      className={`flex-shrink-0 w-20 h-20 rounded-[15px] overflow-hidden transition-all p-1 ${selectedImage === index
+                          ? "nm-inset border-2 border-blue-200"
+                          : "nm-card hover:translate-y-[-2px]"
                         }`}
                       aria-label={`View image ${index + 1}`}
                     >
                       <img
                         src={img}
                         alt={`${name} thumbnail ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-[10px]"
                       />
                     </button>
                   ))}
@@ -180,20 +180,20 @@ const EnhancedProductDetailTemplate = ({
               )}
 
               {imageCredit && (
-                <p className="text-xs text-gray-500 italic">Image source: {imageCredit}</p>
+                <p className="text-xs text-slate-500 italic text-center">Image source: {imageCredit}</p>
               )}
             </div>
 
             {/* Product Info */}
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div>
-                <p className="text-blue-600 font-semibold text-sm uppercase tracking-wide mb-2">
+                <div className="inline-block px-3 py-1 bg-blue-100 rounded-full text-blue-700 text-xs font-bold uppercase tracking-wide mb-3">
                   {category}
-                </p>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                </div>
+                <h1 className="text-3xl md:text-5xl font-black text-slate-800 mb-6">
                   {name}
                 </h1>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-slate-600 leading-relaxed">
                   {description}
                 </p>
               </div>
@@ -203,14 +203,14 @@ const EnhancedProductDetailTemplate = ({
                 <Button
                   size="lg"
                   onClick={() => setIsQuoteModalOpen(true)}
-                  className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700"
+                  className="nm-btn !bg-[#e9edf3] text-blue-600 hover:text-blue-700"
                 >
                   <MessageSquare className="h-5 w-5 mr-2" />
                   Request Quote
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
+                  className="nm-btn !bg-[#e9edf3] text-slate-700 hover:text-slate-900"
                   asChild
                 >
                   <Link to="/contact">
@@ -221,7 +221,7 @@ const EnhancedProductDetailTemplate = ({
                 {specSheetUrl && (
                   <Button
                     size="lg"
-                    variant="outline"
+                    className="nm-btn !bg-[#e9edf3] text-slate-700 hover:text-slate-900"
                     asChild
                   >
                     <a href={specSheetUrl} target="_blank" rel="noopener noreferrer">
@@ -234,13 +234,13 @@ const EnhancedProductDetailTemplate = ({
 
               {/* Available Formats */}
               {formats && formats.length > 0 && (
-                <div className="bg-gray-50 rounded-[50px] p-6 shadow-[0_5px_15px_rgba(59,130,246,0.15)] border border-transparent">
-                  <h3 className="font-bold text-gray-900 mb-3">Available Formats</h3>
-                  <div className="flex flex-wrap gap-2">
+                <div className="nm-card p-6">
+                  <h3 className="font-bold text-slate-800 mb-4 text-lg">Available Formats</h3>
+                  <div className="flex flex-wrap gap-3">
                     {formats.map((format, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-white border border-transparent rounded-[25px] text-sm text-gray-700 shadow-sm"
+                        className="px-4 py-2 bg-[#e9edf3] rounded-full text-sm font-medium text-slate-600 shadow-[3px_3px_6px_#cfd6e0,-3px_-3px_6px_#ffffff]"
                       >
                         {format}
                       </span>
@@ -250,15 +250,15 @@ const EnhancedProductDetailTemplate = ({
               )}
 
               {/* Specifications */}
-              <div className="bg-white border border-transparent rounded-[50px] overflow-hidden shadow-[0_5px_15px_rgba(59,130,246,0.15)]">
-                <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 rounded-t-[50px]">
-                  <h3 className="font-bold text-gray-900">Specifications</h3>
+              <div className="nm-card !p-0 overflow-hidden">
+                <div className="bg-[#e9edf3] px-6 py-4 border-b border-white shadow-sm">
+                  <h3 className="font-bold text-slate-800 text-lg">Specifications</h3>
                 </div>
-                <div className="divide-y divide-gray-100">
+                <div className="divide-y divide-white">
                   {specifications.map((spec, index) => (
-                    <div key={index} className="flex px-6 py-3">
-                      <span className="font-medium text-gray-700 w-1/3">{spec.label}</span>
-                      <span className="text-gray-900 w-2/3">{spec.value}</span>
+                    <div key={index} className="flex px-6 py-4 hover:bg-white/30 transition-colors">
+                      <span className="font-semibold text-slate-600 w-1/3">{spec.label}</span>
+                      <span className="text-slate-800 w-2/3 font-medium">{spec.value}</span>
                     </div>
                   ))}
                 </div>
@@ -268,25 +268,28 @@ const EnhancedProductDetailTemplate = ({
 
           {/* Uses & Benefits */}
           <div className="mt-16 grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-[50px] p-8 shadow-[0_5px_15px_rgba(59,130,246,0.15)] border border-transparent">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Uses & Benefits</h2>
-              <ul className="space-y-3">
+            <div className="nm-card p-8">
+              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+                <CheckCircle className="h-6 w-6 text-blue-600 mr-3" />
+                Uses & Benefits
+              </h2>
+              <ul className="space-y-4">
                 {uses.map((use, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{use}</span>
+                  <li key={index} className="flex items-start p-3 rounded-xl hover:bg-white/40 transition-colors">
+                    <div className="h-2 w-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0" />
+                    <span className="text-slate-700">{use}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-white border border-transparent rounded-[50px] p-8 shadow-[0_5px_15px_rgba(59,130,246,0.15)]">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Export Information</h2>
+            <div className="nm-card p-8">
+              <h2 className="text-2xl font-bold text-slate-800 mb-6">Export Information</h2>
               <div className="space-y-4">
                 {exportInfo.map((info, index) => (
-                  <div key={index} className="border-b border-gray-100 pb-3 last:border-0">
-                    <p className="text-sm text-gray-500 mb-1">{info.label}</p>
-                    <p className="font-medium text-gray-900">{info.value}</p>
+                  <div key={index} className="flex items-center justify-between border-b border-slate-200 pb-3 last:border-0 hover:bg-white/30 p-2 rounded-lg transition-colors">
+                    <p className="text-sm font-medium text-slate-500">{info.label}</p>
+                    <p className="font-bold text-slate-800 text-right">{info.value}</p>
                   </div>
                 ))}
               </div>

@@ -129,8 +129,8 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
-    background: linear-gradient(135deg, hsl(210, 11%, 4%) 0%, hsl(210, 11%, 6%) 100%);
+    @apply bg-[#e9edf3] text-slate-800;
+    background-color: #e9edf3;
     min-height: 100vh;
     font-display: swap;
   }
@@ -187,5 +187,92 @@ All colors MUST be HSL.
     100% {
       transform: translateX(-50%);
     }
+  }
+
+  /* Global Neumorphism Theme */
+  .nm-bg {
+    background-color: #e9edf3;
+  }
+
+  .nm-card {
+    background: #e9edf3;
+    padding: 35px;
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 15px 15px 30px #cfd6e0, -15px -15px 30px #ffffff;
+    color: #333;
+  }
+
+  .nm-field {
+    margin-bottom: 20px;
+  }
+
+  .nm-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  .nm-input,
+  .nm-select,
+  .nm-textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    background: #e9edf3;
+    outline: none;
+    box-shadow: inset 6px 6px 10px #cfd6e0, inset -6px -6px 10px #ffffff;
+    color: #333;
+  }
+
+  .nm-input::placeholder,
+  .nm-textarea::placeholder {
+    color: #888;
+  }
+
+  .nm-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 15px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #e9edf3;
+    box-shadow: 6px 6px 12px #cfd6e0, -6px -6px 12px #ffffff;
+    transition: 0.2s ease;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nm-btn:active,
+  .nm-btn:hover {
+    box-shadow: inset 6px 6px 10px #cfd6e0, inset -6px -6px 10px #ffffff;
+  }
+
+  .nm-btn-secondary {
+    color: #666;
+  }
+
+  /* Scrollbar styling for nm-card if explicitly needed */
+  .nm-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .nm-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .nm-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: content-box;
   }
 }

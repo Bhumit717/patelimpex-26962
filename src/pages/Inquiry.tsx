@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
 
@@ -26,6 +26,23 @@ const Inquiry = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Load saved data from localStorage on mount
+  useEffect(() => {
+    const savedData = localStorage.getItem("inquiry_form_draft");
+    if (savedData) {
+      try {
+        setFormData(JSON.parse(savedData));
+      } catch (e) {
+        console.error("Failed to parse saved form data", e);
+      }
+    }
+  }, []);
+
+  // Save data to localStorage on change
+  useEffect(() => {
+    localStorage.setItem("inquiry_form_draft", JSON.stringify(formData));
+  }, [formData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -85,7 +102,7 @@ ${data.message || 'No additional message'}
         .catch((error) => console.log('API 2 call completed:', error));
 
       // Reset form
-      setFormData({
+      const initialFormState = {
         companyName: '',
         contactPerson: '',
         email: '',
@@ -97,7 +114,9 @@ ${data.message || 'No additional message'}
         budget: '',
         timeline: '',
         message: ''
-      });
+      };
+      setFormData(initialFormState);
+      localStorage.removeItem("inquiry_form_draft");
 
       toast({
         title: "Quote request sent successfully! ✅",
@@ -165,15 +184,16 @@ ${data.message || 'No additional message'}
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-[#e9edf3]">
       <SEOHead title="Send Inquiry | Patel Impex" description="Send us your trade inquiry and get a quick quotation." canonicalUrl="/inquiry" />
       <Navigation />
+
 
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-5xl lg:text-6xl font-black text-slate-800 mb-6">
-              Get Your <span className="text-transparent bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text">Quote</span>
+              Get Your Quote
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Ready to start your import/export business? Fill out our detailed inquiry form and get a customized quote within 24 hours.
@@ -183,215 +203,189 @@ ${data.message || 'No additional message'}
           {/* Features */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {features.map((feature, index) => (
-              <Card key={index} className="bg-white border-blue-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 text-center">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <feature.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-slate-800">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-600">{feature.description}</p>
-                </CardContent>
-              </Card>
+              <div key={index} className="nm-card p-6 flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl flex items-center justify-center mb-4 text-white shadow-lg">
+                  <feature.icon className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-2">{feature.title}</h3>
+                <p className="text-slate-600">{feature.description}</p>
+              </div>
             ))}
           </div>
 
           {/* Quote Form */}
-          <Card className="bg-white border-blue-200 shadow-2xl max-w-4xl mx-auto">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl text-slate-800">Request a Quote</CardTitle>
+          <div className="nm-card max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-slate-800">Request a Quote</h2>
               <p className="text-slate-600">Fill out the form below and we'll get back to you with a detailed quote</p>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Company Name *
-                    </label>
-                    <Input
-                      name="companyName"
-                      value={formData.companyName}
-                      onChange={handleInputChange}
-                      placeholder="Your Company Name"
-                      required
-                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Contact Person *
-                    </label>
-                    <Input
-                      name="contactPerson"
-                      value={formData.contactPerson}
-                      onChange={handleInputChange}
-                      placeholder="John Doe"
-                      required
-                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
+            </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Email Address *
-                    </label>
-                    <Input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="john@company.com"
-                      required
-                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Phone Number *
-                    </label>
-                    <Input
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="+1 234 567 8900"
-                      required
-                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Country *
-                    </label>
-                    <select
-                      name="country"
-                      value={formData.country}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    >
-                      <option value="">Select Country</option>
-                      {countries.map((country, index) => (
-                        <option key={index} value={country}>{country}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Product Category *
-                    </label>
-                    <select
-                      name="productCategory"
-                      value={formData.productCategory}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    >
-                      <option value="">Select Category</option>
-                      {productCategories.map((category, index) => (
-                        <option key={index} value={category}>{category}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Inquiry Type *
-                    </label>
-                    <select
-                      name="inquiryType"
-                      value={formData.inquiryType}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    >
-                      <option value="">Select Type</option>
-                      <option value="Import">Import</option>
-                      <option value="Export">Export</option>
-                      <option value="Both">Both Import & Export</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Quantity Required
-                    </label>
-                    <Input
-                      name="quantity"
-                      value={formData.quantity}
-                      onChange={handleInputChange}
-                      placeholder="1000 units, 10 tons, etc."
-                      className="bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Budget Range
-                    </label>
-                    <select
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    >
-                      <option value="">Select Budget Range</option>
-                      {budgetRanges.map((budget, index) => (
-                        <option key={index} value={budget}>{budget}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Timeline
-                    </label>
-                    <select
-                      name="timeline"
-                      value={formData.timeline}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border border-slate-300 rounded-md bg-slate-50 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
-                    >
-                      <option value="">Select Timeline</option>
-                      {timelines.map((timeline, index) => (
-                        <option key={index} value={timeline}>{timeline}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Additional Requirements
-                  </label>
-                  <Textarea
-                    name="message"
-                    value={formData.message}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="nm-field">
+                  <label className="nm-label">Company Name *</label>
+                  <input
+                    className="nm-input"
+                    name="companyName"
+                    value={formData.companyName}
                     onChange={handleInputChange}
-                    placeholder="Please provide any additional details about your requirements, specifications, or questions..."
-                    className="min-h-[120px] bg-slate-50 border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Your Company Name"
+                    required
                   />
                 </div>
+                <div className="nm-field">
+                  <label className="nm-label">Contact Person *</label>
+                  <input
+                    className="nm-input"
+                    name="contactPerson"
+                    value={formData.contactPerson}
+                    onChange={handleInputChange}
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+              </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white py-4 text-lg font-semibold group"
-                >
-                  {isSubmitting ? 'Sending Request...' : 'Get My Quote'}
-                  <Send className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="nm-field">
+                  <label className="nm-label">Email Address *</label>
+                  <input
+                    className="nm-input"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="john@company.com"
+                    required
+                  />
+                </div>
+                <div className="nm-field">
+                  <label className="nm-label">Phone Number *</label>
+                  <input
+                    className="nm-input"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="+1 234 567 8900"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="nm-field">
+                  <label className="nm-label">Country *</label>
+                  <select
+                    className="nm-select"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="">Select Country</option>
+                    {countries.map((country, index) => (
+                      <option key={index} value={country}>{country}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nm-field">
+                  <label className="nm-label">Product Category *</label>
+                  <select
+                    className="nm-select"
+                    name="productCategory"
+                    value={formData.productCategory}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="">Select Category</option>
+                    {productCategories.map((category, index) => (
+                      <option key={index} value={category}>{category}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="nm-field">
+                  <label className="nm-label">Inquiry Type *</label>
+                  <select
+                    className="nm-select"
+                    name="inquiryType"
+                    value={formData.inquiryType}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="">Select Type</option>
+                    <option value="Import">Import</option>
+                    <option value="Export">Export</option>
+                    <option value="Both">Both Import & Export</option>
+                  </select>
+                </div>
+                <div className="nm-field">
+                  <label className="nm-label">Quantity Required</label>
+                  <input
+                    className="nm-input"
+                    name="quantity"
+                    value={formData.quantity}
+                    onChange={handleInputChange}
+                    placeholder="1000 units, 10 tons, etc."
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="nm-field">
+                  <label className="nm-label">Budget Range</label>
+                  <select
+                    className="nm-select"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Select Budget Range</option>
+                    {budgetRanges.map((budget, index) => (
+                      <option key={index} value={budget}>{budget}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nm-field">
+                  <label className="nm-label">Timeline</label>
+                  <select
+                    className="nm-select"
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Select Timeline</option>
+                    {timelines.map((timeline, index) => (
+                      <option key={index} value={timeline}>{timeline}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Additional Requirements</label>
+                <textarea
+                  className="nm-textarea"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Please provide any additional details..."
+                  rows={4}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="nm-btn"
+              >
+                {isSubmitting ? 'Sending Request...' : 'Get My Quote'}
+                <Send className="ml-3 h-5 w-5" />
+              </button>
+            </form>
+          </div>
         </div>
       </section>
 

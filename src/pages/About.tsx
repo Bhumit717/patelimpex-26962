@@ -20,7 +20,7 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-[#e9edf3]">
       <SEOHead title="About Us | Patel Impex" description="Learn about Patel Impex, our journey, values, and mission in the global import-export industry." canonicalUrl="/about" />
       <Navigation />
 
@@ -65,12 +65,11 @@ const About = () => {
               <img
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
                 alt="Global business meeting - Patel Impex import export business team"
-
-                className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+                className="w-full h-[500px] object-cover rounded-[30px] nm-bg border-4 border-[#e9edf3]"
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
+              <div className="absolute -bottom-6 -left-6 nm-bg p-6 rounded-[20px] shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
                 <div className="text-3xl font-black text-blue-600">$500M+</div>
                 <div className="text-sm text-slate-600 font-medium">Trade Volume Facilitated</div>
               </div>
@@ -85,7 +84,7 @@ const About = () => {
               {milestones.map((milestone, index) => (
                 <div key={index} className={`flex items-center mb-12 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
                   <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
-                    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div className="nm-card hover:shadow-[8px_8px_16px_#cfd6e0,-8px_-8px_16px_#ffffff] transition-shadow duration-300">
                       <div className="text-2xl font-black text-blue-600 mb-2">{milestone.year}</div>
                       <h3 className="text-xl font-bold text-slate-800 mb-2">{milestone.title}</h3>
                       <p className="text-slate-600">{milestone.desc}</p>
@@ -106,9 +105,9 @@ const About = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => (
                 <div key={index} className="text-center group hover:scale-105 transition-transform duration-300">
-                  <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <value.icon className="h-8 w-8 text-white" />
+                  <div className="nm-card p-8 h-full">
+                    <div className="w-16 h-16 rounded-[20px] bg-[#e9edf3] shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <value.icon className="h-8 w-8 text-blue-600" />
                     </div>
                     <h3 className="text-xl font-bold text-slate-800 mb-4">{value.title}</h3>
                     <p className="text-slate-600">{value.desc}</p>
@@ -126,7 +125,7 @@ const About = () => {
               { icon: Globe2, number: "50+", label: "Countries Served", color: "text-blue-600" },
               { icon: Clock, number: "24/7", label: "Support Available", color: "text-teal-600" },
             ].map((stat, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105">
+              <div key={index} className="nm-card p-8 hover:shadow-[8px_8px_16px_#cfd6e0,-8px_-8px_16px_#ffffff] transition-all duration-300 group hover:scale-105">
                 <stat.icon className={`h-12 w-12 ${stat.color} mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`} />
                 <div className="text-4xl font-black text-slate-800 mb-2">{stat.number}</div>
                 <div className="text-slate-600 font-medium">{stat.label}</div>

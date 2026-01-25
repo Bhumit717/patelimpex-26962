@@ -235,6 +235,7 @@ import DillSeedsExport from "./pages/seo/DillSeedsExport";
 import PopopySeedsExport from "./pages/seo/PopopySeedsExport";
 import NigellaSeedsExport from "./pages/seo/NigellaSeedsExport";
 import PsylliumHuskExport from "./pages/seo/PsylliumHuskExport";
+import SoybeanExport from "./pages/seo/SoybeanExport";
 import MoroccoMarketExport from "./pages/seo/MoroccoMarketExport";
 import KenyaMarketExportServices from "./pages/seo/KenyaMarketExportServices";
 import NigeriaMarketExportServices from "./pages/seo/NigeriaMarketExportServices";
@@ -473,6 +474,7 @@ const App = () => (
           <Route path="/seo/dill-seeds-export" element={<DillSeedsExport />} />
           <Route path="/seo/poppy-seeds-export" element={<PopopySeedsExport />} />
           <Route path="/seo/nigella-seeds-export" element={<NigellaSeedsExport />} />
+          <Route path="/seo/soybean-export" element={<SoybeanExport />} />
           <Route path="/seo/psyllium-husk-export" element={<PsylliumHuskExport />} />
           <Route path="/seo/morocco-market-export" element={<MoroccoMarketExport />} />
           <Route path="/seo/kenya-market-export-services" element={<KenyaMarketExportServices />} />

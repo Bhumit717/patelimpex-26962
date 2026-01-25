@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
-import { Search, TrendingUp, Globe, Target, BarChart3, Users, FileText, Award, Zap, Shield, Map, Package, Wheat } from "lucide-react";
+import { Search, TrendingUp, Globe, Target, BarChart3, Users, FileText, Award, Zap, Shield, Map, Package, Wheat, Home, ChevronDown, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const SEO = () => {
@@ -1076,129 +1076,105 @@ const SEO = () => {
   const totalPages = Object.values(siteMap).reduce((acc, curr) => acc + curr.length, 0);
 
   return (
-    <div className="min-h-screen">
-      <SEOHead title="Global Export Network | Patel Impex" description="Our global export network covering USA, China, Europe, and more." canonicalUrl="/seo" />
+    <div className="min-h-screen bg-[#e9edf3] relative overflow-hidden">
+      <SEOHead title="Sitemap - All Pages | Patel Impex" description="Complete sitemap of Patel Impex website including all products, services, markets, and resources." canonicalUrl="/seo" />
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-24 px-4 bg-primary text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <Badge variant="secondary" className="mb-6">Global Trade Network</Badge>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Global Trade & <span className="text-secondary">Export Network</span>
+      <section className="pt-32 pb-16 px-4">
+        <div className="container mx-auto max-w-6xl text-center">
+          <div className="mb-8 inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+            <Globe className="w-4 h-4 mr-2 text-blue-600" />
+            <span className="text-slate-600 font-medium">Global Network</span>
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-slate-800">
+            Site<span className="text-blue-600">map</span>
           </h1>
-          <p className="text-xl text-primary-foreground/90 max-w-2xl mb-8">
-            Explore our comprehensive network of export destinations, product categories, and trade services.
-            We connect global markets with premium quality Indian exports.
+
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-12">
+            Navigate through our complete range of products, services, and global export destinations.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Button size="lg" variant="secondary" asChild>
-              <Link to="/products">Explore Products</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <Link to="/contact">Get Started</Link>
-            </Button>
+
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            <div className="nm-card !p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+                <Target className="w-5 h-5 text-blue-600" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-slate-500">Countries</p>
+                <p className="font-bold text-slate-800">67+ Markets</p>
+              </div>
+            </div>
+
+            <div className="nm-card !p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+                <Package className="w-5 h-5 text-purple-600" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-slate-500">Products</p>
+                <p className="font-bold text-slate-800">40+ Categories</p>
+              </div>
+            </div>
+
+            <div className="nm-card !p-4 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+                <FileText className="w-5 h-5 text-teal-600" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-slate-500">Resources</p>
+                <p className="font-bold text-slate-800">30+ Guides</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Sitemap Sections */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl space-y-8">
-          {Object.entries(siteMap).map(([section, pages], index) => (
-            <Card key={index} className="overflow-hidden">
-              <CardHeader
-                className="cursor-pointer hover:bg-muted/50 transition-colors"
-                onClick={() => toggleSection(section)}
-              >
-                <CardTitle className="flex items-center justify-between text-2xl">
-                  <span className="flex items-center gap-3">
-                    {section.includes("Country") && <Globe className="w-6 h-6 text-primary" />}
-                    {section.includes("Agricultural") && <Wheat className="w-6 h-6 text-green-600" />}
-                    {section.includes("Product") && <Package className="w-6 h-6 text-purple-600" />}
-                    {section.includes("Services") && <Target className="w-6 h-6 text-blue-600" />}
-                    {section.includes("Main") && <FileText className="w-6 h-6 text-orange-600" />}
-                    {section}
+      {/* Accordion Sections */}
+      <section className="pb-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="space-y-6">
+            {Object.entries(siteMap).map(([category, links], index) => (
+              <div key={category} className="nm-card !p-0 overflow-hidden">
+                <button
+                  onClick={() => toggleSection(category)}
+                  className="w-full flex items-center justify-between p-6 bg-[#e9edf3] hover:text-blue-600 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${expandedSection === category ? 'bg-blue-600 text-white shadow-lg' : 'bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] text-slate-500'}`}>
+                      {index === 0 && <Home className="w-4 h-4" />}
+                      {index === 1 && <Globe className="w-4 h-4" />}
+                      {index === 2 && <Wheat className="w-4 h-4" />}
+                      {index === 3 && <Package className="w-4 h-4" />}
+                      {index === 4 && <FileText className="w-4 h-4" />}
+                      {index === 5 && <TrendingUp className="w-4 h-4" />}
+                      {index > 5 && <Target className="w-4 h-4" />}
+                    </div>
+                    <h2 className="text-xl font-bold text-left text-slate-800">{category}</h2>
+                  </div>
+                  <span className={`transform transition-transform duration-300 ${expandedSection === category ? 'rotate-180' : ''}`}>
+                    <ChevronDown className="w-5 h-5 text-slate-400" />
                   </span>
-                  <Badge variant="secondary">{pages.length} pages</Badge>
-                </CardTitle>
-              </CardHeader>
-              {(expandedSection === section || expandedSection === null) && (
-                <CardContent className="pt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {pages.map((page, pageIndex) => (
+                </button>
+
+                <div className={`transition-all duration-300 ease-in-out ${expandedSection === category ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <div className="p-6 border-t border-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-[#e9edf3]">
+                    {links.map((link, linkIndex) => (
                       <Link
-                        key={pageIndex}
-                        to={page.path}
-                        className="flex items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors group"
+                        key={linkIndex}
+                        to={link.path}
+                        className="flex items-center p-3 rounded-lg hover:bg-white hover:shadow-sm transition-all group"
                       >
-                        <Zap className="w-4 h-4 text-primary flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <span className="text-sm group-hover:text-primary transition-colors">
-                          {page.title}
+                        <ArrowRight className="w-4 h-4 mr-3 text-slate-300 group-hover:text-blue-600 transition-colors" />
+                        <span className="text-slate-600 group-hover:text-blue-700 font-medium">
+                          {link.title}
                         </span>
                       </Link>
                     ))}
                   </div>
-                </CardContent>
-              )}
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <Card>
-              <CardContent className="pt-6">
-                <Globe className="w-8 h-8 mx-auto mb-4 text-primary" />
-                <div className="text-3xl font-bold text-primary mb-2">67</div>
-                <div className="text-sm text-muted-foreground">Country Markets</div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <Wheat className="w-8 h-8 mx-auto mb-4 text-green-600" />
-                <div className="text-3xl font-bold text-primary mb-2">40+</div>
-                <div className="text-sm text-muted-foreground">Agricultural Products</div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <Package className="w-8 h-8 mx-auto mb-4 text-purple-600" />
-                <div className="text-3xl font-bold text-primary mb-2">40+</div>
-                <div className="text-sm text-muted-foreground">Product Categories</div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <FileText className="w-8 h-8 mx-auto mb-4 text-blue-600" />
-                <div className="text-3xl font-bold text-primary mb-2">{totalPages}+</div>
-                <div className="text-sm text-muted-foreground">Total Pages</div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Start Exporting?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Get in touch with our export specialists for personalized guidance
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link to="/inquiry">Request Quote</Link>
-            </Button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

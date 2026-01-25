@@ -33,21 +33,21 @@ const CertificationServices = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-[#e9edf3]">
       <SEOHead title="Certification Services | Patel Impex" description="Certification Services - Expert services and information by Patel Impex." canonicalUrl="/more/certification-services" />
       <Navigation />
 
-      <section className="pt-24 pb-12 px-4">
+      <section className="pt-32 pb-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
-              <Award className="w-4 h-4 mr-2" />
-              Government Verified
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] mb-6">
+              <Award className="w-4 h-4 mr-2 text-blue-600" />
+              <span className="text-slate-600 font-medium">Government Verified</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-800">
               Our Certifications & Licenses
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Patel Impex is a fully licensed and government-registered export-import company.
               View our official certifications and registrations below.
             </p>
@@ -57,62 +57,66 @@ const CertificationServices = () => {
 
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12">Official Certificates</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-slate-800">Official Certificates</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {certificates.map((cert, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <div key={index} className="nm-card !p-0 overflow-hidden group">
+                <div className="relative aspect-[4/3] overflow-hidden bg-white/50 border-b border-white">
                   <img
                     src={cert.image}
                     alt={cert.name}
-                    className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl">{cert.name}</CardTitle>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl font-bold text-slate-800">{cert.name}</h3>
                     <CheckCircle className="w-6 h-6 text-green-500" />
                   </div>
-                  <CardDescription>{cert.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-sm">
+                  <p className="text-slate-500 mb-4 text-sm">{cert.description}</p>
+
+                  <div className="space-y-2 text-sm mb-6 bg-[#e9edf3] p-4 rounded-xl shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Certificate No:</span>
-                      <span className="font-mono font-semibold">{cert.number}</span>
+                      <span className="text-slate-500">Certificate No:</span>
+                      <span className="font-mono font-semibold text-slate-700">{cert.number}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Issue Date:</span>
-                      <span className="font-semibold">{cert.issueDate}</span>
+                      <span className="text-slate-500">Issue Date:</span>
+                      <span className="font-semibold text-slate-700">{cert.issueDate}</span>
                     </div>
                   </div>
-                  <Button className="w-full mt-4" variant="outline" onClick={() => window.open(cert.image, '_blank')}>
+
+                  <Button className="w-full nm-btn !text-slate-700" onClick={() => window.open(cert.image, '_blank')}>
                     <Download className="w-4 h-4 mr-2" />
                     Download Certificate
                   </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-muted/30">
+      <section className="py-16 px-4">
         <div className="container mx-auto max-w-4xl text-center">
-          <Shield className="w-16 h-16 text-primary mx-auto mb-6" />
-          <h2 className="text-3xl font-bold mb-4">Verified & Trusted Exporter</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            All our certifications are issued by the Government of India and can be verified
-            through official government portals. We maintain full compliance with all export
-            regulations and trade laws.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link to="/inquiry">Request Quote</Link>
-            </Button>
+          <div className="nm-card p-12">
+            <div className="w-20 h-20 rounded-full bg-[#e9edf3] shadow-[6px_6px_12px_#cfd6e0,-6px_-6px_12px_#ffffff] flex items-center justify-center mx-auto mb-6">
+              <Shield className="w-10 h-10 text-blue-600" />
+            </div>
+            <h2 className="text-3xl font-bold mb-4 text-slate-800">Verified & Trusted Exporter</h2>
+            <p className="text-lg text-slate-600 mb-8">
+              All our certifications are issued by the Government of India and can be verified
+              through official government portals. We maintain full compliance with all export
+              regulations and trade laws.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button size="lg" asChild className="nm-btn !w-auto text-slate-700">
+                <Link to="/contact">Contact Us</Link>
+              </Button>
+              <Button size="lg" asChild className="nm-btn !w-auto text-slate-700">
+                <Link to="/inquiry">Request Quote</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

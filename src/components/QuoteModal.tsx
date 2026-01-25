@@ -1,23 +1,11 @@
-import { useState } from "react";
-import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { X } from "lucide-react";
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -42,12 +30,35 @@ const QuoteModal = ({ isOpen, onClose, productName, varietyName }: QuoteModalPro
     message: "",
   });
 
+  // Load draft from localStorage on mount (only if matching product/variety or empty)
+  useEffect(() => {
+    const saved = localStorage.getItem("quote_form_draft");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Only load draft if it matches the current product context or if we want to be aggressive.
+        // For now, let's load it and just override the product/variety if props are provided.
+        setFormData(prev => ({
+          ...parsed,
+          product: productName || parsed.product,
+          variety: varietyName || parsed.variety
+        }));
+      } catch (e) {
+        console.error("Failed to load quote draft", e);
+      }
+    }
+  }, [productName, varietyName]);
+
+  // Save draft to localStorage
+  useEffect(() => {
+    localStorage.setItem("quote_form_draft", JSON.stringify(formData));
+  }, [formData]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Create mailto link with form data
       const subject = encodeURIComponent(`Quote Request: ${formData.product}${formData.variety ? ` - ${formData.variety}` : ""}`);
       const body = encodeURIComponent(`
 Product: ${formData.product}
@@ -65,19 +76,19 @@ Message:
 ${formData.message}
       `.trim());
 
-      // Open email client
       window.location.href = `mailto:sales@patelimpex.com?subject=${subject}&body=${body}`;
 
       toast({
         title: "Quote Request Initiated",
-        description: "Your email client should open with the quote details. If not, please email us directly at sales@patelimpex.com",
+        description: "Your email client should open with the quote details.",
       });
 
+      localStorage.removeItem("quote_form_draft");
       onClose();
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again or contact us directly.",
+        description: "Something went wrong. Please use the contact form.",
         variant: "destructive",
       });
     } finally {
@@ -87,157 +98,146 @@ ${formData.message}
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">Request a Quote</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="bg-transparent border-none shadow-none text-slate-800 p-0 max-w-none w-auto flex justify-center">
+        <div className="nm-card w-full max-w-[600px] max-h-[90vh] overflow-y-auto relative">
+          <button
+            onClick={onClose}
+            className="absolute right-6 top-6 p-2 rounded-full hover:bg-black/5 transition-colors"
+          >
+            <X className="h-5 w-5 text-slate-500" />
+          </button>
 
-        <form onSubmit={handleSubmit} className="space-y-6 mt-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Product */}
-            <div className="space-y-2">
-              <Label htmlFor="product">Product *</Label>
-              <Input
-                id="product"
-                value={formData.product}
-                onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                required
+          <DialogTitle className="text-2xl font-bold text-center mb-6 text-slate-700">Request a Quote</DialogTitle>
+
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="nm-field">
+                <label className="nm-label">Product *</label>
+                <input
+                  className="nm-input"
+                  value={formData.product}
+                  onChange={(e) => setFormData({ ...formData, product: e.target.value })}
+                  required
+                />
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Variety</label>
+                <input
+                  className="nm-input"
+                  value={formData.variety}
+                  onChange={(e) => setFormData({ ...formData, variety: e.target.value })}
+                  placeholder="e.g., 1121 Golden Sella"
+                />
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Quantity *</label>
+                <input
+                  className="nm-input"
+                  value={formData.quantity}
+                  onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+                  placeholder="e.g., 100"
+                  required
+                />
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Unit *</label>
+                <select
+                  className="nm-select"
+                  value={formData.unit}
+                  onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
+                >
+                  <option value="MT">Metric Tons (MT)</option>
+                  <option value="KG">Kilograms (KG)</option>
+                  <option value="LBS">Pounds (LBS)</option>
+                  <option value="Containers">20ft Containers</option>
+                  <option value="Containers40">40ft Containers</option>
+                </select>
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Destination Country *</label>
+                <input
+                  className="nm-input"
+                  value={formData.country}
+                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                  placeholder="e.g., United States"
+                  required
+                />
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Delivery Terms *</label>
+                <select
+                  className="nm-select"
+                  value={formData.deliveryTerms}
+                  onChange={(e) => setFormData({ ...formData, deliveryTerms: e.target.value })}
+                >
+                  <option value="FOB">FOB (Free on Board)</option>
+                  <option value="CIF">CIF (Cost, Insurance & Freight)</option>
+                  <option value="EXW">EXW (Ex Works)</option>
+                  <option value="CFR">CFR (Cost and Freight)</option>
+                  <option value="DDP">DDP (Delivered Duty Paid)</option>
+                </select>
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Your Name *</label>
+                <input
+                  className="nm-input"
+                  value={formData.contactName}
+                  onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
+                  required
+                />
+              </div>
+
+              <div className="nm-field">
+                <label className="nm-label">Email *</label>
+                <input
+                  className="nm-input"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                />
+              </div>
+
+              <div className="nm-field md:col-span-2">
+                <label className="nm-label">Phone Number *</label>
+                <input
+                  className="nm-input"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="+1 234 567 8900"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="nm-field">
+              <label className="nm-label">Additional Requirements</label>
+              <textarea
+                className="nm-textarea"
+                rows={4}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Specific requirements, packaging, etc."
               />
             </div>
 
-            {/* Variety */}
-            <div className="space-y-2">
-              <Label htmlFor="variety">Variety</Label>
-              <Input
-                id="variety"
-                value={formData.variety}
-                onChange={(e) => setFormData({ ...formData, variety: e.target.value })}
-                placeholder="e.g., 1121 Golden Sella"
-              />
+            <div className="flex gap-4 mt-6">
+              <button type="button" className="nm-btn nm-btn-secondary" onClick={onClose} style={{ width: '40%' }}>
+                Cancel
+              </button>
+              <button type="submit" className="nm-btn" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Request Quote"}
+              </button>
             </div>
-
-            {/* Quantity */}
-            <div className="space-y-2">
-              <Label htmlFor="quantity">Quantity *</Label>
-              <Input
-                id="quantity"
-                value={formData.quantity}
-                onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                placeholder="e.g., 100"
-                required
-              />
-            </div>
-
-            {/* Unit */}
-            <div className="space-y-2">
-              <Label htmlFor="unit">Unit *</Label>
-              <Select
-                value={formData.unit}
-                onValueChange={(value) => setFormData({ ...formData, unit: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select unit" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="MT">Metric Tons (MT)</SelectItem>
-                  <SelectItem value="KG">Kilograms (KG)</SelectItem>
-                  <SelectItem value="LBS">Pounds (LBS)</SelectItem>
-                  <SelectItem value="Containers">20ft Containers</SelectItem>
-                  <SelectItem value="Containers40">40ft Containers</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Country */}
-            <div className="space-y-2">
-              <Label htmlFor="country">Destination Country *</Label>
-              <Input
-                id="country"
-                value={formData.country}
-                onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                placeholder="e.g., United States"
-                required
-              />
-            </div>
-
-            {/* Delivery Terms */}
-            <div className="space-y-2">
-              <Label htmlFor="deliveryTerms">Delivery Terms *</Label>
-              <Select
-                value={formData.deliveryTerms}
-                onValueChange={(value) => setFormData({ ...formData, deliveryTerms: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select terms" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="FOB">FOB (Free on Board)</SelectItem>
-                  <SelectItem value="CIF">CIF (Cost, Insurance & Freight)</SelectItem>
-                  <SelectItem value="EXW">EXW (Ex Works)</SelectItem>
-                  <SelectItem value="CFR">CFR (Cost and Freight)</SelectItem>
-                  <SelectItem value="DDP">DDP (Delivered Duty Paid)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Contact Name */}
-            <div className="space-y-2">
-              <Label htmlFor="contactName">Your Name *</Label>
-              <Input
-                id="contactName"
-                value={formData.contactName}
-                onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                required
-              />
-            </div>
-
-            {/* Email */}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email *</Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-              />
-            </div>
-
-            {/* Phone */}
-            <div className="md:col-span-2 space-y-2">
-              <Label htmlFor="phone">Phone Number *</Label>
-              <Input
-                id="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+1 234 567 8900"
-                required
-              />
-            </div>
-          </div>
-
-          {/* Message */}
-          <div className="space-y-2">
-            <Label htmlFor="message">Additional Requirements / Message</Label>
-            <Textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Please share any specific requirements, certifications needed, packaging preferences, etc."
-              rows={4}
-            />
-          </div>
-
-          <div className="flex gap-4 justify-end">
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Sending..." : "Request Quote"}
-            </Button>
-          </div>
-        </form>
+          </form>
+        </div>
       </DialogContent>
     </Dialog>
   );
