@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "node --max-old-space-size=8192 ./node_modules/vite/bin/vite.js build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

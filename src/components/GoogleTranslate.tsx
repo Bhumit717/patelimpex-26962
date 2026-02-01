@@ -139,10 +139,46 @@ const GoogleTranslate = () => {
       .goog-te-menu-frame {
         max-height: 400px !important;
         overflow-y: auto !important;
-        border-radius: 12px !important;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
-        border: 1px solid rgba(59, 130, 246, 0.1) !important;
+        border-radius: 30px !important;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 10px 30px rgba(59, 130, 246, 0.15) !important;
+        border: 1px solid rgba(59, 130, 246, 0.2) !important;
         z-index: 99999 !important;
+        background: white !important;
+      }
+      
+      /* Style the select dropdown to be always visible */
+      .goog-te-combo {
+        display: block !important;
+        width: 240px !important;
+        max-height: 400px !important;
+        overflow-y: auto !important;
+        border-radius: 30px !important;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 10px 30px rgba(59, 130, 246, 0.15) !important;
+        border: 2px solid rgba(59, 130, 246, 0.3) !important;
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        font-family: inherit !important;
+        background: white !important;
+        color: #1e293b !important;
+        cursor: pointer !important;
+      }
+      
+      .goog-te-combo option {
+        padding: 10px 16px !important;
+        font-size: 14px !important;
+        color: #1e293b !important;
+        background: white !important;
+      }
+      
+      .goog-te-combo option:hover {
+        background: #eff6ff !important;
+        color: #3b82f6 !important;
+      }
+      
+      .goog-te-combo option:checked,
+      .goog-te-combo option:focus {
+        background: #3b82f6 !important;
+        color: white !important;
       }
       
       .goog-te-menu-frame::-webkit-scrollbar {
@@ -176,7 +212,7 @@ const GoogleTranslate = () => {
 
   return (
     <div className="flex items-center gap-2 group">
-      <div className="flex items-center gap-2 bg-[#e9edf3] px-3 py-1 rounded-[20px] shadow-[inset_2px_2px_5px_#cfd6e0,inset_-2px_-2px_5px_#ffffff] w-auto min-w-[200px]">
+      <div className="flex items-center gap-2 bg-[#e9edf3] px-4 py-2 rounded-[30px] shadow-[0_20px_60px_rgba(0,0,0,0.25),0_10px_30px_rgba(59,130,246,0.15)] w-auto min-w-[260px]">
         <Languages className="h-4 w-4 text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
         <div id="google_translate_element" className="translate-widget flex items-center overflow-hidden"></div>
       </div>

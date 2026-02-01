@@ -109,7 +109,7 @@ const Footer = () => {
     color: "hover:bg-blue-600"
   }, {
     icon: Linkedin,
-    href: "https://www.instagram.com/patel.impex?igsh=bHhsbGlzeDQ4eGt1",
+    href: "https://www.linkedin.com/in/patel-impex-globalsourcing/",
     label: "LinkedIn",
     color: "hover:bg-blue-700"
   }, {

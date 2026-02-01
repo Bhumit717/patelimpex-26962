@@ -107,7 +107,7 @@ const DynamicSEOProductPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-[#e9edf3]">
             <Helmet>
                 <title>{title} | Premium Quality | Patel Impex</title>
                 <meta name="description" content={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`} />
@@ -115,7 +115,7 @@ const DynamicSEOProductPage = () => {
                 <link rel="canonical" href={`https://patelimpex.com/seo/${slug}`} />
                 <meta property="og:title" content={`${title} | Premium Quality | Patel Impex`} />
                 <meta property="og:description" content={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`} />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" />
+                <meta property="og:image" content="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80" />
                 <meta property="og:type" content="product" />
                 <script type="application/ld+json">
                     {JSON.stringify(schemaOrg)}
@@ -127,7 +127,7 @@ const DynamicSEOProductPage = () => {
             <Navigation />
             <div className="relative pt-20">
                 <div className="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt={title} className="w-full h-[60vh] object-cover opacity-20" />
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80" alt={title} className="w-full h-[60vh] object-cover opacity-20" />
                     <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900/60" />
                 </div>
                 <div className="relative z-10 container mx-auto px-6 pt-32 pb-24 text-center">
@@ -140,7 +140,7 @@ const DynamicSEOProductPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="py-24 bg-white">
+            <div className="py-24 bg-[#e9edf3]">
                 <div className="container mx-auto px-6">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
@@ -153,30 +153,29 @@ const DynamicSEOProductPage = () => {
                                 <div className="flex items-start gap-3"><div className="p-2 bg-purple-100 rounded-lg text-purple-600 shrink-0"><Package className="w-5 h-5" /></div><div><h3 className="font-semibold text-slate-900 mb-1">Export Packaging</h3><p className="text-sm text-slate-600">Secure & customized</p></div></div>
                             </div>
                         </div>
-                        <div className="relative"><img src="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" alt="Patel Impex Export" className="relative rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500" /></div>
+                        <div className="relative"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80" alt="Patel Impex Export" className="relative rounded-2xl shadow-[15px_15px_30px_#cfd6e0,-15px_-15px_30px_#ffffff] hover:scale-105 transition-transform duration-500 border-4 border-[#e9edf3]" /></div>
                     </div>
                 </div>
             </div>
 
-            <div className="py-16 bg-slate-50">
+            <div className="py-16 bg-[#e9edf3]">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Frequently Asked Questions</h2>
                     <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">What is the minimum order quantity for {product} export to {country}?</h3>
+                        <div className="bg-[#e9edf3] p-8 rounded-2xl shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] hover:shadow-[inset_5px_5px_10px_#cfd6e0,inset_-5px_-5px_10px_#ffffff] transition-all duration-300">
+                            <h3 className="text-lg font-bold text-slate-800 mb-3">What is the minimum order quantity for {product} export to {country}?</h3>
                             <p className="text-slate-600 leading-relaxed">Our minimum order quantity for {product} to {country} typically starts from 1 FCL (Full Container Load), but we can arrange smaller trial shipments of 5-10 metric tons depending on the customized packaging requirements for the {country} market.</p>
                         </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">What documents do you provide for importing {product} into {country}?</h3>
+                        <div className="bg-[#e9edf3] p-8 rounded-2xl shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] hover:shadow-[inset_5px_5px_10px_#cfd6e0,inset_-5px_-5px_10px_#ffffff] transition-all duration-300">
+                            <h3 className="text-lg font-bold text-slate-800 mb-3">What documents do you provide for importing {product} into {country}?</h3>
                             <p className="text-slate-600 leading-relaxed">We provide a comprehensive set of documents including Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate, and any specific quality test reports required by {country} customs authorities.</p>
                         </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">What are the shipping times from India to {country}?</h3>
+                        <div className="bg-[#e9edf3] p-8 rounded-2xl shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] hover:shadow-[inset_5px_5px_10px_#cfd6e0,inset_-5px_-5px_10px_#ffffff] transition-all duration-300">
+                            <h3 className="text-lg font-bold text-slate-800 mb-3">What are the shipping times from India to {country}?</h3>
                             <p className="text-slate-600 leading-relaxed">Transit times to {country} typically range from 20-35 days, depending on the specific port of discharge and shipping line schedules. We exclusively partner with top-tier logistics providers to ensure timely delivery of your {product}.</p>
                         </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                            <h3 className="text-lg font-semibold text-slate-800 mb-3">Can you provide customized packaging for {product} in {country}?</h3>
+                        <div className="bg-[#e9edf3] p-8 rounded-2xl shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] hover:shadow-[inset_5px_5px_10px_#cfd6e0,inset_-5px_-5px_10px_#ffffff] transition-all duration-300">
+                            <h3 className="text-lg font-bold text-slate-800 mb-3">Can you provide customized packaging for {product} in {country}?</h3>
                             <p className="text-slate-600 leading-relaxed">Yes, we offer fully customizable packaging options for {product}, including private labeling, branding, and specific bag sizes (25kg, 50kg, retail packs) compliant with {country}'s labeling and packaging regulations.</p>
                         </div>
                     </div>

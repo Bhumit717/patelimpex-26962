@@ -60,9 +60,7 @@ const Index = () => {
       <section aria-label="Partner companies">
 
       </section>
-      <Services />
       <Products />
-      <PopularPages />
       <About />
       <Contact />
     </main>

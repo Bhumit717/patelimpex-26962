@@ -5207,5 +5207,837 @@ export const seoPagesData: SEOPageData[] = [
     title: "Ajwain Export to Uzbekistan",
     product: "Ajwain",
     country: "Uzbekistan"
-  }
+  },
+  {
+    slug: "usa-market-export",
+    title: "USA Market Export",
+    product: "Import Export Services",
+    country: "USA"
+  },
+  {
+    slug: "uk-market-export",
+    title: "UK Market Export",
+    product: "Import Export Services",
+    country: "UK"
+  },
+  {
+    slug: "canada-market-export",
+    title: "Canada Market Export",
+    product: "Import Export Services",
+    country: "Canada"
+  },
+  {
+    slug: "germany-market-export",
+    title: "Germany Market Export",
+    product: "Import Export Services",
+    country: "Germany"
+  },
+  {
+    slug: "france-market-export",
+    title: "France Market Export",
+    product: "Import Export Services",
+    country: "France"
+  },
+  {
+    slug: "italy-market-export",
+    title: "Italy Market Export",
+    product: "Import Export Services",
+    country: "Italy"
+  },
+  {
+    slug: "spain-market-export",
+    title: "Spain Market Export",
+    product: "Import Export Services",
+    country: "Spain"
+  },
+  {
+    slug: "netherlands-market-export",
+    title: "Netherlands Market Export",
+    product: "Import Export Services",
+    country: "Netherlands"
+  },
+  {
+    slug: "belgium-market-export",
+    title: "Belgium Market Export",
+    product: "Import Export Services",
+    country: "Belgium"
+  },
+  {
+    slug: "australia-market-export",
+    title: "Australia Market Export",
+    product: "Import Export Services",
+    country: "Australia"
+  },
+  {
+    slug: "japan-market-export",
+    title: "Japan Market Export",
+    product: "Import Export Services",
+    country: "Japan"
+  },
+  {
+    slug: "singapore-market-export",
+    title: "Singapore Market Export",
+    product: "Import Export Services",
+    country: "Singapore"
+  },
+  {
+    slug: "uae-market-export",
+    title: "UAE Market Export",
+    product: "Import Export Services",
+    country: "UAE"
+  },
+  {
+    slug: "china-market-export",
+    title: "China Market Export",
+    product: "Import Export Services",
+    country: "China"
+  },
+  {
+    slug: "south-korea-market-export",
+    title: "South Korea Market Export",
+    product: "Import Export Services",
+    country: "South Korea"
+  },
+  {
+    slug: "thailand-market-export",
+    title: "Thailand Market Export",
+    product: "Import Export Services",
+    country: "Thailand"
+  },
+  {
+    slug: "vietnam-market-export",
+    title: "Vietnam Market Export",
+    product: "Import Export Services",
+    country: "Vietnam"
+  },
+  {
+    slug: "malaysia-market-export",
+    title: "Malaysia Market Export",
+    product: "Import Export Services",
+    country: "Malaysia"
+  },
+  {
+    slug: "indonesia-market-export",
+    title: "Indonesia Market Export",
+    product: "Import Export Services",
+    country: "Indonesia"
+  },
+  {
+    slug: "philippines-market-export",
+    title: "Philippines Market Export",
+    product: "Import Export Services",
+    country: "Philippines"
+  },
+  {
+    slug: "bangladesh-market-export",
+    title: "Bangladesh Market Export",
+    product: "Import Export Services",
+    country: "Bangladesh"
+  },
+  {
+    slug: "pakistan-market-export",
+    title: "Pakistan Market Export",
+    product: "Import Export Services",
+    country: "Pakistan"
+  },
+  {
+    slug: "sri-lanka-market-export",
+    title: "Sri Lanka Market Export",
+    product: "Import Export Services",
+    country: "Sri Lanka"
+  },
+  {
+    slug: "nepal-market-export",
+    title: "Nepal Market Export",
+    product: "Import Export Services",
+    country: "Nepal"
+  },
+  {
+    slug: "myanmar-market-export",
+    title: "Myanmar Market Export",
+    product: "Import Export Services",
+    country: "Myanmar"
+  },
+  {
+    slug: "cambodia-market-export",
+    title: "Cambodia Market Export",
+    product: "Import Export Services",
+    country: "Cambodia"
+  },
+  {
+    slug: "laos-market-export",
+    title: "Laos Market Export",
+    product: "Import Export Services",
+    country: "Laos"
+  },
+  {
+    slug: "brunei-market-export",
+    title: "Brunei Market Export",
+    product: "Import Export Services",
+    country: "Brunei"
+  },
+  {
+    slug: "russia-market-export",
+    title: "Russia Market Export",
+    product: "Import Export Services",
+    country: "Russia"
+  },
+  {
+    slug: "turkey-market-export",
+    title: "Turkey Market Export",
+    product: "Import Export Services",
+    country: "Turkey"
+  },
+  {
+    slug: "brazil-market-export",
+    title: "Brazil Market Export",
+    product: "Import Export Services",
+    country: "Brazil"
+  },
+  {
+    slug: "argentina-market-export",
+    title: "Argentina Market Export",
+    product: "Import Export Services",
+    country: "Argentina"
+  },
+  {
+    slug: "chile-market-export",
+    title: "Chile Market Export",
+    product: "Import Export Services",
+    country: "Chile"
+  },
+  {
+    slug: "colombia-market-export",
+    title: "Colombia Market Export",
+    product: "Import Export Services",
+    country: "Colombia"
+  },
+  {
+    slug: "peru-market-export",
+    title: "Peru Market Export",
+    product: "Import Export Services",
+    country: "Peru"
+  },
+  {
+    slug: "mexico-market-export",
+    title: "Mexico Market Export",
+    product: "Import Export Services",
+    country: "Mexico"
+  },
+  {
+    slug: "south-africa-market-export",
+    title: "South Africa Market Export",
+    product: "Import Export Services",
+    country: "South Africa"
+  },
+  {
+    slug: "nigeria-market-export",
+    title: "Nigeria Market Export",
+    product: "Import Export Services",
+    country: "Nigeria"
+  },
+  {
+    slug: "kenya-market-export",
+    title: "Kenya Market Export",
+    product: "Import Export Services",
+    country: "Kenya"
+  },
+  {
+    slug: "egypt-market-export",
+    title: "Egypt Market Export",
+    product: "Import Export Services",
+    country: "Egypt"
+  },
+  {
+    slug: "morocco-market-export",
+    title: "Morocco Market Export",
+    product: "Import Export Services",
+    country: "Morocco"
+  },
+  {
+    slug: "algeria-market-export",
+    title: "Algeria Market Export",
+    product: "Import Export Services",
+    country: "Algeria"
+  },
+  {
+    slug: "ghana-market-export",
+    title: "Ghana Market Export",
+    product: "Import Export Services",
+    country: "Ghana"
+  },
+  {
+    slug: "ethiopia-market-export",
+    title: "Ethiopia Market Export",
+    product: "Import Export Services",
+    country: "Ethiopia"
+  },
+  {
+    slug: "angola-market-export",
+    title: "Angola Market Export",
+    product: "Import Export Services",
+    country: "Angola"
+  },
+  {
+    slug: "cameroon-market-export",
+    title: "Cameroon Market Export",
+    product: "Import Export Services",
+    country: "Cameroon"
+  },
+  {
+    slug: "ivory-coast-market-export",
+    title: "Ivory Coast Market Export",
+    product: "Import Export Services",
+    country: "Ivory Coast"
+  },
+  {
+    slug: "gabon-market-export",
+    title: "Gabon Market Export",
+    product: "Import Export Services",
+    country: "Gabon"
+  },
+  {
+    slug: "gambia-market-export",
+    title: "Gambia Market Export",
+    product: "Import Export Services",
+    country: "Gambia"
+  },
+  {
+    slug: "guinea-market-export",
+    title: "Guinea Market Export",
+    product: "Import Export Services",
+    country: "Guinea"
+  },
+  {
+    slug: "botswana-market-export",
+    title: "Botswana Market Export",
+    product: "Import Export Services",
+    country: "Botswana"
+  },
+  {
+    slug: "bahrain-market-export",
+    title: "Bahrain Market Export",
+    product: "Import Export Services",
+    country: "Bahrain"
+  },
+  {
+    slug: "kuwait-market-export",
+    title: "Kuwait Market Export",
+    product: "Import Export Services",
+    country: "Kuwait"
+  },
+  {
+    slug: "jordan-market-export",
+    title: "Jordan Market Export",
+    product: "Import Export Services",
+    country: "Jordan"
+  },
+  {
+    slug: "lebanon-market-export",
+    title: "Lebanon Market Export",
+    product: "Import Export Services",
+    country: "Lebanon"
+  },
+  {
+    slug: "iraq-market-export",
+    title: "Iraq Market Export",
+    product: "Import Export Services",
+    country: "Iraq"
+  },
+  {
+    slug: "israel-market-export",
+    title: "Israel Market Export",
+    product: "Import Export Services",
+    country: "Israel"
+  },
+  {
+    slug: "azerbaijan-market-export",
+    title: "Azerbaijan Market Export",
+    product: "Import Export Services",
+    country: "Azerbaijan"
+  },
+  {
+    slug: "kazakhstan-market-export",
+    title: "Kazakhstan Market Export",
+    product: "Import Export Services",
+    country: "Kazakhstan"
+  },
+  {
+    slug: "kyrgyzstan-market-export",
+    title: "Kyrgyzstan Market Export",
+    product: "Import Export Services",
+    country: "Kyrgyzstan"
+  },
+  {
+    slug: "georgia-market-export",
+    title: "Georgia Market Export",
+    product: "Import Export Services",
+    country: "Georgia"
+  },
+  {
+    slug: "belarus-market-export",
+    title: "Belarus Market Export",
+    product: "Import Export Services",
+    country: "Belarus"
+  },
+  {
+    slug: "denmark-market-export",
+    title: "Denmark Market Export",
+    product: "Import Export Services",
+    country: "Denmark"
+  },
+  {
+    slug: "finland-market-export",
+    title: "Finland Market Export",
+    product: "Import Export Services",
+    country: "Finland"
+  },
+  {
+    slug: "iceland-market-export",
+    title: "Iceland Market Export",
+    product: "Import Export Services",
+    country: "Iceland"
+  },
+  {
+    slug: "ireland-market-export",
+    title: "Ireland Market Export",
+    product: "Import Export Services",
+    country: "Ireland"
+  },
+  {
+    slug: "greece-market-export",
+    title: "Greece Market Export",
+    product: "Import Export Services",
+    country: "Greece"
+  },
+  {
+    slug: "cyprus-market-export",
+    title: "Cyprus Market Export",
+    product: "Import Export Services",
+    country: "Cyprus"
+  },
+  {
+    slug: "croatia-market-export",
+    title: "Croatia Market Export",
+    product: "Import Export Services",
+    country: "Croatia"
+  },
+  {
+    slug: "czech-market-export",
+    title: "Czech Market Export",
+    product: "Import Export Services",
+    country: "Czech Republic"
+  },
+  {
+    slug: "bulgaria-market-export",
+    title: "Bulgaria Market Export",
+    product: "Import Export Services",
+    country: "Bulgaria"
+  },
+  {
+    slug: "hungary-market-export",
+    title: "Hungary Market Export",
+    product: "Import Export Services",
+    country: "Hungary"
+  },
+  {
+    slug: "estonia-market-export",
+    title: "Estonia Market Export",
+    product: "Import Export Services",
+    country: "Estonia"
+  },
+  {
+    slug: "latvia-market-export",
+    title: "Latvia Market Export",
+    product: "Import Export Services",
+    country: "Latvia"
+  },
+  {
+    slug: "bolivia-market-export",
+    title: "Bolivia Market Export",
+    product: "Import Export Services",
+    country: "Bolivia"
+  },
+  {
+    slug: "ecuador-market-export",
+    title: "Ecuador Market Export",
+    product: "Import Export Services",
+    country: "Ecuador"
+  },
+  {
+    slug: "cuba-market-export",
+    title: "Cuba Market Export",
+    product: "Import Export Services",
+    country: "Cuba"
+  },
+  {
+    slug: "dominican-republic-market-export",
+    title: "Dominican Republic Market Export",
+    product: "Import Export Services",
+    country: "Dominican Republic"
+  },
+  {
+    slug: "guatemala-market-export",
+    title: "Guatemala Market Export",
+    product: "Import Export Services",
+    country: "Guatemala"
+  },
+  {
+    slug: "honduras-market-export",
+    title: "Honduras Market Export",
+    product: "Import Export Services",
+    country: "Honduras"
+  },
+  {
+    slug: "jamaica-market-export",
+    title: "Jamaica Market Export",
+    product: "Import Export Services",
+    country: "Jamaica"
+  },
+  {
+    slug: "organic-food-export",
+    title: "Organic Food Export",
+    product: "Organic Food",
+    country: "Global Markets"
+  },
+  {
+    slug: "frozen-food-export",
+    title: "Frozen Food Export",
+    product: "Frozen Food",
+    country: "Global Markets"
+  },
+  {
+    slug: "pharmaceutical-export",
+    title: "Pharmaceutical Export",
+    product: "Pharmaceutical Products",
+    country: "Global Markets"
+  },
+  {
+    slug: "air-freight-services",
+    title: "Air Freight Services",
+    product: "Air Freight Services",
+    country: "Global Markets"
+  },
+  {
+    slug: "ocean-freight-services",
+    title: "Ocean Freight Services",
+    product: "Ocean Freight Services",
+    country: "Global Markets"
+  },
+  {
+    slug: "express-shipping-services",
+    title: "Express Shipping Services",
+    product: "Express Shipping Services",
+    country: "Global Markets"
+  },
+  {
+    slug: "tea-export-services",
+    title: "Tea Export Services",
+    product: "Tea",
+    country: "Global Markets"
+  },
+  {
+    slug: "coffee-export-services",
+    title: "Coffee Export Services",
+    product: "Coffee",
+    country: "Global Markets"
+  },
+  {
+    slug: "sugar-export-services",
+    title: "Sugar Export Services",
+    product: "Sugar",
+    country: "Global Markets"
+  },
+  {
+    slug: "rice-export-services",
+    title: "Rice Export Services",
+    product: "Rice",
+    country: "Global Markets"
+  },
+  {
+    slug: "spices-export-services",
+    title: "Spices Export Services",
+    product: "Spices",
+    country: "Global Markets"
+  },
+  {
+    slug: "grains-export-services",
+    title: "Grains Export Services",
+    product: "Grains",
+    country: "Global Markets"
+  },
+  {
+    slug: "vegetables-export-services",
+    title: "Vegetables Export Services",
+    product: "Vegetables",
+    country: "Global Markets"
+  },
+  {
+    slug: "fruits-export-services",
+    title: "Fruits Export Services",
+    product: "Fruits",
+    country: "Global Markets"
+  },
+  {
+    slug: "pulses-export-services",
+    title: "Pulses Export Services",
+    product: "Pulses",
+    country: "Global Markets"
+  },
+  {
+    slug: "oil-seeds-export-services",
+    title: "Oil Seeds Export Services",
+    product: "Oil Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "herbs-export-services",
+    title: "Herbs Export Services",
+    product: "Herbs",
+    country: "Global Markets"
+  },
+  {
+    slug: "handicrafts-export-services",
+    title: "Handicrafts Export Services",
+    product: "Handicrafts",
+    country: "Global Markets"
+  },
+  {
+    slug: "leather-products-export-services",
+    title: "Leather Products Export Services",
+    product: "Leather Products",
+    country: "Global Markets"
+  },
+  {
+    slug: "gems-jewelry-export-services",
+    title: "Gems & Jewelry Export Services",
+    product: "Gems & Jewelry",
+    country: "Global Markets"
+  },
+  {
+    slug: "arhar-dal-export",
+    title: "Arhar Dal Export",
+    product: "Arhar Dal",
+    country: "Global Markets"
+  },
+  {
+    slug: "moong-dal-export",
+    title: "Moong Dal Export",
+    product: "Moong Dal",
+    country: "Global Markets"
+  },
+  {
+    slug: "chana-dal-export",
+    title: "Chana Dal Export",
+    product: "Chana Dal",
+    country: "Global Markets"
+  },
+  {
+    slug: "urad-dal-export",
+    title: "Urad Dal Export",
+    product: "Urad Dal",
+    country: "Global Markets"
+  },
+  {
+    slug: "masoor-dal-export",
+    title: "Masoor Dal Export",
+    product: "Masoor Dal",
+    country: "Global Markets"
+  },
+  {
+    slug: "toor-dal-export",
+    title: "Toor Dal Export",
+    product: "Toor Dal",
+    country: "Global Markets"
+  },
+  {
+    slug: "rajma-export",
+    title: "Rajma Export",
+    product: "Rajma",
+    country: "Global Markets"
+  },
+  {
+    slug: "kabuli-chana-export",
+    title: "Kabuli Chana Export",
+    product: "Kabuli Chana",
+    country: "Global Markets"
+  },
+  {
+    slug: "fenugreek-seeds-export",
+    title: "Fenugreek Seeds Export",
+    product: "Fenugreek Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "mustard-seeds-export",
+    title: "Mustard Seeds Export",
+    product: "Mustard Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "coriander-seeds-export",
+    title: "Coriander Seeds Export",
+    product: "Coriander Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "cumin-seeds-export",
+    title: "Cumin Seeds Export",
+    product: "Cumin Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "fennel-seeds-export",
+    title: "Fennel Seeds Export",
+    product: "Fennel Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "sesame-seeds-export",
+    title: "Sesame Seeds Export",
+    product: "Sesame Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "ajwain-seeds-export",
+    title: "Ajwain Seeds Export",
+    product: "Ajwain Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "nigella-seeds-export",
+    title: "Nigella Seeds Export",
+    product: "Nigella Seeds",
+    country: "Global Markets"
+  },
+  {
+    slug: "soybean-export",
+    title: "Soybean Export",
+    product: "Soybean",
+    country: "Global Markets"
+  },
+  {
+    slug: "psyllium-husk-export",
+    title: "Psyllium Husk Export",
+    product: "Psyllium Husk",
+    country: "Global Markets"
+  },
+  {
+    slug: "kenya-market-export-services",
+    title: "Kenya Export Services",
+    product: "Import Export Services",
+    country: "Kenya"
+  },
+  {
+    slug: "nigeria-market-export-services",
+    title: "Nigeria Export Services",
+    product: "Import Export Services",
+    country: "Nigeria"
+  },
+  {
+    slug: "walnut-export",
+    title: "Walnut Export",
+    product: "Walnut",
+    country: "Global Markets"
+  },
+  {
+    slug: "almond-export",
+    title: "Almond Export",
+    product: "Almond",
+    country: "Global Markets"
+  },
+  {
+    slug: "pistachio-export",
+    title: "Pistachio Export",
+    product: "Pistachio",
+    country: "Global Markets"
+  },
+  {
+    slug: "cashew-nut-export",
+    title: "Cashew Nut Export",
+    product: "Cashew Nut",
+    country: "Global Markets"
+  },
+  {
+    slug: "brazil-nut-export",
+    title: "Brazil Nut Export",
+    product: "Brazil Nut",
+    country: "Global Markets"
+  },
+  {
+    slug: "raisins-export",
+    title: "Raisins Export",
+    product: "Raisins",
+    country: "Global Markets"
+  },
+  {
+    slug: "dates-export",
+    title: "Dates Export",
+    product: "Dates",
+    country: "Global Markets"
+  },
+  // More Pages
+  { slug: "export-import-guide", title: "Export Import Guide", product: "Export Import Guide", country: "Global Markets" },
+  { slug: "international-trade-basics", title: "International Trade Basics", product: "International Trade Basics", country: "Global Markets" },
+  { slug: "rice-export", title: "Rice Export", product: "Rice", country: "Global Markets" },
+  { slug: "spices-export", title: "Spices Export", product: "Spices", country: "Global Markets" },
+  { slug: "asian-markets", title: "Asian Markets", product: "Export Services", country: "Asia" },
+  { slug: "sea-freight", title: "Sea Freight", product: "Sea Freight", country: "Global Markets" },
+  { slug: "export-documentation", title: "Export Documentation", product: "Export Documentation", country: "Global Markets" },
+  { slug: "agricultural-products", title: "Agricultural Products", product: "Agricultural Products", country: "Global Markets" },
+  { slug: "trade-finance", title: "Trade Finance", product: "Trade Finance", country: "Global Markets" },
+  { slug: "european-markets", title: "European Markets", product: "Export Services", country: "Europe" },
+  { slug: "quality-standards", title: "Quality Standards", product: "Quality Standards", country: "Global Markets" },
+  { slug: "certificate-of-origin", title: "Certificate of Origin", product: "Certificate of Origin", country: "Global Markets" },
+  { slug: "textile-export", title: "Textile Export", product: "Textiles", country: "Global Markets" },
+  { slug: "customs-clearance", title: "Customs Clearance", product: "Customs Clearance", country: "Global Markets" },
+  { slug: "freight-forwarding", title: "Freight Forwarding", product: "Freight Forwarding", country: "Global Markets" },
+  { slug: "market-research", title: "Market Research", product: "Market Research", country: "Global Markets" },
+  { slug: "warehouse-services", title: "Warehouse Services", product: "Warehouse Services", country: "Global Markets" },
+  { slug: "insurance-services", title: "Insurance Services", product: "Insurance Services", country: "Global Markets" },
+  { slug: "buyer-verification", title: "Buyer Verification", product: "Buyer Verification", country: "Global Markets" },
+  { slug: "digital-marketing", title: "Digital Marketing", product: "Digital Marketing", country: "Global Markets" },
+  { slug: "compliance-training", title: "Compliance Training", product: "Compliance Training", country: "Global Markets" },
+  { slug: "african-markets", title: "African Markets", product: "Export Services", country: "Africa" },
+  { slug: "middle-east-markets", title: "Middle East Markets", product: "Export Services", country: "Middle East" },
+  { slug: "american-markets", title: "American Markets", product: "Export Services", country: "Americas" },
+  { slug: "legal-compliance", title: "Legal Compliance", product: "Legal Compliance", country: "Global Markets" },
+  { slug: "technology-integration", title: "Technology Integration", product: "Technology Integration", country: "Global Markets" },
+  { slug: "packaging-services", title: "Packaging Services", product: "Packaging Services", country: "Global Markets" },
+  { slug: "certification-services", title: "Certification Services", product: "Certification Services", country: "Global Markets" },
+  { slug: "supply-chain-management", title: "Supply Chain Management", product: "Supply Chain Management", country: "Global Markets" },
+  { slug: "north-american-markets", title: "North American Markets", product: "Export Services", country: "North America" },
+  { slug: "south-american-markets", title: "South American Markets", product: "Export Services", country: "South America" },
+  { slug: "oceania-markets", title: "Oceania Markets", product: "Export Services", country: "Oceania" },
+  { slug: "eastern-european-markets", title: "Eastern European Markets", product: "Export Services", country: "Eastern Europe" },
+  { slug: "central-asian-markets", title: "Central Asian Markets", product: "Export Services", country: "Central Asia" },
+  { slug: "southeast-asian-markets", title: "Southeast Asian Markets", product: "Export Services", country: "Southeast Asia" },
+  { slug: "northeast-asian-markets", title: "Northeast Asian Markets", product: "Export Services", country: "Northeast Asia" },
+  { slug: "southern-african-markets", title: "Southern African Markets", product: "Export Services", country: "Southern Africa" },
+  { slug: "west-african-markets", title: "West African Markets", product: "Export Services", country: "West Africa" },
+  { slug: "east-african-markets", title: "East African Markets", product: "Export Services", country: "East Africa" },
+  { slug: "north-african-markets", title: "North African Markets", product: "Export Services", country: "North Africa" },
+  { slug: "gulf-cooperation-council", title: "Gulf Cooperation Council", product: "Export Services", country: "GCC" },
+  { slug: "levant-markets", title: "Levant Markets", product: "Export Services", country: "Levant" },
+  { slug: "scandinavian-markets", title: "Scandinavian Markets", product: "Export Services", country: "Scandinavia" },
+  { slug: "mediterranean-markets", title: "Mediterranean Markets", product: "Export Services", country: "Mediterranean" },
+  { slug: "basmati-rice-export", title: "Basmati Rice Export", product: "Basmati Rice", country: "Global Markets" },
+  { slug: "non-basmati-rice-export", title: "Non-Basmati Rice Export", product: "Non-Basmati Rice", country: "Global Markets" },
+  { slug: "wheat-export", title: "Wheat Export", product: "Wheat", country: "Global Markets" },
+  { slug: "corn-export", title: "Corn Export", product: "Corn", country: "Global Markets" },
+  { slug: "millet-export", title: "Millet Export", product: "Millet", country: "Global Markets" },
+  { slug: "barley-export", title: "Barley Export", product: "Barley", country: "Global Markets" },
+  { slug: "turmeric-export", title: "Turmeric Export", product: "Turmeric", country: "Global Markets" },
+  { slug: "cumin-export", title: "Cumin Export", product: "Cumin", country: "Global Markets" },
+  { slug: "coriander-export", title: "Coriander Export", product: "Coriander", country: "Global Markets" },
+  { slug: "cardamom-export", title: "Cardamom Export", product: "Cardamom", country: "Global Markets" },
+  { slug: "black-pepper-export", title: "Black Pepper Export", product: "Black Pepper", country: "Global Markets" },
+  { slug: "red-chili-export", title: "Red Chili Export", product: "Red Chili", country: "Global Markets" },
+  { slug: "ginger-export", title: "Ginger Export", product: "Ginger", country: "Global Markets" },
+  { slug: "garlic-export", title: "Garlic Export", product: "Garlic", country: "Global Markets" },
+  { slug: "onion-export", title: "Onion Export", product: "Onion", country: "Global Markets" },
+  { slug: "cashew-export", title: "Cashew Export", product: "Cashew", country: "Global Markets" },
+  { slug: "almond-export", title: "Almond Export", product: "Almond", country: "Global Markets" },
+  { slug: "sesame-seeds-export", title: "Sesame Seeds Export", product: "Sesame Seeds", country: "Global Markets" },
+  { slug: "sunflower-seeds-export", title: "Sunflower Seeds Export", product: "Sunflower Seeds", country: "Global Markets" },
 ];

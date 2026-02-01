@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Menu, X, Phone, Mail, Sparkles, Zap, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import GoogleTranslate from "@/components/GoogleTranslate";
+import CustomLanguageSelector from "@/components/CustomLanguageSelector";
 
 import logoVideo from "@/assets/logo_video.mp4";
 
@@ -91,6 +91,17 @@ const Navigation = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const handleQuoteClick = () => {
     setIsLoading(true);
     setTimeout(() => {
@@ -99,7 +110,7 @@ const Navigation = () => {
   };
   return <header className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#e9edf3]/95 backdrop-blur-md shadow-lg' : 'bg-[#e9edf3]'}`} role="banner">
     {/* Ultra Pro Contact Bar with Advanced Animations */}
-    <div className="bg-[#e9edf3] text-slate-700 py-2 md:py-3 px-4 border-b border-gray-200 relative overflow-hidden" role="complementary" aria-label="Contact information and certifications">
+    <div className="bg-[#e9edf3] text-slate-700 py-2 md:py-3 px-4 border-b border-gray-200 relative overflow-visible" role="complementary" aria-label="Contact information and certifications">
       <div className="container mx-auto flex flex-wrap justify-center md:justify-between items-center text-sm relative z-10 gap-2">
         <div className="flex items-center flex-wrap gap-2 sm:gap-8">
           <a href="tel:+917984133417" className="flex items-center space-x-2 sm:space-x-3 hover:text-blue-600 transition-all duration-300 cursor-pointer group" aria-label="Call Patel Impex at +91 798 41 33 417">
@@ -116,8 +127,8 @@ const Navigation = () => {
           </a>
 
         </div>
-        <div className="flex items-center space-x-4" role="text" aria-label="Company certification">
-          <GoogleTranslate />
+        <div className="absolute top-1 right-2 md:static md:flex md:items-center md:space-x-4" role="text" aria-label="Company certification">
+          <CustomLanguageSelector />
         </div>
       </div>
     </div>
@@ -219,22 +230,24 @@ const Navigation = () => {
       </div>
 
       {/* Ultra Pro Mobile Menu with Advanced Animations */}
-      <div id="mobile-menu" className={`md:hidden transition-all duration-500 transform origin-top ${isOpen ? 'max-h-[40rem] opacity-100 scale-y-100' : 'max-h-0 opacity-0 scale-y-95 overflow-hidden'}`} role="menu" aria-label="Mobile navigation menu">
-        <div className="bg-[#e9edf3] border-t border-gray-200 px-4 pt-4 pb-6 space-y-2 relative overflow-hidden shadow-inner">
+      <div id="mobile-menu" className={`md:hidden transition-all duration-500 transform origin-top ${isOpen ? 'max-h-[85vh] opacity-100 scale-y-100' : 'max-h-0 opacity-0 scale-y-95 overflow-hidden'}`} role="menu" aria-label="Mobile navigation menu">
+        <div className="bg-[#e9edf3] border-t border-gray-200 px-4 pt-4 pb-6 space-y-4 relative overflow-y-auto max-h-[85vh] shadow-inner">
           <div className="absolute inset-0 bg-[#e9edf3]" aria-hidden="true"></div>
+          <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(#cfd6e0_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
 
           {navItems.map((item, index) => (
             item.subItems ? (
-              <div key={item.name} className="animate-slide-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <Link to={item.href} className={`block px-4 py-3 text-base font-bold rounded-[15px] transition-all duration-300 relative group ${location.pathname === item.href ? 'text-blue-600 shadow-[inset_4px_4px_8px_#cfd6e0,inset_-4px_-4px_8px_#ffffff]' : 'text-slate-700 hover:text-blue-600 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]'}`} onClick={() => setIsOpen(false)} role="menuitem">
+              <div key={item.name} className="space-y-2">
+                <Link to={item.href} className={`block px-6 py-4 text-lg font-bold rounded-full transition-all duration-300 relative group ${location.pathname === item.href ? 'text-blue-600 shadow-[inset_4px_4px_8px_#b8b9be,inset_-4px_-4px_8px_#ffffff]' : 'text-slate-700 hover:text-blue-600 shadow-[5px_5px_10px_#b8b9be,-5px_-5px_10px_#ffffff]'}`} onClick={() => setIsOpen(false)} role="menuitem">
                   <span className="relative z-10">{item.name}</span>
                 </Link>
-                <div className="ml-4 space-y-2 mt-2 relative z-20">
+                <div className="pl-4 space-y-4 relative z-20 mt-4">
                   {item.subItems.map((subItem) => (
                     <Link
                       key={subItem.name}
                       to={subItem.href}
-                      className={`block px-4 py-2 text-sm font-semibold rounded-[10px] transition-all duration-300 relative z-20 ${location.pathname === subItem.href ? 'text-blue-600 shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]' : 'text-slate-600 hover:text-blue-600 shadow-[3px_3px_6px_#cfd6e0,-3px_-3px_6px_#ffffff]'}`}
+                      className={`block px-6 py-4 text-lg font-bold rounded-full transition-all duration-300 relative z-20 ${location.pathname === subItem.href ? 'text-blue-600 shadow-[inset_4px_4px_8px_#b8b9be,inset_-4px_-4px_8px_#ffffff]' : 'text-slate-700 hover:text-blue-600 shadow-[5px_5px_10px_#b8b9be,-5px_-5px_10px_#ffffff]'}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         setIsOpen(false);
@@ -247,15 +260,13 @@ const Navigation = () => {
                 </div>
               </div>
             ) : (
-              <Link key={item.name} to={item.href} className={`block px-4 py-3 text-base font-bold rounded-[15px] transition-all duration-300 relative group ${location.pathname === item.href ? 'text-blue-600 shadow-[inset_4px_4px_8px_#cfd6e0,inset_-4px_-4px_8px_#ffffff]' : 'text-slate-700 hover:text-blue-600 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]'} animate-slide-in-up`} style={{ animationDelay: `${index * 0.1}s` }} onClick={() => setIsOpen(false)} role="menuitem" aria-current={location.pathname === item.href ? 'page' : undefined}>
+              <Link key={item.name} to={item.href} className={`block px-6 py-4 text-lg font-bold rounded-full transition-all duration-300 relative group ${location.pathname === item.href ? 'text-blue-600 shadow-[inset_4px_4px_8px_#b8b9be,inset_-4px_-4px_8px_#ffffff]' : 'text-slate-700 hover:text-blue-600 shadow-[5px_5px_10px_#b8b9be,-5px_-5px_10px_#ffffff]'}`} onClick={() => setIsOpen(false)} role="menuitem" aria-current={location.pathname === item.href ? 'page' : undefined}>
                 <span className="relative z-10">{item.name}</span>
               </Link>
             )
           ))}
 
-          <div className="px-4 py-4 animate-slide-in-up" style={{
-            animationDelay: '0.6s'
-          }}>
+          <div className="px-4 py-4">
             <Link to="/inquiry" onClick={() => {
               setIsOpen(false);
               handleQuoteClick();
@@ -271,6 +282,6 @@ const Navigation = () => {
         </div>
       </div>
     </nav>
-  </header>;
+  </header >;
 };
 export default Navigation;
