@@ -16,7 +16,6 @@ const PsylliumHuskDetailPage = () => {
         { label: "Swelling Index", value: "40ml/g Minimum" },
         { label: "Mesh Size", value: "40, 60, 80, 100 Mesh" },
         { label: "Packaging", value: "25kg PP Bags, 50kg PP Bags, Customized" },
-        { label: "Shelf Life", value: "24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, USDA Organic, Kosher, Halal" },
       ]}
       uses={[

@@ -16,7 +16,6 @@ const CardamomDetail = () => {
         { label: "Purity", value: "99% Minimum" },
         { label: "Size", value: "8mm Bold" },
         { label: "Packaging", value: "25kg/50kg PP Bags, Jute Bags" },
-        { label: "Shelf Life", value: "12-24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA, Spices Board" },
       ]}
       uses={[

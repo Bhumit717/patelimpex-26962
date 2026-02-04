@@ -16,7 +16,6 @@ const PsylliumHuskPowderDetail = () => {
         { label: "Moisture", value: "< 10%" },
         { label: "Mesh Size", value: "80, 100, 200 Mesh" },
         { label: "Packaging", value: "25kg PP Bags, Customized" },
-        { label: "Shelf Life", value: "24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA, Organic" },
       ]}
       uses={[

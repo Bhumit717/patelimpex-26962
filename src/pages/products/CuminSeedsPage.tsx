@@ -17,7 +17,6 @@ const CuminSeedsPage = () => {
         { label: "Color", value: "Yellowish Brown" },
         { label: "Volatile Oil", value: "2.5% Minimum" },
         { label: "Packaging", value: "25kg PP Bags, 50kg PP Bags, Jute Bags, Customized" },
-        { label: "Shelf Life", value: "12-24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA, Spices Board of India" },
       ]}
       uses={[

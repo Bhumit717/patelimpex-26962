@@ -30,7 +30,6 @@ const WhiteSellaBasmatiRice1121Detail = () => {
         { label: "Major Export Markets", value: "UK, EU, USA, Australia" },
         { label: "Supply Ability", value: "1500+ MT per month" },
         { label: "Container Capacity", value: "25 MT per 20' FCL" },
-        { label: "Shelf Life", value: "24 months" },
         { label: "Payment Terms", value: "T/T, L/C, CAD" },
         { label: "Delivery Terms", value: "FOB, CIF, CNF, EXW" },
         { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },

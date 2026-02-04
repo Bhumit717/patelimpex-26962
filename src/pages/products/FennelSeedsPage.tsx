@@ -16,7 +16,6 @@ const FennelSeedsPage = () => {
         { label: "Purity", value: "99% Minimum" },
         { label: "Color", value: "Greenish-Yellow" },
         { label: "Packaging", value: "25kg PP Bags, 50kg PP Bags, Jute Bags, Customized" },
-        { label: "Shelf Life", value: "12-24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA, Spices Board of India" },
       ]}
       uses={[

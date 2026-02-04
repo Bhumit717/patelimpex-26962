@@ -17,7 +17,6 @@ const SoybeansPage = () => {
         { label: "Protein Content", value: "36-40%" },
         { label: "Oil Content", value: "18-20%" },
         { label: "Packaging", value: "25kg / 50kg PP Bags, Jute Bags, or Customized" },
-        { label: "Shelf Life", value: "12-24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA, Non-GMO" },
       ]}
       uses={[

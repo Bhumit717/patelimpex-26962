@@ -11,6 +11,7 @@ import groundnutImg from "@/assets/products/groundnut.png";
 import cardamomImg from "@/assets/products/cardamom.png";
 import soybeanImg from "@/assets/products/soybean.png";
 import wheatFlourImg from "@/assets/products/wheat-flour.png";
+import sesameSeedsImg from "@/assets/products/hulled-sesame.png";
 
 const Products = () => {
   // Only show 3 products on homepage
@@ -30,11 +31,11 @@ const Products = () => {
       hsn: "0909.61"
     },
     {
-      name: "Cardamom",
-      image: cardamomImg,
-      link: "/products/cardamom",
-      specs: ["8mm Bold", "25 kg Boxes", "Green/Bleached"],
-      hsn: "0908.31"
+      name: "Sesame Seeds",
+      image: sesameSeedsImg,
+      link: "/products/sesame-seeds",
+      specs: ["Hulled & Natural", "99.95% Purity", "White/Golden"],
+      hsn: "1207.40"
     },
   ];
 

@@ -17,7 +17,6 @@ const CardamomPage = () => {
         { label: "Size", value: "6mm, 7mm, 8mm Bold" },
         { label: "Color", value: "Natural Green" },
         { label: "Packaging", value: "25kg / 50kg PP Bags, Jute Bags, or Customized" },
-        { label: "Shelf Life", value: "12-24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA, Spices Board of India" },
       ]}
       uses={[

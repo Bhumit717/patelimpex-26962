@@ -16,7 +16,6 @@ const PsylliumSeedsDetail = () => {
         { label: "Moisture", value: "< 12%" },
         { label: "Color", value: "Light Brown to Pinkish" },
         { label: "Packaging", value: "25/50kg PP Bags, Customized" },
-        { label: "Shelf Life", value: "24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA" },
       ]}
       uses={[

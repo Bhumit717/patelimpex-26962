@@ -16,7 +16,6 @@ const PsylliumSeedsDetailPage = () => {
         { label: "Moisture", value: "< 12%" },
         { label: "Admixture", value: "< 1%" },
         { label: "Packaging", value: "25kg PP Bags, 50kg Jute Bags, Customized" },
-        { label: "Shelf Life", value: "24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA" },
       ]}
       uses={[

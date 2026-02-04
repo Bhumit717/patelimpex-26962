@@ -16,7 +16,6 @@ const PsylliumPowderDetailPage = () => {
         { label: "Moisture", value: "< 12%" },
         { label: "Color", value: "Off-white to Light Brown" },
         { label: "Packaging", value: "25kg PP Bags, 50kg Drums, Customized" },
-        { label: "Shelf Life", value: "24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, USDA Organic, Kosher, Halal" },
       ]}
       uses={[

@@ -102,6 +102,9 @@ import WheatFlourPage from "./pages/products/WheatFlourPage";
 import RiceProductsPage from "./pages/products/RiceProductsPage";
 import GroundnutProductsPage from "./pages/products/GroundnutProductsPage";
 import CottonProductsPage from "./pages/products/CottonProductsPage";
+import SesameSeedsProducts from "./pages/products/SesameSeedsProducts";
+import HulledSesameSeedsDetail from "./pages/products/HulledSesameSeedsDetail";
+import NaturalSesameSeedsDetail from "./pages/products/NaturalSesameSeedsDetail";
 
 // Cotton Subproduct Pages
 import RawCottonDetail from "./pages/products/RawCottonDetail";
@@ -573,6 +576,9 @@ const App = () => (
           <Route path="/products/rice" element={<RiceProductsPage />} />
           <Route path="/products/groundnut" element={<GroundnutProductsPage />} />
           <Route path="/products/cotton" element={<CottonProductsPage />} />
+          <Route path="/products/sesame-seeds" element={<SesameSeedsProducts />} />
+          <Route path="/products/sesame-seeds/hulled" element={<HulledSesameSeedsDetail />} />
+          <Route path="/products/sesame-seeds/natural" element={<NaturalSesameSeedsDetail />} />
 
           {/* Cotton Subproduct Routes */}
           <Route path="/products/raw-cotton" element={<RawCottonDetail />} />

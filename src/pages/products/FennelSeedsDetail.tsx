@@ -15,7 +15,6 @@ const FennelSeedsDetail = () => {
         { label: "Moisture", value: "< 10%" },
         { label: "Purity", value: "99% Minimum" },
         { label: "Packaging", value: "25kg/50kg PP Bags, Jute Bags" },
-        { label: "Shelf Life", value: "12-24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA, Spices Board" },
       ]}
       uses={[

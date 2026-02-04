@@ -16,7 +16,6 @@ const SoybeanDetail = () => {
         { label: "Purity", value: "99% Minimum" },
         { label: "Protein", value: "46-48%" },
         { label: "Packaging", value: "25kg/50kg PP Bags, Jute Bags" },
-        { label: "Shelf Life", value: "12-24 Months" },
         { label: "Certifications", value: "FSSAI, ISO, APEDA" },
       ]}
       uses={[
