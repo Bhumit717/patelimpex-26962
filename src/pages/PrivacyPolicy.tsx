@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import WhatsAppChat from "@/components/WhatsAppChat";
@@ -7,18 +8,17 @@ import { Shield, Lock, Eye, FileText, Users, Globe } from "lucide-react";
 const PrivacyPolicy = () => {
   return (
     <>
-      <SEOHead title="Privacy Policy | Patel Impex" description="Our commitment to protecting your privacy and data." canonicalUrl="/privacypolicy" />
+      <SEOHead title="Privacy Policy | Patel Impex" description="Our commitment to protecting your privacy and data." canonicalUrl="/privacy-policy" />
       <Helmet>
         <title>Privacy Policy | Patel Impex - Data Protection & Privacy Rights</title>
         <meta name="description" content="Read Patel Impex privacy policy. Learn how we protect your personal data, cookies usage, and your privacy rights for our import export services." />
-import SEOHead from "@/components/SEOHead";
         <link rel="canonical" href="https://patelimpex.com/privacy-policy" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
         <Navigation />
         <WhatsAppChat />
-        
+
         <main className="pt-32 pb-16">
           <div className="container mx-auto px-4">
             {/* Header */}

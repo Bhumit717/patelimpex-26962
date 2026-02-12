@@ -91,12 +91,6 @@ const Products = () => {
     },
   ];
 
-  const stats = [
-    { label: "Countries Served", value: "50+", icon: Globe },
-    { label: "Happy Clients", value: "100+", icon: Users },
-    { label: "Products Exported", value: "1000+", icon: Target },
-    { label: "Years Experience", value: "15+", icon: Star },
-  ];
 
   const generateStructuredData = () => ({
     "@context": "https://schema.org",
@@ -133,76 +127,65 @@ const Products = () => {
         <Navigation />
 
         {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-[#e9edf3] relative overflow-hidden">
+        <section className="pt-40 pb-20 bg-white relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] mb-6">
-                <Leaf className="h-4 w-4 text-blue-600 mr-2" />
-                <span className="text-slate-600 text-sm font-semibold">Premium Quality Exports</span>
+              <div className="inline-flex items-center px-4 py-2 bg-slate-50 rounded-full border border-slate-100 mb-8">
+                <Leaf className="h-4 w-4 text-green-600 mr-2" />
+                <span className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] font-graduate">Premium Inventory</span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-black mb-6 text-slate-800">
-                Our <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Premium Products</span>
+              <h1 className="text-5xl md:text-8xl font-black mb-8 text-slate-900 font-graduate uppercase tracking-tighter">
+                Global <span className="text-green-600 font-fredericka tracking-tight lowercase">Trading</span> Stock
               </h1>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                Quality agricultural commodities exported from India to 50+ countries worldwide
+              <p className="text-xl text-slate-500 max-w-2xl mx-auto font-fondamento italic leading-relaxed">
+                Our portfolio features high-grade agricultural commodities and industrial raw materials direct from verified Indian sources.
               </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-                {stats.map((stat, index) => (
-                  <div key={index} className="nm-card p-6">
-                    <stat.icon className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-                    <div className="text-3xl font-bold text-slate-800">{stat.value}</div>
-                    <div className="text-sm text-slate-600">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
 
         {/* Products Grid */}
-        <section className="py-20 bg-[#e9edf3] relative overflow-hidden">
+        <section className="py-24 bg-[#f8fafc] relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {products.map((product, index) => (
                 <Link
                   key={index}
                   to={product.link}
-                  className="group relative nm-card !p-0 overflow-hidden hover:-translate-y-2 transition-transform duration-300"
+                  className="group relative nm-card !p-0 overflow-hidden hover:-translate-y-3 transition-all duration-500 bg-white"
                 >
                   {/* Image Section */}
-                  <div className="relative h-64 overflow-hidden bg-slate-100 p-6 flex items-center justify-center">
+                  <div className="relative h-64 overflow-hidden bg-slate-50 p-10 flex items-center justify-center">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-700"
+                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-1000"
                     />
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-[#e9edf3] text-blue-600 text-xs font-semibold rounded-full shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                    <div className="absolute top-4 right-4 px-3 py-1 bg-white/80 backdrop-blur-sm text-green-600 text-[10px] font-bold rounded-full border border-slate-100 shadow-sm font-graduate uppercase tracking-widest">
                       HSN: {product.hsn}
                     </div>
                   </div>
 
                   {/* Content Section */}
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors">
+                  <div className="p-10">
+                    <h3 className="text-2xl font-black text-slate-900 mb-6 font-graduate uppercase tracking-tight group-hover:text-green-600 transition-colors">
                       {product.name}
                     </h3>
 
                     {/* Specs */}
-                    <div className="space-y-2 mb-6">
+                    <div className="space-y-3 mb-8">
                       {product.specs.map((spec, i) => (
-                        <div key={i} className="flex items-center text-sm text-slate-600">
-                          <CheckCircle className="h-4 w-4 text-teal-600 mr-2 flex-shrink-0" />
+                        <div key={i} className="flex items-center text-xs font-bold font-graduate uppercase tracking-widest text-slate-400">
+                          <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0" />
                           <span>{spec}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* CTA */}
-                    <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700">
-                      <span>View Details</span>
-                      <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                    <div className="flex items-center text-green-600 font-graduate font-bold uppercase tracking-widest text-xs group-hover:translate-x-2 transition-transform">
+                      <span>Explore Specifications</span>
+                      <ArrowRight className="h-4 w-4 ml-4" />
                     </div>
                   </div>
                 </Link>
@@ -210,14 +193,13 @@ const Products = () => {
             </div>
 
             {/* Contact CTA */}
-            <div className="text-center mt-12">
+            <div className="text-center mt-20">
               <Link
                 to="/contact"
-                className="nm-btn inline-flex items-center !w-auto text-slate-700"
+                className="nm-btn-green inline-flex items-center !w-auto min-w-[300px] !py-6"
               >
-                <Package className="h-5 w-5 mr-2" />
-                Request Quote
-                <ArrowRight className="h-5 w-5 ml-2 transition-transform duration-300" />
+                <Package className="h-5 w-5 mr-4" />
+                <span className="font-graduate uppercase tracking-[0.3em] text-sm">Request Volume Quote</span>
               </Link>
             </div>
           </div>

@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 
 export const CustomCursor = () => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const mainCursor = useRef<HTMLDivElement>(null);
     const [isHovering, setIsHovering] = useState(false);
 
     useEffect(() => {
         const updatePosition = (e: MouseEvent) => {
-            setPosition({ x: e.clientX, y: e.clientY });
+            if (mainCursor.current) {
+                // Use translate3d for hardware acceleration
+                mainCursor.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            }
         };
 
         const handleMouseOver = (e: MouseEvent) => {
@@ -24,7 +28,7 @@ export const CustomCursor = () => {
             }
         };
 
-        window.addEventListener("mousemove", updatePosition);
+        window.addEventListener("mousemove", updatePosition, { passive: true });
         window.addEventListener("mouseover", handleMouseOver);
 
         return () => {
@@ -40,41 +44,45 @@ export const CustomCursor = () => {
           * {
             cursor: none !important;
           }
-          /* Restore cursor for iframes or specific elements if needed */
+          @media (max-width: 768px), (pointer: coarse) {
+            .custom-cursor {
+              display: none !important;
+            }
+            * {
+              cursor: auto !important;
+            }
+          }
           iframe {
             cursor: default !important;
           }
         `}
             </style>
             <div
+                ref={mainCursor}
                 style={{
                     position: "fixed",
                     top: 0,
                     left: 0,
-                    width: "16px",
-                    height: "16px", // Reduced to half
-                    transform: `translate(${position.x}px, ${position.y}px)`,
+                    width: "24px",
+                    height: "24px",
                     pointerEvents: "none",
                     zIndex: 9999,
                     backgroundImage: 'url("/cursor.png")',
                     backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
-                    transition: "transform 0.1s ease-out, width 0.3s, height 0.3s", // fast movement, smooth size change
-                    // Adjusting offsets to center or tip-align if necessary. 
-                    // For a container box, centering or top-left might depend on the image visual. 
-                    // Let's assume top-left corner is the pointer.
-                    marginTop: "-2px", // Adjusted offset for smaller size
-                    marginLeft: "-2px",
+                    marginTop: "-12px",
+                    marginLeft: "-12px",
+                    willChange: "transform",
                 }}
                 className={`custom-cursor ${isHovering ? "hovering" : ""}`}
             >
-                {/* Optional: Add a follower or effect inside if needed */}
                 <div
                     style={{
                         width: "100%",
                         height: "100%",
-                        transition: "all 0.3s ease",
-                        transform: isHovering ? "scale(1.5) rotate(-5deg)" : "scale(1) rotate(0deg)",
+                        transition: "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                        transform: isHovering ? "scale(1.5)" : "scale(1)",
+                        opacity: 0.8
                     }}
                 />
             </div >

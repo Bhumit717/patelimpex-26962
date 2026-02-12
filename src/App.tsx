@@ -184,7 +184,7 @@ import DecorativeLampsExport from "./pages/products/DecorativeLampsExport";
 import FashionJewelryExport from "./pages/products/FashionJewelryExport";
 
 // SEO Pages
-// import USAMarketExport from "./pages/seo/USAMarketExport";
+import USAMarketExport from "./pages/seo/USAMarketExport";
 import UKMarketExport from "./pages/seo/UKMarketExport";
 import CanadaMarketExport from "./pages/seo/CanadaMarketExport";
 import AustraliaMarketExport from "./pages/seo/AustraliaMarketExport";
@@ -358,11 +358,13 @@ const App = () => (
           <Route path="/seo" element={<SEO />} />
           <Route path="/more" element={<More />} />
 
-          {/* More sub-pages - Migrated to DynamicSEOProductPage */}
-          <Route path="/more/:slug" element={<DynamicSEOProductPage />} />
-          {/* <Route path="/more/export-import-guide" element={<ExportImportGuide />} />
+          {/* More sub-pages */}
+          <Route path="/more/certification-services" element={<CertificationServices />} />
+          <Route path="/more/export-import-guide" element={<ExportImportGuide />} />
           <Route path="/more/international-trade-basics" element={<InternationalTradeBasics />} />
           <Route path="/more/rice-export" element={<RiceExport />} />
+          <Route path="/more/basmati-rice-export" element={<BasmatiRiceExport />} />
+          <Route path="/more/non-basmati-rice-export" element={<NonBasmatiRiceExport />} />
           <Route path="/more/spices-export" element={<SpicesExport />} />
           <Route path="/more/asian-markets" element={<AsianMarkets />} />
           <Route path="/more/sea-freight" element={<SeaFreight />} />
@@ -387,62 +389,29 @@ const App = () => (
           <Route path="/more/legal-compliance" element={<LegalCompliance />} />
           <Route path="/more/technology-integration" element={<TechnologyIntegration />} />
           <Route path="/more/packaging-services" element={<PackagingServices />} />
-          <Route path="/more/certification-services" element={<CertificationServices />} />
-          <Route path="/more/supply-chain-management" element={<SupplyChainManagement />} />
-          <Route path="/more/north-american-markets" element={<NorthAmericanMarkets />} />
-          <Route path="/more/south-american-markets" element={<SouthAmericanMarkets />} />
-          <Route path="/more/oceania-markets" element={<OceaniaMarkets />} />
-          <Route path="/more/eastern-european-markets" element={<EasternEuropeanMarkets />} />
-          <Route path="/more/central-asian-markets" element={<CentralAsianMarkets />} />
-          <Route path="/more/southeast-asian-markets" element={<SoutheastAsianMarkets />} />
-          <Route path="/more/northeast-asian-markets" element={<NortheastAsianMarkets />} />
-          <Route path="/more/southern-african-markets" element={<SouthernAfricanMarkets />} />
-          <Route path="/more/west-african-markets" element={<WestAfricanMarkets />} />
-          <Route path="/more/east-african-markets" element={<EastAfricanMarkets />} />
-          <Route path="/more/north-african-markets" element={<NorthAfricanMarkets />} />
-          <Route path="/more/gulf-cooperation-council" element={<GulfCooperationCouncil />} />
-          <Route path="/more/levant-markets" element={<LevantMarkets />} />
-          <Route path="/more/scandinavian-markets" element={<ScandinavianMarkets />} />
-          <Route path="/more/mediterranean-markets" element={<MediterraneanMarkets />} />
-          <Route path="/more/basmati-rice-export" element={<BasmatiRiceExport />} />
-          <Route path="/more/non-basmati-rice-export" element={<NonBasmatiRiceExport />} />
-          <Route path="/more/wheat-export" element={<WheatExport />} />
-          <Route path="/more/corn-export" element={<CornExport />} />
-          <Route path="/more/millet-export" element={<MilletExport />} />
-          <Route path="/more/barley-export" element={<BarleyExport />} />
-          <Route path="/more/turmeric-export" element={<TurmericExport />} />
-          <Route path="/more/cumin-export" element={<CuminExport />} />
-          <Route path="/more/coriander-export" element={<CorianderExport />} />
-          <Route path="/more/cardamom-export" element={<CardamomExport />} />
-          <Route path="/more/black-pepper-export" element={<BlackPepperExport />} />
-          <Route path="/more/red-chili-export" element={<RedChiliExport />} />
-          <Route path="/more/ginger-export" element={<GingerExport />} />
-          <Route path="/more/garlic-export" element={<GarlicExport />} />
-          <Route path="/more/onion-export" element={<OnionExport />} />
-          <Route path="/more/cashew-export" element={<CashewExport />} />
-          <Route path="/more/almond-export" element={<AlmondExport />} />
-          <Route path="/more/sesame-seeds-export" element={<SesameSeedsExport />} />
-          <Route path="/more/sunflower-seeds-export" element={<SunflowerSeedsExport />} /> */}
+          <Route path="/more/:slug" element={<DynamicSEOProductPage />} />
+
+
 
           {/* SEO Pages */}
-          {/* <Route path="/seo/usa-market-export" element={<USAMarketExport />} /> */}
-          {/* <Route path="/seo/uk-market-export" element={<UKMarketExport />} />
+          <Route path="/seo/usa-market-export" element={<USAMarketExport />} />
+          <Route path="/seo/uk-market-export" element={<UKMarketExport />} />
           <Route path="/seo/canada-market-export" element={<CanadaMarketExport />} />
-          <Route path="/seo/australia-market-export" element={<AustraliaMarketExport />} /> */}
+          <Route path="/seo/australia-market-export" element={<AustraliaMarketExport />} />
           <Route path="/seo/organic-food-export" element={<OrganicFoodExport />} />
           <Route path="/seo/frozen-food-export" element={<FrozenFoodExport />} />
           <Route path="/seo/pharmaceutical-export" element={<PharmaceuticalExport />} />
           <Route path="/seo/air-freight-services" element={<AirFreightServices />} />
           <Route path="/seo/ocean-freight-services" element={<OceanFreightServices />} />
           <Route path="/seo/express-shipping-services" element={<ExpressShippingServices />} />
-          {/* <Route path="/seo/germany-market-export" element={<GermanyMarketExport />} />
+          <Route path="/seo/germany-market-export" element={<GermanyMarketExport />} />
           <Route path="/seo/france-market-export" element={<FranceMarketExport />} />
           <Route path="/seo/italy-market-export" element={<ItalyMarketExport />} />
           <Route path="/seo/spain-market-export" element={<SpainMarketExport />} />
           <Route path="/seo/netherlands-market-export" element={<NetherlandsMarketExport />} />
           <Route path="/seo/japan-market-export" element={<JapanMarketExport />} />
           <Route path="/seo/belgium-market-export" element={<BelgiumMarketExport />} />
-          <Route path="/seo/singapore-market-export" element={<SingaporeMarketExport />} /> */}
+          <Route path="/seo/singapore-market-export" element={<SingaporeMarketExport />} />
           <Route path="/seo/tea-export-services" element={<TeaExportServices />} />
           <Route path="/seo/coffee-export-services" element={<CoffeeExportServices />} />
           <Route path="/seo/sugar-export-services" element={<SugarExportServices />} />
@@ -458,7 +427,7 @@ const App = () => (
           <Route path="/seo/handicrafts-export-services" element={<HandicraftsExportServices />} />
           <Route path="/seo/leather-products-export-services" element={<LeatherProductsExportServices />} />
           <Route path="/seo/gems-jewelry-export-services" element={<GemsJewelryExportServices />} />
-          {/* <Route path="/seo/uae-market-export" element={<UAEMarketExport />} /> */}
+          <Route path="/seo/uae-market-export" element={<UAEMarketExport />} />
           <Route path="/seo/arhar-dal-export" element={<ArharDalExport />} />
           <Route path="/seo/moong-dal-export" element={<MoongDalExport />} />
           <Route path="/seo/chana-dal-export" element={<ChanaDalExport />} />
@@ -480,7 +449,7 @@ const App = () => (
           <Route path="/seo/nigella-seeds-export" element={<NigellaSeedsExport />} />
           <Route path="/seo/soybean-export" element={<SoybeanExport />} />
           <Route path="/seo/psyllium-husk-export" element={<PsylliumHuskExport />} />
-          {/* <Route path="/seo/morocco-market-export" element={<MoroccoMarketExport />} /> */}
+          <Route path="/seo/morocco-market-export" element={<MoroccoMarketExport />} />
           <Route path="/seo/kenya-market-export-services" element={<KenyaMarketExportServices />} />
           <Route path="/seo/nigeria-market-export-services" element={<NigeriaMarketExportServices />} />
           <Route path="/seo/walnut-export" element={<WalnutExport />} />
@@ -492,7 +461,7 @@ const App = () => (
           <Route path="/seo/brazil-nut-export" element={<BrazilNutExport />} />
           <Route path="/seo/raisins-export" element={<RaisinsExport />} />
           <Route path="/seo/dates-export" element={<DatesExport />} />
-          {/* <Route path="/seo/algeria-market-export" element={<AlgeriaMarketExport />} />
+          <Route path="/seo/algeria-market-export" element={<AlgeriaMarketExport />} />
           <Route path="/seo/angola-market-export" element={<AngolaMarketExport />} />
           <Route path="/seo/argentina-market-export" element={<ArgentinaMarketExport />} />
           <Route path="/seo/azerbaijan-market-export" element={<AzerbaijanMarketExport />} />
@@ -558,7 +527,9 @@ const App = () => (
           <Route path="/seo/sri-lanka-market-export" element={<SriLankaMarketExport />} />
           <Route path="/seo/thailand-market-export" element={<ThailandMarketExport />} />
           <Route path="/seo/turkey-market-export" element={<TurkeyMarketExport />} />
-          <Route path="/seo/vietnam-market-export" element={<VietnamMarketExport />} /> */}
+          <Route path="/seo/vietnam-market-export" element={<VietnamMarketExport />} />
+          <Route path="/seo/:slug" element={<DynamicSEOProductPage />} />
+
 
           {/* Generated SEO Routes */}
 
@@ -663,7 +634,7 @@ const App = () => (
           <Route path="/cookie-policy" element={<CookiePolicy />} />
 
           {/* Sitemap is served as a static file from /public/sitemap.xml */}
-          <Route path="/seo/:slug" element={<DynamicSEOProductPage />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

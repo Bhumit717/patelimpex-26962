@@ -1,128 +1,67 @@
 
-import { ArrowRight, TrendingUp, Globe, Shield, CheckCircle, Zap, Brain, CircuitBoard } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import heroMainImg from "@/assets/hero-main.png";
 
 const Hero = () => {
   return (
-    <main className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#e9edf3]" role="banner" aria-label="Patel Impex - Global Import Export Company Hero Section">
-      {/* Static background elements */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute w-96 h-96 bg-blue-200/20 rounded-full -top-48 -left-48 blur-3xl"></div>
-        <div className="absolute w-64 h-64 bg-teal-200/20 rounded-full top-1/4 right-0 blur-3xl"></div>
-        <div className="absolute w-32 h-32 bg-purple-200/20 rounded-full bottom-1/4 left-1/4 blur-3xl"></div>
-      </div>
+    <main className="relative min-h-[90svh] flex items-center bg-white pt-24 pb-12 overflow-hidden" role="banner">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-      <div className="relative container mx-auto px-4 z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            {/* Trust badge with better touch target */}
-            <div className="inline-flex items-center px-6 py-3 bg-[#e9edf3] rounded-[50px] min-h-[44px] shadow-[6px_6px_12px_#cfd6e0,-6px_-6px_12px_#ffffff]" role="banner" aria-label="Trust indicator">
-              <CheckCircle className="h-4 w-4 text-blue-600 mr-2" aria-hidden="true" />
-              <span className="text-sm font-medium text-slate-600">Trusted by 100+ Global Companies</span>
+          {/* Left Side - Content */}
+          <div className="space-y-6 lg:space-y-8 text-slate-700 text-center lg:text-left order-2 lg:order-1">
+            {/* About Us Pill */}
+            <div className="flex justify-center lg:justify-start animate-fade-in opacity-0" style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}>
+              <div className="px-6 py-2 rounded-full bg-green-50 border border-green-100 text-green-600 font-graduate text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold">
+                About Us
+              </div>
             </div>
 
-            {/* Main heading - LCP optimized with fetchpriority */}
-            <header className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-black leading-tight text-slate-800 lcp-element" id="main-heading">
-                <span className="block">
-                  Leading Import Export Company
-                </span>
-                <span className="block text-transparent bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text">
-                  from India
-                </span>
-                <span className="block">
-                  Global Trade Solutions
-                </span>
+            {/* Cursive Welcome Line */}
+            <div className="animate-slide-up opacity-0" style={{ animationDelay: '400ms', animationFillMode: 'forwards' }}>
+              <h1 className="font-montecarlo text-6xl sm:text-7xl lg:text-8xl xl:text-[110px] text-slate-900 leading-[1.1] py-2">
+                Welcome to Patel Impex
               </h1>
-            </header>
+            </div>
 
-            <p className="text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-xl" role="text" aria-describedby="main-heading">
-              Your premier partner for seamless international trade solutions. We connect Indian manufacturers with global markets through expert import export business services, helping import and export businesses thrive globally.
-            </p>
+            {/* Description Paragraphs in Fondamento */}
+            <div className="space-y-6 text-lg sm:text-xl lg:text-2xl leading-relaxed font-fondamento text-slate-600 px-2 max-w-2xl text-left italic animate-slide-up opacity-0" style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}>
+              <p>
+                Patel Impex is a prominent Export-Import Representative company based in
+                India. We specialize in agricultural commodities and serve as a strategic bridge
+                between international buyers and global suppliers.
+              </p>
+              <p className="hidden md:block">
+                Our mission is to provide the "essence of the agro resources" to the international
+                market, ensuring quality, consistency, and timely service.
+              </p>
+            </div>
 
-            {/* Key benefits with better spacing */}
-            <section className="grid grid-cols-1 sm:grid-cols-2 gap-6" aria-label="Company benefits and certifications">
-              {[
-                { text: "15+ Years Export Excellence" },
-                { text: "50+ Countries Served" },
-                { text: "ISO 9001:2015 Certified" },
-                { text: "24/7 Global Support" }
-              ].map((benefit, index) => (
-                <div key={index} className="flex items-center space-x-3 text-slate-600 min-h-[32px]" role="listitem">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" aria-hidden="true"></div>
-                  <span className="font-medium">{benefit.text}</span>
-                </div>
-              ))}
-            </section>
-
-            {/* Improved touch targets for navigation */}
-            <nav className="flex flex-col sm:flex-row gap-6" aria-label="Primary action buttons">
-              <Link to="/products" aria-label="View our import export products and services" className="inline-block">
-                <Button size="lg" className="nm-btn !w-auto !px-8 text-slate-700 hover:text-blue-600 min-h-[48px] bg-[#e9edf3]" tabIndex={0}>
-                  View Our Products
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300" aria-hidden="true" />
-                </Button>
-              </Link>
-              <Link to="/services" aria-label="Explore our import export services" className="inline-block">
-                <Button variant="outline" size="lg" className="nm-btn !w-auto !px-8 text-slate-700 hover:text-blue-600 min-h-[48px] bg-[#e9edf3] hover:bg-white border-none" tabIndex={0}>
-                  Our Services
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300" aria-hidden="true" />
-                </Button>
-              </Link>
-              <Link to="/about" aria-label="Learn more about our import export company" className="inline-block">
-                <Button variant="ghost" size="lg" className="nm-btn !w-auto !px-8 text-slate-700 hover:text-blue-600 min-h-[48px] bg-[#e9edf3] hover:bg-white" tabIndex={0}>
-                  About Us
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300" aria-hidden="true" />
-                </Button>
-              </Link>
-            </nav>
-
-            {/* Stats with better spacing */}
-            <section className="grid grid-cols-3 gap-8 pt-8" aria-label="Company statistics and achievements">
-              {[
-                { number: "100+", label: "Global Clients", description: "Import export businesses we've served" },
-                { number: "15+", label: "Years Experience", description: "Years in import export business" },
-                { number: "50+", label: "Countries Reached", description: "Countries served by our export company" },
-              ].map((stat, index) => (
-                <div key={index} className="text-center group cursor-pointer min-h-[80px] p-4 nm-card hover:-translate-y-1 transition-transform" role="article" aria-label={`${stat.description}: ${stat.number}`} tabIndex={0}>
-                  <div className="text-3xl lg:text-4xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300" aria-label={`${stat.number} ${stat.label}`}>
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-slate-500 font-medium">{stat.label}</div>
-                </div>
-              ))}
-            </section>
+            {/* Sketched Slogan in GREEN */}
+            <div className="pt-6 max-w-4xl text-left px-2 animate-slide-up opacity-0" style={{ animationDelay: '800ms', animationFillMode: 'forwards' }}>
+              <h2 className="font-fredericka text-2xl sm:text-5xl lg:text-7xl xl:text-8xl text-green-600 leading-[1.1] tracking-wider uppercase flex flex-col items-start">
+                <span className="whitespace-nowrap">THINK TRADE.</span>
+                <span className="whitespace-nowrap">THINK PATEL</span>
+              </h2>
+            </div>
           </div>
 
-          <section className="grid grid-cols-1 gap-6" aria-label="Key features and services">
-            {[
-              {
-                icon: Globe,
-                title: "Global Reach",
-                desc: "Connect with markets across 50+ countries with our extensive import export business network",
-              },
-              {
-                icon: Shield,
-                title: "Secure Trading",
-                desc: "100% compliant transactions with full documentation and insurance for all import export firms",
-              },
-            ].map((item, index) => (
-              <article key={index} className="group cursor-pointer transform hover:-translate-y-2 transition-all duration-300" role="article" aria-label={`${item.title} service feature`} tabIndex={0}>
-                <div className="nm-card p-8 min-h-[200px]">
-                  <div className="w-16 h-16 rounded-[20px] bg-[#e9edf3] shadow-[inset_4px_4px_8px_#cfd6e0,inset_-4px_-4px_8px_#ffffff] flex items-center justify-center mb-6" aria-hidden="true">
-                    <item.icon className="h-8 w-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 text-lg leading-relaxed">{item.desc}</p>
-                </div>
-              </article>
-            ))}
-          </section>
+          {/* Right Side - Main Image */}
+          <div className="flex justify-center items-center order-1 lg:order-2">
+            <div className="relative w-full max-w-lg lg:max-w-2xl transform hover:scale-105 transition-transform duration-1000">
+              <img
+                src={heroMainImg}
+                alt="Patel Impex Peanuts Export"
+                className="w-full h-auto object-contain drop-shadow-2xl"
+                fetchPriority="high"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
+
+      {/* Decorative Blur Elements for premium feel */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-green-50 rounded-full blur-[120px] -z-10 opacity-30"></div>
     </main>
   );
 };

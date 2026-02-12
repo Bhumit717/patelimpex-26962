@@ -8,7 +8,7 @@ import { Cookie, Settings, Eye, BarChart, Shield, Globe } from "lucide-react";
 const CookiePolicy = () => {
   return (
     <>
-      <SEOHead title="Cookie Policy | Patel Impex" description="Information about how we use cookies on our website." canonicalUrl="/cookiepolicy" />
+      <SEOHead title="Cookie Policy | Patel Impex" description="Information about how we use cookies on our website." canonicalUrl="/cookie-policy" />
       <Helmet>
         <title>Cookie Policy | Patel Impex - How We Use Cookies</title>
         <meta name="description" content="Learn about Patel Impex cookie usage. Understand how we use cookies to improve your experience on our import export website." />

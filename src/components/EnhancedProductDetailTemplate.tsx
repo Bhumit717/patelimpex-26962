@@ -118,7 +118,7 @@ const EnhancedProductDetailTemplate = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#e9edf3]">
+    <div className="min-h-screen bg-[#f8fafc]">
       <SEOHead
         title={metaTitle || `${name} Exporter India | Patel Impex`}
         description={metaDescription || description.substring(0, 160)}
@@ -129,50 +129,52 @@ const EnhancedProductDetailTemplate = ({
       />
       <Navigation />
 
-      <main className="pt-24 pb-16">
+      <main className="pt-32 pb-24">
         <div className="container mx-auto px-4">
-          <Breadcrumbs items={breadcrumbs} />
+          <div className="mb-12">
+            <Breadcrumbs items={breadcrumbs} />
+          </div>
 
           <Link
             to={backLink}
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors font-medium"
+            className="inline-flex items-center text-slate-400 hover:text-green-600 mb-10 transition-colors font-graduate uppercase text-[10px] tracking-widest font-bold"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             {backLinkText}
           </Link>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             {/* Image Gallery */}
-            <div className="space-y-6">
-              <div className="relative aspect-square rounded-[30px] overflow-hidden bg-white p-2 nm-inset">
+            <div className="space-y-8">
+              <div className="relative aspect-square rounded-[40px] overflow-hidden bg-white p-12 border border-slate-100 shadow-xl group">
                 <img
                   src={images[selectedImage]}
                   alt={`${name} - Image ${selectedImage + 1}`}
-                  className="w-full h-full object-contain mix-blend-multiply"
+                  className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-1000"
                 />
                 {hsCode && (
-                  <div className="absolute top-6 right-6 px-4 py-1.5 bg-[#e9edf3] text-blue-600 text-sm font-bold rounded-full shadow-[3px_3px_6px_#cfd6e0,-3px_-3px_6px_#ffffff]">
+                  <div className="absolute top-8 right-8 px-4 py-1.5 bg-white/80 backdrop-blur-md text-green-600 text-[10px] font-bold rounded-full border border-slate-100 shadow-sm font-graduate uppercase tracking-widest">
                     HSN: {hsCode}
                   </div>
                 )}
               </div>
 
               {images.length > 1 && (
-                <div className="flex gap-4 overflow-x-auto pb-2">
+                <div className="flex gap-4 overflow-x-auto pb-4 px-2">
                   {images.map((img, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`flex-shrink-0 w-20 h-20 rounded-[15px] overflow-hidden transition-all p-1 ${selectedImage === index
-                          ? "nm-inset border-2 border-blue-200"
-                          : "nm-card hover:translate-y-[-2px]"
+                      className={`flex-shrink-0 w-24 h-24 rounded-[20px] overflow-hidden transition-all p-2 bg-white border ${selectedImage === index
+                        ? "border-green-600 shadow-lg scale-105"
+                        : "border-slate-100 opacity-60 hover:opacity-100"
                         }`}
                       aria-label={`View image ${index + 1}`}
                     >
                       <img
                         src={img}
                         alt={`${name} thumbnail ${index + 1}`}
-                        className="w-full h-full object-cover rounded-[10px]"
+                        className="w-full h-full object-contain mix-blend-multiply"
                       />
                     </button>
                   ))}
@@ -180,67 +182,77 @@ const EnhancedProductDetailTemplate = ({
               )}
 
               {imageCredit && (
-                <p className="text-xs text-slate-500 italic text-center">Image source: {imageCredit}</p>
+                <p className="text-[10px] text-slate-400 font-graduate uppercase tracking-widest text-center">Source: {imageCredit}</p>
               )}
             </div>
 
             {/* Product Info */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               <div>
-                <div className="inline-block px-3 py-1 bg-blue-100 rounded-full text-blue-700 text-xs font-bold uppercase tracking-wide mb-3">
+                <div className="inline-block px-4 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-green-600 text-[10px] font-black uppercase tracking-[0.2em] font-graduate mb-6">
                   {category}
                 </div>
-                <h1 className="text-3xl md:text-5xl font-black text-slate-800 mb-6">
+                <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 font-graduate uppercase tracking-tighter leading-none">
                   {name}
                 </h1>
-                <p className="text-lg text-slate-600 leading-relaxed">
+                <p className="text-xl text-slate-500 font-fondamento italic leading-relaxed">
                   {description}
                 </p>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  size="lg"
+              <div className="flex flex-wrap gap-6 pt-4">
+                <button
                   onClick={() => setIsQuoteModalOpen(true)}
-                  className="nm-btn !bg-[#e9edf3] text-blue-600 hover:text-blue-700"
+                  className="nm-btn-green !w-auto min-w-[220px] !py-5 group"
                 >
-                  <MessageSquare className="h-5 w-5 mr-2" />
-                  Request Quote
-                </Button>
-                <Button
-                  size="lg"
-                  className="nm-btn !bg-[#e9edf3] text-slate-700 hover:text-slate-900"
-                  asChild
+                  <MessageSquare className="h-5 w-5 mr-3" />
+                  <span className="font-graduate uppercase tracking-widest text-sm font-bold">Request Trade Quote</span>
+                </button>
+                <Link
+                  to="/contact"
+                  className="nm-btn !w-auto min-w-[220px] !py-5 bg-white group"
                 >
-                  <Link to="/contact">
-                    <Mail className="h-5 w-5 mr-2" />
-                    Contact Sales
-                  </Link>
-                </Button>
+                  <Mail className="h-5 w-5 mr-3 text-slate-400 group-hover:text-green-600 transition-colors" />
+                  <span className="font-graduate uppercase tracking-widest text-sm font-bold text-slate-700">Contact Sales</span>
+                </Link>
                 {specSheetUrl && (
-                  <Button
-                    size="lg"
-                    className="nm-btn !bg-[#e9edf3] text-slate-700 hover:text-slate-900"
-                    asChild
+                  <a
+                    href={specSheetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nm-btn !w-auto min-w-[220px] !py-5 bg-white group"
                   >
-                    <a href={specSheetUrl} target="_blank" rel="noopener noreferrer">
-                      <Download className="h-5 w-5 mr-2" />
-                      Spec Sheet
-                    </a>
-                  </Button>
+                    <Download className="h-5 w-5 mr-3 text-slate-400 group-hover:text-green-600 transition-colors" />
+                    <span className="font-graduate uppercase tracking-widest text-sm font-bold text-slate-700">Download Specs</span>
+                  </a>
                 )}
+              </div>
+
+              {/* Specifications Table */}
+              <div className="nm-card !p-0 overflow-hidden bg-white border-none shadow-xl">
+                <div className="bg-slate-50 px-8 py-5 border-b border-slate-100">
+                  <h3 className="font-black text-slate-900 text-lg font-graduate uppercase tracking-tight">Technical Specifications</h3>
+                </div>
+                <div className="divide-y divide-slate-50">
+                  {specifications.map((spec, index) => (
+                    <div key={index} className="flex px-8 py-5 hover:bg-slate-50/50 transition-colors">
+                      <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest font-graduate w-1/3">{spec.label}</span>
+                      <span className="text-slate-800 w-2/3 font-fondamento text-lg italic">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Available Formats */}
               {formats && formats.length > 0 && (
-                <div className="nm-card p-6">
-                  <h3 className="font-bold text-slate-800 mb-4 text-lg">Available Formats</h3>
-                  <div className="flex flex-wrap gap-3">
+                <div className="space-y-4">
+                  <h3 className="font-black text-slate-900 font-graduate uppercase tracking-tight text-sm">Designated Packaging</h3>
+                  <div className="flex flex-wrap gap-4">
                     {formats.map((format, index) => (
                       <span
                         key={index}
-                        className="px-4 py-2 bg-[#e9edf3] rounded-full text-sm font-medium text-slate-600 shadow-[3px_3px_6px_#cfd6e0,-3px_-3px_6px_#ffffff]"
+                        className="px-6 py-2 bg-white rounded-full text-xs font-bold text-slate-500 border border-slate-100 shadow-sm font-graduate uppercase tracking-widest"
                       >
                         {format}
                       </span>
@@ -248,48 +260,34 @@ const EnhancedProductDetailTemplate = ({
                   </div>
                 </div>
               )}
-
-              {/* Specifications */}
-              <div className="nm-card !p-0 overflow-hidden">
-                <div className="bg-[#e9edf3] px-6 py-4 border-b border-white shadow-sm">
-                  <h3 className="font-bold text-slate-800 text-lg">Specifications</h3>
-                </div>
-                <div className="divide-y divide-white">
-                  {specifications.map((spec, index) => (
-                    <div key={index} className="flex px-6 py-4 hover:bg-white/30 transition-colors">
-                      <span className="font-semibold text-slate-600 w-1/3">{spec.label}</span>
-                      <span className="text-slate-800 w-2/3 font-medium">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 
           {/* Uses & Benefits */}
-          <div className="mt-16 grid md:grid-cols-2 gap-8">
-            <div className="nm-card p-8">
-              <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center">
-                <CheckCircle className="h-6 w-6 text-blue-600 mr-3" />
-                Uses & Benefits
+          <div className="mt-24 grid md:grid-cols-2 gap-12">
+            <div className="nm-card !p-12 bg-white border-none shadow-xl group">
+              <h2 className="text-3xl font-black text-slate-900 mb-10 font-graduate uppercase tracking-tight flex items-center">
+                <CheckCircle className="h-8 w-8 text-green-600 mr-4" />
+                Proven Industrial <span className="text-green-600 font-fredericka tracking-tight lowercase ml-2">Appilcations</span>
               </h2>
-              <ul className="space-y-4">
+              <ul className="grid gap-6">
                 {uses.map((use, index) => (
-                  <li key={index} className="flex items-start p-3 rounded-xl hover:bg-white/40 transition-colors">
-                    <div className="h-2 w-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                    <span className="text-slate-700">{use}</span>
+                  <li key={index} className="flex items-start">
+                    <div className="h-2 w-2 bg-green-600 rounded-full mt-2.5 mr-6 flex-shrink-0 group-hover:scale-125 transition-transform" />
+                    <span className="text-slate-500 font-fondamento text-lg italic leading-relaxed">{use}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="nm-card p-8">
-              <h2 className="text-2xl font-bold text-slate-800 mb-6">Export Information</h2>
-              <div className="space-y-4">
+            <div className="nm-card !p-12 bg-slate-900 border-none shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-green-600 rounded-bl-[100px] opacity-20"></div>
+              <h2 className="text-3xl font-black text-white mb-10 font-graduate uppercase tracking-tight">Trade & Export <span className="text-green-500 font-fredericka tracking-tight lowercase">Compliance</span></h2>
+              <div className="space-y-6">
                 {exportInfo.map((info, index) => (
-                  <div key={index} className="flex items-center justify-between border-b border-slate-200 pb-3 last:border-0 hover:bg-white/30 p-2 rounded-lg transition-colors">
-                    <p className="text-sm font-medium text-slate-500">{info.label}</p>
-                    <p className="font-bold text-slate-800 text-right">{info.value}</p>
+                  <div key={index} className="flex items-center justify-between border-b border-slate-800 pb-5 last:border-0 hover:bg-white/5 p-4 rounded-2xl transition-colors">
+                    <p className="text-[10px] font-bold text-green-500 font-graduate uppercase tracking-widest">{info.label}</p>
+                    <p className="font-black text-green-400 text-right font-graduate uppercase tracking-tight">{info.value}</p>
                   </div>
                 ))}
               </div>

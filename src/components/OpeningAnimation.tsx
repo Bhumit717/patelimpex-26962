@@ -1,105 +1,68 @@
-import { useState, useRef, useEffect } from "react";
+
+import { useState, useEffect } from "react";
 
 const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => {
-  const [videoEnded, setVideoEnded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [stage, setStage] = useState(0);
+  const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Skip animation if loading takes more than 4 seconds
-    const loadingTimeout = setTimeout(() => {
-      console.log('Video loading timeout - skipping animation');
-      onComplete();
-    }, 4000);
-
-    const handleVideoEnd = () => {
-      clearTimeout(loadingTimeout);
-      setVideoEnded(true);
-      // Add a small delay before hiding to ensure smooth transition
-      setTimeout(() => {
-        onComplete();
-      }, 300);
-    };
-
-    const handleVideoError = (e: Event) => {
-      clearTimeout(loadingTimeout);
-      console.error('Video failed to load:', e);
-      // If video fails to load, skip to main content after a short delay
-      setTimeout(() => {
-        onComplete();
-      }, 1500);
-    };
-
-    const handleLoadedData = () => {
-      // Set playback rate to make video complete in exactly 3 seconds
-      const targetDuration = 3; // 3 seconds
-      if (video.duration > targetDuration) {
-        video.playbackRate = video.duration / targetDuration;
-      }
-    };
-
-    // Optimize video loading
-    const handleCanPlayThrough = () => {
-      clearTimeout(loadingTimeout);
-      // Video is ready to play through without buffering
-      video.play().catch(error => {
-        console.error('Video autoplay failed:', error);
-        setTimeout(() => {
-          onComplete();
-        }, 1500);
-      });
-    };
-
-    video.addEventListener('ended', handleVideoEnd);
-    video.addEventListener('error', handleVideoError);
-    video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('canplaythrough', handleCanPlayThrough);
+    // Faster, more professional stages
+    const timer1 = setTimeout(() => setStage(1), 600);  // PATEL
+    const timer2 = setTimeout(() => setStage(2), 1200); // IMPEX
+    const timer3 = setTimeout(() => setStage(3), 1800); // Quality Line
+    const timer4 = setTimeout(() => setIsExiting(true), 2500); // Start Exit
+    const timer5 = setTimeout(() => onComplete(), 3200); // Complete
 
     return () => {
-      clearTimeout(loadingTimeout);
-      video.removeEventListener('ended', handleVideoEnd);
-      video.removeEventListener('error', handleVideoError);
-      video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('canplaythrough', handleCanPlayThrough);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+      clearTimeout(timer5);
     };
   }, [onComplete]);
 
   return (
-    <div 
-      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-300 bg-background ${
-        videoEnded ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}
-      style={{ 
-        backgroundColor: '#080A09'
-      }}
+    <div
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-transform duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] ${isExiting ? '-translate-y-full' : 'translate-y-0'}`}
       role="dialog"
-      aria-label="Company introduction video"
-      aria-modal="true"
+      aria-label="Welcome to Patel Impex"
     >
-      <div className="w-[60vw] h-[60vh] max-w-[600px] max-h-[400px] flex items-center justify-center">
-        <video
-          ref={videoRef}
-          className="w-full h-full object-contain"
-          muted
-          playsInline
-          preload="metadata"
-          aria-label="Patel Impex company introduction video"
-        >
-          <source 
-            src="/logo-animation.mp4" 
-            type="video/mp4" 
+      {/* Decorative background stripes for a premium feel */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-1/4 bg-slate-900" />
+        <div className="absolute bottom-0 left-0 w-full h-1/4 bg-slate-900" />
+      </div>
+
+      <div className="text-center space-y-4 px-4 relative z-10">
+        <div className={`overflow-hidden`}>
+          <span className={`font-montecarlo text-5xl md:text-7xl text-slate-400 block transition-all duration-700 ${stage >= 0 ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            Welcome to
+          </span>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-center md:gap-6">
+          <h1 className={`font-graduate text-6xl md:text-[10rem] font-black tracking-tighter transition-all duration-700 ease-out ${stage >= 1 ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
+            PATEL
+          </h1>
+          <h1 className={`font-fredericka text-6xl md:text-[10rem] text-green-600 transition-all duration-700 delay-100 ease-out ${stage >= 2 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
+            IMPEX
+          </h1>
+        </div>
+
+        <div className={`overflow-hidden pt-4`}>
+          <p className={`font-fondamento text-xl md:text-3xl text-slate-500 italic transition-all duration-1000 ${stage >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'}`}>
+            "The Essence of Agro Resources"
+          </p>
+        </div>
+
+        {/* Minimalist Progress Indicator */}
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-slate-100">
+          <div
+            className="h-full bg-green-600 transition-all duration-[2500ms] ease-out"
+            style={{ width: stage >= 3 ? '100%' : '0%' }}
           />
-          <track 
-            kind="captions" 
-            src="/captions/intro-en.vtt" 
-            srcLang="en" 
-            label="English captions"
-            default
-          />
-          <p>Your browser does not support the video tag. Please upgrade to a modern browser to view our introduction video.</p>
-        </video>
+        </div>
       </div>
     </div>
   );

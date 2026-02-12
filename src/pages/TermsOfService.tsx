@@ -8,7 +8,7 @@ import { FileText, Scale, Shield, AlertTriangle, CheckCircle, XCircle } from "lu
 const TermsOfService = () => {
   return (
     <>
-      <SEOHead title="Terms of Service | Patel Impex" description="Terms and conditions for trading with Patel Impex." canonicalUrl="/termsofservice" />
+      <SEOHead title="Terms of Service | Patel Impex" description="Terms and conditions for trading with Patel Impex." canonicalUrl="/terms-of-service" />
       <Helmet>
         <title>Terms of Service | Patel Impex - Legal Terms & Conditions</title>
         <meta name="description" content="Review Patel Impex terms of service. Legal terms and conditions for using our import export services, website, and business agreements." />

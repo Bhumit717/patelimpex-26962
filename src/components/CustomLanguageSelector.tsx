@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Languages } from 'lucide-react';
 
@@ -25,7 +26,7 @@ const CustomLanguageSelector = () => {
         { code: 'zh-TW', name: 'Chinese (Traditional)', nativeName: '繁體中文' },
         { code: 'co', name: 'Corsican', nativeName: 'Corsu' },
         { code: 'hr', name: 'Croatian', nativeName: 'Hrvatski' },
-        { code: 'cs', name: 'Czech', nativeName: 'Čeština' },
+        { code: 'cs', name: 'Czech', nativeName: 'Čեština' },
         { code: 'da', name: 'Danish', nativeName: 'Dansk' },
         { code: 'nl', name: 'Dutch', nativeName: 'Nederlands' },
         { code: 'eo', name: 'Esperanto', nativeName: 'Esperanto' },
@@ -42,7 +43,7 @@ const CustomLanguageSelector = () => {
         { code: 'ht', name: 'Haitian Creole', nativeName: 'Kreyòl Ayisyen' },
         { code: 'ha', name: 'Hausa', nativeName: 'Hausa' },
         { code: 'haw', name: 'Hawaiian', nativeName: 'ʻŌlelo Hawaiʻi' },
-        { code: 'iw', name: 'Hebrew', nativeName: 'עברית' },
+        { code: 'iw', name: 'Hebrew', nativeName: 'עבריત' },
         { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
         { code: 'hmn', name: 'Hmong', nativeName: 'Hmong' },
         { code: 'hu', name: 'Hungarian', nativeName: 'Magyar' },
@@ -75,7 +76,7 @@ const CustomLanguageSelector = () => {
         { code: 'my', name: 'Myanmar', nativeName: 'မြန်မာ' },
         { code: 'ne', name: 'Nepali', nativeName: 'नेपाली' },
         { code: 'no', name: 'Norwegian', nativeName: 'Norsk' },
-        { code: 'ps', name: 'Pashto', nativeName: 'پښتو' },
+        { code: 'ps', name: 'Pashto', nativeName: 'پښતો' },
         { code: 'fa', name: 'Persian', nativeName: 'فارسی' },
         { code: 'pl', name: 'Polish', nativeName: 'Polski' },
         { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
@@ -107,13 +108,12 @@ const CustomLanguageSelector = () => {
         { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt' },
         { code: 'cy', name: 'Welsh', nativeName: 'Cymraeg' },
         { code: 'xh', name: 'Xhosa', nativeName: 'isiXhosa' },
-        { code: 'yi', name: 'Yiddish', nativeName: 'ייִדיש' },
+        { code: 'yi', name: 'Yiddish', nativeName: 'ייִדיશ' },
         { code: 'yo', name: 'Yoruba', nativeName: 'Yorùbá' },
         { code: 'zu', name: 'Zulu', nativeName: 'isiZulu' },
     ];
 
     useEffect(() => {
-        // Add Google Translate script
         const addScript = () => {
             if (!document.getElementById('google-translate-script')) {
                 const script = document.createElement('script');
@@ -124,7 +124,6 @@ const CustomLanguageSelector = () => {
             }
         };
 
-        // Initialize Google Translate
         (window as any).googleTranslateElementInit = () => {
             new (window as any).google.translate.TranslateElement(
                 {
@@ -137,7 +136,6 @@ const CustomLanguageSelector = () => {
 
         addScript();
 
-        // Hide Google Translate UI
         const style = document.createElement('style');
         style.innerHTML = `
       #google_translate_element_hidden {
@@ -172,61 +170,49 @@ const CustomLanguageSelector = () => {
         setSelectedLanguage(langName);
         setIsOpen(false);
 
-        // Function to trigger translation
         const doTranslate = (retries = 0) => {
             const select = document.querySelector('.goog-te-combo') as HTMLSelectElement;
-
             if (select) {
                 select.value = langCode;
                 select.dispatchEvent(new Event('change'));
             } else if (retries < 30) {
-                // Retry for up to 15 seconds
                 setTimeout(() => doTranslate(retries + 1), 500);
             }
         };
 
-        // Start translation attempt
         setTimeout(() => doTranslate(), 100);
     };
 
     return (
         <>
-            {/* Hidden Google Translate Element */}
             <div id="google_translate_element_hidden"></div>
-
-            {/* Custom Language Selector */}
             <div className="relative z-[100]">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-[#e9edf3] shadow-[4px_4px_8px_#cfd6e0,-4px_-4px_8px_#ffffff] hover:shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] transition-all duration-300 active:scale-95"
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 border border-slate-100 shadow-sm hover:bg-slate-100 transition-all duration-300 active:scale-95"
                     aria-label="Select Language"
                 >
-                    <Languages className="h-5 w-5 text-blue-600" />
+                    <Languages className="h-5 w-5 text-green-600" />
                 </button>
 
                 {isOpen && (
                     <>
-                        {/* Backdrop */}
                         <div
                             className="fixed inset-0 z-[99]"
                             onClick={() => setIsOpen(false)}
                         />
 
-                        {/* Dropdown Menu */}
-                        <div className="absolute top-12 right-0 bg-[#e9edf3] rounded-[20px] shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] border border-white/50 overflow-hidden z-[100] min-w-[280px] max-h-[400px] overflow-y-auto">
-                            <div className="p-4 space-y-3">
-                                {languages.map((lang, index) => (
+                        <div className="absolute top-12 right-0 bg-white rounded-[20px] shadow-2xl border border-slate-100 overflow-hidden z-[100] min-w-[280px] max-h-[400px] overflow-y-auto">
+                            <div className="p-4 space-y-2">
+                                {languages.map((lang) => (
                                     <button
                                         key={lang.code}
                                         onClick={() => handleLanguageSelect(lang.code, lang.name)}
-                                        className={`w-full text-left px-5 py-3 text-sm rounded-xl transition-all duration-300 ${index % 2 === 0
-                                            ? 'bg-[#e9edf3] shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] border border-white/40 hover:translate-y-[-2px]'
-                                            : 'bg-[#e9edf3] shadow-[inset_5px_5px_10px_#cfd6e0,inset_-5px_-5px_10px_#ffffff] border border-transparent opacity-90 hover:opacity-100'
-                                            } ${selectedLanguage === lang.name ? 'text-blue-600 font-bold border-blue-200' : 'text-slate-600 font-medium'}`}
+                                        className={`w-full text-left px-5 py-3 text-sm rounded-xl transition-all duration-300 hover:bg-slate-50 font-graduate ${selectedLanguage === lang.name ? 'text-green-600 font-bold bg-green-50' : 'text-slate-600 font-medium'}`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <span>{lang.nativeName}</span>
-                                            {selectedLanguage === lang.name && <div className="h-2 w-2 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.5)]"></div>}
+                                            {selectedLanguage === lang.name && <div className="h-2 w-2 rounded-full bg-green-600 shadow-[0_0_10px_rgba(22,163,74,0.5)]"></div>}
                                         </div>
                                     </button>
                                 ))}

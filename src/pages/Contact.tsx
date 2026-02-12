@@ -10,6 +10,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -69,6 +72,20 @@ const Contact = () => {
       fetch(apiUrl2, { mode: 'no-cors' })
         .then(() => console.log('Message sent successfully to API 2'))
         .catch((error) => console.log('API 2 call completed:', error));
+
+      // Save to Firebase Firestore
+      try {
+        await addDoc(collection(db, "contact_inquiries"), {
+          ...formData,
+          submittedAt: serverTimestamp(),
+          source: 'contact_page'
+        });
+        console.log('Document successfully written to Firestore');
+      } catch (dbError) {
+        console.error('Error adding document to Firestore: ', dbError);
+        // We don't block the UI if DB save fails, as telegram message was likely sent
+      }
+
 
       // Reset form
       setFormData({

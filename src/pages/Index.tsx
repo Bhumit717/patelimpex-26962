@@ -48,6 +48,22 @@ const Index = () => {
       }
     }
   }, [showAnimation]);
+  // Scroll Reveal Logic
+  useEffect(() => {
+    if (!showAnimation) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      return () => observer.disconnect();
+    }
+  }, [showAnimation]);
+
   if (showAnimation) {
     return <OpeningAnimation onComplete={handleAnimationComplete} />;
   }
@@ -57,12 +73,9 @@ const Index = () => {
     <Navigation />
     <main role="main">
       <Hero />
-      <section aria-label="Partner companies">
-
-      </section>
-      <Products />
-      <About />
-      <Contact />
+      <div className="reveal"><Products /></div>
+      <div className="reveal"><About /></div>
+      <div className="reveal"><Contact /></div>
     </main>
     <Footer />
 

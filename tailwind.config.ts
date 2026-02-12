@@ -21,6 +21,10 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
+				montecarlo: ["'Monte Carlo'", "MonteCarlo", "cursive"],
+				fredericka: ['"Fredericka the Great"', 'cursive'],
+				fondamento: ['Fondamento', 'cursive'],
+				graduate: ['Graduate', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -218,29 +222,29 @@ export default {
 					'75%': { opacity: '1', filter: 'hue-rotate(270deg)' }
 				},
 				'circuit-pulse': {
-					'0%': { 
+					'0%': {
 						boxShadow: '0 0 0 0 hsl(271, 91%, 65%, 0.7)',
 						transform: 'scale(1)'
 					},
-					'70%': { 
+					'70%': {
 						boxShadow: '0 0 0 10px hsl(271, 91%, 65%, 0)',
 						transform: 'scale(1.05)'
 					},
-					'100%': { 
+					'100%': {
 						boxShadow: '0 0 0 0 hsl(271, 91%, 65%, 0)',
 						transform: 'scale(1)'
 					}
 				},
 				'neural-network': {
-					'0%': { 
+					'0%': {
 						strokeDasharray: '0 100',
 						stroke: 'hsl(271, 91%, 65%)'
 					},
-					'50%': { 
+					'50%': {
 						strokeDasharray: '50 100',
 						stroke: 'hsl(195, 100%, 50%)'
 					},
-					'100%': { 
+					'100%': {
 						strokeDasharray: '100 100',
 						stroke: 'hsl(330, 100%, 70%)'
 					}

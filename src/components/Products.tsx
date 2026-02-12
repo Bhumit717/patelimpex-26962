@@ -1,118 +1,98 @@
+import { Package, Globe, ShieldCheck, Truck, ChevronRight, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Leaf, Package, CheckCircle } from "lucide-react";
-
-// Import product images
-import psylliumHuskImg from "@/assets/products/psyllium-husk.png";
-import fennelSeedsImg from "@/assets/products/fennel-seeds.png";
-import cuminSeedsImg from "@/assets/products/cumin-seeds.png";
-import cottonImg from "@/assets/products/cotton.png";
-import riceImg from "@/assets/products/rice.png";
-import groundnutImg from "@/assets/products/groundnut.png";
-import cardamomImg from "@/assets/products/cardamom.png";
-import soybeanImg from "@/assets/products/soybean.png";
-import wheatFlourImg from "@/assets/products/wheat-flour.png";
-import sesameSeedsImg from "@/assets/products/hulled-sesame.png";
+import agriImg from "@/assets/products/seeds.png";
+import textilesImg from "@/assets/products/cotton.png";
+import logisticsImg from "@/assets/global-export-shipping.jpg";
 
 const Products = () => {
-  // Only show 3 products on homepage
-  const products = [
+  const categories = [
     {
-      name: "Isabgol (Psyllium)",
-      image: psylliumHuskImg,
-      link: "/products/psyllium-husk",
-      specs: ["95%+ Purity", "25 kg Bags", "Husk/Powder/Seeds"],
-      hsn: "1211.90"
+      title: "Agricultural Products",
+      description: "Premium selection of pulses, spices, and grains sourced directly from Indian farms.",
+      icon: Package,
+      image: agriImg,
+      link: "/products",
+      items: ["Spices & Condiments", "Grains & Pulses", "Oil Seeds"]
     },
     {
-      name: "Fennel Seeds",
-      image: fennelSeedsImg,
-      link: "/products/fennel-seeds",
-      specs: ["99% Purity", "25 kg Bags", "Bold/Medium"],
-      hsn: "0909.61"
+      title: "Textiles & Garments",
+      description: "High-quality cotton, fabrics, and ready-to-wear garments meeting global standards.",
+      icon: ShieldCheck,
+      image: textilesImg,
+      link: "/products/cotton",
+      items: ["Raw Cotton", "Finished Fabrics", "Designer Apparel"]
     },
     {
-      name: "Sesame Seeds",
-      image: sesameSeedsImg,
-      link: "/products/sesame-seeds",
-      specs: ["Hulled & Natural", "99.95% Purity", "White/Golden"],
-      hsn: "1207.40"
-    },
+      title: "Global Logistics",
+      description: "Comprehensive freight-forwarding and customs services for seamless trade.",
+      icon: Truck,
+      image: logisticsImg,
+      link: "/services",
+      items: ["Sea Freight", "Customs Clearance", "Warehousing"]
+    }
   ];
 
   return (
-    <section id="products" className="py-24 bg-[#e9edf3] relative overflow-hidden">
+    <section id="products" className="py-24 md:py-32 bg-[#f8fafc] relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-[50px] mb-6 shadow-[6px_6px_10px_#cfd6e0,-6px_-6px_10px_#ffffff]">
-            <Leaf className="h-4 w-4 text-green-600 mr-2" />
-            <span className="text-green-700 text-sm font-semibold">Premium Quality Exports</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 px-2 gap-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100 mb-6">
+              <Globe className="h-4 w-4 text-green-600 mr-2" />
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-graduate">Global Inventory</span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-[0.9] font-graduate uppercase tracking-tighter">
+              Premium Trade <span className="block text-green-600 font-fredericka tracking-tight lowercase py-2">Categories</span>
+            </h2>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-800">
-            Our <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Premium Products</span>
-          </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Quality agricultural commodities exported from India to 50+ countries worldwide
-          </p>
+          <Link to="/products" className="nm-btn-green !py-4 px-8 group">
+            <span className="font-graduate font-bold uppercase text-xs tracking-widest">All Products</span>
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform" />
+          </Link>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <Link
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {categories.map((category, index) => (
+            <div
               key={index}
-              to={product.link}
-              className="group relative nm-card !p-0 overflow-hidden transition-all duration-500 hover:-translate-y-2 block"
+              className={`nm-card !p-4 !rounded-[45px] hover:-translate-y-3 transition-all duration-500 group bg-white animate-slide-up opacity-0`}
+              style={{ animationDelay: `${(index + 1) * 200}ms`, animationFillMode: 'forwards' }}
             >
-              {/* Image Section */}
-              <div className="relative h-64 overflow-hidden bg-[#e9edf3] p-6 flex items-center justify-center rounded-t-[25px] border-b border-gray-100/10">
-                <div className="absolute inset-4 rounded-[20px] shadow-[inset_6px_6px_10px_#cfd6e0,inset_-6px_-6px_10px_#ffffff] z-0"></div>
+              <div className="relative h-64 overflow-hidden rounded-[35px] mb-8">
                 <img
-                  src={product.image}
-                  alt={product.name}
-                  className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-700 relative z-10"
+                  src={category.image}
+                  alt={category.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                 />
-                <div className="absolute top-6 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-[25px] z-20 shadow-lg">
-                  HSN: {product.hsn}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center">
+                  <span className="bg-white/20 backdrop-blur-md p-3 rounded-2xl">
+                    <category.icon className="h-6 w-6 text-white" />
+                  </span>
                 </div>
               </div>
 
-              {/* Content Section */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors">
-                  {product.name}
-                </h3>
+              <div className="px-6 pb-6 space-y-4">
+                <h3 className="text-2xl font-black text-slate-900 font-graduate uppercase tracking-tight">{category.title}</h3>
+                <p className="text-slate-500 font-fondamento text-lg italic leading-relaxed">
+                  {category.description}
+                </p>
 
-                {/* Specs */}
-                <div className="space-y-2 mb-4">
-                  {product.specs.map((spec, i) => (
-                    <div key={i} className="flex items-center text-sm text-slate-600">
-                      <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                      <span>{spec}</span>
+                <div className="space-y-2 pt-2">
+                  {category.items.map((item, idx) => (
+                    <div key={idx} className="flex items-center text-slate-400 text-xs font-bold font-graduate uppercase tracking-widest">
+                      <ChevronRight className="h-3 w-3 text-green-600 mr-2" />
+                      {item}
                     </div>
                   ))}
                 </div>
 
-                {/* CTA */}
-                <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700">
-                  <span>View Details</span>
-                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
-                </div>
+                <Link to={category.link} className="nm-btn-dark w-full !py-4 mt-6">
+                  <span className="font-graduate font-bold uppercase text-[10px] tracking-[0.2em]">View Details</span>
+                </Link>
               </div>
-            </Link>
+            </div>
           ))}
-        </div>
-
-        {/* View All Products CTA */}
-        <div className="text-center mt-12">
-          <Link
-            to="/products"
-            className="nm-btn inline-flex items-center px-8 !w-auto text-slate-700 hover:text-blue-600 transition-all duration-300 hover:scale-105"
-          >
-            <Package className="h-5 w-5 mr-2" />
-            View All Products
-            <ArrowRight className="h-5 w-5 ml-2 transition-transform duration-300" />
-          </Link>
         </div>
       </div>
     </section>
