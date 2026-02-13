@@ -55,24 +55,24 @@ const Products = () => {
           {categories.map((category, index) => (
             <div
               key={index}
-              className={`nm-card !p-4 !rounded-[45px] hover:-translate-y-3 transition-all duration-500 group bg-white animate-slide-up opacity-0`}
+              className={`hover:-translate-y-3 transition-all duration-500 group animate-slide-up opacity-0`}
               style={{ animationDelay: `${(index + 1) * 200}ms`, animationFillMode: 'forwards' }}
             >
-              <div className="relative h-64 overflow-hidden rounded-[35px] mb-8">
+              <div className="relative h-64 overflow-hidden rounded-[35px] mb-6">
                 <img
                   src={category.image}
                   alt={category.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                {/* Removed dark gradient overlay */}
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center">
-                  <span className="bg-white/20 backdrop-blur-md p-3 rounded-2xl">
-                    <category.icon className="h-6 w-6 text-white" />
+                  <span className="bg-white/80 backdrop-blur-md p-3 rounded-2xl shadow-sm">
+                    <category.icon className="h-6 w-6 text-green-600" />
                   </span>
                 </div>
               </div>
 
-              <div className="px-6 pb-6 space-y-4">
+              <div className="space-y-4 px-2">
                 <h3 className="text-2xl font-black text-slate-900 font-graduate uppercase tracking-tight">{category.title}</h3>
                 <p className="text-slate-500 font-fondamento text-lg italic leading-relaxed">
                   {category.description}
@@ -87,7 +87,7 @@ const Products = () => {
                   ))}
                 </div>
 
-                <Link to={category.link} className="nm-btn-dark w-full !py-4 mt-6">
+                <Link to={category.link} className="nm-btn-green w-full !py-4 mt-6">
                   <span className="font-graduate font-bold uppercase text-[10px] tracking-[0.2em]">View Details</span>
                 </Link>
               </div>

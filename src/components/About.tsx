@@ -33,6 +33,7 @@ const About = () => {
                     </p>
                 </div>
 
+
                 {/* Main Content Grid */}
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start mb-32">
                     {/* Story Side */}

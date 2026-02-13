@@ -202,7 +202,8 @@ const CustomLanguageSelector = () => {
                             onClick={() => setIsOpen(false)}
                         />
 
-                        <div className="absolute top-12 right-0 bg-white rounded-[20px] shadow-2xl border border-slate-100 overflow-hidden z-[100] min-w-[280px] max-h-[400px] overflow-y-auto">
+                        {/* Dropdown: Centered on mobile, Right-aligned on desktop */}
+                        <div className="absolute top-12 left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 lg:right-0 bg-white rounded-[20px] shadow-2xl border border-slate-100 overflow-hidden z-[100] w-[90vw] max-w-[320px] lg:min-w-[280px] max-h-[60vh] overflow-y-auto scrollbar-hide">
                             <div className="p-4 space-y-2">
                                 {languages.map((lang) => (
                                     <button

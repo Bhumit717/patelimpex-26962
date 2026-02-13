@@ -75,8 +75,10 @@ const Index = () => {
       <Hero />
       <div className="reveal"><Products /></div>
       <div className="reveal"><About /></div>
+      <div className="reveal"><PopularPages /></div>
       <div className="reveal"><Contact /></div>
     </main>
+
     <Footer />
 
     {/* Lazy load WhatsApp chat with better fallback */}

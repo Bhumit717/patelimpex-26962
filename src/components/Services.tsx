@@ -50,8 +50,8 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="nm-card !p-10 !rounded-[40px] group hover:-translate-y-2 transition-all duration-300">
-              <div className={`w-16 h-16 ${service.bg} rounded-2xl flex items-center justify-center mb-8 shadow-inner border border-white transition-transform group-hover:scale-110`}>
+            <div key={index} className="p-4 group hover:-translate-y-2 transition-all duration-300">
+              <div className={`w-16 h-16 ${service.bg} rounded-2xl flex items-center justify-center mb-8 border border-white transition-transform group-hover:scale-110`}>
                 <service.icon className={`h-8 w-8 ${service.color}`} />
               </div>
 
@@ -67,17 +67,17 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="mt-20 nm-card !p-10 md:!p-16 bg-slate-900 !border-none flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="mt-20 p-10 md:p-16 bg-slate-50 rounded-[50px] flex flex-col md:flex-row items-center justify-between gap-10 border border-slate-100">
           <div className="text-center md:text-left">
-            <h4 className="text-3xl font-black text-white font-graduate uppercase tracking-tighter mb-4">
-              Need a Custom <span className="text-green-500 font-fredericka tracking-tight lowercase">Export Plan?</span>
+            <h4 className="text-3xl font-black text-slate-900 font-graduate uppercase tracking-tighter mb-4">
+              Need a Custom <span className="text-green-600 font-fredericka tracking-tight lowercase">Export Plan?</span>
             </h4>
-            <p className="text-slate-400 font-fondamento italic text-xl max-w-xl">
+            <p className="text-slate-500 font-fondamento italic text-xl max-w-xl">
               Our consultants are ready to tailor a logistics strategy that perfectly fits your business goals.
             </p>
           </div>
           <Link to="/contact">
-            <button className="nm-btn-green border-none !py-6 px-12 !text-white font-graduate font-bold uppercase tracking-widest text-sm shadow-lg">
+            <button className="nm-btn-green border-none !py-6 px-12 !text-white font-graduate font-bold uppercase tracking-widest text-sm shadow-xl hover:shadow-2xl">
               Request Consultation
             </button>
           </Link>
