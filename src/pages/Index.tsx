@@ -27,16 +27,6 @@ const Index = () => {
   // Preload critical resources
   useEffect(() => {
     const preloadResources = () => {
-      // Preload critical images
-      const criticalImages = ['/lovable-uploads/53ec340c-22b1-40c1-b206-d24555cba152.png'];
-      criticalImages.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        document.head.appendChild(link);
-      });
-
       // Preload the hero video for instant playback
       const videoLink = document.createElement('link');
       videoLink.rel = 'preload';
