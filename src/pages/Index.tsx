@@ -24,67 +24,81 @@ const Index = () => {
     setShowAnimation(false);
   };
 
-  // Optimized resource preloading
+  // Preload critical resources
   useEffect(() => {
-    if (!showAnimation) {
-      // Preload critical resources after animation
-      const preloadCriticalAssets = () => {
-        const criticalImages = ['/lovable-uploads/53ec340c-22b1-40c1-b206-d24555cba152.png'];
-        criticalImages.forEach(src => {
-          const link = document.createElement('link');
-          link.rel = 'preload';
-          link.as = 'image';
-          link.href = src;
-          link.fetchPriority = 'high';
-          document.head.appendChild(link);
-        });
-      };
+    const preloadResources = () => {
+      // Preload critical images
+      const criticalImages = ['/lovable-uploads/53ec340c-22b1-40c1-b206-d24555cba152.png'];
+      criticalImages.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+      });
 
-      // Use requestIdleCallback for non-critical preloading
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(preloadCriticalAssets);
-      } else {
-        setTimeout(preloadCriticalAssets, 100);
-      }
+      // Preload the hero video for instant playback
+      const videoLink = document.createElement('link');
+      videoLink.rel = 'preload';
+      videoLink.as = 'video';
+      videoLink.href = '/hero-video.mp4';
+      videoLink.type = 'video/mp4';
+      document.head.appendChild(videoLink);
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preloadResources);
+    } else {
+      setTimeout(preloadResources, 100);
     }
-  }, [showAnimation]);
-  // Scroll Reveal Logic
+  }, []);
+
+  // Scroll Reveal Logic (remains same)
   useEffect(() => {
-    if (!showAnimation) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      }, { threshold: 0.1 });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      return () => observer.disconnect();
-    }
-  }, [showAnimation]);
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [showAnimation]); // Re-run when animation finishes to catch elements
 
-  if (showAnimation) {
-    return <OpeningAnimation onComplete={handleAnimationComplete} />;
-  }
-  return <div className="min-h-screen">
-    <SEOHead title="Import Export Company in India | Patel Impex" description="Patel Impex is a leading government recognized import export company in India dealing in agro products, spices, and more." canonicalUrl="/" />
-    <TranslationBanner />
-    <Navigation />
-    <main role="main">
-      <Hero />
-      <div className="reveal"><Products /></div>
-      <div className="reveal"><About /></div>
-      <div className="reveal"><PopularPages /></div>
-      <div className="reveal"><Contact /></div>
-    </main>
+  return (
+    <div className="min-h-screen relative">
+      <SEOHead title="Import Export Company in India | Patel Impex" description="Patel Impex is a leading government recognized import export company in India dealing in agro products, spices, and more." canonicalUrl="/" />
 
-    <Footer />
+      {/* Animation Overlay - Mounted on top */}
+      {showAnimation && (
+        <div className="fixed inset-0 z-[9999]">
+          <OpeningAnimation onComplete={handleAnimationComplete} />
+        </div>
+      )}
 
-    {/* Lazy load WhatsApp chat with better fallback */}
-    <Suspense fallback={<div className="sr-only">Loading chat support...</div>}>
-      <WhatsAppChat />
-    </Suspense>
-  </div>;
+      {/* Main Site Content - Mounted immediately to allow preloading */}
+      {/* Hidden visually during animation but present in DOM for asset loading */}
+      <div className={showAnimation ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 transition-opacity duration-700'}>
+        <TranslationBanner />
+        <Navigation />
+        <main role="main">
+          <Hero />
+          <div className="reveal"><Products /></div>
+          <div className="reveal"><About /></div>
+          <div className="reveal"><PopularPages /></div>
+          <div className="reveal"><Contact /></div>
+        </main>
+
+        <Footer />
+
+        {/* Lazy load WhatsApp chat with better fallback */}
+        <Suspense fallback={<div className="sr-only">Loading chat support...</div>}>
+          <WhatsAppChat />
+        </Suspense>
+      </div>
+    </div>
+  );
 };
 export default Index;
