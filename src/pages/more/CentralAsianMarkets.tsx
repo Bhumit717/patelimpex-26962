@@ -17,7 +17,7 @@ const CentralAsianMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Central Asian Markets | Patel Impex" description="Central Asian Markets - Expert services and information by Patel Impex." canonicalUrl="/more/central-asian-markets" />
       <Navigation />
       

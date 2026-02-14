@@ -27,8 +27,6 @@ const Services = () => {
       title: "Sea Freight Solutions",
       description: "Cost-effective ocean shipping for bulk cargo and containers with complete door-to-door tracking and insurance coverage.",
       features: ["FCL & LCL Container Shipping", "Bulk Cargo Handling", "Port-to-Port Services", "Door-to-Door Delivery"],
-      price: "Starting from $800/TEU",
-      color: "from-ai-primary to-ai-secondary",
       bgColor: "bg-gray-800/50 hover:bg-gray-700/50"
     },
     {
@@ -36,8 +34,6 @@ const Services = () => {
       title: "Air Freight Express",
       description: "Fast and reliable air cargo services for time-sensitive shipments with priority handling and temperature control.",
       features: ["Express Air Cargo", "Temperature Controlled Transport", "Dangerous Goods Handling", "Charter Flight Services"],
-      price: "Starting from $4.50/kg",
-      color: "from-ai-secondary to-ai-accent",
       bgColor: "bg-gray-800/50 hover:bg-gray-700/50"
     },
     {
@@ -45,8 +41,6 @@ const Services = () => {
       title: "Land Transportation",
       description: "Comprehensive road and rail transportation across continents with real-time GPS tracking and secure handling.",
       features: ["Cross-border Road Transport", "Rail Freight Services", "Last Mile Delivery", "Multi-modal Solutions"],
-      price: "Custom Pricing",
-      color: "from-ai-accent to-ai-cyber",
       bgColor: "bg-gray-800/50 hover:bg-gray-700/50"
     },
     {
@@ -54,8 +48,6 @@ const Services = () => {
       title: "Trade Documentation",
       description: "Complete export-import documentation services with expert compliance support and customs clearance assistance.",
       features: ["Export-Import Documentation", "Customs Clearance Support", "Trade License Assistance", "Certificate of Origin"],
-      price: "Starting from $150",
-      color: "from-ai-cyber to-ai-neon",
       bgColor: "bg-gray-800/50 hover:bg-gray-700/50"
     },
     {
@@ -63,8 +55,6 @@ const Services = () => {
       title: "Quality Assurance",
       description: "Rigorous quality inspection and testing services with detailed reporting and international certification support.",
       features: ["Pre-shipment Inspection", "Quality Testing & Analysis", "International Certifications", "Compliance Verification"],
-      price: "Starting from $200",
-      color: "from-ai-neon to-ai-primary",
       bgColor: "bg-gray-800/50 hover:bg-gray-700/50"
     },
     {
@@ -72,8 +62,6 @@ const Services = () => {
       title: "24/7 Support Services",
       description: "Round-the-clock customer support with dedicated account managers and real-time shipment tracking.",
       features: ["24/7 Customer Support", "Real-time Tracking", "Dedicated Account Manager", "Emergency Response Team"],
-      price: "Included",
-      color: "from-ai-primary to-ai-accent",
       bgColor: "bg-gray-800/50 hover:bg-gray-700/50"
     }
   ];
@@ -95,7 +83,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#e9edf3]">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Export Import Services | Patel Impex" description="Comprehensive export import services including logistics, documentation, and market research." canonicalUrl="/services" />
       <Navigation />
 
@@ -123,7 +111,7 @@ const Services = () => {
                 className="nm-card group hover:-translate-y-3 transition-all duration-500 !p-0 overflow-hidden bg-white animate-slide-up opacity-0"
                 style={{ animationDelay: `${(index + 1) * 150}ms`, animationFillMode: 'forwards' }}>
                 <div className="p-10">
-                  <div className="w-16 h-16 rounded-2xl bg-slate-50 shadow-inner border border-slate-100 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                  <div className="w-16 h-16 rounded-2xl bg-white shadow-inner border border-slate-100 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
                     <service.icon className="h-8 w-8 text-green-600" />
                   </div>
 
@@ -144,9 +132,6 @@ const Services = () => {
                     ))}
                   </ul>
 
-                  <div className="flex items-center justify-between mb-8">
-                    <span className="text-2xl font-black text-green-600 font-graduate">{service.price}</span>
-                  </div>
 
                   <Link to="/inquiry">
                     <button className="nm-btn-dark w-full !py-4 group">
@@ -240,3 +225,4 @@ const Services = () => {
 };
 
 export default Services;
+

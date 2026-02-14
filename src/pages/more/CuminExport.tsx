@@ -17,7 +17,7 @@ const CuminExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Cumin Export | Patel Impex" description="Cumin Export - Expert services and information by Patel Impex." canonicalUrl="/more/cumin-export" />
       <Navigation />
       

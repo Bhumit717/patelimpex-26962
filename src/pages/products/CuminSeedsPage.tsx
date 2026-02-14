@@ -51,3 +51,4 @@ const CuminSeedsPage = () => {
 };
 
 export default CuminSeedsPage;
+

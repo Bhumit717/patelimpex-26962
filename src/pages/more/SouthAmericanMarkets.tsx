@@ -17,7 +17,7 @@ const SouthAmericanMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="South American Markets | Patel Impex" description="South American Markets - Expert services and information by Patel Impex." canonicalUrl="/more/south-american-markets" />
       <Navigation />
       

@@ -17,7 +17,7 @@ const ScandinavianMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Scandinavian Markets | Patel Impex" description="Scandinavian Markets - Expert services and information by Patel Impex." canonicalUrl="/more/scandinavian-markets" />
       <Navigation />
       

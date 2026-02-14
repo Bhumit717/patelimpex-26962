@@ -52,3 +52,4 @@ const BoldRunnerGroundnutDetail = () => {
 };
 
 export default BoldRunnerGroundnutDetail;
+

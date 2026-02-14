@@ -17,7 +17,7 @@ const TradeFinance = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Trade Finance | Patel Impex" description="Trade Finance - Expert services and information by Patel Impex." canonicalUrl="/more/trade-finance" />
       <Navigation />
 

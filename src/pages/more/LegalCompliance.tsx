@@ -17,7 +17,7 @@ const LegalCompliance = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Legal Compliance | Patel Impex" description="Legal Compliance - Expert services and information by Patel Impex." canonicalUrl="/more/legal-compliance" />
       <Navigation />
       

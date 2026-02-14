@@ -17,7 +17,7 @@ const OceaniaMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Oceania Markets | Patel Impex" description="Oceania Markets - Expert services and information by Patel Impex." canonicalUrl="/more/oceania-markets" />
       <Navigation />
       

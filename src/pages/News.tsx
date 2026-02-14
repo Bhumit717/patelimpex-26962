@@ -208,12 +208,12 @@ const News = () => {
 
       <Navigation />
 
-      <main className="min-h-screen bg-[#e9edf3] pt-32 pb-20">
+      <main className="min-h-screen bg-white pt-32 pb-20">
         {/* Hero Section */}
         <section className="container mx-auto px-4 mb-16">
           <div className="relative overflow-hidden rounded-[30px] nm-bg shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] p-12 text-center border-4 border-[#e9edf3]">
             <div className="relative z-10">
-              <div className="inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] mb-6">
+              <div className="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] mb-6">
                 <Zap className="h-4 w-4 text-blue-600 mr-2" />
                 <span className="text-slate-600 text-sm font-medium">
                   {usingFallback ? "Industry Insights" : "Live Updates"}
@@ -231,15 +231,15 @@ const News = () => {
               </p>
 
               <div className="flex flex-wrap justify-center gap-4">
-                <div className="flex items-center gap-2 px-4 py-2 bg-[#e9edf3] rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
                   <Newspaper className="h-5 w-5 text-blue-600" />
                   <span className="text-slate-600">Latest Articles</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-[#e9edf3] rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
                   <Globe className="h-5 w-5 text-purple-600" />
                   <span className="text-slate-600">Global Coverage</span>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-[#e9edf3] rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
+                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]">
                   <TrendingUp className="h-5 w-5 text-teal-600" />
                   <span className="text-slate-600">Trade Trends</span>
                 </div>
@@ -361,8 +361,8 @@ const News = () => {
                           key={pageNum}
                           onClick={() => setCurrentPage(pageNum)}
                           className={`w-10 h-10 rounded-[10px] font-semibold transition-all duration-300 ${pageNum === currentPage
-                            ? 'bg-[#e9edf3] text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
-                            : 'bg-[#e9edf3] text-slate-500 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] hover:text-blue-600'
+                            ? 'bg-white text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
+                            : 'bg-white text-slate-500 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] hover:text-blue-600'
                             }`}
                         >
                           {pageNum}
@@ -402,3 +402,4 @@ const News = () => {
 };
 
 export default News;
+

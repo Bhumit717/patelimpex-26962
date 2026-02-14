@@ -38,7 +38,7 @@ const Services = () => {
     <section id="services" className="py-24 md:py-32 bg-white relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-slate-50 rounded-full border border-slate-100 shadow-sm mb-6">
+          <div className="inline-flex items-center px-4 py-2 bg-white rounded-full border border-slate-100 shadow-sm mb-6">
             <Clock className="h-4 w-4 text-green-600 mr-2" />
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-graduate">Reliable Solutions</span>
           </div>
@@ -67,7 +67,7 @@ const Services = () => {
           ))}
         </div>
 
-        <div className="mt-20 p-10 md:p-16 bg-slate-50 rounded-[50px] flex flex-col md:flex-row items-center justify-between gap-10 border border-slate-100">
+        <div className="mt-20 p-10 md:p-16 bg-white rounded-[50px] flex flex-col md:flex-row items-center justify-between gap-10 border border-slate-100">
           <div className="text-center md:text-left">
             <h4 className="text-3xl font-black text-slate-900 font-graduate uppercase tracking-tighter mb-4">
               Need a Custom <span className="text-green-600 font-fredericka tracking-tight lowercase">Export Plan?</span>

@@ -140,7 +140,7 @@ const Blog = () => {
     : blogPosts.filter(post => post.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-[#e9edf3] relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden">
       <SEOHead title="Latest News & Insights | Patel Impex" description="Stay updated with the latest trends in international trade and global markets." canonicalUrl="/blog" />
 
       <Navigation />
@@ -191,7 +191,7 @@ const Blog = () => {
                     </span>
                   </div>
                 </div>
-                <div className="p-12 flex flex-col justify-center bg-[#e9edf3]">
+                <div className="p-12 flex flex-col justify-center bg-white">
                   <div className="flex items-center space-x-4 text-sm text-slate-500 mb-4">
                     <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium border border-blue-200">
                       {featuredPost.category}
@@ -229,8 +229,8 @@ const Blog = () => {
                 key={index}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${selectedCategory === category
-                  ? 'bg-[#e9edf3] text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
-                  : 'bg-[#e9edf3] text-slate-600 hover:text-blue-600 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]'
+                  ? 'bg-white text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
+                  : 'bg-white text-slate-600 hover:text-blue-600 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]'
                   }`}
               >
                 {category}
@@ -305,7 +305,7 @@ const Blog = () => {
           {/* Newsletter Section */}
           <div className="mt-20 nm-card p-12 text-center relative overflow-hidden">
             <div className="relative z-10 max-w-2xl mx-auto">
-              <div className="w-16 h-16 rounded-full bg-[#e9edf3] shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 rounded-full bg-white shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] flex items-center justify-center mx-auto mb-6">
                 <Bell className="h-8 w-8 text-blue-600" />
               </div>
               <h2 className="text-3xl font-bold text-slate-800 mb-4">
@@ -344,3 +344,4 @@ const Blog = () => {
 };
 
 export default Blog;
+

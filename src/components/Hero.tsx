@@ -4,25 +4,12 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Attempt to autoplay with sound. 
-    // Note: Browser policy may require user interaction for unmuted autoplay.
-    const playVideo = async () => {
-      if (videoRef.current) {
-        try {
-          videoRef.current.muted = false;
-          await videoRef.current.play();
-        } catch (error) {
-          console.warn("Unmuted autoplay blocked by browser. Video will start muted or wait for interaction.", error);
-          // Fallback: Start muted if unmuted is blocked, or let the user click
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            videoRef.current.play();
-          }
-        }
-      }
-    };
-
-    playVideo();
+    // Attempt to autoplay. 
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.warn("Autoplay blocked by browser:", error);
+      });
+    }
   }, []);
 
   return (
@@ -65,24 +52,26 @@ const Hero = () => {
 
           {/* Right Side - Video Section */}
           <div className="flex justify-center items-center order-1 lg:order-2 w-full">
-            <div className="w-full max-w-2xl">
-              <video
-                ref={videoRef}
-                className="w-full h-auto block"
-                playsInline
-                preload="auto"
-                loop={false}
-              >
-                <source src="/hero-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
+            <video
+              ref={videoRef}
+              className="w-full h-auto block"
+              playsInline
+              preload="auto"
+              loop={false}
+              muted
+              autoPlay
+            >
+              <source src="/hero-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
 
         </div>
       </div>
     </main>
+
   );
 };
 
 export default Hero;
+

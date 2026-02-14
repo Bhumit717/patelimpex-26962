@@ -17,7 +17,7 @@ const SouthernAfricanMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Southern African Markets | Patel Impex" description="Southern African Markets - Expert services and information by Patel Impex." canonicalUrl="/more/southern-african-markets" />
       <Navigation />
       

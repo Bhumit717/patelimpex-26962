@@ -23,17 +23,17 @@ const Products = () => {
       items: ["Raw Cotton", "Finished Fabrics", "Designer Apparel"]
     },
     {
-      title: "Global Logistics",
-      description: "Comprehensive freight-forwarding and customs services for seamless trade.",
+      title: "Industrial & Engineering",
+      description: "Precision engineered components, hardware, and industrial equipment from leading manufacturers.",
       icon: Truck,
       image: logisticsImg,
-      link: "/services",
-      items: ["Sea Freight", "Customs Clearance", "Warehousing"]
+      link: "/products",
+      items: ["Machinery Parts", "Hardware Tools", "Industrial Components"]
     }
   ];
 
   return (
-    <section id="products" className="py-24 md:py-32 bg-[#f8fafc] relative overflow-hidden">
+    <section id="products" className="py-24 md:py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 px-2 gap-8">
           <div className="max-w-2xl">
@@ -100,3 +100,4 @@ const Products = () => {
 };
 
 export default Products;
+

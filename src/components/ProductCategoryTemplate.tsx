@@ -90,3 +90,4 @@ const ProductCategoryTemplate = ({
 };
 
 export default ProductCategoryTemplate;
+

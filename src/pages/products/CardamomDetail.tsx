@@ -39,3 +39,4 @@ const CardamomDetail = () => {
 };
 
 export default CardamomDetail;
+

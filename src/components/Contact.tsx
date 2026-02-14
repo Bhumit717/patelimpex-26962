@@ -62,7 +62,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 bg-[#f8fafc] relative overflow-hidden">
+    <section id="contact" className="py-24 bg-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
 
@@ -73,7 +73,7 @@ const Contact = () => {
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-graduate">Enquiry Hub</span>
           </div>
           <h2 className="text-5xl lg:text-7xl font-black text-slate-900 mb-6 font-graduate uppercase tracking-tighter">
-            Let's Start <span className="text-green-600 font-fredericka tracking-tight lowercase">Trading</span>
+            Let's do business <span className="text-green-600 font-fredericka tracking-tight lowercase">together</span>
           </h2>
           <p className="text-xl text-slate-500 max-w-2xl mx-auto font-fondamento italic leading-relaxed">
             Ready to expand your borders? Our experts are here to facilitate your international trade journey with precision and care.
@@ -168,3 +168,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

@@ -57,7 +57,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-slate-50 border-t border-slate-200 py-24 text-slate-700">
+    <footer className="bg-white border-t border-slate-200 py-24 text-slate-700">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -74,7 +74,7 @@ const Footer = () => {
             <div className="space-y-4">
               {[
                 { icon: MapPin, text: "Rajkot, Gujarat, India" },
-                { icon: Phone, text: "+91 (798) 41 33 417" },
+                { icon: Phone, text: "+91 7984133417" },
                 { icon: Mail, text: "info@patelimpex.com" }
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center space-x-3 text-slate-600">

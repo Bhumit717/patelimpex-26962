@@ -31,3 +31,4 @@ const CottonProductsPage = () => {
 };
 
 export default CottonProductsPage;
+

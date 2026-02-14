@@ -17,7 +17,7 @@ const LevantMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Levant Markets | Patel Impex" description="Levant Markets - Expert services and information by Patel Impex." canonicalUrl="/more/levant-markets" />
       <Navigation />
       

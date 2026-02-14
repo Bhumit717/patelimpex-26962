@@ -1076,14 +1076,14 @@ const SEO = () => {
   const totalPages = Object.values(siteMap).reduce((acc, curr) => acc + curr.length, 0);
 
   return (
-    <div className="min-h-screen bg-[#e9edf3] relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden">
       <SEOHead title="Sitemap - All Pages | Patel Impex" description="Complete sitemap of Patel Impex website including all products, services, markets, and resources." canonicalUrl="/seo" />
       <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto max-w-6xl text-center">
-          <div className="mb-8 inline-flex items-center px-4 py-2 bg-[#e9edf3] rounded-full shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+          <div className="mb-8 inline-flex items-center px-4 py-2 bg-white rounded-full shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
             <Globe className="w-4 h-4 mr-2 text-blue-600" />
             <span className="text-slate-600 font-medium">Global Network</span>
           </div>
@@ -1098,7 +1098,7 @@ const SEO = () => {
 
           <div className="flex flex-wrap justify-center gap-4 mb-16">
             <div className="nm-card !p-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
                 <Target className="w-5 h-5 text-blue-600" />
               </div>
               <div className="text-left">
@@ -1108,7 +1108,7 @@ const SEO = () => {
             </div>
 
             <div className="nm-card !p-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
                 <Package className="w-5 h-5 text-purple-600" />
               </div>
               <div className="text-left">
@@ -1118,7 +1118,7 @@ const SEO = () => {
             </div>
 
             <div className="nm-card !p-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
                 <FileText className="w-5 h-5 text-teal-600" />
               </div>
               <div className="text-left">
@@ -1138,10 +1138,10 @@ const SEO = () => {
               <div key={category} className="nm-card !p-0 overflow-hidden">
                 <button
                   onClick={() => toggleSection(category)}
-                  className="w-full flex items-center justify-between p-6 bg-[#e9edf3] hover:text-blue-600 transition-colors"
+                  className="w-full flex items-center justify-between p-6 bg-white hover:text-blue-600 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${expandedSection === category ? 'bg-blue-600 text-white shadow-lg' : 'bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] text-slate-500'}`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${expandedSection === category ? 'bg-blue-600 text-white shadow-lg' : 'bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] text-slate-500'}`}>
                       {index === 0 && <Home className="w-4 h-4" />}
                       {index === 1 && <Globe className="w-4 h-4" />}
                       {index === 2 && <Wheat className="w-4 h-4" />}
@@ -1158,7 +1158,7 @@ const SEO = () => {
                 </button>
 
                 <div className={`transition-all duration-300 ease-in-out ${expandedSection === category ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <div className="p-6 border-t border-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-[#e9edf3]">
+                  <div className="p-6 border-t border-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white">
                     {links.map((link, linkIndex) => (
                       <Link
                         key={linkIndex}

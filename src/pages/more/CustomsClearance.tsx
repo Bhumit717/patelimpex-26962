@@ -17,7 +17,7 @@ const CustomsClearance = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Customs Clearance | Patel Impex" description="Customs Clearance - Expert services and information by Patel Impex." canonicalUrl="/more/customs-clearance" />
       <Navigation />
 

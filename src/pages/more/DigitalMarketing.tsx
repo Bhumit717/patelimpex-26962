@@ -17,7 +17,7 @@ const DigitalMarketing = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Digital Marketing | Patel Impex" description="Digital Marketing - Expert services and information by Patel Impex." canonicalUrl="/more/digital-marketing" />
       <Navigation />
       

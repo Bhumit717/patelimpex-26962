@@ -38,3 +38,4 @@ const CuminSeedsDetail = () => {
 };
 
 export default CuminSeedsDetail;
+

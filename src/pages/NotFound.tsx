@@ -21,12 +21,12 @@ const NotFound = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#e9edf3] flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
       <header className="nm-card !rounded-none !p-4 !m-0 z-10">
         <div className="container mx-auto">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-[10px] bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
+            <div className="w-10 h-10 rounded-[10px] bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center">
               <span className="text-blue-600 font-black text-xl">P</span>
             </div>
             <span className="text-2xl font-black text-slate-800">
@@ -58,7 +58,7 @@ const NotFound = () => {
             <p className="text-xl text-slate-600 mb-6 max-w-2xl mx-auto">
               The page you're looking for doesn't exist. But don't worry, Patel Impex has everything you need just a click away.
             </p>
-            <div className="inline-block px-4 py-2 rounded-lg bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
+            <div className="inline-block px-4 py-2 rounded-lg bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff]">
               <p className="text-sm text-slate-500 font-mono">
                 Requested URL: {location.pathname}
               </p>
@@ -111,7 +111,7 @@ const NotFound = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="nm-card p-8 bg-[#e9edf3]">
+          <div className="nm-card p-8 bg-white">
             <h3 className="text-xl font-bold mb-6 text-slate-800">
               Need Help? We're Here for You
             </h3>
@@ -137,3 +137,4 @@ const NotFound = () => {
 };
 
 export default NotFound;
+

@@ -212,7 +212,7 @@ const GoogleTranslate = () => {
 
   return (
     <div className="flex items-center gap-2 group">
-      <div className="flex items-center gap-2 bg-[#e9edf3] px-4 py-2 rounded-[30px] shadow-[0_20px_60px_rgba(0,0,0,0.25),0_10px_30px_rgba(59,130,246,0.15)] w-auto min-w-[260px]">
+      <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-[30px] shadow-[0_20px_60px_rgba(0,0,0,0.25),0_10px_30px_rgba(59,130,246,0.15)] w-auto min-w-[260px]">
         <Languages className="h-4 w-4 text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
         <div id="google_translate_element" className="translate-widget flex items-center overflow-hidden"></div>
       </div>
@@ -221,3 +221,4 @@ const GoogleTranslate = () => {
 };
 
 export default GoogleTranslate;
+

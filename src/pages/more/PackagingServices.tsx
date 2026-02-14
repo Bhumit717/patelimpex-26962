@@ -17,7 +17,7 @@ const PackagingServices = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Packaging Services | Patel Impex" description="Packaging Services - Expert services and information by Patel Impex." canonicalUrl="/more/packaging-services" />
       <Navigation />
       

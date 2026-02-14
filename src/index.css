@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
+    --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -42,8 +42,8 @@
   }
 
   body {
-    @apply bg-[#f8fafc] text-[#334155] font-sans;
-    background-color: #f8fafc;
+    @apply bg-white text-[#334155] font-sans;
+    background-color: #ffffff;
     min-height: 100vh;
     font-display: swap;
     overflow-x: hidden;
@@ -66,7 +66,7 @@
 /* Perfected Neumorphism Utilities */
 @layer utilities {
   .nm-card {
-    background: #f8fafc;
+    background: #ffffff;
     box-shadow: 12px 12px 24px #cbd5e1, -12px -12px 24px #ffffff;
     color: #334155;
     border: 1px solid rgba(255, 255, 255, 0.4);
@@ -171,7 +171,7 @@
   }
 
   .nm-input {
-    background: #f8fafc;
+    background: #ffffff;
     box-shadow: inset 5px 5px 10px #e2e8f0, inset -5px -5px 10px #ffffff;
     color: #1e293b;
     border-radius: 12px;

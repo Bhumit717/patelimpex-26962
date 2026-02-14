@@ -19,7 +19,7 @@ const SpicesExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Spices Export | Patel Impex" description="Spices Export - Expert services and information by Patel Impex." canonicalUrl="/more/spices-export" />
       <Navigation />
       

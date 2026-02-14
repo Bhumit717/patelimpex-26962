@@ -17,7 +17,7 @@ const TextileExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Textile Export | Patel Impex" description="Textile Export - Expert services and information by Patel Impex." canonicalUrl="/more/textile-export" />
       <Navigation />
       

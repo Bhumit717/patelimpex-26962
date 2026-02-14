@@ -33,7 +33,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#e9edf3]">
+    <div className="min-h-screen bg-white">
       <SEOHead title="About Us | Patel Impex" description="Learn about Patel Impex, our journey, values, and mission in the global import-export industry." canonicalUrl="/about" />
       <Navigation />
 
@@ -119,7 +119,7 @@ const About = () => {
               {values.map((value, index) => (
                 <div key={index} className="group animate-scale-in opacity-0" style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'forwards' }}>
                   <div className="nm-card !p-10 h-full bg-white hover:-translate-y-3 transition-all duration-500">
-                    <div className="w-20 h-20 rounded-[25px] bg-[#e9edf3] shadow-inner border border-slate-100 flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-500">
+                    <div className="w-20 h-20 rounded-[25px] bg-white shadow-inner border border-slate-100 flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-500">
                       <value.icon className="h-10 w-10 text-green-600" />
                     </div>
                     <h3 className="text-xl font-black text-slate-900 mb-4 font-graduate uppercase tracking-tight text-center group-hover:text-green-600 transition-colors">{value.title}</h3>
@@ -138,3 +138,4 @@ const About = () => {
 };
 
 export default About;
+

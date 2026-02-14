@@ -17,7 +17,7 @@ const WestAfricanMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="West African Markets | Patel Impex" description="West African Markets - Expert services and information by Patel Impex." canonicalUrl="/more/west-african-markets" />
       <Navigation />
       

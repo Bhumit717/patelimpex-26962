@@ -34,6 +34,7 @@ const PopularPages = () => {
       { title: "Cardamom Export", href: "/more/cardamom-export" },
       { title: "Ginger Export", href: "/more/ginger-export" },
       { title: "Onion Export", href: "/more/onion-export" },
+      { title: "Sugar Export", href: "/more/sugar-export" },
       { title: "Cashew Export", href: "/more/cashew-export" }
     ]
   };
@@ -46,7 +47,7 @@ const PopularPages = () => {
   };
 
   return (
-    <section className="py-24 bg-[#f8fafc]" aria-label="Popular export pages and resources">
+    <section className="py-24 bg-white" aria-label="Popular export pages and resources">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-black text-slate-800 mb-4 font-graduate uppercase tracking-tighter">
@@ -63,7 +64,7 @@ const PopularPages = () => {
             return (
               <div key={category} className="nm-card !p-8 bg-white border-none transition-all hover:-translate-y-2">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-slate-50 flex items-center justify-center rounded-2xl shadow-inner border border-slate-100">
+                  <div className="w-12 h-12 bg-white flex items-center justify-center rounded-2xl shadow-inner border border-slate-100">
                     <Icon className="h-6 w-6 text-green-600" />
                   </div>
                   <h3 className="text-lg font-black text-slate-800 font-graduate uppercase tracking-tight">{category}</h3>

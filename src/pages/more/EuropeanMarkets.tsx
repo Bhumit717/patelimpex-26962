@@ -19,7 +19,7 @@ const EuropeanMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="European Markets | Patel Impex" description="European Markets - Expert services and information by Patel Impex." canonicalUrl="/more/european-markets" />
       <Navigation />
       

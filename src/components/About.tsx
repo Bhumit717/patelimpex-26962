@@ -14,7 +14,7 @@ const About = () => {
     };
 
     return (
-        <section id="about" className="py-24 md:py-40 bg-[#fcfdfe] relative overflow-hidden">
+        <section id="about" className="py-24 md:py-40 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4">
 
                 {/* Header Section */}
@@ -107,9 +107,10 @@ const About = () => {
             </div>
 
             {/* Background Aesthetic */}
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 -z-10 skew-x-12 translate-x-1/2"></div>
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-white -z-10 skew-x-12 translate-x-1/2"></div>
         </section>
     );
 };
 
 export default About;
+

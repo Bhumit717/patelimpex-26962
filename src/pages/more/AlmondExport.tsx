@@ -17,7 +17,7 @@ const AlmondExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Almond Export | Patel Impex" description="Almond Export - Expert services and information by Patel Impex." canonicalUrl="/more/almond-export" />
       <Navigation />
       

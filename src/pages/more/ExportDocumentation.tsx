@@ -19,7 +19,7 @@ const ExportDocumentation = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Export Documentation | Patel Impex" description="Export Documentation - Expert services and information by Patel Impex." canonicalUrl="/more/export-documentation" />
       <Navigation />
       

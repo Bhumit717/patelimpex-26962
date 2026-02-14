@@ -52,3 +52,4 @@ const CottonCardingDetail = () => {
 };
 
 export default CottonCardingDetail;
+

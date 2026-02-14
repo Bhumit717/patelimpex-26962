@@ -19,7 +19,7 @@ const MiddleEastMarkets = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Middle East Markets | Patel Impex" description="Middle East Markets - Expert services and information by Patel Impex." canonicalUrl="/more/middle-east-markets" />
       <Navigation />
       

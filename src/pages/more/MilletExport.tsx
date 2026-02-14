@@ -17,7 +17,7 @@ const MilletExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Millet Export | Patel Impex" description="Millet Export - Expert services and information by Patel Impex." canonicalUrl="/more/millet-export" />
       <Navigation />
       

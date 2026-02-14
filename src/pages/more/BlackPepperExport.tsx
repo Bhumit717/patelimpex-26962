@@ -17,7 +17,7 @@ const BlackPepperExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Black Pepper Export | Patel Impex" description="Black Pepper Export - Expert services and information by Patel Impex." canonicalUrl="/more/black-pepper-export" />
       <Navigation />
       

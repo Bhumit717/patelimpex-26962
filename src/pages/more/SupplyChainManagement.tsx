@@ -17,7 +17,7 @@ const SupplyChainManagement = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Supply Chain Management | Patel Impex" description="Supply Chain Management - Expert services and information by Patel Impex." canonicalUrl="/more/supply-chain-management" />
       <Navigation />
       

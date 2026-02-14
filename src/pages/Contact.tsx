@@ -131,7 +131,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+91 (798) 41 33 417"],
+      details: ["+91 7984133417"],
     },
     {
       icon: Mail,
@@ -146,7 +146,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#e9edf3]">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Contact Us | Patel Impex" description="Get in touch with Patel Impex for your import export requirements. 24/7 support available." canonicalUrl="/contact" />
       <Navigation />
 
@@ -172,7 +172,7 @@ const Contact = () => {
                     onClick={info.onClick}
                   >
                     <div className="flex items-center space-x-3 mb-3">
-                      <div className="w-12 h-12 rounded-[14px] bg-[#e9edf3] shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-[14px] bg-white shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] flex items-center justify-center">
                         <info.icon className="h-6 w-6 text-blue-600" />
                       </div>
                       <h3 className="text-lg font-bold text-slate-800 flex items-center">
@@ -194,7 +194,7 @@ const Contact = () => {
               {/* Embedded Google Map */}
               <div className="h-80 rounded-[30px] overflow-hidden nm-bg p-2 shadow-[inset_5px_5px_10px_#cfd6e0,inset_-5px_-5px_10px_#ffffff]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0!2d70.8040941!3d22.1622576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395835617fada2e3%3A0x7046141c800ddc54!2sPATEL%20IMPEX!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.5398687702484!2d70.7964434!3d22.1527715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395835617fada2e3%3A0x7046141c800ddc54!2sPATEL%20IMPEX!5e0!3m2!1sen!2sin!4v1707921234567!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0, borderRadius: '20px' }}
@@ -320,3 +320,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

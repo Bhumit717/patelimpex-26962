@@ -10,7 +10,7 @@ import SEOHead from "@/components/SEOHead";
 
 const InternationalTradeBasics = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="International Trade Basics | Patel Impex" description="International Trade Basics - Expert services and information by Patel Impex." canonicalUrl="/more/international-trade-basics" />
       <Navigation />
       

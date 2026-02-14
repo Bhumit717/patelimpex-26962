@@ -213,3 +213,4 @@ const ProductDetailTemplate = ({
 };
 
 export default ProductDetailTemplate;
+

@@ -17,7 +17,7 @@ const SeaFreight = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Sea Freight | Patel Impex" description="Sea Freight - Expert services and information by Patel Impex." canonicalUrl="/more/sea-freight" />
       <Navigation />
       

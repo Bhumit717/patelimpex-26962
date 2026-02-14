@@ -52,3 +52,4 @@ const CottonRovingDetail = () => {
 };
 
 export default CottonRovingDetail;
+

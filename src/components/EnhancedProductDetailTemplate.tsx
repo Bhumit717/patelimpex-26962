@@ -118,7 +118,7 @@ const EnhancedProductDetailTemplate = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen bg-white">
       <SEOHead
         title={metaTitle || `${name} Exporter India | Patel Impex`}
         description={metaDescription || description.substring(0, 160)}
@@ -189,7 +189,7 @@ const EnhancedProductDetailTemplate = ({
             {/* Product Info */}
             <div className="space-y-10">
               <div>
-                <div className="inline-block px-4 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-green-600 text-[10px] font-black uppercase tracking-[0.2em] font-graduate mb-6">
+                <div className="inline-block px-4 py-1.5 bg-white border border-slate-100 rounded-full text-green-600 text-[10px] font-black uppercase tracking-[0.2em] font-graduate mb-6">
                   {category}
                 </div>
                 <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-8 font-graduate uppercase tracking-tighter leading-none">
@@ -231,12 +231,12 @@ const EnhancedProductDetailTemplate = ({
 
               {/* Specifications Table */}
               <div className="nm-card !p-0 overflow-hidden bg-white border-none shadow-xl">
-                <div className="bg-slate-50 px-8 py-5 border-b border-slate-100">
+                <div className="bg-white px-8 py-5 border-b border-slate-100">
                   <h3 className="font-black text-slate-900 text-lg font-graduate uppercase tracking-tight">Technical Specifications</h3>
                 </div>
                 <div className="divide-y divide-slate-50">
                   {specifications.map((spec, index) => (
-                    <div key={index} className="flex px-8 py-5 hover:bg-slate-50/50 transition-colors">
+                    <div key={index} className="flex px-8 py-5 hover:bg-white/50 transition-colors">
                       <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest font-graduate w-1/3">{spec.label}</span>
                       <span className="text-slate-800 w-2/3 font-fondamento text-lg italic">{spec.value}</span>
                     </div>
@@ -308,3 +308,4 @@ const EnhancedProductDetailTemplate = ({
 };
 
 export default EnhancedProductDetailTemplate;
+

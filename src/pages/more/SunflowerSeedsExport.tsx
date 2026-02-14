@@ -17,7 +17,7 @@ const SunflowerSeedsExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Sunflower Seeds Export | Patel Impex" description="Sunflower Seeds Export - Expert services and information by Patel Impex." canonicalUrl="/more/sunflower-seeds-export" />
       <Navigation />
       

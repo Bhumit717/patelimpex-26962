@@ -120,3 +120,4 @@ const RelatedLinks = ({ currentPage, category = "products" }: RelatedLinksProps)
 };
 
 export default RelatedLinks;
+

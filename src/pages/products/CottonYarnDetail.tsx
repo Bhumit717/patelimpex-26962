@@ -52,3 +52,4 @@ const CottonYarnDetail = () => {
 };
 
 export default CottonYarnDetail;
+

@@ -189,7 +189,7 @@ const CustomLanguageSelector = () => {
             <div className="relative z-[100]">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 border border-slate-100 shadow-sm hover:bg-slate-100 transition-all duration-300 active:scale-95"
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-slate-100 shadow-sm hover:bg-slate-100 transition-all duration-300 active:scale-95"
                     aria-label="Select Language"
                 >
                     <Languages className="h-5 w-5 text-green-600" />
@@ -209,7 +209,7 @@ const CustomLanguageSelector = () => {
                                     <button
                                         key={lang.code}
                                         onClick={() => handleLanguageSelect(lang.code, lang.name)}
-                                        className={`w-full text-left px-5 py-3 text-sm rounded-xl transition-all duration-300 hover:bg-slate-50 font-graduate ${selectedLanguage === lang.name ? 'text-green-600 font-bold bg-green-50' : 'text-slate-600 font-medium'}`}
+                                        className={`w-full text-left px-5 py-3 text-sm rounded-xl transition-all duration-300 hover:bg-white font-graduate ${selectedLanguage === lang.name ? 'text-green-600 font-bold bg-green-50' : 'text-slate-600 font-medium'}`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <span>{lang.nativeName}</span>
@@ -227,3 +227,4 @@ const CustomLanguageSelector = () => {
 };
 
 export default CustomLanguageSelector;
+

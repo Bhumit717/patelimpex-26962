@@ -48,14 +48,14 @@ const CertificationServices = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-800">
+    <div className="min-h-screen bg-white text-slate-800">
       <SEOHead title="Certification Services | Patel Impex" description="Certification Services - Expert services and information by Patel Impex." canonicalUrl="/more/certification-services" />
       <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center px-4 py-2 bg-slate-50 rounded-full mb-6 border border-slate-100">
+          <div className="inline-flex items-center px-4 py-2 bg-white rounded-full mb-6 border border-slate-100">
             <Leaf className="h-4 w-4 text-green-600 mr-2" />
             <span className="text-slate-500 text-xs font-bold uppercase tracking-widest font-graduate">Compliance & Trust</span>
           </div>
@@ -70,12 +70,12 @@ const CertificationServices = () => {
       </section>
 
       {/* Grid */}
-      <section className="py-20 bg-[#f8fafc]">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {certificates.map((cert, index) => (
               <div key={index} className="nm-card !p-0 overflow-hidden bg-white border-none group">
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-50 p-8 flex items-center justify-center">
+                <div className="relative aspect-[4/3] overflow-hidden bg-white p-8 flex items-center justify-center">
                   <img
                     src={cert.image}
                     alt={cert.name}
@@ -90,11 +90,11 @@ const CertificationServices = () => {
                   <p className="text-sm text-slate-500 font-fondamento italic">{cert.description}</p>
 
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <div className="flex justify-between items-center p-3 bg-white rounded-xl border border-slate-100">
                       <span className="text-[10px] text-slate-400 uppercase tracking-widest font-graduate">Number</span>
                       <span className="font-mono text-xs font-bold text-slate-700">{cert.number}</span>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <div className="flex justify-between items-center p-3 bg-white rounded-xl border border-slate-100">
                       <span className="text-[10px] text-slate-400 uppercase tracking-widest font-graduate">Issue Date</span>
                       <span className="text-xs font-bold text-slate-700">{cert.issueDate}</span>
                     </div>
@@ -118,7 +118,7 @@ const CertificationServices = () => {
       <section className="py-20 pb-32 bg-white">
         <div className="container mx-auto px-4">
           <div className="nm-card text-center max-w-3xl mx-auto !p-12 border-none">
-            <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-inner">
+            <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-inner">
               <Shield className="w-8 h-8 text-green-600" />
             </div>
             <h2 className="text-3xl font-black text-slate-800 mb-4 font-graduate uppercase">Verified Exporter</h2>

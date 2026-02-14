@@ -8,19 +8,71 @@ import { Wheat, Award, Globe, TrendingUp } from "lucide-react";
 import wheatImage from "@/assets/agricultural-export-processing.jpg";
 import SEOHead from "@/components/SEOHead";
 
+// Product Images
+import sharbatiImg from "@/assets/products/subtypes/sharbati-wheat.png";
+import durumImg from "@/assets/products/subtypes/durum-wheat.png";
+import breadImg from "@/assets/products/subtypes/bread-wheat.png";
+import lokwanImg from "@/assets/products/subtypes/lokwan-wheat.png";
+import bhaliaImg from "@/assets/products/subtypes/bhalia-wheat.png";
+import hd2687Img from "@/assets/products/subtypes/hd-2687-wheat.png";
+
 const WheatExport = () => {
   const wheatTypes = [
-    { type: "Durum Wheat", protein: "12-14%", grade: "Premium", markets: "Italy, Algeria, Morocco" },
-    { type: "Hard Red Winter", protein: "11-13%", grade: "Standard", markets: "Bangladesh, Philippines, Vietnam" },
-    { type: "Soft White Wheat", protein: "9-11%", grade: "Feed Grade", markets: "Indonesia, Malaysia, Thailand" },
-    { type: "Spring Wheat", protein: "13-15%", grade: "Milling Grade", markets: "Egypt, Turkey, Lebanon" }
+    {
+      type: "Sharbati Wheat",
+      protein: "12-14%",
+      grade: "Premium",
+      markets: "Global",
+      image: sharbatiImg,
+      link: "/products/wheat/sharbati"
+    },
+    {
+      type: "Durum Wheat",
+      protein: "12-14%",
+      grade: "Premium",
+      markets: "Italy, North Africa",
+      image: durumImg,
+      link: "/products/wheat/durum"
+    },
+    {
+      type: "Bread Wheat",
+      protein: "11-13%",
+      grade: "Standard",
+      markets: "Global",
+      image: breadImg,
+      link: "/products/wheat/bread"
+    },
+    {
+      type: "Lokwan Wheat",
+      protein: "10-12%",
+      grade: "Superior",
+      markets: "Middle East",
+      image: lokwanImg,
+      link: "/products/wheat/lokwan"
+    },
+    {
+      type: "Bhalia Wheat",
+      protein: "10-12%",
+      grade: "Superior",
+      markets: "Index",
+      image: bhaliaImg,
+      link: "/products/wheat/bhalia"
+    },
+    {
+      type: "HD 2687 (Shreshth)",
+      protein: "11.5-13%",
+      grade: "High Yield",
+      markets: "Asia",
+      image: hd2687Img,
+      link: "/products/wheat/hd-2687"
+    }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Wheat Export | Patel Impex" description="Wheat Export - Expert services and information by Patel Impex." canonicalUrl="/more/wheat-export" />
       <Navigation />
-      
+
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -40,8 +92,8 @@ const WheatExport = () => {
               </Button>
             </div>
             <div>
-              <img 
-                src={wheatImage} 
+              <img
+                src={wheatImage}
                 alt="Wheat Export - Premium Indian wheat for global milling industry"
                 className="rounded-lg shadow-xl w-full h-[400px] object-cover"
               />
@@ -55,26 +107,45 @@ const WheatExport = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Wheat Varieties</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {wheatTypes.map((wheat, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-between">
-                    {wheat.type}
-                    <Badge variant="outline">{wheat.grade}</Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <Award className="w-4 h-4 text-primary" />
-                      <span className="text-sm">Protein: {wheat.protein}</span>
+              <Link
+                key={index}
+                to={wheat.link}
+                className="group block"
+              >
+                <Card className="nm-card !p-0 overflow-hidden border-none group-hover:-translate-y-2 transition-all duration-500 h-full">
+                  <CardHeader className="bg-white p-0 border-b border-slate-100">
+                    <div className="h-48 w-full overflow-hidden p-6 flex items-center justify-center bg-slate-50">
+                      <img
+                        src={wheat.image}
+                        alt={wheat.type}
+                        className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Globe className="w-4 h-4 text-primary" />
-                      <span className="text-sm">Markets: {wheat.markets}</span>
+                    <div className="p-6">
+                      <CardTitle className="flex flex-col gap-2 font-graduate uppercase tracking-tight text-xl group-hover:text-green-600 transition-colors">
+                        <span>{wheat.type}</span>
+                        <Badge variant="outline" className="w-fit font-bold text-[10px]">{wheat.grade}</Badge>
+                      </CardTitle>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardHeader>
+                  <CardContent className="p-6 space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center">
+                          <Award className="w-4 h-4 text-green-600" />
+                        </div>
+                        <span className="text-sm font-fondamento italic text-slate-600">Protein: {wheat.protein}</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                          <Globe className="w-4 h-4 text-slate-400" />
+                        </div>
+                        <span className="text-sm font-fondamento italic text-slate-500">Markets: {wheat.markets}</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

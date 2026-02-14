@@ -17,7 +17,7 @@ const CashewExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Cashew Export | Patel Impex" description="Cashew Export - Expert services and information by Patel Impex." canonicalUrl="/more/cashew-export" />
       <Navigation />
       

@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import OpeningAnimation from "@/components/OpeningAnimation";
 import LogoScroll from "@/components/LogoScroll";
 import TranslationBanner from "@/components/TranslationBanner";
-import PopularPages from "@/components/PopularPages";
 
 // Lazy load non-critical components for better performance
 const WhatsAppChat = lazy(() => import("@/components/WhatsAppChat"));
@@ -77,7 +76,6 @@ const Index = () => {
           <Hero />
           <div className="reveal"><Products /></div>
           <div className="reveal"><About /></div>
-          <div className="reveal"><PopularPages /></div>
           <div className="reveal"><Contact /></div>
         </main>
 

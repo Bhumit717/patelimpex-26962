@@ -69,3 +69,4 @@ const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => {
 };
 
 export default OpeningAnimation;
+

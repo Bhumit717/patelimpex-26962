@@ -31,7 +31,7 @@ const CertificateOfOrigin = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead
         title="Our Certificates | Patel Impex"
         description="View our official business certifications including GST Registration, IEC Certificate, and UDYAM Registration."

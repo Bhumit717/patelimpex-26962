@@ -87,6 +87,7 @@ import CashewExport from "./pages/more/CashewExport";
 import AlmondExport from "./pages/more/AlmondExport";
 import SesameSeedsExport from "./pages/more/SesameSeedsExport";
 import SunflowerSeedsExport from "./pages/more/SunflowerSeedsExport";
+import SugarExport from "./pages/more/SugarExport";
 
 
 // Product Pages - Main Categories
@@ -99,10 +100,12 @@ import CardamomPage from "./pages/products/CardamomPage";
 import CuminSeedsPage from "./pages/products/CuminSeedsPage";
 import SoybeansPage from "./pages/products/SoybeansPage";
 import WheatFlourPage from "./pages/products/WheatFlourPage";
+import WheatProductsPage from "./pages/products/WheatProductsPage";
 import RiceProductsPage from "./pages/products/RiceProductsPage";
 import GroundnutProductsPage from "./pages/products/GroundnutProductsPage";
 import CottonProductsPage from "./pages/products/CottonProductsPage";
 import SesameSeedsProducts from "./pages/products/SesameSeedsProducts";
+import SugarProductsPage from "./pages/products/SugarProductsPage";
 import HulledSesameSeedsDetail from "./pages/products/HulledSesameSeedsDetail";
 import NaturalSesameSeedsDetail from "./pages/products/NaturalSesameSeedsDetail";
 
@@ -127,6 +130,23 @@ import SteamBasmatiRice1121Detail from "./pages/products/SteamBasmatiRice1121Det
 import IR64ParboiledRiceDetail from "./pages/products/IR64ParboiledRiceDetail";
 import IR64RawRiceDetail from "./pages/products/IR64RawRiceDetail";
 import SonaMasooriRiceDetail from "./pages/products/SonaMasooriRiceDetail";
+
+// Sugar Subproduct Pages
+import RawSugarDetail from "./pages/products/sugar/RawSugarDetail";
+import RefinedWhiteSugarDetail from "./pages/products/sugar/RefinedWhiteSugarDetail";
+import OrganicSugarDetail from "./pages/products/sugar/OrganicSugarDetail";
+import JaggeryDetail from "./pages/products/sugar/JaggeryDetail";
+import PharmaSugarDetail from "./pages/products/sugar/PharmaSugarDetail";
+import WhiteCrystalSugarDetail from "./pages/products/sugar/WhiteCrystalSugarDetail";
+import BrownSugarDetail from "./pages/products/sugar/BrownSugarDetail";
+
+// Wheat Subproduct Pages
+import SharbatiWheatDetail from "./pages/products/wheat/SharbatiWheatDetail";
+import DurumWheatDetail from "./pages/products/wheat/DurumWheatDetail";
+import LokwanWheatDetail from "./pages/products/wheat/LokwanWheatDetail";
+import BreadWheatDetail from "./pages/products/wheat/BreadWheatDetail";
+import BhaliaWheatDetail from "./pages/products/wheat/BhaliaWheatDetail";
+import HD2687WheatDetail from "./pages/products/wheat/HD2687WheatDetail";
 
 // Product Pages - Other
 import OrganicPesticidesExport from "./pages/products/OrganicPesticidesExport";
@@ -389,6 +409,7 @@ const App = () => (
           <Route path="/more/legal-compliance" element={<LegalCompliance />} />
           <Route path="/more/technology-integration" element={<TechnologyIntegration />} />
           <Route path="/more/packaging-services" element={<PackagingServices />} />
+          <Route path="/more/sugar-export" element={<SugarExport />} />
           <Route path="/more/:slug" element={<DynamicSEOProductPage />} />
 
 
@@ -544,12 +565,14 @@ const App = () => (
           <Route path="/products/cumin-seeds" element={<CuminSeedsPage />} />
           <Route path="/products/soybeans" element={<SoybeansPage />} />
           <Route path="/products/wheat-flour" element={<WheatFlourPage />} />
+          <Route path="/products/wheat" element={<WheatProductsPage />} />
           <Route path="/products/rice" element={<RiceProductsPage />} />
           <Route path="/products/groundnut" element={<GroundnutProductsPage />} />
           <Route path="/products/cotton" element={<CottonProductsPage />} />
           <Route path="/products/sesame-seeds" element={<SesameSeedsProducts />} />
           <Route path="/products/sesame-seeds/hulled" element={<HulledSesameSeedsDetail />} />
           <Route path="/products/sesame-seeds/natural" element={<NaturalSesameSeedsDetail />} />
+          <Route path="/products/sugar" element={<SugarProductsPage />} />
 
           {/* Cotton Subproduct Routes */}
           <Route path="/products/raw-cotton" element={<RawCottonDetail />} />
@@ -572,6 +595,23 @@ const App = () => (
           <Route path="/products/ir64-parboiled-rice" element={<IR64ParboiledRiceDetail />} />
           <Route path="/products/ir64-raw-rice" element={<IR64RawRiceDetail />} />
           <Route path="/products/sona-masoori-rice" element={<SonaMasooriRiceDetail />} />
+
+          {/* Sugar Subproduct Routes */}
+          <Route path="/products/sugar/raw-sugar" element={<RawSugarDetail />} />
+          <Route path="/products/sugar/refined-white-sugar" element={<RefinedWhiteSugarDetail />} />
+          <Route path="/products/sugar/organic-sugar" element={<OrganicSugarDetail />} />
+          <Route path="/products/sugar/jaggery" element={<JaggeryDetail />} />
+          <Route path="/products/sugar/pharmaceutical-sugar" element={<PharmaSugarDetail />} />
+          <Route path="/products/sugar/white-crystal-sugar" element={<WhiteCrystalSugarDetail />} />
+          <Route path="/products/sugar/brown-sugar" element={<BrownSugarDetail />} />
+
+          {/* Wheat Subproduct Routes */}
+          <Route path="/products/wheat/sharbati" element={<SharbatiWheatDetail />} />
+          <Route path="/products/wheat/durum" element={<DurumWheatDetail />} />
+          <Route path="/products/wheat/lokwan" element={<LokwanWheatDetail />} />
+          <Route path="/products/wheat/bread-wheat" element={<BreadWheatDetail />} />
+          <Route path="/products/wheat/bhalia" element={<BhaliaWheatDetail />} />
+          <Route path="/products/wheat/hd-2687" element={<HD2687WheatDetail />} />
 
           {/* Other Product Pages */}
           <Route path="/products/organic-pesticides-export" element={<OrganicPesticidesExport />} />

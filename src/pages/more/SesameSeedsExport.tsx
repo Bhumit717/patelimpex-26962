@@ -17,7 +17,7 @@ const SesameSeedsExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Sesame Seeds Export | Patel Impex" description="Sesame Seeds Export - Expert services and information by Patel Impex." canonicalUrl="/more/sesame-seeds-export" />
       <Navigation />
       

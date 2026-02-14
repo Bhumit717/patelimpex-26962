@@ -65,7 +65,7 @@ const EnhancedProductCategoryTemplate = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen bg-white">
       <SEOHead
         title={metaTitle || `${title} Exporter India | Patel Impex`}
         description={metaDescription || description.substring(0, 160)}
@@ -81,7 +81,7 @@ const EnhancedProductCategoryTemplate = ({
             <div className="mb-8">
               <Breadcrumbs items={breadcrumbs.map(item => ({ ...item, href: item.href }))} />
             </div>
-            <div className="inline-flex items-center px-4 py-2 bg-slate-50 rounded-full border border-slate-100 mb-8">
+            <div className="inline-flex items-center px-4 py-2 bg-white rounded-full border border-slate-100 mb-8">
               <span className="text-green-600 text-[10px] font-bold uppercase tracking-[0.2em] font-graduate">{category}</span>
             </div>
             <h1 className="text-5xl md:text-8xl font-black text-slate-900 mb-8 font-graduate uppercase tracking-tighter">
@@ -108,7 +108,7 @@ const EnhancedProductCategoryTemplate = ({
                 to={product.link}
                 className="group relative nm-card !p-0 overflow-hidden hover:-translate-y-3 transition-all duration-500 bg-white"
               >
-                <div className="relative h-64 overflow-hidden bg-slate-50 p-10 flex items-center justify-center">
+                <div className="relative h-64 overflow-hidden bg-white p-10 flex items-center justify-center">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -139,3 +139,4 @@ const EnhancedProductCategoryTemplate = ({
 };
 
 export default EnhancedProductCategoryTemplate;
+

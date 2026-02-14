@@ -17,7 +17,7 @@ const BasmatiRiceExport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Basmati Rice Export | Patel Impex" description="Basmati Rice Export - Expert services and information by Patel Impex." canonicalUrl="/more/basmati-rice-export" />
       <Navigation />
       

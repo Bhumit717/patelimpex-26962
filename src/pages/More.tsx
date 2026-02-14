@@ -158,7 +158,7 @@ const More = () => {
   const totalPages = resourceCategories.reduce((total, category) => total + category.pages.length, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="More Resources | Patel Impex" description="Explore more resources and information about international trade." canonicalUrl="/more" />
       <Navigation />
 

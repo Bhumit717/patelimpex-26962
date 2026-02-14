@@ -15,7 +15,6 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
     { name: "Products", href: "/products" },
     { name: "Certificates", href: "/more/certification-services" },
     { name: "News", href: "/news" },
@@ -93,7 +92,7 @@ const Navigation = () => {
               key={item.name}
               to={item.href}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center justify-between p-4 rounded-2xl transition-all ${location.pathname === item.href ? 'bg-green-50 text-green-700' : 'hover:bg-slate-50 text-slate-700'}`}
+              className={`flex items-center justify-between p-4 rounded-2xl transition-all ${location.pathname === item.href ? 'bg-green-50 text-green-700' : 'hover:bg-white text-slate-700'}`}
             >
               <span className="text-lg font-black font-graduate uppercase tracking-tight">{item.name}</span>
               <ChevronRight size={20} className={location.pathname === item.href ? 'text-green-600' : 'text-slate-300'} />

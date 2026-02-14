@@ -299,7 +299,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#e9edf3]">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Frequently Asked Questions | Patel Impex" description="Find answers to common questions about our export process and products." canonicalUrl="/faq" />
       <Navigation />
 
@@ -364,7 +364,7 @@ const FAQ = () => {
                   </div>
                 </div>
 
-                <div className="p-8 bg-[#e9edf3]">
+                <div className="p-8 bg-white">
                   <div className="space-y-4">
                     {section.faqs.map((faq, faqIndex) => {
                       const globalIndex = sectionIndex * 100 + faqIndex;
@@ -372,7 +372,7 @@ const FAQ = () => {
                         <div key={faqIndex} className="nm-insert rounded-xl overflow-hidden">
                           <button
                             onClick={() => toggleFAQ(globalIndex)}
-                            className="w-full px-6 py-4 text-left flex justify-between items-center group bg-[#e9edf3] hover:text-blue-600 transition-colors"
+                            className="w-full px-6 py-4 text-left flex justify-between items-center group bg-white hover:text-blue-600 transition-colors"
                           >
                             <span className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
                               {faq.question}
@@ -384,7 +384,7 @@ const FAQ = () => {
                             )}
                           </button>
                           {openFAQ === globalIndex && (
-                            <div className="px-6 py-4 border-t border-white bg-[#e9edf3]/50">
+                            <div className="px-6 py-4 border-t border-white bg-white/50">
                               <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
                             </div>
                           )}
@@ -415,7 +415,7 @@ const FAQ = () => {
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="nm-card p-6">
               <div className="flex items-center mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center mr-3">
+                <div className="w-10 h-10 rounded-full bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center mr-3">
                   <MapPin className="h-5 w-5 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-800">Market Guides</h3>
@@ -443,7 +443,7 @@ const FAQ = () => {
 
             <div className="nm-card p-6">
               <div className="flex items-center mb-4">
-                <div className="w-10 h-10 rounded-full bg-[#e9edf3] shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center mr-3">
+                <div className="w-10 h-10 rounded-full bg-white shadow-[inset_2px_2px_4px_#cfd6e0,inset_-2px_-2px_4px_#ffffff] flex items-center justify-center mr-3">
                   <Package className="h-5 w-5 text-teal-600" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-800">Product & Service Pages</h3>
@@ -471,7 +471,7 @@ const FAQ = () => {
           </div>
 
           {/* Quick Access Links */}
-          <div className="nm-card p-8 text-center bg-[#e9edf3]">
+          <div className="nm-card p-8 text-center bg-white">
             <h3 className="text-2xl font-bold mb-4 text-slate-800">Need Personalized Assistance?</h3>
             <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
               Our export specialists are ready to help you navigate international trade complexities and find the perfect solutions for your business needs.

@@ -89,7 +89,7 @@ const ExportImportGuide = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="min-h-screen bg-white">
       <SEOHead title="Export Import Guide | Patel Impex" description="Export Import Guide - Expert services and information by Patel Impex." canonicalUrl="/more/export-import-guide" />
       <Navigation />
 
