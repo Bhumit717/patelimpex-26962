@@ -14,7 +14,6 @@ const Inquiry = () => {
     email: '',
     phone: '',
     country: '',
-    productCategory: '',
     inquiryType: '',
     quantity: '',
     budget: '',
@@ -58,7 +57,6 @@ const Inquiry = () => {
 📧 Email: ${formData.email}
 📱 Phone: ${formData.phone}
 🌍 Country: ${formData.country}
-📦 Product: ${formData.productCategory}
 🔄 Type: ${formData.inquiryType}
 📊 Qty: ${formData.quantity || 'N/A'}
 💰 Budget: ${formData.budget || 'N/A'}
@@ -75,7 +73,7 @@ const Inquiry = () => {
         fetch(apiUrl2, { mode: 'no-cors' })
       ]);
 
-      setFormData({ companyName: '', contactPerson: '', email: '', phone: '', country: '', productCategory: '', inquiryType: '', quantity: '', budget: '', timeline: '', message: '' });
+      setFormData({ companyName: '', contactPerson: '', email: '', phone: '', country: '', inquiryType: '', quantity: '', budget: '', timeline: '', message: '' });
       localStorage.removeItem("inquiry_form_draft");
       toast({ title: "Quote requested! ✅", description: "Our trade experts will reply within 24 hours." });
     } catch (error) {
@@ -93,7 +91,6 @@ const Inquiry = () => {
   ];
 
   const countries = ["USA", "UK", "Canada", "Australia", "Germany", "UAE", "Saudi Arabia", "Japan", "Singapore", "Others"];
-  const categories = ["Agricultural Products", "Textiles", "Spices", "Grains", "Industrial Goods", "Others"];
   const budgets = ["Under $10k", "$10k - $50k", "$50k - $100k", "Above $100k"];
   const timelines = ["Immediate", "1-3 Months", "6+ Months", "Flexible"];
 
@@ -110,7 +107,7 @@ const Inquiry = () => {
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-graduate">Quotation Center</span>
             </div>
             <h1 className="text-5xl lg:text-7xl font-black text-slate-900 mb-6 font-graduate uppercase tracking-tighter">
-              Trading <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-800 font-fredericka tracking-tight lowercase">Quotation</span>
+              deal <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-800 font-fredericka tracking-tight lowercase">quotation</span>
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl mx-auto font-fondamento italic leading-relaxed">
               Fill out our specialized trade inquiry form and receive a comprehensive commercial quote curated by our global logistics team.
@@ -156,23 +153,13 @@ const Inquiry = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-3">
                   <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest font-graduate">Country</label>
                   <div className="relative">
                     <select name="country" value={formData.country} onChange={handleInputChange} required className="w-full px-5 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-green-500/20 focus:bg-white transition-all outline-none font-semibold text-slate-800 appearance-none cursor-pointer">
                       <option value="">Select Region</option>
                       {countries.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                    <div className="absolute top-1/2 right-4 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest font-graduate">Product Category</label>
-                  <div className="relative">
-                    <select name="productCategory" value={formData.productCategory} onChange={handleInputChange} required className="w-full px-5 py-4 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-green-500/20 focus:bg-white transition-all outline-none font-semibold text-slate-800 appearance-none cursor-pointer">
-                      <option value="">Select Category</option>
-                      {categories.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
                     <div className="absolute top-1/2 right-4 -translate-y-1/2 pointer-events-none text-slate-400">▼</div>
                   </div>
@@ -220,7 +207,7 @@ const Inquiry = () => {
               </div>
 
               <button type="submit" disabled={isSubmitting} className="w-full py-5 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl shadow-lg hover:shadow-green-500/30 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center group font-bold font-graduate uppercase tracking-widest text-sm">
-                <span>{isSubmitting ? 'Transmitting Data...' : 'Request Trade Quotation'}</span>
+                <span>{isSubmitting ? 'Transmitting Data...' : 'Request deal quotation'}</span>
                 <Send className={`ml-3 h-4 w-4 transition-transform ${isSubmitting ? 'animate-ping' : 'group-hover:translate-x-2 group-hover:-translate-y-1'}`} />
               </button>
             </form>

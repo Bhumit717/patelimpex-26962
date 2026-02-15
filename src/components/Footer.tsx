@@ -33,13 +33,7 @@ const Footer = () => {
       { name: "Groundnut / Peanuts", href: "/products/groundnut" },
       { name: "Psyllium Products", href: "/products/psyllium-husk" }
     ],
-    "SEO Services": [
-      { name: "Organic Food Export", href: "/seo/organic-food-export" },
-      { name: "Pharmaceutical Trade", href: "/seo/pharmaceutical-export" },
-      { name: "Ocean Freight Logisics", href: "/seo/ocean-freight-services" },
-      { name: "Air Cargo Solutions", href: "/seo/air-freight-services" },
-      { name: "Handicrafts Export", href: "/seo/handicrafts-export-services" }
-    ],
+
     "Regional Trade": [
       { name: "European Markets", href: "/more/european-markets" },
       { name: "African Trade Guide", href: "/more/african-markets" },
