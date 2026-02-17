@@ -111,40 +111,21 @@ const BlogPostDetail = () => {
 
                     {/* Content */}
                     <div className="space-y-8">
-                        {/* Main Content - Markdown-style rendering */}
-                        <div className="prose prose-slate prose-lg max-w-none">
-                            {post.content.split('\n').map((paragraph, idx) => {
-                                // Handle headings
-                                if (paragraph.startsWith('## ')) {
-                                    return (
-                                        <h2 key={idx} className="text-3xl font-black text-slate-800 font-graduate uppercase tracking-tight mt-12 mb-6">
-                                            {paragraph.replace('## ', '')}
-                                        </h2>
-                                    );
-                                }
-                                // Handle bullet points
-                                if (paragraph.trim().startsWith('• ')) {
-                                    return (
-                                        <li key={idx} className="text-lg text-slate-600 leading-loose ml-6">
-                                            {paragraph.replace('• ', '')}
-                                        </li>
-                                    );
-                                }
-                                // Handle bold and italic
-                                const formattedText = paragraph
-                                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                                    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-                                    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-blue-600 hover:underline">$1</a>');
+                        {/* Main Content - HTML Rendering from ReactQuill */}
+                        <div
+                            className="prose prose-slate prose-lg max-w-none text-slate-600 leading-loose"
+                            dangerouslySetInnerHTML={{ __html: post.content }}
+                        />
 
-                                // Regular paragraph
-                                if (paragraph.trim()) {
-                                    return (
-                                        <p key={idx} className="text-lg text-slate-600 leading-loose mb-6" dangerouslySetInnerHTML={{ __html: formattedText }} />
-                                    );
-                                }
-                                return null;
-                            })}
-                        </div>
+                        {/* Add some custom styles for Quill content spacing */}
+                        <style>{`
+                            .prose h1, .prose h2, .prose h3 { font-family: 'Graduate', serif; margin-top: 2rem; margin-bottom: 1rem; color: #1e293b; }
+                            .prose p { margin-bottom: 1.5rem; }
+                            .prose ul, .prose ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+                            .prose li { margin-bottom: 0.5rem; }
+                            .prose blockquote { border-left: 4px solid #cbd5e1; padding-left: 1rem; font-style: italic; }
+                            .prose img { border-radius: 0.75rem; margin-top: 2rem; margin-bottom: 2rem; }
+                        `}</style>
                     </div>
 
                     {/* Footer Meta */}

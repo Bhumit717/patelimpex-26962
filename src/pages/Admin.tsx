@@ -37,6 +37,8 @@ import {
     Pie,
     Cell
 } from "recharts";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { db } from "@/lib/firebase";
 import {
     collection,
@@ -639,108 +641,29 @@ const Admin = () => {
                                         <div className="space-y-4">
                                             <label className="nm-label !mb-0">Blog Content</label>
 
-                                            {/* Rich Text Formatting Toolbar */}
-                                            <div className="flex flex-wrap gap-2 p-4 bg-slate-50 rounded-xl border-2 border-slate-200">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
-                                                        const start = textarea.selectionStart;
-                                                        const end = textarea.selectionEnd;
-                                                        const selectedText = blogForm.content.substring(start, end);
-                                                        const newText = blogForm.content.substring(0, start) + `**${selectedText}**` + blogForm.content.substring(end);
-                                                        setBlogForm({ ...blogForm, content: newText });
+                                            {/* React Quill Rich Text Editor */}
+                                            <div className="bg-white rounded-xl overflow-hidden border-2 border-slate-200">
+                                                <ReactQuill
+                                                    theme="snow"
+                                                    value={blogForm.content}
+                                                    onChange={(value) => setBlogForm({ ...blogForm, content: value })}
+                                                    modules={{
+                                                        toolbar: [
+                                                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                                                            [{ 'font': [] }],
+                                                            [{ 'size': ['small', false, 'large', 'huge'] }],
+                                                            ['bold', 'italic', 'underline', 'strike'],
+                                                            [{ 'color': [] }, { 'background': [] }],
+                                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                                            [{ 'align': [] }],
+                                                            ['link', 'image'],
+                                                            ['clean']
+                                                        ],
                                                     }}
-                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 font-bold text-sm"
-                                                    title="Bold"
-                                                >
-                                                    <strong>B</strong>
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
-                                                        const start = textarea.selectionStart;
-                                                        const end = textarea.selectionEnd;
-                                                        const selectedText = blogForm.content.substring(start, end);
-                                                        const newText = blogForm.content.substring(0, start) + `*${selectedText}*` + blogForm.content.substring(end);
-                                                        setBlogForm({ ...blogForm, content: newText });
-                                                    }}
-                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 italic text-sm"
-                                                    title="Italic"
-                                                >
-                                                    <em>I</em>
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
-                                                        const start = textarea.selectionStart;
-                                                        const end = textarea.selectionEnd;
-                                                        const selectedText = blogForm.content.substring(start, end);
-                                                        const newText = blogForm.content.substring(0, start) + `## ${selectedText}` + blogForm.content.substring(end);
-                                                        setBlogForm({ ...blogForm, content: newText });
-                                                    }}
-                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 text-sm font-bold"
-                                                    title="Heading"
-                                                >
-                                                    H2
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
-                                                        const start = textarea.selectionStart;
-                                                        const newText = blogForm.content.substring(0, start) + `\n• ` + blogForm.content.substring(start);
-                                                        setBlogForm({ ...blogForm, content: newText });
-                                                    }}
-                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 text-sm"
-                                                    title="Bullet List"
-                                                >
-                                                    • List
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
-                                                        const start = textarea.selectionStart;
-                                                        const end = textarea.selectionEnd;
-                                                        const selectedText = blogForm.content.substring(start, end);
-                                                        const url = prompt('Enter URL:');
-                                                        if (url) {
-                                                            const newText = blogForm.content.substring(0, start) + `[${selectedText}](${url})` + blogForm.content.substring(end);
-                                                            setBlogForm({ ...blogForm, content: newText });
-                                                        }
-                                                    }}
-                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 text-sm"
-                                                    title="Add Link"
-                                                >
-                                                    🔗 Link
-                                                </button>
+                                                    placeholder="Write your blog content here..."
+                                                    className="h-[400px] mb-12"
+                                                />
                                             </div>
-
-                                            <textarea
-                                                id="blog-content"
-                                                required
-                                                className="nm-input w-full min-h-[400px] !p-6 font-sans text-lg leading-relaxed"
-                                                value={blogForm.content}
-                                                onChange={e => setBlogForm({ ...blogForm, content: e.target.value })}
-                                                placeholder="Write your blog content here...
-
-Use the toolbar above to format your text:
-• **Bold text** for emphasis
-• *Italic text* for subtle emphasis
-• ## Headings for sections
-• • Bullet points for lists
-• Links for references
-
-Example:
-## Introduction
-Spices are not just ingredients; they are **history**, **culture**, and billion-dollar trade opportunities.
-
-## The Global Spice Market
-The global spice market is expected to cross **$10 billion** by 2027..."
-                                            />
                                         </div>
 
                                         <div className="space-y-4">
