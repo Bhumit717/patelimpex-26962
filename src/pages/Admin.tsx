@@ -102,6 +102,8 @@ const Admin = () => {
         tags: ""
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const [editingId, setEditingId] = useState<string | null>(null);
+    const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
 
     const [storedPassword, setStoredPassword] = useState<string | null>(null);
 
@@ -185,7 +187,9 @@ const Admin = () => {
 
     const handleAddBlog = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!imageFile) {
+
+        // Validation: Need image for new posts, or existing image for edits
+        if (!imageFile && !existingImageUrl) {
             toast({ title: "Error", description: "Please upload a blog image.", variant: "destructive" });
             return;
         }
@@ -194,82 +198,97 @@ const Admin = () => {
             setUploading(true);
             console.log("Starting Blog Sync...");
 
-            // 1. Convert Image to Base64 (No Firebase Storage needed!)
-            let imageUrl = "";
-            try {
-                console.log("Step 1: Converting Image to Base64...");
+            // 1. Convert Image to Base64 (only if new image selected)
+            let imageUrl = existingImageUrl || "";
 
-                // Compress and convert to base64
-                const reader = new FileReader();
-                const base64Promise = new Promise<string>((resolve, reject) => {
-                    reader.onload = (e) => {
-                        const img = new Image();
-                        img.onload = () => {
-                            // Create canvas to compress image
-                            const canvas = document.createElement('canvas');
-                            const MAX_WIDTH = 1200;
-                            const MAX_HEIGHT = 800;
+            if (imageFile) {
+                try {
+                    console.log("Step 1: Converting New Image to Base64...");
 
-                            let width = img.width;
-                            let height = img.height;
+                    // Compress and convert to base64
+                    const reader = new FileReader();
+                    const base64Promise = new Promise<string>((resolve, reject) => {
+                        reader.onload = (e) => {
+                            const img = new Image();
+                            img.onload = () => {
+                                // Create canvas to compress image
+                                const canvas = document.createElement('canvas');
+                                const MAX_WIDTH = 1200;
+                                const MAX_HEIGHT = 800;
 
-                            // Calculate new dimensions
-                            if (width > height) {
-                                if (width > MAX_WIDTH) {
-                                    height *= MAX_WIDTH / width;
-                                    width = MAX_WIDTH;
+                                let width = img.width;
+                                let height = img.height;
+
+                                // Calculate new dimensions
+                                if (width > height) {
+                                    if (width > MAX_WIDTH) {
+                                        height *= MAX_WIDTH / width;
+                                        width = MAX_WIDTH;
+                                    }
+                                } else {
+                                    if (height > MAX_HEIGHT) {
+                                        width *= MAX_HEIGHT / height;
+                                        height = MAX_HEIGHT;
+                                    }
                                 }
-                            } else {
-                                if (height > MAX_HEIGHT) {
-                                    width *= MAX_HEIGHT / height;
-                                    height = MAX_HEIGHT;
-                                }
-                            }
 
-                            canvas.width = width;
-                            canvas.height = height;
+                                canvas.width = width;
+                                canvas.height = height;
 
-                            const ctx = canvas.getContext('2d');
-                            ctx?.drawImage(img, 0, 0, width, height);
+                                const ctx = canvas.getContext('2d');
+                                ctx?.drawImage(img, 0, 0, width, height);
 
-                            // Convert to base64 with compression
-                            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
-                            resolve(compressedBase64);
+                                // Convert to base64 with compression
+                                const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
+                                resolve(compressedBase64);
+                            };
+                            img.onerror = reject;
+                            img.src = e.target?.result as string;
                         };
-                        img.onerror = reject;
-                        img.src = e.target?.result as string;
-                    };
-                    reader.onerror = reject;
-                    reader.readAsDataURL(imageFile);
-                });
+                        reader.onerror = reject;
+                        reader.readAsDataURL(imageFile);
+                    });
 
-                imageUrl = await base64Promise;
-                console.log("Image Compression Success (Base64)");
-            } catch (imageErr: any) {
-                console.error("Image Processing Error:", imageErr);
-                throw new Error(`Image Processing Failed: ${imageErr.message || 'Invalid image file'}`);
+                    imageUrl = await base64Promise;
+                    console.log("Image Compression Success (Base64)");
+                } catch (imageErr: any) {
+                    console.error("Image Processing Error:", imageErr);
+                    throw new Error(`Image Processing Failed: ${imageErr.message || 'Invalid image file'}`);
+                }
             }
 
-            // 2. Save Data to Firestore
+            // 2. Save Data to Firestore (Add or Update)
             try {
                 console.log("Step 2: Syncing Data to Firestore...");
-                await addDoc(collection(db, "blog_posts"), {
+                const blogData = {
                     title: blogForm.title,
-                    content: blogForm.content, // Single content field
+                    content: blogForm.content,
                     image: imageUrl,
                     tags: blogForm.tags.split(",").map(tag => tag.trim()),
                     date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-                    timestamp: serverTimestamp()
-                });
+                    // Only update timestamp on creation, or add 'updatedAt' for edits if needed
+                    ...(editingId ? { updatedAt: serverTimestamp() } : { timestamp: serverTimestamp() })
+                };
+
+                if (editingId) {
+                    await setDoc(doc(db, "blog_posts", editingId), blogData, { merge: true });
+                    toast({ title: "Article Updated!", description: "Changes have been saved." });
+                } else {
+                    await addDoc(collection(db, "blog_posts"), blogData);
+                    toast({ title: "Article Published!", description: "Blog post is live now." });
+                }
+
                 console.log("Firestore Sync Success");
             } catch (dbErr: any) {
                 console.error("Firestore Error:", dbErr);
                 throw new Error(`Data Sync Failed: ${dbErr.message || 'Check Firestore Rules'}`);
             }
 
-            toast({ title: "Article Published!", description: "Blog post is live now." });
+            // Reset Form
             setBlogForm({ title: "", content: "", tags: "" });
             setImageFile(null);
+            setExistingImageUrl(null);
+            setEditingId(null);
             setActiveTab("blog");
         } catch (error: any) {
             console.error("Complete Failure:", error);
@@ -281,6 +300,17 @@ const Admin = () => {
         } finally {
             setUploading(false);
         }
+    };
+
+    const handleEditBlog = (post: BlogPost) => {
+        setBlogForm({
+            title: post.title,
+            content: post.content,
+            tags: post.tags?.join(", ") || ""
+        });
+        setExistingImageUrl(post.image);
+        setEditingId(post.id);
+        setActiveTab("add-blog");
     };
 
     const handleDeleteBlog = async (id: string, imagePath: string) => {
@@ -394,10 +424,7 @@ const Admin = () => {
                                             <div className="flex space-x-2">
                                                 {/* Edit Button (Placeholder functionality) */}
                                                 <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-colors"
-                                                    onClick={() => {
-                                                        window.alert("Edit functionality coming soon!");
-                                                        // Future: populate form with this post's data and switch tab
-                                                    }}
+                                                    onClick={() => handleEditBlog(post)}
                                                 >
                                                     <Edit size={20} />
                                                 </Button>
@@ -422,7 +449,7 @@ const Admin = () => {
                                 <div className="flex items-center space-x-6">
                                     <Button variant="ghost" onClick={() => setActiveTab("blog")} className="nm-btn !w-14 !h-14 !p-0 shadow-lg">←</Button>
                                     <div>
-                                        <h2 className="text-4xl font-black text-slate-800 font-graduate">New Publication</h2>
+                                        <h2 className="text-4xl font-black text-slate-800 font-graduate">{editingId ? "Edit Publication" : "New Publication"}</h2>
                                         <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest mt-1">Direct Storage Pipeline Active</p>
                                     </div>
                                 </div>
@@ -441,9 +468,9 @@ const Admin = () => {
                                             className="hidden"
                                             onChange={e => setImageFile(e.target.files?.[0] || null)}
                                         />
-                                        {imageFile ? (
+                                        {imageFile || existingImageUrl ? (
                                             <>
-                                                <img src={URL.createObjectURL(imageFile)} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
+                                                <img src={imageFile ? URL.createObjectURL(imageFile) : (existingImageUrl || "")} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                                                     <Upload className="text-white mr-2" size={32} />
                                                     <span className="text-white font-black font-graduate uppercase">Change Image</span>
@@ -514,7 +541,7 @@ const Admin = () => {
                                     <div className="pt-12 border-t border-slate-100 flex justify-end">
                                         <Button type="submit" disabled={uploading} className="nm-btn-green !px-16 !py-8 text-xl font-black tracking-[0.2em] font-graduate border-none shadow-2xl">
                                             {uploading ? <Loader2 className="animate-spin mr-2" /> : <Plus className="mr-2" size={24} />}
-                                            {uploading ? "SYNCING TO FIREBASE..." : "FINISH & PUBLISH"}
+                                            {uploading ? "SYNCING..." : (editingId ? "UPDATE PUBLICATION" : "FINISH & PUBLISH")}
                                         </Button>
                                     </div>
                                 </form>

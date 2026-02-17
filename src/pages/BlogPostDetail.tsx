@@ -141,7 +141,24 @@ const BlogPostDetail = () => {
 
                         <div className="flex items-center space-x-4">
                             <span className="text-sm font-bold text-slate-400 uppercase tracking-widest font-graduate">Share this insight:</span>
-                            <Button size="icon" variant="ghost" className="nm-btn border-none !w-12 !h-12">
+                            <Button
+                                size="icon"
+                                variant="ghost"
+                                className="nm-btn border-none !w-12 !h-12"
+                                onClick={() => {
+                                    if (navigator.share) {
+                                        navigator.share({
+                                            title: post.title,
+                                            text: `Check out this article: ${post.title}`,
+                                            url: window.location.href,
+                                        }).catch(console.error);
+                                    } else {
+                                        navigator.clipboard.writeText(window.location.href);
+                                        // Simple alert or toast could be added here
+                                        alert("Link copied to clipboard!");
+                                    }
+                                }}
+                            >
                                 <Share2 className="h-5 w-5 text-blue-600" />
                             </Button>
                         </div>
