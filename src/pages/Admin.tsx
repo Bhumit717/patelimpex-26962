@@ -87,7 +87,7 @@ interface BlogPost {
 const Admin = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [passwordInput, setPasswordInput] = useState("");
-    const [activeTab, setActiveTab] = useState("dashboard");
+    const [activeTab, setActiveTab] = useState("blog");
     const [inquiries, setInquiries] = useState<any[]>([]);
     const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
     const [visitors, setVisitors] = useState<VisitorData[]>([]);
@@ -342,7 +342,6 @@ const Admin = () => {
                             </div>
                             <nav className="space-y-1">
                                 {[
-                                    { id: "dashboard", label: "Real Analytics", icon: LayoutDashboard },
                                     { id: "blog", label: "Blog Factory", icon: FileText },
                                 ].map((item) => (
                                     <button
@@ -364,174 +363,6 @@ const Admin = () => {
                     {/* Main Content */}
                     <main className="flex-1 space-y-8 animate-fade-in">
 
-                        {activeTab === "dashboard" && (
-                            <div className="space-y-8">
-                                {/* Extended Header Stats */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    {[
-                                        { label: "Total Visits", value: visitors.length.toString(), icon: Users, color: "text-blue-600", trend: "+12% vs last wk" },
-                                        { label: "Active Sessions", value: "24", icon: Globe, color: "text-green-600", trend: "Live now" },
-                                        { label: "Avg. Duration", value: "4m 32s", icon: Clock, color: "text-orange-600", trend: "+30s vs avg" },
-                                        { label: "Bounce Rate", value: "42%", icon: TrendingUp, color: "text-purple-600", trend: "-5% improved" },
-                                    ].map((stat, i) => (
-                                        <Card key={i} className="nm-card !border-none !shadow-xl">
-                                            <CardContent className="p-6">
-                                                <div className="flex justify-between items-start mb-4">
-                                                    <div className={`p-3 rounded-2xl bg-slate-50 shadow-inner`}>
-                                                        <stat.icon size={20} className={stat.color} />
-                                                    </div>
-                                                    <span className="text-[10px] font-black text-green-600 bg-green-50 px-2 py-0.5 rounded-full">{stat.trend}</span>
-                                                </div>
-                                                <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 font-graduate">{stat.label}</h3>
-                                                <p className="text-2xl font-black text-slate-800 font-graduate">{stat.value}</p>
-                                            </CardContent>
-                                        </Card>
-                                    ))}
-                                </div>
-
-                                {/* Comprehensive Analytics Grid */}
-                                <div className="grid lg:grid-cols-2 gap-8">
-
-                                    {/* 1. Traffic Trends (Time Series) */}
-                                    <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl col-span-2">
-                                        <CardHeader className="p-0 mb-8 flex flex-row items-center justify-between">
-                                            <div>
-                                                <CardTitle className="text-2xl font-black text-slate-800 font-graduate mb-1">Traffic Overview</CardTitle>
-                                                <CardDescription className="text-xs font-graduate text-slate-400 uppercase">Weekly session breakdown by source</CardDescription>
-                                            </div>
-                                            <TrendingUp className="text-green-600 h-6 w-6" />
-                                        </CardHeader>
-                                        <div className="h-[300px] w-full">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <AreaChart data={dataVisits}>
-                                                    <defs>
-                                                        <linearGradient id="colorOrganic" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor="#16a34a" stopOpacity={0.2} />
-                                                            <stop offset="95%" stopColor="#16a34a" stopOpacity={0} />
-                                                        </linearGradient>
-                                                        <linearGradient id="colorDirect" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset="5%" stopColor="#2563eb" stopOpacity={0.2} />
-                                                            <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                                                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 10 }} dy={10} />
-                                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                                                    <Tooltip contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 15px 30px rgba(0,0,0,0.1)', fontFamily: 'Graduate' }} />
-                                                    <Area type="monotone" dataKey="organic" stackId="1" stroke="#16a34a" fill="url(#colorOrganic)" />
-                                                    <Area type="monotone" dataKey="direct" stackId="1" stroke="#2563eb" fill="url(#colorDirect)" />
-                                                    <Area type="monotone" dataKey="social" stackId="1" stroke="#ea580c" fill="#ea580c" />
-                                                </AreaChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </Card>
-
-                                    {/* 2. Geo Distribution */}
-                                    <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl">
-                                        <CardHeader className="p-0 mb-8">
-                                            <CardTitle className="text-2xl font-black text-slate-800 font-graduate">Global Reach</CardTitle>
-                                            <CardDescription className="text-xs font-graduate text-slate-400 uppercase">Top performing regions</CardDescription>
-                                        </CardHeader>
-                                        <div className="h-[250px] w-full">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <PieChart>
-                                                    <Pie data={dataGeo} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value">
-                                                        {dataGeo.map((entry, index) => (
-                                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                                        ))}
-                                                    </Pie>
-                                                    <Tooltip />
-                                                </PieChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                        <div className="flex flex-wrap gap-4 justify-center mt-4">
-                                            {dataGeo.map((entry, index) => (
-                                                <div key={index} className="flex items-center space-x-2">
-                                                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
-                                                    <span className="text-[10px] font-black font-graduate text-slate-500 uppercase">{entry.name} ({entry.value}%)</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </Card>
-
-                                    {/* 3. Browser/Device Stats */}
-                                    <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl">
-                                        <CardHeader className="p-0 mb-8">
-                                            <CardTitle className="text-2xl font-black text-slate-800 font-graduate">Tech Specs</CardTitle>
-                                            <CardDescription className="text-xs font-graduate text-slate-400 uppercase">User environment breakdown</CardDescription>
-                                        </CardHeader>
-                                        <div className="space-y-6">
-                                            {/* Browser Progress Bars */}
-                                            <div className="space-y-4">
-                                                {pieData.map((item, i) => (
-                                                    <div key={i}>
-                                                        <div className="flex justify-between text-[10px] font-black font-graduate text-slate-500 mb-1">
-                                                            <span className="uppercase">{item.name}</span>
-                                                            <span>{Math.round((item.value / visitors.length) * 100)}%</span>
-                                                        </div>
-                                                        <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                                                            <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${(item.value / visitors.length) * 100}%`, backgroundColor: COLORS[i % COLORS.length] }} />
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </Card>
-
-                                </div>
-
-                                {/* Real-time Ledger */}
-                                <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl">
-                                    <div className="flex items-center justify-between mb-8">
-                                        <div>
-                                            <h2 className="text-2xl font-black text-slate-800 font-graduate">Live Visitor Stream</h2>
-                                            <p className="text-slate-400 font-graduate text-[10px] uppercase tracking-widest mt-1 italic">Tracking 62+ User Parameters</p>
-                                        </div>
-                                        <div className="flex space-x-2">
-                                            <span className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-[9px] font-black font-graduate uppercase animate-pulse">● LIVE</span>
-                                        </div>
-                                    </div>
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full">
-                                            <thead>
-                                                <tr className="border-b border-slate-100">
-                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Identity</th>
-                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Device Fingerprint</th>
-                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Journey</th>
-                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Time</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {visitors.slice(0, 10).map((v) => (
-                                                    <tr key={v.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
-                                                        <td className="py-4 px-2">
-                                                            <div className="flex items-center space-x-3">
-                                                                <div className="w-8 h-8 rounded-xl bg-slate-900 flex items-center justify-center text-[10px] font-black text-white shrink-0">
-                                                                    {v.os?.[0] || 'U'}
-                                                                </div>
-                                                                <span className="text-[10px] font-bold text-slate-600 font-mono truncate max-w-[80px]">#{v.id.substring(0, 8)}</span>
-                                                            </div>
-                                                        </td>
-                                                        <td className="py-4 px-2">
-                                                            <div className="flex flex-wrap gap-1">
-                                                                <span className="text-[8px] px-2 py-0.5 bg-green-50 text-green-700 rounded-md font-black uppercase tracking-tighter">OS: {v.os}</span>
-                                                                <span className="text-[8px] px-2 py-0.5 bg-blue-50 text-blue-700 rounded-md font-black uppercase tracking-tighter">BR: {v.browser}</span>
-                                                                <span className="text-[8px] px-2 py-0.5 bg-purple-50 text-purple-700 rounded-md font-black uppercase tracking-tighter">RES: {v.screen}</span>
-                                                                <span className="text-[8px] px-2 py-0.5 bg-orange-50 text-orange-700 rounded-md font-black uppercase tracking-tighter">REF: {v.referrer || "Direct"}</span>
-                                                                <span className="text-[8px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded-md font-black uppercase tracking-tighter opacity-50">+58 more</span>
-                                                            </div>
-                                                        </td>
-                                                        <td className="py-4 px-2 text-[10px] font-black text-slate-500 font-graduate uppercase truncate">/{v.path?.substring(1) || 'home'}</td>
-                                                        <td className="py-4 px-2 text-[10px] font-bold text-slate-400">{v.timestamp?.seconds ? new Date(v.timestamp.seconds * 1000).toLocaleTimeString() : 'Just now'}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </Card>
-                            </div>
-                        )}
-
                         {activeTab === "blog" && (
                             <div className="space-y-8">
                                 <div className="flex justify-between items-center bg-white p-6 rounded-[30px] shadow-sm border border-slate-100">
@@ -551,7 +382,7 @@ const Admin = () => {
                                                 <h3 className="text-xl font-black text-slate-800 font-graduate">{post.title}</h3>
                                                 <div
                                                     className="text-slate-500 text-xs line-clamp-2 italic font-fondamento text-lg"
-                                                    dangerouslySetInnerHTML={{ __html: post.content.replace(/<[^>]+>/g, '').substring(0, 150) + "..." }}
+                                                    dangerouslySetInnerHTML={{ __html: (post.content || '').replace(/<[^>]+>/g, '').substring(0, 150) + "..." }}
                                                 />
                                                 <div className="flex items-center justify-center md:justify-start space-x-4 pt-2">
                                                     <span className="flex items-center text-[10px] font-black text-slate-400 uppercase font-graduate tracking-widest"><Clock size={12} className="mr-1" /> {post.date}</span>
