@@ -155,7 +155,7 @@ const Blog = () => {
                           {featuredPost.title}
                         </h2>
                         <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                          {featuredPost.content.substring(0, 200)}...
+                          {featuredPost.content.replace(/<[^>]+>/g, '').substring(0, 200)}...
                         </p>
                         <Link to={`/blog/${featuredPost.id}`} className="w-fit">
                           <Button className="nm-btn !w-auto text-slate-700 group">
@@ -217,7 +217,7 @@ const Blog = () => {
                       </h3>
 
                       <p className="text-slate-600 mb-4 line-clamp-3">
-                        {post.content.substring(0, 150)}...
+                        {post.content.replace(/<[^>]+>/g, '').substring(0, 150)}...
                       </p>
 
                       <div className="flex flex-wrap gap-2 mb-4">

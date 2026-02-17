@@ -71,7 +71,7 @@ const BlogPostDetail = () => {
         <div className="min-h-screen bg-white">
             <SEOHead
                 title={`${post.title} | Patel Impex Blog`}
-                description={post.content.substring(0, 160)}
+                description={post.content.replace(/<[^>]+>/g, '').substring(0, 160)}
                 canonicalUrl={`/blog/${id}`}
             />
             <Navigation />
