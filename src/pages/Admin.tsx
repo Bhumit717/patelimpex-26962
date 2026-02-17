@@ -428,8 +428,10 @@ const Admin = () => {
                                                 >
                                                     <Edit size={20} />
                                                 </Button>
-                                                <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-colors">
-                                                    <Trash2 size={20} onClick={() => handleDeleteBlog(post.id, "")} />
+                                                <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-colors"
+                                                    onClick={() => handleDeleteBlog(post.id, "")}
+                                                >
+                                                    <Trash2 size={20} />
                                                 </Button>
                                             </div>
                                         </Card>
