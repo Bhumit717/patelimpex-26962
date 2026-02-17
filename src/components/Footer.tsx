@@ -44,8 +44,10 @@ const Footer = () => {
     "Company": [
       { name: "About Patel Impex", href: "/about" },
       { name: "Global Services", href: "/services" },
+      { name: "Blog & Updates", href: "/blog" },
       { name: "Contact & Support", href: "/contact" },
       { name: "Trade Inquiry", href: "/inquiry" },
+      { name: "Admin Terminal", href: "/admin" },
       { name: "Privacy & Terms", href: "/privacy-policy" }
     ]
   };

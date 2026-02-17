@@ -22,6 +22,9 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
+import Admin from "./pages/Admin";
+import BlogPostDetail from "./pages/BlogPostDetail";
+import AnalyticsTracker from "./components/AnalyticsTracker";
 
 // More pages
 import ExportImportGuide from "./pages/more/ExportImportGuide";
@@ -363,6 +366,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AnalyticsTracker />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
@@ -370,6 +374,7 @@ const App = () => (
           <Route path="/products" element={<Products />} />
           <Route path="/services" element={<Services />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPostDetail />} />
           <Route path="/news" element={<News />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/inquiry" element={<Inquiry />} />
@@ -377,6 +382,7 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/seo" element={<SEO />} />
           <Route path="/more" element={<More />} />
+          <Route path="/admin" element={<Admin />} />
 
           {/* More sub-pages */}
           <Route path="/more/certification-services" element={<CertificationServices />} />
