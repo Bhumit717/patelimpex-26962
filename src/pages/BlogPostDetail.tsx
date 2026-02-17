@@ -11,13 +11,7 @@ import { Button } from "@/components/ui/button";
 
 interface BlogPost {
     title: string;
-    intro: string;
-    section1: string;
-    section2: string;
-    section3: string;
-    section4: string;
-    section5: string;
-    conclusion?: string;
+    content: string; // Single content field
     image: string;
     date: string;
     tags: string[];
@@ -77,7 +71,7 @@ const BlogPostDetail = () => {
         <div className="min-h-screen bg-white">
             <SEOHead
                 title={`${post.title} | Patel Impex Blog`}
-                description={post.intro.substring(0, 160)}
+                description={post.content.substring(0, 160)}
                 canonicalUrl={`/blog/${id}`}
             />
             <Navigation />
@@ -116,46 +110,41 @@ const BlogPostDetail = () => {
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-12">
-                        {/* Introduction */}
-                        <div className="nm-card !p-12 !rounded-[40px] border-none bg-blue-50/30">
-                            <p className="text-2xl font-fondamento text-slate-700 leading-relaxed italic">
-                                {post.intro}
-                            </p>
-                        </div>
+                    <div className="space-y-8">
+                        {/* Main Content - Markdown-style rendering */}
+                        <div className="prose prose-slate prose-lg max-w-none">
+                            {post.content.split('\n').map((paragraph, idx) => {
+                                // Handle headings
+                                if (paragraph.startsWith('## ')) {
+                                    return (
+                                        <h2 key={idx} className="text-3xl font-black text-slate-800 font-graduate uppercase tracking-tight mt-12 mb-6">
+                                            {paragraph.replace('## ', '')}
+                                        </h2>
+                                    );
+                                }
+                                // Handle bullet points
+                                if (paragraph.trim().startsWith('• ')) {
+                                    return (
+                                        <li key={idx} className="text-lg text-slate-600 leading-loose ml-6">
+                                            {paragraph.replace('• ', '')}
+                                        </li>
+                                    );
+                                }
+                                // Handle bold and italic
+                                const formattedText = paragraph
+                                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                                    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                                    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-blue-600 hover:underline">$1</a>');
 
-                        {/* Main Body - Structured Sections */}
-                        <div className="space-y-16">
-                            {[
-                                { title: "The Global Spice Market Growth", content: post.section1 },
-                                { title: "Why Indian Spices are Preferred", content: post.section2 },
-                                { title: "Private Label Opportunities", content: post.section3 },
-                                { title: "Risk-Free Trade & Logistics", content: post.section4 },
-                                { title: "Partnering with Patel Impex", content: post.section5 }
-                            ].map((section, idx) => (
-                                <div key={idx} className="space-y-6">
-                                    <h2 className="text-3xl font-black text-slate-800 font-graduate uppercase tracking-tight">
-                                        {section.title}
-                                    </h2>
-                                    <div className="prose prose-slate prose-lg max-w-none">
-                                        <p className="font-sans text-lg text-slate-600 leading-loose whitespace-pre-wrap">
-                                            {section.content}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
+                                // Regular paragraph
+                                if (paragraph.trim()) {
+                                    return (
+                                        <p key={idx} className="text-lg text-slate-600 leading-loose mb-6" dangerouslySetInnerHTML={{ __html: formattedText }} />
+                                    );
+                                }
+                                return null;
+                            })}
                         </div>
-
-                        {/* Conclusion */}
-                        {post.conclusion && (
-                            <div className="mt-16 p-12 bg-slate-900 rounded-[40px] text-white shadow-2xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-full transform translate-x-8 -translate-y-8" />
-                                <h3 className="text-2xl font-black mb-6 font-graduate uppercase tracking-widest text-blue-400">Final Verdict</h3>
-                                <p className="text-xl font-fondamento italic text-slate-300 leading-relaxed">
-                                    {post.conclusion}
-                                </p>
-                            </div>
-                        )}
                     </div>
 
                     {/* Footer Meta */}

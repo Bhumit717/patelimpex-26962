@@ -93,16 +93,10 @@ const Admin = () => {
     const [uploading, setUploading] = useState(false);
     const { toast } = useToast();
 
-    // Blog Form State (Customized for Real Data from User Image)
+    // Blog Form State - Simplified to match image
     const [blogForm, setBlogForm] = useState({
         title: "",
-        intro: "",
-        section1: "", // The Global Spice Market...
-        section2: "", // Why Indian Spices...
-        section3: "", // Private Label...
-        section4: "", // Risk-Free Trade...
-        section5: "", // Partnering...
-        conclusion: "",
+        content: "", // Single rich text field for all content
         tags: ""
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -259,13 +253,7 @@ const Admin = () => {
                 console.log("Step 2: Syncing Data to Firestore...");
                 await addDoc(collection(db, "blog_posts"), {
                     title: blogForm.title,
-                    intro: blogForm.intro,
-                    section1: blogForm.section1,
-                    section2: blogForm.section2,
-                    section3: blogForm.section3,
-                    section4: blogForm.section4,
-                    section5: blogForm.section5,
-                    conclusion: blogForm.conclusion,
+                    content: blogForm.content, // Single content field
                     image: imageUrl,
                     tags: blogForm.tags.split(",").map(tag => tag.trim()),
                     date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
@@ -278,7 +266,7 @@ const Admin = () => {
             }
 
             toast({ title: "Article Published!", description: "Blog post is live now." });
-            setBlogForm({ title: "", intro: "", section1: "", section2: "", section3: "", section4: "", section5: "", conclusion: "", tags: "" });
+            setBlogForm({ title: "", content: "", tags: "" });
             setImageFile(null);
             setActiveTab("blog");
         } catch (error: any) {
@@ -638,7 +626,7 @@ const Admin = () => {
 
                                     <div className="space-y-10">
                                         <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Insight Title</label>
+                                            <label className="nm-label !mb-0">Blog Title</label>
                                             <input
                                                 required
                                                 className="nm-input w-full !text-2xl font-black font-graduate !p-6"
@@ -649,83 +637,114 @@ const Admin = () => {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Introduction Hook</label>
+                                            <label className="nm-label !mb-0">Blog Content</label>
+
+                                            {/* Rich Text Formatting Toolbar */}
+                                            <div className="flex flex-wrap gap-2 p-4 bg-slate-50 rounded-xl border-2 border-slate-200">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
+                                                        const start = textarea.selectionStart;
+                                                        const end = textarea.selectionEnd;
+                                                        const selectedText = blogForm.content.substring(start, end);
+                                                        const newText = blogForm.content.substring(0, start) + `**${selectedText}**` + blogForm.content.substring(end);
+                                                        setBlogForm({ ...blogForm, content: newText });
+                                                    }}
+                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 font-bold text-sm"
+                                                    title="Bold"
+                                                >
+                                                    <strong>B</strong>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
+                                                        const start = textarea.selectionStart;
+                                                        const end = textarea.selectionEnd;
+                                                        const selectedText = blogForm.content.substring(start, end);
+                                                        const newText = blogForm.content.substring(0, start) + `*${selectedText}*` + blogForm.content.substring(end);
+                                                        setBlogForm({ ...blogForm, content: newText });
+                                                    }}
+                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 italic text-sm"
+                                                    title="Italic"
+                                                >
+                                                    <em>I</em>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
+                                                        const start = textarea.selectionStart;
+                                                        const end = textarea.selectionEnd;
+                                                        const selectedText = blogForm.content.substring(start, end);
+                                                        const newText = blogForm.content.substring(0, start) + `## ${selectedText}` + blogForm.content.substring(end);
+                                                        setBlogForm({ ...blogForm, content: newText });
+                                                    }}
+                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 text-sm font-bold"
+                                                    title="Heading"
+                                                >
+                                                    H2
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
+                                                        const start = textarea.selectionStart;
+                                                        const newText = blogForm.content.substring(0, start) + `\n• ` + blogForm.content.substring(start);
+                                                        setBlogForm({ ...blogForm, content: newText });
+                                                    }}
+                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 text-sm"
+                                                    title="Bullet List"
+                                                >
+                                                    • List
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        const textarea = document.getElementById('blog-content') as HTMLTextAreaElement;
+                                                        const start = textarea.selectionStart;
+                                                        const end = textarea.selectionEnd;
+                                                        const selectedText = blogForm.content.substring(start, end);
+                                                        const url = prompt('Enter URL:');
+                                                        if (url) {
+                                                            const newText = blogForm.content.substring(0, start) + `[${selectedText}](${url})` + blogForm.content.substring(end);
+                                                            setBlogForm({ ...blogForm, content: newText });
+                                                        }
+                                                    }}
+                                                    className="px-3 py-1.5 bg-white rounded-lg border border-slate-300 hover:bg-slate-100 text-sm"
+                                                    title="Add Link"
+                                                >
+                                                    🔗 Link
+                                                </button>
+                                            </div>
+
                                             <textarea
+                                                id="blog-content"
                                                 required
-                                                className="nm-input w-full min-h-[120px] !p-6 italic font-fondamento text-xl"
-                                                value={blogForm.intro}
-                                                onChange={e => setBlogForm({ ...blogForm, intro: e.target.value })}
-                                                placeholder="Spices are not just ingredients; they are history, culture..."
+                                                className="nm-input w-full min-h-[400px] !p-6 font-sans text-lg leading-relaxed"
+                                                value={blogForm.content}
+                                                onChange={e => setBlogForm({ ...blogForm, content: e.target.value })}
+                                                placeholder="Write your blog content here...
+
+Use the toolbar above to format your text:
+• **Bold text** for emphasis
+• *Italic text* for subtle emphasis
+• ## Headings for sections
+• • Bullet points for lists
+• Links for references
+
+Example:
+## Introduction
+Spices are not just ingredients; they are **history**, **culture**, and billion-dollar trade opportunities.
+
+## The Global Spice Market
+The global spice market is expected to cross **$10 billion** by 2027..."
                                             />
                                         </div>
 
                                         <div className="space-y-4">
-                                            <label className="nm-label !mb-0">1. The Global Spice Market Growth</label>
-                                            <textarea
-                                                required
-                                                className="nm-input w-full min-h-[100px] !p-6"
-                                                value={blogForm.section1}
-                                                onChange={e => setBlogForm({ ...blogForm, section1: e.target.value })}
-                                                placeholder="Details about market growth and trends..."
-                                            />
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">2. Why Indian Spices are Preferred</label>
-                                            <textarea
-                                                required
-                                                className="nm-input w-full min-h-[100px] !p-6"
-                                                value={blogForm.section2}
-                                                onChange={e => setBlogForm({ ...blogForm, section2: e.target.value })}
-                                                placeholder="Quality, Variety, Certifications..."
-                                            />
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">3. Private Label Opportunities</label>
-                                            <textarea
-                                                required
-                                                className="nm-input w-full min-h-[100px] !p-6"
-                                                value={blogForm.section3}
-                                                onChange={e => setBlogForm({ ...blogForm, section3: e.target.value })}
-                                                placeholder="Packaging, custom branding details..."
-                                            />
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">4. Risk-Free Trade Details</label>
-                                            <textarea
-                                                required
-                                                className="nm-input w-full min-h-[100px] !p-6"
-                                                value={blogForm.section4}
-                                                onChange={e => setBlogForm({ ...blogForm, section4: e.target.value })}
-                                                placeholder="Payment security, logistics, supply chain..."
-                                            />
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">5. Partnering with the Company</label>
-                                            <textarea
-                                                required
-                                                className="nm-input w-full min-h-[100px] !p-6"
-                                                value={blogForm.section5}
-                                                onChange={e => setBlogForm({ ...blogForm, section5: e.target.value })}
-                                                placeholder="Support, global reach, reliability..."
-                                            />
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Conclusion & Call-to-Action</label>
-                                            <textarea
-                                                className="nm-input w-full min-h-[100px] !p-6"
-                                                value={blogForm.conclusion}
-                                                onChange={e => setBlogForm({ ...blogForm, conclusion: e.target.value })}
-                                                placeholder="Partnering with Patel Impex ensures reliability..."
-                                            />
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Taxonomy Tags (Comma Separated)</label>
+                                            <label className="nm-label !mb-0">Tags (Comma Separated)</label>
                                             <input
                                                 className="nm-input w-full !p-4"
                                                 value={blogForm.tags}
