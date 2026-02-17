@@ -8,6 +8,8 @@ const AnalyticsTracker = () => {
     const location = useLocation();
 
     useEffect(() => {
+        if (location.pathname.startsWith("/admin")) return;
+
         const trackView = async () => {
             try {
                 const nav = window.navigator as any;
