@@ -356,6 +356,38 @@ const Admin = () => {
 
 
 
+    if (!isAuthenticated) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] p-4">
+                <Card className="nm-card !p-12 w-full max-w-md animate-scale-in">
+                    <div className="text-center mb-8">
+                        <div className="mx-auto w-20 h-20 bg-green-50 rounded-[30px] flex items-center justify-center mb-6 shadow-inner">
+                            <Lock size={32} className="text-green-600" />
+                        </div>
+                        <h1 className="text-3xl font-black text-slate-800 font-graduate mb-2">ADMIN LOGIN</h1>
+                        <p className="text-slate-500 font-graduate text-xs tracking-widest uppercase mb-8">Secure Access Terminal</p>
+                    </div>
+                    <form onSubmit={handleLogin} className="space-y-6">
+                        <div className="space-y-2">
+                            <label className="nm-label">Security Key</label>
+                            <input
+                                type="password"
+                                required
+                                className="nm-input w-full"
+                                value={passwordInput}
+                                onChange={e => setPasswordInput(e.target.value)}
+                                placeholder="Enter Password"
+                            />
+                        </div>
+                        <Button type="submit" className="nm-btn-dark w-full !py-4 font-black tracking-widest text-sm border-none shadow-xl">
+                            ACCESS DASHBOARD
+                        </Button>
+                    </form>
+                </Card>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-[#f8fafc]">
             <Navigation />
