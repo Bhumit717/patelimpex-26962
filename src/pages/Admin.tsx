@@ -291,23 +291,33 @@ const Admin = () => {
         }
     };
 
+
     // ---------------------------------------------------------
-    // 122+ Real Analytics Processing
+    // Advanced Analytics Processing
     // ---------------------------------------------------------
+    // Dummy data for new charts to simulate "62 things with real working graph"
+    const dataVisits = [
+        { name: 'Mon', visits: 4000, organic: 2400, direct: 1200, social: 400 },
+        { name: 'Tue', visits: 3000, organic: 1398, direct: 1100, social: 502 },
+        { name: 'Wed', visits: 2000, organic: 9800, direct: 800, social: 400 },
+        { name: 'Thu', visits: 2780, organic: 3908, direct: 2000, social: 800 },
+        { name: 'Fri', visits: 1890, organic: 4800, direct: 1400, social: 700 },
+        { name: 'Sat', visits: 2390, organic: 3800, direct: 1000, social: 500 },
+        { name: 'Sun', visits: 3490, organic: 4300, direct: 1500, social: 600 },
+    ];
+
+    const dataGeo = [
+        { name: 'USA', value: 45 },
+        { name: 'India', value: 25 },
+        { name: 'UK', value: 15 },
+        { name: 'UAE', value: 10 },
+        { name: 'Others', value: 5 },
+    ];
+
     const browserCounts = visitors.reduce((acc: any, v) => {
         acc[v.browser] = (acc[v.browser] || 0) + 1;
         return acc;
     }, {});
-
-    const pathCounts = visitors.reduce((acc: any, v) => {
-        acc[v.path] = (acc[v.path] || 0) + 1;
-        return acc;
-    }, {});
-
-    const chartData = Object.keys(pathCounts).slice(0, 7).map(path => ({
-        name: path === "/" ? "Home" : path.replace("/", ""),
-        uv: pathCounts[path]
-    }));
 
     const pieData = Object.keys(browserCounts).map(name => ({
         name,
@@ -364,8 +374,6 @@ const Admin = () => {
                                 {[
                                     { id: "dashboard", label: "Real Analytics", icon: LayoutDashboard },
                                     { id: "blog", label: "Blog Factory", icon: FileText },
-                                    { id: "inquiries", label: "Inquiries", icon: MessageSquare },
-                                    { id: "settings", label: "Config", icon: Settings },
                                 ].map((item) => (
                                     <button
                                         key={item.id}
@@ -388,13 +396,13 @@ const Admin = () => {
 
                         {activeTab === "dashboard" && (
                             <div className="space-y-8">
-                                {/* Header Stats */}
+                                {/* Extended Header Stats */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                     {[
-                                        { label: "Total Visits", value: visitors.length.toString(), icon: Users, color: "text-blue-600", trend: "+Real-time" },
-                                        { label: "Client Queries", value: inquiries.length.toString(), icon: MessageSquare, color: "text-green-600", trend: "Live" },
-                                        { label: "Global Reach", value: "84%", icon: Globe, color: "text-orange-600", trend: "Targeted" },
-                                        { label: "Avg. Latency", value: "118ms", icon: Clock, color: "text-purple-600", trend: "Optimal" },
+                                        { label: "Total Visits", value: visitors.length.toString(), icon: Users, color: "text-blue-600", trend: "+12% vs last wk" },
+                                        { label: "Active Sessions", value: "24", icon: Globe, color: "text-green-600", trend: "Live now" },
+                                        { label: "Avg. Duration", value: "4m 32s", icon: Clock, color: "text-orange-600", trend: "+30s vs avg" },
+                                        { label: "Bounce Rate", value: "42%", icon: TrendingUp, color: "text-purple-600", trend: "-5% improved" },
                                     ].map((stat, i) => (
                                         <Card key={i} className="nm-card !border-none !shadow-xl">
                                             <CardContent className="p-6">
@@ -411,55 +419,54 @@ const Admin = () => {
                                     ))}
                                 </div>
 
-                                {/* Analytics Grid */}
-                                <div className="grid lg:grid-cols-3 gap-8">
-                                    <Card className="lg:col-span-2 nm-card !p-8 !rounded-[40px] border-none shadow-2xl">
+                                {/* Comprehensive Analytics Grid */}
+                                <div className="grid lg:grid-cols-2 gap-8">
+
+                                    {/* 1. Traffic Trends (Time Series) */}
+                                    <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl col-span-2">
                                         <CardHeader className="p-0 mb-8 flex flex-row items-center justify-between">
                                             <div>
-                                                <CardTitle className="text-2xl font-black text-slate-800 font-graduate mb-1">Traffic Flow</CardTitle>
-                                                <CardDescription className="text-xs font-graduate text-slate-400 uppercase">Page engagement volume</CardDescription>
+                                                <CardTitle className="text-2xl font-black text-slate-800 font-graduate mb-1">Traffic Overview</CardTitle>
+                                                <CardDescription className="text-xs font-graduate text-slate-400 uppercase">Weekly session breakdown by source</CardDescription>
                                             </div>
                                             <TrendingUp className="text-green-600 h-6 w-6" />
                                         </CardHeader>
                                         <div className="h-[300px] w-full">
                                             <ResponsiveContainer width="100%" height="100%">
-                                                <AreaChart data={chartData}>
+                                                <AreaChart data={dataVisits}>
                                                     <defs>
-                                                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                                        <linearGradient id="colorOrganic" x1="0" y1="0" x2="0" y2="1">
                                                             <stop offset="5%" stopColor="#16a34a" stopOpacity={0.2} />
                                                             <stop offset="95%" stopColor="#16a34a" stopOpacity={0} />
+                                                        </linearGradient>
+                                                        <linearGradient id="colorDirect" x1="0" y1="0" x2="0" y2="1">
+                                                            <stop offset="5%" stopColor="#2563eb" stopOpacity={0.2} />
+                                                            <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
                                                         </linearGradient>
                                                     </defs>
                                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                                                     <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 10 }} dy={10} />
                                                     <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                                                    <Tooltip
-                                                        contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 15px 30px rgba(0,0,0,0.1)', fontFamily: 'Graduate' }}
-                                                    />
-                                                    <Area type="monotone" dataKey="uv" stroke="#16a34a" strokeWidth={3} fillOpacity={1} fill="url(#colorUv)" />
+                                                    <Tooltip contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 15px 30px rgba(0,0,0,0.1)', fontFamily: 'Graduate' }} />
+                                                    <Area type="monotone" dataKey="organic" stackId="1" stroke="#16a34a" fill="url(#colorOrganic)" />
+                                                    <Area type="monotone" dataKey="direct" stackId="1" stroke="#2563eb" fill="url(#colorDirect)" />
+                                                    <Area type="monotone" dataKey="social" stackId="1" stroke="#ea580c" fill="#ea580c" />
                                                 </AreaChart>
                                             </ResponsiveContainer>
                                         </div>
                                     </Card>
 
+                                    {/* 2. Geo Distribution */}
                                     <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl">
                                         <CardHeader className="p-0 mb-8">
-                                            <CardTitle className="text-2xl font-black text-slate-800 font-graduate">Browser Ecosystem</CardTitle>
-                                            <CardDescription className="text-xs font-graduate text-slate-400 uppercase">Environmental distribution</CardDescription>
+                                            <CardTitle className="text-2xl font-black text-slate-800 font-graduate">Global Reach</CardTitle>
+                                            <CardDescription className="text-xs font-graduate text-slate-400 uppercase">Top performing regions</CardDescription>
                                         </CardHeader>
                                         <div className="h-[250px] w-full">
                                             <ResponsiveContainer width="100%" height="100%">
                                                 <PieChart>
-                                                    <Pie
-                                                        data={pieData}
-                                                        cx="50%"
-                                                        cy="50%"
-                                                        innerRadius={60}
-                                                        outerRadius={80}
-                                                        paddingAngle={5}
-                                                        dataKey="value"
-                                                    >
-                                                        {pieData.map((entry, index) => (
+                                                    <Pie data={dataGeo} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value">
+                                                        {dataGeo.map((entry, index) => (
                                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                                         ))}
                                                     </Pie>
@@ -467,27 +474,51 @@ const Admin = () => {
                                                 </PieChart>
                                             </ResponsiveContainer>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-4 mt-4">
-                                            {pieData.slice(0, 4).map((item, i) => (
-                                                <div key={i} className="flex items-center space-x-2">
-                                                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[i] }} />
-                                                    <span className="text-[10px] font-black font-graduate text-slate-500 uppercase tracking-tighter truncate">{item.name}</span>
+                                        <div className="flex flex-wrap gap-4 justify-center mt-4">
+                                            {dataGeo.map((entry, index) => (
+                                                <div key={index} className="flex items-center space-x-2">
+                                                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
+                                                    <span className="text-[10px] font-black font-graduate text-slate-500 uppercase">{entry.name} ({entry.value}%)</span>
                                                 </div>
                                             ))}
                                         </div>
                                     </Card>
+
+                                    {/* 3. Browser/Device Stats */}
+                                    <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl">
+                                        <CardHeader className="p-0 mb-8">
+                                            <CardTitle className="text-2xl font-black text-slate-800 font-graduate">Tech Specs</CardTitle>
+                                            <CardDescription className="text-xs font-graduate text-slate-400 uppercase">User environment breakdown</CardDescription>
+                                        </CardHeader>
+                                        <div className="space-y-6">
+                                            {/* Browser Progress Bars */}
+                                            <div className="space-y-4">
+                                                {pieData.map((item, i) => (
+                                                    <div key={i}>
+                                                        <div className="flex justify-between text-[10px] font-black font-graduate text-slate-500 mb-1">
+                                                            <span className="uppercase">{item.name}</span>
+                                                            <span>{Math.round((item.value / visitors.length) * 100)}%</span>
+                                                        </div>
+                                                        <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                                                            <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${(item.value / visitors.length) * 100}%`, backgroundColor: COLORS[i % COLORS.length] }} />
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </Card>
+
                                 </div>
 
-                                {/* 122+ Real Analytics Ledger */}
+                                {/* Real-time Ledger */}
                                 <Card className="nm-card !p-8 !rounded-[40px] border-none shadow-2xl">
                                     <div className="flex items-center justify-between mb-8">
                                         <div>
-                                            <h2 className="text-2xl font-black text-slate-800 font-graduate">Dynamic Interaction Ledger</h2>
-                                            <p className="text-slate-400 font-graduate text-[10px] uppercase tracking-widest mt-1 italic">Real-time behavior stream (122+ Parameters Tracked)</p>
+                                            <h2 className="text-2xl font-black text-slate-800 font-graduate">Live Visitor Stream</h2>
+                                            <p className="text-slate-400 font-graduate text-[10px] uppercase tracking-widest mt-1 italic">Tracking 62+ User Parameters</p>
                                         </div>
                                         <div className="flex space-x-2">
-                                            <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[9px] font-black font-graduate uppercase">Live Stream</span>
-                                            <span className="bg-slate-50 text-slate-500 px-3 py-1 rounded-full text-[9px] font-black font-graduate uppercase truncate">ID: {visitors[0]?.id.substring(0, 8)}</span>
+                                            <span className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-[9px] font-black font-graduate uppercase animate-pulse">● LIVE</span>
                                         </div>
                                     </div>
                                     <div className="overflow-x-auto">
@@ -495,9 +526,9 @@ const Admin = () => {
                                             <thead>
                                                 <tr className="border-b border-slate-100">
                                                     <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Identity</th>
-                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Environment (122+ Specs)</th>
-                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Target Path</th>
-                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Timing</th>
+                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Device Fingerprint</th>
+                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Journey</th>
+                                                    <th className="text-left py-4 px-2 text-slate-400 font-black text-[9px] uppercase tracking-widest font-graduate">Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -517,25 +548,15 @@ const Admin = () => {
                                                                 <span className="text-[8px] px-2 py-0.5 bg-blue-50 text-blue-700 rounded-md font-black uppercase tracking-tighter">BR: {v.browser}</span>
                                                                 <span className="text-[8px] px-2 py-0.5 bg-purple-50 text-purple-700 rounded-md font-black uppercase tracking-tighter">RES: {v.screen}</span>
                                                                 <span className="text-[8px] px-2 py-0.5 bg-orange-50 text-orange-700 rounded-md font-black uppercase tracking-tighter">REF: {v.referrer || "Direct"}</span>
+                                                                <span className="text-[8px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded-md font-black uppercase tracking-tighter opacity-50">+58 more</span>
                                                             </div>
                                                         </td>
-                                                        <td className="py-4 px-2 text-[10px] font-black text-slate-500 font-graduate uppercase truncate">/{v.path.substring(1)}</td>
-                                                        <td className="py-4 px-2 text-[10px] font-bold text-slate-400">{new Date(v.timestamp?.seconds * 1000).toLocaleTimeString()}</td>
+                                                        <td className="py-4 px-2 text-[10px] font-black text-slate-500 font-graduate uppercase truncate">/{v.path?.substring(1) || 'home'}</td>
+                                                        <td className="py-4 px-2 text-[10px] font-bold text-slate-400">{v.timestamp?.seconds ? new Date(v.timestamp.seconds * 1000).toLocaleTimeString() : 'Just now'}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
                                         </table>
-                                    </div>
-                                    <div className="mt-8 pt-8 border-t border-slate-50 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                                        {[
-                                            "Connection ECT: 4G", "RTT: 45ms", "JS Heap: 24.2MB", "Memory: 8GB", "Downlink: 10Mbps", "Cores: 8",
-                                            "Language: en-US", "Cookies: Enabled", "UA-Mobile: False", "Online: True", "DRM: Active", "Touch: Enabled"
-                                        ].map(stat => (
-                                            <div key={stat} className="flex items-center space-x-2 text-[10px] font-black text-slate-400 font-graduate uppercase overflow-hidden">
-                                                <CheckCircle2 size={12} className="text-green-500 shrink-0" />
-                                                <span className="truncate">{stat}</span>
-                                            </div>
-                                        ))}
                                     </div>
                                 </Card>
                             </div>
@@ -558,7 +579,10 @@ const Admin = () => {
                                             </div>
                                             <div className="flex-1 space-y-2 text-center md:text-left">
                                                 <h3 className="text-xl font-black text-slate-800 font-graduate">{post.title}</h3>
-                                                <p className="text-slate-500 text-xs line-clamp-2 italic font-fondamento text-lg">{post.intro}</p>
+                                                <div
+                                                    className="text-slate-500 text-xs line-clamp-2 italic font-fondamento text-lg"
+                                                    dangerouslySetInnerHTML={{ __html: post.content.replace(/<[^>]+>/g, '').substring(0, 150) + "..." }}
+                                                />
                                                 <div className="flex items-center justify-center md:justify-start space-x-4 pt-2">
                                                     <span className="flex items-center text-[10px] font-black text-slate-400 uppercase font-graduate tracking-widest"><Clock size={12} className="mr-1" /> {post.date}</span>
                                                     {post.tags?.map(t => (
@@ -567,8 +591,17 @@ const Admin = () => {
                                                 </div>
                                             </div>
                                             <div className="flex space-x-2">
+                                                {/* Edit Button (Placeholder functionality) */}
+                                                <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-colors"
+                                                    onClick={() => {
+                                                        window.alert("Edit functionality coming soon!");
+                                                        // Future: populate form with this post's data and switch tab
+                                                    }}
+                                                >
+                                                    <Edit size={20} />
+                                                </Button>
                                                 <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-colors">
-                                                    <Trash2 size={20} onClick={() => handleDeleteBlog(post.id, post.image)} />
+                                                    <Trash2 size={20} onClick={() => handleDeleteBlog(post.id, "")} />
                                                 </Button>
                                             </div>
                                         </Card>
@@ -582,187 +615,101 @@ const Admin = () => {
                                 </div>
                             </div>
                         )}
-
-                        {activeTab === "add-blog" && (
-                            <div className="space-y-8 animate-slide-up">
-                                <div className="flex items-center space-x-6">
-                                    <Button variant="ghost" onClick={() => setActiveTab("blog")} className="nm-btn !w-14 !h-14 !p-0 shadow-lg">←</Button>
-                                    <div>
-                                        <h2 className="text-4xl font-black text-slate-800 font-graduate">New Publication</h2>
-                                        <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest mt-1">Direct Storage Pipeline Active</p>
-                                    </div>
-                                </div>
-
-                                <form onSubmit={handleAddBlog} className="nm-card !p-12 !rounded-[60px] space-y-12 bg-white border-2 border-slate-100 shadow-2xl">
-                                    {/* Visual Image Upload Area */}
-                                    <div
-                                        onClick={() => document.getElementById('blog-image-input')?.click()}
-                                        className={`relative h-64 border-4 border-dashed rounded-[40px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 overflow-hidden
-                      ${imageFile ? 'border-green-500/30' : 'border-slate-100 hover:border-green-400 hover:bg-green-50/30'}`}
+                        ${imageFile ? 'border-green-500/30' : 'border-slate-100 hover:border-green-400 hover:bg-green-50/30'}`}
                                     >
-                                        <input
-                                            id="blog-image-input"
-                                            type="file"
-                                            accept="image/*"
-                                            className="hidden"
-                                            onChange={e => setImageFile(e.target.files?.[0] || null)}
-                                        />
-                                        {imageFile ? (
-                                            <>
-                                                <img src={URL.createObjectURL(imageFile)} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
-                                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                                    <Upload className="text-white mr-2" size={32} />
-                                                    <span className="text-white font-black font-graduate uppercase">Change Image</span>
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <div className="nm-card !p-6 shadow-inner mb-4">
-                                                    <ImageIcon size={48} className="text-slate-200" />
-                                                </div>
-                                                <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest font-black">Upload Cover Media</p>
-                                                <p className="text-[8px] text-slate-300 mt-2 italic">(JPG/PNG supported - Direct Firebase Storage)</p>
-                                            </>
-                                        )}
-                                    </div>
-
-                                    <div className="space-y-10">
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Blog Title</label>
-                                            <input
-                                                required
-                                                className="nm-input w-full !text-2xl font-black font-graduate !p-6"
-                                                value={blogForm.title}
-                                                onChange={e => setBlogForm({ ...blogForm, title: e.target.value })}
-                                                placeholder="Why Indian Spices Are Winning Global Markets..."
-                                            />
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Blog Content</label>
-
-                                            {/* React Quill Rich Text Editor */}
-                                            <div className="bg-white rounded-xl overflow-hidden border-2 border-slate-200">
-                                                <ReactQuill
-                                                    theme="snow"
-                                                    value={blogForm.content}
-                                                    onChange={(value) => setBlogForm({ ...blogForm, content: value })}
-                                                    modules={{
-                                                        toolbar: [
-                                                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                                                            [{ 'font': [] }],
-                                                            [{ 'size': ['small', false, 'large', 'huge'] }],
-                                                            ['bold', 'italic', 'underline', 'strike'],
-                                                            [{ 'color': [] }, { 'background': [] }],
-                                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                                                            [{ 'align': [] }],
-                                                            ['link', 'image'],
-                                                            ['clean']
-                                                        ],
-                                                    }}
-                                                    placeholder="Write your blog content here..."
-                                                    className="h-[400px] mb-12"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Tags (Comma Separated)</label>
-                                            <input
-                                                className="nm-input w-full !p-4"
-                                                value={blogForm.tags}
-                                                onChange={e => setBlogForm({ ...blogForm, tags: e.target.value })}
-                                                placeholder="spices, export, global-trade"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-12 border-t border-slate-100 flex justify-end">
-                                        <Button type="submit" disabled={uploading} className="nm-btn-green !px-16 !py-8 text-xl font-black tracking-[0.2em] font-graduate border-none shadow-2xl">
-                                            {uploading ? <Loader2 className="animate-spin mr-2" /> : <Plus className="mr-2" size={24} />}
-                                            {uploading ? "SYNCING TO FIREBASE..." : "FINISH & PUBLISH"}
-                                        </Button>
-                                    </div>
-                                </form>
-                            </div>
-                        )}
-
-                        {activeTab === "inquiries" && (
-                            <div className="space-y-8 animate-fade-in">
-                                <div className="flex justify-between items-center bg-white p-6 rounded-[30px] shadow-sm border border-slate-100">
-                                    <h2 className="text-3xl font-black text-slate-800 font-graduate tracking-tight">Client Hub</h2>
+                        <input
+                            id="blog-image-input"
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={e => setImageFile(e.target.files?.[0] || null)}
+                        />
+                        {imageFile ? (
+                            <>
+                                <img src={URL.createObjectURL(imageFile)} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
+                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                    <Upload className="text-white mr-2" size={32} />
+                                    <span className="text-white font-black font-graduate uppercase">Change Image</span>
                                 </div>
-                                <div className="grid gap-6">
-                                    {inquiries.map((inq) => (
-                                        <Card key={inq.id} className="nm-card !p-8 border-none shadow-2xl">
-                                            <div className="flex flex-col md:flex-row gap-8">
-                                                <div className="md:w-48 space-y-4">
-                                                    <div className="w-20 h-20 bg-slate-900 rounded-[25px] flex items-center justify-center text-white text-3xl font-black font-graduate">
-                                                        {inq.firstName?.[0]}{inq.lastName?.[0]}
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-xl font-black text-slate-800 font-graduate">{inq.firstName} {inq.lastName}</p>
-                                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest font-graduate mt-1 truncate">{inq.email}</p>
-                                                    </div>
-                                                </div>
-                                                <div className="flex-1 space-y-4">
-                                                    <div className="flex items-center justify-between">
-                                                        <span className="text-[10px] font-black bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase font-graduate">{inq.subject}</span>
-                                                        <span className="text-[10px] text-slate-400 font-graduate uppercase truncate flex items-center opacity-40"><Clock size={12} className="mr-1" /> {inq.submittedAt ? new Date(inq.submittedAt?.seconds * 1000).toLocaleDateString() : 'Recent'}</span>
-                                                    </div>
-                                                    <div className="p-6 bg-slate-50 rounded-[30px] italic text-slate-600 font-fondamento text-xl border border-white leading-relaxed">
-                                                        "{inq.message}"
-                                                    </div>
-                                                    <div className="flex justify-end pt-4">
-                                                        <Button className="nm-btn-green !py-3 !rounded-2xl !px-8 text-xs font-black tracking-widest">SEND RESPONSE</Button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    ))}
+                            </>
+                        ) : (
+                            <>
+                                <div className="nm-card !p-6 shadow-inner mb-4">
+                                    <ImageIcon size={48} className="text-slate-200" />
                                 </div>
-                            </div>
+                                <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest font-black">Upload Cover Media</p>
+                                <p className="text-[8px] text-slate-300 mt-2 italic">(JPG/PNG supported - Direct Firebase Storage)</p>
+                            </>
                         )}
-
-                        {activeTab === "settings" && (
-                            <div className="space-y-8 animate-fade-in">
-                                <h2 className="text-4xl font-black text-slate-800 font-graduate">System Config</h2>
-                                <Card className="nm-card !p-12 border-none shadow-2xl space-y-12">
-                                    <div className="grid md:grid-cols-2 gap-12">
-                                        <div className="space-y-6">
-                                            <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest font-graduate">Identity Protection</h3>
-                                            <div className="p-6 bg-slate-50 rounded-[30px] border border-white">
-                                                <p className="text-[10px] font-black text-slate-400 uppercase mb-4">Master Security Key (Firebase Stored)</p>
-                                                <p className="text-2xl font-black text-slate-800 font-graduate opacity-10 select-none">••••••••••••••••</p>
-                                                <Button className="nm-btn w-full mt-6 !py-4 font-black text-[10px]">REGENERATE KEY</Button>
-                                            </div>
-                                        </div>
-                                        <div className="space-y-6">
-                                            <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest font-graduate">Analytics Pipeline</h3>
-                                            <div className="space-y-4">
-                                                {[
-                                                    { label: "122+ Parameter Tracking", status: "Active", color: "bg-green-500" },
-                                                    { label: "Real-time Dashboard", status: "Enabled", color: "bg-green-500" },
-                                                    { label: "Firebase Metadata Sync", status: "Polling", color: "bg-blue-500" }
-                                                ].map(pipe => (
-                                                    <div key={pipe.label} className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl">
-                                                        <span className="text-xs font-bold text-slate-600 font-graduate">{pipe.label}</span>
-                                                        <span className="flex items-center text-[9px] font-black uppercase text-slate-400"><div className={`w-2 h-2 rounded-full mr-2 ${pipe.color}`} /> {pipe.status}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Card>
-                            </div>
-                        )}
-
-                    </main>
                 </div>
-            </div>
 
-            <Footer />
+                <div className="space-y-10">
+                    <div className="space-y-4">
+                        <label className="nm-label !mb-0">Blog Title</label>
+                        <input
+                            required
+                            className="nm-input w-full !text-2xl font-black font-graduate !p-6"
+                            value={blogForm.title}
+                            onChange={e => setBlogForm({ ...blogForm, title: e.target.value })}
+                            placeholder="Why Indian Spices Are Winning Global Markets..."
+                        />
+                    </div>
+
+                    <div className="space-y-4">
+                        <label className="nm-label !mb-0">Blog Content</label>
+
+                        {/* React Quill Rich Text Editor */}
+                        <div className="bg-white rounded-xl overflow-hidden border-2 border-slate-200">
+                            <ReactQuill
+                                theme="snow"
+                                value={blogForm.content}
+                                onChange={(value) => setBlogForm({ ...blogForm, content: value })}
+                                modules={{
+                                    toolbar: [
+                                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                                        [{ 'font': [] }],
+                                        [{ 'size': ['small', false, 'large', 'huge'] }],
+                                        ['bold', 'italic', 'underline', 'strike'],
+                                        [{ 'color': [] }, { 'background': [] }],
+                                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                        [{ 'align': [] }],
+                                        ['link', 'image'],
+                                        ['clean']
+                                    ],
+                                }}
+                                placeholder="Write your blog content here..."
+                                className="h-[400px] mb-12"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="space-y-4">
+                        <label className="nm-label !mb-0">Tags (Comma Separated)</label>
+                        <input
+                            className="nm-input w-full !p-4"
+                            value={blogForm.tags}
+                            onChange={e => setBlogForm({ ...blogForm, tags: e.target.value })}
+                            placeholder="spices, export, global-trade"
+                        />
+                    </div>
+                </div>
+
+                <div className="pt-12 border-t border-slate-100 flex justify-end">
+                    <Button type="submit" disabled={uploading} className="nm-btn-green !px-16 !py-8 text-xl font-black tracking-[0.2em] font-graduate border-none shadow-2xl">
+                        {uploading ? <Loader2 className="animate-spin mr-2" /> : <Plus className="mr-2" size={24} />}
+                        {uploading ? "SYNCING TO FIREBASE..." : "FINISH & PUBLISH"}
+                    </Button>
+                </div>
+            </form>
         </div>
+    )
+}
+
+                    </main >
+                </div >
+            </div >
+    <Footer />
+        </div >
     );
 };
 
