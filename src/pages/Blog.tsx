@@ -121,68 +121,9 @@ const Blog = () => {
             </div>
           ) : posts.length > 0 ? (
             <>
-              {featuredPost && selectedCategory === "All Posts" && !searchTerm && (
-                <div className="mb-16">
-                  <div className="nm-card !p-0 overflow-hidden group">
-                    <div className="grid lg:grid-cols-2 gap-0">
-                      <div className="relative overflow-hidden h-[400px]">
-                        <img
-                          src={featuredPost.image}
-                          alt={featuredPost.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute top-6 left-6">
-                          <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-                            Featured
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-12 flex flex-col justify-center bg-white">
-                        <div className="flex items-center space-x-4 text-sm text-slate-500 mb-4">
-                          <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-medium border border-blue-200">
-                            {featuredPost.category}
-                          </span>
-                          <div className="flex items-center space-x-2">
-                            <Calendar className="h-4 w-4 text-slate-400" />
-                            <span>{featuredPost.date}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Clock className="h-4 w-4 text-slate-400" />
-                            <span>{featuredPost.readTime}</span>
-                          </div>
-                        </div>
-                        <h2 className="text-3xl font-bold text-slate-800 mb-4 hover:text-blue-600 transition-colors cursor-pointer capitalize">
-                          {featuredPost.title}
-                        </h2>
-                        <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                          {(featuredPost.content || '').replace(/<[^>]+>/g, '').substring(0, 200)}...
-                        </p>
-                        <Link to={`/blog/${featuredPost.id}`} className="w-fit">
-                          <Button className="nm-btn !w-auto text-slate-700 group">
-                            Read Full Article
-                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
 
-              <div className="flex flex-wrap justify-center gap-3 mb-12">
-                {categories.map((category, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${selectedCategory === category
-                      ? 'bg-white text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
-                      : 'bg-white text-slate-600 hover:text-blue-600 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff]'
-                      }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
+
+
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.map((post) => (
