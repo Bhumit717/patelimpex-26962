@@ -615,100 +615,115 @@ const Admin = () => {
                                 </div>
                             </div>
                         )}
-                        ${imageFile ? 'border-green-500/30' : 'border-slate-100 hover:border-green-400 hover:bg-green-50/30'}`}
+
+                        {activeTab === "add-blog" && (
+                            <div className="space-y-8 animate-slide-up">
+                                <div className="flex items-center space-x-6">
+                                    <Button variant="ghost" onClick={() => setActiveTab("blog")} className="nm-btn !w-14 !h-14 !p-0 shadow-lg">←</Button>
+                                    <div>
+                                        <h2 className="text-4xl font-black text-slate-800 font-graduate">New Publication</h2>
+                                        <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest mt-1">Direct Storage Pipeline Active</p>
+                                    </div>
+                                </div>
+
+                                <form onSubmit={handleAddBlog} className="nm-card !p-12 !rounded-[60px] space-y-12 bg-white border-2 border-slate-100 shadow-2xl">
+                                    {/* Visual Image Upload Area */}
+                                    <div
+                                        onClick={() => document.getElementById('blog-image-input')?.click()}
+                                        className={`relative h-64 border-4 border-dashed rounded-[40px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 overflow-hidden
+                      ${imageFile ? 'border-green-500/30' : 'border-slate-100 hover:border-green-400 hover:bg-green-50/30'}`}
                                     >
-                        <input
-                            id="blog-image-input"
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            onChange={e => setImageFile(e.target.files?.[0] || null)}
-                        />
-                        {imageFile ? (
-                            <>
-                                <img src={URL.createObjectURL(imageFile)} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                    <Upload className="text-white mr-2" size={32} />
-                                    <span className="text-white font-black font-graduate uppercase">Change Image</span>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div className="nm-card !p-6 shadow-inner mb-4">
-                                    <ImageIcon size={48} className="text-slate-200" />
-                                </div>
-                                <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest font-black">Upload Cover Media</p>
-                                <p className="text-[8px] text-slate-300 mt-2 italic">(JPG/PNG supported - Direct Firebase Storage)</p>
-                            </>
+                                        <input
+                                            id="blog-image-input" // Fixed ID
+                                            type="file"
+                                            accept="image/*"
+                                            className="hidden"
+                                            onChange={e => setImageFile(e.target.files?.[0] || null)}
+                                        />
+                                        {imageFile ? (
+                                            <>
+                                                <img src={URL.createObjectURL(imageFile)} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
+                                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                                    <Upload className="text-white mr-2" size={32} />
+                                                    <span className="text-white font-black font-graduate uppercase">Change Image</span>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <div className="nm-card !p-6 shadow-inner mb-4">
+                                                    <ImageIcon size={48} className="text-slate-200" />
+                                                </div>
+                                                <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest font-black">Upload Cover Media</p>
+                                                <p className="text-[8px] text-slate-300 mt-2 italic">(JPG/PNG supported - Direct Firebase Storage)</p>
+                                            </>
+                                        )}
+                                    </div>
+
+                                    <div className="space-y-10">
+                                        <div className="space-y-4">
+                                            <label className="nm-label !mb-0">Blog Title</label>
+                                            <input
+                                                required
+                                                className="nm-input w-full !text-2xl font-black font-graduate !p-6"
+                                                value={blogForm.title}
+                                                onChange={e => setBlogForm({ ...blogForm, title: e.target.value })}
+                                                placeholder="Why Indian Spices Are Winning Global Markets..."
+                                            />
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <label className="nm-label !mb-0">Blog Content</label>
+
+                                            {/* React Quill Rich Text Editor */}
+                                            <div className="bg-white rounded-xl overflow-hidden border-2 border-slate-200">
+                                                <ReactQuill
+                                                    theme="snow"
+                                                    value={blogForm.content}
+                                                    onChange={(value) => setBlogForm({ ...blogForm, content: value })}
+                                                    modules={{
+                                                        toolbar: [
+                                                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                                                            [{ 'font': [] }],
+                                                            [{ 'size': ['small', false, 'large', 'huge'] }],
+                                                            ['bold', 'italic', 'underline', 'strike'],
+                                                            [{ 'color': [] }, { 'background': [] }],
+                                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                                            [{ 'align': [] }],
+                                                            ['link', 'image'],
+                                                            ['clean']
+                                                        ],
+                                                    }}
+                                                    placeholder="Write your blog content here..."
+                                                    className="h-[400px] mb-12"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <label className="nm-label !mb-0">Tags (Comma Separated)</label>
+                                            <input
+                                                className="nm-input w-full !p-4"
+                                                value={blogForm.tags}
+                                                onChange={e => setBlogForm({ ...blogForm, tags: e.target.value })}
+                                                placeholder="spices, export, global-trade"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-12 border-t border-slate-100 flex justify-end">
+                                        <Button type="submit" disabled={uploading} className="nm-btn-green !px-16 !py-8 text-xl font-black tracking-[0.2em] font-graduate border-none shadow-2xl">
+                                            {uploading ? <Loader2 className="animate-spin mr-2" /> : <Plus className="mr-2" size={24} />}
+                                            {uploading ? "SYNCING TO FIREBASE..." : "FINISH & PUBLISH"}
+                                        </Button>
+                                    </div>
+                                </form>
+                            </div>
                         )}
-                </div>
-
-                <div className="space-y-10">
-                    <div className="space-y-4">
-                        <label className="nm-label !mb-0">Blog Title</label>
-                        <input
-                            required
-                            className="nm-input w-full !text-2xl font-black font-graduate !p-6"
-                            value={blogForm.title}
-                            onChange={e => setBlogForm({ ...blogForm, title: e.target.value })}
-                            placeholder="Why Indian Spices Are Winning Global Markets..."
-                        />
-                    </div>
-
-                    <div className="space-y-4">
-                        <label className="nm-label !mb-0">Blog Content</label>
-
-                        {/* React Quill Rich Text Editor */}
-                        <div className="bg-white rounded-xl overflow-hidden border-2 border-slate-200">
-                            <ReactQuill
-                                theme="snow"
-                                value={blogForm.content}
-                                onChange={(value) => setBlogForm({ ...blogForm, content: value })}
-                                modules={{
-                                    toolbar: [
-                                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                                        [{ 'font': [] }],
-                                        [{ 'size': ['small', false, 'large', 'huge'] }],
-                                        ['bold', 'italic', 'underline', 'strike'],
-                                        [{ 'color': [] }, { 'background': [] }],
-                                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                                        [{ 'align': [] }],
-                                        ['link', 'image'],
-                                        ['clean']
-                                    ],
-                                }}
-                                placeholder="Write your blog content here..."
-                                className="h-[400px] mb-12"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="space-y-4">
-                        <label className="nm-label !mb-0">Tags (Comma Separated)</label>
-                        <input
-                            className="nm-input w-full !p-4"
-                            value={blogForm.tags}
-                            onChange={e => setBlogForm({ ...blogForm, tags: e.target.value })}
-                            placeholder="spices, export, global-trade"
-                        />
-                    </div>
-                </div>
-
-                <div className="pt-12 border-t border-slate-100 flex justify-end">
-                    <Button type="submit" disabled={uploading} className="nm-btn-green !px-16 !py-8 text-xl font-black tracking-[0.2em] font-graduate border-none shadow-2xl">
-                        {uploading ? <Loader2 className="animate-spin mr-2" /> : <Plus className="mr-2" size={24} />}
-                        {uploading ? "SYNCING TO FIREBASE..." : "FINISH & PUBLISH"}
-                    </Button>
-                </div>
-            </form>
-        </div>
-    )
-}
 
                     </main >
                 </div >
             </div >
-    <Footer />
+            <Footer />
         </div >
     );
 };
