@@ -37,7 +37,7 @@ import {
     Pie,
     Cell
 } from "recharts";
-import { db, storage } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
 import {
     collection,
     addDoc,
@@ -52,7 +52,6 @@ import {
     serverTimestamp,
     limit
 } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useToast } from "@/hooks/use-toast";
 
 // Fallback configuration - Final logic will fetch purely from Firebase
@@ -199,17 +198,60 @@ const Admin = () => {
             setUploading(true);
             console.log("Starting Blog Sync...");
 
-            // 1. Upload Image to Firebase Storage
+            // 1. Convert Image to Base64 (No Firebase Storage needed!)
             let imageUrl = "";
             try {
-                console.log("Step 1: Uploading Image...");
-                const storageRef = ref(storage, `blog_images/${Date.now()}_${imageFile.name}`);
-                const snapshot = await uploadBytes(storageRef, imageFile);
-                imageUrl = await getDownloadURL(snapshot.ref);
-                console.log("Image Upload Success:", imageUrl);
-            } catch (storageErr: any) {
-                console.error("Storage Error:", storageErr);
-                throw new Error(`Media Upload Failed: ${storageErr.message || 'Check CORS/Storage Rules'}`);
+                console.log("Step 1: Converting Image to Base64...");
+
+                // Compress and convert to base64
+                const reader = new FileReader();
+                const base64Promise = new Promise<string>((resolve, reject) => {
+                    reader.onload = (e) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            // Create canvas to compress image
+                            const canvas = document.createElement('canvas');
+                            const MAX_WIDTH = 1200;
+                            const MAX_HEIGHT = 800;
+
+                            let width = img.width;
+                            let height = img.height;
+
+                            // Calculate new dimensions
+                            if (width > height) {
+                                if (width > MAX_WIDTH) {
+                                    height *= MAX_WIDTH / width;
+                                    width = MAX_WIDTH;
+                                }
+                            } else {
+                                if (height > MAX_HEIGHT) {
+                                    width *= MAX_HEIGHT / height;
+                                    height = MAX_HEIGHT;
+                                }
+                            }
+
+                            canvas.width = width;
+                            canvas.height = height;
+
+                            const ctx = canvas.getContext('2d');
+                            ctx?.drawImage(img, 0, 0, width, height);
+
+                            // Convert to base64 with compression
+                            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
+                            resolve(compressedBase64);
+                        };
+                        img.onerror = reject;
+                        img.src = e.target?.result as string;
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(imageFile);
+                });
+
+                imageUrl = await base64Promise;
+                console.log("Image Compression Success (Base64)");
+            } catch (imageErr: any) {
+                console.error("Image Processing Error:", imageErr);
+                throw new Error(`Image Processing Failed: ${imageErr.message || 'Invalid image file'}`);
             }
 
             // 2. Save Data to Firestore
