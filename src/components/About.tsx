@@ -58,7 +58,7 @@ const About = () => {
                             </div>
                             <div className="nm-card-dark !p-8 flex flex-col items-center text-center bg-slate-900">
                                 <Anchor className="h-10 w-10 text-green-500 mb-4" />
-                                <span className="font-graduate text-3xl font-black text-white">50+ CTYS</span>
+                                <span className="font-graduate text-3xl font-black text-white">50+ Countries</span>
                                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Global Destinations</span>
                             </div>
                         </div>
