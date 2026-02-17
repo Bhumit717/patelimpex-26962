@@ -42,6 +42,8 @@ import {
     collection,
     addDoc,
     getDocs,
+    getDoc,
+    setDoc,
     deleteDoc,
     doc,
     query,
@@ -53,9 +55,7 @@ import {
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useToast } from "@/hooks/use-toast";
 
-// Fallback Password for Admin (will be synced with Firebase)
-const DEFAULT_ADMIN_PASSWORD = "Patel@Impex";
-
+// Fallback configuration - Final logic will fetch purely from Firebase
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#6366f1', '#ec4899', '#f59e0b'];
 
 interface VisitorData {
@@ -114,17 +114,24 @@ const Admin = () => {
         const savedAuth = localStorage.getItem("admin_auth");
         if (savedAuth === "true") setIsAuthenticated(true);
 
-        // Fetch Password from Firebase
+        // Fetch Password from Firebase - Direct Document Access
         const fetchPassword = async () => {
-            const q = query(collection(db, "admin_config"), limit(1));
-            const snapshot = await getDocs(q);
-            if (!snapshot.empty) {
-                const data = snapshot.docs[0].data();
-                setStoredPassword(data.password || DEFAULT_ADMIN_PASSWORD);
-            } else {
-                // Initialize password if missing
-                await addDoc(collection(db, "admin_config"), { password: DEFAULT_ADMIN_PASSWORD, lastUpdated: serverTimestamp() });
-                setStoredPassword(DEFAULT_ADMIN_PASSWORD);
+            try {
+                const docRef = doc(db, "admin_config", "settings");
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setStoredPassword(docSnap.data().password);
+                } else {
+                    // Create it if it doesn't exist (initial bootstrap)
+                    await setDoc(docRef, {
+                        password: "Patel@Impex",
+                        lastUpdated: serverTimestamp()
+                    });
+                    setStoredPassword("Patel@Impex");
+                }
+            } catch (e) {
+                console.error("Firebase Sync Error:", e);
             }
         };
         fetchPassword();
@@ -161,13 +168,18 @@ const Admin = () => {
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        const targetPass = storedPassword || DEFAULT_ADMIN_PASSWORD;
-        if (passwordInput === targetPass) {
+        // Pure Firebase authentication logic
+        if (!storedPassword) {
+            toast({ title: "Auth Syncing", description: "Fetching security key from Firebase. Please wait.", variant: "default" });
+            return;
+        }
+
+        if (passwordInput === storedPassword) {
             setIsAuthenticated(true);
             localStorage.setItem("admin_auth", "true");
-            toast({ title: "Access Granted", description: "Welcome back, Admin." });
+            toast({ title: "Access Granted", description: "Secure session established via Firestore." });
         } else {
-            toast({ title: "Access Denied", description: "Incorrect password.", variant: "destructive" });
+            toast({ title: "Access Denied", description: "Security key mismatch.", variant: "destructive" });
         }
     };
 

@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Analytics: Anyone can write (required for global tracking)
+    match /site_analytics/{document=**} {
+      allow create: if true;
+      allow read: if true; 
+    }
+    
+    // Blog Posts & Inquiries: Publicly readable, writeable by anyone (for now)
+    match /blog_posts/{document=**} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /contact_inquiries/{document=**} {
+      allow read: if true;
+      allow create: if true;
+    }
+    
+    // Admin Config: Securely stored
+    match /admin_config/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
