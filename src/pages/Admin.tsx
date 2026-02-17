@@ -197,35 +197,55 @@ const Admin = () => {
 
         try {
             setUploading(true);
+            console.log("Starting Blog Sync...");
 
             // 1. Upload Image to Firebase Storage
-            const storageRef = ref(storage, `blog_images/${Date.now()}_${imageFile.name}`);
-            const snapshot = await uploadBytes(storageRef, imageFile);
-            const imageUrl = await getDownloadURL(snapshot.ref);
+            let imageUrl = "";
+            try {
+                console.log("Step 1: Uploading Image...");
+                const storageRef = ref(storage, `blog_images/${Date.now()}_${imageFile.name}`);
+                const snapshot = await uploadBytes(storageRef, imageFile);
+                imageUrl = await getDownloadURL(snapshot.ref);
+                console.log("Image Upload Success:", imageUrl);
+            } catch (storageErr: any) {
+                console.error("Storage Error:", storageErr);
+                throw new Error(`Media Upload Failed: ${storageErr.message || 'Check CORS/Storage Rules'}`);
+            }
 
             // 2. Save Data to Firestore
-            await addDoc(collection(db, "blog_posts"), {
-                title: blogForm.title,
-                intro: blogForm.intro,
-                section1: blogForm.section1,
-                section2: blogForm.section2,
-                section3: blogForm.section3,
-                section4: blogForm.section4,
-                section5: blogForm.section5,
-                conclusion: blogForm.conclusion,
-                image: imageUrl,
-                tags: blogForm.tags.split(",").map(tag => tag.trim()),
-                date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-                timestamp: serverTimestamp()
-            });
+            try {
+                console.log("Step 2: Syncing Data to Firestore...");
+                await addDoc(collection(db, "blog_posts"), {
+                    title: blogForm.title,
+                    intro: blogForm.intro,
+                    section1: blogForm.section1,
+                    section2: blogForm.section2,
+                    section3: blogForm.section3,
+                    section4: blogForm.section4,
+                    section5: blogForm.section5,
+                    conclusion: blogForm.conclusion,
+                    image: imageUrl,
+                    tags: blogForm.tags.split(",").map(tag => tag.trim()),
+                    date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                    timestamp: serverTimestamp()
+                });
+                console.log("Firestore Sync Success");
+            } catch (dbErr: any) {
+                console.error("Firestore Error:", dbErr);
+                throw new Error(`Data Sync Failed: ${dbErr.message || 'Check Firestore Rules'}`);
+            }
 
             toast({ title: "Article Published!", description: "Blog post is live now." });
             setBlogForm({ title: "", intro: "", section1: "", section2: "", section3: "", section4: "", section5: "", conclusion: "", tags: "" });
             setImageFile(null);
             setActiveTab("blog");
-        } catch (error) {
-            console.error("Error adding blog:", error);
-            toast({ title: "Upload Failed", description: "Check console for details.", variant: "destructive" });
+        } catch (error: any) {
+            console.error("Complete Failure:", error);
+            toast({
+                title: "Publication Halted",
+                description: error.message,
+                variant: "destructive"
+            });
         } finally {
             setUploading(false);
         }
