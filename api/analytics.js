@@ -1,32 +1,25 @@
 // Vercel Serverless Function — Google Analytics Data API v1
-// Credentials are stored in Vercel Environment Variables (never in code)
 // Required env vars: GA_PROPERTY_ID, GA_CLIENT_EMAIL, GA_PRIVATE_KEY
 
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
-// Helper: create the authenticated client from env vars
 function getClient() {
     const clientEmail = process.env.GA_CLIENT_EMAIL;
-    const privateKey = process.env.GA_PRIVATE_KEY?.replace(/\\n/g, "\n"); // Vercel stores \n as literal
+    const privateKey = process.env.GA_PRIVATE_KEY?.replace(/\\n/g, "\n");
     if (!clientEmail || !privateKey) {
-        throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY environment variables");
+        throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
     return new BetaAnalyticsDataClient({
-        credentials: {
-            client_email: clientEmail,
-            private_key: privateKey,
-        },
+        credentials: { client_email: clientEmail, private_key: privateKey },
     });
 }
 
 export default async function handler(req, res) {
-    // CORS headers
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     if (req.method === "OPTIONS") return res.status(200).end();
 
-    // Simple auth check — admin password must be sent as Bearer token
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return res.status(401).json({ error: "Unauthorized" });
@@ -34,276 +27,221 @@ export default async function handler(req, res) {
 
     const propertyId = process.env.GA_PROPERTY_ID;
     if (!propertyId) {
-        return res.status(500).json({ error: "GA_PROPERTY_ID not configured" });
+        return res.status(500).json({ error: "GA_PROPERTY_ID not configured in Environment Variables" });
     }
 
     try {
         const client = getClient();
         const property = `properties/${propertyId}`;
+        const dateRange = { startDate: "30daysAgo", endDate: "today" };
 
-        // ─── 1. Overview metrics (last 30 days) ───
+        // ─── 1. EXTENDED OVERVIEW & USER ANALYSIS ───
         const [overviewResponse] = await client.runReport({
             property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+            dateRanges: [dateRange],
             metrics: [
+                { name: "totalUsers" },
+                { name: "newUsers" },
                 { name: "activeUsers" },
+                { name: "engagedSessions" },
+                { name: "engagementRate" },
+                { name: "averageSessionDuration" },
+                { name: "userEngagementDuration" },
                 { name: "sessions" },
+                { name: "sessionsPerUser" },
                 { name: "screenPageViews" },
                 { name: "bounceRate" },
-                { name: "averageSessionDuration" },
-                { name: "newUsers" },
-                { name: "engagedSessions" },
-                { name: "totalUsers" },
             ],
         });
 
-        const overviewRow = overviewResponse.rows?.[0]?.metricValues || [];
+        const ovRaw = overviewResponse.rows?.[0]?.metricValues || [];
         const overview = {
-            activeUsers: Number(overviewRow[0]?.value || 0),
-            sessions: Number(overviewRow[1]?.value || 0),
-            pageViews: Number(overviewRow[2]?.value || 0),
-            bounceRate: Number(Number(overviewRow[3]?.value || 0).toFixed(4)),
-            avgSessionDuration: Number(Number(overviewRow[4]?.value || 0).toFixed(1)),
-            newUsers: Number(overviewRow[5]?.value || 0),
-            engagedSessions: Number(overviewRow[6]?.value || 0),
-            totalUsers: Number(overviewRow[7]?.value || 0),
+            totalUsers: Number(ovRaw[0]?.value || 0),
+            newUsers: Number(ovRaw[1]?.value || 0),
+            activeUsers: Number(ovRaw[2]?.value || 0),
+            returningUsers: Math.max(0, Number(ovRaw[0]?.value || 0) - Number(ovRaw[1]?.value || 0)),
+            engagedSessions: Number(ovRaw[3]?.value || 0),
+            engagementRate: Number(ovRaw[4]?.value || 0),
+            avgSessionDuration: Number(ovRaw[5]?.value || 0),
+            avgEngagementTime: Number(ovRaw[6]?.value || 0),
+            sessions: Number(ovRaw[7]?.value || 0),
+            sessionsPerUser: Number(ovRaw[8]?.value || 0),
+            pageViews: Number(ovRaw[9]?.value || 0),
+            bounceRate: Number(ovRaw[10]?.value || 0),
         };
 
-        // ─── 2. Daily visitors (last 30 days) ───
-        const [dailyResponse] = await client.runReport({
+        // ─── 2. DEMOGRAPHICS (CONTINENT, REGION, CITY) ───
+        const [demoResponse] = await client.runReport({
             property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "date" }],
-            metrics: [
-                { name: "activeUsers" },
-                { name: "sessions" },
-                { name: "screenPageViews" },
-                { name: "newUsers" },
-            ],
-            orderBys: [{ dimension: { dimensionName: "date" } }],
+            dateRanges: [dateRange],
+            dimensions: [{ name: "continent" }, { name: "country" }, { name: "region" }, { name: "city" }, { name: "language" }],
+            metrics: [{ name: "activeUsers" }],
+            limit: 50,
         });
 
-        const dailyVisitors = (dailyResponse.rows || []).map((row) => ({
-            date: row.dimensionValues[0].value, // YYYYMMDD
-            activeUsers: Number(row.metricValues[0].value),
-            sessions: Number(row.metricValues[1].value),
-            pageViews: Number(row.metricValues[2].value),
-            newUsers: Number(row.metricValues[3].value),
+        const demographics = (demoResponse.rows || []).map(row => ({
+            continent: row.dimensionValues[0].value,
+            country: row.dimensionValues[1].value,
+            region: row.dimensionValues[2].value,
+            city: row.dimensionValues[3].value,
+            language: row.dimensionValues[4].value,
+            users: Number(row.metricValues[0].value),
         }));
 
-        // ─── 3. Top pages ───
-        const [pagesResponse] = await client.runReport({
+        // ─── 3. TECH & PLATFORM ───
+        const [techResponse] = await client.runReport({
             property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+            dateRanges: [dateRange],
+            dimensions: [{ name: "deviceCategory" }, { name: "browser" }, { name: "operatingSystem" }, { name: "screenResolution" }, { name: "platform" }],
+            metrics: [{ name: "activeUsers" }],
+        });
+
+        const tech = (techResponse.rows || []).map(row => ({
+            device: row.dimensionValues[0].value,
+            browser: row.dimensionValues[1].value,
+            os: row.dimensionValues[2].value,
+            resolution: row.dimensionValues[3].value,
+            platform: row.dimensionValues[4].value,
+            users: Number(row.metricValues[0].value),
+        }));
+
+        // ─── 4. PAGE ANALYSIS (TOP, LANDING, EXIT) ───
+        const [pagesFullResponse] = await client.runReport({
+            property,
+            dateRanges: [dateRange],
             dimensions: [{ name: "pagePath" }],
-            metrics: [
-                { name: "screenPageViews" },
-                { name: "activeUsers" },
-                { name: "averageSessionDuration" },
-            ],
-            orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+            metrics: [{ name: "screenPageViews" }, { name: "activeUsers" }, { name: "averageSessionDuration" }, { name: "exits" }],
+            limit: 25,
+        });
+
+        const pages = (pagesFullResponse.rows || []).map(row => ({
+            path: row.dimensionValues[0].value,
+            views: Number(row.metricValues[0].value),
+            users: Number(row.metricValues[1].value),
+            avgTime: Number(row.metricValues[2].value),
+            exits: Number(row.metricValues[3].value),
+        }));
+
+        // ─── 5. TRAFFIC SOURCE (CAMPAIGNS, MEDIUM, SOURCE) ───
+        const [trafficResponse] = await client.runReport({
+            property,
+            dateRanges: [dateRange],
+            dimensions: [{ name: "sessionSource" }, { name: "sessionMedium" }, { name: "sessionCampaignName" }, { name: "sessionDefaultChannelGroup" }],
+            metrics: [{ name: "sessions" }, { name: "activeUsers" }, { name: "conversions" }],
             limit: 20,
         });
 
-        const topPages = (pagesResponse.rows || []).map((row) => ({
-            page: row.dimensionValues[0].value,
-            views: Number(row.metricValues[0].value),
-            users: Number(row.metricValues[1].value),
-            avgDuration: Number(Number(row.metricValues[2].value).toFixed(1)),
-        }));
-
-        // ─── 4. Traffic sources ───
-        const [sourcesResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "sessionDefaultChannelGroup" }],
-            metrics: [{ name: "sessions" }, { name: "activeUsers" }],
-            orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
-            limit: 10,
-        });
-
-        const trafficSources = (sourcesResponse.rows || []).map((row) => ({
+        const traffic = (trafficResponse.rows || []).map(row => ({
             source: row.dimensionValues[0].value,
+            medium: row.dimensionValues[1].value,
+            campaign: row.dimensionValues[2].value,
+            channel: row.dimensionValues[3].value,
             sessions: Number(row.metricValues[0].value),
             users: Number(row.metricValues[1].value),
+            conversions: Number(row.metricValues[2].value),
         }));
 
-        // ─── 5. Countries ───
-        const [countryResponse] = await client.runReport({
+        // ─── 6. EVENTS & INTERACTIONS ───
+        const [eventsResponse] = await client.runReport({
             property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "country" }],
-            metrics: [{ name: "activeUsers" }, { name: "sessions" }],
-            orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-            limit: 15,
+            dateRanges: [dateRange],
+            dimensions: [{ name: "eventName" }],
+            metrics: [{ name: "eventCount" }, { name: "activeUsers" }],
+            limit: 20,
         });
 
-        const countries = (countryResponse.rows || []).map((row) => ({
-            country: row.dimensionValues[0].value,
+        const events = (eventsResponse.rows || []).map(row => ({
+            name: row.dimensionValues[0].value,
+            count: Number(row.metricValues[0].value),
+            users: Number(row.metricValues[1].value),
+        }));
+
+        // ─── 7. E-COMMERCE (PURCHASES, REVENUE) ───
+        const [ecomResponse] = await client.runReport({
+            property,
+            dateRanges: [dateRange],
+            metrics: [
+                { name: "transactions" },
+                { name: "purchaseRevenue" },
+                { name: "totalPurchasers" },
+                { name: "ecommercePurchases" },
+                { name: "itemListViews" },
+                { name: "addToCarts" },
+            ],
+        }).catch(() => [null]);
+
+        const ecomRaw = ecomResponse?.rows?.[0]?.metricValues || [];
+        const ecommerce = {
+            transactions: Number(ecomRaw[0]?.value || 0),
+            revenue: Number(ecomRaw[1]?.value || 0),
+            purchasers: Number(ecomRaw[2]?.value || 0),
+            purchases: Number(ecomRaw[3]?.value || 0),
+            views: Number(ecomRaw[4]?.value || 0),
+        };
+
+        // ─── 8. REALTIME ANALYSIS (LITE VERSION) ───
+        const [realtimeResponse] = await client.runRealtimeReport({
+            property,
+            dimensions: [{ name: "city" }, { name: "unifiedPageScreen" }],
+            metrics: [{ name: "activeUsers" }],
+        }).catch(() => [null]);
+
+        const realtime = {
+            activeUsers: realtimeResponse?.rows?.reduce((acc, row) => acc + Number(row.metricValues[0].value), 0) || 0,
+            locations: (realtimeResponse?.rows || []).slice(0, 5).map(row => ({ city: row.dimensionValues[0].value, users: Number(row.metricValues[0].value) })),
+            pages: (realtimeResponse?.rows || []).slice(0, 5).map(row => ({ page: row.dimensionValues[1].value, users: Number(row.metricValues[0].value) })),
+        };
+
+        // ─── 9. RETENTION & RETURNING ───
+        const [retentionResponse] = await client.runReport({
+            property,
+            dateRanges: [dateRange],
+            dimensions: [{ name: "newVsReturning" }],
+            metrics: [{ name: "activeUsers" }, { name: "sessions" }],
+        });
+
+        const retention = (retentionResponse.rows || []).map(row => ({
+            type: row.dimensionValues[0].value, // new or returning
             users: Number(row.metricValues[0].value),
             sessions: Number(row.metricValues[1].value),
         }));
 
-        // ─── 6. Devices ───
-        const [deviceResponse] = await client.runReport({
+        // ─── 10. DAILY TREND (FOR CHARTING) ───
+        const [dailyResponse] = await client.runReport({
             property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "deviceCategory" }],
-            metrics: [{ name: "activeUsers" }, { name: "sessions" }],
-            orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+            dateRanges: [dateRange],
+            dimensions: [{ name: "date" }],
+            metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
+            orderBys: [{ dimension: { dimensionName: "date" } }],
         });
 
-        const devices = (deviceResponse.rows || []).map((row) => ({
-            device: row.dimensionValues[0].value,
+        const daily = (dailyResponse.rows || []).map(row => ({
+            date: row.dimensionValues[0].value,
             users: Number(row.metricValues[0].value),
             sessions: Number(row.metricValues[1].value),
+            views: Number(row.metricValues[2].value),
         }));
 
-        // ─── 7. Browsers ───
-        const [browserResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "browser" }],
-            metrics: [{ name: "activeUsers" }],
-            orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-            limit: 10,
-        });
-
-        const browsers = (browserResponse.rows || []).map((row) => ({
-            browser: row.dimensionValues[0].value,
-            users: Number(row.metricValues[0].value),
-        }));
-
-        // ─── 8. Operating Systems ───
-        const [osResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "operatingSystem" }],
-            metrics: [{ name: "activeUsers" }],
-            orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-            limit: 10,
-        });
-
-        const operatingSystems = (osResponse.rows || []).map((row) => ({
-            os: row.dimensionValues[0].value,
-            users: Number(row.metricValues[0].value),
-        }));
-
-        // ─── 9. Referrers ───
-        const [referrerResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "sessionSource" }],
-            metrics: [{ name: "sessions" }, { name: "activeUsers" }],
-            orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
-            limit: 15,
-        });
-
-        const referrers = (referrerResponse.rows || []).map((row) => ({
-            source: row.dimensionValues[0].value,
-            sessions: Number(row.metricValues[0].value),
-            users: Number(row.metricValues[1].value),
-        }));
-
-        // ─── 10. Hourly distribution (last 7 days) ───
-        const [hourlyResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
-            dimensions: [{ name: "hour" }],
-            metrics: [{ name: "activeUsers" }],
-            orderBys: [{ dimension: { dimensionName: "hour" } }],
-        });
-
-        const hourlyDistribution = (hourlyResponse.rows || []).map((row) => ({
-            hour: row.dimensionValues[0].value,
-            users: Number(row.metricValues[0].value),
-        }));
-
-        // ─── 11. Landing Pages ───
-        const [landingResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "landingPagePlusQueryString" }],
-            metrics: [{ name: "sessions" }, { name: "bounceRate" }],
-            orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
-            limit: 10,
-        });
-
-        const landingPages = (landingResponse.rows || []).map((row) => ({
-            page: row.dimensionValues[0].value,
-            sessions: Number(row.metricValues[0].value),
-            bounceRate: Number(Number(row.metricValues[1].value).toFixed(4)),
-        }));
-
-        // ─── 12. Cities ───
-        const [cityResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "city" }],
-            metrics: [{ name: "activeUsers" }],
-            orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-            limit: 15,
-        });
-
-        const cities = (cityResponse.rows || []).map((row) => ({
-            city: row.dimensionValues[0].value,
-            users: Number(row.metricValues[0].value),
-        }));
-
-        // ─── 13. Languages ───
-        const [langResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "language" }],
-            metrics: [{ name: "activeUsers" }],
-            orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-            limit: 10,
-        });
-
-        const languages = (langResponse.rows || []).map((row) => ({
-            language: row.dimensionValues[0].value,
-            users: Number(row.metricValues[0].value),
-        }));
-
-        // ─── 14. Screen Resolutions ───
-        const [screenResponse] = await client.runReport({
-            property,
-            dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
-            dimensions: [{ name: "screenResolution" }],
-            metrics: [{ name: "activeUsers" }],
-            orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-            limit: 10,
-        });
-
-        const screenResolutions = (screenResponse.rows || []).map((row) => ({
-            resolution: row.dimensionValues[0].value,
-            users: Number(row.metricValues[0].value),
-        }));
-
-        // ─── RESPONSE ───
         return res.status(200).json({
             success: true,
             fetchedAt: new Date().toISOString(),
             overview,
-            dailyVisitors,
-            topPages,
-            trafficSources,
-            countries,
-            devices,
-            browsers,
-            operatingSystems,
-            referrers,
-            hourlyDistribution,
-            landingPages,
-            cities,
-            languages,
-            screenResolutions,
+            demographics,
+            tech,
+            pages,
+            traffic,
+            events,
+            ecommerce,
+            realtime,
+            retention,
+            daily,
         });
     } catch (error) {
-        console.error("Analytics API Error:", error);
+        console.error("GA API Error:", error);
         return res.status(500).json({
-            error: "Failed to fetch analytics data",
+            error: "Failed to fetch analytics",
             message: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
         });
     }
 }

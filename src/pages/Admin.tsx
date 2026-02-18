@@ -81,28 +81,28 @@ const GRADIENT_COLORS = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', 
 interface AnalyticsData {
     fetchedAt: string;
     overview: {
+        totalUsers: number;
+        newUsers: number;
         activeUsers: number;
+        returningUsers: number;
+        engagedSessions: number;
+        engagementRate: number;
+        avgSessionDuration: number;
+        avgEngagementTime: number;
         sessions: number;
+        sessionsPerUser: number;
         pageViews: number;
         bounceRate: number;
-        avgSessionDuration: number;
-        newUsers: number;
-        engagedSessions: number;
-        totalUsers: number;
     };
-    dailyVisitors: Array<{ date: string; activeUsers: number; sessions: number; pageViews: number; newUsers: number }>;
-    topPages: Array<{ page: string; views: number; users: number; avgDuration: number }>;
-    trafficSources: Array<{ source: string; sessions: number; users: number }>;
-    countries: Array<{ country: string; users: number; sessions: number }>;
-    devices: Array<{ device: string; users: number; sessions: number }>;
-    browsers: Array<{ browser: string; users: number }>;
-    operatingSystems: Array<{ os: string; users: number }>;
-    referrers: Array<{ source: string; sessions: number; users: number }>;
-    hourlyDistribution: Array<{ hour: string; users: number }>;
-    landingPages: Array<{ page: string; sessions: number; bounceRate: number }>;
-    cities: Array<{ city: string; users: number }>;
-    languages: Array<{ language: string; users: number }>;
-    screenResolutions: Array<{ resolution: string; users: number }>;
+    demographics: Array<{ continent: string; country: string; region: string; city: string; language: string; users: number }>;
+    tech: Array<{ device: string; browser: string; os: string; resolution: string; platform: string; users: number }>;
+    pages: Array<{ path: string; views: number; users: number; avgTime: number; exits: number }>;
+    traffic: Array<{ source: string; medium: string; campaign: string; channel: string; sessions: number; users: number; conversions: number }>;
+    events: Array<{ name: string; count: number; users: number }>;
+    ecommerce: { transactions: number; revenue: number; purchasers: number; purchases: number; views: number };
+    realtime: { activeUsers: number; locations: Array<{ city: string; users: number }>; pages: Array<{ page: string; users: number }> };
+    retention: Array<{ type: string; users: number; sessions: number }>;
+    daily: Array<{ date: string; users: number; sessions: number; views: number }>;
 }
 
 interface VisitorData {
@@ -752,377 +752,346 @@ const Admin = () => {
                                 {/* Analytics Dashboard */}
                                 {gaData && (
                                     <>
-                                        {/* ─── Overview Stat Cards ─── */}
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        {/* ─── Real-time Snapshot ─── */}
+                                        <Card className="border-indigo-200 bg-indigo-50/50 p-6 overflow-hidden relative">
+                                            <div className="absolute top-0 right-0 p-4 animate-pulse">
+                                                <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.8)]" />
+                                            </div>
+                                            <div className="flex flex-col md:flex-row items-center gap-8">
+                                                <div className="text-center md:text-left">
+                                                    <p className="text-[10px] font-graduate font-black uppercase tracking-[0.2em] text-indigo-500">Active users right now</p>
+                                                    <h3 className="text-5xl font-black text-indigo-900 font-graduate mt-2">{gaData.realtime.activeUsers}</h3>
+                                                </div>
+                                                <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                                                    <div className="bg-white/60 p-3 rounded-xl backdrop-blur-sm border border-white">
+                                                        <p className="text-[9px] font-graduate font-black text-slate-400 uppercase mb-2 flex items-center gap-1.5"><MapPin size={10} /> Live Locations</p>
+                                                        {gaData.realtime.locations.length > 0 ? gaData.realtime.locations.map((loc, i) => (
+                                                            <div key={i} className="flex justify-between text-[11px] font-bold py-0.5 border-b border-indigo-100 last:border-0 text-slate-700">
+                                                                <span className="truncate max-w-[100px]">{loc.city || 'Unknown'}</span>
+                                                                <span className="text-indigo-600">{loc.users}</span>
+                                                            </div>
+                                                        )) : <p className="text-[10px] text-slate-400 italic">Tracking locations...</p>}
+                                                    </div>
+                                                    <div className="bg-white/60 p-3 rounded-xl backdrop-blur-sm border border-white">
+                                                        <p className="text-[9px] font-graduate font-black text-slate-400 uppercase mb-2 flex items-center gap-1.5"><Eye size={10} /> Active Pages</p>
+                                                        {gaData.realtime.pages.length > 0 ? gaData.realtime.pages.map((p, i) => (
+                                                            <div key={i} className="flex justify-between text-[11px] font-bold py-0.5 border-b border-indigo-100 last:border-0 text-slate-700">
+                                                                <span className="truncate max-w-[100px]">{p.page}</span>
+                                                                <span className="text-indigo-600">{p.users}</span>
+                                                            </div>
+                                                        )) : <p className="text-[10px] text-slate-400 italic">No page data yet</p>}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Card>
+
+                                        {/* ─── 1. User Analysis Dashboard ─── */}
+                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                                             {[
-                                                { label: 'Total Users', value: gaData.overview.totalUsers.toLocaleString(), icon: Users, color: 'from-blue-500 to-cyan-400', sub: `${gaData.overview.newUsers} new` },
-                                                { label: 'Sessions', value: gaData.overview.sessions.toLocaleString(), icon: MousePointerClick, color: 'from-violet-500 to-purple-400', sub: `${gaData.overview.engagedSessions} engaged` },
-                                                { label: 'Page Views', value: gaData.overview.pageViews.toLocaleString(), icon: Eye, color: 'from-emerald-500 to-teal-400', sub: `${(gaData.overview.pageViews / Math.max(gaData.overview.sessions, 1)).toFixed(1)} per session` },
-                                                { label: 'Avg Duration', value: formatDuration(gaData.overview.avgSessionDuration), icon: Timer, color: 'from-amber-500 to-orange-400', sub: `Bounce: ${formatPercent(gaData.overview.bounceRate)}` },
+                                                { label: 'Total Users', value: gaData.overview.totalUsers.toLocaleString(), icon: Users, color: 'from-blue-600 to-cyan-500', sub: `${gaData.overview.returningUsers} returning` },
+                                                { label: 'Active Users', value: gaData.overview.activeUsers.toLocaleString(), icon: Activity, color: 'from-emerald-600 to-teal-500', sub: `${gaData.overview.newUsers} new` },
+                                                { label: 'Engagement', value: formatPercent(gaData.overview.engagementRate), icon: MousePointerClick, color: 'from-violet-600 to-purple-500', sub: `${gaData.overview.engagedSessions} sessions` },
+                                                { label: 'Engage Time', value: formatDuration(gaData.overview.avgEngagementTime), icon: Clock, color: 'from-amber-600 to-orange-500', sub: `${gaData.overview.sessionsPerUser.toFixed(2)} sess/user` },
                                             ].map(s => (
-                                                <Card key={s.label} className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                                                    <div className={`bg-gradient-to-br ${s.color} p-4`}>
-                                                        <div className="flex items-center justify-between">
-                                                            <s.icon className="text-white/80" size={24} />
-                                                            <span className="text-white/60 text-[9px] font-graduate font-black uppercase tracking-widest">{s.label}</span>
+                                                <Card key={s.label} className="overflow-hidden group hover:shadow-2xl transition-all duration-500 border-0">
+                                                    <div className={`bg-gradient-to-br ${s.color} p-5 relative overflow-hidden`}>
+                                                        <s.icon className="absolute -right-2 -bottom-2 text-white/10" size={80} />
+                                                        <div className="relative z-10">
+                                                            <span className="text-white/70 text-[10px] font-graduate font-black uppercase tracking-widest">{s.label}</span>
+                                                            <p className="text-4xl font-black text-white mt-2 font-graduate leading-none">{s.value}</p>
+                                                            <div className="flex items-center gap-1.5 mt-3">
+                                                                <span className="w-1.5 h-1.5 rounded-full bg-white/40 shadow-sm" />
+                                                                <span className="text-white/70 text-[11px] font-graduate font-bold">{s.sub}</span>
+                                                            </div>
                                                         </div>
-                                                        <p className="text-3xl font-black text-white mt-2 font-graduate">{s.value}</p>
-                                                        <p className="text-white/60 text-[10px] font-graduate mt-1">{s.sub}</p>
                                                     </div>
                                                 </Card>
                                             ))}
                                         </div>
 
-                                        {/* ─── Daily Visitors Chart ─── */}
+                                        {/* ─── Daily Trend Chart ─── */}
                                         <Card className="nm-card !p-6">
-                                            <CardHeader className="!p-0 !pb-4">
-                                                <CardTitle className="text-xl font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                    <Activity size={20} className="text-indigo-500" /> Daily Visitors (30 Days)
-                                                </CardTitle>
+                                            <CardHeader className="!p-0 !pb-6">
+                                                <div className="flex justify-between items-center">
+                                                    <CardTitle className="text-xl font-black font-graduate text-slate-800 flex items-center gap-2">
+                                                        <Activity size={24} className="text-indigo-500" /> Interaction Trend
+                                                    </CardTitle>
+                                                    <div className="flex gap-4">
+                                                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-indigo-500" /> <span className="text-[10px] font-graduate font-bold text-slate-400">USERS</span></div>
+                                                        <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-emerald-500" /> <span className="text-[10px] font-graduate font-bold text-slate-400">SESSIONS</span></div>
+                                                    </div>
+                                                </div>
                                             </CardHeader>
                                             <CardContent className="!p-0">
                                                 <ResponsiveContainer width="100%" height={320}>
-                                                    <AreaChart data={gaData.dailyVisitors.map(d => ({ ...d, label: formatDate(d.date) }))}>
+                                                    <AreaChart data={gaData.daily.map(d => ({ ...d, label: formatDate(d.date) }))}>
                                                         <defs>
-                                                            <linearGradient id="gradUsers" x1="0" y1="0" x2="0" y2="1">
-                                                                <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
-                                                                <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
-                                                            </linearGradient>
-                                                            <linearGradient id="gradSessions" x1="0" y1="0" x2="0" y2="1">
-                                                                <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-                                                                <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
-                                                            </linearGradient>
-                                                            <linearGradient id="gradPageViews" x1="0" y1="0" x2="0" y2="1">
-                                                                <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.2} />
-                                                                <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
-                                                            </linearGradient>
+                                                            <linearGradient id="gUsers" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} /><stop offset="95%" stopColor="#6366f1" stopOpacity={0} /></linearGradient>
+                                                            <linearGradient id="gSessions" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#10b981" stopOpacity={0.4} /><stop offset="95%" stopColor="#10b981" stopOpacity={0} /></linearGradient>
                                                         </defs>
-                                                        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                                                        <XAxis dataKey="label" tick={{ fontSize: 10, fill: '#94a3b8' }} />
-                                                        <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} />
-                                                        <Tooltip contentStyle={{ borderRadius: 12, border: 'none', boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }} />
-                                                        <Legend />
-                                                        <Area type="monotone" dataKey="activeUsers" name="Users" stroke="#6366f1" fill="url(#gradUsers)" strokeWidth={2} />
-                                                        <Area type="monotone" dataKey="sessions" name="Sessions" stroke="#10b981" fill="url(#gradSessions)" strokeWidth={2} />
-                                                        <Area type="monotone" dataKey="pageViews" name="Page Views" stroke="#f59e0b" fill="url(#gradPageViews)" strokeWidth={2} />
+                                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                                                        <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} minTickGap={30} />
+                                                        <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                                                        <Tooltip contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }} />
+                                                        <Area type="monotone" dataKey="users" stroke="#6366f1" fill="url(#gUsers)" strokeWidth={4} />
+                                                        <Area type="monotone" dataKey="sessions" stroke="#10b981" fill="url(#gSessions)" strokeWidth={4} />
                                                     </AreaChart>
                                                 </ResponsiveContainer>
                                             </CardContent>
                                         </Card>
 
-                                        {/* ─── Row: Traffic Sources + Devices ─── */}
+                                        {/* ─── 2. Traffic & Acquisition ─── */}
                                         <div className="grid md:grid-cols-2 gap-6">
-                                            {/* Traffic Sources */}
                                             <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-4">
+                                                <CardHeader className="!p-0 !pb-4 flex flex-row items-center justify-between">
                                                     <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <TrendingUp size={18} className="text-purple-500" /> Traffic Sources
+                                                        <TrendingUp size={20} className="text-purple-500" /> Traffic Sources
                                                     </CardTitle>
                                                 </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <ResponsiveContainer width="100%" height={260}>
-                                                        <PieChart>
-                                                            <Pie data={gaData.trafficSources} cx="50%" cy="50%" outerRadius={90} innerRadius={40} fill="#8884d8" dataKey="sessions" nameKey="source" label={({ source, percent }) => `${source} ${(percent * 100).toFixed(0)}%`} labelLine={false} fontSize={10}>
-                                                                {gaData.trafficSources.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
-                                                            </Pie>
-                                                            <Tooltip />
-                                                        </PieChart>
-                                                    </ResponsiveContainer>
-                                                </CardContent>
+                                                <div className="space-y-4">
+                                                    <div className="grid grid-cols-5 text-[10px] font-graduate font-black text-slate-400 uppercase tracking-widest border-b pb-2">
+                                                        <span className="col-span-2">Source / Medium</span>
+                                                        <span className="text-right">Users</span>
+                                                        <span className="text-right">Sessions</span>
+                                                        <span className="text-right">Conv</span>
+                                                    </div>
+                                                    {gaData.traffic.slice(0, 8).map((t, i) => (
+                                                        <div key={i} className="grid grid-cols-5 items-center text-xs pb-2 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors rounded-lg px-1">
+                                                            <div className="col-span-2 flex items-center gap-2">
+                                                                <div className={`w-1.5 h-6 rounded-full bg-gradient-to-b ${GRADIENT_COLORS[i % GRADIENT_COLORS.length]}`} />
+                                                                <div>
+                                                                    <p className="font-bold text-slate-700 truncate">{t.source}</p>
+                                                                    <p className="text-[9px] text-slate-400 uppercase font-graduate">{t.medium}</p>
+                                                                </div>
+                                                            </div>
+                                                            <span className="text-right font-bold text-slate-600">{t.users}</span>
+                                                            <span className="text-right text-slate-500">{t.sessions}</span>
+                                                            <span className="text-right font-black text-emerald-500">{t.conversions}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </Card>
 
-                                            {/* Devices */}
                                             <Card className="nm-card !p-6">
                                                 <CardHeader className="!p-0 !pb-4">
                                                     <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <Monitor size={18} className="text-cyan-500" /> Devices
+                                                        <Plus size={20} className="text-pink-500" /> Events & Conversion Analysis
                                                     </CardTitle>
                                                 </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <div className="space-y-3 mt-2">
-                                                        {gaData.devices.map(d => {
-                                                            const total = gaData.devices.reduce((s, x) => s + x.users, 0);
-                                                            const pct = total > 0 ? (d.users / total * 100) : 0;
-                                                            const DevIcon = d.device.toLowerCase() === 'mobile' ? Smartphone : d.device.toLowerCase() === 'tablet' ? Tablet : Monitor;
+                                                <div className="space-y-3">
+                                                    {gaData.events.length > 0 ? gaData.events.map((e, i) => (
+                                                        <div key={i} className="flex items-center gap-3">
+                                                            <span className="text-[10px] font-graduate font-black text-indigo-400 w-8">#{(i + 1).toString().padStart(2, '0')}</span>
+                                                            <div className="flex-1">
+                                                                <div className="flex justify-between text-[11px] mb-1">
+                                                                    <span className="font-graduate font-black text-slate-600 uppercase tracking-wider">{e.name.replace(/_/g, ' ')}</span>
+                                                                    <span className="font-bold text-indigo-600">{e.count.toLocaleString()} ops</span>
+                                                                </div>
+                                                                <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                                                                    <div className="bg-indigo-500 h-full transition-all" style={{ width: `${Math.min(100, (e.count / gaData.overview.pageViews) * 100)}%` }} />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )) : <p className="text-xs text-slate-400 italic py-10 text-center">No custom event data recorded for this property.</p>}
+                                                </div>
+                                            </Card>
+                                        </div>
+
+                                        {/* ─── 3. Page & Screen Performance ─── */}
+                                        <Card className="nm-card !p-6">
+                                            <CardHeader className="!p-0 !pb-4 flex flex-row items-center justify-between">
+                                                <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
+                                                    <Eye size={22} className="text-emerald-500" /> Content & Behavior Analysis
+                                                </CardTitle>
+                                            </CardHeader>
+                                            <div className="overflow-x-auto">
+                                                <table className="w-full text-xs">
+                                                    <thead>
+                                                        <tr className="border-b border-slate-100/50">
+                                                            <th className="text-left py-3 px-4 font-graduate font-black text-slate-400 uppercase tracking-widest text-[9px]">Page Path</th>
+                                                            <th className="text-right py-3 px-4 font-graduate font-black text-slate-400 uppercase tracking-widest text-[9px]">Views</th>
+                                                            <th className="text-right py-3 px-4 font-graduate font-black text-slate-400 uppercase tracking-widest text-[9px]">Exits</th>
+                                                            <th className="text-right py-3 px-4 font-graduate font-black text-slate-400 uppercase tracking-widest text-[9px]">Avg. Time</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {gaData.pages.map((p, i) => (
+                                                            <tr key={i} className="border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors group">
+                                                                <td className="py-3 px-4">
+                                                                    <div className="flex items-center gap-2">
+                                                                        <span className="text-[10px] text-slate-300 font-bold w-4">{(i + 1)}</span>
+                                                                        <span className="font-semibold text-slate-700 max-w-[400px] truncate group-hover:text-indigo-600 transition-colors">{p.path}</span>
+                                                                        <ArrowUpRight size={10} className="text-slate-200 group-hover:text-indigo-300" />
+                                                                    </div>
+                                                                </td>
+                                                                <td className="py-3 px-4 text-right font-black text-slate-900">{p.views.toLocaleString()}</td>
+                                                                <td className="py-3 px-4 text-right text-slate-500">{p.exits.toLocaleString()}</td>
+                                                                <td className="py-3 px-4 text-right font-bold text-indigo-500">{formatDuration(p.avgTime)}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </Card>
+
+                                        {/* ─── 4. Demographics & Tech Breakdown ─── */}
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            {/* Location Analysis */}
+                                            <Card className="nm-card !p-6">
+                                                <CardHeader className="!p-0 !pb-4">
+                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
+                                                        <Globe size={20} className="text-blue-500" /> Demographic & Geospatial Analysis
+                                                    </CardTitle>
+                                                </CardHeader>
+                                                <div className="space-y-4">
+                                                    {gaData.demographics.slice(0, 10).map((d, i) => (
+                                                        <div key={i} className="flex items-center justify-between py-2 border-b border-slate-50 last:border-0">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center font-graduate font-black text-[9px] text-slate-400">{i + 1}</div>
+                                                                <div>
+                                                                    <p className="font-bold text-slate-700 text-sm leading-tight">{d.country} <span className="text-[10px] text-slate-300 ml-1">({d.continent})</span></p>
+                                                                    <p className="text-[10px] text-slate-400 flex items-center gap-1"><MapPin size={8} /> {d.city || 'Unknown Region'}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className="text-right">
+                                                                <p className="font-black text-blue-600 text-sm">{d.users.toLocaleString()}</p>
+                                                                <p className="text-[9px] font-graduate font-black text-slate-300 uppercase">Users</p>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </Card>
+
+                                            {/* Technology & Platforms */}
+                                            <Card className="nm-card !p-6">
+                                                <CardHeader className="!p-0 !pb-6">
+                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
+                                                        <Settings size={20} className="text-orange-500" /> Platform & Technology Profile
+                                                    </CardTitle>
+                                                </CardHeader>
+                                                <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+                                                    {/* Devices (Simplified) */}
+                                                    <div>
+                                                        <p className="text-[10px] font-graduate font-black text-slate-400 uppercase tracking-widest border-b pb-2 mb-3">Device Mix</p>
+                                                        {Array.from(new Set(gaData.tech.map(t => t.device))).map(dev => {
+                                                            const users = gaData.tech.filter(t => t.device === dev).reduce((sum, x) => sum + x.users, 0);
+                                                            const pct = (users / gaData.overview.activeUsers) * 100;
                                                             return (
-                                                                <div key={d.device} className="flex items-center gap-3">
-                                                                    <DevIcon size={18} className="text-slate-400 shrink-0" />
-                                                                    <div className="flex-1">
-                                                                        <div className="flex justify-between text-xs font-graduate font-bold text-slate-700">
-                                                                            <span className="capitalize">{d.device}</span>
-                                                                            <span>{d.users} users ({pct.toFixed(1)}%)</span>
-                                                                        </div>
-                                                                        <div className="w-full bg-slate-100 rounded-full h-2 mt-1">
-                                                                            <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full transition-all" style={{ width: `${pct}%` }} />
-                                                                        </div>
+                                                                <div key={dev} className="mb-3">
+                                                                    <div className="flex justify-between text-[11px] font-bold text-slate-600 mb-1 capitalize">
+                                                                        <span>{dev}</span>
+                                                                        <span className="text-indigo-500">{pct.toFixed(1)}%</span>
+                                                                    </div>
+                                                                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                                                        <div className="h-full bg-gradient-to-r from-indigo-400 to-indigo-600 transition-all duration-1000" style={{ width: `${pct}%` }} />
                                                                     </div>
                                                                 </div>
-                                                            );
+                                                            )
                                                         })}
                                                     </div>
-                                                    <ResponsiveContainer width="100%" height={180} className="mt-4">
-                                                        <PieChart>
-                                                            <Pie data={gaData.devices} cx="50%" cy="50%" outerRadius={70} innerRadius={30} fill="#8884d8" dataKey="users" nameKey="device" label={({ device }) => device}>
-                                                                {gaData.devices.map((_, i) => <Cell key={i} fill={GRADIENT_COLORS[i % GRADIENT_COLORS.length]} />)}
-                                                            </Pie>
-                                                            <Tooltip />
-                                                        </PieChart>
-                                                    </ResponsiveContainer>
-                                                </CardContent>
-                                            </Card>
-                                        </div>
-
-                                        {/* ─── Top Pages Table ─── */}
-                                        <Card className="nm-card !p-6">
-                                            <CardHeader className="!p-0 !pb-4">
-                                                <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                    <Eye size={18} className="text-emerald-500" /> Top Pages
-                                                </CardTitle>
-                                            </CardHeader>
-                                            <CardContent className="!p-0">
-                                                <div className="overflow-x-auto">
-                                                    <table className="w-full text-xs">
-                                                        <thead>
-                                                            <tr className="border-b border-slate-100">
-                                                                <th className="text-left py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">#</th>
-                                                                <th className="text-left py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">Page</th>
-                                                                <th className="text-right py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">Views</th>
-                                                                <th className="text-right py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">Users</th>
-                                                                <th className="text-right py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">Avg Duration</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {gaData.topPages.map((p, i) => (
-                                                                <tr key={p.page} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
-                                                                    <td className="py-2.5 px-3 text-slate-400 font-bold">{i + 1}</td>
-                                                                    <td className="py-2.5 px-3 font-semibold text-slate-700 max-w-[300px] truncate">{p.page}</td>
-                                                                    <td className="py-2.5 px-3 text-right font-bold text-indigo-600">{p.views.toLocaleString()}</td>
-                                                                    <td className="py-2.5 px-3 text-right text-slate-500">{p.users.toLocaleString()}</td>
-                                                                    <td className="py-2.5 px-3 text-right text-slate-500">{formatDuration(p.avgDuration)}</td>
-                                                                </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-
-                                        {/* ─── Row: Countries + Browsers ─── */}
-                                        <div className="grid md:grid-cols-2 gap-6">
-                                            {/* Countries */}
-                                            <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-4">
-                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <Globe size={18} className="text-blue-500" /> Countries
-                                                    </CardTitle>
-                                                </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <ResponsiveContainer width="100%" height={280}>
-                                                        <BarChart data={gaData.countries.slice(0, 10)} layout="vertical">
-                                                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                                                            <XAxis type="number" tick={{ fontSize: 10, fill: '#94a3b8' }} />
-                                                            <YAxis type="category" dataKey="country" tick={{ fontSize: 10, fill: '#64748b' }} width={80} />
-                                                            <Tooltip />
-                                                            <Bar dataKey="users" name="Users" fill="#6366f1" radius={[0, 6, 6, 0]} />
-                                                        </BarChart>
-                                                    </ResponsiveContainer>
-                                                </CardContent>
-                                            </Card>
-
-                                            {/* Browsers */}
-                                            <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-4">
-                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <Search size={18} className="text-orange-500" /> Browsers
-                                                    </CardTitle>
-                                                </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <ResponsiveContainer width="100%" height={280}>
-                                                        <BarChart data={gaData.browsers}>
-                                                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                                                            <XAxis dataKey="browser" tick={{ fontSize: 10, fill: '#94a3b8' }} />
-                                                            <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} />
-                                                            <Tooltip />
-                                                            <Bar dataKey="users" name="Users" radius={[6, 6, 0, 0]}>
-                                                                {gaData.browsers.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
-                                                            </Bar>
-                                                        </BarChart>
-                                                    </ResponsiveContainer>
-                                                </CardContent>
-                                            </Card>
-                                        </div>
-
-                                        {/* ─── Hourly Distribution ─── */}
-                                        <Card className="nm-card !p-6">
-                                            <CardHeader className="!p-0 !pb-4">
-                                                <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                    <Clock size={18} className="text-violet-500" /> Hourly Distribution (7 Days)
-                                                </CardTitle>
-                                            </CardHeader>
-                                            <CardContent className="!p-0">
-                                                <ResponsiveContainer width="100%" height={220}>
-                                                    <BarChart data={gaData.hourlyDistribution.map(h => ({ ...h, label: `${h.hour}:00` }))}>
-                                                        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                                                        <XAxis dataKey="label" tick={{ fontSize: 9, fill: '#94a3b8' }} />
-                                                        <YAxis tick={{ fontSize: 10, fill: '#94a3b8' }} />
-                                                        <Tooltip />
-                                                        <Bar dataKey="users" name="Users" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-                                                    </BarChart>
-                                                </ResponsiveContainer>
-                                            </CardContent>
-                                        </Card>
-
-                                        {/* ─── Row: Operating Systems + Referrers ─── */}
-                                        <div className="grid md:grid-cols-2 gap-6">
-                                            {/* OS */}
-                                            <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-4">
-                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <Monitor size={18} className="text-green-500" /> Operating Systems
-                                                    </CardTitle>
-                                                </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <div className="space-y-2">
-                                                        {gaData.operatingSystems.map(os => {
-                                                            const total = gaData.operatingSystems.reduce((s, x) => s + x.users, 0);
-                                                            const pct = total > 0 ? (os.users / total * 100) : 0;
+                                                    {/* Browsers (Simplified) */}
+                                                    <div>
+                                                        <p className="text-[10px] font-graduate font-black text-slate-400 uppercase tracking-widest border-b pb-2 mb-3">Browser Market</p>
+                                                        {Array.from(new Set(gaData.tech.map(t => t.browser))).slice(0, 4).map(br => {
+                                                            const users = gaData.tech.filter(t => t.browser === br).reduce((sum, x) => sum + x.users, 0);
+                                                            const pct = (users / gaData.overview.activeUsers) * 100;
                                                             return (
-                                                                <div key={os.os} className="flex items-center gap-2">
-                                                                    <span className="text-xs font-graduate font-bold text-slate-600 w-24 truncate">{os.os}</span>
-                                                                    <div className="flex-1 bg-slate-100 rounded-full h-2.5">
-                                                                        <div className="bg-gradient-to-r from-green-400 to-emerald-500 h-2.5 rounded-full" style={{ width: `${pct}%` }} />
+                                                                <div key={br} className="mb-3">
+                                                                    <div className="flex justify-between text-[11px] font-bold text-slate-600 mb-1 capitalize">
+                                                                        <span>{br}</span>
+                                                                        <span className="text-amber-500">{pct.toFixed(1)}%</span>
                                                                     </div>
-                                                                    <span className="text-[10px] text-slate-400 font-bold w-16 text-right">{os.users} ({pct.toFixed(0)}%)</span>
+                                                                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                                                        <div className="h-full bg-gradient-to-r from-amber-400 to-amber-600 transition-all duration-1000" style={{ width: `${pct}%` }} />
+                                                                    </div>
                                                                 </div>
-                                                            );
+                                                            )
                                                         })}
                                                     </div>
-                                                </CardContent>
-                                            </Card>
-
-                                            {/* Referrers */}
-                                            <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-4">
-                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <ArrowUpRight size={18} className="text-pink-500" /> Top Referrers
-                                                    </CardTitle>
-                                                </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <div className="space-y-2">
-                                                        {gaData.referrers.slice(0, 10).map((r, i) => (
-                                                            <div key={r.source} className="flex items-center justify-between py-1.5 px-2 rounded-lg hover:bg-slate-50 transition-colors">
-                                                                <div className="flex items-center gap-2">
-                                                                    <span className="w-5 h-5 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-white text-[9px] font-black">{i + 1}</span>
-                                                                    <span className="text-xs font-semibold text-slate-700 truncate max-w-[150px]">{r.source}</span>
-                                                                </div>
-                                                                <div className="flex gap-3">
-                                                                    <span className="text-[10px] text-slate-400">{r.sessions} sessions</span>
-                                                                    <span className="text-[10px] text-indigo-500 font-bold">{r.users} users</span>
-                                                                </div>
-                                                            </div>
-                                                        ))}
+                                                </div>
+                                                {/* More Tech details */}
+                                                <div className="mt-6 pt-4 border-t border-slate-50 flex justify-between gap-4 overflow-x-auto pb-2">
+                                                    <div className="shrink-0 bg-slate-50 p-2 rounded-lg border border-slate-100 min-w-[120px]">
+                                                        <p className="text-[9px] font-graduate font-black text-slate-300 uppercase">Top OS</p>
+                                                        <p className="text-[11px] font-bold text-slate-600 truncate">{gaData.tech[0]?.os || 'N/A'}</p>
                                                     </div>
-                                                </CardContent>
+                                                    <div className="shrink-0 bg-slate-50 p-2 rounded-lg border border-slate-100 min-w-[120px]">
+                                                        <p className="text-[9px] font-graduate font-black text-slate-300 uppercase">Top Res</p>
+                                                        <p className="text-[11px] font-bold text-slate-600 truncate">{gaData.tech[0]?.resolution || 'N/A'}</p>
+                                                    </div>
+                                                    <div className="shrink-0 bg-slate-50 p-2 rounded-lg border border-slate-100 min-w-[120px]">
+                                                        <p className="text-[9px] font-graduate font-black text-slate-300 uppercase">Main Language</p>
+                                                        <p className="text-[11px] font-bold text-slate-600 truncate">{gaData.demographics[0]?.language || 'N/A'}</p>
+                                                    </div>
+                                                </div>
                                             </Card>
                                         </div>
 
-                                        {/* ─── Row: Landing Pages ─── */}
-                                        <Card className="nm-card !p-6">
-                                            <CardHeader className="!p-0 !pb-4">
-                                                <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                    <ArrowUpRight size={18} className="text-teal-500" /> Landing Pages
-                                                </CardTitle>
-                                            </CardHeader>
-                                            <CardContent className="!p-0">
-                                                <div className="overflow-x-auto">
-                                                    <table className="w-full text-xs">
-                                                        <thead>
-                                                            <tr className="border-b border-slate-100">
-                                                                <th className="text-left py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">Landing Page</th>
-                                                                <th className="text-right py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">Sessions</th>
-                                                                <th className="text-right py-2 px-3 font-graduate font-black text-slate-500 uppercase tracking-wider text-[10px]">Bounce Rate</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {gaData.landingPages.map((lp) => (
-                                                                <tr key={lp.page} className="border-b border-slate-50 hover:bg-slate-50/50">
-                                                                    <td className="py-2.5 px-3 font-semibold text-slate-700 max-w-[400px] truncate">{lp.page}</td>
-                                                                    <td className="py-2.5 px-3 text-right font-bold text-indigo-600">{lp.sessions.toLocaleString()}</td>
-                                                                    <td className="py-2.5 px-3 text-right text-slate-500">{formatPercent(lp.bounceRate)}</td>
-                                                                </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </table>
+                                        {/* ─── 5. Retention & Behavioral Cohorts ─── */}
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            <Card className="nm-card !p-6">
+                                                <CardHeader className="!p-0 !pb-4">
+                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
+                                                        <RefreshCw size={20} className="text-emerald-500" /> User Retention Profile
+                                                    </CardTitle>
+                                                </CardHeader>
+                                                <div className="flex h-[200px] items-end justify-around gap-4 pt-10 px-4">
+                                                    {gaData.retention.map((r, i) => {
+                                                        const total = gaData.retention.reduce((sum, x) => sum + x.users, 0);
+                                                        const h = (r.users / total) * 100;
+                                                        return (
+                                                            <div key={i} className="flex-1 group relative">
+                                                                <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[9px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                    {r.users} users
+                                                                </div>
+                                                                <div
+                                                                    className={`w-full rounded-t-xl bg-gradient-to-b ${i % 2 === 0 ? 'from-emerald-400 to-teal-500' : 'from-indigo-400 to-indigo-600'} transition-all duration-1000 shadow-lg`}
+                                                                    style={{ height: `${h}%` }}
+                                                                />
+                                                                <div className="text-center mt-3">
+                                                                    <p className="text-[10px] font-graduate font-black text-slate-400 uppercase tracking-tighter">{r.type}</p>
+                                                                    <p className="text-[11px] font-bold text-slate-700">{Math.round(h)}%</p>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
                                                 </div>
-                                            </CardContent>
-                                        </Card>
-
-                                        {/* ─── Row: Cities + Languages + Screen Resolutions ─── */}
-                                        <div className="grid md:grid-cols-3 gap-6">
-                                            {/* Cities */}
-                                            <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-3">
-                                                    <CardTitle className="text-sm font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <MapPin size={16} className="text-red-500" /> Top Cities
-                                                    </CardTitle>
-                                                </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <div className="space-y-1.5 max-h-[300px] overflow-y-auto">
-                                                        {gaData.cities.map((c, i) => (
-                                                            <div key={c.city} className="flex justify-between items-center py-1 px-2 rounded hover:bg-slate-50 text-xs">
-                                                                <span className="flex items-center gap-1.5">
-                                                                    <span className="text-[9px] text-slate-300 font-bold">{i + 1}.</span>
-                                                                    <span className="text-slate-700 font-semibold truncate max-w-[120px]">{c.city}</span>
-                                                                </span>
-                                                                <span className="text-indigo-500 font-bold text-[10px]">{c.users}</span>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </CardContent>
                                             </Card>
 
-                                            {/* Languages */}
-                                            <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-3">
-                                                    <CardTitle className="text-sm font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <Languages size={16} className="text-amber-500" /> Languages
+                                            <Card className="nm-card !p-6 border-indigo-100 bg-gradient-to-br from-white to-slate-50/50">
+                                                <CardHeader className="!p-0 !pb-4">
+                                                    <CardTitle className="text-lg font-black font-graduate text-slate-800 flex items-center gap-2">
+                                                        <Plus size={20} className="text-indigo-500" /> Revenue & Commerce Overview
                                                     </CardTitle>
                                                 </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <div className="space-y-1.5 max-h-[300px] overflow-y-auto">
-                                                        {gaData.languages.map((l, i) => (
-                                                            <div key={l.language} className="flex justify-between items-center py-1 px-2 rounded hover:bg-slate-50 text-xs">
-                                                                <span className="flex items-center gap-1.5">
-                                                                    <span className="text-[9px] text-slate-300 font-bold">{i + 1}.</span>
-                                                                    <span className="text-slate-700 font-semibold truncate max-w-[120px]">{l.language}</span>
-                                                                </span>
-                                                                <span className="text-amber-500 font-bold text-[10px]">{l.users}</span>
-                                                            </div>
-                                                        ))}
+                                                <div className="grid grid-cols-2 gap-6 mt-4">
+                                                    <div className="bg-white p-4 rounded-2xl border border-indigo-50 shadow-sm">
+                                                        <p className="text-[9px] font-graduate font-black text-slate-400 uppercase tracking-widest mb-1">Total Revenue</p>
+                                                        <p className="text-3xl font-black text-emerald-600 font-graduate">${gaData.ecommerce.revenue.toLocaleString()}</p>
+                                                        <p className="text-[10px] text-slate-400 mt-2">Conversion: {((gaData.ecommerce.transactions / gaData.overview.sessions) * 100).toFixed(2)}%</p>
                                                     </div>
-                                                </CardContent>
-                                            </Card>
-
-                                            {/* Screen Resolutions */}
-                                            <Card className="nm-card !p-6">
-                                                <CardHeader className="!p-0 !pb-3">
-                                                    <CardTitle className="text-sm font-black font-graduate text-slate-800 flex items-center gap-2">
-                                                        <Monitor size={16} className="text-indigo-500" /> Screen Sizes
-                                                    </CardTitle>
-                                                </CardHeader>
-                                                <CardContent className="!p-0">
-                                                    <div className="space-y-1.5 max-h-[300px] overflow-y-auto">
-                                                        {gaData.screenResolutions.map((sr, i) => (
-                                                            <div key={sr.resolution} className="flex justify-between items-center py-1 px-2 rounded hover:bg-slate-50 text-xs">
-                                                                <span className="flex items-center gap-1.5">
-                                                                    <span className="text-[9px] text-slate-300 font-bold">{i + 1}.</span>
-                                                                    <span className="text-slate-700 font-semibold">{sr.resolution}</span>
-                                                                </span>
-                                                                <span className="text-indigo-500 font-bold text-[10px]">{sr.users}</span>
-                                                            </div>
-                                                        ))}
+                                                    <div className="bg-white p-4 rounded-2xl border border-indigo-50 shadow-sm">
+                                                        <p className="text-[9px] font-graduate font-black text-slate-400 uppercase tracking-widest mb-1">Transactions</p>
+                                                        <p className="text-3xl font-black text-indigo-900 font-graduate">{gaData.ecommerce.transactions}</p>
+                                                        <p className="text-[10px] text-slate-400 mt-2">{gaData.ecommerce.purchasers} Unique Purchasers</p>
                                                     </div>
-                                                </CardContent>
+                                                </div>
+                                                <div className="mt-8">
+                                                    <div className="flex justify-between text-[10px] font-graduate font-black text-slate-400 uppercase mb-3">
+                                                        <span>Checkout Funnel Basics</span>
+                                                        <span>Engagement</span>
+                                                    </div>
+                                                    <div className="space-y-3">
+                                                        <div className="flex items-center gap-3">
+                                                            <div className="w-2 h-2 rounded-full bg-slate-200" />
+                                                            <span className="text-[11px] text-slate-600 flex-1">Item View to Purchased</span>
+                                                            <span className="text-[11px] font-bold text-indigo-500">{((gaData.ecommerce.purchases / Math.max(1, gaData.ecommerce.views)) * 100).toFixed(1)}%</span>
+                                                        </div>
+                                                        <div className="w-full bg-slate-50 rounded-full h-1">
+                                                            <div className="bg-indigo-400 h-full rounded-full" style={{ width: `${Math.min(100, (gaData.ecommerce.purchases / Math.max(1, gaData.ecommerce.views)) * 100)}%` }} />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </Card>
                                         </div>
                                     </>
