@@ -5,33 +5,26 @@ import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
     const clientEmail = process.env.GA_CLIENT_EMAIL?.trim();
-    let privateKey = process.env.GA_PRIVATE_KEY;
+    const rawKey = process.env.GA_PRIVATE_KEY;
 
-    if (privateKey) {
-        // 1. Remove ANY surrounding quotes and whitespace
-        privateKey = privateKey.trim().replace(/^["']|["']$/g, '');
-
-        // 2. Fix all common escaping issues (\n, \\n, \r)
-        privateKey = privateKey.replace(/\\n/g, '\n').replace(/\\\\n/g, '\n').replace(/\\r/g, '');
-
-        // 3. Clean up every single line (removes trailing spaces per line)
-        privateKey = privateKey.split('\n').map(line => line.trim()).filter(line => line.length > 0).join('\n');
-
-        // 4. Force valid PEM structure (handles if newlines were lost)
-        if (!privateKey.includes('\n')) {
-            // If it's one long string, we must insert newlines for OpenSSL to accept it
-            privateKey = privateKey
-                .replace('-----BEGIN PRIVATE KEY-----', '-----BEGIN PRIVATE KEY-----\n')
-                .replace('-----END PRIVATE KEY-----', '\n-----END PRIVATE KEY-----');
-        }
-    }
-
-    if (!clientEmail || !privateKey) {
+    if (!clientEmail || !rawKey) {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
 
+    // --- NUCLEAR PEM RECONSTRUCTION ---
+    // 1. Strip everything that isn't base64 data
+    const base64Content = rawKey
+        .replace(/-----BEGIN [A-Z ]+-----/g, '')
+        .replace(/-----END [A-Z ]+-----/g, '')
+        .replace(/\\n/g, '')
+        .replace(/\s/g, '');
+
+    // 2. Rebuild strictly (64 chars per line)
+    const chunks = base64Content.match(/.{1,64}/g) || [];
+    const formattedKey = `-----BEGIN PRIVATE KEY-----\n${chunks.join('\n')}\n-----END PRIVATE KEY-----\n`;
+
     return new BetaAnalyticsDataClient({
-        credentials: { client_email: clientEmail, private_key: privateKey },
+        credentials: { client_email: clientEmail, private_key: formattedKey },
     });
 }
 
