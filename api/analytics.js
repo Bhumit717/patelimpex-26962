@@ -5,19 +5,23 @@ import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
     const clientEmail = process.env.GA_CLIENT_EMAIL?.trim();
-    const rawKey = process.env.GA_PRIVATE_KEY;
+    let rawKey = process.env.GA_PRIVATE_KEY;
 
     if (!clientEmail || !rawKey) {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
 
-    // --- MAGIC PEM RECONSTRUCTION ---
-    // 1. Extract ONLY the base64-like characters (ignoring headers, spaces, and underscores)
-    const base64Matches = rawKey.match(/[A-Za-z0-9+/]{30,}/g) || [];
-    const base64Content = base64Matches.join('');
+    // --- BULLETPROOF PEM RECONSTRUCTION ---
+    // 1. Remove obvious headers/footers (handling spaces or underscores)
+    let cleanedKey = rawKey
+        .replace(/-----BEGIN[ _]PRIVATE[ _]KEY-----/gi, '')
+        .replace(/-----END[ _]PRIVATE[ _]KEY-----/gi, '');
 
-    // 2. Re-wrap strictly (Standard 64-character lines)
-    const chunks = base64Content.match(/.{1,64}/g) || [];
+    // 2. Remove all whitespace, newlines, and escape characters
+    cleanedKey = cleanedKey.replace(/\s/g, '').replace(/\\n/g, '').replace(/\\r/g, '');
+
+    // 3. The resulting string is the pure base64. Rebuild the PEM with 64-char lines.
+    const chunks = cleanedKey.match(/.{1,64}/g) || [];
     const formattedKey = `-----BEGIN PRIVATE KEY-----\n${chunks.join('\n')}\n-----END PRIVATE KEY-----\n`;
 
     return new BetaAnalyticsDataClient({
