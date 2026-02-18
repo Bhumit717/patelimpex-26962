@@ -5,32 +5,29 @@ import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
     const clientEmail = process.env.GA_CLIENT_EMAIL?.trim();
-    let privateKey = process.env.GA_PRIVATE_KEY;
+    let key = process.env.GA_PRIVATE_KEY;
 
-    if (!clientEmail || !privateKey) {
+    if (!clientEmail || !key) {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
 
-    // 1. Standard Vercel fix: convert literal "\n" to real newlines
-    privateKey = privateKey.replace(/\\n/g, '\n');
+    // --- STRICT PEM RECONSTRUCTION ---
+    // 1. Convert literal \n to real newlines if they exist
+    key = key.replace(/\\n/g, '\n');
 
-    // 2. Fix the specific underscore issue seen in your screenshot
-    privateKey = privateKey.replace(/BEGIN[ _]PRIVATE[ _]KEY/g, 'BEGIN PRIVATE KEY');
-    privateKey = privateKey.replace(/END[ _]PRIVATE[ _]KEY/g, 'END PRIVATE KEY');
+    // 2. Extract only the base64 content
+    // We remove the headers (spaces or underscores), all whitespace, and any junk
+    const base64Data = key
+        .replace(/-----BEGIN.*?-----/gi, '')
+        .replace(/-----END.*?-----/gi, '')
+        .replace(/\s/g, '');
 
-    // 3. Trim every single line to remove hidden trailing spaces (the yellow icons in your screenshot)
-    privateKey = privateKey.split('\n').map(line => line.trim()).filter(line => line !== '').join('\n');
-
-    // 4. Ensure it has the strict PEM headers needed by OpenSSL
-    if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
-        privateKey = '-----BEGIN PRIVATE KEY-----\n' + privateKey;
-    }
-    if (!privateKey.endsWith('-----END PRIVATE KEY-----')) {
-        privateKey = privateKey + '\n-----END PRIVATE KEY-----';
-    }
+    // 3. Re-slice it into standard 64-character PEM lines
+    const lines = base64Data.match(/.{1,64}/g) || [];
+    const finalKey = `-----BEGIN PRIVATE KEY-----\n${lines.join('\n')}\n-----END PRIVATE KEY-----\n`;
 
     return new BetaAnalyticsDataClient({
-        credentials: { client_email: clientEmail, private_key: privateKey },
+        credentials: { client_email: clientEmail, private_key: finalKey },
     });
 }
 
