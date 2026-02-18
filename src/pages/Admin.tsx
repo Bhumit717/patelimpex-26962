@@ -105,20 +105,6 @@ interface AnalyticsData {
     daily: Array<{ date: string; users: number; sessions: number; views: number }>;
 }
 
-interface VisitorData {
-    id: string;
-    path: string;
-    browser: string;
-    os: string;
-    platform: string;
-    screen: string;
-    language: string;
-    referrer: string;
-    timestamp: any;
-    ip?: string;
-    connection?: string;
-    memory?: string;
-}
 
 interface BlogPost {
     id: string;
@@ -345,7 +331,6 @@ const Admin = () => {
     const [activeTab, setActiveTab] = useState("blog");
     const [inquiries, setInquiries] = useState<any[]>([]);
     const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-    const [visitors, setVisitors] = useState<VisitorData[]>([]);
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
     const { toast } = useToast();
@@ -397,12 +382,6 @@ const Admin = () => {
     useEffect(() => {
         if (!isAuthenticated) return;
 
-        // Fetch Analytics (Real Visitor Data)
-        const qVisitors = query(collection(db, "site_analytics"), orderBy("timestamp", "desc"), limit(500));
-        const unsubVisitors = onSnapshot(qVisitors, (snapshot) => {
-            setVisitors(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as VisitorData[]);
-        });
-
         // Fetch Inquiries
         const qInquiries = query(collection(db, "contact_inquiries"), orderBy("submittedAt", "desc"));
         const unsubInquiries = onSnapshot(qInquiries, (snapshot) => {
@@ -417,7 +396,6 @@ const Admin = () => {
         });
 
         return () => {
-            unsubVisitors();
             unsubInquiries();
             unsubBlog();
         };
@@ -680,7 +658,6 @@ const Admin = () => {
                                 {[
                                     { id: "analytics", label: "Analytics", icon: BarChart3 },
                                     { id: "inquiries", label: "Inquiries", icon: MessageSquare },
-                                    { id: "visitors", label: "Custom Tracking", icon: Activity },
                                     { id: "blog", label: "Blog Factory", icon: FileText },
                                 ].map((item) => (
                                     <button
@@ -1161,72 +1138,6 @@ const Admin = () => {
                             </div>
                         )}
 
-                        {activeTab === "visitors" && (
-                            <div className="space-y-8">
-                                <div className="flex justify-between items-center bg-white p-6 rounded-[30px] shadow-sm border border-slate-100">
-                                    <h2 className="text-3xl font-black text-slate-800 font-graduate tracking-tight">Custom Visitor Log</h2>
-                                    <div className="text-[10px] font-black font-graduate text-slate-400 uppercase tracking-widest bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
-                                        Last 500 Activities
-                                    </div>
-                                </div>
-
-                                <Card className="nm-card !p-0 overflow-hidden bg-white">
-                                    <div className="overflow-x-auto">
-                                        <table className="w-full text-xs text-left">
-                                            <thead>
-                                                <tr className="bg-slate-50 border-b border-slate-100">
-                                                    <th className="py-4 px-6 font-graduate font-black text-[10px] uppercase tracking-widest text-slate-400">Timestamp</th>
-                                                    <th className="py-4 px-6 font-graduate font-black text-[10px] uppercase tracking-widest text-slate-400">Path Name</th>
-                                                    <th className="py-4 px-6 font-graduate font-black text-[10px] uppercase tracking-widest text-slate-400">Environment</th>
-                                                    <th className="py-4 px-6 font-graduate font-black text-[10px] uppercase tracking-widest text-slate-400">Browser / OS</th>
-                                                    <th className="py-4 px-6 font-graduate font-black text-[10px] uppercase tracking-widest text-slate-400 text-right">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody className="divide-y divide-slate-50">
-                                                {visitors.map((v) => (
-                                                    <tr key={v.id} className="hover:bg-slate-50/50 transition-colors">
-                                                        <td className="py-4 px-6">
-                                                            <p className="font-bold text-slate-700">{v.timestamp?.toDate?.()?.toLocaleTimeString() || "Live"}</p>
-                                                            <p className="text-[10px] text-slate-400">{v.timestamp?.toDate?.()?.toLocaleDateString() || "Just now"}</p>
-                                                        </td>
-                                                        <td className="py-4 px-6">
-                                                            <span className="font-graduate font-black text-[10px] text-green-600 bg-green-50 px-2 py-1 rounded border border-green-100 uppercase italic">
-                                                                {v.path || '/'}
-                                                            </span>
-                                                        </td>
-                                                        <td className="py-4 px-6 text-slate-500 font-medium">
-                                                            {v.screen} • {v.language}
-                                                        </td>
-                                                        <td className="py-4 px-6">
-                                                            <p className="text-slate-700 font-bold">{v.browser}</p>
-                                                            <p className="text-[10px] text-slate-400">{v.os} ({v.platform})</p>
-                                                        </td>
-                                                        <td className="py-4 px-6 text-right">
-                                                            <button
-                                                                onClick={async () => {
-                                                                    if (window.confirm("Purge this log entry?")) {
-                                                                        await deleteDoc(doc(db, "site_analytics", v.id));
-                                                                    }
-                                                                }}
-                                                                className="text-slate-300 hover:text-red-500 transition-colors"
-                                                            >
-                                                                <Trash2 size={14} />
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                        {visitors.length === 0 && (
-                                            <div className="py-20 text-center">
-                                                <Activity size={48} className="mx-auto mb-4 text-slate-200 animate-pulse" />
-                                                <p className="font-graduate text-slate-400 uppercase tracking-[0.2em] text-[10px]">Awaiting First Connection...</p>
-                                            </div>
-                                        )}
-                                    </div>
-                                </Card>
-                            </div>
-                        )}
 
                         {activeTab === "blog" && (
                             <div className="space-y-8">
