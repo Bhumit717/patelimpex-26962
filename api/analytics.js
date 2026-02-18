@@ -4,21 +4,22 @@
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
-    const clientEmail = process.env.GA_CLIENT_EMAIL;
+    const clientEmail = process.env.GA_CLIENT_EMAIL?.trim();
     let privateKey = process.env.GA_PRIVATE_KEY;
 
     if (privateKey) {
-        // 1. Remove ANY surrounding quotes (common in Vercel)
+        // 1. Remove ANY surrounding quotes and whitespace
         privateKey = privateKey.trim().replace(/^["']|["']$/g, '');
 
-        // 2. Normalize newlines: 
-        // Handles literal \n strings (backslash + n) AND real newlines
-        // Also replaces double-escaped \\n
-        privateKey = privateKey.replace(/\\n/g, '\n').replace(/\\\\n/g, '\n');
+        // 2. Fix all common escaping issues (\n, \\n, \r)
+        privateKey = privateKey.replace(/\\n/g, '\n').replace(/\\\\n/g, '\n').replace(/\\r/g, '');
 
-        // 3. Ensure the key has the correct PEM line breaks if it was pasted as a single line
-        if (!privateKey.includes('\n') && privateKey.includes('-----BEGIN PRIVATE KEY-----')) {
-            // Reconstruct if it got mangled into one line
+        // 3. Clean up every single line (removes trailing spaces per line)
+        privateKey = privateKey.split('\n').map(line => line.trim()).filter(line => line.length > 0).join('\n');
+
+        // 4. Force valid PEM structure (handles if newlines were lost)
+        if (!privateKey.includes('\n')) {
+            // If it's one long string, we must insert newlines for OpenSSL to accept it
             privateKey = privateKey
                 .replace('-----BEGIN PRIVATE KEY-----', '-----BEGIN PRIVATE KEY-----\n')
                 .replace('-----END PRIVATE KEY-----', '\n-----END PRIVATE KEY-----');
