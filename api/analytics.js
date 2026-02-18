@@ -8,12 +8,21 @@ function getClient() {
     let privateKey = process.env.GA_PRIVATE_KEY;
 
     if (privateKey) {
-        // 1. Remove surrounding quotes and leading/trailing whitespace
+        // 1. Remove ANY surrounding quotes (common in Vercel)
         privateKey = privateKey.trim().replace(/^["']|["']$/g, '');
-        // 2. Fix escaped newlines (both \n and \\n)
-        privateKey = privateKey.replace(/\\n/g, '\n');
-        // 3. Optional: Fix double-backslashes if they exist
-        privateKey = privateKey.replace(/\\\\n/g, '\n');
+
+        // 2. Normalize newlines: 
+        // Handles literal \n strings (backslash + n) AND real newlines
+        // Also replaces double-escaped \\n
+        privateKey = privateKey.replace(/\\n/g, '\n').replace(/\\\\n/g, '\n');
+
+        // 3. Ensure the key has the correct PEM line breaks if it was pasted as a single line
+        if (!privateKey.includes('\n') && privateKey.includes('-----BEGIN PRIVATE KEY-----')) {
+            // Reconstruct if it got mangled into one line
+            privateKey = privateKey
+                .replace('-----BEGIN PRIVATE KEY-----', '-----BEGIN PRIVATE KEY-----\n')
+                .replace('-----END PRIVATE KEY-----', '\n-----END PRIVATE KEY-----');
+        }
     }
 
     if (!clientEmail || !privateKey) {
