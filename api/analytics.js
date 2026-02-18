@@ -11,20 +11,24 @@ function getClient() {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
 
-    // --- UNIVERSAL PEM RECONSTRUCTION ---
-    // 1. Remove obvious headers/footers first
+    // --- UNIVERSAL PEM RECONSTRUCTION (REPAIRED) ---
+    // 1. Remove literal "\n" and "\r" strings first (very common in Vercel pastes)
+    // We must do this before the nuclear cleanup, or we'll be left with 'n' or 'r' characters
+    key = key.replace(/\\n/g, '').replace(/\\r/g, '');
+
+    // 2. Remove obvious headers/footers (handling spaces or underscores)
     key = key.replace(/-----BEGIN.*?-----/gi, '').replace(/-----END.*?-----/gi, '');
 
-    // 2. Nuclear Cleanup: Remove EVERYTHING that isn't a valid Base64 character
-    // This wipes away quotes, spaces, underscores, and hidden symbols (yellow icons)
+    // 3. Nuclear Cleanup: Remove EVERYTHING that isn't a valid Base64 character
+    // This wipes away quotes, spaces, underscores, and hidden symbols
     const base64Data = key.replace(/[^A-Za-z0-9+/=]/g, '');
 
-    // 3. Re-slice it into perfect 64-character PEM lines
-    const lines = base64Data.match(/.{1,64}/g) || [];
-    const finalKey = `-----BEGIN PRIVATE KEY-----\n${lines.join('\n')}\n-----END PRIVATE KEY-----\n`;
+    // 4. Re-slice it into perfect 64-character PEM lines
+    const chunks = base64Data.match(/.{1,64}/g) || [];
+    const formattedKey = `-----BEGIN PRIVATE KEY-----\n${chunks.join('\n')}\n-----END PRIVATE KEY-----\n`;
 
     return new BetaAnalyticsDataClient({
-        credentials: { client_email: clientEmail, private_key: finalKey },
+        credentials: { client_email: clientEmail, private_key: formattedKey },
     });
 }
 
@@ -39,7 +43,7 @@ export default async function handler(req, res) {
         return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const propertyId = process.env.GA_PROPERTY_ID;
+    const propertyId = process.env.GA_PROPERTY_ID?.replace(/[^0-9]/g, '');
     if (!propertyId) {
         return res.status(500).json({ error: "GA_PROPERTY_ID not configured in Environment Variables" });
     }
