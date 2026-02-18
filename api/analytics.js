@@ -260,11 +260,18 @@ export default async function handler(req, res) {
             daily,
         });
     } catch (error) {
-        console.error("GA API Error:", error);
+        console.error("GA API Error Details:", {
+            message: error.message,
+            code: error.code,
+            details: error.details,
+            metadata: error.metadata
+        });
+
         return res.status(500).json({
             error: "Failed to fetch analytics",
             message: error.message,
-            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+            status: error.code || 500,
+            details: error.details || "Check Google Cloud Console for API activation or permissions."
         });
     }
 }
