@@ -8,10 +8,12 @@ function getClient() {
     let privateKey = process.env.GA_PRIVATE_KEY;
 
     if (privateKey) {
-        // Remove surrounding quotes if they exist
-        privateKey = privateKey.replace(/^["']|["']$/g, '');
-        // Convert literal \n strings to real newlines
+        // 1. Remove surrounding quotes and leading/trailing whitespace
+        privateKey = privateKey.trim().replace(/^["']|["']$/g, '');
+        // 2. Fix escaped newlines (both \n and \\n)
         privateKey = privateKey.replace(/\\n/g, '\n');
+        // 3. Optional: Fix double-backslashes if they exist
+        privateKey = privateKey.replace(/\\\\n/g, '\n');
     }
 
     if (!clientEmail || !privateKey) {
