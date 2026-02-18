@@ -4,10 +4,8 @@
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
-    // Hardcoded fallback for local development if env vars are missing
-    const clientEmail = process.env.GA_CLIENT_EMAIL || "patel-impex@patel-impex.iam.gserviceaccount.com";
-    const privateKey = (process.env.GA_PRIVATE_KEY || "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDmbwx88/gfJuZG\nW1ry6Y6nfCKsDT5VuiAoUB/NPatbE4L956/TmlUEb09hbqtj/zhMZau6zLRdiJ0q\nt4Iojp65g7ycSpNUXBvqrj/nMwb3/fnR8HNnQ2zNwlt9IAzBuRss20mwUF/wlyeJ\n44i6XEpJHyorb+hwvQ/bAgHGD+PDLxat3Dnc9DPPyX8QePdk6pEZQCB0CMU801gf\nT+3Iy6UNhWlAcUpROuFulrO9VkLwJeZau/jOHna8Pt0HskovL2oH7y3aCYdKsnQJ\nhxag6/3ACwb1S6rmsAp4F8iKT3ZNIoeK7b1kYebxSLlc2oGHcy/8Z01Q0fl1gJ0h\nnQgpB1JJAgMBAAECggEAJEFYGmfLQ+F7rRmuCVaQdI8OKHpL8rJ+YUFcA49+oK2E\n+Fxl2FnpovE9cNO4ARt0eOatOo5/GVFHgyNMxgNMe108BW4hWI5GcSnZ0Y9Aey+5\nSNv3WEmuOoBoIxtyDl/IpAnbgfNfaOvrU2Faj5G6OV9/I8bvcB96+WcLLuWsnPaE\n/hKVytr1Bfh27wwhs8JkFJrWFoRnhS+3r22EKnnM5QwJJ3keDamlH8oJfak8UQRz\ncXphgk8Yl3+i1gvb240vJb+XzZFaOM75H6GwHzzmQH3/K9odjn56x/zVwxJSvTkB\nAciJfJ/xxjAc9eivNJO/u/OAouDtpRJzLkt5LCQfpQKBgQD31E5LT96qiq63KzI1\n+9TMNoCzaqoC7hkjgJrvSkufgBbg5T/hJaa8B598JQKGnWy+lTl2zxl5IhBKM65l\n9LVvncn0AtblH1jdLVKXkmDqxHNQNjkdOJfJfYdr+Ug0K8d0Gp/QC0FdxI14N9/M\nuDZiw/6rnp26UbCE+VGR+XYyVQKBgQDuB+xwrBZQqM4RJ4H2WeHaYuCHPTwGVpEe\noCeGrymOy4uJzVxPyJsr2kvzq0CTZTTrkTQBHPon78SqIu4Ts0qCfpWuANqjdNPb\n5vQoCgSY+/8A6lOr35yeo/BRpRSYYp7eBAaEav+K/XNk/pSTmLllS3ICCPYY5Lyk\nY1eyM+3cJQKBgQDcnhW4u3gn718LVhvTrMRJqrc1gN2p0BV24lSKcmQRsDAtskcE\ngcUFG/Agzr2J4nhczHCkUEaH7Af+VjWJM6eUni2a2DA/NYGhG2ir37YBKDLTFAIR\n/kA5MVMtjnN1ZgefVtgvluVwuLmLbIoBL3fSwlFiq8gThgcSyPORdDaBJQKBgQCs\sskEMob6PI9N+OkdELeB2C1pUa9ENfiSTMaAvIOdW+bAs2Ofaz/SAE8M2po+lrZf\nl3kwuZJx+U8p1bAAURvlM+xrU6lN4Mx5hsZsamBNkr/ALUNJtzKOEwmgYvJfYWY8\nVJVZ67u+XwcjJmYr9CnG6YctHM1Y4FRRvNX6sByKlQKBgQCYF4I8BTK1iLz4GjbM\n1KWOT72xAr9xzAWlOXhfg9tUMwDk7cRmKwtuqViDQLm2C+Qlp9oKi7xzC5Sn/CWJ\n67quvxtzPa0U+ne2BUCXpHVBP3gpsjXDu/CyfQJ1L7l1qL86IyyjozFp4RWax/WV\nIvDH13NdJMrySTXkuFQ/Y8rx3Q==\n-----END PRIVATE KEY-----").replace(/\\n/g, "\n");
-
+    const clientEmail = process.env.GA_CLIENT_EMAIL;
+    const privateKey = process.env.GA_PRIVATE_KEY?.replace(/\\n/g, "\n");
     if (!clientEmail || !privateKey) {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
@@ -27,7 +25,7 @@ export default async function handler(req, res) {
         return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const propertyId = process.env.GA_PROPERTY_ID || "515690920";
+    const propertyId = process.env.GA_PROPERTY_ID;
     if (!propertyId) {
         return res.status(500).json({ error: "GA_PROPERTY_ID not configured in Environment Variables" });
     }
@@ -37,8 +35,8 @@ export default async function handler(req, res) {
         const property = `properties/${propertyId}`;
         const dateRange = { startDate: "30daysAgo", endDate: "today" };
 
-        // ─── 1. EXTENDED OVERVIEW & USER ANALYSIS ───
-        const [overviewResponse] = await client.runReport({
+        // ─── 1. EXTENDED OVERVIEW & USER ANALYSIS (Split due to 10-metric limit) ───
+        const [ovBatch1] = await client.runReport({
             property,
             dateRanges: [dateRange],
             metrics: [
@@ -48,6 +46,13 @@ export default async function handler(req, res) {
                 { name: "engagedSessions" },
                 { name: "engagementRate" },
                 { name: "averageSessionDuration" },
+            ],
+        });
+
+        const [ovBatch2] = await client.runReport({
+            property,
+            dateRanges: [dateRange],
+            metrics: [
                 { name: "userEngagementDuration" },
                 { name: "sessions" },
                 { name: "sessionsPerUser" },
@@ -56,20 +61,22 @@ export default async function handler(req, res) {
             ],
         });
 
-        const ovRaw = overviewResponse.rows?.[0]?.metricValues || [];
+        const raw1 = ovBatch1.rows?.[0]?.metricValues || [];
+        const raw2 = ovBatch2.rows?.[0]?.metricValues || [];
+
         const overview = {
-            totalUsers: Number(ovRaw[0]?.value || 0),
-            newUsers: Number(ovRaw[1]?.value || 0),
-            activeUsers: Number(ovRaw[2]?.value || 0),
-            returningUsers: Math.max(0, Number(ovRaw[0]?.value || 0) - Number(ovRaw[1]?.value || 0)),
-            engagedSessions: Number(ovRaw[3]?.value || 0),
-            engagementRate: Number(ovRaw[4]?.value || 0),
-            avgSessionDuration: Number(ovRaw[5]?.value || 0),
-            avgEngagementTime: Number(ovRaw[6]?.value || 0),
-            sessions: Number(ovRaw[7]?.value || 0),
-            sessionsPerUser: Number(ovRaw[8]?.value || 0),
-            pageViews: Number(ovRaw[9]?.value || 0),
-            bounceRate: Number(ovRaw[10]?.value || 0),
+            totalUsers: Number(raw1[0]?.value || 0),
+            newUsers: Number(raw1[1]?.value || 0),
+            activeUsers: Number(raw1[2]?.value || 0),
+            returningUsers: Math.max(0, Number(raw1[0]?.value || 0) - Number(raw1[1]?.value || 0)),
+            engagedSessions: Number(raw1[3]?.value || 0),
+            engagementRate: Number(raw1[4]?.value || 0),
+            avgSessionDuration: Number(raw1[5]?.value || 0),
+            avgEngagementTime: Number(raw2[0]?.value || 0),
+            sessions: Number(raw2[1]?.value || 0),
+            sessionsPerUser: Number(raw2[2]?.value || 0),
+            pageViews: Number(raw2[3]?.value || 0),
+            bounceRate: Number(raw2[4]?.value || 0),
         };
 
         // ─── 2. DEMOGRAPHICS (CONTINENT, REGION, CITY) ───
