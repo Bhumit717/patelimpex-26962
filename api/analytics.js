@@ -5,27 +5,32 @@ import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
     const clientEmail = process.env.GA_CLIENT_EMAIL?.trim();
-    let rawKey = process.env.GA_PRIVATE_KEY;
+    let privateKey = process.env.GA_PRIVATE_KEY;
 
-    if (!clientEmail || !rawKey) {
+    if (!clientEmail || !privateKey) {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
 
-    // --- BULLETPROOF PEM RECONSTRUCTION ---
-    // 1. Remove obvious headers/footers (handling spaces or underscores)
-    let cleanedKey = rawKey
-        .replace(/-----BEGIN[ _]PRIVATE[ _]KEY-----/gi, '')
-        .replace(/-----END[ _]PRIVATE[ _]KEY-----/gi, '');
+    // 1. Standard Vercel fix: convert literal "\n" to real newlines
+    privateKey = privateKey.replace(/\\n/g, '\n');
 
-    // 2. Remove all whitespace, newlines, and escape characters
-    cleanedKey = cleanedKey.replace(/\s/g, '').replace(/\\n/g, '').replace(/\\r/g, '');
+    // 2. Fix the specific underscore issue seen in your screenshot
+    privateKey = privateKey.replace(/BEGIN[ _]PRIVATE[ _]KEY/g, 'BEGIN PRIVATE KEY');
+    privateKey = privateKey.replace(/END[ _]PRIVATE[ _]KEY/g, 'END PRIVATE KEY');
 
-    // 3. The resulting string is the pure base64. Rebuild the PEM with 64-char lines.
-    const chunks = cleanedKey.match(/.{1,64}/g) || [];
-    const formattedKey = `-----BEGIN PRIVATE KEY-----\n${chunks.join('\n')}\n-----END PRIVATE KEY-----\n`;
+    // 3. Trim every single line to remove hidden trailing spaces (the yellow icons in your screenshot)
+    privateKey = privateKey.split('\n').map(line => line.trim()).filter(line => line !== '').join('\n');
+
+    // 4. Ensure it has the strict PEM headers needed by OpenSSL
+    if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
+        privateKey = '-----BEGIN PRIVATE KEY-----\n' + privateKey;
+    }
+    if (!privateKey.endsWith('-----END PRIVATE KEY-----')) {
+        privateKey = privateKey + '\n-----END PRIVATE KEY-----';
+    }
 
     return new BetaAnalyticsDataClient({
-        credentials: { client_email: clientEmail, private_key: formattedKey },
+        credentials: { client_email: clientEmail, private_key: privateKey },
     });
 }
 
