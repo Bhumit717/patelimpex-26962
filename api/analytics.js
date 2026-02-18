@@ -5,10 +5,19 @@ import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
     const clientEmail = process.env.GA_CLIENT_EMAIL;
-    const privateKey = process.env.GA_PRIVATE_KEY?.replace(/\\n/g, "\n");
+    let privateKey = process.env.GA_PRIVATE_KEY;
+
+    if (privateKey) {
+        // Remove surrounding quotes if they exist
+        privateKey = privateKey.replace(/^["']|["']$/g, '');
+        // Convert literal \n strings to real newlines
+        privateKey = privateKey.replace(/\\n/g, '\n');
+    }
+
     if (!clientEmail || !privateKey) {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
+
     return new BetaAnalyticsDataClient({
         credentials: { client_email: clientEmail, private_key: privateKey },
     });
