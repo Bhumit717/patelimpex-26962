@@ -573,7 +573,8 @@ const Admin = () => {
             });
             if (!response.ok) {
                 const errData = await response.json().catch(() => ({}));
-                throw new Error(errData.message || errData.error || `HTTP ${response.status}`);
+                const fullError = errData.details ? `${errData.message || errData.error}: ${errData.details}` : (errData.message || errData.error || `HTTP ${response.status}`);
+                throw new Error(fullError);
             }
             const data = await response.json();
             setGaData(data);
