@@ -24,7 +24,7 @@ import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import Admin from "./pages/Admin";
 import BlogPostDetail from "./pages/BlogPostDetail";
-import AnalyticsTracker from "./components/AnalyticsTracker";
+
 
 // More pages
 import ExportImportGuide from "./pages/more/ExportImportGuide";
@@ -366,7 +366,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AnalyticsTracker />
+
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
