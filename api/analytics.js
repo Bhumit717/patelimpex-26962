@@ -4,8 +4,10 @@
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function getClient() {
-    const clientEmail = process.env.GA_CLIENT_EMAIL;
-    const privateKey = process.env.GA_PRIVATE_KEY?.replace(/\\n/g, "\n");
+    // Hardcoded fallback for local development if env vars are missing
+    const clientEmail = process.env.GA_CLIENT_EMAIL || "patel-impex@patel-impex.iam.gserviceaccount.com";
+    const privateKey = (process.env.GA_PRIVATE_KEY || "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDmbwx88/gfJuZG\nW1ry6Y6nfCKsDT5VuiAoUB/NPatbE4L956/TmlUEb09hbqtj/zhMZau6zLRdiJ0q\nt4Iojp65g7ycSpNUXBvqrj/nMwb3/fnR8HNnQ2zNwlt9IAzBuRss20mwUF/wlyeJ\n44i6XEpJHyorb+hwvQ/bAgHGD+PDLxat3Dnc9DPPyX8QePdk6pEZQCB0CMU801gf\nT+3Iy6UNhWlAcUpROuFulrO9VkLwJeZau/jOHna8Pt0HskovL2oH7y3aCYdKsnQJ\nhxag6/3ACwb1S6rmsAp4F8iKT3ZNIoeK7b1kYebxSLlc2oGHcy/8Z01Q0fl1gJ0h\nnQgpB1JJAgMBAAECggEAJEFYGmfLQ+F7rRmuCVaQdI8OKHpL8rJ+YUFcA49+oK2E\n+Fxl2FnpovE9cNO4ARt0eOatOo5/GVFHgyNMxgNMe108BW4hWI5GcSnZ0Y9Aey+5\nSNv3WEmuOoBoIxtyDl/IpAnbgfNfaOvrU2Faj5G6OV9/I8bvcB96+WcLLuWsnPaE\n/hKVytr1Bfh27wwhs8JkFJrWFoRnhS+3r22EKnnM5QwJJ3keDamlH8oJfak8UQRz\ncXphgk8Yl3+i1gvb240vJb+XzZFaOM75H6GwHzzmQH3/K9odjn56x/zVwxJSvTkB\nAciJfJ/xxjAc9eivNJO/u/OAouDtpRJzLkt5LCQfpQKBgQD31E5LT96qiq63KzI1\n+9TMNoCzaqoC7hkjgJrvSkufgBbg5T/hJaa8B598JQKGnWy+lTl2zxl5IhBKM65l\n9LVvncn0AtblH1jdLVKXkmDqxHNQNjkdOJfJfYdr+Ug0K8d0Gp/QC0FdxI14N9/M\nuDZiw/6rnp26UbCE+VGR+XYyVQKBgQDuB+xwrBZQqM4RJ4H2WeHaYuCHPTwGVpEe\noCeGrymOy4uJzVxPyJsr2kvzq0CTZTTrkTQBHPon78SqIu4Ts0qCfpWuANqjdNPb\n5vQoCgSY+/8A6lOr35yeo/BRpRSYYp7eBAaEav+K/XNk/pSTmLllS3ICCPYY5Lyk\nY1eyM+3cJQKBgQDcnhW4u3gn718LVhvTrMRJqrc1gN2p0BV24lSKcmQRsDAtskcE\ngcUFG/Agzr2J4nhczHCkUEaH7Af+VjWJM6eUni2a2DA/NYGhG2ir37YBKDLTFAIR\n/kA5MVMtjnN1ZgefVtgvluVwuLmLbIoBL3fSwlFiq8gThgcSyPORdDaBJQKBgQCs\sskEMob6PI9N+OkdELeB2C1pUa9ENfiSTMaAvIOdW+bAs2Ofaz/SAE8M2po+lrZf\nl3kwuZJx+U8p1bAAURvlM+xrU6lN4Mx5hsZsamBNkr/ALUNJtzKOEwmgYvJfYWY8\nVJVZ67u+XwcjJmYr9CnG6YctHM1Y4FRRvNX6sByKlQKBgQCYF4I8BTK1iLz4GjbM\n1KWOT72xAr9xzAWlOXhfg9tUMwDk7cRmKwtuqViDQLm2C+Qlp9oKi7xzC5Sn/CWJ\n67quvxtzPa0U+ne2BUCXpHVBP3gpsjXDu/CyfQJ1L7l1qL86IyyjozFp4RWax/WV\nIvDH13NdJMrySTXkuFQ/Y8rx3Q==\n-----END PRIVATE KEY-----").replace(/\\n/g, "\n");
+
     if (!clientEmail || !privateKey) {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
@@ -25,7 +27,7 @@ export default async function handler(req, res) {
         return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const propertyId = process.env.GA_PROPERTY_ID;
+    const propertyId = process.env.GA_PROPERTY_ID || "515690920";
     if (!propertyId) {
         return res.status(500).json({ error: "GA_PROPERTY_ID not configured in Environment Variables" });
     }
