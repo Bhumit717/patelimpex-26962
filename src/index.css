@@ -285,3 +285,69 @@
     animation-delay: 300ms;
   }
 }
+
+/* ========================================
+   Custom HTML Editor Styles
+   ======================================== */
+
+/* ContentEditable placeholder */
+[contenteditable]:empty:before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* Code editor scrollbar styling */
+textarea.font-mono::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+textarea.font-mono::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+textarea.font-mono::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+textarea.font-mono::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ContentEditable editor scrollbar */
+[contenteditable]::-webkit-scrollbar {
+  width: 8px;
+}
+
+[contenteditable]::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+[contenteditable]::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+[contenteditable]::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Blog post content - allow all embedded styles and animations */
+.blog-content-rendered * {
+  max-width: 100%;
+}
+
+.blog-content-rendered iframe {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+.blog-content-rendered img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
