@@ -11,18 +11,15 @@ function getClient() {
         throw new Error("Missing GA_CLIENT_EMAIL or GA_PRIVATE_KEY");
     }
 
-    // --- STRICT PEM RECONSTRUCTION ---
-    // 1. Convert literal \n to real newlines if they exist
-    key = key.replace(/\\n/g, '\n');
+    // --- UNIVERSAL PEM RECONSTRUCTION ---
+    // 1. Remove obvious headers/footers first
+    key = key.replace(/-----BEGIN.*?-----/gi, '').replace(/-----END.*?-----/gi, '');
 
-    // 2. Extract only the base64 content
-    // We remove the headers (spaces or underscores), all whitespace, and any junk
-    const base64Data = key
-        .replace(/-----BEGIN.*?-----/gi, '')
-        .replace(/-----END.*?-----/gi, '')
-        .replace(/\s/g, '');
+    // 2. Nuclear Cleanup: Remove EVERYTHING that isn't a valid Base64 character
+    // This wipes away quotes, spaces, underscores, and hidden symbols (yellow icons)
+    const base64Data = key.replace(/[^A-Za-z0-9+/=]/g, '');
 
-    // 3. Re-slice it into standard 64-character PEM lines
+    // 3. Re-slice it into perfect 64-character PEM lines
     const lines = base64Data.match(/.{1,64}/g) || [];
     const finalKey = `-----BEGIN PRIVATE KEY-----\n${lines.join('\n')}\n-----END PRIVATE KEY-----\n`;
 
