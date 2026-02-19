@@ -15,7 +15,8 @@ import {
     Lock,
     Upload,
     Image as ImageIcon,
-    CheckCircle2
+    CheckCircle2,
+    Clock
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -140,7 +141,11 @@ const RichTextEditor = ({ value, onChange }: { value: string; onChange: (val: st
 
     // Toolbar button helper
     const ToolBtn = ({ onClick, title, children, className = '' }: { onClick: () => void; title: string; children: React.ReactNode; className?: string }) => (
-        <button type="button" onClick={onClick} title={title}
+        <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={onClick}
+            title={title}
             className={`px-2 py-1.5 rounded hover:bg-slate-200 text-slate-600 transition-colors text-xs font-bold ${className}`}>
             {children}
         </button>
@@ -707,7 +712,7 @@ const Admin = () => {
                                         />
                                         {imageFile || existingImageUrl ? (
                                             <>
-                                                <img src={imageFile ? URL.createObjectURL(imageFile) : (existingImageUrl || "")} alt="Preview" className="absolute inset-0 w-full h-full object-cover" />
+                                                <img src={imageFile ? URL.createObjectURL(imageFile) : (existingImageUrl || "")} alt="Preview" className="absolute inset-0 w-full h-full object-contain bg-slate-50" />
                                                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                                                     <Upload className="text-white mr-2" size={32} />
                                                     <span className="text-white font-black font-graduate uppercase">Change Image</span>
