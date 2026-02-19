@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import { Calendar, Clock, ChevronLeft, Loader2, Share2, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import BlogLeadForm from "@/components/BlogLeadForm";
+
 interface BlogPost {
     title: string;
     content: string; // Single content field
@@ -21,6 +23,7 @@ const BlogPostDetail = () => {
     const { id } = useParams<{ id: string }>();
     const [post, setPost] = useState<BlogPost | null>(null);
     const [loading, setLoading] = useState(true);
+    const [leadCaptured, setLeadCaptured] = useState(false);
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -76,56 +79,60 @@ const BlogPostDetail = () => {
             />
             <Navigation />
 
-            <main className="pt-32 pb-20">
-                <div className="container mx-auto px-4 max-w-4xl mb-8">
-                    <Link to="/blog" className="inline-flex items-center text-slate-500 hover:text-blue-600 mb-8 transition-colors group">
-                        <ChevronLeft className="mr-1 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                        Back to all articles
-                    </Link>
+            <BlogLeadForm onSuccess={() => setLeadCaptured(true)} />
 
-                    <article className="animate-fade-in">
-                        {/* Header */}
-                        <header className="mb-12">
-                            <div className="flex items-center space-x-4 text-sm text-slate-500 mb-6">
-                                <div className="flex items-center space-x-2">
-                                    <Calendar className="h-4 w-4" />
-                                    <span>{post.date}</span>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <Clock className="h-4 w-4" />
-                                    <span>8 min read</span>
-                                </div>
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-800 mb-8 leading-tight font-graduate">
-                                {post.title}
-                            </h1>
-                        </header>
-                    </article>
-                </div>
+            {leadCaptured && (
+                <main className="pt-32 pb-20 animate-fade-in">
+                    <div className="container mx-auto px-4 max-w-4xl mb-8">
+                        <Link to="/blog" className="inline-flex items-center text-slate-500 hover:text-blue-600 mb-8 transition-colors group">
+                            <ChevronLeft className="mr-1 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                            Back to all articles
+                        </Link>
 
-                {/* Full Width Hero Image */}
-                <div className="w-full max-w-6xl mx-auto px-4 mb-16">
-                    <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-8 border-white group">
-                        <img
-                            src={post.image}
-                            alt={post.title}
-                            className="w-full h-auto block transition-transform duration-1000"
-                        />
+                        <article>
+                            {/* Header */}
+                            <header className="mb-12">
+                                <div className="flex items-center space-x-4 text-sm text-slate-500 mb-6">
+                                    <div className="flex items-center space-x-2">
+                                        <Calendar className="h-4 w-4" />
+                                        <span>{post.date}</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <Clock className="h-4 w-4" />
+                                        <span>8 min read</span>
+                                    </div>
+                                </div>
+                                <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-800 mb-8 leading-tight font-graduate">
+                                    {post.title}
+                                </h1>
+                            </header>
+                        </article>
                     </div>
-                </div>
 
-                <div className="container mx-auto px-4 max-w-4xl">
-                    <article>
-                        {/* Content */}
-                        <div className="space-y-8">
-                            {/* Main Content - Full HTML Rendering with embedded styles support */}
-                            <div
-                                className="prose prose-slate prose-lg max-w-none text-slate-600 leading-relaxed blog-content-rendered"
-                                dangerouslySetInnerHTML={{ __html: post.content }}
+                    {/* Hero Image - Fixed to 900x700 aspect ratio */}
+                    <div className="w-full max-w-[900px] mx-auto px-4 mb-16">
+                        <div className="relative aspect-[9/7] rounded-[40px] overflow-hidden shadow-2xl border-8 border-white group">
+                            <img
+                                src={post.image}
+                                alt={post.title}
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                             />
+                        </div>
+                    </div>
 
-                            {/* Base styles for blog content */}
-                            <style>{`
+
+                    <div className="container mx-auto px-4 max-w-4xl">
+                        <article>
+                            {/* Content */}
+                            <div className="space-y-8">
+                                {/* Main Content - Full HTML Rendering with embedded styles support */}
+                                <div
+                                    className="prose prose-slate prose-lg max-w-none text-slate-600 leading-relaxed blog-content-rendered"
+                                    dangerouslySetInnerHTML={{ __html: post.content }}
+                                />
+
+                                {/* Base styles for blog content */}
+                                <style>{`
                             .blog-content-rendered h1, .blog-content-rendered h2, .blog-content-rendered h3 { font-family: 'Graduate', serif; margin-top: 2rem; margin-bottom: 1rem; color: #1e293b; }
                             .blog-content-rendered p { margin-bottom: 1.5rem; }
                             .blog-content-rendered ul, .blog-content-rendered ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
@@ -137,47 +144,48 @@ const BlogPostDetail = () => {
                             .blog-content-rendered code { background: #f1f5f9; padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.875em; }
                             .blog-content-rendered pre code { background: transparent; padding: 0; }
                         `}
-                            </style>
-                        </div>
-
-                        {/* Footer Meta */}
-                        <footer className="mt-20 pt-12 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-8">
-                            <div className="flex flex-wrap gap-2">
-                                {post.tags?.map(tag => (
-                                    <span key={tag} className="flex items-center space-x-1 bg-slate-100 text-slate-600 px-4 py-2 rounded-full text-sm font-medium border border-slate-200">
-                                        <Tag className="h-3 w-3" />
-                                        <span>{tag}</span>
-                                    </span>
-                                ))}
+                                </style>
                             </div>
 
-                            <div className="flex items-center space-x-4">
-                                <span className="text-sm font-bold text-slate-400 uppercase tracking-widest font-graduate">Share this insight:</span>
-                                <Button
-                                    size="icon"
-                                    variant="ghost"
-                                    className="nm-btn border-none !w-12 !h-12"
-                                    onClick={() => {
-                                        if (navigator.share) {
-                                            navigator.share({
-                                                title: post.title,
-                                                text: `Check out this article: ${post.title}`,
-                                                url: window.location.href,
-                                            }).catch(console.error);
-                                        } else {
-                                            navigator.clipboard.writeText(window.location.href);
-                                            // Simple alert or toast could be added here
-                                            alert("Link copied to clipboard!");
-                                        }
-                                    }}
-                                >
-                                    <Share2 className="h-5 w-5 text-blue-600" />
-                                </Button>
-                            </div>
-                        </footer>
-                    </article>
-                </div>
-            </main>
+                            {/* Footer Meta */}
+                            <footer className="mt-20 pt-12 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-8">
+                                <div className="flex flex-wrap gap-2">
+                                    {post.tags?.map(tag => (
+                                        <span key={tag} className="flex items-center space-x-1 bg-slate-100 text-slate-600 px-4 py-2 rounded-full text-sm font-medium border border-slate-200">
+                                            <Tag className="h-3 w-3" />
+                                            <span>{tag}</span>
+                                        </span>
+                                    ))}
+                                </div>
+
+                                <div className="flex items-center space-x-4">
+                                    <span className="text-sm font-bold text-slate-400 uppercase tracking-widest font-graduate">Share this insight:</span>
+                                    <Button
+                                        size="icon"
+                                        variant="ghost"
+                                        className="nm-btn border-none !w-12 !h-12"
+                                        onClick={() => {
+                                            if (navigator.share) {
+                                                navigator.share({
+                                                    title: post.title,
+                                                    text: `Check out this article: ${post.title}`,
+                                                    url: window.location.href,
+                                                }).catch(console.error);
+                                            } else {
+                                                navigator.clipboard.writeText(window.location.href);
+                                                // Simple alert or toast could be added here
+                                                alert("Link copied to clipboard!");
+                                            }
+                                        }}
+                                    >
+                                        <Share2 className="h-5 w-5 text-blue-600" />
+                                    </Button>
+                                </div>
+                            </footer>
+                        </article>
+                    </div>
+                </main>
+            )}
 
             <Footer />
         </div>
