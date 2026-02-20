@@ -61,7 +61,7 @@ const News = () => {
   const ITEMS_PER_PAGE = 9;
 
   useEffect(() => {
-    const q = query(collection(db, "news_articles"), orderBy("date", "desc"));
+    const q = query(collection(db, "news_articles"), orderBy("timestamp", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const newsData = snapshot.docs.map(doc => ({
         id: doc.id,

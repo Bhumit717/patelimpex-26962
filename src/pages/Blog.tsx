@@ -28,7 +28,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const q = query(collection(db, "blog_posts"), orderBy("date", "desc"));
+    const q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const postsData = snapshot.docs.map(doc => ({
         id: doc.id,
@@ -101,17 +101,33 @@ const Blog = () => {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4 mb-12 justify-center items-center">
-            <div className="relative">
+          <div className="flex flex-col md:flex-row gap-6 mb-12 justify-center items-center">
+            <div className="relative w-full max-w-xl">
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder="Search trade insights..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="nm-input !rounded-full pl-12 pr-4 py-3 w-80"
+                className="nm-input !rounded-full pl-16 pr-6 py-5 w-full !text-lg"
               />
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+              <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-slate-400" />
             </div>
+          </div>
+
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${selectedCategory === cat
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-white text-slate-600 hover:bg-slate-50 shadow-md'
+                  }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
           {loading ? (

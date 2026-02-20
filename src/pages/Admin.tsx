@@ -361,14 +361,14 @@ const Admin = () => {
         });
 
         // Fetch Blog Posts
-        const qBlog = query(collection(db, "blog_posts"), orderBy("date", "desc"));
+        const qBlog = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"));
         const unsubBlog = onSnapshot(qBlog, (snapshot) => {
             setBlogPosts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as BlogPost[]);
             setLoading(false);
         });
 
         // Fetch News Articles
-        const qNews = query(collection(db, "news_articles"), orderBy("date", "desc"));
+        const qNews = query(collection(db, "news_articles"), orderBy("timestamp", "desc"));
         const unsubNews = onSnapshot(qNews, (snapshot) => {
             setNewsArticles(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as NewsArticle[]);
             setLoading(false);
@@ -504,7 +504,7 @@ const Admin = () => {
             }
 
             // Reset Form
-            setBlogForm({ title: "", content: "", tags: "" });
+            setBlogForm({ title: "", content: "", tags: "", category: "Market Insights" });
             setImageFile(null);
             setExistingImageUrl(null);
             setEditingId(null);
@@ -550,6 +550,7 @@ const Admin = () => {
         }
 
         try {
+            console.log("Starting News Publication Pipeline...");
             setUploading(true);
             let imageUrl = newsExistingImageUrl || "";
 
@@ -599,14 +600,20 @@ const Admin = () => {
                 image: imageUrl,
                 tags: newsForm.tags.split(",").map(tag => tag.trim()),
                 date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-                ...(newsEditingId ? { updatedAt: serverTimestamp() } : { timestamp: serverTimestamp() })
+                timestamp: serverTimestamp(), // Use uniform field for sorting
+                ...(newsEditingId ? { updatedAt: serverTimestamp() } : {})
             };
 
+            console.log("Saving News Data:", newsData);
+
             if (newsEditingId) {
+                console.log("Updating existing news article:", newsEditingId);
                 await setDoc(doc(db, "news_articles", newsEditingId), newsData, { merge: true });
                 toast({ title: "News Updated!", description: "Changes have been saved." });
             } else {
-                await addDoc(collection(db, "news_articles"), newsData);
+                console.log("Adding new news article...");
+                const docRef = await addDoc(collection(db, "news_articles"), newsData);
+                console.log("News article added with ID:", docRef.id);
                 toast({ title: "News Published!", description: "News article is live now." });
             }
 
@@ -616,7 +623,8 @@ const Admin = () => {
             setNewsEditingId(null);
             setActiveTab("news");
         } catch (error: any) {
-            toast({ title: "Publication Halted", description: error.message, variant: "destructive" });
+            console.error("FATAL News Publication Error:", error);
+            toast({ title: "Publication Halted", description: `Error: ${error.message || 'Unknown error'}`, variant: "destructive" });
         } finally {
             setUploading(false);
         }
