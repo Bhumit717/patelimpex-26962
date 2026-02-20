@@ -53,6 +53,7 @@ interface BlogPost {
     image: string;
     date: string;
     tags: string[];
+    category: string;
 }
 
 interface NewsArticle {
@@ -62,6 +63,7 @@ interface NewsArticle {
     image: string;
     date: string;
     tags: string[];
+    category: string;
 }
 
 // ============================================================
@@ -274,6 +276,15 @@ const RichTextEditor = ({ value, onChange }: { value: string; onChange: (val: st
     );
 };
 
+const blogCategories = [
+    "Market Insights", "Documentation", "Regulations",
+    "Technology", "Agriculture", "Logistics", "Quality Standards", "Success Stories"
+];
+
+const newsCategories = [
+    "Global Trade", "Industry News", "Company Updates", "Market Trends", "Export Alerts"
+];
+
 // ============================================================
 // ADMIN COMPONENT
 // ============================================================
@@ -293,7 +304,8 @@ const Admin = () => {
     const [blogForm, setBlogForm] = useState({
         title: "",
         content: "", // Full HTML content
-        tags: ""
+        tags: "",
+        category: "Market Insights"
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -303,7 +315,8 @@ const Admin = () => {
     const [newsForm, setNewsForm] = useState({
         title: "",
         content: "",
-        tags: ""
+        tags: "",
+        category: "Global Trade"
     });
     const [newsImageFile, setNewsImageFile] = useState<File | null>(null);
     const [newsEditingId, setNewsEditingId] = useState<string | null>(null);
@@ -468,6 +481,7 @@ const Admin = () => {
                 const blogData = {
                     title: blogForm.title,
                     content: blogForm.content,
+                    category: blogForm.category,
                     image: imageUrl,
                     tags: blogForm.tags.split(",").map(tag => tag.trim()),
                     date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
@@ -511,7 +525,8 @@ const Admin = () => {
         setBlogForm({
             title: post.title,
             content: post.content,
-            tags: post.tags?.join(", ") || ""
+            tags: post.tags?.join(", ") || "",
+            category: post.category || "Market Insights"
         });
         setExistingImageUrl(post.image);
         setEditingId(post.id);
@@ -580,6 +595,7 @@ const Admin = () => {
             const newsData = {
                 title: newsForm.title,
                 content: newsForm.content,
+                category: newsForm.category,
                 image: imageUrl,
                 tags: newsForm.tags.split(",").map(tag => tag.trim()),
                 date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
@@ -594,7 +610,7 @@ const Admin = () => {
                 toast({ title: "News Published!", description: "News article is live now." });
             }
 
-            setNewsForm({ title: "", content: "", tags: "" });
+            setNewsForm({ title: "", content: "", tags: "", category: "Global Trade" });
             setNewsImageFile(null);
             setNewsExistingImageUrl(null);
             setNewsEditingId(null);
@@ -610,7 +626,8 @@ const Admin = () => {
         setNewsForm({
             title: article.title,
             content: article.content,
-            tags: article.tags?.join(", ") || ""
+            tags: article.tags?.join(", ") || "",
+            category: article.category || "Global Trade"
         });
         setNewsExistingImageUrl(article.image);
         setNewsEditingId(article.id);
@@ -785,6 +802,7 @@ const Admin = () => {
                                                 />
                                                 <div className="flex items-center justify-center md:justify-start space-x-4 pt-2">
                                                     <span className="flex items-center text-[10px] font-black text-slate-400 uppercase font-graduate tracking-widest"><Clock size={12} className="mr-1" /> {post.date}</span>
+                                                    <span className="text-[10px] font-black text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full uppercase font-graduate tracking-wider">{post.category}</span>
                                                     {post.tags?.map(t => (
                                                         <span key={t} className="text-[8px] bg-slate-100 px-2 py-0.5 rounded-full font-black text-slate-400 uppercase font-graduate">#{t}</span>
                                                     ))}
@@ -881,6 +899,19 @@ const Admin = () => {
                                         </div>
 
                                         <div className="space-y-4">
+                                            <label className="nm-label !mb-0">Blog Category</label>
+                                            <select
+                                                className="nm-input w-full !p-4 bg-white"
+                                                value={blogForm.category}
+                                                onChange={e => setBlogForm({ ...blogForm, category: e.target.value })}
+                                            >
+                                                {blogCategories.map(cat => (
+                                                    <option key={cat} value={cat}>{cat}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div className="space-y-4">
                                             <label className="nm-label !mb-0">Tags (Comma Separated)</label>
                                             <input
                                                 className="nm-input w-full !p-4"
@@ -924,6 +955,7 @@ const Admin = () => {
                                                 />
                                                 <div className="flex items-center justify-center md:justify-start space-x-4 pt-2">
                                                     <span className="flex items-center text-[10px] font-black text-slate-400 uppercase font-graduate tracking-widest"><Clock size={12} className="mr-1" /> {article.date}</span>
+                                                    <span className="text-[10px] font-black text-green-500 bg-green-50 px-2 py-0.5 rounded-full uppercase font-graduate tracking-wider">{article.category}</span>
                                                     {article.tags?.map(t => (
                                                         <span key={t} className="text-[8px] bg-slate-100 px-2 py-0.5 rounded-full font-black text-slate-400 uppercase font-graduate">#{t}</span>
                                                     ))}
@@ -1005,6 +1037,19 @@ const Admin = () => {
                                                 onChange={e => setNewsForm({ ...newsForm, title: e.target.value })}
                                                 placeholder="Global Market Shifts in 2025..."
                                             />
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <label className="nm-label !mb-0">News Category</label>
+                                            <select
+                                                className="nm-input w-full !p-4 bg-white"
+                                                value={newsForm.category}
+                                                onChange={e => setNewsForm({ ...newsForm, category: e.target.value })}
+                                            >
+                                                {newsCategories.map(cat => (
+                                                    <option key={cat} value={cat}>{cat}</option>
+                                                ))}
+                                            </select>
                                         </div>
 
                                         <div className="space-y-4">

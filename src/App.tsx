@@ -24,6 +24,7 @@ import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import Admin from "./pages/Admin";
 import BlogPostDetail from "./pages/BlogPostDetail";
+import NewsDetail from "./pages/NewsDetail";
 
 
 // More pages
@@ -376,6 +377,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPostDetail />} />
           <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/inquiry" element={<Inquiry />} />
           <Route path="/logo" element={<Logo />} />
