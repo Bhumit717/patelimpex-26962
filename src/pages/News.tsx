@@ -199,7 +199,7 @@ const News = () => {
                         <div className="flex items-center justify-between text-xs text-slate-400 pt-4 border-t border-gray-200">
                           <div className="flex items-center gap-2">
                             <Clock className="h-3 w-3" />
-                            <span>{article.date}</span>
+                            <span>{formatDate(article.date)}</span>
                           </div>
                           <span className="text-blue-500 font-medium">
                             Patel Impex
