@@ -29,88 +29,20 @@ const getDateString = (daysAgo: number = 0) => {
 // Static fallback news for when API fails
 const staticNews: NewsArticle[] = [
   {
-    article_id: "1",
+    id: "1",
     title: "India's Agricultural Exports Reach Record High in 2025",
-    link: "#",
-    description: "India's agricultural exports have reached unprecedented levels, with spices and grains leading the growth. The country continues to strengthen its position as a major global exporter.",
-    pubDate: getDateString(0), // Today
-    source_id: "trade-news",
-    source_name: "Trade News India",
-    source_icon: null,
-    image_url: null,
-    category: ["trade", "agriculture"],
-    country: ["india"],
-    language: "en"
+    content: "India's agricultural exports have reached unprecedented levels, with spices and grains leading the growth. The country continues to strengthen its position as a major global exporter.",
+    date: getDateString(0), // Today
+    image: "",
+    tags: ["trade", "agriculture"]
   },
   {
-    article_id: "2",
+    id: "2",
     title: "Global Spice Trade Trends: What Exporters Need to Know in 2025",
-    link: "#",
-    description: "The global spice market is evolving with new consumer preferences and sustainability requirements. Key insights for exporters navigating these changes.",
-    pubDate: getDateString(0), // Today
-    source_id: "export-weekly",
-    source_name: "Export Weekly",
-    source_icon: null,
-    image_url: null,
-    category: ["spices", "export"],
-    country: ["world"],
-    language: "en"
-  },
-  {
-    article_id: "3",
-    title: "Rice Export Regulations Update for International Markets",
-    link: "#",
-    description: "New regulations affecting rice exports to key markets. Exporters must ensure compliance with updated quality standards and documentation requirements.",
-    pubDate: getDateString(1), // Yesterday
-    source_id: "agri-trade",
-    source_name: "Agri Trade Journal",
-    source_icon: null,
-    image_url: null,
-    category: ["rice", "regulations"],
-    country: ["india"],
-    language: "en"
-  },
-  {
-    article_id: "4",
-    title: "Groundnut Market Analysis: Growing Demand in Middle East",
-    link: "#",
-    description: "Middle Eastern markets show increasing demand for Indian groundnuts. Quality certifications and competitive pricing drive export growth.",
-    pubDate: getDateString(1), // Yesterday
-    source_id: "commodity-insider",
-    source_name: "Commodity Insider",
-    source_icon: null,
-    image_url: null,
-    category: ["groundnut", "market"],
-    country: ["middle-east"],
-    language: "en"
-  },
-  {
-    article_id: "5",
-    title: "Sustainable Packaging Trends in Agricultural Exports",
-    link: "#",
-    description: "Eco-friendly packaging solutions gaining traction in international agricultural trade. How exporters can adapt to meet growing sustainability demands.",
-    pubDate: getDateString(2), // 2 days ago
-    source_id: "green-trade",
-    source_name: "Green Trade News",
-    source_icon: null,
-    image_url: null,
-    category: ["sustainability", "packaging"],
-    country: ["world"],
-    language: "en"
-  },
-  {
-    article_id: "6",
-    title: "Cotton Export Quality Standards: A Comprehensive Guide",
-    link: "#",
-    description: "Understanding international quality standards for cotton exports. Essential certification and testing requirements for global markets.",
-    pubDate: getDateString(3), // 3 days ago
-    source_id: "textile-times",
-    source_name: "Textile Times",
-    source_icon: null,
-    image_url: null,
-    category: ["cotton", "quality"],
-    country: ["india"],
-    language: "en"
+    content: "The global spice market is evolving with new consumer preferences and sustainability requirements. Key insights for exporters navigating these changes.",
+    date: getDateString(0), // Today
+    image: "",
+    tags: ["spices", "export"]
   }
 ];
 
