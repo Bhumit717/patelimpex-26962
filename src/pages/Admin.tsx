@@ -54,6 +54,15 @@ interface BlogPost {
     tags: string[];
 }
 
+interface NewsArticle {
+    id: string;
+    title: string;
+    content: string;
+    image: string;
+    date: string;
+    tags: string[];
+}
+
 // ============================================================
 // RICH TEXT EDITOR WITH FULL HTML PASTE SUPPORT
 // Single editor — paste content directly, everything is preserved
@@ -273,6 +282,7 @@ const Admin = () => {
     const [activeTab, setActiveTab] = useState("blog");
     const [inquiries, setInquiries] = useState<any[]>([]);
     const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+    const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
     const { toast } = useToast();
@@ -287,6 +297,16 @@ const Admin = () => {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
+
+    // News Form State
+    const [newsForm, setNewsForm] = useState({
+        title: "",
+        content: "",
+        tags: ""
+    });
+    const [newsImageFile, setNewsImageFile] = useState<File | null>(null);
+    const [newsEditingId, setNewsEditingId] = useState<string | null>(null);
+    const [newsExistingImageUrl, setNewsExistingImageUrl] = useState<string | null>(null);
 
     const [storedPassword, setStoredPassword] = useState<string | null>(null);
 
@@ -333,9 +353,17 @@ const Admin = () => {
             setLoading(false);
         });
 
+        // Fetch News Articles
+        const qNews = query(collection(db, "news_articles"), orderBy("date", "desc"));
+        const unsubNews = onSnapshot(qNews, (snapshot) => {
+            setNewsArticles(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as NewsArticle[]);
+            setLoading(false);
+        });
+
         return () => {
             unsubInquiries();
             unsubBlog();
+            unsubNews();
         };
     }, [isAuthenticated]);
 
@@ -496,6 +524,105 @@ const Admin = () => {
         }
     };
 
+    // News Handlers
+    const handleAddNews = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!newsImageFile && !newsExistingImageUrl) {
+            toast({ title: "Error", description: "Please upload a news image.", variant: "destructive" });
+            return;
+        }
+
+        try {
+            setUploading(true);
+            let imageUrl = newsExistingImageUrl || "";
+
+            if (newsImageFile) {
+                const reader = new FileReader();
+                const base64Promise = new Promise<string>((resolve, reject) => {
+                    reader.onload = (e) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            const canvas = document.createElement('canvas');
+                            const MAX_WIDTH = 1200;
+                            const MAX_HEIGHT = 800;
+                            let width = img.width;
+                            let height = img.height;
+
+                            if (width > height) {
+                                if (width > MAX_WIDTH) {
+                                    height *= MAX_WIDTH / width;
+                                    width = MAX_WIDTH;
+                                }
+                            } else {
+                                if (height > MAX_HEIGHT) {
+                                    width *= MAX_HEIGHT / height;
+                                    height = MAX_HEIGHT;
+                                }
+                            }
+                            canvas.width = width;
+                            canvas.height = height;
+                            const ctx = canvas.getContext('2d');
+                            ctx?.drawImage(img, 0, 0, width, height);
+                            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
+                            resolve(compressedBase64);
+                        };
+                        img.onerror = reject;
+                        img.src = e.target?.result as string;
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(newsImageFile);
+                });
+                imageUrl = await base64Promise;
+            }
+
+            const newsData = {
+                title: newsForm.title,
+                content: newsForm.content,
+                image: imageUrl,
+                tags: newsForm.tags.split(",").map(tag => tag.trim()),
+                date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                ...(newsEditingId ? { updatedAt: serverTimestamp() } : { timestamp: serverTimestamp() })
+            };
+
+            if (newsEditingId) {
+                await setDoc(doc(db, "news_articles", newsEditingId), newsData, { merge: true });
+                toast({ title: "News Updated!", description: "Changes have been saved." });
+            } else {
+                await addDoc(collection(db, "news_articles"), newsData);
+                toast({ title: "News Published!", description: "News article is live now." });
+            }
+
+            setNewsForm({ title: "", content: "", tags: "" });
+            setNewsImageFile(null);
+            setNewsExistingImageUrl(null);
+            setNewsEditingId(null);
+            setActiveTab("news");
+        } catch (error: any) {
+            toast({ title: "Publication Halted", description: error.message, variant: "destructive" });
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleEditNews = (article: NewsArticle) => {
+        setNewsForm({
+            title: article.title,
+            content: article.content,
+            tags: article.tags?.join(", ") || ""
+        });
+        setNewsExistingImageUrl(article.image);
+        setNewsEditingId(article.id);
+        setActiveTab("add-news");
+    };
+
+    const handleDeleteNews = async (id: string) => {
+        if (window.confirm("Delete this news article permanently?")) {
+            await deleteDoc(doc(db, "news_articles", id));
+            toast({ title: "News Removed" });
+        }
+    };
+
 
 
 
@@ -549,6 +676,7 @@ const Admin = () => {
                                 {[
                                     { id: "inquiries", label: "Inquiries", icon: MessageSquare },
                                     { id: "blog", label: "Blog Factory", icon: FileText },
+                                    { id: "news", label: "News Factory", icon: Newspaper },
                                 ].map((item) => (
                                     <button
                                         key={item.id}
@@ -686,33 +814,84 @@ const Admin = () => {
                             </div>
                         )}
 
-                        {activeTab === "add-blog" && (
+                        {activeTab === "news" && (
+                            <div className="space-y-8">
+                                <div className="flex justify-between items-center bg-white p-6 rounded-[30px] shadow-sm border border-slate-100">
+                                    <h2 className="text-3xl font-black text-slate-800 font-graduate tracking-tight">News Archive</h2>
+                                    <Button onClick={() => setActiveTab("add-news")} className="nm-btn-green !px-8">
+                                        <Plus className="mr-2" size={20} /> CREATE NEWS
+                                    </Button>
+                                </div>
+
+                                <div className="grid md:grid-cols-1 gap-4">
+                                    {newsArticles.map((article) => (
+                                        <Card key={article.id} className="nm-card !p-6 flex flex-col md:flex-row items-center gap-6 group hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                                            <div className="w-full md:w-32 h-32 rounded-2xl overflow-hidden shrink-0 shadow-lg">
+                                                <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                            </div>
+                                            <div className="flex-1 space-y-2 text-center md:text-left">
+                                                <h3 className="text-xl font-black text-slate-800 font-graduate">{article.title}</h3>
+                                                <div
+                                                    className="text-slate-500 text-xs line-clamp-2 italic font-fondamento text-lg"
+                                                    dangerouslySetInnerHTML={{ __html: (article.content || '').replace(/<[^>]+>/g, '').substring(0, 150) + "..." }}
+                                                />
+                                                <div className="flex items-center justify-center md:justify-start space-x-4 pt-2">
+                                                    <span className="flex items-center text-[10px] font-black text-slate-400 uppercase font-graduate tracking-widest"><Clock size={12} className="mr-1" /> {article.date}</span>
+                                                    {article.tags?.map(t => (
+                                                        <span key={t} className="text-[8px] bg-slate-100 px-2 py-0.5 rounded-full font-black text-slate-400 uppercase font-graduate">#{t}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className="flex space-x-2">
+                                                <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-colors"
+                                                    onClick={() => handleEditNews(article)}
+                                                >
+                                                    <Edit size={20} />
+                                                </Button>
+                                                <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-colors"
+                                                    onClick={() => handleDeleteNews(article.id)}
+                                                >
+                                                    <Trash2 size={20} />
+                                                </Button>
+                                            </div>
+                                        </Card>
+                                    ))}
+                                    {newsArticles.length === 0 && (
+                                        <div className="nm-card !p-20 text-center text-slate-300">
+                                            <Loader2 size={48} className="mx-auto mb-4 animate-spin opacity-20" />
+                                            <p className="font-graduate uppercase tracking-[0.3em] text-sm">Waiting for industry news...</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === "add-news" && (
                             <div className="space-y-8 animate-slide-up">
                                 <div className="flex items-center space-x-6">
-                                    <Button variant="ghost" onClick={() => setActiveTab("blog")} className="nm-btn !w-14 !h-14 !p-0 shadow-lg">←</Button>
+                                    <Button variant="ghost" onClick={() => setActiveTab("news")} className="nm-btn !w-14 !h-14 !p-0 shadow-lg">←</Button>
                                     <div>
-                                        <h2 className="text-4xl font-black text-slate-800 font-graduate">{editingId ? "Edit Publication" : "New Publication"}</h2>
+                                        <h2 className="text-4xl font-black text-slate-800 font-graduate">{newsEditingId ? "Edit News" : "New News Article"}</h2>
                                         <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest mt-1">Direct Storage Pipeline Active</p>
                                     </div>
                                 </div>
 
-                                <form onSubmit={handleAddBlog} className="nm-card !p-12 !rounded-[60px] space-y-12 bg-white border-2 border-slate-100 shadow-2xl">
-                                    {/* Visual Image Upload Area */}
+                                <form onSubmit={handleAddNews} className="nm-card !p-12 !rounded-[60px] space-y-12 bg-white border-2 border-slate-100 shadow-2xl">
                                     <div
-                                        onClick={() => document.getElementById('blog-image-input')?.click()}
+                                        onClick={() => document.getElementById('news-image-input')?.click()}
                                         className={`relative h-64 border-4 border-dashed rounded-[40px] flex flex-col items-center justify-center cursor-pointer transition-all duration-500 overflow-hidden
-                      ${imageFile ? 'border-green-500/30' : 'border-slate-100 hover:border-green-400 hover:bg-green-50/30'}`}
+                      ${newsImageFile ? 'border-green-500/30' : 'border-slate-100 hover:border-green-400 hover:bg-green-50/30'}`}
                                     >
                                         <input
-                                            id="blog-image-input" // Fixed ID
+                                            id="news-image-input"
                                             type="file"
                                             accept="image/*"
                                             className="hidden"
-                                            onChange={e => setImageFile(e.target.files?.[0] || null)}
+                                            onChange={e => setNewsImageFile(e.target.files?.[0] || null)}
                                         />
-                                        {imageFile || existingImageUrl ? (
+                                        {newsImageFile || newsExistingImageUrl ? (
                                             <>
-                                                <img src={imageFile ? URL.createObjectURL(imageFile) : (existingImageUrl || "")} alt="Preview" className="absolute inset-0 w-full h-full object-contain bg-slate-50" />
+                                                <img src={newsImageFile ? URL.createObjectURL(newsImageFile) : (newsExistingImageUrl || "")} alt="Preview" className="absolute inset-0 w-full h-full object-contain bg-slate-50" />
                                                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                                                     <Upload className="text-white mr-2" size={32} />
                                                     <span className="text-white font-black font-graduate uppercase">Change Image</span>
@@ -723,7 +902,7 @@ const Admin = () => {
                                                 <div className="nm-card !p-6 shadow-inner mb-4">
                                                     <ImageIcon size={48} className="text-slate-200" />
                                                 </div>
-                                                <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest font-black">Upload Cover Media</p>
+                                                <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest font-black">Upload News Media</p>
                                                 <p className="text-[8px] text-slate-300 mt-2 italic">(JPG/PNG supported - Direct Firebase Storage)</p>
                                             </>
                                         )}
@@ -731,23 +910,21 @@ const Admin = () => {
 
                                     <div className="space-y-10">
                                         <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Blog Title</label>
+                                            <label className="nm-label !mb-0">News Title</label>
                                             <input
                                                 required
                                                 className="nm-input w-full !text-2xl font-black font-graduate !p-6"
-                                                value={blogForm.title}
-                                                onChange={e => setBlogForm({ ...blogForm, title: e.target.value })}
-                                                placeholder="Why Indian Spices Are Winning Global Markets..."
+                                                value={newsForm.title}
+                                                onChange={e => setNewsForm({ ...newsForm, title: e.target.value })}
+                                                placeholder="Global Market Shifts in 2025..."
                                             />
                                         </div>
 
                                         <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Blog Content</label>
-
-                                            {/* Rich Text Editor with full HTML paste support */}
+                                            <label className="nm-label !mb-0">News Content</label>
                                             <RichTextEditor
-                                                value={blogForm.content}
-                                                onChange={(content) => setBlogForm({ ...blogForm, content })}
+                                                value={newsForm.content}
+                                                onChange={(content) => setNewsForm({ ...newsForm, content })}
                                             />
                                         </div>
 
@@ -755,9 +932,9 @@ const Admin = () => {
                                             <label className="nm-label !mb-0">Tags (Comma Separated)</label>
                                             <input
                                                 className="nm-input w-full !p-4"
-                                                value={blogForm.tags}
-                                                onChange={e => setBlogForm({ ...blogForm, tags: e.target.value })}
-                                                placeholder="spices, export, global-trade"
+                                                value={newsForm.tags}
+                                                onChange={e => setNewsForm({ ...newsForm, tags: e.target.value })}
+                                                placeholder="breaking, trade, updates"
                                             />
                                         </div>
                                     </div>
@@ -765,12 +942,12 @@ const Admin = () => {
                                     <div className="pt-12 border-t border-slate-100 flex justify-end">
                                         <Button type="submit" disabled={uploading} className="nm-btn-green !px-16 !py-8 text-xl font-black tracking-[0.2em] font-graduate border-none shadow-2xl">
                                             {uploading ? <Loader2 className="animate-spin mr-2" /> : <Plus className="mr-2" size={24} />}
-                                            {uploading ? "SYNCING..." : (editingId ? "UPDATE PUBLICATION" : "FINISH & PUBLISH")}
+                                            {uploading ? "SYNCING..." : (newsEditingId ? "UPDATE NEWS" : "PUBLISH NEWS")}
                                         </Button>
                                     </div>
                                 </form>
                             </div>
-                        )}
+                        )
 
                     </main >
                 </div >

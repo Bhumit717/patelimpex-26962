@@ -9,25 +9,12 @@ import SEOHead from "@/components/SEOHead";
 import { Helmet } from "react-helmet";
 
 interface NewsArticle {
-  article_id: string;
+  id: string; // Changed from article_id
   title: string;
-  link: string;
-  description: string | null;
-  pubDate: string;
-  source_id: string;
-  source_name: string;
-  source_icon: string | null;
-  image_url: string | null;
-  category: string[];
-  country: string[];
-  language: string;
-}
-
-interface NewsDataResponse {
-  status: string;
-  totalResults: number;
-  results: NewsArticle[];
-  nextPage: string | null;
+  content: string; // Changed from description
+  image: string; // Changed from image_url
+  date: string; // Changed from pubDate
+  tags: string[]; // Added tags
 }
 
 // Get today's date for static news
@@ -128,52 +115,25 @@ const staticNews: NewsArticle[] = [
 const News = () => {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usingFallback, setUsingFallback] = useState(false);
 
   const ITEMS_PER_PAGE = 9;
-  const API_KEY = "pub_385a800beabd41d2b29aaf950325e31e";
-
-  const loadStaticNews = () => {
-    setArticles(staticNews);
-    setUsingFallback(true);
-    setLoading(false);
-    setError(null);
-  };
-
-  const fetchNews = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch(
-        `https://newsdata.io/api/1/latest?apikey=${API_KEY}&q=import%20export%20trade&language=en`,
-        { signal: AbortSignal.timeout(10000) }
-      );
-
-      if (!response.ok) {
-        throw new Error(`API Error: ${response.status}`);
-      }
-
-      const data: NewsDataResponse = await response.json();
-
-      if (data.status === "success" && data.results && data.results.length > 0) {
-        setArticles(data.results);
-        setUsingFallback(false);
-      } else {
-        loadStaticNews();
-      }
-    } catch (err) {
-      console.log("News API unavailable, using static content:", err);
-      loadStaticNews();
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
-    fetchNews();
+    const q = query(collection(db, "news_articles"), orderBy("date", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const newsData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as NewsArticle[];
+      setArticles(newsData);
+      setLoading(false);
+    }, (error) => {
+      console.error("Error fetching news:", error);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const formatDate = (dateString: string) => {
@@ -216,7 +176,7 @@ const News = () => {
               <div className="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff] mb-6">
                 <Zap className="h-4 w-4 text-blue-600 mr-2" />
                 <span className="text-slate-600 text-sm font-medium">
-                  {usingFallback ? "Industry Insights" : "Live Updates"}
+                  Live Updates
                 </span>
               </div>
 
@@ -263,39 +223,18 @@ const News = () => {
                 </div>
               ))}
             </div>
-          ) : error ? (
-            <div className="text-center py-20">
-              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center shadow-[inset_4px_4px_8px_#d1d5db,inset_-4px_-4px_8px_#ffffff]">
-                <Newspaper className="h-12 w-12 text-red-500" />
-              </div>
-              <h2 className="text-2xl font-bold text-slate-800 mb-4">Unable to Load News</h2>
-              <p className="text-slate-500 mb-6">{error}</p>
-              <Button onClick={loadStaticNews} className="nm-btn !w-auto text-slate-700">
-                <RefreshCw className="h-4 w-4 mr-2" />
-                Load Sample News
-              </Button>
-            </div>
           ) : (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {paginatedNews.map((article) => (
-                  <a
-                    key={article.article_id}
-                    href={article.link}
-                    target={article.link !== "#" ? "_blank" : undefined}
-                    rel={article.link !== "#" ? "noopener noreferrer" : undefined}
-                    className="group block"
-                  >
+                  <div key={article.id} className="group block h-full">
                     <div className="h-full nm-card !p-0 overflow-hidden transition-all duration-500 hover:-translate-y-2">
                       <div className="relative h-48 overflow-hidden bg-slate-200">
-                        {article.image_url ? (
+                        {article.image ? (
                           <img
-                            src={article.image_url}
+                            src={article.image}
                             alt={article.title}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
-                            }}
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100">
@@ -303,17 +242,12 @@ const News = () => {
                           </div>
                         )}
                         <div className="absolute top-3 left-3 flex gap-2">
-                          {article.category?.slice(0, 2).map((cat, i) => (
+                          {article.tags?.slice(0, 2).map((tag, i) => (
                             <span key={i} className="px-2 py-1 bg-white/90 backdrop-blur-sm text-blue-600 text-xs font-semibold rounded capitalize shadow-sm">
-                              {cat}
+                              {tag}
                             </span>
                           ))}
                         </div>
-                        {article.link !== "#" && (
-                          <div className="absolute top-3 right-3">
-                            <ExternalLink className="h-5 w-5 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </div>
-                        )}
                       </div>
 
                       <CardContent className="p-6 space-y-4">
@@ -321,24 +255,25 @@ const News = () => {
                           {article.title}
                         </h3>
 
-                        {article.description && (
-                          <p className="text-slate-500 text-sm line-clamp-3">
-                            {article.description}
-                          </p>
+                        {article.content && (
+                          <div
+                            className="text-slate-500 text-sm line-clamp-3"
+                            dangerouslySetInnerHTML={{ __html: article.content.replace(/<[^>]+>/g, '').substring(0, 150) + "..." }}
+                          />
                         )}
 
                         <div className="flex items-center justify-between text-xs text-slate-400 pt-4 border-t border-gray-200">
                           <div className="flex items-center gap-2">
                             <Clock className="h-3 w-3" />
-                            <span>{formatDate(article.pubDate)}</span>
+                            <span>{article.date}</span>
                           </div>
                           <span className="text-blue-500 font-medium">
-                            {article.source_name || article.source_id}
+                            Patel Impex
                           </span>
                         </div>
                       </CardContent>
                     </div>
-                  </a>
+                  </div>
                 ))}
               </div>
 
@@ -384,7 +319,12 @@ const News = () => {
               {/* Refresh Button */}
               <div className="text-center mt-12">
                 <Button
-                  onClick={fetchNews}
+                  onClick={() => {
+                    setLoading(true);
+                    // The onSnapshot will automatically re-fire on data change or we can manually trigger a loading state reset if needed
+                    // For now, let's just simulate a refresh by toggling loading
+                    setTimeout(() => setLoading(false), 500);
+                  }}
                   className="nm-btn !w-auto text-slate-700 hover:text-blue-600"
                 >
                   <RefreshCw className="h-4 w-4 mr-2" />
