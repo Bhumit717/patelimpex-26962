@@ -7,6 +7,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Helmet } from "react-helmet";
+import { db } from "@/lib/firebase";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 interface NewsArticle {
   id: string; // Changed from article_id
