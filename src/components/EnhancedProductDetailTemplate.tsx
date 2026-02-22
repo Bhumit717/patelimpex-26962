@@ -115,6 +115,10 @@ const EnhancedProductDetailTemplate = ({
           background: #ffffff;
         }
 
+        .pi-sharp {
+          border-radius: 0 !important;
+        }
+
         /* ===== SECTION 1: Summary ===== */
         .single_product_sec {
           padding: 60px 0;
@@ -133,7 +137,7 @@ const EnhancedProductDetailTemplate = ({
 
         .single_product_img_slide {
           border: 1px solid #ddd;
-          border-radius: 10px;
+          border-radius: 0;
           overflow: hidden;
           margin-bottom: 16px;
           background: #fff;
@@ -154,7 +158,7 @@ const EnhancedProductDetailTemplate = ({
 
         .thumb-btn {
           border: 1px solid #ddd;
-          border-radius: 6px;
+          border-radius: 0;
           overflow: hidden;
           width: 72px;
           height: 65px;
@@ -212,7 +216,7 @@ const EnhancedProductDetailTemplate = ({
           background-color: var(--green);
           color: white;
           padding: 8px 18px;
-          border-radius: 50px;
+          border-radius: 0;
           font-size: 16px;
           font-weight: 500;
           text-decoration: none;
@@ -231,7 +235,7 @@ const EnhancedProductDetailTemplate = ({
           align-items: flex-start;
           gap: 14px;
           padding: 15px;
-          border-radius: 6px;
+          border-radius: 0;
           background: #fffbf4;
           margin: 25px 0;
           flex-direction: column;
@@ -269,7 +273,7 @@ const EnhancedProductDetailTemplate = ({
           background: #fafafa;
           margin: 5px 0;
           border: 1px solid #e5e5e5;
-          border-radius: 4px;
+          border-radius: 0;
           overflow: hidden;
         }
 
@@ -287,6 +291,7 @@ const EnhancedProductDetailTemplate = ({
           justify-content: space-between;
           align-items: center;
           color: #000;
+          border-radius: 0;
         }
 
         .accordion-body-custom {
@@ -319,7 +324,7 @@ const EnhancedProductDetailTemplate = ({
         .sp_menu_btns a {
           text-decoration: none;
           padding: 8px 22px;
-          border-radius: 50px;
+          border-radius: 0;
           font-size: 14px;
           font-weight: 600;
           transition: all 0.2s;
@@ -340,7 +345,7 @@ const EnhancedProductDetailTemplate = ({
         .single_product_para {
           background: #fff;
           border: 1px solid #d4d4d4;
-          border-radius: 8px;
+          border-radius: 0;
           margin-bottom: 30px;
           padding: 30px 35px;
           scroll-margin-top: 200px;

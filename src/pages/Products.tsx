@@ -362,7 +362,7 @@ const Products = () => {
         <section className="pt-40 pb-20 bg-white relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center px-4 py-2 bg-white rounded-full border border-slate-100 mb-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white rounded-none border border-slate-100 mb-8">
                 <Leaf className="h-4 w-4 text-green-600 mr-2" />
                 <span className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em]">Premium Inventory</span>
               </div>
@@ -435,7 +435,7 @@ const Products = () => {
             <div className="text-center mt-24">
               <Link
                 to="/contact"
-                className="inline-flex items-center bg-slate-900 text-white px-14 py-6 rounded-full hover:scale-105 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] group no-underline"
+                className="inline-flex items-center bg-slate-900 text-white px-14 py-6 rounded-none hover:scale-105 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] group no-underline"
               >
                 <Package className="h-5 w-5 mr-3 group-hover:rotate-12 transition-transform" />
                 <span className="font-bold uppercase tracking-[0.35em] text-sm">Request Free Quote</span>
