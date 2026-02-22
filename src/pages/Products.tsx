@@ -200,7 +200,6 @@ const Products = () => {
             {productCategories.map((category, catIndex) => (
               <div key={catIndex} className="mb-32 last:mb-0">
                 <div className="flex flex-col items-center mb-20">
-                  <span className="text-white font-black text-xl mb-4 uppercase tracking-[0.4em] drop-shadow-md">Professional Catalog</span>
                   <div className="flex items-center w-full max-w-5xl">
                     <div className="h-[3px] bg-white/20 flex-grow rounded-full"></div>
                     <h2 className="px-12 text-4xl md:text-6xl font-black text-slate-900 font-graduate uppercase tracking-tighter text-center italic">
