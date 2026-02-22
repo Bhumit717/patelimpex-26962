@@ -101,12 +101,12 @@ const EnhancedProductCategoryTemplate = ({
             <div className="h-px bg-slate-200 flex-grow"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="flex flex-wrap justify-center gap-10">
             {products.map((product, index) => (
               <Link
                 key={index}
                 to={product.link}
-                className="group relative nm-card !p-0 overflow-hidden hover:-translate-y-3 transition-all duration-500 bg-white"
+                className="group relative nm-card !p-0 overflow-hidden hover:-translate-y-3 transition-all duration-500 bg-white w-full md:max-w-sm"
               >
                 <div className="relative h-64 overflow-hidden bg-white p-10 flex items-center justify-center">
                   <img

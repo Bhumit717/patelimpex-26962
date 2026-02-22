@@ -125,25 +125,25 @@ const CertificationServices = () => {
             <h2 className="text-2xl font-black text-slate-800 font-graduate uppercase tracking-tighter">Global Recognition & Membership</h2>
             <div className="h-1 w-20 bg-green-600 mx-auto mt-4 rounded-full"></div>
           </div>
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-700">
+          <div className="flex flex-wrap justify-center items-center gap-12 opacity-80 group-hover:opacity-100 transition-opacity">
             <div className="flex flex-col items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/FSSAI_logo.png" alt="FSSAI" className="h-16 object-contain mb-2" />
-              <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Food Safety</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/FSSAI_Logo.png/800px-FSSAI_Logo.png" alt="FSSAI" className="h-20 object-contain mb-2" />
+              <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Food Safety Standard</span>
             </div>
             <div className="flex flex-col items-center">
-              <img src="https://apeda.gov.in/apedawebsite/images/apeda_logo.png" alt="APEDA" className="h-16 object-contain mb-2" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/APEDA_Logo.png/800px-APEDA_Logo.png" alt="APEDA" className="h-20 object-contain mb-2" />
               <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Agro Exports</span>
             </div>
             <div className="flex flex-col items-center">
-              <img src="https://udyamregistration.gov.in/img/msme-logo.png" alt="MSME" className="h-16 object-contain mb-2" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/MSME_logo_%28colour%29.svg/1024px-MSME_logo_%28colour%29.svg.png" alt="MSME" className="h-20 object-contain mb-2" />
               <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Micro Enterprise</span>
             </div>
             <div className="flex flex-col items-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/ISO_9001-2015_%28Seal%29.svg/1200px-ISO_9001-2015_%28Seal%29.svg.png" alt="ISO 9001" className="h-16 object-contain mb-2" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/ISO_9001-2015_%28Seal%29.svg/1200px-ISO_9001-2015_%28Seal%29.svg.png" alt="ISO 9001" className="h-20 object-contain mb-2" />
               <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Quality Management</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="h-16 w-16 bg-slate-200 rounded-full flex items-center justify-center font-black text-slate-500 font-graduate text-xs mb-2 border-2 border-slate-300">DGFT</div>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Directorate_General_of_Foreign_Trade_Logo.png" alt="DGFT" className="h-20 object-contain mb-2" />
               <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Commernce Ministry</span>
             </div>
           </div>

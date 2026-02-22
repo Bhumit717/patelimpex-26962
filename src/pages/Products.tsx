@@ -231,9 +231,9 @@ const Products = () => {
           <section key={idx} className="cat-stripe" style={{ backgroundColor: cat.bgColor }}>
             <div className="container mx-auto px-4">
               <h2 className="cat-heading">{cat.title}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 justify-items-center">
+              <div className="flex flex-wrap justify-center gap-16">
                 {cat.items.map((item, iIdx) => (
-                  <Link key={iIdx} to={item.link} className="pi-clickable-card w-full">
+                  <Link key={iIdx} to={item.link} className="pi-clickable-card w-full md:max-w-sm">
 
                     {cat.style === 'arched-pink' && (
                       <div className="card-arched-pink">
