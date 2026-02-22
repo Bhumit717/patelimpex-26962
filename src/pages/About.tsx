@@ -53,16 +53,15 @@ const About = () => {
               <h1 className="text-5xl md:text-6xl font-black text-slate-800 mb-12">
                 Welcome to <span className="text-[#1a365d]">Patel Impex</span>
               </h1>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl mt-12 group border-4 border-white">
+              <div className="relative mt-12">
                 <video
                   src="/globalexport-map.mp4"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                  className="w-full h-auto"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a365d]/20 to-transparent"></div>
               </div>
             </div>
 
