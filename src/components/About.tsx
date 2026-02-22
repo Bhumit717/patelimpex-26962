@@ -1,5 +1,6 @@
 
 import { Target, ShieldCheck, Award, MessageCircle, Anchor, Globe, Users } from "lucide-react";
+import qualityControlLabImg from "@/assets/quality-control-lab.jpg";
 
 const About = () => {
     const values = [
@@ -68,8 +69,8 @@ const About = () => {
                     <div className="relative">
                         <div className="nm-card !p-4 !rounded-[60px] overflow-hidden group shadow-2xl">
                             <img
-                                src="/lovable-uploads/388b7837-d349-4307-9ccb-6fe86933060f.png"
-                                alt="Inspection"
+                                src={qualityControlLabImg}
+                                alt="Quality Inspection"
                                 className="w-full h-full object-cover rounded-[50px] aspect-[4/5] md:aspect-[3/4] group-hover:scale-105 transition-transform duration-[3s]"
                             />
                             {/* Overlay Badge */}

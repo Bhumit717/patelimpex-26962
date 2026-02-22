@@ -13,7 +13,7 @@ const SEOHead = ({
   title,
   description,
   canonicalUrl,
-  ogImage = "/lovable-uploads/86da894e-e356-4f11-80b8-5a5901b8fd04.png",
+  ogImage = "/logo.png",
   ogType = "website",
   jsonLd,
 }: SEOHeadProps) => {
