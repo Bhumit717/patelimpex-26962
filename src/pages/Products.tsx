@@ -1,8 +1,9 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Wheat, ArrowRight, Globe, Star, CheckCircle, Users, Target, Leaf, Package } from "lucide-react";
+import { Leaf, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import SEOHead from "@/components/SEOHead";
 
 // Import product images
 import psylliumHuskImg from "@/assets/products/psyllium-husk.png";
@@ -18,7 +19,15 @@ import sugarImg from "@/assets/products/sugar.png";
 import sesameSeedsImg from "@/assets/products/hulled-sesame.png";
 import sharbatiWheatImg from "@/assets/products/subtypes/sharbati-wheat.png";
 import animalDungImg from "@/assets/products/animal-dung.png";
-import SEOHead from "@/components/SEOHead";
+
+const ribbonColors = [
+  "#FA8072", // salmon/pink
+  "#50BFC3", // teal
+  "#FA8072",
+  "#50BFC3",
+  "#FA8072",
+  "#50BFC3",
+];
 
 const Products = () => {
   const productCategories = [
@@ -29,28 +38,28 @@ const Products = () => {
           name: "Isabgol (Psyllium)",
           image: psylliumHuskImg,
           link: "/products/psyllium-husk",
-          specs: ["95%+ Purity", "25 kg Bags", "Husk/Powder/Seeds"],
+          shortDesc: "95%+ purity psyllium husk, ideal for pharma and food industries worldwide.",
           hsn: "1211.90"
         },
         {
           name: "Fennel Seeds",
           image: fennelSeedsImg,
           link: "/products/fennel-seeds",
-          specs: ["99% Purity", "25 kg Bags", "Bold/Medium"],
+          shortDesc: "99% purity bold fennel seeds, machine cleaned and export ready.",
           hsn: "0909.61"
         },
         {
           name: "Cumin Seeds",
           image: cuminSeedsImg,
           link: "/products/cumin-seeds",
-          specs: ["99% Purity", "25/50 kg Bags", "Machine Cleaned"],
+          shortDesc: "Machine cleaned cumin in 25/50 kg bags, 99% purity grade.",
           hsn: "0909.31"
         },
         {
           name: "Cardamom",
           image: cardamomImg,
           link: "/products/cardamom",
-          specs: ["8mm Bold", "25 kg Boxes", "Green/Bleached"],
+          shortDesc: "8mm bold green and bleached cardamom in premium 25 kg boxes.",
           hsn: "0908.31"
         }
       ]
@@ -62,35 +71,35 @@ const Products = () => {
           name: "Rice",
           image: riceImg,
           link: "/products/rice",
-          specs: ["Basmati & Non-Basmati", "25/50 kg Bags", "Multiple Varieties"],
+          shortDesc: "Basmati & Non-Basmati rice in 25/50 kg bags, multiple varieties.",
           hsn: "1006.30"
         },
         {
           name: "Wheat",
           image: sharbatiWheatImg,
           link: "/products/wheat",
-          specs: ["Sharbati/Durum/Lokwan", "Multiple Varieties", "Premium Quality"],
+          shortDesc: "Sharbati, Durum and Lokwan wheat in premium export quality.",
           hsn: "1001.99"
         },
         {
           name: "Wheat Flour",
           image: wheatFlourImg,
           link: "/products/wheat-flour",
-          specs: ["10-12% Protein", "25/50 kg Bags", "White Refined"],
+          shortDesc: "White refined wheat flour with 10-12% protein, 25/50 kg bags.",
           hsn: "1101.00"
         },
         {
           name: "Sugar",
           image: sugarImg,
           link: "/products/sugar",
-          specs: ["Refined/Raw/Organic", "Jaggery Powder", "ICUMSA 45/100"],
+          shortDesc: "ICUMSA 45/100 refined and raw sugar, jaggery powder available.",
           hsn: "1701.99"
         },
         {
           name: "Soybeans",
           image: soybeanImg,
           link: "/products/soybeans",
-          specs: ["46-48% Protein", "50 kg PP Bags", "Non-GMO"],
+          shortDesc: "Non-GMO soybeans with 46-48% protein in 50 kg PP bags.",
           hsn: "1201.90"
         }
       ]
@@ -102,14 +111,14 @@ const Products = () => {
           name: "Sesame Seeds",
           image: sesameSeedsImg,
           link: "/products/sesame-seeds",
-          specs: ["Hulled & Natural", "99.95% Purity", "White/Golden"],
+          shortDesc: "99.95% purity hulled and natural white/golden sesame seeds.",
           hsn: "1207.40"
         },
         {
           name: "Groundnut",
           image: groundnutImg,
           link: "/products/groundnut",
-          specs: ["40-50 Count", "25/50 kg Bags", "Bold/Java/TJ"],
+          shortDesc: "Bold/Java/TJ groundnut, 40-50 count, in 25/50 kg bags.",
           hsn: "1202.42"
         }
       ]
@@ -121,7 +130,7 @@ const Products = () => {
           name: "Cotton",
           image: cottonImg,
           link: "/products/cotton",
-          specs: ["28-30mm Staple", "170 kg Bales", "Multiple Grades"],
+          shortDesc: "28-30mm staple cotton in 170 kg bales, multiple grades.",
           hsn: "5201.00"
         }
       ]
@@ -133,7 +142,7 @@ const Products = () => {
           name: "Animal Dung",
           image: animalDungImg,
           link: "/products/animal-dung",
-          specs: ["100% Organic", "Cakes & Powder", "Fully Decomposed"],
+          shortDesc: "100% organic fully decomposed dung cakes and powder.",
           hsn: "3101.00"
         }
       ]
@@ -162,7 +171,11 @@ const Products = () => {
 
   return (
     <>
-      <SEOHead title="Our Products | Patel Impex" description="Explore our wide range of premium agro products including spices, grains, oil seeds, and more." canonicalUrl="/products" />
+      <SEOHead
+        title="Our Products | Patel Impex"
+        description="Explore our wide range of premium agro products including spices, grains, oil seeds, and more."
+        canonicalUrl="/products"
+      />
       <Helmet>
         <title>Our Products | Premium Agricultural Exports | Patel Impex</title>
         <meta name="description" content="Explore our premium agricultural products including Psyllium Husk, Fennel, Cumin, Cotton, Rice, Groundnut, Cardamom, Soybean, and Wheat varieties for global export." />
@@ -173,109 +186,243 @@ const Products = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-white">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        .products-page-bg {
+          background-color: #fbbd22;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Product Card */
+        .pi-card {
+          position: relative;
+          background: #fdfaf3;
+          border-radius: 15px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          /* The characteristic bottom box-shadow from the reference image */
+          box-shadow:
+            0 25px 0 rgba(0,0,0,0.07),
+            0 38px 60px -10px rgba(0,0,0,0.22);
+          transition: transform 0.35s ease, box-shadow 0.35s ease;
+          border: none;
+        }
+
+        .pi-card:hover {
+          transform: translateY(-10px);
+          box-shadow:
+            0 35px 0 rgba(0,0,0,0.06),
+            0 50px 70px -10px rgba(0,0,0,0.26);
+        }
+
+        /* Ribbon Tag */
+        .pi-ribbon {
+          position: absolute;
+          top: 0;
+          right: 36px;
+          width: 52px;
+          height: 88px;
+          z-index: 20;
+        }
+
+        .pi-ribbon::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-left: 26px solid transparent;
+          border-right: 26px solid transparent;
+          border-top-width: 0; /* override */
+        }
+
+        /* card ribbon notch (triangle cut at bottom of ribbon) */
+        .pi-ribbon-inner {
+          width: 100%;
+          height: 100%;
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 86%, 0% 100%);
+        }
+
+        /* Image Frame */
+        .pi-img-wrap {
+          padding: 30px 28px 16px;
+          flex-shrink: 0;
+        }
+
+        .pi-img-frame {
+          border: 1.5px solid rgba(180,148,100,0.35);
+          border-radius: 14px;
+          background: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 220px;
+          overflow: hidden;
+          padding: 18px;
+        }
+
+        .pi-img-frame img {
+          max-height: 100%;
+          max-width: 100%;
+          object-fit: contain;
+          filter: drop-shadow(0 8px 16px rgba(0,0,0,0.10));
+          transition: transform 0.5s ease;
+        }
+
+        .pi-card:hover .pi-img-frame img {
+          transform: scale(1.06);
+        }
+
+        /* Card Content */
+        .pi-content {
+          padding: 6px 28px 24px;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .pi-name {
+          font-size: 26px;
+          font-weight: 800;
+          color: #2d1b00;
+          margin-bottom: 8px;
+          line-height: 1.2;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .pi-desc {
+          font-size: 14px;
+          color: #7a6a55;
+          line-height: 1.6;
+          font-weight: 400;
+          flex-grow: 1;
+        }
+
+        /* HSN Badge */
+        .pi-hsn {
+          display: inline-block;
+          margin-top: 14px;
+          font-size: 11px;
+          font-weight: 700;
+          color: #999;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+        }
+
+        /* Footer Enquiry Button */
+        .pi-enquiry-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          padding: 18px;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: white;
+          text-decoration: none;
+          transition: filter 0.2s;
+          flex-shrink: 0;
+        }
+
+        .pi-enquiry-btn:hover {
+          filter: brightness(1.08);
+          color: white;
+          text-decoration: none;
+        }
+
+        /* Category heading */
+        .pi-category-title {
+          font-size: clamp(28px, 5vw, 52px);
+          font-weight: 900;
+          color: #2d1b00;
+          text-align: center;
+          font-style: italic;
+          letter-spacing: -0.02em;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .pi-divider {
+          height: 3px;
+          background: rgba(255,255,255,0.25);
+          border-radius: 999px;
+          flex: 1;
+        }
+      `}</style>
+
+      <div className="min-h-screen" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         <Navigation />
 
-        {/* Hero Section */}
+        {/* Hero */}
         <section className="pt-40 pb-20 bg-white relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
               <div className="inline-flex items-center px-4 py-2 bg-white rounded-full border border-slate-100 mb-8">
                 <Leaf className="h-4 w-4 text-green-600 mr-2" />
-                <span className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] font-graduate">Premium Inventory</span>
+                <span className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em]">Premium Inventory</span>
               </div>
-              <h1 className="text-5xl md:text-8xl font-black mb-8 text-slate-900 font-graduate uppercase tracking-tighter">
-                Global <span className="text-green-600 font-fredericka tracking-tight lowercase">Products</span> Stock
+              <h1 className="text-5xl md:text-8xl font-black mb-8 text-slate-900 uppercase tracking-tighter" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                Our <span className="text-green-600">Products</span>
               </h1>
-              <p className="text-xl text-slate-500 max-w-2xl mx-auto font-fondamento italic leading-relaxed">
-                Our portfolio features high-grade agricultural commodities and industrial raw materials direct from verified Indian sources.
+              <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                High-grade agricultural commodities and industrial raw materials direct from verified Indian sources.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Products Grid by Category */}
-        <section className="pb-32 bg-[#fbbd22] relative overflow-hidden">
-          <div className="container mx-auto px-4 relative z-10">
+        {/* Products Grid */}
+        <section className="products-page-bg pb-32">
+          <div className="container mx-auto px-4">
             {productCategories.map((category, catIndex) => (
-              <div key={catIndex} className="mb-32 last:mb-0">
-                <div className="flex flex-col items-center mb-20">
-                  <div className="flex items-center w-full max-w-5xl">
-                    <div className="h-[3px] bg-white/20 flex-grow rounded-full"></div>
-                    <h2 className="px-12 text-4xl md:text-6xl font-black text-slate-900 font-graduate uppercase tracking-tighter text-center italic">
-                      {category.title}
-                    </h2>
-                    <div className="h-[3px] bg-white/20 flex-grow rounded-full"></div>
-                  </div>
+              <div key={catIndex} className="mb-28 last:mb-0">
+                {/* Category Header */}
+                <div className="flex items-center gap-8 mb-16 pt-16">
+                  <div className="pi-divider" />
+                  <h2 className="pi-category-title px-4">{category.title}</h2>
+                  <div className="pi-divider" />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                {/* Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                   {category.items.map((product, index) => {
-                    const themes = [
-                      { accent: "bg-[#FA8072]", ribbon: "bg-[#FA8072]" },
-                      { accent: "bg-[#50BFC3]", ribbon: "bg-[#50BFC3]" },
-                      { accent: "bg-[#FA8072]", ribbon: "bg-[#FA8072]" },
-                    ];
-                    const theme = themes[index % themes.length];
-
+                    const ribbonColor = ribbonColors[index % ribbonColors.length];
                     return (
-                      <div
-                        key={index}
-                        className="group relative flex flex-col h-full bg-[#fdfaf3] rounded-[15px] shadow-[0_12px_24px_rgba(0,0,0,0.12)] overflow-hidden hover:-translate-y-2 transition-all duration-300 border-none"
-                      >
-                        {/* Ribbon Tag */}
-                        <div className={`absolute top-0 right-10 w-14 h-24 ${theme.ribbon} z-20 shadow-md`}>
-                          <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[28px] border-l-transparent border-r-[28px] border-r-transparent border-b-[18px] border-b-[#fdfaf3]"></div>
+                      <div key={index} className="pi-card">
+                        {/* Ribbon */}
+                        <div className="pi-ribbon">
+                          <div
+                            className="pi-ribbon-inner"
+                            style={{ backgroundColor: ribbonColor }}
+                          />
                         </div>
 
-                        {/* Image Frame */}
-                        <div className="p-8 pb-4">
-                          <div className="relative aspect-auto h-64 rounded-[15px] border-[1.5px] border-[#d2b48c]/40 bg-transparent flex items-center justify-center overflow-hidden p-6">
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="max-h-full max-w-full object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.1)] group-hover:scale-105 transition-transform duration-500"
-                            />
+                        {/* Image */}
+                        <div className="pi-img-wrap">
+                          <div className="pi-img-frame">
+                            <img src={product.image} alt={product.name} />
                           </div>
                         </div>
 
                         {/* Content */}
-                        <div className="p-8 pt-2 flex-grow flex flex-col">
-                          <h3 className="text-3xl font-black text-slate-800 mb-2 leading-tight">
-                            {product.name}
-                          </h3>
-                          <p className="text-slate-500 text-sm leading-relaxed mb-8 max-w-[85%]">
-                            {product.specs[0]} and industrial grade quality for global export.
-                          </p>
-
-                          <div className="mt-auto">
-                            <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-baseline">
-                                <span className="text-6xl font-black text-slate-800 tracking-tighter">
-                                  {product.hsn.split('.')[0]}
-                                </span>
-                              </div>
-                              <div className="flex flex-col items-center">
-                                <div className="flex space-x-0.5 mb-1">
-                                  {[1, 2, 3, 4, 5].map((s) => (
-                                    <Star key={s} className={`h-4 w-4 ${s <= 4 ? "fill-slate-800 text-slate-800" : "text-slate-300"}`} />
-                                  ))}
-                                </div>
-                                <div className="h-[1.5px] bg-slate-800 w-full mb-1"></div>
-                                <span className="text-[10px] font-bold text-slate-800 uppercase tracking-tighter">Premium Grade</span>
-                              </div>
-                            </div>
-                          </div>
+                        <div className="pi-content">
+                          <div className="pi-name">{product.name}</div>
+                          <p className="pi-desc">{product.shortDesc}</p>
+                          <span className="pi-hsn">HSN: {product.hsn}</span>
                         </div>
 
-                        {/* Bottom Action Bar */}
+                        {/* Footer CTA — Enquiry (not Add to Cart) */}
                         <Link
                           to={product.link}
-                          className={`${theme.accent} py-6 flex items-center justify-center hover:brightness-105 transition-all no-underline w-full`}
+                          className="pi-enquiry-btn"
+                          style={{ backgroundColor: ribbonColor }}
                         >
-                          <span className="text-white font-bold uppercase tracking-widest text-xs">
-                            ADD TO CART
-                          </span>
+                          VIEW DETAILS
                         </Link>
                       </div>
                     );
@@ -285,13 +432,13 @@ const Products = () => {
             ))}
 
             {/* Contact CTA */}
-            <div className="text-center mt-32">
+            <div className="text-center mt-24">
               <Link
                 to="/contact"
-                className="inline-flex items-center bg-slate-900 text-white px-16 py-8 rounded-full hover:scale-105 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] group"
+                className="inline-flex items-center bg-slate-900 text-white px-14 py-6 rounded-full hover:scale-105 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] group no-underline"
               >
-                <Package className="h-6 w-6 mr-4 group-hover:rotate-12 transition-transform" />
-                <span className="font-black font-graduate uppercase tracking-[0.4em] text-sm">Request Free Quote</span>
+                <Package className="h-5 w-5 mr-3 group-hover:rotate-12 transition-transform" />
+                <span className="font-bold uppercase tracking-[0.35em] text-sm">Request Free Quote</span>
               </Link>
             </div>
           </div>
