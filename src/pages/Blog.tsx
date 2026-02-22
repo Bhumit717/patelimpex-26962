@@ -3,10 +3,11 @@ import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Calendar, Clock, ArrowRight, Search, Filter, Bell, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import BlogLeadForm from "@/components/BlogLeadForm";
 
 interface BlogPost {
   id: string;
@@ -21,11 +22,13 @@ interface BlogPost {
 }
 
 const Blog = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All Posts");
   const [email, setEmail] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [pendingPostId, setPendingPostId] = useState<string | null>(null);
 
   useEffect(() => {
     const q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"));
@@ -78,6 +81,15 @@ const Blog = () => {
     return matchesCategory && matchesSearch;
   });
 
+  const handleReadMore = (postId: string) => {
+    const isCaptured = localStorage.getItem("blog_lead_captured");
+    if (isCaptured) {
+      navigate(`/blog/${postId}`);
+    } else {
+      setPendingPostId(postId);
+    }
+  };
+
   const featuredPost = posts.find(post => post.featured) || posts[0];
 
   return (
@@ -129,6 +141,16 @@ const Blog = () => {
               </button>
             ))}
           </div>
+
+          {posts.length > 0 && pendingPostId && (
+            <BlogLeadForm
+              onSuccess={() => {
+                const postId = pendingPostId;
+                setPendingPostId(null);
+                navigate(`/blog/${postId}`);
+              }}
+            />
+          )}
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20">
@@ -185,10 +207,13 @@ const Blog = () => {
                         ))}
                       </div>
 
-                      <Link to={`/blog/${post.id}`} className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group/link">
+                      <button
+                        onClick={() => handleReadMore(post.id)}
+                        className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group/link cursor-pointer bg-transparent border-none p-0"
+                      >
                         Read More
                         <ArrowRight className="ml-1 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                      </Link>
+                      </button>
                     </div>
                   </article>
                 ))}
