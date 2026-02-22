@@ -1,6 +1,6 @@
 import EnhancedProductCategoryTemplate from "@/components/EnhancedProductCategoryTemplate";
 import hulledSesameImg from "@/assets/products/hulled-sesame.png";
-import naturalSesameImg from "@/assets/products/natural-sesame.jpg";
+import naturalSesameImg from "@/assets/products/natural-sesame.png";
 
 const SesameSeedsProducts = () => {
     const products = [

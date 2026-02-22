@@ -1,5 +1,5 @@
 import EnhancedProductDetailTemplate from "@/components/EnhancedProductDetailTemplate";
-import sesameSeedsImg from "@/assets/products/natural-sesame.jpg";
+import sesameSeedsImg from "@/assets/products/natural-sesame.png";
 
 const NaturalSesameSeedsDetail = () => {
     return (
