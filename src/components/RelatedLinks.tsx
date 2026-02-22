@@ -71,6 +71,7 @@ const RelatedLinks = ({ currentPage, category = "products" }: RelatedLinksProps)
       { title: "Handicrafts Export", url: "/seo/handicrafts-export-services", category: "Handicrafts" },
       { title: "Gems & Jewelry Export", url: "/seo/gems-jewelry-export-services", category: "Jewelry" },
       { title: "Leather Products Export", url: "/seo/leather-products-export-services", category: "Leather" },
+      { title: "Animal Dung Products", url: "/products/animal-dung", category: "Organic" },
       { title: "Cashew Export", url: "/more/cashew-export", category: "Nuts" },
       { title: "Almond Export", url: "/more/almond-export", category: "Nuts" },
     ],

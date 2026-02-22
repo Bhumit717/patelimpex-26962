@@ -206,6 +206,10 @@ import BrassStatuesExport from "./pages/products/BrassStatuesExport";
 import WallHangingsExport from "./pages/products/WallHangingsExport";
 import DecorativeLampsExport from "./pages/products/DecorativeLampsExport";
 import FashionJewelryExport from "./pages/products/FashionJewelryExport";
+import AnimalDungPage from "./pages/products/AnimalDungPage";
+import AnimalDungCakeDetail from "./pages/products/AnimalDungCakeDetail";
+import AnimalDungPowderDetail from "./pages/products/AnimalDungPowderDetail";
+
 
 // SEO Pages
 import USAMarketExport from "./pages/seo/USAMarketExport";
@@ -581,6 +585,10 @@ const App = () => (
           <Route path="/products/sesame-seeds/hulled" element={<HulledSesameSeedsDetail />} />
           <Route path="/products/sesame-seeds/natural" element={<NaturalSesameSeedsDetail />} />
           <Route path="/products/sugar" element={<SugarProductsPage />} />
+          <Route path="/products/animal-dung" element={<AnimalDungPage />} />
+          <Route path="/products/animal-dung/cake" element={<AnimalDungCakeDetail />} />
+          <Route path="/products/animal-dung/powder" element={<AnimalDungPowderDetail />} />
+
 
           {/* Cotton Subproduct Routes */}
           <Route path="/products/raw-cotton" element={<RawCottonDetail />} />

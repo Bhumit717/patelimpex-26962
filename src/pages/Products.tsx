@@ -124,6 +124,18 @@ const Products = () => {
           hsn: "5201.00"
         }
       ]
+    },
+    {
+      title: "Bio-Fertilizers",
+      items: [
+        {
+          name: "Animal Dung",
+          image: "https://images.unsplash.com/photo-1599307734110-60b642699863?q=80&w=800&auto=format&fit=crop",
+          link: "/products/animal-dung",
+          specs: ["100% Organic", "Cakes & Powder", "Fully Decomposed"],
+          hsn: "3101.00"
+        }
+      ]
     }
   ];
 
