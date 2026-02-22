@@ -99,37 +99,49 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="reveal flex flex-col items-center">
               <div className="relative w-full aspect-square rounded-full border-[3px] border-orange-200 p-4 transition-transform hover:scale-105 duration-500">
-                <div className="w-full h-full rounded-full bg-orange-50 flex flex-col items-center justify-center text-center p-8 border-2 border-orange-100">
-                  <span className="text-4xl font-black mb-2 text-orange-600">15+</span>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter leading-tight">Product Categories From spices, rice, pulses, moringa, psyllium husk to eco-friendly items — offering a diverse export portfolio</p>
+                <div className="w-full h-full rounded-full overflow-hidden relative group">
+                  <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Spices" />
+                  <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-8 text-white">
+                    <span className="text-5xl font-black mb-2">15+</span>
+                    <p className="text-xs font-medium uppercase tracking-tighter leading-tight">Product Categories From spices, rice, pulses, moringa, psyllium husk to eco-friendly items — offering a diverse export portfolio</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="reveal flex flex-col items-center" style={{ animationDelay: '100ms' }}>
               <div className="relative w-full aspect-square rounded-full border-[3px] border-orange-200 p-4 transition-transform hover:scale-105 duration-500">
-                <div className="w-full h-full rounded-full bg-green-50 flex flex-col items-center justify-center text-center p-8 border-2 border-green-100">
-                  <span className="text-4xl font-black mb-2 text-green-600">30+</span>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter leading-tight">Active buyer connections across Europe, USA, Middle East, and Asia, steadily expanding.</p>
+                <div className="w-full h-full rounded-full overflow-hidden relative group">
+                  <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Global map" />
+                  <div className="absolute inset-0 bg-[#5d4037]/60 flex flex-col items-center justify-center text-center p-8 text-white">
+                    <span className="text-5xl font-black mb-2">30+</span>
+                    <p className="text-xs font-medium uppercase tracking-tighter leading-tight">Active buyer connections across Europe, USA, Middle East, and Asia, steadily expanding.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="reveal flex flex-col items-center" style={{ animationDelay: '200ms' }}>
               <div className="relative w-full aspect-square rounded-full border-[3px] border-orange-200 p-4 transition-transform hover:scale-105 duration-500">
-                <div className="w-full h-full rounded-full bg-blue-50 flex flex-col items-center justify-center text-center p-8 border-2 border-blue-100">
-                  <span className="text-4xl font-black mb-2 text-blue-600">100%</span>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter leading-tight">Commitment to quality, certified sourcing, and ethical trade practices.</p>
+                <div className="w-full h-full rounded-full overflow-hidden relative group">
+                  <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Quality" />
+                  <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-8 text-white">
+                    <span className="text-5xl font-black mb-2">100%</span>
+                    <p className="text-xs font-medium uppercase tracking-tighter leading-tight">Commitment to quality, certified sourcing, and ethical trade practices.</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="reveal flex flex-col items-center" style={{ animationDelay: '300ms' }}>
               <div className="relative w-full aspect-square rounded-full border-[3px] border-orange-200 p-4 transition-transform hover:scale-105 duration-500">
-                <div className="w-full h-full rounded-full bg-slate-50 flex flex-col items-center justify-center text-center p-8 border-2 border-slate-200">
-                  <span className="text-4xl font-black mb-2 text-slate-800">#1</span>
-                  <span className="text-[10px] font-black text-slate-800 uppercase tracking-widest mb-1 font-graduate">PRIVATE LABEL</span>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter leading-tight">Custom packaging & branding support to help clients launch their own label worldwide.</p>
+                <div className="w-full h-full rounded-full overflow-hidden relative group">
+                  <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Packaging" />
+                  <div className="absolute inset-0 bg-white/20 flex flex-col items-center justify-center text-center p-8">
+                    <span className="text-5xl font-black mb-2 text-slate-800">#1</span>
+                    <span className="text-xs font-black text-slate-800 uppercase tracking-widest mb-2 font-graduate">PRIVATE LABEL</span>
+                    <p className="text-xs font-bold text-slate-700 uppercase tracking-tighter leading-tight">Custom packaging & branding support to help clients launch their own label worldwide.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -161,8 +173,10 @@ const About = () => {
                 ))}
               </div>
             </div>
-            <div className="reveal hidden lg:block" style={{ animationDelay: '300ms' }}>
-              {/* Image removed as requested */}
+            <div className="reveal" style={{ animationDelay: '300ms' }}>
+              <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover" alt="Team session" />
+              </div>
             </div>
           </div>
         </div>
