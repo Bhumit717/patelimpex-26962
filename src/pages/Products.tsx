@@ -195,61 +195,83 @@ const Products = () => {
         </section>
 
         {/* Products Grid by Category */}
-        <section className="pb-24 bg-white relative overflow-hidden">
+        <section className="pb-24 bg-[#FFFCF5] relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             {productCategories.map((category, catIndex) => (
               <div key={catIndex} className="mb-24 last:mb-0">
-                <div className="flex items-center mb-12">
-                  <div className="h-px bg-slate-100 flex-grow"></div>
-                  <h2 className="px-8 text-2xl font-black text-slate-400 font-graduate uppercase tracking-widest text-center">
-                    {category.title}
-                  </h2>
-                  <div className="h-px bg-slate-100 flex-grow"></div>
+                <div className="flex flex-col items-center mb-16">
+                  <span className="text-green-600 font-fredericka text-2xl mb-2 lowercase tracking-tighter">Collection</span>
+                  <div className="flex items-center w-full">
+                    <div className="h-[2px] bg-slate-200 flex-grow rounded-full opacity-50"></div>
+                    <h2 className="px-10 text-3xl md:text-5xl font-black text-slate-900 font-graduate uppercase tracking-tighter text-center">
+                      {category.title}
+                    </h2>
+                    <div className="h-[2px] bg-slate-200 flex-grow rounded-full opacity-50"></div>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                  {category.items.map((product, index) => (
-                    <Link
-                      key={index}
-                      to={product.link}
-                      className="group relative nm-card !p-0 overflow-hidden hover:-translate-y-3 transition-all duration-500 bg-white"
-                    >
-                      {/* Image Section */}
-                      <div className="relative h-64 overflow-hidden bg-white p-10 flex items-center justify-center">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-1000"
-                        />
-                        <div className="absolute top-4 right-4 px-3 py-1 bg-white/80 backdrop-blur-sm text-green-600 text-[10px] font-bold rounded-full border border-slate-100 shadow-sm font-graduate uppercase tracking-widest">
-                          HSN: {product.hsn}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                  {category.items.map((product, index) => {
+                    const themes = [
+                      { bg: "bg-rose-50", accent: "bg-rose-400", border: "border-rose-100", text: "text-rose-600", ribbon: "bg-rose-500" },
+                      { bg: "bg-cyan-50", accent: "bg-cyan-500", border: "border-cyan-100", text: "text-cyan-700", ribbon: "bg-cyan-600" },
+                      { bg: "bg-amber-50", accent: "bg-amber-400", border: "border-amber-100", text: "text-amber-700", ribbon: "bg-amber-500" },
+                    ];
+                    const theme = themes[index % themes.length];
+
+                    return (
+                      <Link
+                        key={index}
+                        to={product.link}
+                        className={`group relative flex flex-col h-full bg-[#FFFBF0] rounded-[40px] border-b-[8px] border-slate-200/50 overflow-hidden hover:-translate-y-4 transition-all duration-500 shadow-xl`}
+                      >
+                        {/* Ribbon Tag */}
+                        <div className={`absolute top-0 right-10 w-10 h-16 ${theme.ribbon} z-20 shadow-lg`}>
+                          <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[12px] border-b-[#FFFBF0]"></div>
                         </div>
-                      </div>
 
-                      {/* Content Section */}
-                      <div className="p-10">
-                        <h3 className="text-2xl font-black text-slate-900 mb-6 font-graduate uppercase tracking-tight group-hover:text-green-600 transition-colors">
-                          {product.name}
-                        </h3>
-
-                        {/* Specs */}
-                        <div className="space-y-3 mb-8">
-                          {product.specs.map((spec, i) => (
-                            <div key={i} className="flex items-center text-xs font-bold font-graduate uppercase tracking-widest text-slate-400">
-                              <CheckCircle className="h-4 w-4 text-green-600 mr-2 flex-shrink-0" />
-                              <span>{spec}</span>
+                        {/* Image Frame */}
+                        <div className="p-8 pb-0">
+                          <div className={`relative h-64 rounded-[30px] border-2 ${theme.border} bg-white flex items-center justify-center overflow-hidden group-hover:shadow-inner transition-shadow`}>
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="max-h-[70%] max-w-[70%] object-contain group-hover:scale-110 transition-transform duration-1000"
+                            />
+                            <div className="absolute top-4 left-4">
+                              <span className={`px-3 py-1 bg-white/90 backdrop-blur-sm ${theme.text} text-[9px] font-black rounded-full border border-slate-100 font-graduate uppercase tracking-widest`}>
+                                Official Export
+                              </span>
                             </div>
-                          ))}
+                          </div>
                         </div>
 
-                        {/* CTA */}
-                        <div className="flex items-center text-green-600 font-graduate font-bold uppercase tracking-widest text-xs group-hover:translate-x-2 transition-transform">
-                          <span>Explore Specifications</span>
-                          <ArrowRight className="h-4 w-4 ml-4" />
+                        {/* Content */}
+                        <div className="p-10 flex-grow">
+                          <div className="mb-4">
+                            <span className={`text-[10px] font-black ${theme.text} uppercase tracking-[0.2em] font-graduate`}>HSN: {product.hsn}</span>
+                            <h3 className="text-3xl font-black text-slate-900 mt-2 font-graduate uppercase tracking-tight leading-none">
+                              {product.name}
+                            </h3>
+                          </div>
+
+                          <div className="space-y-4 mb-8">
+                            <p className="text-xs text-slate-400 font-bold font-graduate uppercase tracking-widest leading-relaxed">
+                              {product.specs.join(" • ")}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
+
+                        {/* Bottom Action Bar */}
+                        <div className={`${theme.accent} py-6 flex items-center justify-center group-hover:brightness-110 transition-all`}>
+                          <span className="text-white font-graduate font-black uppercase tracking-[0.3em] text-xs">
+                            Access Specifications
+                          </span>
+                          <ArrowRight className="h-4 w-4 ml-3 text-white group-hover:translate-x-2 transition-transform" />
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             ))}
