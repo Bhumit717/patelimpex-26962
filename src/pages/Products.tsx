@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Leaf, Package } from "lucide-react";
+import { Leaf, Package, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import SEOHead from "@/components/SEOHead";
@@ -20,129 +20,116 @@ import sesameSeedsImg from "@/assets/products/sesame-seeds.png";
 import sharbatiWheatImg from "@/assets/products/subtypes/sharbati-wheat.png";
 import animalDungImg from "@/assets/products/animal-dung.png";
 
-const ribbonColors = [
-  "#FA8072", // salmon/pink
-  "#50BFC3", // teal
-  "#FA8072",
-  "#50BFC3",
-  "#FA8072",
-  "#50BFC3",
-];
-
 const Products = () => {
   const productCategories = [
     {
       title: "Spices & Condiments",
+      style: "arched",
+      bgColor: "#f5ece1",
       items: [
         {
           name: "Isabgol (Psyllium)",
           image: psylliumHuskImg,
           link: "/products/psyllium-husk",
-          shortDesc: "95%+ purity psyllium husk, ideal for pharma and food industries worldwide.",
+          shortDesc: "Premium pharmaceutical grade psyllium husk.",
           hsn: "1211.90"
         },
         {
           name: "Fennel Seeds",
           image: fennelSeedsImg,
           link: "/products/fennel-seeds",
-          shortDesc: "99% purity bold fennel seeds, machine cleaned and export ready.",
+          shortDesc: "Machine cleaned bold green fennel seeds.",
           hsn: "0909.61"
         },
         {
           name: "Cumin Seeds",
           image: cuminSeedsImg,
           link: "/products/cumin-seeds",
-          shortDesc: "Machine cleaned cumin in 25/50 kg bags, 99% purity grade.",
+          shortDesc: "High purity machine cleaned cumin seeds.",
           hsn: "0909.31"
-        },
-        {
-          name: "Cardamom",
-          image: cardamomImg,
-          link: "/products/cardamom",
-          shortDesc: "8mm bold green and bleached cardamom in premium 25 kg boxes.",
-          hsn: "0908.31"
         }
       ]
     },
     {
       title: "Grains & Pulses",
+      style: "ribbon",
+      bgColor: "#fbbd22",
       items: [
         {
           name: "Rice",
           image: riceImg,
           link: "/products/rice",
-          shortDesc: "Basmati & Non-Basmati rice in 25/50 kg bags, multiple varieties.",
+          shortDesc: "Basmati & Non-Basmati export varieties.",
           hsn: "1006.30"
         },
         {
           name: "Wheat",
           image: sharbatiWheatImg,
           link: "/products/wheat",
-          shortDesc: "Sharbati, Durum and Lokwan wheat in premium export quality.",
+          shortDesc: "Premium Sharbati and Durum wheat grains.",
           hsn: "1001.99"
         },
         {
           name: "Wheat Flour",
           image: wheatFlourImg,
           link: "/products/wheat-flour",
-          shortDesc: "White refined wheat flour with 10-12% protein, 25/50 kg bags.",
+          shortDesc: "Finely milled high-protein wheat flour.",
           hsn: "1101.00"
-        },
-        {
-          name: "Sugar",
-          image: sugarImg,
-          link: "/products/sugar",
-          shortDesc: "ICUMSA 45/100 refined and raw sugar, jaggery powder available.",
-          hsn: "1701.99"
-        },
-        {
-          name: "Soybeans",
-          image: soybeanImg,
-          link: "/products/soybeans",
-          shortDesc: "Non-GMO soybeans with 46-48% protein in 50 kg PP bags.",
-          hsn: "1201.90"
         }
       ]
     },
     {
       title: "Oil Seeds",
+      style: "modern",
+      bgColor: "#f8d7da",
       items: [
         {
           name: "Sesame Seeds",
           image: sesameSeedsImg,
           link: "/products/sesame-seeds",
-          shortDesc: "99.95% purity hulled and natural white/golden sesame seeds.",
+          shortDesc: "Hulled and natural white sesame seeds.",
           hsn: "1207.40"
         },
         {
           name: "Groundnut",
           image: groundnutImg,
           link: "/products/groundnut",
-          shortDesc: "Bold/Java/TJ groundnut, 40-50 count, in 25/50 kg bags.",
+          shortDesc: "Bold and Java variety export groundnuts.",
           hsn: "1202.42"
+        },
+        {
+          name: "Soybeans",
+          image: soybeanImg,
+          link: "/products/soybeans",
+          shortDesc: "Non-GMO high protein export soybeans.",
+          hsn: "1201.90"
         }
       ]
     },
     {
       title: "Natural Fibers",
+      style: "minimal",
+      bgColor: "#e2f0d9",
       items: [
         {
           name: "Cotton",
           image: cottonImg,
           link: "/products/cotton",
-          shortDesc: "28-30mm staple cotton in 170 kg bales, multiple grades.",
+          shortDesc: "Long staple organic cotton bales.",
           hsn: "5201.00"
         }
       ]
     },
     {
       title: "Bio-Fertilizers",
+      style: "dark",
+      bgColor: "#1a1a1a",
       items: [
         {
           name: "Animal Dung",
           image: animalDungImg,
           link: "/products/animal-dung",
-          shortDesc: "100% organic fully decomposed dung cakes and powder.",
+          shortDesc: "100% organic decomposed fertilizer.",
           hsn: "3101.00"
         }
       ]
@@ -151,298 +138,277 @@ const Products = () => {
 
   const allProducts = productCategories.flatMap(cat => cat.items);
 
-  const generateStructuredData = () => ({
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Patel Exports Products",
-    "description": "Premium agricultural products exported from India",
-    "numberOfItems": allProducts.length,
-    "itemListElement": allProducts.map((product, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "Product",
-        "name": product.name,
-        "image": product.image,
-        "url": `https://patelimpex.com${product.link}`
-      }
-    }))
-  });
-
   return (
     <>
-      <SEOHead
-        title="Our Products | Patel Impex"
-        description="Explore our wide range of premium agro products including spices, grains, oil seeds, and more."
-        canonicalUrl="/products"
-      />
+      <SEOHead title="Our Products | Patel Impex" description="Explore our wide range of premium agro products." canonicalUrl="/products" />
       <Helmet>
         <title>Our Products | Premium Agricultural Exports | Patel Impex</title>
-        <meta name="description" content="Explore our premium agricultural products including Psyllium Husk, Fennel, Cumin, Cotton, Rice, Groundnut, Cardamom, Soybean, and Wheat varieties for global export." />
-        <meta name="keywords" content="psyllium husk export, fennel seeds, cumin export, cotton export, rice export, groundnut, cardamom, soybean, wheat flour, agricultural exports India" />
-        <link rel="canonical" href="https://patelimpex.com/products" />
-        <script type="application/ld+json">
-          {JSON.stringify(generateStructuredData())}
-        </script>
       </Helmet>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-        .products-page-bg {
-          background-color: #fbbd22;
+        .products-page {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Product Card */
-        .pi-card {
-          position: relative;
+        /* --- CATEGORY STYLE: ARCHED (Spices) --- */
+        .card-arched {
+          background: #fff;
+          border-radius: 40px;
+          padding: 24px;
+          text-align: center;
+          transition: transform 0.3s ease;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .card-arched:hover { transform: translateY(-10px); }
+        .img-frame-arched {
           background: #fdfaf3;
-          border-radius: 0;
-          overflow: hidden;
+          border-radius: 100px 100px 20px 20px;
+          height: 240px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+          padding: 30px;
+          border: 1px solid #eee;
+        }
+        .img-frame-arched img { max-height: 100%; object-contain; }
+        .btn-arched {
+          background: #d4a373;
+          color: white;
+          padding: 12px;
+          border-radius: 50px;
+          display: block;
+          margin-top: 15px;
+          font-weight: 700;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        /* --- CATEGORY STYLE: RIBBON (Grains) --- */
+        .card-ribbon {
+          background: #fdfaf3;
+          position: relative;
+          padding: 30px 24px;
+          box-shadow: 0 25px 0 rgba(0,0,0,0.07), 0 38px 60px -10px rgba(0,0,0,0.22);
+        }
+        .ribbon-tag {
+          position: absolute;
+          top: 0; right: 30px;
+          width: 40px; height: 70px;
+          background: #FA8072;
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 85%, 0% 100%);
+        }
+        .img-frame-ribbon {
+          border: 1.5px solid rgba(180,148,100,0.3);
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+          background: #fff;
+        }
+        .img-frame-ribbon img { max-height: 80%; object-contain; }
+        .btn-ribbon {
+          background: #FA8072;
+          color: white;
+          padding: 15px;
+          text-align: center;
+          font-weight: 800;
+          display: block;
+          margin-top: 10px;
+        }
+
+        /* --- CATEGORY STYLE: MODERN (Seeds) --- */
+        .card-modern {
+          background: #fff;
+          border: 2px solid #000;
+          padding: 0;
+          box-shadow: 10px 10px 0 #000;
+          transition: all 0.2s;
+        }
+        .card-modern:hover { transform: translate(-4px, -4px); box-shadow: 14px 14px 0 #000; }
+        .img-frame-modern {
+          height: 250px;
+          background: #f8f9fa;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-bottom: 2px solid #000;
+        }
+        .img-frame-modern img { max-height: 70%; object-contain; }
+        .content-modern { padding: 20px; }
+        .btn-modern {
+          background: #000;
+          color: #fff;
+          padding: 12px;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 10px;
+        }
+
+        /* --- CATEGORY STYLE: MINIMAL (Fibers) --- */
+        .card-minimal {
+          background: #fff;
+          border-left: 8px solid #50BFC3;
+          padding: 30px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.05);
           display: flex;
           flex-direction: column;
-          height: 100%;
-          /* The characteristic bottom box-shadow from the reference image */
-          box-shadow:
-            0 25px 0 rgba(0,0,0,0.07),
-            0 38px 60px -10px rgba(0,0,0,0.22);
-          transition: transform 0.35s ease, box-shadow 0.35s ease;
-          border: none;
+          align-items: center;
+          text-align: center;
+        }
+        .img-minimal { height: 180px; margin-bottom: 20px; }
+        .btn-minimal { color: #50BFC3; font-weight: 800; border-bottom: 2px solid #50BFC3; margin-top: 10px; }
+
+        /* --- CATEGORY STYLE: DARK (Fertilizers) --- */
+        .card-dark {
+          background: #2a2a2a;
+          color: white;
+          padding: 40px;
+          border: 1px solid #444;
+          text-align: center;
+        }
+        .img-dark { 
+          background: rgba(255,255,255,0.05);
+          border-radius: 50%;
+          width: 180px; height: 180px;
+          margin: 0 auto 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px dashed #666;
+        }
+        .img-dark img { max-height: 60%; filter: brightness(1.2); }
+        .btn-dark {
+          background: #3ba72f;
+          color: #fff;
+          padding: 12px 30px;
+          border-radius: 4px;
+          display: inline-block;
+          margin-top: 20px;
+          font-weight: 700;
         }
 
-        .pi-card:hover {
-          transform: translateY(-10px);
-          box-shadow:
-            0 35px 0 rgba(0,0,0,0.06),
-            0 50px 70px -10px rgba(0,0,0,0.26);
+        .category-stripe {
+          padding: 100px 0;
         }
-
-        /* Ribbon Tag */
-        .pi-ribbon {
-          position: absolute;
-          top: 0;
-          right: 36px;
-          width: 52px;
-          height: 88px;
-          z-index: 20;
+        .section-title {
+          font-size: 42px;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: -1px;
+          margin-bottom: 60px;
+          position: relative;
+          display: inline-block;
         }
-
-        .pi-ribbon::after {
+        .section-title::after {
           content: '';
           position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 0;
-          border-left: 26px solid transparent;
-          border-right: 26px solid transparent;
-          border-top-width: 0; /* override */
-        }
-
-        /* card ribbon notch (triangle cut at bottom of ribbon) */
-        .pi-ribbon-inner {
-          width: 100%;
-          height: 100%;
-          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 86%, 0% 100%);
-        }
-
-        /* Image Frame */
-        .pi-img-wrap {
-          padding: 30px 28px 16px;
-          flex-shrink: 0;
-        }
-
-        .pi-img-frame {
-          border: 1.5px solid rgba(180,148,100,0.35);
-          border-radius: 0;
-          background: transparent;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 220px;
-          overflow: hidden;
-          padding: 18px;
-        }
-
-        .pi-img-frame img {
-          max-height: 100%;
-          max-width: 100%;
-          object-fit: contain;
-          filter: drop-shadow(0 8px 16px rgba(0,0,0,0.10));
-          transition: transform 0.5s ease;
-        }
-
-        .pi-card:hover .pi-img-frame img {
-          transform: scale(1.06);
-        }
-
-        /* Card Content */
-        .pi-content {
-          padding: 6px 28px 24px;
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .pi-name {
-          font-size: 26px;
-          font-weight: 800;
-          color: #2d1b00;
-          margin-bottom: 8px;
-          line-height: 1.2;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .pi-desc {
-          font-size: 14px;
-          color: #7a6a55;
-          line-height: 1.6;
-          font-weight: 400;
-          flex-grow: 1;
-        }
-
-        /* HSN Badge */
-        .pi-hsn {
-          display: inline-block;
-          margin-top: 14px;
-          font-size: 11px;
-          font-weight: 700;
-          color: #999;
-          text-transform: uppercase;
-          letter-spacing: 0.12em;
-        }
-
-        /* Footer Enquiry Button */
-        .pi-enquiry-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          padding: 18px;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: white;
-          text-decoration: none;
-          transition: filter 0.2s;
-          flex-shrink: 0;
-        }
-
-        .pi-enquiry-btn:hover {
-          filter: brightness(1.08);
-          color: white;
-          text-decoration: none;
-        }
-
-        /* Category heading */
-        .pi-category-title {
-          font-size: clamp(28px, 5vw, 52px);
-          font-weight: 900;
-          color: #2d1b00;
-          text-align: center;
-          font-style: italic;
-          letter-spacing: -0.02em;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .pi-divider {
-          height: 3px;
-          background: rgba(255,255,255,0.25);
-          border-radius: 999px;
-          flex: 1;
+          bottom: -10px; left: 0;
+          width: 60px; height: 6px;
+          background: currentColor;
         }
       `}</style>
 
-      <div className="min-h-screen" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <div className="min-h-screen products-page">
         <Navigation />
 
         {/* Hero */}
-        <section className="pt-40 pb-20 bg-white relative overflow-hidden">
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center px-4 py-2 bg-white rounded-none border border-slate-100 mb-8">
-                <Leaf className="h-4 w-4 text-green-600 mr-2" />
-                <span className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em]">Premium Inventory</span>
-              </div>
-              <h1 className="text-5xl md:text-8xl font-black mb-8 text-slate-900 uppercase tracking-tighter" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                Our <span className="text-green-600">Products</span>
-              </h1>
-              <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-                High-grade agricultural commodities and industrial raw materials direct from verified Indian sources.
-              </p>
-            </div>
+        <section className="pt-40 pb-20 bg-white">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-6xl md:text-8xl font-black mb-6 uppercase tracking-tighter">
+              Product <span className="text-green-600 italic">Catalog</span>
+            </h1>
+            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
+              Diverse agricultural solutions tailored for international standards.
+            </p>
           </div>
         </section>
 
-        {/* Products Grid */}
-        <section className="products-page-bg pb-32">
-          <div className="container mx-auto px-4">
-            {productCategories.map((category, catIndex) => (
-              <div key={catIndex} className="mb-28 last:mb-0">
-                {/* Category Header */}
-                <div className="flex items-center gap-8 mb-16 pt-16">
-                  <div className="pi-divider" />
-                  <h2 className="pi-category-title px-4">{category.title}</h2>
-                  <div className="pi-divider" />
-                </div>
+        {/* Dynamic Categories */}
+        {productCategories.map((category, idx) => (
+          <section key={idx} className="category-stripe" style={{ backgroundColor: category.bgColor }}>
+            <div className="container mx-auto px-4">
+              <h2 className={`section-title ${category.style === 'dark' ? 'text-white' : 'text-slate-900'}`}>{category.title}</h2>
 
-                {/* Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                  {category.items.map((product, index) => {
-                    const ribbonColor = ribbonColors[index % ribbonColors.length];
-                    return (
-                      <div key={index} className="pi-card">
-                        {/* Ribbon */}
-                        <div className="pi-ribbon">
-                          <div
-                            className="pi-ribbon-inner"
-                            style={{ backgroundColor: ribbonColor }}
-                          />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                {category.items.map((product, pIdx) => (
+                  <div key={pIdx}>
+
+                    {/* ARCHED STYLE */}
+                    {category.style === "arched" && (
+                      <div className="card-arched">
+                        <div className="img-frame-arched">
+                          <img src={product.image} alt={product.name} />
                         </div>
-
-                        {/* Image */}
-                        <div className="pi-img-wrap">
-                          <div className="pi-img-frame">
-                            <img src={product.image} alt={product.name} />
-                          </div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="pi-content">
-                          <div className="pi-name">{product.name}</div>
-                          <p className="pi-desc">{product.shortDesc}</p>
-                          <span className="pi-hsn">HSN: {product.hsn}</span>
-                        </div>
-
-                        {/* Footer CTA — Enquiry (not Add to Cart) */}
-                        <Link
-                          to={product.link}
-                          className="pi-enquiry-btn"
-                          style={{ backgroundColor: ribbonColor }}
-                        >
-                          VIEW DETAILS
-                        </Link>
+                        <h3 className="text-2xl font-black text-slate-800 mb-2">{product.name}</h3>
+                        <p className="text-sm text-slate-500 mb-4">{product.shortDesc}</p>
+                        <Link to={product.link} className="btn-arched">Enquire Now</Link>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+                    )}
 
-            {/* Contact CTA */}
-            <div className="text-center mt-24">
-              <Link
-                to="/contact"
-                className="inline-flex items-center bg-slate-900 text-white px-14 py-6 rounded-none hover:scale-105 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] group no-underline"
-              >
-                <Package className="h-5 w-5 mr-3 group-hover:rotate-12 transition-transform" />
-                <span className="font-bold uppercase tracking-[0.35em] text-sm">Request Free Quote</span>
-              </Link>
+                    {/* RIBBON STYLE */}
+                    {category.style === "ribbon" && (
+                      <div className="card-ribbon">
+                        <div className="ribbon-tag"></div>
+                        <div className="img-frame-ribbon">
+                          <img src={product.image} alt={product.name} />
+                        </div>
+                        <h3 className="text-2xl font-black text-slate-800 mb-2">{product.name}</h3>
+                        <p className="text-sm text-slate-500 mb-4">{product.shortDesc}</p>
+                        <Link to={product.link} className="btn-ribbon">VIEW DETAILS</Link>
+                      </div>
+                    )}
+
+                    {/* MODERN STYLE */}
+                    {category.style === "modern" && (
+                      <div className="card-modern">
+                        <div className="img-frame-modern">
+                          <img src={product.image} alt={product.name} />
+                        </div>
+                        <div className="content-modern">
+                          <h3 className="text-2xl font-black text-slate-900 mb-2">{product.name}</h3>
+                          <p className="text-sm text-slate-600 mb-4">{product.shortDesc}</p>
+                          <Link to={product.link} className="btn-modern">
+                            EXPLORE <ChevronRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* MINIMAL STYLE */}
+                    {category.style === "minimal" && (
+                      <div className="card-minimal">
+                        <img src={product.image} alt={product.name} className="img-minimal" />
+                        <h3 className="text-2xl font-black text-slate-900 mb-2">{product.name}</h3>
+                        <p className="text-sm text-slate-500 mb-4">{product.shortDesc}</p>
+                        <Link to={product.link} className="btn-minimal">Catalog & Specs</Link>
+                      </div>
+                    )}
+
+                    {/* DARK STYLE */}
+                    {category.style === "dark" && (
+                      <div className="card-dark">
+                        <div className="img-dark">
+                          <img src={product.image} alt={product.name} />
+                        </div>
+                        <h3 className="text-2xl font-black text-white mb-2">{product.name}</h3>
+                        <p className="text-sm text-slate-400 mb-6">{product.shortDesc}</p>
+                        <Link to={product.link} className="btn-dark">Inquiry</Link>
+                      </div>
+                    )}
+
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ))}
 
         <Footer />
       </div>
