@@ -16,7 +16,7 @@ import cardamomImg from "@/assets/products/cardamom.png";
 import soybeanImg from "@/assets/products/soybean.png";
 import wheatFlourImg from "@/assets/products/wheat-flour.png";
 import sugarImg from "@/assets/products/sugar.png";
-import sesameSeedsImg from "@/assets/products/hulled-sesame.png";
+import sesameSeedsImg from "@/assets/products/sesame-seeds.png";
 import sharbatiWheatImg from "@/assets/products/subtypes/sharbati-wheat.png";
 import animalDungImg from "@/assets/products/animal-dung.png";
 
@@ -110,7 +110,7 @@ const Products = () => {
         {
           name: "Sesame Seeds",
           image: sesameSeedsImg,
-          link: "/products/sesame-seeds.png",
+          link: "/products/sesame-seeds",
           shortDesc: "99.95% purity hulled and natural white/golden sesame seeds.",
           hsn: "1207.40"
         },
