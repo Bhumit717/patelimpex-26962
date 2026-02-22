@@ -6,12 +6,12 @@ const OpeningAnimation = ({ onComplete }: { onComplete: () => void }) => {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    // Faster, more professional stages
-    const timer1 = setTimeout(() => setStage(1), 600);  // PATEL
-    const timer2 = setTimeout(() => setStage(2), 1200); // IMPEX
-    const timer3 = setTimeout(() => setStage(3), 1800); // Quality Line
-    const timer4 = setTimeout(() => setIsExiting(true), 2500); // Start Exit
-    const timer5 = setTimeout(() => onComplete(), 3200); // Complete
+    // Significantly faster professional stages to avoid "lag" feel
+    const timer1 = setTimeout(() => setStage(1), 300);  // PATEL
+    const timer2 = setTimeout(() => setStage(2), 600);  // IMPEX
+    const timer3 = setTimeout(() => setStage(3), 900);  // Quality Line
+    const timer4 = setTimeout(() => setIsExiting(true), 1300); // Start Exit
+    const timer5 = setTimeout(() => onComplete(), 1800); // Complete
 
     return () => {
       clearTimeout(timer1);

@@ -47,19 +47,18 @@ const Blog = () => {
     return () => unsubscribe();
   }, []);
 
-  const categories = useMemo(() => {
-    // Collect all categories used in posts
-    const categoryCounts: Record<string, number> = {};
+  const keywords = useMemo(() => {
+    // Collect all tags (keywords) used in posts
+    const tagCounts: Record<string, number> = {};
     posts.forEach(post => {
-      if (post.category) {
-        // Handle both "Market Insights" and "market insights" by normalizing
-        const normalized = post.category.trim();
-        categoryCounts[normalized] = (categoryCounts[normalized] || 0) + 1;
-      }
+      post.tags?.forEach(tag => {
+        const normalized = tag.trim();
+        tagCounts[normalized] = (tagCounts[normalized] || 0) + 1;
+      });
     });
 
     // Sort by count descending and take top 5
-    const top5 = Object.entries(categoryCounts)
+    const top5 = Object.entries(tagCounts)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5)
       .map(([name]) => name);
@@ -90,10 +89,10 @@ const Blog = () => {
   };
 
   const filteredPosts = posts.filter(post => {
-    const matchesCategory = selectedCategory === "All Posts" || post.category === selectedCategory;
+    const matchesKeyword = selectedCategory === "All Posts" || post.tags?.some(tag => tag.trim() === selectedCategory);
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (post.content || '').toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesKeyword && matchesSearch;
   });
 
   const handleReadMore = (postId: string) => {
@@ -143,7 +142,7 @@ const Blog = () => {
 
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-16">
-            {categories.map(cat => (
+            {keywords.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}

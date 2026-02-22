@@ -23,16 +23,33 @@ const Index = () => {
     setShowAnimation(false);
   };
 
-  // Preload critical resources
+  // Preload critical resources aggressively
   useEffect(() => {
     const preloadResources = () => {
-      // Preload the hero video for instant playback
-      const videoLink = document.createElement('link');
-      videoLink.rel = 'preload';
-      videoLink.as = 'video';
-      videoLink.href = '/hero-video.mp4';
-      videoLink.type = 'video/mp4';
-      document.head.appendChild(videoLink);
+      const resources = [
+        { href: '/hero-video.mp4', as: 'video', type: 'video/mp4' },
+        { href: '/logo.png', as: 'image' },
+        { href: '/certificates/gst-certificate.jpg', as: 'image' },
+        { href: '/certificates/udyam-certificate.jpg', as: 'image' },
+        { href: '/certificates/iec-certificate.jpg', as: 'image' }
+      ];
+
+      resources.forEach(res => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = res.as;
+        link.href = res.href;
+        if (res.type) link.type = res.type;
+        document.head.appendChild(link);
+      });
+
+      // Prefetch main pages bundle/images to eliminate "lag" on transition
+      ['/blog', '/products', '/about', '/contact'].forEach(url => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        document.head.appendChild(link);
+      });
     };
 
     if ('requestIdleCallback' in window) {

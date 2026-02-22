@@ -328,7 +328,7 @@ const EnhancedProductDetailTemplate = ({
           font-size: 14px;
           font-weight: 600;
           transition: all 0.2s;
-          border: 3.2px dashed #3c3c3c;
+          border: 1.2px dashed #4b5563;
           background: #fff;
           color: #000;
           cursor: pointer;
