@@ -110,7 +110,7 @@ const Products = () => {
         {
           name: "Sesame Seeds",
           image: sesameSeedsImg,
-          link: "/products/sesame-seeds",
+          link: "/products/sesame-seeds.png",
           shortDesc: "99.95% purity hulled and natural white/golden sesame seeds.",
           hsn: "1207.40"
         },
