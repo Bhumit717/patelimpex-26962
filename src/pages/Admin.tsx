@@ -276,14 +276,7 @@ const RichTextEditor = ({ value, onChange }: { value: string; onChange: (val: st
     );
 };
 
-const blogCategories = [
-    "Market Insights", "Documentation", "Regulations",
-    "Technology", "Agriculture", "Logistics", "Quality Standards", "Success Stories"
-];
-
-const newsCategories = [
-    "Global Trade", "Industry News", "Company Updates", "Market Trends", "Export Alerts"
-];
+// Categories are now manually typed for flexibility
 
 // ============================================================
 // ADMIN COMPONENT
@@ -700,7 +693,6 @@ const Admin = () => {
                             </div>
                             <nav className="space-y-1">
                                 {[
-                                    { id: "inquiries", label: "Inquiries", icon: MessageSquare },
                                     { id: "blog", label: "Blog Factory", icon: FileText },
                                     { id: "news", label: "News Factory", icon: Newspaper },
                                 ].map((item) => (
@@ -724,67 +716,6 @@ const Admin = () => {
                     <main className="flex-1 space-y-8 animate-fade-in">
 
 
-                        {activeTab === "inquiries" && (
-                            <div className="space-y-8">
-                                <div className="flex justify-between items-center bg-white p-6 rounded-[30px] shadow-sm border border-slate-100">
-                                    <h2 className="text-3xl font-black text-slate-800 font-graduate tracking-tight">Contact Inquiries</h2>
-                                    <div className="text-[10px] font-black font-graduate text-slate-400 uppercase tracking-widest bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
-                                        Total: {inquiries.length} submissions
-                                    </div>
-                                </div>
-
-                                <div className="grid gap-4">
-                                    {inquiries.map((inq) => (
-                                        <Card key={inq.id} className="nm-card !p-6 flex flex-col md:flex-row items-start gap-6 group hover:shadow-2xl transition-all duration-500 bg-white">
-                                            <div className="flex-1 space-y-4">
-                                                <div className="flex flex-wrap items-center gap-3">
-                                                    <h3 className="text-xl font-black text-slate-800 font-graduate">{inq.name}</h3>
-                                                    <span className="text-[10px] font-black text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full font-graduate uppercase">{inq.email}</span>
-                                                    <span className="text-[10px] font-black text-slate-400 font-graduate ml-auto flex items-center gap-1">
-                                                        <Clock size={12} /> {inq.submittedAt?.toDate?.()?.toLocaleString() || new Date(inq.submittedAt).toLocaleString()}
-                                                    </span>
-                                                </div>
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                                                    <div>
-                                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest font-graduate mb-1">Phone</p>
-                                                        <p className="text-sm font-bold text-slate-700">{inq.phone || 'N/A'}</p>
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest font-graduate mb-1">Subject</p>
-                                                        <p className="text-sm font-bold text-slate-700">{inq.subject || 'General Inquiry'}</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest font-graduate mb-2">Message Content</p>
-                                                    <div className="bg-white p-6 rounded-2xl border-2 border-slate-100/50 text-slate-600 text-sm leading-relaxed shadow-inner italic">
-                                                        "{inq.message}"
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <Button
-                                                variant="ghost"
-                                                size="icon"
-                                                className="h-12 w-12 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-2xl shrink-0 mt-1"
-                                                onClick={async () => {
-                                                    if (window.confirm("Remove this inquiry?")) {
-                                                        await deleteDoc(doc(db, "contact_inquiries", inq.id));
-                                                        toast({ title: "Inquiry Deleted" });
-                                                    }
-                                                }}
-                                            >
-                                                <Trash2 size={20} />
-                                            </Button>
-                                        </Card>
-                                    ))}
-                                    {inquiries.length === 0 && (
-                                        <div className="nm-card !p-20 text-center text-slate-300">
-                                            <MessageSquare size={48} className="mx-auto mb-4 opacity-20" />
-                                            <p className="font-graduate uppercase tracking-[0.3em] text-sm text-slate-400 text-center">No inbox messages yet...</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        )}
 
 
                         {activeTab === "blog" && (
@@ -907,16 +838,15 @@ const Admin = () => {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <label className="nm-label !mb-0">Blog Category</label>
-                                            <select
-                                                className="nm-input w-full !p-4 bg-white"
+                                            <label className="nm-label">Category (Manually Type)</label>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="nm-input w-full"
                                                 value={blogForm.category}
                                                 onChange={e => setBlogForm({ ...blogForm, category: e.target.value })}
-                                            >
-                                                {blogCategories.map(cat => (
-                                                    <option key={cat} value={cat}>{cat}</option>
-                                                ))}
-                                            </select>
+                                                placeholder="e.g. Market Insights, Agriculture, etc."
+                                            />
                                         </div>
 
                                         <div className="space-y-4">
@@ -1048,16 +978,15 @@ const Admin = () => {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <label className="nm-label !mb-0">News Category</label>
-                                            <select
-                                                className="nm-input w-full !p-4 bg-white"
+                                            <label className="nm-label">Category (Manually Type)</label>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="nm-input w-full"
                                                 value={newsForm.category}
                                                 onChange={e => setNewsForm({ ...newsForm, category: e.target.value })}
-                                            >
-                                                {newsCategories.map(cat => (
-                                                    <option key={cat} value={cat}>{cat}</option>
-                                                ))}
-                                            </select>
+                                                placeholder="e.g. Global Trade, Export Alerts, etc."
+                                            />
                                         </div>
 
                                         <div className="space-y-4">

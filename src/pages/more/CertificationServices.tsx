@@ -74,7 +74,11 @@ const CertificationServices = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {certificates.map((cert, index) => (
-              <div key={index} className="nm-card !p-0 overflow-hidden bg-white border-none group">
+              <div key={index} className="nm-card !p-0 overflow-hidden bg-white border-none group relative">
+                {/* Corner Logo */}
+                <div className="absolute top-4 right-4 w-12 h-12 z-20 opacity-40 group-hover:opacity-100 transition-opacity">
+                  <img src="/logo.png" alt="Patel Impex Seal" className="w-full h-full object-contain filter grayscale brightness-50" />
+                </div>
                 <div className="relative aspect-[4/3] overflow-hidden bg-white p-8 flex items-center justify-center">
                   <img
                     src={cert.image}
@@ -110,6 +114,38 @@ const CertificationServices = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trade Logos Section */}
+      <section className="py-20 bg-slate-50 border-y border-slate-100 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-black text-slate-800 font-graduate uppercase tracking-tighter">Global Recognition & Membership</h2>
+            <div className="h-1 w-20 bg-green-600 mx-auto mt-4 rounded-full"></div>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-700">
+            <div className="flex flex-col items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/FSSAI_logo.png" alt="FSSAI" className="h-16 object-contain mb-2" />
+              <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Food Safety</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src="https://apeda.gov.in/apedawebsite/images/apeda_logo.png" alt="APEDA" className="h-16 object-contain mb-2" />
+              <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Agro Exports</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src="https://udyamregistration.gov.in/img/msme-logo.png" alt="MSME" className="h-16 object-contain mb-2" />
+              <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Micro Enterprise</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/ISO_9001-2015_%28Seal%29.svg/1200px-ISO_9001-2015_%28Seal%29.svg.png" alt="ISO 9001" className="h-16 object-contain mb-2" />
+              <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Quality Management</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="h-16 w-16 bg-slate-200 rounded-full flex items-center justify-center font-black text-slate-500 font-graduate text-xs mb-2 border-2 border-slate-300">DGFT</div>
+              <span className="text-[10px] font-bold text-slate-400 font-graduate uppercase">Commernce Ministry</span>
+            </div>
           </div>
         </div>
       </section>
