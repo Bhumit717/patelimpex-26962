@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Leaf, Package, ChevronRight } from "lucide-react";
+import { Leaf, Package, ChevronRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import SEOHead from "@/components/SEOHead";
@@ -23,127 +23,48 @@ import animalDungImg from "@/assets/products/animal-dung.png";
 const Products = () => {
   const productCategories = [
     {
-      title: "Spices & Condiments",
-      style: "arched",
-      bgColor: "#f5ece1",
+      title: "Spices & Spices",
+      style: "arched-pink",
+      bgColor: "#FBEAE9",
       items: [
-        {
-          name: "Isabgol (Psyllium)",
-          image: psylliumHuskImg,
-          link: "/products/psyllium-husk",
-          shortDesc: "Premium pharmaceutical grade psyllium husk.",
-          hsn: "1211.90"
-        },
-        {
-          name: "Fennel Seeds",
-          image: fennelSeedsImg,
-          link: "/products/fennel-seeds",
-          shortDesc: "Machine cleaned bold green fennel seeds.",
-          hsn: "0909.61"
-        },
-        {
-          name: "Cumin Seeds",
-          image: cuminSeedsImg,
-          link: "/products/cumin-seeds",
-          shortDesc: "High purity machine cleaned cumin seeds.",
-          hsn: "0909.31"
-        }
+        { name: "Psyllium Husk", image: psylliumHuskImg, link: "/products/psyllium-husk", desc: "Premium purity psyllium husk.", color: "#E67E22", badge: "$20" },
+        { name: "Fennel Seeds", image: fennelSeedsImg, link: "/products/fennel-seeds", desc: "Machine cleaned fennel seeds.", color: "#8E44AD", badge: "$35" },
+        { name: "Cumin Seeds", image: cuminSeedsImg, link: "/products/cumin-seeds", desc: "Bold export grade cumin.", color: "#16A085", badge: "$20" }
       ]
     },
     {
       title: "Grains & Pulses",
-      style: "ribbon",
-      bgColor: "#fbbd22",
+      style: "ribbon-yellow",
+      bgColor: "#FFC107",
       items: [
-        {
-          name: "Rice",
-          image: riceImg,
-          link: "/products/rice",
-          shortDesc: "Basmati & Non-Basmati export varieties.",
-          hsn: "1006.30"
-        },
-        {
-          name: "Wheat",
-          image: sharbatiWheatImg,
-          link: "/products/wheat",
-          shortDesc: "Premium Sharbati and Durum wheat grains.",
-          hsn: "1001.99"
-        },
-        {
-          name: "Wheat Flour",
-          image: wheatFlourImg,
-          link: "/products/wheat-flour",
-          shortDesc: "Finely milled high-protein wheat flour.",
-          hsn: "1101.00"
-        }
+        { name: "Basmati Rice", image: riceImg, link: "/products/rice", desc: "Aromatic long grain rice.", grade: "Grade A", rating: 5 },
+        { name: "Premium Wheat", image: sharbatiWheatImg, link: "/products/wheat", desc: "High protein Sharbati wheat.", grade: "Grade A", rating: 4 },
+        { name: "Wheat Flour", image: wheatFlourImg, link: "/products/wheat-flour", desc: "Multiple milled varieties.", grade: "Grade A", rating: 5 }
       ]
     },
     {
       title: "Oil Seeds",
-      style: "modern",
-      bgColor: "#f8d7da",
+      style: "modern-outline",
+      bgColor: "#FFD54F",
       items: [
-        {
-          name: "Sesame Seeds",
-          image: sesameSeedsImg,
-          link: "/products/sesame-seeds",
-          shortDesc: "Hulled and natural white sesame seeds.",
-          hsn: "1207.40"
-        },
-        {
-          name: "Groundnut",
-          image: groundnutImg,
-          link: "/products/groundnut",
-          shortDesc: "Bold and Java variety export groundnuts.",
-          hsn: "1202.42"
-        },
-        {
-          name: "Soybeans",
-          image: soybeanImg,
-          link: "/products/soybeans",
-          shortDesc: "Non-GMO high protein export soybeans.",
-          hsn: "1201.90"
-        }
+        { name: "Sesame Seeds", image: sesameSeedsImg, link: "/products/sesame-seeds", desc: "Hulled and natural white seeds.", hsn: "1207.40" },
+        { name: "Groundnut", image: groundnutImg, link: "/products/groundnut", desc: "Bold Java export kernels.", hsn: "1202.42" }
       ]
     },
     {
-      title: "Natural Fibers",
-      style: "minimal",
-      bgColor: "#e2f0d9",
+      title: "Industrial & Fibers",
+      style: "rack-card",
+      bgColor: "#F5F5F5",
       items: [
-        {
-          name: "Cotton",
-          image: cottonImg,
-          link: "/products/cotton",
-          shortDesc: "Long staple organic cotton bales.",
-          hsn: "5201.00"
-        }
-      ]
-    },
-    {
-      title: "Bio-Fertilizers",
-      style: "dark",
-      bgColor: "#1a1a1a",
-      items: [
-        {
-          name: "Animal Dung",
-          image: animalDungImg,
-          link: "/products/animal-dung",
-          shortDesc: "100% organic decomposed fertilizer.",
-          hsn: "3101.00"
-        }
+        { name: "Cotton Fiber", image: cottonImg, link: "/products/cotton", desc: "Long staple organic cotton.", features: ["100% Organic", "Export Grade", "Pure White"] },
+        { name: "Animal Dung", image: animalDungImg, link: "/products/animal-dung", desc: "Organic bio-fertilizer.", features: ["Eco-Friendly", "Rich Nutrients", "Export Quality"] }
       ]
     }
   ];
 
-  const allProducts = productCategories.flatMap(cat => cat.items);
-
   return (
     <>
-      <SEOHead title="Our Products | Patel Impex" description="Explore our wide range of premium agro products." canonicalUrl="/products" />
-      <Helmet>
-        <title>Our Products | Premium Agricultural Exports | Patel Impex</title>
-      </Helmet>
+      <SEOHead title="Our Products | Patel Impex" description="Premium agricultural exports from India." />
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -152,167 +73,127 @@ const Products = () => {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* --- CATEGORY STYLE: ARCHED (Spices) --- */
-        .card-arched {
+        /* --- STYLE: ARCHED PINK (Middle Center) --- */
+        .card-arched-pink {
           background: #fff;
-          border-radius: 40px;
-          padding: 24px;
+          border-radius: 50px;
+          padding: 60px 20px 20px;
           text-align: center;
-          transition: transform 0.3s ease;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+          position: relative;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+          margin-top: 60px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
-        .card-arched:hover { transform: translateY(-10px); }
-        .img-frame-arched {
-          background: #fdfaf3;
-          border-radius: 100px 100px 20px 20px;
-          height: 240px;
+        .img-circle-arched {
+          width: 140px;
+          height: 140px;
+          background: #fff;
+          border-radius: 50%;
+          position: absolute;
+          top: -70px;
+          left: 50%;
+          transform: translateX(-50%);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 20px;
-          padding: 30px;
-          border: 1px solid #eee;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+          overflow: hidden;
+          padding: 20px;
+          border: 6px solid #fff;
         }
-        .img-frame-arched img { max-height: 100%; object-contain; }
-        .btn-arched {
-          background: #d4a373;
-          color: white;
-          padding: 12px;
-          border-radius: 50px;
-          display: block;
-          margin-top: 15px;
-          font-weight: 700;
+        .img-circle-arched img { max-height: 100%; object-fit: contain; }
+        .arched-pink-title { font-size: 20px; font-weight: 800; color: #333; margin: 30px 0 8px; text-transform: uppercase; }
+        .arched-pink-desc { font-size: 13px; color: #888; margin-bottom: 25px; line-height: 1.6; max-width: 180px; }
+        .arched-pink-badge { background: #f8f9fa; padding: 6px 15px; border-radius: 20px; font-weight: 800; font-size: 14px; color: #333; margin-bottom: 20px; }
+        .arched-pink-btn { width: 100%; padding: 14px; border-radius: 40px; color: #fff; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+
+        /* --- STYLE: RIBBON YELLOW (Top Right) --- */
+        .card-ribbon-yellow {
+          background: #fff;
+          position: relative;
+          padding: 60px 25px 0 25px;
+          width: 100%;
+          max-width: 290px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+          margin: 0 auto;
+        }
+        .ribbon-classic-tag {
+          position: absolute;
+          top: 0; right: 20px;
+          width: 34px; height: 65px;
+          background: #e74c3c;
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 86%, 0% 100%);
+        }
+        .img-wrap-ribbon { height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
+        .img-wrap-ribbon img { max-height: 90%; object-fit: contain; }
+        .ribbon-yellow-title { font-size: 22px; font-weight: 800; color: #222; margin-bottom: 12px; }
+        .ribbon-yellow-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 20px; }
+        .ribbon-yellow-grade { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+        .grade-val { font-size: 26px; font-weight: 800; color: #333; }
+        .stars-row { color: #222; display: flex; gap: 2px; }
+        .ribbon-yellow-btn { 
+          width: calc(100% + 50px); 
+          margin-left: -25px; 
+          background: #e74c3c; 
+          color: #fff; 
+          padding: 16px; 
+          font-weight: 800; 
+          text-align: center; 
+          text-transform: uppercase; 
           font-size: 12px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
         }
 
-        /* --- CATEGORY STYLE: RIBBON (Grains) --- */
-        .card-ribbon {
+        /* --- STYLE: MODERN OUTLINE (Bottom Left) --- */
+        .card-modern-outline {
+          background: #fff;
+          border-radius: 24px;
+          border: 1px solid #eee;
+          overflow: hidden;
+          padding: 15px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+        }
+        .img-modern-outline {
           background: #fdfaf3;
-          position: relative;
-          padding: 30px 24px;
-          box-shadow: 0 25px 0 rgba(0,0,0,0.07), 0 38px 60px -10px rgba(0,0,0,0.22);
-        }
-        .ribbon-tag {
-          position: absolute;
-          top: 0; right: 30px;
-          width: 40px; height: 70px;
-          background: #FA8072;
-          clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 85%, 0% 100%);
-        }
-        .img-frame-ribbon {
-          border: 1.5px solid rgba(180,148,100,0.3);
+          border-radius: 18px;
           height: 200px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 20px;
-          background: #fff;
+          position: relative;
         }
-        .img-frame-ribbon img { max-height: 80%; object-contain; }
-        .btn-ribbon {
-          background: #FA8072;
-          color: white;
-          padding: 15px;
-          text-align: center;
-          font-weight: 800;
-          display: block;
-          margin-top: 10px;
-        }
+        .img-modern-outline img { max-height: 80%; object-fit: contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
+        .modern-outline-new { position: absolute; top: 15px; left: 15px; background: #fff; padding: 4px 12px; border-radius: 10px; font-size: 10px; font-weight: 800; border: 1px solid #eee; }
+        .modern-outline-title { font-size: 18px; font-weight: 800; color: #333; margin-bottom: 8px; }
+        .modern-outline-desc { font-size: 12px; color: #999; margin-bottom: 15px; }
+        .modern-outline-bottom { border-top: 1px solid #f5f5f5; padding-top: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .modern-hsn { font-size: 14px; font-weight: 800; color: #333; }
+        .modern-btn { color: #e74c3c; font-weight: 800; font-size: 12px; text-transform: uppercase; }
 
-        /* --- CATEGORY STYLE: MODERN (Seeds) --- */
-        .card-modern {
+        /* --- STYLE: RACK CARD (Bottom Right) --- */
+        .card-rack {
           background: #fff;
-          border: 2px solid #000;
-          padding: 0;
-          box-shadow: 10px 10px 0 #000;
-          transition: all 0.2s;
-        }
-        .card-modern:hover { transform: translate(-4px, -4px); box-shadow: 14px 14px 0 #000; }
-        .img-frame-modern {
-          height: 250px;
-          background: #f8f9fa;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-bottom: 2px solid #000;
-        }
-        .img-frame-modern img { max-height: 70%; object-contain; }
-        .content-modern { padding: 20px; }
-        .btn-modern {
-          background: #000;
-          color: #fff;
-          padding: 12px;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-top: 10px;
-        }
-
-        /* --- CATEGORY STYLE: MINIMAL (Fibers) --- */
-        .card-minimal {
-          background: #fff;
-          border-left: 8px solid #50BFC3;
-          padding: 30px;
-          box-shadow: 0 5px 15px rgba(0,0,0,0.05);
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+          overflow: hidden;
+          max-width: 320px;
+          margin: 0 auto;
         }
-        .img-minimal { height: 180px; margin-bottom: 20px; }
-        .btn-minimal { color: #50BFC3; font-weight: 800; border-bottom: 2px solid #50BFC3; margin-top: 10px; }
+        .rack-top { background: #f8f9fa; padding: 30px 20px; display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #eee; }
+        .rack-img { width: 100px; height: 100px; background: #fff; border-radius: 10px; padding: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.05); flex-shrink: 0; }
+        .rack-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .rack-label { font-size: 14px; font-weight: 800; color: #333; line-height: 1.3; text-transform: uppercase; }
+        .rack-body { padding: 30px 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .rack-list { list-style: none; padding: 0; margin-bottom: 30px; }
+        .rack-list li { font-size: 12px; color: #666; font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+        .rack-list li::before { content: ''; width: 6px; height: 6px; background: #27ae60; border-radius: 50%; }
+        .rack-btn { background: #27ae60; color: #fff; text-align: center; padding: 15px; font-weight: 800; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-top: auto; }
 
-        /* --- CATEGORY STYLE: DARK (Fertilizers) --- */
-        .card-dark {
-          background: #2a2a2a;
-          color: white;
-          padding: 40px;
-          border: 1px solid #444;
-          text-align: center;
-        }
-        .img-dark { 
-          background: rgba(255,255,255,0.05);
-          border-radius: 50%;
-          width: 180px; height: 180px;
-          margin: 0 auto 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px dashed #666;
-        }
-        .img-dark img { max-height: 60%; filter: brightness(1.2); }
-        .btn-dark {
-          background: #3ba72f;
-          color: #fff;
-          padding: 12px 30px;
-          border-radius: 4px;
-          display: inline-block;
-          margin-top: 20px;
-          font-weight: 700;
-        }
-
-        .category-stripe {
-          padding: 100px 0;
-        }
-        .section-title {
-          font-size: 42px;
-          font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: -1px;
-          margin-bottom: 60px;
-          position: relative;
-          display: inline-block;
-        }
-        .section-title::after {
-          content: '';
-          position: absolute;
-          bottom: -10px; left: 0;
-          width: 60px; height: 6px;
-          background: currentColor;
-        }
+        .cat-stripe { padding: 120px 0; }
+        .cat-heading { font-size: 48px; font-weight: 900; text-align: center; margin-bottom: 80px; letter-spacing: -2px; }
       `}</style>
 
       <div className="min-h-screen products-page">
@@ -321,85 +202,81 @@ const Products = () => {
         {/* Hero */}
         <section className="pt-40 pb-20 bg-white">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-6xl md:text-8xl font-black mb-6 uppercase tracking-tighter">
-              Product <span className="text-green-600 italic">Catalog</span>
+            <h1 className="text-7xl md:text-9xl font-black mb-6 uppercase tracking-tighter">
+              Product <span className="text-green-600">Archive</span>
             </h1>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              Diverse agricultural solutions tailored for international standards.
-            </p>
           </div>
         </section>
 
         {/* Dynamic Categories */}
-        {productCategories.map((category, idx) => (
-          <section key={idx} className="category-stripe" style={{ backgroundColor: category.bgColor }}>
+        {productCategories.map((cat, idx) => (
+          <section key={idx} className="cat-stripe" style={{ backgroundColor: cat.bgColor }}>
             <div className="container mx-auto px-4">
-              <h2 className={`section-title ${category.style === 'dark' ? 'text-white' : 'text-slate-900'}`}>{category.title}</h2>
+              <h2 className="cat-heading">{cat.title}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 justify-items-center">
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {category.items.map((product, pIdx) => (
-                  <div key={pIdx}>
+                {cat.items.map((item, iIdx) => (
+                  <div key={iIdx} className="w-full">
 
-                    {/* ARCHED STYLE */}
-                    {category.style === "arched" && (
-                      <div className="card-arched">
-                        <div className="img-frame-arched">
-                          <img src={product.image} alt={product.name} />
+                    {cat.style === 'arched-pink' && (
+                      <div className="card-arched-pink">
+                        <div className="img-circle-arched">
+                          <img src={item.image} alt={item.name} />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-800 mb-2">{product.name}</h3>
-                        <p className="text-sm text-slate-500 mb-4">{product.shortDesc}</p>
-                        <Link to={product.link} className="btn-arched">Enquire Now</Link>
+                        <h3 className="arched-pink-title">{item.name}</h3>
+                        <p className="arched-pink-desc">{item.desc}</p>
+                        <div className="arched-pink-badge">{item.badge}</div>
+                        <Link to={item.link} className="arched-pink-btn" style={{ backgroundColor: item.color }}>View Details</Link>
                       </div>
                     )}
 
-                    {/* RIBBON STYLE */}
-                    {category.style === "ribbon" && (
-                      <div className="card-ribbon">
-                        <div className="ribbon-tag"></div>
-                        <div className="img-frame-ribbon">
-                          <img src={product.image} alt={product.name} />
+                    {cat.style === 'ribbon-yellow' && (
+                      <div className="card-ribbon-yellow">
+                        <div className="ribbon-classic-tag"></div>
+                        <div className="img-wrap-ribbon">
+                          <img src={item.image} alt={item.name} />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-800 mb-2">{product.name}</h3>
-                        <p className="text-sm text-slate-500 mb-4">{product.shortDesc}</p>
-                        <Link to={product.link} className="btn-ribbon">VIEW DETAILS</Link>
+                        <h3 className="ribbon-yellow-title">{item.name}</h3>
+                        <p className="ribbon-yellow-desc">{item.desc}</p>
+                        <div className="ribbon-yellow-grade">
+                          <span className="grade-val">Grade A</span>
+                          <div className="stars-row">
+                            {[...Array(5)].map((_, s) => <Star key={s} size={14} fill={s < (item.rating || 5) ? "#333" : "transparent"} stroke="#333" />)}
+                          </div>
+                        </div>
+                        <Link to={item.link} className="ribbon-yellow-btn">View Details</Link>
                       </div>
                     )}
 
-                    {/* MODERN STYLE */}
-                    {category.style === "modern" && (
-                      <div className="card-modern">
-                        <div className="img-frame-modern">
-                          <img src={product.image} alt={product.name} />
+                    {cat.style === 'modern-outline' && (
+                      <div className="card-modern-outline">
+                        <div className="img-modern-outline">
+                          <div className="modern-outline-new">NEW</div>
+                          <img src={item.image} alt={item.name} />
                         </div>
-                        <div className="content-modern">
-                          <h3 className="text-2xl font-black text-slate-900 mb-2">{product.name}</h3>
-                          <p className="text-sm text-slate-600 mb-4">{product.shortDesc}</p>
-                          <Link to={product.link} className="btn-modern">
-                            EXPLORE <ChevronRight className="ml-2 h-4 w-4" />
-                          </Link>
+                        <h3 className="modern-outline-title">{item.name}</h3>
+                        <p className="modern-outline-desc">{item.desc}</p>
+                        <div className="modern-outline-bottom">
+                          <span className="modern-hsn">HSN: {item.hsn}</span>
+                          <Link to={item.link} className="modern-btn">Learn More</Link>
                         </div>
                       </div>
                     )}
 
-                    {/* MINIMAL STYLE */}
-                    {category.style === "minimal" && (
-                      <div className="card-minimal">
-                        <img src={product.image} alt={product.name} className="img-minimal" />
-                        <h3 className="text-2xl font-black text-slate-900 mb-2">{product.name}</h3>
-                        <p className="text-sm text-slate-500 mb-4">{product.shortDesc}</p>
-                        <Link to={product.link} className="btn-minimal">Catalog & Specs</Link>
-                      </div>
-                    )}
-
-                    {/* DARK STYLE */}
-                    {category.style === "dark" && (
-                      <div className="card-dark">
-                        <div className="img-dark">
-                          <img src={product.image} alt={product.name} />
+                    {cat.style === 'rack-card' && (
+                      <div className="card-rack">
+                        <div className="rack-top">
+                          <div className="rack-img">
+                            <img src={item.image} alt={item.name} />
+                          </div>
+                          <h3 className="rack-label">{item.name}<br />Product Information</h3>
                         </div>
-                        <h3 className="text-2xl font-black text-white mb-2">{product.name}</h3>
-                        <p className="text-sm text-slate-400 mb-6">{product.shortDesc}</p>
-                        <Link to={product.link} className="btn-dark">Inquiry</Link>
+                        <div className="rack-body">
+                          <ul className="rack-list">
+                            {(item.features || []).map((f, fIdx) => <li key={fIdx}>{f}</li>)}
+                          </ul>
+                          <Link to={item.link} className="rack-btn">Request Quote</Link>
+                        </div>
                       </div>
                     )}
 
