@@ -195,84 +195,76 @@ const Products = () => {
         </section>
 
         {/* Products Grid by Category */}
-        <section className="pb-32 bg-[#fbbd23] relative overflow-hidden">
+        <section className="pb-32 bg-[#fbbd22] relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             {productCategories.map((category, catIndex) => (
               <div key={catIndex} className="mb-32 last:mb-0">
                 <div className="flex flex-col items-center mb-20">
                   <span className="text-white font-black text-xl mb-4 uppercase tracking-[0.4em] drop-shadow-md">Professional Catalog</span>
                   <div className="flex items-center w-full max-w-5xl">
-                    <div className="h-[2px] bg-white/40 flex-grow rounded-full"></div>
-                    <h2 className="px-12 text-4xl md:text-7xl font-black text-slate-900 font-graduate uppercase tracking-tighter text-center italic">
+                    <div className="h-[3px] bg-white/20 flex-grow rounded-full"></div>
+                    <h2 className="px-12 text-4xl md:text-6xl font-black text-slate-900 font-graduate uppercase tracking-tighter text-center italic">
                       {category.title}
                     </h2>
-                    <div className="h-[2px] bg-white/40 flex-grow rounded-full"></div>
+                    <div className="h-[3px] bg-white/20 flex-grow rounded-full"></div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                   {category.items.map((product, index) => {
                     const themes = [
-                      { accent: "bg-[#FA8072]", text: "text-[#FA8072]", ribbon: "bg-[#FA8072]" },
-                      { accent: "bg-[#50BFC3]", text: "text-[#50BFC3]", ribbon: "bg-[#50BFC3]" },
-                      { accent: "bg-[#FA8072]", text: "text-[#FA8072]", ribbon: "bg-[#FA8072]" },
+                      { accent: "bg-[#FA8072]", ribbon: "bg-[#FA8072]" },
+                      { accent: "bg-[#50BFC3]", ribbon: "bg-[#50BFC3]" },
+                      { accent: "bg-[#FA8072]", ribbon: "bg-[#FA8072]" },
                     ];
                     const theme = themes[index % themes.length];
 
                     return (
                       <div
                         key={index}
-                        className="group relative flex flex-col h-full bg-[#FCF5E5] rounded-[45px] shadow-[0_25px_0_rgba(0,0,0,0.08),0_40px_80px_-15px_rgba(0,0,0,0.2)] overflow-hidden hover:-translate-y-4 transition-all duration-500 border-none"
+                        className="group relative flex flex-col h-full bg-[#fdfaf3] rounded-[15px] shadow-[0_12px_24px_rgba(0,0,0,0.12)] overflow-hidden hover:-translate-y-2 transition-all duration-300 border-none"
                       >
                         {/* Ribbon Tag */}
-                        <div className={`absolute top-0 right-12 w-16 h-28 ${theme.ribbon} z-20 shadow-2xl clip-path-ribbon`}>
-                          <style>{`
-                            .clip-path-ribbon {
-                              clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 88%, 0% 100%);
-                            }
-                          `}</style>
+                        <div className={`absolute top-0 right-10 w-14 h-24 ${theme.ribbon} z-20 shadow-md`}>
+                          <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[28px] border-l-transparent border-r-[28px] border-r-transparent border-b-[18px] border-b-[#fdfaf3]"></div>
                         </div>
 
                         {/* Image Frame */}
-                        <div className="p-12 pb-6">
-                          <div className="relative aspect-square rounded-[40px] border-2 border-slate-300/30 bg-transparent flex items-center justify-center overflow-hidden p-10">
+                        <div className="p-8 pb-4">
+                          <div className="relative aspect-auto h-64 rounded-[15px] border-[1.5px] border-[#d2b48c]/40 bg-transparent flex items-center justify-center overflow-hidden p-6">
                             <img
                               src={product.image}
                               alt={product.name}
-                              className="max-h-full max-w-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.2)] group-hover:scale-105 transition-transform duration-1000"
+                              className="max-h-full max-w-full object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.1)] group-hover:scale-105 transition-transform duration-500"
                             />
                           </div>
                         </div>
 
                         {/* Content */}
-                        <div className="p-12 pt-4 flex-grow flex flex-col">
-                          <h3 className="text-4xl font-black text-slate-900 mb-3 leading-none uppercase tracking-tight font-graduate">
+                        <div className="p-8 pt-2 flex-grow flex flex-col">
+                          <h3 className="text-3xl font-black text-slate-800 mb-2 leading-tight">
                             {product.name}
                           </h3>
-                          <p className="text-slate-500 font-bold text-base leading-relaxed mb-12 opacity-70">
-                            Verified Indian source. {product.specs[0]}, {product.specs[1]}.
+                          <p className="text-slate-500 text-sm leading-relaxed mb-8 max-w-[85%]">
+                            {product.specs[0]} and industrial grade quality for global export.
                           </p>
 
                           <div className="mt-auto">
                             <div className="flex items-center justify-between mb-4">
-                              <div className="flex items-baseline space-x-2">
-                                <span className="text-7xl font-black text-slate-900 tracking-tighter">$</span>
-                                <span className="text-5xl font-black text-slate-900 tracking-tighter">HSN</span>
-                                <span className="text-2xl font-black text-slate-900">{product.hsn.split(".")[0]}</span>
+                              <div className="flex items-baseline">
+                                <span className="text-6xl font-black text-slate-800 tracking-tighter">
+                                  {product.hsn.split('.')[0]}
+                                </span>
                               </div>
-                              <div className="flex flex-col items-end">
-                                <div className="flex space-x-1 mb-1">
+                              <div className="flex flex-col items-center">
+                                <div className="flex space-x-0.5 mb-1">
                                   {[1, 2, 3, 4, 5].map((s) => (
-                                    <Star key={s} className={`h-5 w-5 ${s <= 4 ? "fill-slate-900 text-slate-900" : "text-slate-300"}`} />
+                                    <Star key={s} className={`h-4 w-4 ${s <= 4 ? "fill-slate-800 text-slate-800" : "text-slate-300"}`} />
                                   ))}
                                 </div>
-                                <span className="text-[11px] font-black uppercase tracking-widest text-[#FA8072]">Top Exporter</span>
+                                <div className="h-[1.5px] bg-slate-800 w-full mb-1"></div>
+                                <span className="text-[10px] font-bold text-slate-800 uppercase tracking-tighter">Premium Grade</span>
                               </div>
-                            </div>
-                            <div className="h-[2px] bg-slate-200 w-full mb-3"></div>
-                            <div className="flex justify-between items-center px-1">
-                              <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest">Global Logistics ready</span>
-                              <span className="text-[11px] font-black text-slate-900 uppercase tracking-widest border-b-2 border-[#FA8072]">Verified</span>
                             </div>
                           </div>
                         </div>
@@ -280,10 +272,10 @@ const Products = () => {
                         {/* Bottom Action Bar */}
                         <Link
                           to={product.link}
-                          className={`${theme.accent} py-10 flex items-center justify-center hover:brightness-110 transition-all no-underline w-full border-t border-white/20`}
+                          className={`${theme.accent} py-6 flex items-center justify-center hover:brightness-105 transition-all no-underline w-full`}
                         >
-                          <span className="text-white font-black font-graduate uppercase tracking-[0.4em] text-sm">
-                            ADD TO INQUIRY
+                          <span className="text-white font-bold uppercase tracking-widest text-xs">
+                            ADD TO CART
                           </span>
                         </Link>
                       </div>
