@@ -13,7 +13,7 @@ const SEOHead = ({
   title,
   description,
   canonicalUrl,
-  ogImage = "/logo.png",
+  ogImage = "https://patelimpex.com/lovable-uploads/9441ee54-1129-4a42-899b-fae2056a0aec.png",
   ogType = "website",
   jsonLd,
 }: SEOHeadProps) => {
