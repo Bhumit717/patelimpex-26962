@@ -198,7 +198,7 @@ const Products = () => {
         .pi-card {
           position: relative;
           background: #fdfaf3;
-          border-radius: 15px;
+          border-radius: 0;
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -255,7 +255,7 @@ const Products = () => {
 
         .pi-img-frame {
           border: 1.5px solid rgba(180,148,100,0.35);
-          border-radius: 14px;
+          border-radius: 0;
           background: transparent;
           display: flex;
           align-items: center;

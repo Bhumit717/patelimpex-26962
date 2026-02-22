@@ -112,7 +112,7 @@ const EnhancedProductDetailTemplate = ({
         }
 
         .single_product_page {
-          background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+          background: #ffffff;
         }
 
         /* ===== SECTION 1: Summary ===== */
