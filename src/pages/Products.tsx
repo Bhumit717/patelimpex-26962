@@ -195,81 +195,98 @@ const Products = () => {
         </section>
 
         {/* Products Grid by Category */}
-        <section className="pb-24 bg-[#FFFCF5] relative overflow-hidden">
+        <section className="pb-32 bg-[#fbbd23] relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             {productCategories.map((category, catIndex) => (
-              <div key={catIndex} className="mb-24 last:mb-0">
-                <div className="flex flex-col items-center mb-16">
-                  <span className="text-green-600 font-fredericka text-2xl mb-2 lowercase tracking-tighter">Collection</span>
-                  <div className="flex items-center w-full">
-                    <div className="h-[2px] bg-slate-200 flex-grow rounded-full opacity-50"></div>
-                    <h2 className="px-10 text-3xl md:text-5xl font-black text-slate-900 font-graduate uppercase tracking-tighter text-center">
+              <div key={catIndex} className="mb-32 last:mb-0">
+                <div className="flex flex-col items-center mb-20">
+                  <span className="text-white font-black text-xl mb-4 uppercase tracking-[0.4em] drop-shadow-md">Professional Catalog</span>
+                  <div className="flex items-center w-full max-w-5xl">
+                    <div className="h-[2px] bg-white/40 flex-grow rounded-full"></div>
+                    <h2 className="px-12 text-4xl md:text-7xl font-black text-slate-900 font-graduate uppercase tracking-tighter text-center italic">
                       {category.title}
                     </h2>
-                    <div className="h-[2px] bg-slate-200 flex-grow rounded-full opacity-50"></div>
+                    <div className="h-[2px] bg-white/40 flex-grow rounded-full"></div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
                   {category.items.map((product, index) => {
                     const themes = [
-                      { bg: "bg-rose-50", accent: "bg-rose-400", border: "border-rose-100", text: "text-rose-600", ribbon: "bg-rose-500" },
-                      { bg: "bg-cyan-50", accent: "bg-cyan-500", border: "border-cyan-100", text: "text-cyan-700", ribbon: "bg-cyan-600" },
-                      { bg: "bg-amber-50", accent: "bg-amber-400", border: "border-amber-100", text: "text-amber-700", ribbon: "bg-amber-500" },
+                      { accent: "bg-[#FA8072]", text: "text-[#FA8072]", ribbon: "bg-[#FA8072]" },
+                      { accent: "bg-[#50BFC3]", text: "text-[#50BFC3]", ribbon: "bg-[#50BFC3]" },
+                      { accent: "bg-[#FA8072]", text: "text-[#FA8072]", ribbon: "bg-[#FA8072]" },
                     ];
                     const theme = themes[index % themes.length];
 
                     return (
-                      <Link
+                      <div
                         key={index}
-                        to={product.link}
-                        className={`group relative flex flex-col h-full bg-[#FFFBF0] rounded-[40px] border-b-[8px] border-slate-200/50 overflow-hidden hover:-translate-y-4 transition-all duration-500 shadow-xl`}
+                        className="group relative flex flex-col h-full bg-[#FCF5E5] rounded-[45px] shadow-[0_25px_0_rgba(0,0,0,0.08),0_40px_80px_-15px_rgba(0,0,0,0.2)] overflow-hidden hover:-translate-y-4 transition-all duration-500 border-none"
                       >
                         {/* Ribbon Tag */}
-                        <div className={`absolute top-0 right-10 w-10 h-16 ${theme.ribbon} z-20 shadow-lg`}>
-                          <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[12px] border-b-[#FFFBF0]"></div>
+                        <div className={`absolute top-0 right-12 w-16 h-28 ${theme.ribbon} z-20 shadow-2xl clip-path-ribbon`}>
+                          <style>{`
+                            .clip-path-ribbon {
+                              clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 88%, 0% 100%);
+                            }
+                          `}</style>
                         </div>
 
                         {/* Image Frame */}
-                        <div className="p-8 pb-0">
-                          <div className={`relative h-64 rounded-[30px] border-2 ${theme.border} bg-white flex items-center justify-center overflow-hidden group-hover:shadow-inner transition-shadow`}>
+                        <div className="p-12 pb-6">
+                          <div className="relative aspect-square rounded-[40px] border-2 border-slate-300/30 bg-transparent flex items-center justify-center overflow-hidden p-10">
                             <img
                               src={product.image}
                               alt={product.name}
-                              className="max-h-[70%] max-w-[70%] object-contain group-hover:scale-110 transition-transform duration-1000"
+                              className="max-h-full max-w-full object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.2)] group-hover:scale-105 transition-transform duration-1000"
                             />
-                            <div className="absolute top-4 left-4">
-                              <span className={`px-3 py-1 bg-white/90 backdrop-blur-sm ${theme.text} text-[9px] font-black rounded-full border border-slate-100 font-graduate uppercase tracking-widest`}>
-                                Official Export
-                              </span>
-                            </div>
                           </div>
                         </div>
 
                         {/* Content */}
-                        <div className="p-10 flex-grow">
-                          <div className="mb-4">
-                            <span className={`text-[10px] font-black ${theme.text} uppercase tracking-[0.2em] font-graduate`}>HSN: {product.hsn}</span>
-                            <h3 className="text-3xl font-black text-slate-900 mt-2 font-graduate uppercase tracking-tight leading-none">
-                              {product.name}
-                            </h3>
-                          </div>
+                        <div className="p-12 pt-4 flex-grow flex flex-col">
+                          <h3 className="text-4xl font-black text-slate-900 mb-3 leading-none uppercase tracking-tight font-graduate">
+                            {product.name}
+                          </h3>
+                          <p className="text-slate-500 font-bold text-base leading-relaxed mb-12 opacity-70">
+                            Verified Indian source. {product.specs[0]}, {product.specs[1]}.
+                          </p>
 
-                          <div className="space-y-4 mb-8">
-                            <p className="text-xs text-slate-400 font-bold font-graduate uppercase tracking-widest leading-relaxed">
-                              {product.specs.join(" • ")}
-                            </p>
+                          <div className="mt-auto">
+                            <div className="flex items-center justify-between mb-4">
+                              <div className="flex items-baseline space-x-2">
+                                <span className="text-7xl font-black text-slate-900 tracking-tighter">$</span>
+                                <span className="text-5xl font-black text-slate-900 tracking-tighter">HSN</span>
+                                <span className="text-2xl font-black text-slate-900">{product.hsn.split(".")[0]}</span>
+                              </div>
+                              <div className="flex flex-col items-end">
+                                <div className="flex space-x-1 mb-1">
+                                  {[1, 2, 3, 4, 5].map((s) => (
+                                    <Star key={s} className={`h-5 w-5 ${s <= 4 ? "fill-slate-900 text-slate-900" : "text-slate-300"}`} />
+                                  ))}
+                                </div>
+                                <span className="text-[11px] font-black uppercase tracking-widest text-[#FA8072]">Top Exporter</span>
+                              </div>
+                            </div>
+                            <div className="h-[2px] bg-slate-200 w-full mb-3"></div>
+                            <div className="flex justify-between items-center px-1">
+                              <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest">Global Logistics ready</span>
+                              <span className="text-[11px] font-black text-slate-900 uppercase tracking-widest border-b-2 border-[#FA8072]">Verified</span>
+                            </div>
                           </div>
                         </div>
 
                         {/* Bottom Action Bar */}
-                        <div className={`${theme.accent} py-6 flex items-center justify-center group-hover:brightness-110 transition-all`}>
-                          <span className="text-white font-graduate font-black uppercase tracking-[0.3em] text-xs">
-                            Access Specifications
+                        <Link
+                          to={product.link}
+                          className={`${theme.accent} py-10 flex items-center justify-center hover:brightness-110 transition-all no-underline w-full border-t border-white/20`}
+                        >
+                          <span className="text-white font-black font-graduate uppercase tracking-[0.4em] text-sm">
+                            ADD TO INQUIRY
                           </span>
-                          <ArrowRight className="h-4 w-4 ml-3 text-white group-hover:translate-x-2 transition-transform" />
-                        </div>
-                      </Link>
+                        </Link>
+                      </div>
                     );
                   })}
                 </div>
@@ -277,13 +294,13 @@ const Products = () => {
             ))}
 
             {/* Contact CTA */}
-            <div className="text-center mt-20">
+            <div className="text-center mt-32">
               <Link
                 to="/contact"
-                className="nm-btn-green inline-flex items-center !w-auto min-w-[300px] !py-6"
+                className="inline-flex items-center bg-slate-900 text-white px-16 py-8 rounded-full hover:scale-105 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] group"
               >
-                <Package className="h-5 w-5 mr-4" />
-                <span className="font-graduate uppercase tracking-[0.3em] text-sm">Request Volume Quote</span>
+                <Package className="h-6 w-6 mr-4 group-hover:rotate-12 transition-transform" />
+                <span className="font-black font-graduate uppercase tracking-[0.4em] text-sm">Request Free Quote</span>
               </Link>
             </div>
           </div>
