@@ -53,14 +53,16 @@ const About = () => {
               <h1 className="text-5xl md:text-6xl font-black text-slate-800 mb-12">
                 Welcome to <span className="text-[#1a365d]">Patel Impex</span>
               </h1>
-              <div className="relative opacity-20">
-                <svg viewBox="0 0 1000 500" className="w-full grayscale">
-                  <path fill="#94a3b8" d="M150,200 Q200,150 250,200 T350,200 T450,200 T550,200 T650,200 T750,200 T850,200" />
-                  <text x="50" y="250" fontSize="10" fill="#94a3b8 opacity-0">World Map silhouette placeholder</text>
-                  {/* Simplified World Map SVG path representation */}
-                  <path fill="#cbd5e1" d="M220,180c-5,0-10,5-10,10s5,10,10,10s10-5,10-10S225,180,220,180z M350,150c-30,0-50,20-50,50c0,30,20,50,50,50s50-20,50-50 C400,170,380,150,350,150z M650,220c-20,0-40,10-40,30c0,20,20,30,40,30s40-10,40-30C690,230,670,220,650,220z M800,280 c-10,0-20,5-20,15s10,15,20,15s20-5,20-15S810,280,800,280z" />
-                  <image href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Earth_map_fixed.svg/1024px-Earth_map_fixed.svg.png" x="0" y="0" width="1000" height="500" opacity="0.3" />
-                </svg>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl mt-12 group border-4 border-white">
+                <video
+                  src="/globalexport-map.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a365d]/20 to-transparent"></div>
               </div>
             </div>
 
