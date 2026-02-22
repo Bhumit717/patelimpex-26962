@@ -22,7 +22,7 @@ const Products = () => {
     {
       title: "Spices & Spices",
       style: "arched-pink",
-      bgColor: "#FBEAE9",
+      bgColor: "#FAFAFA", // Clean off-white
       items: [
         { name: "Psyllium Husk", image: psylliumHuskImg, link: "/products/psyllium-husk", desc: "Premium purity psyllium husk.", color: "#E67E22" },
         { name: "Fennel Seeds", image: fennelSeedsImg, link: "/products/fennel-seeds", desc: "Machine cleaned fennel seeds.", color: "#8E44AD" },
@@ -32,7 +32,7 @@ const Products = () => {
     {
       title: "Grains & Pulses",
       style: "ribbon-yellow",
-      bgColor: "#FFC107",
+      bgColor: "#FFFDF5", // Very soft cream
       items: [
         { name: "Basmati Rice", image: riceImg, link: "/products/rice", desc: "Aromatic long grain rice." },
         { name: "Premium Wheat", image: sharbatiWheatImg, link: "/products/wheat", desc: "High protein Sharbati wheat." },
@@ -42,7 +42,7 @@ const Products = () => {
     {
       title: "Oil Seeds",
       style: "modern-outline",
-      bgColor: "#FFD54F",
+      bgColor: "#F8FAFC", // Soft slate blue
       items: [
         { name: "Sesame Seeds", image: sesameSeedsImg, link: "/products/sesame-seeds", desc: "Hulled and natural white seeds.", hsn: "1207.40" },
         { name: "Groundnut", image: groundnutImg, link: "/products/groundnut", desc: "Bold Java export kernels.", hsn: "1202.42" },
@@ -52,7 +52,7 @@ const Products = () => {
     {
       title: "Natural Fibers",
       style: "modern-outline",
-      bgColor: "#FDF6E3",
+      bgColor: "#F9FAF5", // Soft sage tint
       items: [
         { name: "Cotton Fiber", image: cottonImg, link: "/products/cotton", desc: "Long staple organic cotton.", hsn: "5201.00" }
       ]
@@ -60,7 +60,7 @@ const Products = () => {
     {
       title: "Bio-Fertilizers",
       style: "rack-card",
-      bgColor: "#F5F5F5",
+      bgColor: "#FBFBFE", // Soft light stone
       items: [
         { name: "Animal Dung", image: animalDungImg, link: "/products/animal-dung", desc: "Organic bio-fertilizer.", features: ["Eco-Friendly", "Rich Nutrients", "Export Quality"] }
       ]
