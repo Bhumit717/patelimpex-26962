@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Calendar, Clock, ArrowRight, Search, Filter, Bell, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import BlogLeadForm from "@/components/BlogLeadForm";
@@ -47,10 +47,25 @@ const Blog = () => {
     return () => unsubscribe();
   }, []);
 
-  const categories = [
-    "All Posts", "Market Insights", "Documentation", "Regulations",
-    "Technology", "Agriculture", "Logistics", "Quality Standards", "Success Stories"
-  ];
+  const categories = useMemo(() => {
+    // Collect all categories used in posts
+    const categoryCounts: Record<string, number> = {};
+    posts.forEach(post => {
+      if (post.category) {
+        // Handle both "Market Insights" and "market insights" by normalizing
+        const normalized = post.category.trim();
+        categoryCounts[normalized] = (categoryCounts[normalized] || 0) + 1;
+      }
+    });
+
+    // Sort by count descending and take top 5
+    const top5 = Object.entries(categoryCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([name]) => name);
+
+    return ["All Posts", ...top5];
+  }, [posts]);
 
   const handleSubscribe = async () => {
     if (!email) {
