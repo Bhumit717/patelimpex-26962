@@ -75,10 +75,7 @@ const CertificationServices = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {certificates.map((cert, index) => (
               <div key={index} className="nm-card !p-0 overflow-hidden bg-white border-none group relative">
-                {/* Corner Logo */}
-                <div className="absolute top-4 right-4 w-12 h-12 z-20 opacity-40 group-hover:opacity-100 transition-opacity">
-                  <img src="/logo.png" alt="Patel Impex Seal" className="w-full h-full object-contain filter grayscale brightness-50" />
-                </div>
+                {/* Corner Logo Removed */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-white p-8 flex items-center justify-center">
                   <img
                     src={cert.image}
@@ -125,7 +122,7 @@ const CertificationServices = () => {
             <h2 className="text-2xl font-black text-slate-800 font-graduate uppercase tracking-tighter">Global Recognition & Membership</h2>
             <div className="h-1 w-20 bg-green-600 mx-auto mt-4 rounded-full"></div>
           </div>
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <img
               src="/certification-badge.png"
               alt="Certifications and Memberships"
