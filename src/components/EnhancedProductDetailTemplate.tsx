@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, MessageSquare, Mail, ChevronRight, Globe, ShieldCheck } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronUp, MessageSquare, FlaskConical, Tag, BadgeCheck, Globe } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -60,36 +60,37 @@ const EnhancedProductDetailTemplate = ({
 }: EnhancedProductDetailTemplateProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("DESCRIPTION");
-
-  const colors = {
-    navy: "#124576",
-    orange: "#ef7f1a",
-    whatsapp: "#3ba72f",
-    text: "#212529",
-    border: "#a8a8a8",
-    bgGradient: "linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%)",
-    tabBorder: "#3c3c3c"
-  };
+  const [activeTab, setActiveTab] = useState("description");
+  const [shippingOpen, setShippingOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: name,
-    description: description,
+    name,
+    description,
     image: images,
     url: `https://patelimpex.com${canonicalUrl}`,
-    brand: {
-      "@type": "Brand",
-      name: "Patel Impex",
-    },
+    brand: { "@type": "Brand", name: "Patel Impex" },
     sku: hsCode,
   };
 
-  const tabs = ["DESCRIPTION", "SPECIFICATION", "USES BENEFITS"];
+  const tabs = [
+    { id: "description", label: "Description" },
+    { id: "specification", label: "Specification" },
+    { id: "uses_benefits", label: "Uses Benefits" },
+    { id: "export_information", label: "Export Information" },
+  ];
+
+  const shippingItems = [
+    { bold: "Worldwide Export Services -", text: " We deliver premium products to more than 40+ countries across Asia, Europe, Middle East, Africa & USA." },
+    { bold: "Reliable Shipping Partners -", text: " Tie-ups with leading logistics & freight companies to ensure safe and timely delivery." },
+    { bold: "Fast & Secure Delivery -", text: " Orders are dispatched via sea, air & land freight with proper tracking support." },
+    { bold: "Customs & Documentation -", text: " Complete assistance with export documentation, certifications & compliance for hassle-free trade." },
+  ];
 
   return (
-    <div className="min-h-screen font-['Plus_Jakarta_Sans',_sans-serif]" style={{ backgroundImage: colors.bgGradient, color: colors.text }}>
+    <div className="min-h-screen single_product_page" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: "#212529" }}>
       <SEOHead
         title={metaTitle || `${name} Exporter India | Patel Impex`}
         description={metaDescription || description.substring(0, 160)}
@@ -99,256 +100,509 @@ const EnhancedProductDetailTemplate = ({
         jsonLd={jsonLd}
       />
 
-      {/* Load Font and Custom Styles */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800\u0026display=swap');
-        
-        .active-tab {
-          background-color: ${colors.orange} !important;
-          color: white !important;
-          border: none !important;
-        }
-        
-        .inactive-tab {
-          background-color: white !important;
-          color: black !important;
-          border: 3.2px dashed ${colors.tabBorder} !important;
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+          --navy: #124576;
+          --orange: #ef7f1a;
+          --green: #3ba72f;
+          --black: #212529;
+          --white: #fff;
         }
 
-        .container-trigol {
+        .single_product_page {
+          background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+        }
+
+        /* ===== SECTION 1: Summary ===== */
+        .single_product_sec {
+          padding: 60px 0;
+        }
+
+        .trigol-container {
           max-width: 1320px;
-          margin-left: auto;
-          margin-right: auto;
-          padding-left: 12px;
-          padding-right: 12px;
+          margin: 0 auto;
+          padding: 0 12px;
         }
 
-        .trigol-summary-row {
-          padding-top: 60px;
-          padding-bottom: 60px;
+        /* Image Gallery */
+        .single_product_gallery_img {
+          padding-right: 30px;
         }
 
-        .trigol-whatsapp-btn {
-          background-color: ${colors.whatsapp};
+        .single_product_img_slide {
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          overflow: hidden;
+          margin-bottom: 16px;
+          background: #fff;
+        }
+
+        .single_product_img_slide img {
+          width: 100%;
+          aspect-ratio: 3 / 2.5;
+          object-fit: cover;
+        }
+
+        .thumb-row {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-top: 8px;
+        }
+
+        .thumb-btn {
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          overflow: hidden;
+          width: 72px;
+          height: 65px;
+          cursor: pointer;
+          transition: all 0.3s;
+          background: #fff;
+          padding: 0;
+        }
+
+        .thumb-btn:hover, .thumb-btn.active {
+          border-color: #696969;
+        }
+
+        .thumb-btn img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        /* Product Info Right Col */
+        .shop_page_para {
+          padding-left: 10px;
+        }
+
+        .sec_sub_title {
+          font-size: 14px;
+          text-transform: uppercase;
+          letter-spacing: 0.3em;
+          color: var(--orange);
+          font-weight: 700;
+          margin-bottom: 4px;
+        }
+
+        .sec_title {
+          font-size: 38px;
+          font-weight: 800;
+          color: var(--navy);
+          margin-bottom: 16px;
+          line-height: 1.1;
+        }
+
+        .product_short_dec {
+          font-size: 17px;
+          font-weight: 400;
+          margin-bottom: 18px;
+          line-height: 1.6;
+          color: #212529;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp_btn a {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background-color: var(--green);
           color: white;
           padding: 8px 18px;
           border-radius: 50px;
           font-size: 16px;
           font-weight: 500;
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-          transition: transform 0.2s, brightness 0.2s;
+          text-decoration: none;
+          transition: transform 0.2s;
+          box-shadow: 0 4px 12px rgba(59,167,47,0.35);
+          margin-bottom: 18px;
         }
-
-        .trigol-whatsapp-btn:hover {
+        .whatsapp_btn a:hover {
           transform: translateY(-2px);
           filter: brightness(1.05);
         }
 
-        .trigol-bullet {
-          width: 14px;
-          height: 14px;
-          background-color: ${colors.orange};
-          display: inline-block;
-          margin-right: 15px;
-          margin-top: 6px;
+        /* Highlight Boxes */
+        .product_icon_highlights {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          padding: 15px;
+          border-radius: 6px;
+          background: #fffbf4;
+          margin: 25px 0;
+          flex-direction: column;
+          border: 1px solid rgba(166,138,112,0.46);
+        }
+
+        .highlight-box {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+
+        .highlight-box .icon {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--navy);
           flex-shrink: 0;
+        }
+
+        .highlight-text {
+          font-size: 16px;
+          font-weight: 500;
+          color: var(--black);
+        }
+
+        /* Accordion */
+        .product_custom_info {
+          margin-top: 8px;
+        }
+
+        .accordion-item-custom {
+          background: #fafafa;
+          margin: 5px 0;
+          border: 1px solid #e5e5e5;
+          border-radius: 4px;
+          overflow: hidden;
+        }
+
+        .accordion-btn-custom {
+          width: 100%;
+          text-align: left;
+          padding: 14px 5px;
+          font-size: 18px;
+          font-weight: 600;
+          background: #fff;
+          border: none;
+          border-bottom: 1px solid #eee;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: #000;
+        }
+
+        .accordion-body-custom {
+          padding: 15px 10px;
+        }
+
+        .accordion-body-custom ul li {
+          list-style: circle;
+          margin-left: 23px;
+          margin-bottom: 11px;
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        /* ===== SECTION 2: Tabs ===== */
+        .single_product_info {
+          background: transparent;
+          padding: 0 0 60px;
+        }
+
+        .sp_menu_btns {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+          margin-bottom: 30px;
+          padding: 30px 0 0;
+        }
+
+        .sp_menu_btns a {
+          text-decoration: none;
+          padding: 8px 22px;
+          border-radius: 50px;
+          font-size: 14px;
+          font-weight: 600;
+          transition: all 0.2s;
+          border: 3.2px dashed #3c3c3c;
+          background: #fff;
+          color: #000;
+          cursor: pointer;
+          display: inline-block;
+        }
+
+        .sp_menu_btns a.active_tab_head {
+          background: var(--orange);
+          color: #fff;
+          border: none;
+        }
+
+        /* Tab content block */
+        .single_product_para {
+          background: #fff;
+          border: 1px solid #d4d4d4;
+          border-radius: 8px;
+          margin-bottom: 30px;
+          padding: 30px 35px;
+          scroll-margin-top: 200px;
+        }
+
+        .single_product_para h4 {
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--navy);
+          margin-bottom: 20px;
+          padding-bottom: 10px;
+          border-bottom: 2px solid #f0f0f0;
+        }
+
+        .single_product_para p {
+          font-size: 16px;
+          line-height: 1.8;
+          color: #212529;
+          margin-bottom: 0;
+        }
+
+        /* Spec & Export Table */
+        .trigol-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 5px;
+        }
+
+        .trigol-table th, .trigol-table td {
+          border: 1px solid #dee2e6;
+          padding: 8px 12px;
+          text-align: left;
+          font-size: 15px;
+          vertical-align: middle;
+        }
+
+        .trigol-table th {
+          background: #f8f9fa;
+          font-weight: 600;
+          color: var(--navy);
+          width: 35%;
+        }
+
+        .trigol-table tr:hover td {
+          background: #f9f9f9;
+        }
+
+        /* Uses & Benefits list */
+        .single_product_para ul {
+          margin: 0;
+          padding-left: 0;
+          list-style: none;
+        }
+
+        .single_product_para ul li {
+          display: flex;
+          align-items: flex-start;
+          font-size: 16px;
+          line-height: 28px;
+          color: #212529;
+          margin-bottom: 8px;
+        }
+
+        .orange-bullet {
+          width: 10px;
+          height: 10px;
+          background: var(--orange);
+          display: inline-block;
+          flex-shrink: 0;
+          margin-top: 9px;
+          margin-right: 14px;
         }
       `}</style>
 
       <Navigation />
 
-      <main className="pt-24 pb-20">
-        <div className="container-trigol">
-          {/* Breadcrumbs */}
-          <div className="flex items-center space-x-2 text-[11px] font-extrabold mb-10 uppercase tracking-[0.25em] text-slate-400">
-            {breadcrumbs.map((item, i) => (
-              <div key={i} className="flex items-center">
-                {item.href ? (
-                  <Link to={item.href} className="hover:text-orange-500 transition-colors">{item.label}</Link>
-                ) : (
-                  <span>{item.label}</span>
-                )}
-                {i < breadcrumbs.length - 1 && <ChevronRight className="h-4 w-4 mx-2 opacity-50" />}
-              </div>
-            ))}
-          </div>
+      <main className="single_product_page" style={{ paddingTop: "100px" }}>
 
-          {/* 1. Summary Section (Grid) */}
-          <div className="grid lg:grid-cols-2 gap-16 trigol-summary-row">
-            {/* Column 1: Product Image */}
-            <div className="flex flex-col items-center">
-              <div className="bg-white rounded-[15px] shadow-[0_15px_35px_rgba(0,0,0,0.05)] p-12 w-full aspect-square flex items-center justify-center border border-white overflow-hidden relative group">
-                <img
-                  src={images[selectedImage]}
-                  alt={name}
-                  className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              {images.length > 1 && (
-                <div className="flex flex-wrap gap-4 mt-8 justify-center">
-                  {images.map((img, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all p-1 bg-white ${selectedImage === index ? "border-orange-500 shadow-md" : "border-slate-100 hover:border-slate-300"}`}
-                    >
-                      <img src={img} alt="thumbnail" className="w-full h-full object-contain" />
-                    </button>
-                  ))}
-                </div>
-              )}
+        {/* ===== SECTION 1: Product Summary ===== */}
+        <section className="single_product_sec">
+          <div className="trigol-container">
+            {/* Breadcrumbs */}
+            <div className="flex items-center flex-wrap gap-1 text-xs font-semibold mb-8 uppercase tracking-widest text-slate-500">
+              {breadcrumbs.map((item, i) => (
+                <span key={i} className="flex items-center">
+                  {item.href ? (
+                    <Link to={item.href} className="hover:text-orange-500 transition-colors">{item.label}</Link>
+                  ) : (
+                    <span>{item.label}</span>
+                  )}
+                  {i < breadcrumbs.length - 1 && <ChevronRight className="h-3 w-3 mx-1 opacity-50" />}
+                </span>
+              ))}
             </div>
 
-            {/* Column 2: Product Header Info */}
-            <div className="flex flex-col justify-center">
-              <div className="mb-2">
-                <span className="text-[14px] font-extrabold uppercase tracking-[0.4em]" style={{ color: colors.orange }}>{category}</span>
-                <h1 className="text-[38px] font-extrabold leading-tight mt-1 mb-10" style={{ color: colors.navy }}>{name}</h1>
-              </div>
-
-              <div className="mb-12">
-                <p className="text-[16px] leading-[1.6] text-[#212529] font-medium opacity-90">
-                  {description}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-6">
-                <button
-                  onClick={() => setIsQuoteModalOpen(true)}
-                  className="trigol-whatsapp-btn uppercase tracking-widest font-bold"
-                >
-                  <MessageSquare className="h-5 w-5" />
-                  <span>Whatsapp Enquiry</span>
-                </button>
-
-                {hsCode && (
-                  <div className="bg-white px-6 py-2.5 border-2 border-dashed border-slate-200 rounded-lg text-xs font-black text-slate-400 tracking-widest flex items-center">
-                    HSN: <span className="text-[#124576] ml-2">{hsCode}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* 2. Tab Navigation (Centered) */}
-          <div className="flex flex-wrap justify-center gap-4 mb-2 pt-10">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`text-sm font-bold py-3.5 px-10 transition-all rounded-[50px] tracking-[0.1em] ${activeTab === tab ? "active-tab" : "inactive-tab"}`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          {/* 3. Tab Content Area (White Card) */}
-          <div className="bg-white rounded-[15px] shadow-[0_20px_40px_rgba(0,0,0,0.04)] p-12 md:p-16 border border-white min-h-[400px]">
-            {activeTab === "DESCRIPTION" && (
-              <div className="animate-in fade-in duration-500">
-                <h2 className="text-[28px] font-extrabold text-[#124576] text-center mb-12 uppercase tracking-tight">Description</h2>
-                <div className="max-w-4xl mx-auto">
-                  <p className="text-[16px] leading-[1.8] text-[#212529] font-medium">
-                    {description}
-                  </p>
-
-                  {/* Added Additional Shipping Hook as seen on Reference */}
-                  <div className="mt-16 grid md:grid-cols-2 gap-12 border-t border-slate-50 pt-12">
-                    <div className="flex items-start space-x-5">
-                      <div className="p-3 bg-orange-50 rounded-xl text-orange-500">
-                        <ShieldCheck className="h-7 w-7" />
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-black text-[#124576] uppercase tracking-[0.2em] mb-2">Quality Grade</h4>
-                        <p className="text-xs text-slate-400 font-bold leading-relaxed tracking-wider uppercase">Premium export quality fiber</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start space-x-5">
-                      <div className="p-3 bg-blue-50 rounded-xl text-blue-500">
-                        <Globe className="h-7 w-7" />
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-black text-[#124576] uppercase tracking-[0.2em] mb-2">Market Reach</h4>
-                        <p className="text-xs text-slate-400 font-bold leading-relaxed tracking-wider uppercase">Worldwide Shipping (40+ Countries)</p>
-                      </div>
-                    </div>
-                  </div>
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Left: Image Gallery */}
+              <div className="single_product_gallery_img">
+                <div className="single_product_img_slide">
+                  <img src={images[selectedImage]} alt={name} />
                 </div>
-              </div>
-            )}
-
-            {activeTab === "SPECIFICATION" && (
-              <div className="animate-in fade-in duration-500">
-                <h2 className="text-[28px] font-extrabold text-[#124576] text-center mb-12 uppercase tracking-tight">Specification</h2>
-                <div className="max-w-4xl mx-auto overflow-x-auto">
-                  <table className="w-full border-collapse border border-[#a8a8a8]">
-                    <tbody>
-                      {specifications.map((spec, index) => (
-                        <tr key={index} className="border-b border-[#a8a8a8] last:border-0 hover:bg-slate-50 transition-colors">
-                          <td className="w-1/3 px-8 py-5 bg-[#f8f9fa] border-r border-[#a8a8a8] font-bold text-xs uppercase tracking-[0.3em] text-[#124576]">
-                            {spec.label}
-                          </td>
-                          <td className="px-8 py-5 text-[16px] text-[#212529] font-extrabold">
-                            {spec.value}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "USES BENEFITS" && (
-              <div className="animate-in fade-in duration-500 grid xl:grid-cols-12 gap-16 items-start">
-                <div className="xl:col-span-7">
-                  <h2 className="text-[28px] font-extrabold text-[#124576] text-center mb-12 uppercase tracking-tight">Uses Benefits</h2>
-                  <div className="space-y-6">
-                    {uses.map((use, index) => (
-                      <div key={index} className="flex items-start">
-                        <div className="trigol-bullet" />
-                        <span className="text-[16px] font-bold text-[#212529] leading-[28px]">{use}</span>
-                      </div>
+                {images.length > 1 && (
+                  <div className="thumb-row">
+                    {images.map((img, i) => (
+                      <button
+                        key={i}
+                        className={`thumb-btn ${selectedImage === i ? "active" : ""}`}
+                        onClick={() => setSelectedImage(i)}
+                      >
+                        <img src={img} alt={`${name} view ${i + 1}`} />
+                      </button>
                     ))}
                   </div>
+                )}
+              </div>
+
+              {/* Right: Info */}
+              <div className="shop_page_para">
+                <h4 className="sec_sub_title">{category}</h4>
+                <h2 className="sec_title">{name}</h2>
+                <p className="product_short_dec">{description}</p>
+
+                {/* WhatsApp Button */}
+                <div className="whatsapp_btn">
+                  <button onClick={() => setIsQuoteModalOpen(true)}>
+                    <MessageSquare className="h-5 w-5" />
+                    <span>Whatsapp Enquiry</span>
+                  </button>
                 </div>
 
-                <div className="xl:col-span-5">
-                  <div className="bg-[#124576] rounded-[25px] p-12 text-white relative overflow-hidden group shadow-2xl h-full flex flex-col justify-center border-l-[10px] border-orange-500">
-                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-orange-500 rounded-full opacity-10 transition-transform group-hover:scale-150 duration-1000"></div>
-                    <div className="flex items-center space-x-4 mb-10 border-b border-white/10 pb-6">
-                      <Globe className="h-8 w-8 text-orange-400" />
-                      <h3 className="text-xl font-black uppercase tracking-[0.2em]">Shipping Profile</h3>
-                    </div>
-                    <div className="space-y-8">
-                      {exportInfo.map((info, index) => (
-                        <div key={index} className="flex flex-col">
-                          <span className="text-[11px] font-black text-orange-400 uppercase tracking-[0.35em] mb-2">{info.label}</span>
-                          <span className="text-sm font-black uppercase tracking-widest">{info.value}</span>
-                        </div>
-                      ))}
-                    </div>
+                {/* Highlight Boxes */}
+                <div className="product_icon_highlights">
+                  <div className="highlight-box">
+                    <div className="icon"><FlaskConical /></div>
+                    <div className="highlight-text">Lab Tested All Products</div>
+                  </div>
+                  <div className="highlight-box">
+                    <div className="icon"><Tag /></div>
+                    <div className="highlight-text">Custom Packaging Private Label</div>
+                  </div>
+                  <div className="highlight-box">
+                    <div className="icon"><BadgeCheck /></div>
+                    <div className="highlight-text">Govt. Certified Products</div>
+                  </div>
+                </div>
+
+                {/* Accordions */}
+                <div className="product_custom_info">
+                  {/* Shipping Information */}
+                  <div className="accordion-item-custom">
+                    <button className="accordion-btn-custom" onClick={() => setShippingOpen(!shippingOpen)}>
+                      <span>Shipping Information</span>
+                      {shippingOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                    </button>
+                    {shippingOpen && (
+                      <div className="accordion-body-custom">
+                        <ul>
+                          {shippingItems.map((item, i) => (
+                            <li key={i}><b>{item.bold}</b>{item.text}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Contact Details */}
+                  <div className="accordion-item-custom">
+                    <button className="accordion-btn-custom" onClick={() => setContactOpen(!contactOpen)}>
+                      <span>Contact Details</span>
+                      {contactOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                    </button>
+                    {contactOpen && (
+                      <div className="accordion-body-custom">
+                        <ul>
+                          <li><b>Company Name:</b> Patel Impex</li>
+                          <li><b>Email:</b> <a href="mailto:info@patelimpex.com" style={{ color: "var(--navy)" }}>info@patelimpex.com</a></li>
+                          <li><b>WhatsApp:</b> <a href="/contact" style={{ color: "var(--navy)" }}>Click to Contact</a></li>
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== SECTION 2: Tabs + Content ===== */}
+        <section className="single_product_info">
+          <div className="trigol-container">
+            {/* Tab Buttons */}
+            <div className="sp_menu_btns">
+              {tabs.map((tab) => (
+                <a
+                  key={tab.id}
+                  href={`#${tab.id}`}
+                  className={activeTab === tab.id ? "active_tab_head" : ""}
+                  onClick={(e) => { e.preventDefault(); setActiveTab(tab.id); }}
+                >
+                  {tab.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Description */}
+            {activeTab === "description" && (
+              <div className="single_product_para" id="description">
+                <h4>Description</h4>
+                <p>{description}</p>
+              </div>
+            )}
+
+            {/* Specification */}
+            {activeTab === "specification" && (
+              <div className="single_product_para" id="specification">
+                <h4>Specification</h4>
+                <table className="trigol-table">
+                  <tbody>
+                    {specifications.map((spec, i) => (
+                      <tr key={i}>
+                        <th>{spec.label}</th>
+                        <td>{spec.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Uses Benefits */}
+            {activeTab === "uses_benefits" && (
+              <div className="single_product_para" id="uses_benefits">
+                <h4>Uses Benefits</h4>
+                <ul>
+                  {uses.map((use, i) => (
+                    <li key={i}>
+                      <span className="orange-bullet" />
+                      <span>{use}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Export Information */}
+            {activeTab === "export_information" && (
+              <div className="single_product_para" id="export_information">
+                <h4>Export Information</h4>
+                <table className="trigol-table">
+                  <tbody>
+                    {exportInfo.map((info, i) => (
+                      <tr key={i}>
+                        <th>{info.label}</th>
+                        <td>{info.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
-
-          {/* 4. Footer/Back Navigation */}
-          <div className="mt-24 text-center">
-            <Link
-              to={backLink}
-              className="inline-flex items-center text-slate-400 hover:text-orange-500 font-extrabold uppercase text-[10px] tracking-[0.6em] transition-all"
-            >
-              <ArrowLeft className="h-4 w-4 mr-4" />
-              {backLinkText}
-            </Link>
-          </div>
-        </div>
+        </section>
       </main>
 
       <Footer />
