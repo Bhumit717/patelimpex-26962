@@ -122,7 +122,7 @@ const CertificationServices = () => {
             <h2 className="text-2xl font-black text-slate-800 font-graduate uppercase tracking-tighter">Global Recognition & Membership</h2>
             <div className="h-1 w-20 bg-green-600 mx-auto mt-4 rounded-full"></div>
           </div>
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-md mx-auto">
             <img
               src="/certification-badge.png"
               alt="Certifications and Memberships"
