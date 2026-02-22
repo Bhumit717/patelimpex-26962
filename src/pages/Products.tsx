@@ -1,8 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Leaf, Package, ChevronRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import SEOHead from "@/components/SEOHead";
 
 // Import product images
@@ -12,10 +11,8 @@ import cuminSeedsImg from "@/assets/products/cumin-seeds.png";
 import cottonImg from "@/assets/products/cotton.png";
 import riceImg from "@/assets/products/rice.png";
 import groundnutImg from "@/assets/products/groundnut.png";
-import cardamomImg from "@/assets/products/cardamom.png";
 import soybeanImg from "@/assets/products/soybean.png";
 import wheatFlourImg from "@/assets/products/wheat-flour.png";
-import sugarImg from "@/assets/products/sugar.png";
 import sesameSeedsImg from "@/assets/products/sesame-seeds.png";
 import sharbatiWheatImg from "@/assets/products/subtypes/sharbati-wheat.png";
 import animalDungImg from "@/assets/products/animal-dung.png";
@@ -27,9 +24,9 @@ const Products = () => {
       style: "arched-pink",
       bgColor: "#FBEAE9",
       items: [
-        { name: "Psyllium Husk", image: psylliumHuskImg, link: "/products/psyllium-husk", desc: "Premium purity psyllium husk.", color: "#E67E22", badge: "$20" },
-        { name: "Fennel Seeds", image: fennelSeedsImg, link: "/products/fennel-seeds", desc: "Machine cleaned fennel seeds.", color: "#8E44AD", badge: "$35" },
-        { name: "Cumin Seeds", image: cuminSeedsImg, link: "/products/cumin-seeds", desc: "Bold export grade cumin.", color: "#16A085", badge: "$20" }
+        { name: "Psyllium Husk", image: psylliumHuskImg, link: "/products/psyllium-husk", desc: "Premium purity psyllium husk.", color: "#E67E22" },
+        { name: "Fennel Seeds", image: fennelSeedsImg, link: "/products/fennel-seeds", desc: "Machine cleaned fennel seeds.", color: "#8E44AD" },
+        { name: "Cumin Seeds", image: cuminSeedsImg, link: "/products/cumin-seeds", desc: "Bold export grade cumin.", color: "#16A085" }
       ]
     },
     {
@@ -37,9 +34,9 @@ const Products = () => {
       style: "ribbon-yellow",
       bgColor: "#FFC107",
       items: [
-        { name: "Basmati Rice", image: riceImg, link: "/products/rice", desc: "Aromatic long grain rice.", grade: "Grade A", rating: 5 },
-        { name: "Premium Wheat", image: sharbatiWheatImg, link: "/products/wheat", desc: "High protein Sharbati wheat.", grade: "Grade A", rating: 4 },
-        { name: "Wheat Flour", image: wheatFlourImg, link: "/products/wheat-flour", desc: "Multiple milled varieties.", grade: "Grade A", rating: 5 }
+        { name: "Basmati Rice", image: riceImg, link: "/products/rice", desc: "Aromatic long grain rice." },
+        { name: "Premium Wheat", image: sharbatiWheatImg, link: "/products/wheat", desc: "High protein Sharbati wheat." },
+        { name: "Wheat Flour", image: wheatFlourImg, link: "/products/wheat-flour", desc: "Multiple milled varieties." }
       ]
     },
     {
@@ -48,15 +45,23 @@ const Products = () => {
       bgColor: "#FFD54F",
       items: [
         { name: "Sesame Seeds", image: sesameSeedsImg, link: "/products/sesame-seeds", desc: "Hulled and natural white seeds.", hsn: "1207.40" },
-        { name: "Groundnut", image: groundnutImg, link: "/products/groundnut", desc: "Bold Java export kernels.", hsn: "1202.42" }
+        { name: "Groundnut", image: groundnutImg, link: "/products/groundnut", desc: "Bold Java export kernels.", hsn: "1202.42" },
+        { name: "Soybeans", image: soybeanImg, link: "/products/soybeans", desc: "Non-GMO high quality soybeans.", hsn: "1201.90" }
       ]
     },
     {
-      title: "Industrial & Fibers",
+      title: "Natural Fibers",
+      style: "modern-outline",
+      bgColor: "#FDF6E3",
+      items: [
+        { name: "Cotton Fiber", image: cottonImg, link: "/products/cotton", desc: "Long staple organic cotton.", hsn: "5201.00" }
+      ]
+    },
+    {
+      title: "Bio-Fertilizers",
       style: "rack-card",
       bgColor: "#F5F5F5",
       items: [
-        { name: "Cotton Fiber", image: cottonImg, link: "/products/cotton", desc: "Long staple organic cotton.", features: ["100% Organic", "Export Grade", "Pure White"] },
         { name: "Animal Dung", image: animalDungImg, link: "/products/animal-dung", desc: "Organic bio-fertilizer.", features: ["Eco-Friendly", "Rich Nutrients", "Export Quality"] }
       ]
     }
@@ -73,7 +78,16 @@ const Products = () => {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* --- STYLE: ARCHED PINK (Middle Center) --- */
+        /* --- GLOBAL CARD WRAPPER --- */
+        .pi-clickable-card {
+          display: block;
+          text-decoration: none;
+          color: inherit;
+          transition: transform 0.3s ease;
+        }
+        .pi-clickable-card:hover { transform: translateY(-8px); }
+
+        /* --- STYLE: ARCHED PINK --- */
         .card-arched-pink {
           background: #fff;
           border-radius: 50px;
@@ -85,6 +99,7 @@ const Products = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
+          height: 100%;
         }
         .img-circle-arched {
           width: 140px;
@@ -106,10 +121,9 @@ const Products = () => {
         .img-circle-arched img { max-height: 100%; object-fit: contain; }
         .arched-pink-title { font-size: 20px; font-weight: 800; color: #333; margin: 30px 0 8px; text-transform: uppercase; }
         .arched-pink-desc { font-size: 13px; color: #888; margin-bottom: 25px; line-height: 1.6; max-width: 180px; }
-        .arched-pink-badge { background: #f8f9fa; padding: 6px 15px; border-radius: 20px; font-weight: 800; font-size: 14px; color: #333; margin-bottom: 20px; }
-        .arched-pink-btn { width: 100%; padding: 14px; border-radius: 40px; color: #fff; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+        .arched-pink-btn { width: 100%; padding: 14px; border-radius: 40px; color: #fff; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; margin-top: auto; }
 
-        /* --- STYLE: RIBBON YELLOW (Top Right) --- */
+        /* --- STYLE: RIBBON YELLOW --- */
         .card-ribbon-yellow {
           background: #fff;
           position: relative;
@@ -118,6 +132,9 @@ const Products = () => {
           max-width: 290px;
           box-shadow: 0 10px 30px rgba(0,0,0,0.08);
           margin: 0 auto;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .ribbon-classic-tag {
           position: absolute;
@@ -129,10 +146,7 @@ const Products = () => {
         .img-wrap-ribbon { height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
         .img-wrap-ribbon img { max-height: 90%; object-fit: contain; }
         .ribbon-yellow-title { font-size: 22px; font-weight: 800; color: #222; margin-bottom: 12px; }
-        .ribbon-yellow-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 20px; }
-        .ribbon-yellow-grade { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
-        .grade-val { font-size: 26px; font-weight: 800; color: #333; }
-        .stars-row { color: #222; display: flex; gap: 2px; }
+        .ribbon-yellow-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 25px; }
         .ribbon-yellow-btn { 
           width: calc(100% + 50px); 
           margin-left: -25px; 
@@ -143,9 +157,10 @@ const Products = () => {
           text-align: center; 
           text-transform: uppercase; 
           font-size: 12px;
+          margin-top: auto;
         }
 
-        /* --- STYLE: MODERN OUTLINE (Bottom Left) --- */
+        /* --- STYLE: MODERN OUTLINE --- */
         .card-modern-outline {
           background: #fff;
           border-radius: 24px;
@@ -153,6 +168,9 @@ const Products = () => {
           overflow: hidden;
           padding: 15px;
           box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .img-modern-outline {
           background: #fdfaf3;
@@ -165,14 +183,13 @@ const Products = () => {
           position: relative;
         }
         .img-modern-outline img { max-height: 80%; object-fit: contain; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
-        .modern-outline-new { position: absolute; top: 15px; left: 15px; background: #fff; padding: 4px 12px; border-radius: 10px; font-size: 10px; font-weight: 800; border: 1px solid #eee; }
         .modern-outline-title { font-size: 18px; font-weight: 800; color: #333; margin-bottom: 8px; }
-        .modern-outline-desc { font-size: 12px; color: #999; margin-bottom: 15px; }
-        .modern-outline-bottom { border-top: 1px solid #f5f5f5; padding-top: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .modern-outline-desc { font-size: 12px; color: #999; margin-bottom: 15px; flex-grow: 1; }
+        .modern-outline-bottom { border-top: 1px solid #f5f5f5; padding-top: 15px; display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
         .modern-hsn { font-size: 14px; font-weight: 800; color: #333; }
         .modern-btn { color: #e74c3c; font-weight: 800; font-size: 12px; text-transform: uppercase; }
 
-        /* --- STYLE: RACK CARD (Bottom Right) --- */
+        /* --- STYLE: RACK CARD --- */
         .card-rack {
           background: #fff;
           display: flex;
@@ -181,6 +198,7 @@ const Products = () => {
           overflow: hidden;
           max-width: 320px;
           margin: 0 auto;
+          height: 100%;
         }
         .rack-top { background: #f8f9fa; padding: 30px 20px; display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #eee; }
         .rack-img { width: 100px; height: 100px; background: #fff; border-radius: 10px; padding: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.05); flex-shrink: 0; }
@@ -214,9 +232,8 @@ const Products = () => {
             <div className="container mx-auto px-4">
               <h2 className="cat-heading">{cat.title}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 justify-items-center">
-
                 {cat.items.map((item, iIdx) => (
-                  <div key={iIdx} className="w-full">
+                  <Link key={iIdx} to={item.link} className="pi-clickable-card w-full">
 
                     {cat.style === 'arched-pink' && (
                       <div className="card-arched-pink">
@@ -225,8 +242,7 @@ const Products = () => {
                         </div>
                         <h3 className="arched-pink-title">{item.name}</h3>
                         <p className="arched-pink-desc">{item.desc}</p>
-                        <div className="arched-pink-badge">{item.badge}</div>
-                        <Link to={item.link} className="arched-pink-btn" style={{ backgroundColor: item.color }}>View Details</Link>
+                        <div className="arched-pink-btn" style={{ backgroundColor: item.color }}>View Details</div>
                       </div>
                     )}
 
@@ -238,27 +254,20 @@ const Products = () => {
                         </div>
                         <h3 className="ribbon-yellow-title">{item.name}</h3>
                         <p className="ribbon-yellow-desc">{item.desc}</p>
-                        <div className="ribbon-yellow-grade">
-                          <span className="grade-val">Grade A</span>
-                          <div className="stars-row">
-                            {[...Array(5)].map((_, s) => <Star key={s} size={14} fill={s < (item.rating || 5) ? "#333" : "transparent"} stroke="#333" />)}
-                          </div>
-                        </div>
-                        <Link to={item.link} className="ribbon-yellow-btn">View Details</Link>
+                        <div className="ribbon-yellow-btn">View Details</div>
                       </div>
                     )}
 
                     {cat.style === 'modern-outline' && (
                       <div className="card-modern-outline">
                         <div className="img-modern-outline">
-                          <div className="modern-outline-new">NEW</div>
                           <img src={item.image} alt={item.name} />
                         </div>
                         <h3 className="modern-outline-title">{item.name}</h3>
                         <p className="modern-outline-desc">{item.desc}</p>
                         <div className="modern-outline-bottom">
                           <span className="modern-hsn">HSN: {item.hsn}</span>
-                          <Link to={item.link} className="modern-btn">Learn More</Link>
+                          <span className="modern-btn">Learn More</span>
                         </div>
                       </div>
                     )}
@@ -275,12 +284,12 @@ const Products = () => {
                           <ul className="rack-list">
                             {(item.features || []).map((f, fIdx) => <li key={fIdx}>{f}</li>)}
                           </ul>
-                          <Link to={item.link} className="rack-btn">Request Quote</Link>
+                          <div className="rack-btn">View Details</div>
                         </div>
                       </div>
                     )}
 
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
