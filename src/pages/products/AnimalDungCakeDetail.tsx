@@ -1,6 +1,5 @@
 import EnhancedProductDetailTemplate from "@/components/EnhancedProductDetailTemplate";
-
-const cakePlaceholder = "https://images.unsplash.com/photo-1599307734110-60b642699863?q=80&w=800&auto=format&fit=crop";
+import cakeImg from "@/assets/products/cow-dung-cake.png";
 
 const AnimalDungCakeDetail = () => {
     return (
@@ -8,7 +7,7 @@ const AnimalDungCakeDetail = () => {
             category="Organic Fertilizers"
             name="Cow Dung Cake"
             description="Traditional Cow Dung Cakes are made by drying fresh cow dung in the sun. They are a rich source of organic matter and have been used for centuries in agriculture as a natural fertilizer and soil conditioner. Our cakes are sun-dried to perfection, ensuring they are free from harmful pathogens."
-            images={[cakePlaceholder]}
+            images={[cakeImg]}
             hsCode="3101.00"
             specifications={[
                 { label: "Origin", value: "India" },

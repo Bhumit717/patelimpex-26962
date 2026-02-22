@@ -1,6 +1,5 @@
 import EnhancedProductDetailTemplate from "@/components/EnhancedProductDetailTemplate";
-
-const powderPlaceholder = "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop";
+import powderImg from "@/assets/products/animal-dung-powder.png";
 
 const AnimalDungPowderDetail = () => {
     return (
@@ -8,7 +7,7 @@ const AnimalDungPowderDetail = () => {
             category="Organic Fertilizers"
             name="Animal Dung Powder"
             description="Our Animal Dung Powder is processed from fully decomposed manure, finely ground and screened to ensure a uniform texture. It is a potent organic fertilizer that improves soil structure, aeration, and water-holding capacity while providing essential N-P-K nutrients to plants."
-            images={[powderPlaceholder]}
+            images={[powderImg]}
             hsCode="3101.00"
             specifications={[
                 { label: "Origin", value: "India" },

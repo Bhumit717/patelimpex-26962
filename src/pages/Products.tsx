@@ -17,6 +17,7 @@ import wheatFlourImg from "@/assets/products/wheat-flour.png";
 import sugarImg from "@/assets/products/sugar.png";
 import sesameSeedsImg from "@/assets/products/hulled-sesame.png";
 import sharbatiWheatImg from "@/assets/products/subtypes/sharbati-wheat.png";
+import animalDungImg from "@/assets/products/animal-dung.png";
 import SEOHead from "@/components/SEOHead";
 
 const Products = () => {
@@ -130,7 +131,7 @@ const Products = () => {
       items: [
         {
           name: "Animal Dung",
-          image: "https://images.unsplash.com/photo-1599307734110-60b642699863?q=80&w=800&auto=format&fit=crop",
+          image: animalDungImg,
           link: "/products/animal-dung",
           specs: ["100% Organic", "Cakes & Powder", "Fully Decomposed"],
           hsn: "3101.00"

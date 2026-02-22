@@ -1,21 +1,18 @@
 import EnhancedProductCategoryTemplate from "@/components/EnhancedProductCategoryTemplate";
-import { Leaf } from "lucide-react";
-
-// Using descriptive placeholders since image generation is unavailable
-const cakePlaceholder = "https://images.unsplash.com/photo-1599307734110-60b642699863?q=80&w=800&auto=format&fit=crop";
-const powderPlaceholder = "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?q=80&w=800&auto=format&fit=crop";
+import cakeImg from "@/assets/products/cow-dung-cake.png";
+import powderImg from "@/assets/products/animal-dung-powder.png";
 
 const AnimalDungPage = () => {
     const products = [
         {
             name: "Cow Dung Cake",
-            image: cakePlaceholder,
+            image: cakeImg,
             link: "/products/animal-dung/cake",
             description: "Traditional dried organic cow dung cakes, sun-dried and rich in minerals, ideal for agricultural soil enrichment and traditional use.",
         },
         {
             name: "Animal Dung Powder",
-            image: powderPlaceholder,
+            image: powderImg,
             link: "/products/animal-dung/powder",
             description: "Finely processed and decomposed organic manure powder, perfect for pot culture, gardening, and large-scale organic farming.",
         },
