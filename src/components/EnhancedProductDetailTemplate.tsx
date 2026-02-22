@@ -187,18 +187,18 @@ const EnhancedProductDetailTemplate = ({
                   className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              {images.length \u003e 1 && (
-              <div className="flex flex-wrap gap-4 mt-8 justify-center">
-                {images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImage(index)}
-                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all p-1 bg-white ${selectedImage === index ? "border-orange-500 shadow-md" : "border-slate-100 hover:border-slate-300"}`}
-                  >
-                    <img src={img} alt="thumbnail" className="w-full h-full object-contain" />
-                  </button>
-                ))}
-              </div>
+              {images.length > 1 && (
+                <div className="flex flex-wrap gap-4 mt-8 justify-center">
+                  {images.map((img, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImage(index)}
+                      className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all p-1 bg-white ${selectedImage === index ? "border-orange-500 shadow-md" : "border-slate-100 hover:border-slate-300"}`}
+                    >
+                      <img src={img} alt="thumbnail" className="w-full h-full object-contain" />
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
 
