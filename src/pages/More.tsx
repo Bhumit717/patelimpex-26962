@@ -19,8 +19,7 @@ const More = () => {
         { title: "Export Import Guide", slug: "export-import-guide", description: "Complete guide to international trade" },
         { title: "International Trade Basics", slug: "international-trade-basics", description: "Fundamentals of global commerce" },
         { title: "Export Documentation", slug: "export-documentation", description: "Essential documents for exports" },
-        { title: "Trade Finance", slug: "trade-finance", description: "Financing international trade" },
-        { title: "Certificate of Origin", slug: "certificate-of-origin", description: "Origin certification process" }
+        { title: "Trade Finance", slug: "trade-finance", description: "Financing international trade" }
       ]
     },
     {
@@ -144,7 +143,6 @@ const More = () => {
         { title: "Quality Standards", slug: "quality-standards", description: "Global quality certifications" },
         { title: "Customs Clearance", slug: "customs-clearance", description: "Customs clearance processes" },
         { title: "Legal Compliance", slug: "legal-compliance", description: "Regulatory compliance help" },
-        { title: "Certification Services", slug: "certification-services", description: "Export certifications" },
         { title: "Insurance Services", slug: "insurance-services", description: "Trade insurance solutions" },
         { title: "Buyer Verification", slug: "buyer-verification", description: "Verify international buyers" },
         { title: "Market Research", slug: "market-research", description: "Global market trends" },

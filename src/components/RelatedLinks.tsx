@@ -56,7 +56,6 @@ const RelatedLinks = ({ currentPage, category = "products" }: RelatedLinksProps)
       { title: "Express Shipping", url: "/seo/express-shipping-services", category: "Shipping" },
       { title: "Customs Clearance", url: "/more/customs-clearance", category: "Documentation" },
       { title: "Export Documentation", url: "/more/export-documentation", category: "Documentation" },
-      { title: "Certificate of Origin", url: "/more/certificate-of-origin", category: "Certification" },
       { title: "Quality Standards", url: "/more/quality-standards", category: "Compliance" },
       { title: "Trade Finance", url: "/more/trade-finance", category: "Finance" },
       { title: "Market Research", url: "/more/market-research", category: "Research" },

@@ -89,10 +89,9 @@ const Blog = () => {
   };
 
   const filteredPosts = posts.filter(post => {
-    const matchesKeyword = selectedCategory === "All Posts" || post.tags?.some(tag => tag.trim() === selectedCategory);
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (post.content || '').toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesKeyword && matchesSearch;
+    return matchesSearch;
   });
 
   const handleReadMore = (postId: string) => {
@@ -140,22 +139,6 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
-            {keywords.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${selectedCategory === cat
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white text-slate-600 hover:bg-slate-50 shadow-md'
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
           {posts.length > 0 && pendingPostId && (
             <BlogLeadForm
               onSuccess={() => {
@@ -173,10 +156,6 @@ const Blog = () => {
             </div>
           ) : posts.length > 0 ? (
             <>
-
-
-
-
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.map((post) => (
                   <article key={post.id} className="nm-card !p-0 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
@@ -212,14 +191,6 @@ const Blog = () => {
                       <p className="text-slate-600 mb-4 line-clamp-3">
                         {(post.content || '').replace(/<[^>]+>/g, '').substring(0, 150)}...
                       </p>
-
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {post.tags?.map((tag, tagIndex) => (
-                          <span key={tagIndex} className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded-full border border-slate-200">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
 
                       <button
                         onClick={() => handleReadMore(post.id)}

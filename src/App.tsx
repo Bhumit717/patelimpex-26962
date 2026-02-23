@@ -39,7 +39,6 @@ import AgriculturalProducts from "./pages/more/AgriculturalProducts";
 import TradeFinance from "./pages/more/TradeFinance";
 import EuropeanMarkets from "./pages/more/EuropeanMarkets";
 import QualityStandards from "./pages/more/QualityStandards";
-import CertificateOfOrigin from "./pages/more/CertificateOfOrigin";
 import TextileExport from "./pages/more/TextileExport";
 import CustomsClearance from "./pages/more/CustomsClearance";
 import FreightForwarding from "./pages/more/FreightForwarding";
@@ -55,7 +54,6 @@ import AmericanMarkets from "./pages/more/AmericanMarkets";
 import LegalCompliance from "./pages/more/LegalCompliance";
 import TechnologyIntegration from "./pages/more/TechnologyIntegration";
 import PackagingServices from "./pages/more/PackagingServices";
-import CertificationServices from "./pages/more/CertificationServices";
 import SupplyChainManagement from "./pages/more/SupplyChainManagement";
 import NorthAmericanMarkets from "./pages/more/NorthAmericanMarkets";
 import SouthAmericanMarkets from "./pages/more/SouthAmericanMarkets";
@@ -391,7 +389,6 @@ const App = () => (
           <Route path="/admin" element={<Admin />} />
 
           {/* More sub-pages */}
-          <Route path="/more/certification-services" element={<CertificationServices />} />
           <Route path="/more/export-import-guide" element={<ExportImportGuide />} />
           <Route path="/more/international-trade-basics" element={<InternationalTradeBasics />} />
           <Route path="/more/rice-export" element={<RiceExport />} />
@@ -405,7 +402,6 @@ const App = () => (
           <Route path="/more/trade-finance" element={<TradeFinance />} />
           <Route path="/more/european-markets" element={<EuropeanMarkets />} />
           <Route path="/more/quality-standards" element={<QualityStandards />} />
-          <Route path="/more/certificate-of-origin" element={<CertificateOfOrigin />} />
           <Route path="/more/textile-export" element={<TextileExport />} />
           <Route path="/more/customs-clearance" element={<CustomsClearance />} />
           <Route path="/more/freight-forwarding" element={<FreightForwarding />} />

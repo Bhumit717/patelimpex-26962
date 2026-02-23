@@ -28,10 +28,6 @@ const Index = () => {
     const preloadResources = () => {
       const resources = [
         { href: '/hero-video.mp4', as: 'video', type: 'video/mp4' },
-        { href: '/logo.png', as: 'image' },
-        { href: '/certificates/gst-certificate.jpg', as: 'image' },
-        { href: '/certificates/udyam-certificate.jpg', as: 'image' },
-        { href: '/certificates/iec-certificate.jpg', as: 'image' }
       ];
 
       resources.forEach(res => {
