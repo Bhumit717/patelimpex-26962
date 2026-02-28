@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
-import { Calendar, Clock, ArrowRight, Search, Filter, Bell, Loader2 } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Search, Filter, Bell, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
@@ -30,6 +30,9 @@ const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [pendingPostId, setPendingPostId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const ITEMS_PER_PAGE = 9;
 
   useEffect(() => {
     const q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"));
@@ -95,6 +98,19 @@ const Blog = () => {
     return matchesSearch;
   });
 
+  const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
+
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  // Reset to page 1 when search changes
+  const handleSearchChange = (val: string) => {
+    setSearchTerm(val);
+    setCurrentPage(1);
+  };
+
   const handleReadMore = (post: BlogPost) => {
     // If admin set a custom link, use it directly
     if (post.link && post.link.trim()) {
@@ -144,7 +160,7 @@ const Blog = () => {
                 type="text"
                 placeholder="Search trade insights..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="nm-input !rounded-full pl-16 pr-6 py-5 w-full !text-lg"
               />
               <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-slate-400" />
@@ -169,7 +185,7 @@ const Blog = () => {
           ) : posts.length > 0 ? (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post) => (
+                {paginatedPosts.map((post) => (
                   <article key={post.id} className="nm-card !p-0 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
                     <div className="relative overflow-hidden aspect-[9/7] border-b border-white">
                       <img
@@ -219,6 +235,45 @@ const Blog = () => {
               {filteredPosts.length === 0 && (
                 <div className="text-center py-20">
                   <p className="text-slate-500 text-lg">No articles found matching your criteria.</p>
+                </div>
+              )}
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-4 mt-16">
+                  <Button
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPage === 1}
+                    className="nm-btn !w-10 !h-10 !p-0 flex items-center justify-center disabled:opacity-50"
+                  >
+                    <ChevronLeft className="h-4 w-4 text-slate-600" />
+                  </Button>
+
+                  <div className="flex items-center gap-2">
+                    {[...Array(totalPages)].map((_, i) => {
+                      const pageNum = i + 1;
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`w-10 h-10 rounded-[10px] font-semibold transition-all duration-300 ${pageNum === currentPage
+                              ? 'bg-white text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
+                              : 'bg-white text-slate-500 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] hover:text-blue-600'
+                            }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <Button
+                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                    disabled={currentPage === totalPages}
+                    className="nm-btn !w-10 !h-10 !p-0 flex items-center justify-center disabled:opacity-50"
+                  >
+                    <ChevronRight className="h-4 w-4 text-slate-600" />
+                  </Button>
                 </div>
               )}
             </>
