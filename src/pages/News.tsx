@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Calendar, ExternalLink, Globe, TrendingUp, Newspaper, RefreshCw, ChevronLeft, ChevronRight, Zap, Clock, Search, Filter, Bell, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -10,6 +10,7 @@ import SEOHead from "@/components/SEOHead";
 import { Helmet } from "react-helmet";
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import NewsLeadForm from "@/components/NewsLeadForm";
 
 interface NewsArticle {
   id: string;
@@ -52,12 +53,14 @@ const staticNews: NewsArticle[] = [
 ];
 
 const News = () => {
+  const navigate = useNavigate();
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All News");
   const [email, setEmail] = useState("");
+  const [pendingArticleId, setPendingArticleId] = useState<string | null>(null);
 
   const ITEMS_PER_PAGE = 9;
 
@@ -95,6 +98,26 @@ const News = () => {
   );
 
   const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
+
+  const handleArticleClick = (article: NewsArticle) => {
+    // If admin set a custom link, use it directly (no lead gate)
+    if (article.link && article.link.trim()) {
+      const url = article.link.trim();
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+        navigate(url);
+      }
+      return;
+    }
+    // Default: gated by lead capture
+    const isCaptured = localStorage.getItem("news_lead_captured");
+    if (isCaptured) {
+      navigate(`/news/${article.id}`);
+    } else {
+      setPendingArticleId(article.id);
+    }
+  };
 
   const handleSubscribe = async () => {
     if (!email) {
@@ -185,6 +208,17 @@ const News = () => {
           </div>
         </section>
 
+        {/* Lead Form Gate */}
+        {pendingArticleId && (
+          <NewsLeadForm
+            onSuccess={() => {
+              const articleId = pendingArticleId;
+              setPendingArticleId(null);
+              navigate(`/news/${articleId}`);
+            }}
+          />
+        )}
+
         {/* News Grid */}
         <section className="container mx-auto px-4">
           {loading ? (
@@ -203,12 +237,12 @@ const News = () => {
           ) : (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {paginatedNews.map((article) => {
-                  const customLink = article.link?.trim();
-                  const isExternal = customLink && (customLink.startsWith('http://') || customLink.startsWith('https://'));
-                  const href = customLink || `/news/${article.id}`;
-
-                  const CardContent_ = (
+                {paginatedNews.map((article) => (
+                  <div
+                    key={article.id}
+                    className="group block h-full cursor-pointer"
+                    onClick={() => handleArticleClick(article)}
+                  >
                     <div className="h-full nm-card !p-0 overflow-hidden transition-all duration-500 hover:-translate-y-2 border-none">
                       <div className="relative h-56 overflow-hidden bg-slate-200 aspect-[16/10]">
                         {article.image ? (
@@ -262,18 +296,8 @@ const News = () => {
                         </div>
                       </CardContent>
                     </div>
-                  );
-
-                  return isExternal ? (
-                    <a key={article.id} href={href} target="_blank" rel="noopener noreferrer" className="group block h-full">
-                      {CardContent_}
-                    </a>
-                  ) : (
-                    <Link key={article.id} to={href} className="group block h-full">
-                      {CardContent_}
-                    </Link>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
 
               {filteredArticles.length === 0 && (
