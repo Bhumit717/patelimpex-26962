@@ -49,7 +49,6 @@ const Footer = () => {
       { name: "Trade Inquiry", href: "/inquiry" },
       { name: "Admin Terminal", href: "/admin" },
       { name: "Privacy & Terms", href: "/privacy-policy" },
-      { name: "Sitemap", href: "/sitemap" },
       { name: "More", href: "/more" },
       { name: "SEO", href: "/seo" }
     ]

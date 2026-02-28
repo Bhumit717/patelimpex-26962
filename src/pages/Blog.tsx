@@ -192,7 +192,11 @@ const Blog = () => {
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {paginatedPosts.map((post) => (
-                  <article key={post.id} className="nm-card !p-0 overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                  <article
+                    key={post.id}
+                    onClick={() => handleReadMore(post)}
+                    className="nm-card !p-0 overflow-hidden group hover:-translate-y-2 transition-transform duration-300 cursor-pointer"
+                  >
                     <div className="relative overflow-hidden aspect-[9/7] border-b border-white">
                       <img
                         src={post.image}
@@ -226,10 +230,7 @@ const Blog = () => {
                         {(post.content || '').replace(/<[^>]+>/g, '').substring(0, 150)}...
                       </p>
 
-                      <button
-                        onClick={() => handleReadMore(post)}
-                        className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group/link cursor-pointer bg-transparent border-none p-0"
-                      >
+                      <button className="inline-flex items-center text-blue-600 font-medium group-hover:text-blue-700 transition-colors group/link cursor-pointer bg-transparent border-none p-0">
                         Read More
                         <ArrowRight className="ml-1 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                       </button>
