@@ -100,20 +100,23 @@ const News = () => {
   const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
 
   const handleArticleClick = (article: NewsArticle) => {
-    // If admin set a custom link, use it directly (no lead gate)
+    // If admin set a custom link, use it directly (with /news/ prefix if not external)
     if (article.link && article.link.trim()) {
       const url = article.link.trim();
       if (url.startsWith('http://') || url.startsWith('https://')) {
         window.open(url, '_blank', 'noopener,noreferrer');
-      } else {
-        navigate(url);
+        return;
       }
-      return;
     }
+
     // Default: gated by lead capture
     const isCaptured = localStorage.getItem("news_lead_captured");
     if (isCaptured) {
-      navigate(`/news/${article.id}`);
+      if (article.link && article.link.trim() && !article.link.trim().startsWith('http')) {
+        navigate(`/news/${article.link.trim().replace(/^\/+/, '')}`);
+      } else {
+        navigate(`/news/${article.id}`);
+      }
     } else {
       setPendingArticleId(article.id);
     }
@@ -213,8 +216,13 @@ const News = () => {
           <NewsLeadForm
             onSuccess={() => {
               const articleId = pendingArticleId;
+              const article = articles.find(a => a.id === articleId);
               setPendingArticleId(null);
-              navigate(`/news/${articleId}`);
+              if (article?.link && article.link.trim() && !article.link.trim().startsWith('http')) {
+                navigate(`/news/${article.link.trim().replace(/^\/+/, '')}`);
+              } else {
+                navigate(`/news/${articleId}`);
+              }
             }}
           />
         )}

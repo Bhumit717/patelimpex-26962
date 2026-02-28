@@ -112,20 +112,23 @@ const Blog = () => {
   };
 
   const handleReadMore = (post: BlogPost) => {
-    // If admin set a custom link, use it directly
+    // If admin set a custom link, use it directly (with /blog/ prefix if not external)
     if (post.link && post.link.trim()) {
       const url = post.link.trim();
       if (url.startsWith('http://') || url.startsWith('https://')) {
         window.open(url, '_blank', 'noopener,noreferrer');
-      } else {
-        navigate(url);
+        return;
       }
-      return;
     }
+
     // Default: gated by lead capture
     const isCaptured = localStorage.getItem("blog_lead_captured");
     if (isCaptured) {
-      navigate(`/blog/${post.id}`);
+      if (post.link && post.link.trim() && !post.link.trim().startsWith('http')) {
+        navigate(`/blog/${post.link.trim().replace(/^\/+/, '')}`);
+      } else {
+        navigate(`/blog/${post.id}`);
+      }
     } else {
       setPendingPostId(post.id);
     }
@@ -171,8 +174,13 @@ const Blog = () => {
             <BlogLeadForm
               onSuccess={() => {
                 const postId = pendingPostId;
+                const post = posts.find(p => p.id === postId);
                 setPendingPostId(null);
-                navigate(`/blog/${postId}`);
+                if (post?.link && post.link.trim() && !post.link.trim().startsWith('http')) {
+                  navigate(`/blog/${post.link.trim().replace(/^\/+/, '')}`);
+                } else {
+                  navigate(`/blog/${postId}`);
+                }
               }}
             />
           )}
@@ -257,8 +265,8 @@ const Blog = () => {
                           key={pageNum}
                           onClick={() => setCurrentPage(pageNum)}
                           className={`w-10 h-10 rounded-[10px] font-semibold transition-all duration-300 ${pageNum === currentPage
-                              ? 'bg-white text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
-                              : 'bg-white text-slate-500 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] hover:text-blue-600'
+                            ? 'bg-white text-blue-600 shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
+                            : 'bg-white text-slate-500 shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] hover:text-blue-600'
                             }`}
                         >
                           {pageNum}
