@@ -2,7 +2,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 import Navigation from "@/components/Navigation";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
@@ -29,13 +29,26 @@ const BlogPostDetail = () => {
         const fetchPost = async () => {
             if (!id) return;
             try {
+                // First try getting by document ID
                 const docRef = doc(db, "blog_posts", id);
                 const docSnap = await getDoc(docRef);
+
                 if (docSnap.exists()) {
                     setPost(docSnap.data() as BlogPost);
+                } else {
+                    // If not found by ID, try querying by custom link field
+                    const q = query(collection(db, "blog_posts"), where("link", "==", id));
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty) {
+                        setPost(querySnapshot.docs[0].data() as BlogPost);
+                    } else {
+                        setPost(null);
+                    }
                 }
             } catch (error) {
                 console.error("Error fetching post:", error);
+                setPost(null);
             } finally {
                 setLoading(false);
             }

@@ -2,7 +2,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 import Navigation from "@/components/Navigation";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
@@ -30,13 +30,26 @@ const NewsDetail = () => {
         const fetchArticle = async () => {
             if (!id) return;
             try {
+                // First try getting by document ID
                 const docRef = doc(db, "news_articles", id);
                 const docSnap = await getDoc(docRef);
+
                 if (docSnap.exists()) {
                     setArticle(docSnap.data() as NewsArticle);
+                } else {
+                    // If not found by ID, try querying by custom link field
+                    const q = query(collection(db, "news_articles"), where("link", "==", id));
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty) {
+                        setArticle(querySnapshot.docs[0].data() as NewsArticle);
+                    } else {
+                        setArticle(null);
+                    }
                 }
             } catch (error) {
                 console.error("Error fetching news article:", error);
+                setArticle(null);
             } finally {
                 setLoading(false);
             }
