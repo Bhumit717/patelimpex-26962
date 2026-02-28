@@ -54,6 +54,7 @@ interface BlogPost {
     date: string;
     tags: string[];
     category: string;
+    link: string; // Custom URL slug or external link
 }
 
 interface NewsArticle {
@@ -64,6 +65,7 @@ interface NewsArticle {
     date: string;
     tags: string[];
     category: string;
+    link: string; // Custom URL slug or external link
 }
 
 // ============================================================
@@ -298,7 +300,8 @@ const Admin = () => {
         title: "",
         content: "", // Full HTML content
         tags: "",
-        category: "Market Insights"
+        category: "Market Insights",
+        link: "" // Custom URL / slug
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -309,7 +312,8 @@ const Admin = () => {
         title: "",
         content: "",
         tags: "",
-        category: "Global Trade"
+        category: "Global Trade",
+        link: "" // Custom URL / slug
     });
     const [newsImageFile, setNewsImageFile] = useState<File | null>(null);
     const [newsEditingId, setNewsEditingId] = useState<string | null>(null);
@@ -476,6 +480,7 @@ const Admin = () => {
                     content: blogForm.content,
                     category: blogForm.category,
                     image: imageUrl,
+                    link: blogForm.link.trim(), // Custom link/slug
                     tags: blogForm.tags.split(",").map(tag => tag.trim()),
                     date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
                     // Only update timestamp on creation, or add 'updatedAt' for edits if needed
@@ -497,7 +502,7 @@ const Admin = () => {
             }
 
             // Reset Form
-            setBlogForm({ title: "", content: "", tags: "", category: "Market Insights" });
+            setBlogForm({ title: "", content: "", tags: "", category: "Market Insights", link: "" });
             setImageFile(null);
             setExistingImageUrl(null);
             setEditingId(null);
@@ -519,7 +524,8 @@ const Admin = () => {
             title: post.title,
             content: post.content,
             tags: post.tags?.join(", ") || "",
-            category: post.category || "Market Insights"
+            category: post.category || "Market Insights",
+            link: post.link || ""
         });
         setExistingImageUrl(post.image);
         setEditingId(post.id);
@@ -591,6 +597,7 @@ const Admin = () => {
                 content: newsForm.content,
                 category: newsForm.category,
                 image: imageUrl,
+                link: newsForm.link.trim(), // Custom link/slug
                 tags: newsForm.tags.split(",").map(tag => tag.trim()),
                 date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
                 timestamp: serverTimestamp(), // Use uniform field for sorting
@@ -610,7 +617,7 @@ const Admin = () => {
                 toast({ title: "News Published!", description: "News article is live now." });
             }
 
-            setNewsForm({ title: "", content: "", tags: "", category: "Global Trade" });
+            setNewsForm({ title: "", content: "", tags: "", category: "Global Trade", link: "" });
             setNewsImageFile(null);
             setNewsExistingImageUrl(null);
             setNewsEditingId(null);
@@ -628,7 +635,8 @@ const Admin = () => {
             title: article.title,
             content: article.content,
             tags: article.tags?.join(", ") || "",
-            category: article.category || "Global Trade"
+            category: article.category || "Global Trade",
+            link: article.link || ""
         });
         setNewsExistingImageUrl(article.image);
         setNewsEditingId(article.id);
@@ -858,6 +866,21 @@ const Admin = () => {
                                                 placeholder="spices, export, global-trade"
                                             />
                                         </div>
+
+                                        <div className="space-y-4">
+                                            <label className="nm-label !mb-0">Post Link / URL</label>
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-slate-400 font-graduate text-sm font-bold shrink-0">🔗</span>
+                                                <input
+                                                    type="text"
+                                                    className="nm-input w-full !p-4"
+                                                    value={blogForm.link}
+                                                    onChange={e => setBlogForm({ ...blogForm, link: e.target.value })}
+                                                    placeholder="https://example.com/article or /blog/custom-slug"
+                                                />
+                                            </div>
+                                            <p className="text-[10px] text-slate-400 font-graduate uppercase tracking-widest">Leave blank to use the default Firebase post URL (/blog/id)</p>
+                                        </div>
                                     </div>
 
                                     <div className="pt-12 border-t border-slate-100 flex justify-end">
@@ -1005,6 +1028,21 @@ const Admin = () => {
                                                 onChange={e => setNewsForm({ ...newsForm, tags: e.target.value })}
                                                 placeholder="breaking, trade, updates"
                                             />
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <label className="nm-label !mb-0">Article Link / URL</label>
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-slate-400 font-graduate text-sm font-bold shrink-0">🔗</span>
+                                                <input
+                                                    type="text"
+                                                    className="nm-input w-full !p-4"
+                                                    value={newsForm.link}
+                                                    onChange={e => setNewsForm({ ...newsForm, link: e.target.value })}
+                                                    placeholder="https://example.com/news or /news/custom-slug"
+                                                />
+                                            </div>
+                                            <p className="text-[10px] text-slate-400 font-graduate uppercase tracking-widest">Leave blank to use the default Firebase news URL (/news/id)</p>
                                         </div>
                                     </div>
 

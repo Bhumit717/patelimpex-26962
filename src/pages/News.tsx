@@ -19,6 +19,7 @@ interface NewsArticle {
   date: string;
   tags: string[];
   category: string;
+  link?: string; // Custom URL from admin
 }
 
 // Get today's date for static news
@@ -202,8 +203,12 @@ const News = () => {
           ) : (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {paginatedNews.map((article) => (
-                  <Link key={article.id} to={`/news/${article.id}`} className="group block h-full">
+                {paginatedNews.map((article) => {
+                  const customLink = article.link?.trim();
+                  const isExternal = customLink && (customLink.startsWith('http://') || customLink.startsWith('https://'));
+                  const href = customLink || `/news/${article.id}`;
+
+                  const CardContent_ = (
                     <div className="h-full nm-card !p-0 overflow-hidden transition-all duration-500 hover:-translate-y-2 border-none">
                       <div className="relative h-56 overflow-hidden bg-slate-200 aspect-[16/10]">
                         {article.image ? (
@@ -257,8 +262,18 @@ const News = () => {
                         </div>
                       </CardContent>
                     </div>
-                  </Link>
-                ))}
+                  );
+
+                  return isExternal ? (
+                    <a key={article.id} href={href} target="_blank" rel="noopener noreferrer" className="group block h-full">
+                      {CardContent_}
+                    </a>
+                  ) : (
+                    <Link key={article.id} to={href} className="group block h-full">
+                      {CardContent_}
+                    </Link>
+                  );
+                })}
               </div>
 
               {filteredArticles.length === 0 && (

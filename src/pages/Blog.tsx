@@ -19,6 +19,7 @@ interface BlogPost {
   category: string;
   tags: string[];
   featured?: boolean;
+  link?: string; // Custom URL / slug from admin
 }
 
 const Blog = () => {
@@ -94,12 +95,23 @@ const Blog = () => {
     return matchesSearch;
   });
 
-  const handleReadMore = (postId: string) => {
+  const handleReadMore = (post: BlogPost) => {
+    // If admin set a custom link, use it directly
+    if (post.link && post.link.trim()) {
+      const url = post.link.trim();
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+        navigate(url);
+      }
+      return;
+    }
+    // Default: gated by lead capture
     const isCaptured = localStorage.getItem("blog_lead_captured");
     if (isCaptured) {
-      navigate(`/blog/${postId}`);
+      navigate(`/blog/${post.id}`);
     } else {
-      setPendingPostId(postId);
+      setPendingPostId(post.id);
     }
   };
 
@@ -193,7 +205,7 @@ const Blog = () => {
                       </p>
 
                       <button
-                        onClick={() => handleReadMore(post.id)}
+                        onClick={() => handleReadMore(post)}
                         className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors group/link cursor-pointer bg-transparent border-none p-0"
                       >
                         Read More
