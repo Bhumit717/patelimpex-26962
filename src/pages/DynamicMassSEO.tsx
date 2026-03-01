@@ -77,14 +77,13 @@ const themes = [
     }
 ];
 
-const images = [
-    "https://images.unsplash.com/photo-1586528116311-ad8ed7c50352?q=80&w=2070&auto=format&fit=crop", // Shipping / Container
-    "https://images.unsplash.com/photo-1505471768110-2c70ce773b40?q=80&w=2070&auto=format&fit=crop", // Agriculture field
-    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop", // Handshake / Business
-    "https://images.unsplash.com/photo-1565451296688-6625b1cbbee9?q=80&w=2070&auto=format&fit=crop", // Global Network / Analytics
-    "https://images.unsplash.com/photo-1492551557933-34265f7af79e?q=80&w=2070&auto=format&fit=crop", // Cargo Ship
-    "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2070&auto=format&fit=crop"  // Industrial Warehouse
-];
+import img1 from '@/assets/hero-main.png';
+import img2 from '@/assets/hero-plant.png';
+import img3 from '@/assets/products/rice.png';
+import img4 from '@/assets/products/cotton.png';
+import img5 from '@/assets/patel_impex_plaque.png';
+
+const images = [img1, img2, img3, img4, img5];
 
 const contentEssays = [
     (product: string, location: string, intent: any) => `Establishing a reliable supply chain for ${product} requires navigating volatile sourcing environments, verifying supplier integrities, and overcoming logistical blockades. When you seek to ${intent.originalPrefix} ${product} ${intent.originalSuffix} ${location}, you need absolute certainty from departure port to arrival dock. Patel Impex sits at the nexus of India's manufacturing and agricultural hubs. By choosing us as your dedicated supplier, you bypass fragmented middlemen.`,
