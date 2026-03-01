@@ -287,14 +287,22 @@ export default function DynamicMassSEO() {
 
             <Navigation />
 
-            <main className="pt-24 lg:pt-32">
-                <ProductExpertDossier
-                    title={capitalizedTitle}
-                    image={dynamicImageUrl}
-                    fallback={dynamicFallbackUrl}
-                    keyword={keyword}
-                    seed={seed}
-                />
+            <main className="min-h-screen flex flex-col">
+                {layoutType === 0 && (
+                    <ArchitectureCorporate
+                        title={capitalizedTitle} image={dynamicImageUrl} fallback={dynamicFallbackUrl} keyword={keyword} seed={seed}
+                    />
+                )}
+                {layoutType === 1 && (
+                    <ArchitectureEditorial
+                        title={capitalizedTitle} image={dynamicImageUrl} fallback={dynamicFallbackUrl} keyword={keyword} seed={seed}
+                    />
+                )}
+                {layoutType === 2 && (
+                    <ArchitectureIndustrial
+                        title={capitalizedTitle} image={dynamicImageUrl} fallback={dynamicFallbackUrl} keyword={keyword} seed={seed}
+                    />
+                )}
             </main>
 
             <Footer />
@@ -303,7 +311,301 @@ export default function DynamicMassSEO() {
 }
 
 // -------------------------------------------------------------
-// Unified Clean Layout: Product Expert Dossier
+// Architecture 1: Corporate Intelligence State
+// High-end, structured, executive aesthetic
+// -------------------------------------------------------------
+function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
+    return (
+        <div className="bg-slate-50 pt-32">
+            <section className="px-6 py-12 md:py-24 border-b border-slate-200">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="space-y-8">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
+                            <ShieldCheck className="w-3 h-3" /> VERIFIED EXPORT ORIGIN
+                        </div>
+                        <h1 className="text-4xl md:text-7xl font-bold text-slate-900 leading-tight">
+                            {title}
+                        </h1>
+                        <p className="text-xl md:text-2xl text-slate-600 font-light leading-relaxed border-l-4 border-green-600 pl-6">
+                            {TradeIntelligence.getIntroduction(keyword, seed)}
+                        </p>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6">
+                            <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                                <span className="block text-2xl font-bold text-slate-900">{(seed % 15) + 85}%</span>
+                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Yield Purity</span>
+                            </div>
+                            <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                                <span className="block text-2xl font-bold text-slate-900">Tier 1</span>
+                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Port Logistics</span>
+                            </div>
+                            <div className="hidden md:block p-4 bg-white rounded-xl shadow-sm border border-slate-100">
+                                <span className="block text-2xl font-bold text-slate-900">ISO Cert</span>
+                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">QA Standard</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="relative group">
+                        <div className="absolute -inset-4 bg-green-600/5 rounded-[2rem] blur-2xl group-hover:bg-green-600/10 transition-all" />
+                        <FallbackImage
+                            src={image}
+                            fallbackSrc={fallback}
+                            alt={keyword}
+                            className="relative w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl border-8 border-white"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-24 px-6 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-3 gap-16">
+                        <div className="lg:col-span-2 space-y-20">
+                            <div>
+                                <h2 className="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+                                    <FileText className="text-green-600" /> Technical Specification
+                                </h2>
+                                <div className="prose prose-slate prose-lg md:prose-xl max-w-none text-slate-600">
+                                    <p>{TradeIntelligence.getTechnicalDeepDive(keyword, seed)}</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100">
+                                <h3 className="text-2xl font-bold text-slate-900 mb-6">Financial & Regulatory Security</h3>
+                                <div className="grid md:grid-cols-2 gap-10">
+                                    <div className="space-y-4">
+                                        <p className="text-sm font-medium text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                                            <ShieldCheck className="w-4 h-4 text-green-600" /> Fiscal Policy
+                                        </p>
+                                        <p className="text-slate-600 text-sm leading-relaxed">{TradeIntelligence.getFinancialThesis(keyword, seed)}</p>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <p className="text-sm font-medium text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                                            <Globe className="w-4 h-4 text-green-600" /> Compliance Framework
+                                        </p>
+                                        <p className="text-slate-600 text-sm leading-relaxed">{TradeIntelligence.getRegulatoryFramework(keyword, seed)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="space-y-8">
+                            <div className="p-8 bg-slate-900 text-white rounded-3xl space-y-6">
+                                <h4 className="text-xl font-bold border-b border-white/10 pb-4">Global Outlook 2030</h4>
+                                <p className="text-slate-400 text-sm leading-relaxed italic">
+                                    {TradeIntelligence.getFutureMarketAnalysis(keyword, seed)}
+                                </p>
+                                <Link to="/contact" className="flex items-center justify-center gap-2 w-full py-4 bg-green-600 hover:bg-green-700 rounded-xl font-bold transition-all mt-4">
+                                    Request Forecast <ArrowUpRight className="w-4 h-4" />
+                                </Link>
+                            </div>
+                            <div className="p-8 border border-slate-200 rounded-3xl">
+                                <h4 className="text-lg font-bold text-slate-900 mb-4">Export Capacity</h4>
+                                <div className="space-y-4">
+                                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                        <div className="bg-green-600 h-full w-[85%]" />
+                                    </div>
+                                    <div className="flex justify-between text-xs font-bold text-slate-500 uppercase tracking-widest">
+                                        <span>Current Load</span>
+                                        <span>85% Utilized</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// -------------------------------------------------------------
+// Architecture 2: Editorial Trade Feature
+// Modern web-magazine style, high contrast, staggered
+// -------------------------------------------------------------
+function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
+    return (
+        <div className="bg-white pt-32 px-6">
+            <section className="max-w-7xl mx-auto pt-12 md:pt-24 pb-20 border-b-2 border-slate-900">
+                <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-end">
+                    <div className="lg:col-span-1">
+                        <span className="text-sm font-black rotate-0 lg:-rotate-90 block whitespace-nowrap uppercase tracking-[0.5em] origin-left mb-6 lg:mb-0">
+                            EDITION_{seed % 99}
+                        </span>
+                    </div>
+                    <div className="lg:col-span-7">
+                        <h1 className="text-5xl md:text-9xl font-black text-slate-900 tracking-tighter leading-none uppercase mb-8 break-words">
+                            {title.split(' ')[0]}<br />
+                            <span className="text-green-600 italic">{title.split(' ').slice(1).join(' ')}</span>
+                        </h1>
+                    </div>
+                    <div className="lg:col-span-4">
+                        <p className="text-xl md:text-3xl text-slate-900 font-serif leading-tight italic">
+                            "{TradeIntelligence.getIntroduction(keyword, seed).split('. ')[0]}."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="max-w-7xl mx-auto py-24">
+                <div className="grid lg:grid-cols-2 gap-20">
+                    <div className="space-y-16">
+                        <FallbackImage
+                            src={image}
+                            fallbackSrc={fallback}
+                            alt={keyword}
+                            className="w-full grayscale hover:grayscale-0 transition-all duration-700 aspect-square object-cover"
+                        />
+                        <div className="prose prose-slate prose-lg md:prose-2xl max-w-none font-serif text-slate-800 leading-snug">
+                            <p className="first-letter:text-5xl md:first-letter:text-8xl first-letter:font-black first-letter:mr-3 first-letter:float-left first-letter:text-green-600">
+                                {TradeIntelligence.getTechnicalDeepDive(keyword, seed)}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="space-y-24 pt-0 lg:pt-40">
+                        <div className="bg-slate-900 text-white p-8 md:p-20">
+                            <h3 className="text-xl md:text-3xl font-black uppercase mb-12 tracking-widest border-b border-white/20 pb-8">Logistics Hub Mundra</h3>
+                            <p className="text-lg md:text-2xl font-light text-slate-300 leading-relaxed mb-12 italic">
+                                {TradeIntelligence.getLogisticsThesis(keyword, seed)}
+                            </p>
+                            <Link to="/contact" className="inline-block border-2 border-white px-10 py-5 hover:bg-white hover:text-slate-900 transition-all font-black uppercase tracking-[0.3em] text-sm">
+                                Terminal Access
+                            </Link>
+                        </div>
+                        <div className="space-y-8">
+                            <h4 className="text-xs font-bold uppercase tracking-[0.5em] text-slate-400">Regional Dynamics</h4>
+                            <p className="text-xl text-slate-800 leading-relaxed">
+                                {TradeIntelligence.getRegionalDynamics(keyword, seed)}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="bg-slate-900 -mx-6 py-32 px-6 overflow-hidden">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-baseline gap-12 border-b border-white/10 pb-20">
+                        <h2 className="text-6xl md:text-[8rem] font-black text-white/5 uppercase select-none leading-none">
+                            Patel Impex
+                        </h2>
+                        <div className="text-white text-right max-w-lg">
+                            <p className="text-2xl font-serif italic mb-6">Sustainable Harvest Logic</p>
+                            <p className="text-slate-400 text-sm leading-relaxed">{TradeIntelligence.getEthicalSourcingProof(keyword, seed)}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// -------------------------------------------------------------
+// Architecture 3: Industrial Cyber Matrix
+// Stealth, dark, data-heavy, tech-forward
+// -------------------------------------------------------------
+function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
+    return (
+        <div className="bg-zinc-950 pt-32 min-h-screen text-white">
+            <header className="py-12 md:py-24 px-6 border-b border-white/5">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
+                        <div className="space-y-6">
+                            <span className="text-emerald-500 font-mono text-xs tracking-[1em] block uppercase">// SYSTEM_BOOT_SEQUENCE: SUCCESS</span>
+                            <h1 className="text-4xl md:text-8xl font-black uppercase tracking-tighter leading-none break-words">
+                                {title}
+                            </h1>
+                        </div>
+                        <div className="bg-zinc-900 p-8 border-l-4 border-emerald-500 min-w-[300px]">
+                            <span className="block text-emerald-500 font-mono text-xs mb-2">LATENCY_NODE: RAJKOT_HUB</span>
+                            <span className="text-4xl font-mono font-black text-white">{(seed % 50) + 150} <small className="text-lg opacity-50">MT/D</small></span>
+                            <span className="block text-[10px] text-zinc-500 uppercase mt-2 tracking-widest font-bold">Node Export Capacity</span>
+                        </div>
+                    </div>
+                    <div className="grid lg:grid-cols-12 gap-12">
+                        <div className="lg:col-span-8">
+                            <div className="relative aspect-video overflow-hidden border border-white/10 group">
+                                <div className="absolute inset-0 bg-emerald-500/10 z-10 mix-blend-overlay group-hover:bg-transparent transition-all duration-1000" />
+                                <div className="absolute top-6 left-6 z-20 flex gap-2">
+                                    <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10 rounded-sm">
+                                        <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                                        <span className="text-[10px] font-mono font-bold tracking-widest">LIVE_CAM: FACTORY_01</span>
+                                    </div>
+                                </div>
+                                <FallbackImage
+                                    src={image}
+                                    fallbackSrc={fallback}
+                                    alt={keyword}
+                                    className="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 scale-105 group-hover:scale-100"
+                                />
+                            </div>
+                        </div>
+                        <div className="lg:col-span-4 space-y-6">
+                            <div className="p-8 bg-zinc-900 border border-white/5 hover:border-emerald-500/50 transition-all group">
+                                <Activity className="text-emerald-500 w-10 h-10 mb-6 group-hover:scale-110 transition-transform" />
+                                <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500 mb-4 group-hover:text-white">Industrial TQM</h3>
+                                <p className="text-sm leading-relaxed text-zinc-400 italic">
+                                    {TradeIntelligence.getProcessingStandards(keyword, seed)}
+                                </p>
+                            </div>
+                            <div className="p-8 bg-zinc-900 border border-white/5 hover:border-emerald-500/50 transition-all group">
+                                <Package className="text-emerald-500 w-10 h-10 mb-6 group-hover:scale-110 transition-transform" />
+                                <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500 mb-4 group-hover:text-white">Wholesale Logic</h3>
+                                <p className="text-sm leading-relaxed text-zinc-400 italic">
+                                    {TradeIntelligence.getWholesaleArchitecture(keyword, seed)}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section className="py-24 md:py-48 px-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-24">
+                        <div className="space-y-32">
+                            <div>
+                                <h2 className="text-3xl md:text-5xl font-black uppercase italic mb-12 border-b-2 border-emerald-500 inline-block">Trade Matrix</h2>
+                                <div className="prose prose-invert prose-lg md:prose-2xl max-w-none text-zinc-400 font-light leading-relaxed space-y-12">
+                                    <p>{TradeIntelligence.getTechnicalDeepDive(keyword, seed)}</p>
+                                    <p>{TradeIntelligence.getLogisticsThesis(keyword, seed)}</p>
+                                </div>
+                            </div>
+                            <div className="p-12 md:p-20 bg-emerald-500 text-zinc-950">
+                                <h3 className="text-4xl md:text-6xl font-black uppercase mb-10 leading-none tracking-tighter">Market Resilience</h3>
+                                <p className="text-xl md:text-2xl font-bold italic mb-0">
+                                    {TradeIntelligence.getMarketOutlook(keyword, seed)}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="space-y-12">
+                            <div className="bg-zinc-900 p-10 border border-emerald-500/20">
+                                <h4 className="text-xs font-black text-emerald-500 uppercase tracking-[0.4em] mb-12 flex items-center gap-4">
+                                    <BarChart3 className="w-5 h-5" /> PROTOCOL_RELIABILITY_DATA
+                                </h4>
+                                <ul className="space-y-8">
+                                    {[
+                                        { label: 'Latency Node', value: 'RAJ_SUB_SEC_01' },
+                                        { label: 'Security Purity', value: '99.9%' },
+                                        { label: 'Logistics Prio', value: 'TIER_1_MUNDRA' },
+                                        { label: 'System Uptime', value: '100% EXPORT' }
+                                    ].map((stat, i) => (
+                                        <li key={i} className="flex justify-between items-center border-b border-white/5 pb-6">
+                                            <span className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">{stat.label}</span>
+                                            <span className="text-white font-mono font-bold tracking-tighter">{stat.value}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Link to="/contact" className="mt-16 block w-full bg-emerald-500 hover:bg-white text-zinc-950 text-center font-black py-6 uppercase text-sm tracking-[0.4em] transition-all">
+                                    Initiate Node Contact
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// -------------------------------------------------------------
+// Original Base Layout: Product Expert Dossier (Legacy / Fallback)
 // -------------------------------------------------------------
 function ProductExpertDossier({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
     return (
