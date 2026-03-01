@@ -41,6 +41,41 @@ function FallbackImage({ src, fallbackSrc, alt, className }: { src: string, fall
     );
 }
 
+const getProductImage = (keyword: string, seed: number) => {
+    const lower = keyword.toLowerCase();
+
+    // Mapping of keywords to local assets synchronized in /public/assets/products/
+    // Using arrays for variants to provide variety across 100,000 pages
+    const mapping: Record<string, string[]> = {
+        'rice': ['rice.png', 'golden-sella-rice.png', 'ir64-parboiled-rice.png', 'ir64-raw-rice.png', 'sona-masoori-rice.png', 'steam-basmati-rice.png', 'white-sella-rice.png'],
+        'groundnut': ['groundnut.png', 'bold-runner-groundnut.png', 'java-spanish-groundnut.png', 'g10-g20-groundnut.png'],
+        'peanut': ['groundnut.png', 'bold-runner-groundnut.png', 'java-spanish-groundnut.png', 'g10-g20-groundnut.png'],
+        'wheat': ['sharbati-wheat.png', 'bhalia-wheat.png', 'bread-wheat.png', 'durum-wheat.png', 'lokwan-wheat.png', 'wheat-flour.png'],
+        'cotton': ['cotton.png', 'raw-cotton.png', 'cotton-yarn.png', 'comber-noil-cotton.png', 'cotton-carding.png', 'cotton-roving.png', 'processed-cotton.png'],
+        'yarn': ['cotton-yarn.png'],
+        'sesame': ['sesame-seeds.png', 'hulled-sesame.png', 'natural-sesame.png'],
+        'sugar': ['sugar.png'],
+        'cumin': ['cumin-seeds.png'],
+        'cardamom': ['cardamom.png'],
+        'fennel': ['fennel-seeds.png'],
+        'soybean': ['soybean.png'],
+        'soya': ['soybean.png'],
+        'psyllium': ['psyllium-husk.png', 'psyllium-powder.png'],
+        'husk': ['psyllium-husk.png'],
+        'isabgol': ['psyllium-husk.png'],
+        'dung': ['animal-dung.png', 'animal-dung-powder.png', 'cow-dung-cake.png'],
+    };
+
+    for (const [key, files] of Object.entries(mapping)) {
+        if (lower.includes(key)) {
+            const file = files[seed % files.length];
+            return `/assets/products/${file}`;
+        }
+    }
+
+    return null;
+};
+
 const extractImageKeywords = (keyword: string) => {
     const lower = keyword.toLowerCase();
 
@@ -64,7 +99,7 @@ const extractImageKeywords = (keyword: string) => {
     if (lower.includes('spice')) return 'spices,food';
 
     // Oilseeds & Nuts
-    if (lower.includes('groundnut') || lower.includes('peanut')) return 'peanuts,kernel,bulk';
+    if (lower.includes('groundnut') || lower.includes('peanut')) return 'peanut,wholesale';
     if (lower.includes('cashew')) return 'cashew,nuts';
     if (lower.includes('almond')) return 'almond,nuts';
     if (lower.includes('sesame')) return 'sesame,seeds';
@@ -78,13 +113,13 @@ const extractImageKeywords = (keyword: string) => {
     if (lower.includes('sugar') || lower.includes('jaggery')) return 'sugar,crystals';
 
     // Machinery & Industrial
-    if (lower.includes('tractor')) return 'tractor,farm';
-    if (lower.includes('machine') || lower.includes('machinery')) return 'industrial,machine';
+    if (lower.includes('tractor')) return 'tractor';
+    if (lower.includes('machine') || lower.includes('machinery')) return 'industrial,equipment';
     if (lower.includes('drill') || lower.includes('power tool')) return 'power,drill';
-    if (lower.includes('welding')) return 'welding,industrial';
+    if (lower.includes('welding')) return 'welding';
     if (lower.includes('engine') || lower.includes('motor')) return 'engine,parts';
-    if (lower.includes('steel') || lower.includes('metal')) return 'steel,industrial';
-    if (lower.includes('cnc')) return 'cnc,machine';
+    if (lower.includes('steel') || lower.includes('metal')) return 'steel';
+    if (lower.includes('cnc')) return 'cnc';
 
     // Medical & Plastic
     if (lower.includes('medical') || lower.includes('hospital') || lower.includes('gloves')) return 'medical,equipment';
@@ -92,7 +127,7 @@ const extractImageKeywords = (keyword: string) => {
     if (lower.includes('container') || lower.includes('packaging')) return 'cargo,container';
 
     // Others
-    if (lower.includes('husk') || lower.includes('isabgol') || lower.includes('psyllium')) return 'psyllium,husk';
+    if (lower.includes('husk') || lower.includes('isabgol') || lower.includes('psyllium')) return 'psyllium';
     if (lower.includes('dung')) return 'cow,dung';
 
     // Geographic / General Fallbacks
@@ -120,12 +155,19 @@ export default function DynamicMassSEO() {
         const newSeed = generateSeed(parsedKeyword);
         setSeed(newSeed);
 
-        // Extracting just the core noun prevents image API from 404ing on long 15-word queries
+        // Priority 1: Check for high-quality local product assets first
+        const localImage = getProductImage(parsedKeyword, newSeed);
+
+        // Priority 2: Use curated tags for dynamic search if no local match
         const noun = extractImageKeywords(parsedKeyword);
 
-        // Primary relatable image feed - using /all/ filter to force product + wholesale context
-        // This ensures we get professional product shots rather than random street scenes
-        setDynamicImageUrl(`https://loremflickr.com/1200/800/all/${encodeURIComponent(noun)},wholesale?lock=${newSeed}`);
+        if (localImage) {
+            setDynamicImageUrl(localImage);
+        } else {
+            // Simplified tags ensure higher availability and 100% relevance
+            setDynamicImageUrl(`https://loremflickr.com/1200/800/${encodeURIComponent(noun)}?lock=${newSeed}`);
+        }
+
         // 100% Unbreakable fallback feed mathematically bound to the same seed
         setDynamicFallbackUrl(`https://picsum.photos/seed/${newSeed}/1200/800`);
 
