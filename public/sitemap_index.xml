@@ -2,46 +2,26 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://patelimpex.com/sitemap.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
+    <lastmod>2026-03-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-1.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
+    <loc>https://patelimpex.com/sitemap-core-1.xml</loc>
+    <lastmod>2026-03-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-2.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
+    <loc>https://patelimpex.com/sitemap-core-2.xml</loc>
+    <lastmod>2026-03-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-3.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
+    <loc>https://patelimpex.com/sitemap-core-3.xml</loc>
+    <lastmod>2026-03-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-4.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
+    <loc>https://patelimpex.com/sitemap-core-4.xml</loc>
+    <lastmod>2026-03-01</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-5.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-6.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-7.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-8.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-9.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://patelimpex.com/sitemap-bulk-10.xml</loc>
-    <lastmod>2026-03-01T12:35:06.882Z</lastmod>
+    <loc>https://patelimpex.com/sitemap-core-5.xml</loc>
+    <lastmod>2026-03-01</lastmod>
   </sitemap>
 </sitemapindex>
