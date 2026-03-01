@@ -25,7 +25,7 @@ import CookiePolicy from "./pages/CookiePolicy";
 import Admin from "./pages/Admin";
 import BlogPostDetail from "./pages/BlogPostDetail";
 import NewsDetail from "./pages/NewsDetail";
-
+import OtherSiteBlog from "./pages/OtherSiteBlog";
 
 // More pages
 import ExportImportGuide from "./pages/more/ExportImportGuide";
@@ -387,6 +387,7 @@ const App = () => (
           <Route path="/seo" element={<SEO />} />
           <Route path="/more" element={<More />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/other-site-blog" element={<OtherSiteBlog />} />
 
           {/* More sub-pages */}
           <Route path="/more/export-import-guide" element={<ExportImportGuide />} />
