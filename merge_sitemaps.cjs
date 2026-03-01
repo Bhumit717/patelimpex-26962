@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const MAX_URLS_PER_SITEMAP = 20000;
+const MAX_URLS_PER_SITEMAP = 50000;
 
 async function mergeSitemaps() {
-    console.log("Generating ultra-clean sitemaps for Google...");
+    console.log("Generating high-capacity 50k sitemaps...");
 
     const keywordsPath = path.join(__dirname, 'src', 'data', 'seoKeywords.json');
     if (!fs.existsSync(keywordsPath)) {
@@ -21,10 +21,14 @@ async function mergeSitemaps() {
     const sitemapsDir = path.join(__dirname, 'public');
     const simpleDate = new Date().toISOString().split('T')[0];
 
-    // Delete all previous sitemaps
+    // Delete ALL previous versions to avoid confusion
     const files = fs.readdirSync(sitemapsDir);
     for (const file of files) {
-        if ((file.startsWith('sitemap-mass-') || file.startsWith('sitemap-bulk-') || file.startsWith('sitemap-core-') || file === 'sitemap_index.xml') && file.endsWith('.xml')) {
+        if ((file.startsWith('sitemap-mass-') ||
+            file.startsWith('sitemap-bulk-') ||
+            file.startsWith('sitemap-core-') ||
+            file.startsWith('sitemap-data-') ||
+            file === 'sitemap_index.xml') && file.endsWith('.xml')) {
             fs.unlinkSync(path.join(sitemapsDir, file));
         }
     }
@@ -47,7 +51,7 @@ async function mergeSitemaps() {
 
         sitemapContent += `</urlset>`;
 
-        const filename = `sitemap-core-${sitemapCount}.xml`;
+        const filename = `sitemap-data-${sitemapCount}.xml`;
         fs.writeFileSync(path.join(sitemapsDir, filename), sitemapContent);
 
         sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/${filename}</loc>\n    <lastmod>${simpleDate}</lastmod>\n  </sitemap>\n`;
@@ -56,7 +60,7 @@ async function mergeSitemaps() {
     sitemapIndexContent += `</sitemapindex>`;
     fs.writeFileSync(path.join(sitemapsDir, 'sitemap_index.xml'), sitemapIndexContent);
 
-    console.log(`Successfully packed ${keywordArray.length} keywords into EXACTLY ${sitemapCount} sitemaps with prefix sitemap-core-!`);
+    console.log(`Successfully generated ${sitemapCount} large sitemaps (50k each) for 100,000 pages.`);
 }
 
 mergeSitemaps();
