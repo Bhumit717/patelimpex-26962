@@ -9,6 +9,14 @@
       "destination": "/sitemap.xml"
     },
     {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap_index.xml"
+    },
+    {
+      "source": "/sitemap-data-(.*).xml",
+      "destination": "/sitemap-data-$1.xml"
+    },
+    {
       "source": "/robots.txt",
       "destination": "/robots.txt"
     },
