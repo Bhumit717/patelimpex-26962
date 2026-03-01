@@ -57,8 +57,8 @@ const Footer = () => {
     <footer className="bg-white border-t border-slate-200 py-24 text-slate-700">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <div className="space-y-8 lg:col-span-1">
+          {/* Column 1: Brand & Newsletter */}
+          <div className="space-y-12 lg:col-span-1">
             <div>
               <Link to="/" className="text-3xl font-black text-slate-800 mb-6 block font-graduate uppercase">
                 Patel<span className="font-fredericka text-slate-400">Impex</span>
@@ -69,54 +69,39 @@ const Footer = () => {
             </div>
 
             <div className="space-y-4">
-              {[
-                { icon: MapPin, text: "Rajkot, Gujarat, India" },
-                { icon: Phone, text: "+91 7984133417" },
-                { icon: Mail, text: "info@patelimpex.com" }
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-center space-x-3 text-slate-600">
-                  <item.icon className="h-5 w-5 text-slate-400" />
-                  <span className="font-medium text-sm font-graduate uppercase tracking-tighter">{item.text}</span>
-                </div>
-              ))}
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600 mb-6">Stay Connected</h4>
+              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="Intelligence Bulletin"
+                  required
+                  className="nm-input w-full !py-3 px-4 text-xs font-graduate !rounded-xl"
+                />
+                <button type="submit" disabled={isSubmitting} className="nm-btn-dark w-full !py-3 font-bold uppercase tracking-widest font-graduate text-[10px] border-none !rounded-xl">
+                  {isSubmitting ? '...' : 'Subscribe'}
+                </button>
+              </form>
             </div>
           </div>
 
-          {/* Footer Links Mapping */}
+          {/* Footer Links Mapping (3 Columns) */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title} className="space-y-8">
-              <h4 className="text-sm font-bold text-slate-900 font-graduate uppercase tracking-widest">{title}</h4>
+              <h4 className="text-xs font-black text-slate-900 font-graduate uppercase tracking-widest border-b border-slate-100 pb-4">{title}</h4>
               <ul className="space-y-4">
                 {links.map((link, idx) => (
                   <li key={idx}>
                     <Link to={link.href} className="text-slate-500 hover:text-green-600 transition-colors flex items-center group font-fondamento text-lg">
-                      <ArrowRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-all -ml-6 group-hover:ml-0" />
-                      {link.name}
+                      <ArrowRight className="h-4 w-4 mr-2 translate-x-[-10px] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />
+                      <span className="group-hover:translate-x-1 transition-transform duration-500">{link.name}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
-
-          {/* Newsletter Section */}
-          <div className="space-y-8 lg:col-span-1">
-            <h4 className="text-sm font-bold text-slate-900 font-graduate uppercase tracking-widest">Connect</h4>
-            <p className="text-slate-500 font-fondamento text-lg italic">Subscribe for trade updates.</p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-              <input
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder="Email Address"
-                required
-                className="nm-input w-full !py-4 px-6 text-sm font-graduate !rounded-xl"
-              />
-              <button type="submit" disabled={isSubmitting} className="nm-btn-dark w-full !py-4 font-bold uppercase tracking-widest font-graduate text-xs border-none !rounded-xl">
-                {isSubmitting ? '...' : 'Subscribe'}
-              </button>
-            </form>
-          </div>
         </div>
 
         <div className="mt-20 pt-8 border-t border-slate-100 text-center">

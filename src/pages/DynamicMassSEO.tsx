@@ -114,6 +114,53 @@ const getProductImage = (keyword: string) => {
     return ''; // Return empty string to trigger fallback
 };
 
+// Helper to extract a shorter, more natural product name from a long SEO keyword
+const getShortKeyword = (keyword: string) => {
+    // Remove year, "cif price", "to port", "kenya", etc.
+    let short = keyword.replace(/202[4-9]/g, '')
+        .replace(/CIF\s+price/gi, '')
+        .replace(/to\s+.*port/gi, '')
+        .replace(/\bprice\b/gi, '')
+        .replace(/\bExport\s+from\s+India\b/gi, '')
+        .replace(/\bQuality\b/gi, '')
+        .replace(/\bIndia\b/gi, '')
+        .replace(/\bWholesale\b/gi, '')
+        .trim();
+
+    // If it's still too long, take the first 3-4 words
+    const words = short.split(/\s+/);
+    if (words.length > 4) {
+        return words.slice(0, 4).join(' ');
+    }
+    return short || keyword;
+};
+
+// Smart content wrapper to prevent repetitive keyword stuffing
+const getSmartContent = (contentGetter: (kw: string, s: number) => string, keyword: string, seed: number) => {
+    const rawContent = contentGetter(keyword, seed);
+    const shortKw = getShortKeyword(keyword);
+
+    // Randomly replace some instances of the full keyword with the short one or generic terms
+    let processed = rawContent;
+    const occurrences = (processed.match(new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')) || []).length;
+
+    if (occurrences > 1) {
+        // Replace the first occurrence with the full keyword (for SEO)
+        // Then replace subsequent ones with shorter variations
+        let count = 0;
+        processed = processed.replace(new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), (match) => {
+            count++;
+            if (count === 1) return match;
+            if (count % 2 === 0) return shortKw;
+            const alternatives = ["this high-grade commodity", "the specified batch", "our origin-direct supply", "this industrial grade"];
+            return alternatives[seed % alternatives.length];
+        });
+    }
+
+    return processed;
+};
+
+
 const TradeIntelligence = {
     getIntroduction: (keyword: string, seed: number) => {
         const intros = [
@@ -366,25 +413,24 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                         <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
                             <ShieldCheck className="w-3 h-3" /> VERIFIED EXPORT ORIGIN
                         </div>
-                        <h1 className="text-4xl md:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tighter">
+                        <h1 className="text-[clamp(2.5rem,7vw,6.5rem)] font-black text-slate-900 leading-[0.9] tracking-tighter uppercase">
                             {title}
                         </h1>
-                        <p className="text-xl md:text-2xl text-slate-600 font-light leading-relaxed border-l-4 border-green-600 pl-6">
-                            {TradeIntelligence.getIntroduction(keyword, seed)}
+                        <p className="text-xl md:text-2xl text-slate-600 font-light leading-relaxed border-l-4 border-emerald-600 pl-8 md:pl-12 italic">
+                            "{getSmartContent(TradeIntelligence.getIntroduction, keyword, seed)}"
                         </p>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6">
-                            <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                                <span className="block text-2xl font-bold text-slate-900">{(seed % 15) + 85}%</span>
-                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Yield Purity</span>
-                            </div>
-                            <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                                <span className="block text-2xl font-bold text-slate-900">Tier 1</span>
-                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Port Logistics</span>
-                            </div>
-                            <div className="hidden md:block p-4 bg-white rounded-xl shadow-sm border border-slate-100">
-                                <span className="block text-2xl font-bold text-slate-900">ISO Cert</span>
-                                <span className="text-[10px] text-slate-400 uppercase font-bold tracking-widest">QA Standard</span>
-                            </div>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 pt-6">
+                            {[
+                                { val: `${(seed % 15) + 85}%`, label: 'Yield Purity' },
+                                { val: 'Tier 1', label: 'Logistic Node' },
+                                { val: 'ISO 22K', label: 'QC Standard' },
+                                { val: 'DIRECT', label: 'Source Model' }
+                            ].map((item, i) => (
+                                <div key={i} className="p-6 bg-white rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] border border-slate-100 group hover:border-emerald-500 transition-colors">
+                                    <span className="block text-2xl font-black text-slate-900 group-hover:text-emerald-600 transition-colors">{item.val}</span>
+                                    <span className="text-[10px] text-slate-400 uppercase font-black tracking-widest">{item.label}</span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div className="relative group">
@@ -560,98 +606,110 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
 // Modern web-magazine style, high contrast, staggered
 // -------------------------------------------------------------
 // -------------------------------------------------------------
-// Architecture 2: Editorial Trade Feature
-// Modern web-magazine style, high contrast, staggered
-// -------------------------------------------------------------
 function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
+    const shortTitlePart1 = title.split(' ')[0];
+    const restOfTitle = title.split(' ').slice(1).join(' ');
+    const shortKw = getShortKeyword(keyword);
+
     return (
-        <div className="bg-white pt-32 min-h-screen">
-            {/* Magazine Header */}
-            <section className="max-w-7xl mx-auto pt-16 md:pt-32 pb-24 border-b-[3px] border-slate-900 px-6">
-                <div className="grid lg:grid-cols-12 gap-16 items-start">
-                    <div className="lg:col-span-8">
-                        <div className="flex items-center gap-4 mb-10 overflow-hidden">
-                            <span className="text-[10px] font-black tracking-[0.6em] uppercase text-slate-400 whitespace-nowrap">Special Intelligence Report // Series {seed % 100}</span>
-                            <div className="h-px w-full bg-slate-100" />
+        <div className="bg-white pt-24 min-h-screen">
+            {/* High-Concept Magazine Header */}
+            <section className="max-w-7xl mx-auto pt-16 md:pt-32 pb-24 border-b border-slate-900/10 px-6">
+                <div className="grid lg:grid-cols-12 gap-12 items-end">
+                    <div className="lg:col-span-9">
+                        <div className="flex items-center gap-4 mb-10">
+                            <span className="text-[10px] font-black tracking-[0.6em] uppercase text-emerald-600 font-mono">VOL. {(seed % 99).toString().padStart(2, '0')} // INTEL_DOCK_{seed}</span>
+                            <div className="h-px flex-1 bg-slate-100" />
                         </div>
-                        <h1 className="text-6xl md:text-[10rem] font-black text-slate-900 tracking-tighter leading-[0.85] uppercase mb-12">
-                            {title.split(' ')[0]}<br />
-                            <span className="text-green-600 italic font-serif lowercase tracking-normal px-4 border-2 border-green-600 inline-block mt-4 rounded-full text-5xl md:text-8xl">
-                                {title.split(' ').slice(1).join(' ')}
+                        <h1 className="text-[clamp(3.5rem,12vw,14rem)] font-black text-slate-900 tracking-tighter leading-[0.8] uppercase">
+                            <span className="block mb-6">{shortTitlePart1}</span>
+                            <span className="text-emerald-600 font-serif lowercase tracking-normal italic text-[clamp(2rem,8vw,8rem)] block border-l-[12px] border-emerald-500 pl-10 bg-emerald-50/10 py-8 rounded-r-3xl">
+                                {restOfTitle}
                             </span>
                         </h1>
                     </div>
-                    <div className="lg:col-span-4 lg:pt-24">
-                        <p className="text-2xl md:text-4xl text-slate-900 font-serif leading-tight italic font-light mb-8">
-                            "{TradeIntelligence.getIntroduction(keyword, seed).split('. ')[0]}."
-                        </p>
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center font-bold text-xs uppercase tracking-tighter">PI</div>
-                            <div>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-slate-900">Patel Impex Editorial</p>
-                                <p className="text-[10px] text-slate-400 uppercase font-medium">Rajkot, Gujarat - Origin Report</p>
+                    <div className="lg:col-span-3 pb-4">
+                        <div className="p-8 bg-slate-900 text-white rounded-[2rem] space-y-6">
+                            <p className="text-sm font-bold uppercase tracking-widest text-emerald-400">Executive Summary</p>
+                            <p className="text-lg font-serif italic leading-snug">
+                                "{getSmartContent(TradeIntelligence.getIntroduction, keyword, seed).split('. ')[0]}."
+                            </p>
+                            <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                                <div className="w-8 h-8 rounded-full bg-emerald-500" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">Origin Direct Alpha</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Feature Content Staggered Grid */}
-            <section className="max-w-7xl mx-auto py-32 px-6">
-                <div className="grid lg:grid-cols-12 gap-24 items-start">
-                    {/* Left Column: Visual & Short Form */}
+            {/* Staggered Narrative Grid */}
+            <section className="max-w-7xl mx-auto py-24 px-6">
+                <div className="grid lg:grid-cols-12 gap-24">
                     <div className="lg:col-span-5 space-y-24">
-                        <div className="relative group overflow-hidden bg-slate-900 rounded-2xl">
-                            <FallbackImage
-                                src={image}
-                                fallbackSrc={fallback}
-                                alt={keyword}
-                                className="w-full grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 aspect-[3/4] object-cover opacity-90"
-                            />
-                            <div className="absolute top-0 right-0 p-8">
-                                <span className="px-4 py-2 bg-white text-slate-900 text-[10px] font-black uppercase tracking-widest shadow-2xl">Verified Batch: {seed}</span>
+                        <div className="relative group">
+                            <div className="absolute -inset-4 bg-emerald-500/5 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-100">
+                                <FallbackImage
+                                    src={image}
+                                    fallbackSrc={fallback}
+                                    alt={keyword}
+                                    className="w-full grayscale group-hover:grayscale-0 transition-all duration-1000 aspect-[4/5] object-cover scale-105 group-hover:scale-100"
+                                />
+                                <div className="absolute top-8 right-8">
+                                    <div className="bg-white/90 backdrop-blur px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">
+                                        Batch_ID_{seed}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div className="space-y-12">
-                            <h3 className="text-3xl font-bold text-slate-900 border-l-[6px] border-green-600 pl-8 leading-tight">
-                                Breaking the Industrial Equilibrium via Specialized {keyword}
+                            <h3 className="text-4xl font-bold text-slate-900 tracking-tight leading-none uppercase">
+                                Disrupting Global Logistics <br /> with <span className="text-emerald-600">{shortKw}</span>
                             </h3>
-                            <div className="prose prose-slate prose-lg max-w-none text-slate-500 font-serif leading-relaxed italic">
-                                "{TradeIntelligence.getMarketOutlook(keyword, seed)}"
+                            <div className="prose prose-slate prose-lg max-w-none text-slate-600 font-serif leading-relaxed italic border-l-2 border-slate-100 pl-10">
+                                <p>{getSmartContent(TradeIntelligence.getTechnicalDeepDive, keyword, seed)}</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Right Column: Deep Analysis */}
                     <div className="lg:col-span-7 space-y-32">
                         <div className="space-y-12">
-                            <span className="text-green-600 font-black tracking-[0.5em] text-[10px] uppercase">Dossier Fragment 01 // Supply Chain Digitization</span>
-                            <h2 className="text-5xl font-bold text-slate-900 tracking-tighter leading-none">The Era of Transparent Logistics</h2>
-                            <div className="text-2xl text-slate-600 leading-relaxed font-light">
-                                {TradeIntelligence.getSupplyChainDigitizationLogic(keyword, seed)}
+                            <div className="flex items-center gap-6">
+                                <span className="w-12 h-px bg-emerald-500" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-emerald-600">Protocol 01: Supply Chain Alpha</span>
+                            </div>
+                            <h2 className="text-5xl md:text-7xl font-bold text-slate-900 tracking-tighter leading-[0.9] uppercase">The Era of <br /> Digitized Trade</h2>
+                            <div className="text-2xl text-slate-500 font-light leading-relaxed">
+                                {getSmartContent(TradeIntelligence.getSupplyChainDigitizationLogic, keyword, seed)}
                             </div>
                         </div>
 
-                        <div className="bg-slate-900 text-white p-12 md:p-20 relative overflow-hidden group rounded-[2.5rem]">
-                            <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12">
-                                <Zap className="w-48 h-48" />
+                        <div className="bg-emerald-600 text-white p-12 md:p-24 rounded-[3rem] shadow-2xl shadow-emerald-600/20 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:rotate-12 transition-transform duration-1000">
+                                <Network className="w-64 h-64" />
                             </div>
-                            <div className="relative space-y-10">
-                                <h3 className="text-4xl font-bold leading-none tracking-tight">Molecular Purity & <br /> Laboratory Analysis</h3>
-                                <div className="h-px w-24 bg-green-500" />
-                                <p className="text-xl text-slate-400 leading-relaxed font-light">
-                                    {TradeIntelligence.getLaboratoryAnalysisSpectrum(keyword, seed)}
+                            <div className="relative z-10 space-y-12">
+                                <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">Global Processing <br /> & TQM Standards</h3>
+                                <p className="text-xl text-emerald-50 leading-relaxed font-light italic">
+                                    {getSmartContent(TradeIntelligence.getProcessingStandards, keyword, seed)}
                                 </p>
+                                <div className="pt-8 flex flex-wrap gap-4">
+                                    <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">ISO 22000</div>
+                                    <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">FSSAI Certified</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="space-y-12 pt-12">
-                            <h2 className="text-5xl font-bold text-slate-900 tracking-tighter leading-none">Technical <br /> Depth Analysis</h2>
-                            <div className="prose prose-slate prose-xl max-w-none text-slate-600 leading-relaxed">
-                                <p>{TradeIntelligence.getTechnicalDeepDive(keyword, seed)}</p>
-                                <p className="border-t pt-12 mt-12 border-slate-100">
-                                    {TradeIntelligence.getRegionalHarvestIntel(keyword, seed)}
+                        <div className="space-y-12">
+                            <h2 className="text-5xl font-bold text-slate-900 tracking-tighter uppercase">Market Resilience <br /> Analysis 2026-2030</h2>
+                            <div className="prose prose-slate prose-xl max-w-none text-slate-600 leading-relaxed italic">
+                                <p>
+                                    {getSmartContent(TradeIntelligence.getFutureMarketAnalysis, keyword, seed)}
+                                </p>
+                                <p className="mt-12 pt-12 border-t border-slate-100">
+                                    {getSmartContent(TradeIntelligence.getMarketOutlook, keyword, seed)}
                                 </p>
                             </div>
                         </div>
@@ -659,182 +717,156 @@ function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { titl
                 </div>
             </section>
 
-            {/* Closing Editorial Footer */}
+            {/* Editorial Footer CTA */}
             <section className="bg-slate-50 py-32 px-6 border-t border-slate-200">
-                <div className="max-w-7xl mx-auto text-center">
-                    <h2 className="text-6xl md:text-[8rem] font-black text-slate-900 uppercase leading-none tracking-[2em] -mr-[2em] opacity-5 select-none mb-12">GLOBAL</h2>
-                    <div className="max-w-3xl mx-auto space-y-12">
-                        <p className="text-2xl text-slate-600 font-serif italic">
-                            "{TradeIntelligence.getFutureMarketAnalysis(keyword, seed)}"
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
+                    <div className="max-w-2xl">
+                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 uppercase tracking-tighter leading-none mb-8 italic">
+                            Secure Your <span className="text-emerald-600 font-serif lowercase tracking-normal px-4">procurement</span> pipeline today.
+                        </h2>
+                        <p className="text-xl text-slate-500 font-light italic leading-loose">
+                            Connect with the Patel Impex trade desk for an exclusive origin intelligence brief and specialized pricing for {shortKw}.
                         </p>
-                        <div className="pt-8">
-                            <Link to="/contact" className="inline-flex items-center gap-6 group">
-                                <span className="w-24 h-24 bg-slate-900 text-white rounded-full flex items-center justify-center group-hover:bg-green-600 transition-all duration-500 group-hover:scale-110">
-                                    <ArrowRight className="w-8 h-8" />
-                                </span>
-                                <div className="text-left">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-2">Request Exclusive Partnership</p>
-                                    <p className="text-3xl font-bold text-slate-900">Secure Your Supply Line</p>
-                                </div>
-                            </Link>
-                        </div>
                     </div>
+                    <Link to="/contact" className="group shrink-0">
+                        <div className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-slate-900 flex items-center justify-center group-hover:bg-emerald-600 transition-all duration-700 shadow-2xl group-hover:scale-110">
+                            <ArrowRight className="w-12 h-12 md:w-20 md:h-20 text-white" />
+                        </div>
+                    </Link>
                 </div>
             </section>
         </div>
     );
 }
 
-// -------------------------------------------------------------
-// Architecture 3: Industrial Cyber Matrix
-// Stealth, dark, data-heavy, tech-forward
-// -------------------------------------------------------------
 function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
+    const shortTitle = title.split(' ').slice(0, 3).join(' ');
+    const rest = title.split(' ').slice(3).join(' ');
+    const shortKw = getShortKeyword(keyword);
+
     return (
-        <div className="bg-zinc-950 pt-32 min-h-screen text-white font-sans selection:bg-emerald-500 selection:text-black">
-            {/* Command Center Hero */}
-            <section className="px-6 py-12 md:py-24 border-b border-white/5 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-zinc-950">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
-                        <div className="space-y-8 max-w-4xl">
-                            <div className="inline-flex items-center gap-4 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-sm">
-                                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
-                                <span className="text-emerald-500 font-mono text-[10px] font-black tracking-[0.5em] uppercase">Status: Global Export Active</span>
-                            </div>
-                            <h1 className="text-5xl md:text-9xl font-black uppercase tracking-tighter leading-none break-words text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-600">
-                                {title}
-                            </h1>
-                            <p className="text-xl md:text-3xl text-zinc-400 font-light leading-snug border-l-2 border-emerald-500 pl-8 max-w-3xl italic">
-                                {TradeIntelligence.getIntroduction(keyword, seed).split('. ')[0]}.
-                            </p>
-                        </div>
-                        <div className="bg-zinc-900/50 backdrop-blur-xl p-10 border border-white/10 min-w-[320px] shadow-[0_0_50px_rgba(16,185,129,0.1)] relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
-                            <span className="block text-emerald-500 font-mono text-[10px] mb-4 uppercase tracking-[0.4em] font-black">Industrial Throughput</span>
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-5xl font-mono font-black text-white group-hover:text-emerald-500 transition-colors">{(seed % 50) + 200}</span>
-                                <span className="text-lg opacity-40 font-mono uppercase">MT/Daily</span>
-                            </div>
-                            <div className="mt-8 space-y-2">
-                                <div className="flex justify-between text-[10px] font-mono text-zinc-500 uppercase">
-                                    <span>Core Capacity</span>
-                                    <span>94% Utilization</span>
-                                </div>
-                                <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
-                                    <div className="h-full bg-emerald-500 w-[94%]" />
-                                </div>
-                            </div>
-                        </div>
+        <div className="bg-[#050505] min-h-screen text-zinc-100 font-sans selection:bg-emerald-500/30 selection:text-white pt-24">
+            {/* Cyber-Matrix Hero */}
+            <section className="relative px-6 py-12 md:py-32 overflow-hidden border-b border-white/5">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(16,185,129,0.08),transparent_70%)]" />
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <div className="flex items-center gap-4 mb-12">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.8)]" />
+                        <span className="text-[10px] font-mono font-black text-emerald-500 uppercase tracking-[0.5em]">Command_Center // Origin_Verification_Feed</span>
                     </div>
 
-                    <div className="grid lg:grid-cols-12 gap-8">
-                        <div className="lg:col-span-8 group relative overflow-hidden border border-white/5 rounded-2xl">
-                            <div className="absolute inset-0 bg-zinc-950/20 z-10 group-hover:bg-transparent transition-all duration-700" />
-                            <div className="absolute top-8 left-8 z-20 space-y-2">
-                                <div className="bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10 text-[10px] font-mono font-bold tracking-widest flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-                                    SECURE_FEED: ORIGIN_RAJKOT_TRANSIT
-                                </div>
-                            </div>
-                            <FallbackImage
-                                src={image}
-                                fallbackSrc={fallback}
-                                alt={keyword}
-                                className="w-full aspect-video object-cover grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 scale-105 group-hover:scale-100"
-                            />
-                            <div className="absolute bottom-8 left-8 right-8 z-20 grid grid-cols-3 gap-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-500">
-                                {[
-                                    { l: 'LATITUDE', v: '22.3039° N' },
-                                    { l: 'LONGITUDE', v: '70.8022° E' },
-                                    { l: 'PORT_HUB', v: 'INMUN' }
-                                ].map((geo, i) => (
-                                    <div key={i} className="bg-black/60 backdrop-blur-md p-4 border border-white/5">
-                                        <span className="block text-[8px] text-zinc-500 font-mono">{geo.l}</span>
-                                        <span className="text-xs font-mono font-bold text-white">{geo.v}</span>
-                                    </div>
-                                ))}
+                    <div className="grid lg:grid-cols-2 gap-24 items-start">
+                        <div className="space-y-12">
+                            <h1 className="text-[clamp(2.5rem,10vw,8rem)] font-black uppercase tracking-tighter leading-[0.8] text-white">
+                                {shortTitle} <br />
+                                <span className="text-emerald-500">{rest}</span>
+                            </h1>
+                            <div className="flex flex-wrap gap-4 pt-4">
+                                <div className="bg-zinc-900 border border-white/10 px-6 py-3 rounded-xl text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">STATUS: ACTIVE_NODE</div>
+                                <div className="bg-emerald-500/10 border border-emerald-500/20 px-6 py-3 rounded-xl text-[10px] font-mono font-bold text-emerald-500 uppercase tracking-widest">QC_CLEARED_2030</div>
                             </div>
                         </div>
-                        <div className="lg:col-span-4 grid sm:grid-cols-2 lg:grid-cols-1 gap-6">
-                            <div className="p-8 bg-zinc-900/40 border border-white/5 hover:border-emerald-500/30 transition-all group rounded-2xl">
-                                <Factory className="text-emerald-500 w-8 h-8 mb-6 group-hover:scale-110 transition-transform" />
-                                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-500 mb-6 group-hover:text-white">TQM Protocol</h3>
-                                <p className="text-sm leading-relaxed text-zinc-400 font-light italic">
-                                    {TradeIntelligence.getProcessingStandards(keyword, seed).split('. ')[0]}.
+                        <div className="space-y-12 lg:pt-32">
+                            <div className="border-l-2 border-emerald-500 pl-8 md:pl-12">
+                                <p className="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed italic mb-10">
+                                    "{getSmartContent(TradeIntelligence.getIntroduction, keyword, seed).split('. ')[0]}."
                                 </p>
-                            </div>
-                            <div className="p-8 bg-zinc-900/40 border border-white/5 hover:border-emerald-500/30 transition-all group rounded-2xl">
-                                <Truck className="text-emerald-500 w-8 h-8 mb-6 group-hover:scale-110 transition-transform" />
-                                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-500 mb-6 group-hover:text-white">Logistics Node</h3>
-                                <p className="text-sm leading-relaxed text-zinc-400 font-light italic">
-                                    {TradeIntelligence.getLogisticsThesis(keyword, seed).split('. ')[0]}.
-                                </p>
+                                <div className="grid grid-cols-2 gap-8 font-mono text-[10px]">
+                                    <div className="space-y-2">
+                                        <p className="text-zinc-600 uppercase tracking-widest">Molecular Stability</p>
+                                        <p className="text-white font-black text-lg">99.98% Verification</p>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <p className="text-zinc-600 uppercase tracking-widest">Global Reach</p>
+                                        <p className="text-white font-black text-lg">Direct_CIF_Available</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Sub-Surface Data Grid */}
-            <section className="py-24 md:py-32 px-6">
+            {/* Industrial Data Matrix */}
+            <section className="py-20 md:py-32 px-6 bg-transparent">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid lg:grid-cols-3 gap-16">
-                        <div className="lg:col-span-2 space-y-24">
-                            <div className="space-y-12">
-                                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Advanced Industrial <br /> Procurement Data</h2>
-                                <div className="h-px w-full bg-gradient-to-r from-emerald-500 via-emerald-500/20 to-transparent" />
-                                <div className="prose prose-invert prose-lg md:prose-xl max-w-none text-zinc-400 leading-relaxed font-light">
-                                    <p>{TradeIntelligence.getTechnicalDeepDive(keyword, seed)}</p>
-                                    <p className="border-t border-white/10 pt-12 mt-12">{TradeIntelligence.getIndustrialApplicationSpectrum(keyword, seed)}</p>
+                    <div className="grid lg:grid-cols-12 gap-16">
+                        <div className="lg:col-span-8 space-y-32">
+                            {/* Visual Asset Container */}
+                            <div className="relative group overflow-hidden rounded-[2.5rem] border border-white/5 bg-zinc-900 shadow-2xl">
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10" />
+                                <FallbackImage
+                                    src={image}
+                                    fallbackSrc={fallback}
+                                    alt={keyword}
+                                    className="w-full aspect-video object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                                />
+                                <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12 md:right-12 z-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-2 h-2 bg-emerald-500 rounded-full" />
+                                            <span className="text-[10px] font-mono font-bold text-white uppercase tracking-widest">REALTIME_ASSET_SCAN</span>
+                                        </div>
+                                        <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">{shortKw} // Processing Node</h3>
+                                    </div>
+                                    <div className="bg-emerald-500 text-black p-4 md:p-6 rounded-2xl flex items-center justify-center font-black text-xl shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:scale-110 transition-transform">
+                                        <Zap className="w-6 h-6 md:w-8 md:h-8" />
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="grid sm:grid-cols-2 gap-8">
-                                <div className="p-10 bg-zinc-900 border border-white/5 rounded-2xl relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                                        <ShieldCheck className="w-24 h-24" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-6 text-emerald-500">Risk Mitigation</h3>
-                                    <p className="text-sm text-zinc-500 leading-relaxed italic">{TradeIntelligence.getTradeHazardMitigation(keyword, seed)}</p>
+                            <div className="space-y-16">
+                                <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none">Technical Dossier <br /> & Process Intelligence</h2>
+                                <div className="h-px w-full bg-gradient-to-r from-emerald-500 via-emerald-500/10 to-transparent" />
+                                <div className="prose prose-invert prose-lg md:prose-2xl max-w-none text-zinc-400 font-light leading-relaxed italic">
+                                    <p>{getSmartContent(TradeIntelligence.getTechnicalDeepDive, keyword, seed)}</p>
+                                    <p className="mt-12 text-zinc-100 border-l-4 border-emerald-500 pl-8 md:pl-12">
+                                        {getSmartContent(TradeIntelligence.getIndustrialApplicationSpectrum, keyword, seed)}
+                                    </p>
                                 </div>
-                                <div className="p-10 bg-zinc-900 border border-white/5 rounded-2xl relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                                        <Users className="text-white w-24 h-24" />
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-6 text-emerald-500">Ethical Framework</h3>
-                                    <p className="text-sm text-zinc-500 leading-relaxed italic">{TradeIntelligence.getEthicalSourcingProof(keyword, seed)}</p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="p-10 bg-zinc-900 border border-white/5 rounded-3xl space-y-6">
+                                    <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Phytosanitary Protocol</h4>
+                                    <p className="text-zinc-400 leading-relaxed italic">{TradeIntelligence.getGlobalPhytosanitaryProtocol(keyword, seed)}</p>
+                                </div>
+                                <div className="p-10 bg-zinc-900 border border-white/5 rounded-3xl space-y-6">
+                                    <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Digitization Logic</h4>
+                                    <p className="text-zinc-400 leading-relaxed italic">{TradeIntelligence.getSupplyChainDigitizationLogic(keyword, seed)}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="space-y-8">
-                            <div className="bg-emerald-500 p-12 text-zinc-950 rounded-2xl group shadow-[0_0_50px_rgba(16,185,129,0.2)]">
-                                <h4 className="text-[10px] font-black uppercase tracking-[0.5em] mb-12 border-b border-black/10 pb-6">Future Analysis 2026-2030</h4>
-                                <p className="text-xl md:text-2xl font-bold leading-tight uppercase mb-12">
-                                    {TradeIntelligence.getFutureMarketAnalysis(keyword, seed)}
-                                </p>
-                                <Link to="/contact" className="inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest border-2 border-zinc-950 px-6 py-4 hover:bg-zinc-950 hover:text-white transition-all">
-                                    Global Supply Inquiry <ArrowRight className="w-4 h-4" />
-                                </Link>
-                            </div>
-
-                            <div className="p-10 bg-zinc-900 border border-white/5 rounded-2xl space-y-8">
-                                <div className="flex justify-between items-center text-xs font-mono text-zinc-500 uppercase">
-                                    <span>Regional Dynamics</span>
-                                    <span>[ACTIVE]</span>
+                        <div className="lg:col-span-4 space-y-12">
+                            <div className="sticky top-32 space-y-8">
+                                <div className="p-8 md:p-12 bg-zinc-900/50 border border-white/5 rounded-[2.5rem] space-y-10 backdrop-blur-md">
+                                    <div>
+                                        <h4 className="text-[10px] font-mono font-black text-emerald-500 uppercase tracking-[0.4em] mb-6">Financial_Thesis</h4>
+                                        <p className="text-sm text-zinc-400 leading-relaxed italic">
+                                            {getSmartContent(TradeIntelligence.getFinancialThesis, keyword, seed)}
+                                        </p>
+                                    </div>
+                                    <div className="h-px w-full bg-white/5" />
+                                    <div>
+                                        <h4 className="text-[10px] font-mono font-black text-emerald-500 uppercase tracking-[0.4em] mb-6">Logistics_Protocol</h4>
+                                        <p className="text-sm text-zinc-400 leading-relaxed italic">
+                                            {getSmartContent(TradeIntelligence.getLogisticsThesis, keyword, seed)}
+                                        </p>
+                                    </div>
+                                    <Link to="/contact" className="block w-full text-center bg-white text-black py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-emerald-500 transition-all duration-500 shadow-xl hover:shadow-emerald-500/20">
+                                        Initiate_Global_Trade
+                                    </Link>
                                 </div>
-                                <p className="text-sm text-zinc-400 leading-relaxed font-light italic">
-                                    {TradeIntelligence.getRegionalDynamics(keyword, seed)}
-                                </p>
-                                <div className="grid grid-cols-2 gap-4 pt-4">
-                                    <div className="p-4 bg-zinc-950 border border-white/5">
-                                        <span className="block text-[8px] text-zinc-500 font-mono uppercase">Certification</span>
-                                        <span className="text-[10px] font-mono font-bold">GMP_READY</span>
+
+                                <div className="p-8 md:p-12 bg-emerald-500 text-black rounded-[2.5rem] space-y-8 group shadow-[0_0_50px_rgba(16,185,129,0.1)] hover:bg-emerald-400 transition-colors cursor-default">
+                                    <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
+                                        <Activity className="w-6 h-6" />
                                     </div>
-                                    <div className="p-4 bg-zinc-950 border border-white/5">
-                                        <span className="block text-[8px] text-zinc-500 font-mono uppercase">Inspection</span>
-                                        <span className="text-[10px] font-mono font-bold">SGS_VET</span>
-                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter leading-none">Regional <br /> Dynamics 2030</h3>
+                                    <p className="text-sm font-bold leading-relaxed italic">
+                                        {getSmartContent(TradeIntelligence.getRegionalDynamics, keyword, seed)}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -921,6 +953,42 @@ function ProductExpertDossier({ title, image, fallback, keyword, seed }: { title
                                 <p>{TradeIntelligence.getFinancialThesis(keyword, seed)}</p>
                                 <p>{TradeIntelligence.getRegulatoryFramework(keyword, seed)}</p>
                             </div>
+                        </div>
+
+                        <div className="py-12 px-8 md:px-16 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <h2 className="text-2xl md:text-3xl font-graduate text-slate-900 mb-8 text-center italic">Institutional Sourcing Standards</h2>
+                            <div className="grid md:grid-cols-2 gap-10">
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-green-700 mb-4 flex items-center gap-2">
+                                        <Award className="w-4 h-4" /> Ethical Procurement
+                                    </h4>
+                                    <p className="text-sm text-slate-600 leading-relaxed font-sans">{TradeIntelligence.getEthicalSourcingProof(keyword, seed)}</p>
+                                </div>
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-green-700 mb-4 flex items-center gap-2">
+                                        <Activity className="w-4 h-4" /> Processing Excellence
+                                    </h4>
+                                    <p className="text-sm text-slate-600 leading-relaxed font-sans">{TradeIntelligence.getProcessingStandards(keyword, seed)}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-graduate text-slate-900 mb-6">Regional Supply Resilience</h2>
+                            <p className="text-slate-700">{TradeIntelligence.getRegionalDynamics(keyword, seed)}</p>
+                        </div>
+
+                        <div className="p-8 border-b border-slate-100">
+                            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-6">Financial Protocol</h4>
+                            <p className="text-base text-slate-700 font-medium leading-snug">
+                                {getSmartContent(TradeIntelligence.getFinancialThesis, keyword, seed).split('. ')[0]}.
+                            </p>
+                        </div>
+                        <div className="p-8">
+                            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-600 mb-6">Compliance Node</h4>
+                            <p className="text-base text-slate-700 font-medium leading-snug">
+                                {getSmartContent(TradeIntelligence.getRegulatoryFramework, keyword, seed).split('. ')[0]}.
+                            </p>
                         </div>
 
                         <div className="py-12 px-8 md:px-16 bg-slate-50 border border-slate-200 rounded-2xl">

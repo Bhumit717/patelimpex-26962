@@ -28,49 +28,53 @@ const Navigation = () => {
   }, []);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'top-2' : 'top-0'}`} role="banner">
-      <div className="container mx-auto px-4">
-        <nav className={`transition-all duration-500 flex justify-between items-center rounded-full border-none shadow-xl bg-white/90 backdrop-blur-md px-6 lg:px-10 ${isScrolled ? 'h-20' : 'h-24 md:h-28'}`}>
+    <header className={`fixed w-full z-50 transition-all duration-700 ${isScrolled ? 'top-0 py-1' : 'top-0 py-3'}`} role="banner">
+      <div className="container mx-auto px-4 md:px-6">
+        <nav className={`transition-all duration-700 flex justify-between items-center rounded-2xl border border-slate-200/50 shadow-lg bg-white/80 backdrop-blur-xl px-6 lg:px-12 ${isScrolled ? 'h-16' : 'h-20 md:h-24'}`}>
           {/* Brand */}
-          <Link to="/" className="flex items-center space-x-4 group">
-            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-slate-100 shadow-inner group-hover:scale-110 transition-transform duration-500">
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-slate-100 shadow-xl group-hover:scale-110 transition-transform duration-700">
               <video ref={videoRef} src={logoVideo} className="w-full h-full object-cover" autoPlay muted loop playsInline />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl md:text-2xl font-black text-slate-900 font-graduate leading-none">Patel</span>
-              <span className="text-sm md:text-base font-fredericka text-green-600 tracking-widest uppercase">Impex</span>
+              <span className="text-lg md:text-2xl font-black text-slate-900 font-graduate tracking-tighter leading-none">Patel</span>
+              <span className="text-[10px] md:text-xs font-fredericka text-emerald-600 tracking-[0.2em] uppercase font-bold">Impex</span>
             </div>
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] font-graduate transition-all duration-300 rounded-xl relative group overflow-hidden ${location.pathname === item.href ? 'bg-green-600 text-white shadow-lg' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900 border border-transparent hover:border-slate-200'}`}
+                className={`px-6 py-3 text-[11px] font-bold uppercase tracking-[0.2em] font-graduate transition-all duration-300 rounded-xl relative group overflow-hidden ${location.pathname === item.href ? 'bg-emerald-600 text-white' : 'text-slate-500 hover:text-slate-900'}`}
               >
                 <span className="relative z-10">{item.name}</span>
+                {location.pathname !== item.href && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                )}
               </Link>
             ))}
           </div>
 
           {/* Actions */}
-          <div className="flex items-center space-x-2 lg:space-x-6">
+          <div className="flex items-center space-x-4 lg:space-x-8">
             {/* Language Selector - Desktop Only */}
             <div className="hidden lg:block">
               <CustomLanguageSelector />
             </div>
 
-            <Link to="/inquiry">
-              <button className="!h-10 md:!h-16 !px-4 md:!px-8 lg:!px-10 nm-btn-green hover:scale-105 active:scale-95">
-                <span className="font-bold font-graduate uppercase text-[10px] md:text-[11px] tracking-widest">Get Quote</span>
+            <Link to="/inquiry" className="group">
+              <button className="!h-10 md:!h-12 !px-4 md:!px-8 bg-slate-900 text-white rounded-xl shadow-xl hover:bg-emerald-600 hover:shadow-emerald-600/20 transition-all duration-500 flex items-center gap-3">
+                <span className="font-bold font-graduate uppercase text-[9px] md:text-[10px] tracking-widest">Get Quote</span>
+                <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-slate-900 text-white rounded-full shadow-lg hover:bg-slate-800 transition-colors"
+              className="lg:hidden ml-4 w-10 h-10 flex items-center justify-center bg-slate-50 border border-slate-200 text-slate-900 rounded-xl shadow-sm hover:bg-emerald-50 transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -80,8 +84,8 @@ const Navigation = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`lg:hidden fixed inset-x-0 top-[110px] px-4 transition-all duration-500 ease-out z-40 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'}`}>
-        <div className="nm-card !p-6 md:!p-8 flex flex-col space-y-4 rounded-[40px] shadow-2xl bg-white border-2 border-slate-50 max-h-[80vh] overflow-y-auto">
+      <div className={`lg:hidden fixed inset-x-0 top-[90px] px-4 transition-all duration-500 ease-out z-40 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'}`}>
+        <div className="nm-card !p-6 md:!p-8 flex flex-col space-y-6 rounded-[40px] shadow-2xl bg-white border-2 border-slate-50">
           {/* Language Selector - Mobile Menu */}
           <div className="flex justify-center pb-2 border-b border-slate-100">
             <CustomLanguageSelector />

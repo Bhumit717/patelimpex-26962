@@ -46,10 +46,10 @@
 @layer utilities {
   .nm-card {
     background: #ffffff;
-    box-shadow: 12px 12px 24px #cbd5e1, -12px -12px 24px #ffffff;
+    box-shadow: 20px 20px 60px #e2e8f0, -20px -20px 60px #ffffff;
     color: #334155;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
   }
 
   .nm-card-dark {
@@ -122,11 +122,11 @@
 
   .nm-btn-green {
     background: #15803d;
-    box-shadow: 6px 6px 15px rgba(21, 128, 61, 0.4), -6px -6px 15px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px -5px rgba(21, 128, 61, 0.4);
     color: #ffffff;
-    border-radius: 50px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -139,7 +139,7 @@
   .nm-btn-green:hover {
     background: #166534;
     transform: translateY(-2px);
-    box-shadow: 2px 2px 8px rgba(21, 128, 61, 0.5), -2px -2px 8px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 30px -5px rgba(21, 128, 61, 0.5);
   }
 
   .nm-btn:active,
