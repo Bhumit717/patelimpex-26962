@@ -50,8 +50,7 @@ const Footer = () => {
       { name: "Admin Terminal", href: "/admin" },
       { name: "Privacy & Terms", href: "/privacy-policy" },
       { name: "More", href: "/more" },
-      { name: "SEO", href: "/seo" },
-      { name: "Other Site Blog", href: "/other-site-blog" }
+      { name: "SEO", href: "/seo" }
     ]
   };
 

@@ -19,14 +19,13 @@ import FAQ from "./pages/FAQ";
 import SEO from "./pages/SEO";
 import More from "./pages/More";
 import NotFound from "./pages/NotFound";
+import DynamicMassSEO from "./pages/DynamicMassSEO";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import Admin from "./pages/Admin";
 import BlogPostDetail from "./pages/BlogPostDetail";
 import NewsDetail from "./pages/NewsDetail";
-import OtherSiteBlog from "./pages/OtherSiteBlog";
-import OtherSiteBlogPost from "./pages/OtherSiteBlogPost";
 
 // More pages
 import ExportImportGuide from "./pages/more/ExportImportGuide";
@@ -386,10 +385,9 @@ const App = () => (
           <Route path="/logo" element={<Logo />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/seo" element={<SEO />} />
+          <Route path="/seo/:slug" element={<DynamicMassSEO />} />
           <Route path="/more" element={<More />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/other-site-blog" element={<OtherSiteBlog />} />
-          <Route path="/other-site-blog/:slug" element={<OtherSiteBlogPost />} />
 
           {/* More sub-pages */}
           <Route path="/more/export-import-guide" element={<ExportImportGuide />} />

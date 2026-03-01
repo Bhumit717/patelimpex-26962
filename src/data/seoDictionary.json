@@ -1,0 +1,964 @@
+{
+  "products": [
+    {
+      "original": "Basmati Rice",
+      "slug": "basmati-rice"
+    },
+    {
+      "original": "Non-Basmati Rice",
+      "slug": "non-basmati-rice"
+    },
+    {
+      "original": "Sella Rice",
+      "slug": "sella-rice"
+    },
+    {
+      "original": "Parboiled Rice",
+      "slug": "parboiled-rice"
+    },
+    {
+      "original": "Steam Rice",
+      "slug": "steam-rice"
+    },
+    {
+      "original": "IR-64 Rice",
+      "slug": "ir-64-rice"
+    },
+    {
+      "original": "Sona Masoori Rice",
+      "slug": "sona-masoori-rice"
+    },
+    {
+      "original": "Wheat",
+      "slug": "wheat"
+    },
+    {
+      "original": "Durum Wheat",
+      "slug": "durum-wheat"
+    },
+    {
+      "original": "Sharbati Wheat",
+      "slug": "sharbati-wheat"
+    },
+    {
+      "original": "Lokwan Wheat",
+      "slug": "lokwan-wheat"
+    },
+    {
+      "original": "Corn",
+      "slug": "corn"
+    },
+    {
+      "original": "Yellow Maize",
+      "slug": "yellow-maize"
+    },
+    {
+      "original": "Millet",
+      "slug": "millet"
+    },
+    {
+      "original": "Barley",
+      "slug": "barley"
+    },
+    {
+      "original": "Raw Cotton",
+      "slug": "raw-cotton"
+    },
+    {
+      "original": "Cotton Yarn",
+      "slug": "cotton-yarn"
+    },
+    {
+      "original": "Comber Noil",
+      "slug": "comber-noil"
+    },
+    {
+      "original": "Cotton Carding",
+      "slug": "cotton-carding"
+    },
+    {
+      "original": "Processed Cotton",
+      "slug": "processed-cotton"
+    },
+    {
+      "original": "Soybean",
+      "slug": "soybean"
+    },
+    {
+      "original": "Soybean Meal",
+      "slug": "soybean-meal"
+    },
+    {
+      "original": "Groundnut",
+      "slug": "groundnut"
+    },
+    {
+      "original": "Peanut",
+      "slug": "peanut"
+    },
+    {
+      "original": "Java Groundnut",
+      "slug": "java-groundnut"
+    },
+    {
+      "original": "Bold Groundnut",
+      "slug": "bold-groundnut"
+    },
+    {
+      "original": "Psyllium Husk",
+      "slug": "psyllium-husk"
+    },
+    {
+      "original": "Psyllium Seeds",
+      "slug": "psyllium-seeds"
+    },
+    {
+      "original": "Psyllium Powder",
+      "slug": "psyllium-powder"
+    },
+    {
+      "original": "Isabgol",
+      "slug": "isabgol"
+    },
+    {
+      "original": "Fennel Seeds",
+      "slug": "fennel-seeds"
+    },
+    {
+      "original": "Cardamom",
+      "slug": "cardamom"
+    },
+    {
+      "original": "Cumin Seeds",
+      "slug": "cumin-seeds"
+    },
+    {
+      "original": "Turmeric",
+      "slug": "turmeric"
+    },
+    {
+      "original": "Coriander",
+      "slug": "coriander"
+    },
+    {
+      "original": "Black Pepper",
+      "slug": "black-pepper"
+    },
+    {
+      "original": "Red Chili",
+      "slug": "red-chili"
+    },
+    {
+      "original": "Ginger",
+      "slug": "ginger"
+    },
+    {
+      "original": "Garlic",
+      "slug": "garlic"
+    },
+    {
+      "original": "Onion",
+      "slug": "onion"
+    },
+    {
+      "original": "Cashew",
+      "slug": "cashew"
+    },
+    {
+      "original": "Almond",
+      "slug": "almond"
+    },
+    {
+      "original": "Sesame Seeds",
+      "slug": "sesame-seeds"
+    },
+    {
+      "original": "Hulled Sesame",
+      "slug": "hulled-sesame"
+    },
+    {
+      "original": "Sunflower Seeds",
+      "slug": "sunflower-seeds"
+    },
+    {
+      "original": "Raw Sugar",
+      "slug": "raw-sugar"
+    },
+    {
+      "original": "White Crystal Sugar",
+      "slug": "white-crystal-sugar"
+    },
+    {
+      "original": "Refined Sugar",
+      "slug": "refined-sugar"
+    },
+    {
+      "original": "Organic Sugar",
+      "slug": "organic-sugar"
+    },
+    {
+      "original": "Jaggery",
+      "slug": "jaggery"
+    },
+    {
+      "original": "Brown Sugar",
+      "slug": "brown-sugar"
+    },
+    {
+      "original": "Medical Gloves",
+      "slug": "medical-gloves"
+    },
+    {
+      "original": "Diagnostic Kits",
+      "slug": "diagnostic-kits"
+    },
+    {
+      "original": "Health Capsules",
+      "slug": "health-capsules"
+    },
+    {
+      "original": "Herbal Supplements",
+      "slug": "herbal-supplements"
+    },
+    {
+      "original": "Veterinary Medicines",
+      "slug": "veterinary-medicines"
+    },
+    {
+      "original": "Farm Tractors",
+      "slug": "farm-tractors"
+    },
+    {
+      "original": "Mini Tractors",
+      "slug": "mini-tractors"
+    },
+    {
+      "original": "Combine Harvesters",
+      "slug": "combine-harvesters"
+    },
+    {
+      "original": "Drip Irrigation Systems",
+      "slug": "drip-irrigation-systems"
+    },
+    {
+      "original": "Cultivators",
+      "slug": "cultivators"
+    },
+    {
+      "original": "Sprinkler Systems",
+      "slug": "sprinkler-systems"
+    },
+    {
+      "original": "Seeding Machines",
+      "slug": "seeding-machines"
+    },
+    {
+      "original": "Power Tillers",
+      "slug": "power-tillers"
+    },
+    {
+      "original": "Threshers",
+      "slug": "threshers"
+    },
+    {
+      "original": "Farm Trailers",
+      "slug": "farm-trailers"
+    },
+    {
+      "original": "Hand Tools",
+      "slug": "hand-tools"
+    },
+    {
+      "original": "CNC Machines",
+      "slug": "cnc-machines"
+    },
+    {
+      "original": "Power Drill Sets",
+      "slug": "power-drill-sets"
+    },
+    {
+      "original": "Industrial Motors",
+      "slug": "industrial-motors"
+    },
+    {
+      "original": "Engine Parts",
+      "slug": "engine-parts"
+    },
+    {
+      "original": "Welding Machines",
+      "slug": "welding-machines"
+    },
+    {
+      "original": "Hydraulic Presses",
+      "slug": "hydraulic-presses"
+    },
+    {
+      "original": "Ball Bearings",
+      "slug": "ball-bearings"
+    },
+    {
+      "original": "Hardware Fittings",
+      "slug": "hardware-fittings"
+    },
+    {
+      "original": "Conveyor Belts",
+      "slug": "conveyor-belts"
+    },
+    {
+      "original": "Storage Containers",
+      "slug": "storage-containers"
+    },
+    {
+      "original": "Packaging Boxes",
+      "slug": "packaging-boxes"
+    },
+    {
+      "original": "Industrial Pipes",
+      "slug": "industrial-pipes"
+    },
+    {
+      "original": "Household Buckets",
+      "slug": "household-buckets"
+    },
+    {
+      "original": "Medical Containers",
+      "slug": "medical-containers"
+    },
+    {
+      "original": "Automotive Bumpers",
+      "slug": "automotive-bumpers"
+    },
+    {
+      "original": "Plastic Bottles",
+      "slug": "plastic-bottles"
+    },
+    {
+      "original": "Food Containers",
+      "slug": "food-containers"
+    },
+    {
+      "original": "Plastic Sheets",
+      "slug": "plastic-sheets"
+    },
+    {
+      "original": "Molded Parts",
+      "slug": "molded-parts"
+    },
+    {
+      "original": "Bed Linen",
+      "slug": "bed-linen"
+    },
+    {
+      "original": "Designer Fabrics",
+      "slug": "designer-fabrics"
+    },
+    {
+      "original": "Curtains",
+      "slug": "curtains"
+    },
+    {
+      "original": "Towel Sets",
+      "slug": "towel-sets"
+    },
+    {
+      "original": "Wool Blankets",
+      "slug": "wool-blankets"
+    },
+    {
+      "original": "Spice Pickles",
+      "slug": "spice-pickles"
+    },
+    {
+      "original": "Ready Meals",
+      "slug": "ready-meals"
+    },
+    {
+      "original": "Snack Packets",
+      "slug": "snack-packets"
+    },
+    {
+      "original": "Dairy Ghee",
+      "slug": "dairy-ghee"
+    },
+    {
+      "original": "Organic Pesticides",
+      "slug": "organic-pesticides"
+    },
+    {
+      "original": "Bio Fertilizers",
+      "slug": "bio-fertilizers"
+    }
+  ],
+  "locations": [
+    {
+      "original": "USA",
+      "slug": "usa"
+    },
+    {
+      "original": "United States",
+      "slug": "united-states"
+    },
+    {
+      "original": "UK",
+      "slug": "uk"
+    },
+    {
+      "original": "United Kingdom",
+      "slug": "united-kingdom"
+    },
+    {
+      "original": "Canada",
+      "slug": "canada"
+    },
+    {
+      "original": "Australia",
+      "slug": "australia"
+    },
+    {
+      "original": "New Zealand",
+      "slug": "new-zealand"
+    },
+    {
+      "original": "Germany",
+      "slug": "germany"
+    },
+    {
+      "original": "France",
+      "slug": "france"
+    },
+    {
+      "original": "Italy",
+      "slug": "italy"
+    },
+    {
+      "original": "Spain",
+      "slug": "spain"
+    },
+    {
+      "original": "Netherlands",
+      "slug": "netherlands"
+    },
+    {
+      "original": "Belgium",
+      "slug": "belgium"
+    },
+    {
+      "original": "Sweden",
+      "slug": "sweden"
+    },
+    {
+      "original": "Switzerland",
+      "slug": "switzerland"
+    },
+    {
+      "original": "Norway",
+      "slug": "norway"
+    },
+    {
+      "original": "Denmark",
+      "slug": "denmark"
+    },
+    {
+      "original": "Finland",
+      "slug": "finland"
+    },
+    {
+      "original": "Austria",
+      "slug": "austria"
+    },
+    {
+      "original": "Poland",
+      "slug": "poland"
+    },
+    {
+      "original": "Ireland",
+      "slug": "ireland"
+    },
+    {
+      "original": "Portugal",
+      "slug": "portugal"
+    },
+    {
+      "original": "Greece",
+      "slug": "greece"
+    },
+    {
+      "original": "Czech Republic",
+      "slug": "czech-republic"
+    },
+    {
+      "original": "Hungary",
+      "slug": "hungary"
+    },
+    {
+      "original": "Romania",
+      "slug": "romania"
+    },
+    {
+      "original": "Russia",
+      "slug": "russia"
+    },
+    {
+      "original": "Ukraine",
+      "slug": "ukraine"
+    },
+    {
+      "original": "Belarus",
+      "slug": "belarus"
+    },
+    {
+      "original": "Kazakhstan",
+      "slug": "kazakhstan"
+    },
+    {
+      "original": "Uzbekistan",
+      "slug": "uzbekistan"
+    },
+    {
+      "original": "Georgia",
+      "slug": "georgia"
+    },
+    {
+      "original": "Armenia",
+      "slug": "armenia"
+    },
+    {
+      "original": "Azerbaijan",
+      "slug": "azerbaijan"
+    },
+    {
+      "original": "China",
+      "slug": "china"
+    },
+    {
+      "original": "Japan",
+      "slug": "japan"
+    },
+    {
+      "original": "South Korea",
+      "slug": "south-korea"
+    },
+    {
+      "original": "Taiwan",
+      "slug": "taiwan"
+    },
+    {
+      "original": "Hong Kong",
+      "slug": "hong-kong"
+    },
+    {
+      "original": "Macau",
+      "slug": "macau"
+    },
+    {
+      "original": "Indonesia",
+      "slug": "indonesia"
+    },
+    {
+      "original": "Malaysia",
+      "slug": "malaysia"
+    },
+    {
+      "original": "Singapore",
+      "slug": "singapore"
+    },
+    {
+      "original": "Thailand",
+      "slug": "thailand"
+    },
+    {
+      "original": "Vietnam",
+      "slug": "vietnam"
+    },
+    {
+      "original": "Philippines",
+      "slug": "philippines"
+    },
+    {
+      "original": "Myanmar",
+      "slug": "myanmar"
+    },
+    {
+      "original": "Cambodia",
+      "slug": "cambodia"
+    },
+    {
+      "original": "Laos",
+      "slug": "laos"
+    },
+    {
+      "original": "Brunei",
+      "slug": "brunei"
+    },
+    {
+      "original": "India",
+      "slug": "india"
+    },
+    {
+      "original": "Sri Lanka",
+      "slug": "sri-lanka"
+    },
+    {
+      "original": "Bangladesh",
+      "slug": "bangladesh"
+    },
+    {
+      "original": "Nepal",
+      "slug": "nepal"
+    },
+    {
+      "original": "Bhutan",
+      "slug": "bhutan"
+    },
+    {
+      "original": "Maldives",
+      "slug": "maldives"
+    },
+    {
+      "original": "Pakistan",
+      "slug": "pakistan"
+    },
+    {
+      "original": "Afghanistan",
+      "slug": "afghanistan"
+    },
+    {
+      "original": "UAE",
+      "slug": "uae"
+    },
+    {
+      "original": "Dubai",
+      "slug": "dubai"
+    },
+    {
+      "original": "Abu Dhabi",
+      "slug": "abu-dhabi"
+    },
+    {
+      "original": "Saudi Arabia",
+      "slug": "saudi-arabia"
+    },
+    {
+      "original": "Riyadh",
+      "slug": "riyadh"
+    },
+    {
+      "original": "Oman",
+      "slug": "oman"
+    },
+    {
+      "original": "Qatar",
+      "slug": "qatar"
+    },
+    {
+      "original": "Kuwait",
+      "slug": "kuwait"
+    },
+    {
+      "original": "Bahrain",
+      "slug": "bahrain"
+    },
+    {
+      "original": "Israel",
+      "slug": "israel"
+    },
+    {
+      "original": "Tel Aviv",
+      "slug": "tel-aviv"
+    },
+    {
+      "original": "Jordan",
+      "slug": "jordan"
+    },
+    {
+      "original": "Lebanon",
+      "slug": "lebanon"
+    },
+    {
+      "original": "Iraq",
+      "slug": "iraq"
+    },
+    {
+      "original": "Iran",
+      "slug": "iran"
+    },
+    {
+      "original": "Syria",
+      "slug": "syria"
+    },
+    {
+      "original": "Yemen",
+      "slug": "yemen"
+    },
+    {
+      "original": "Egypt",
+      "slug": "egypt"
+    },
+    {
+      "original": "South Africa",
+      "slug": "south-africa"
+    },
+    {
+      "original": "Nigeria",
+      "slug": "nigeria"
+    },
+    {
+      "original": "Kenya",
+      "slug": "kenya"
+    },
+    {
+      "original": "Ghana",
+      "slug": "ghana"
+    },
+    {
+      "original": "Ethiopia",
+      "slug": "ethiopia"
+    },
+    {
+      "original": "Morocco",
+      "slug": "morocco"
+    },
+    {
+      "original": "Algeria",
+      "slug": "algeria"
+    },
+    {
+      "original": "Tunisia",
+      "slug": "tunisia"
+    },
+    {
+      "original": "Libya",
+      "slug": "libya"
+    },
+    {
+      "original": "Sudan",
+      "slug": "sudan"
+    },
+    {
+      "original": "Tanzania",
+      "slug": "tanzania"
+    },
+    {
+      "original": "Uganda",
+      "slug": "uganda"
+    },
+    {
+      "original": "Angola",
+      "slug": "angola"
+    },
+    {
+      "original": "Mozambique",
+      "slug": "mozambique"
+    },
+    {
+      "original": "Madagascar",
+      "slug": "madagascar"
+    },
+    {
+      "original": "Cameroon",
+      "slug": "cameroon"
+    },
+    {
+      "original": "Cote d'Ivoire",
+      "slug": "cote-divoire"
+    },
+    {
+      "original": "Senegal",
+      "slug": "senegal"
+    },
+    {
+      "original": "Zimbabwe",
+      "slug": "zimbabwe"
+    },
+    {
+      "original": "Rwanda",
+      "slug": "rwanda"
+    },
+    {
+      "original": "Zambia",
+      "slug": "zambia"
+    },
+    {
+      "original": "Mali",
+      "slug": "mali"
+    },
+    {
+      "original": "Brazil",
+      "slug": "brazil"
+    },
+    {
+      "original": "Argentina",
+      "slug": "argentina"
+    },
+    {
+      "original": "Colombia",
+      "slug": "colombia"
+    },
+    {
+      "original": "Chile",
+      "slug": "chile"
+    },
+    {
+      "original": "Peru",
+      "slug": "peru"
+    },
+    {
+      "original": "Venezuela",
+      "slug": "venezuela"
+    },
+    {
+      "original": "Ecuador",
+      "slug": "ecuador"
+    },
+    {
+      "original": "Bolivia",
+      "slug": "bolivia"
+    },
+    {
+      "original": "Paraguay",
+      "slug": "paraguay"
+    },
+    {
+      "original": "Uruguay",
+      "slug": "uruguay"
+    },
+    {
+      "original": "Mexico",
+      "slug": "mexico"
+    },
+    {
+      "original": "Cuba",
+      "slug": "cuba"
+    },
+    {
+      "original": "Dominican Republic",
+      "slug": "dominican-republic"
+    },
+    {
+      "original": "Puerto Rico",
+      "slug": "puerto-rico"
+    },
+    {
+      "original": "Costa Rica",
+      "slug": "costa-rica"
+    },
+    {
+      "original": "Panama",
+      "slug": "panama"
+    },
+    {
+      "original": "Jamaica",
+      "slug": "jamaica"
+    },
+    {
+      "original": "Trinidad and Tobago",
+      "slug": "trinidad-and-tobago"
+    },
+    {
+      "original": "Bahamas",
+      "slug": "bahamas"
+    },
+    {
+      "original": "Haiti",
+      "slug": "haiti"
+    },
+    {
+      "original": "El Salvador",
+      "slug": "el-salvador"
+    },
+    {
+      "original": "Honduras",
+      "slug": "honduras"
+    },
+    {
+      "original": "Nicaragua",
+      "slug": "nicaragua"
+    },
+    {
+      "original": "Guatemala",
+      "slug": "guatemala"
+    },
+    {
+      "original": "Turkey",
+      "slug": "turkey"
+    },
+    {
+      "original": "Cyprus",
+      "slug": "cyprus"
+    },
+    {
+      "original": "Malta",
+      "slug": "malta"
+    },
+    {
+      "original": "Iceland",
+      "slug": "iceland"
+    },
+    {
+      "original": "Greenland",
+      "slug": "greenland"
+    },
+    {
+      "original": "Fiji",
+      "slug": "fiji"
+    },
+    {
+      "original": "Papua New Guinea",
+      "slug": "papua-new-guinea"
+    },
+    {
+      "original": "Solomon Islands",
+      "slug": "solomon-islands"
+    },
+    {
+      "original": "Vanuatu",
+      "slug": "vanuatu"
+    },
+    {
+      "original": "Samoa",
+      "slug": "samoa"
+    },
+    {
+      "original": "Tonga",
+      "slug": "tonga"
+    }
+  ],
+  "intents": [
+    {
+      "prefix": "import",
+      "suffix": "from-india-to",
+      "originalPrefix": "import",
+      "originalSuffix": "from india to"
+    },
+    {
+      "prefix": "wholesale",
+      "suffix": "suppliers-in",
+      "originalPrefix": "wholesale",
+      "originalSuffix": "suppliers in"
+    },
+    {
+      "prefix": "best",
+      "suffix": "exporters-for",
+      "originalPrefix": "best",
+      "originalSuffix": "exporters for"
+    },
+    {
+      "prefix": "bulk",
+      "suffix": "buyers-in",
+      "originalPrefix": "bulk",
+      "originalSuffix": "buyers in"
+    },
+    {
+      "prefix": "high-quality",
+      "suffix": "manufacturers-for",
+      "originalPrefix": "high quality",
+      "originalSuffix": "manufacturers for"
+    },
+    {
+      "prefix": "top",
+      "suffix": "distributors-in",
+      "originalPrefix": "top",
+      "originalSuffix": "distributors in"
+    }
+  ]
+}
