@@ -12,6 +12,30 @@ import dict from '../data/seoDictionary.json';
 const SEO = () => {
   const [randomLinks, setRandomLinks] = useState<any[]>([]);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [allKeywords, setAllKeywords] = useState<string[]>([]);
+  const [filteredKeywords, setFilteredKeywords] = useState<string[]>([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Fetch full keywords list
+  useEffect(() => {
+    fetch('/seoKeywords.json')
+      .then(res => res.json())
+      .then(data => setAllKeywords(data || []))
+      .catch(err => console.error("Could not load keywords", err));
+  }, []);
+
+  // Filter logic for dropdown
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      setFilteredKeywords(allKeywords.slice(0, 20)); // show 20 default
+      return;
+    }
+    const lowerSearch = searchTerm.toLowerCase();
+    const filtered = allKeywords.filter(kw => kw.toLowerCase().includes(lowerSearch)).slice(0, 50); // cap at 50 results for perf
+    setFilteredKeywords(filtered);
+  }, [searchTerm, allKeywords]);
+
   // Generate a random assortment of 60 links from our dictionary 
   // so the page feels alive and highly interconnected.
   useEffect(() => {
@@ -28,6 +52,18 @@ const SEO = () => {
       });
     }
     setRandomLinks(links);
+  }, []);
+
+  // Handle clicking outside to close
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.relative')) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
   const resourceCategories = [
@@ -99,7 +135,7 @@ const SEO = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <span className="bg-slate-800 border border-slate-700 rounded-lg px-6 py-3 font-mono font-bold">{dict.products.length} Products</span>
-              <span className="bg-slate-800 border border-slate-700 rounded-lg px-6 py-3 font-mono font-bold text-green-400">77,000+ Active B2B Market Routes</span>
+              <span className="bg-slate-800 border border-slate-700 rounded-lg px-6 py-3 font-mono font-bold text-green-400">29,232 Active B2B Market Routes</span>
             </div>
           </div>
         </div>
@@ -140,24 +176,57 @@ const SEO = () => {
         </div>
       </section>
 
-      {/* Dynamic SEO Cluster Matrix (Showcasing the 77,000 generation) */}
-      <section className="py-24 px-4 bg-slate-900 border-t border-slate-800">
+      {/* Dynamic SEO Cluster Matrix (Showcasing the 30,000+ generation) */}
+      <section className="py-24 px-4 bg-slate-900 border-t border-slate-800" id="search-hub">
         <div className="container mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div className="max-w-3xl">
-              <Badge className="bg-slate-800 text-green-400 border border-green-500/30 mb-4 px-3 py-1 uppercase tracking-widest text-xs font-bold">Automated Network</Badge>
-              <h2 className="text-4xl lg:text-5xl font-black text-white font-graduate uppercase">Global Market Matrices</h2>
+              <Badge className="bg-slate-800 text-green-400 border border-green-500/30 mb-4 px-3 py-1 uppercase tracking-widest text-xs font-bold">Automated Network Search</Badge>
+              <h2 className="text-4xl lg:text-5xl font-black text-white font-graduate uppercase">Global Market Dropdown</h2>
               <p className="text-slate-400 text-lg mt-4">
-                Access thousands of micro-targeted trading routes specifically optimized for your target geography. Click below to explore completely unique market guides for exporting Indian commodities.
+                Access over 29,000 micro-targeted trading routes specifically optimized for your target geography. Search and select from the dropdown below to explore completely unique market guides.
               </p>
             </div>
-            <Button className="mt-6 md:mt-0 bg-white text-slate-900 hover:bg-green-400 hover:text-slate-900 font-bold px-8 py-6 rounded-none">
-              Re-Roll Markets
-            </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {randomLinks.map((link, idx) => (
+          <div className="max-w-4xl bg-slate-800 border border-slate-700 rounded-xl p-8 mb-16 shadow-2xl relative z-20">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-6 h-6" />
+              <input
+                type="text"
+                placeholder="Type a product or country (e.g. Rice in Dubai)..."
+                className="w-full bg-slate-900 border-2 border-slate-700 text-white rounded-lg pl-14 pr-4 py-4 text-xl focus:outline-none focus:border-green-500 transition-colors"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onFocus={() => setIsDropdownOpen(true)}
+              />
+
+              {isDropdownOpen && filteredKeywords.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden max-h-[400px] overflow-y-auto z-50">
+                  {filteredKeywords.map((kw, idx) => (
+                    <Link
+                      key={idx}
+                      to={`/seo/${kw.replace(/ /g, '-')}`}
+                      className="block px-6 py-4 hover:bg-slate-50 border-b border-slate-100 transition-colors last:border-0"
+                    >
+                      <span className="font-bold text-slate-800 capitalize block">{kw}</span>
+                      <span className="text-xs text-slate-500 flex items-center mt-1"><ArrowRight className="w-3 h-3 mr-1" /> View Export Guide</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+              {isDropdownOpen && searchTerm && filteredKeywords.length === 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-slate-200 p-6 text-center z-50">
+                  <span className="text-slate-500 font-medium">No trading routes found for "{searchTerm}".</span>
+                </div>
+              )}
+            </div>
+            <p className="text-slate-500 text-sm mt-4 text-center">
+              Showing top {filteredKeywords.length} matching routes across {allKeywords.length.toLocaleString()} total verified export endpoints.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 opacity-50 pointer-events-none mt-16">
+            {randomLinks.slice(0, 8).map((link, idx) => (
               <Link key={idx} to={`/seo/${link.slug}`} className="bg-slate-800 border border-slate-700 hover:border-green-500 hover:bg-slate-800/80 p-5 rounded-lg group transition-all">
                 <h4 className="text-white text-sm font-bold capitalize mb-2 line-clamp-2 leading-tight group-hover:text-green-400 transition-colors">
                   {link.title}
