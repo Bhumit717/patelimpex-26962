@@ -384,9 +384,10 @@ const App = () => (
           <Route path="/inquiry" element={<Inquiry />} />
           <Route path="/logo" element={<Logo />} />
           <Route path="/faq" element={<FAQ />} />
+          {/* Unified Hub */}
           <Route path="/seo" element={<SEO />} />
           <Route path="/seo/:slug" element={<DynamicMassSEO />} />
-          <Route path="/more" element={<More />} />
+          <Route path="/more" element={<SEO />} />
           <Route path="/admin" element={<Admin />} />
 
           {/* More sub-pages */}
