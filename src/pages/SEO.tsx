@@ -10,49 +10,32 @@ import { Search, Globe, Target, BarChart3, Users, FileText, ArrowRight, BookOpen
 import dict from '../data/seoDictionary.json';
 
 const SEO = () => {
-  const [randomLinks, setRandomLinks] = useState<any[]>([]);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [allKeywords, setAllKeywords] = useState<string[]>([]);
   const [filteredKeywords, setFilteredKeywords] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(1000); // Pagination for the massive list
 
   // Fetch full keywords list
   useEffect(() => {
     fetch('/seoKeywords.json')
       .then(res => res.json())
-      .then(data => setAllKeywords(data || []))
+      .then(data => {
+        setAllKeywords(data || []);
+      })
       .catch(err => console.error("Could not load keywords", err));
   }, []);
 
   // Filter logic for dropdown
   useEffect(() => {
     if (!searchTerm.trim()) {
-      setFilteredKeywords(allKeywords.slice(0, 20)); // show 20 default
+      setFilteredKeywords(allKeywords.slice(0, 50)); // show 50 default in dropdown
       return;
     }
     const lowerSearch = searchTerm.toLowerCase();
-    const filtered = allKeywords.filter(kw => kw.toLowerCase().includes(lowerSearch)).slice(0, 50); // cap at 50 results for perf
+    const filtered = allKeywords.filter(kw => kw.toLowerCase().includes(lowerSearch)).slice(0, 100);
     setFilteredKeywords(filtered);
   }, [searchTerm, allKeywords]);
-
-  // Generate a random assortment of 60 links from our dictionary 
-  // so the page feels alive and highly interconnected.
-  useEffect(() => {
-    const links = [];
-    for (let i = 0; i < 60; i++) {
-      const product = dict.products[Math.floor(Math.random() * dict.products.length)];
-      const location = dict.locations[Math.floor(Math.random() * dict.locations.length)];
-      const intent = dict.intents[Math.floor(Math.random() * dict.intents.length)];
-      const slug = `${intent.prefix}-${product.slug}-${intent.suffix}-${location.slug}`;
-      links.push({
-        title: `${intent.originalPrefix} ${product.original} ${intent.originalSuffix} ${location.original}`,
-        slug,
-        locationName: location.original
-      });
-    }
-    setRandomLinks(links);
-  }, []);
 
   // Handle clicking outside to close
   useEffect(() => {
@@ -90,11 +73,11 @@ const SEO = () => {
       bgColor: "bg-green-50",
       pages: [
         { title: "Premium Rice Export", slug: "/products/rice" },
-        { title: "World-Class Spices", slug: "/products/spices" },
-        { title: "Agricultural Index", slug: "/products/agriculture" },
-        { title: "Textiles & Cotton", slug: "/products/textiles" },
-        { title: "Industrial Machinery", slug: "/products/machinery" },
-        { title: "Medical & Synthetics", slug: "/products/medical" },
+        { title: "World-Class Spices", slug: "/more/spices-export" },
+        { title: "Agricultural Index", slug: "/more/agricultural-products" },
+        { title: "Textiles & Cotton", slug: "/more/textile-export" },
+        { title: "Industrial Machinery", slug: "/products/mini-tractor-export" },
+        { title: "Medical & Synthetics", slug: "/products/medical-gloves-export" },
       ]
     },
     {
@@ -176,7 +159,7 @@ const SEO = () => {
         </div>
       </section>
 
-      {/* Dynamic SEO Cluster Matrix (Showcasing the 30,000+ generation) */}
+      {/* Dynamic SEO Cluster Matrix */}
       <section className="py-24 px-4 bg-slate-900 border-t border-slate-800" id="search-hub">
         <div className="container mx-auto max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
@@ -184,7 +167,7 @@ const SEO = () => {
               <Badge className="bg-slate-800 text-green-400 border border-green-500/30 mb-4 px-3 py-1 uppercase tracking-widest text-xs font-bold">Automated Network Search</Badge>
               <h2 className="text-4xl lg:text-5xl font-black text-white font-graduate uppercase">Global Market Dropdown</h2>
               <p className="text-slate-400 text-lg mt-4">
-                Access over 29,000 micro-targeted trading routes specifically optimized for your target geography. Search and select from the dropdown below to explore completely unique market guides.
+                Access over {allKeywords.length.toLocaleString()} micro-targeted trading routes specifically optimized for your target geography. Search and select from the dropdown below to explore completely unique market guides.
               </p>
             </div>
           </div>
@@ -201,22 +184,22 @@ const SEO = () => {
               />
 
               {isDropdownOpen && filteredKeywords.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden max-h-[400px] overflow-y-auto z-50">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 rounded-lg shadow-2xl border border-slate-700 overflow-hidden max-h-[400px] overflow-y-auto z-50">
                   {filteredKeywords.map((kw, idx) => (
                     <Link
                       key={idx}
                       to={`/seo/${kw.replace(/ /g, '-')}`}
-                      className="block px-6 py-4 hover:bg-slate-50 border-b border-slate-100 transition-colors last:border-0"
+                      className="block px-6 py-4 hover:bg-slate-800 border-b border-slate-800 transition-colors last:border-0"
                     >
-                      <span className="font-bold text-slate-800 capitalize block">{kw}</span>
-                      <span className="text-xs text-slate-500 flex items-center mt-1"><ArrowRight className="w-3 h-3 mr-1" /> View Export Guide</span>
+                      <span className="font-bold text-white capitalize block">{kw}</span>
+                      <span className="text-xs text-green-400 flex items-center mt-1"><ArrowRight className="w-3 h-3 mr-1" /> View Export Guide</span>
                     </Link>
                   ))}
                 </div>
               )}
               {isDropdownOpen && searchTerm && filteredKeywords.length === 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-slate-200 p-6 text-center z-50">
-                  <span className="text-slate-500 font-medium">No trading routes found for "{searchTerm}".</span>
+                <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 rounded-lg shadow-xl border border-slate-700 p-6 text-center z-50">
+                  <span className="text-slate-400 font-medium">No trading routes found for "{searchTerm}".</span>
                 </div>
               )}
             </div>
@@ -225,22 +208,42 @@ const SEO = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 opacity-50 pointer-events-none mt-16">
-            {randomLinks.slice(0, 8).map((link, idx) => (
-              <Link key={idx} to={`/seo/${link.slug}`} className="bg-slate-800 border border-slate-700 hover:border-green-500 hover:bg-slate-800/80 p-5 rounded-lg group transition-all">
-                <h4 className="text-white text-sm font-bold capitalize mb-2 line-clamp-2 leading-tight group-hover:text-green-400 transition-colors">
-                  {link.title}
-                </h4>
-                <div className="flex items-center text-xs text-slate-500 uppercase font-mono mt-auto pt-2 border-t border-slate-700/50">
-                  <Target className="w-3 h-3 mr-1" /> {link.locationName} <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all" />
+          {/* Mass Links Section - Rendering directly on the page */}
+          <div className="mt-20">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl font-black text-white font-graduate uppercase">All Export Routes Directory</h3>
+              <p className="text-slate-400 mt-2">Browse the massive index of available trade routes natively.</p>
+            </div>
+            <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 md:p-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3">
+                {allKeywords.slice(0, visibleCount).map((kw, idx) => (
+                  <Link
+                    key={idx}
+                    to={`/seo/${kw.replace(/ /g, '-')}`}
+                    className="text-slate-300 hover:text-green-400 text-sm capitalize truncate block py-1 border-b border-slate-700/50 hover:bg-slate-700/30 px-2 rounded-sm transition-all"
+                    title={kw}
+                  >
+                    • {kw}
+                  </Link>
+                ))}
+              </div>
+
+              {visibleCount < allKeywords.length && (
+                <div className="text-center mt-12">
+                  <button
+                    onClick={() => setVisibleCount(prev => prev + 2000)}
+                    className="bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-bold py-3 px-8 rounded-full transition-colors uppercase tracking-widest text-sm"
+                  >
+                    Load More Routes ({visibleCount} / {allKeywords.length} showing)
+                  </button>
                 </div>
-              </Link>
-            ))}
+              )}
+            </div>
           </div>
 
           <div className="mt-16 text-center border-t border-slate-800 pt-16">
             <h3 className="text-2xl text-white font-bold mb-4">View Complete XML Mapping</h3>
-            <p className="text-slate-400 mb-8 max-w-2xl mx-auto">Our infrastructure handles more than 70,000 endpoints. For automated crawling and full site indexing, view our Search Engine Sitemap cluster.</p>
+            <p className="text-slate-400 mb-8 max-w-2xl mx-auto">Our infrastructure handles more than {allKeywords.length.toLocaleString()} endpoints. For automated crawling and full site indexing, view our Search Engine Sitemap cluster.</p>
             <a href="/sitemap_index.xml" target="_blank" className="nm-btn-primary bg-green-600 hover:bg-green-500 text-white border-0 shadow-lg px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm inline-flex items-center">
               Access Sitemap Index <FileText className="w-4 h-4 ml-2" />
             </a>
