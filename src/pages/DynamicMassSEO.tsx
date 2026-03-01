@@ -377,7 +377,7 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                                 For the international buyer, <strong>{keyword}</strong> isn't just a commodity; it's a strategic asset. Our role is to ensure that your asset arrives exactly as specified, every single time.
                             </p>
                             <Link to="/contact" className="block text-center bg-blue-600 text-white font-black py-4 uppercase tracking-widest text-xs hover:bg-slate-900 transition-colors">
-                                Download technical PDF
+                                Contact US
                             </Link>
                         </div>
                     </div>
