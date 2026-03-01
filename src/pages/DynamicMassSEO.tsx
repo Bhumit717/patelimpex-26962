@@ -90,7 +90,9 @@ const getProductImage = (keyword: string) => {
         'soybean': '/assets/products/soybean.png',
 
         'cow dung': '/assets/products/cow-dung-cake.png',
-        'dung': '/assets/products/animal-dung.png'
+        'dung': '/assets/products/animal-dung.png',
+        'cashew': 'https://images.unsplash.com/photo-1509358111104-5858089f81df?auto=format&fit=crop&q=80&w=1200',
+        'cashew nut': 'https://images.unsplash.com/photo-1509358111104-5858089f81df?auto=format&fit=crop&q=80&w=1200'
     };
 
     // Precise priority search with word boundary protection
@@ -244,13 +246,24 @@ export default function DynamicMassSEO() {
         setSeed(newSeed);
 
         const localImage = getProductImage(parsedKeyword);
-        const searchTerms = cleanQueryForSearch(parsedKeyword) || 'logistics';
+        const searchTerms = cleanQueryForSearch(parsedKeyword) || 'agriculture,india';
 
         if (localImage) {
             setDynamicImageUrl(localImage);
         } else {
-            // Using a more reliable search pattern with explicit product keywords
-            setDynamicImageUrl(`https://loremflickr.com/1200/800/${encodeURIComponent(searchTerms)},product/all`);
+            // Using a high-precision Unsplash search pattern
+            setDynamicImageUrl(`https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=1200&h=800`); // Default high quality ag
+
+            // Try to find a specific one
+            const specificSearch = `https://source.unsplash.com/featured/?${encodeURIComponent(searchTerms)},product`;
+            // Note: Since unsplash source is flaky, we actually prefer specialized terms or a better fallback
+            if (searchTerms.includes('cashew')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1509358111104-5858089f81df?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('rice')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=1200');
+            } else {
+                setDynamicImageUrl(`https://loremflickr.com/1200/800/${encodeURIComponent(searchTerms.split(',')[0])},agriculture/all`);
+            }
         }
 
         setDynamicFallbackUrl(`https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200&h=800`);
@@ -292,7 +305,7 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
     return (
         <div className="bg-white min-h-screen text-slate-900 selection:bg-red-800 selection:text-white overflow-x-hidden">
             {/* Massive Hero Section */}
-            <section className="relative px-6 py-20 md:py-48 bg-slate-50 border-b-[24px] border-slate-900">
+            <section className="relative px-6 pt-32 pb-20 md:pt-48 md:pb-48 bg-slate-50 border-b-[8px] md:border-b-[24px] border-slate-900">
                 <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
                     <div className="mb-10 w-full flex justify-between items-center border-b border-slate-200 pb-4">
                         <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.5em] text-red-800">Department of Strategic Exports // IPX-{(seed % 99999).toString().padStart(5, '0')}</span>
@@ -423,7 +436,7 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
 function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
     return (
         <div className="bg-[#faf8f5] pb-24 overflow-x-hidden">
-            <section className="px-4 py-20 md:py-32 max-w-7xl mx-auto">
+            <section className="px-4 pt-32 pb-20 md:pt-48 md:pb-32 max-w-7xl mx-auto">
                 <div className="text-center mb-16 md:mb-24">
                     <span className="text-red-800 font-[900] uppercase tracking-[0.3em] md:tracking-[0.5em] text-xs mb-6 block border-b-2 border-red-800/20 pb-4 inline-block">Global Strategic Dossier: IPX-{(seed % 99999).toString().padStart(5, '0')}</span>
                     <h1 className="text-3xl md:text-7xl lg:text-[8vw] font-black text-slate-900 mb-10 px-4 leading-[0.8] tracking-tighter uppercase italic break-words">
@@ -431,7 +444,7 @@ function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { titl
                     </h1>
                 </div>
 
-                <div className="bg-white p-6 md:p-20 rounded-none border-[8px] md:border-[12px] border-slate-900 shadow-xl relative mb-20 md:mb-40">
+                <div className="bg-white p-6 md:p-20 rounded-none border-[4px] md:border-[8px] border-slate-900 shadow-xl relative mb-20 md:mb-40">
                     <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-start">
                         <div className="relative group overflow-hidden">
                             <FallbackImage
@@ -566,7 +579,7 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
     return (
         <div className="bg-zinc-950 min-h-screen text-slate-200 overflow-x-hidden selection:bg-emerald-500 selection:text-zinc-950">
             {/* Dark Industrial Hero */}
-            <section className="relative h-auto md:h-screen min-h-[600px] flex items-center py-20 px-6 overflow-hidden">
+            <section className="relative h-auto md:h-screen min-h-[600px] flex items-center pt-32 pb-20 px-6 overflow-hidden">
                 <div className="absolute inset-0 opacity-40 grayscale">
                     <FallbackImage
                         src={image}
