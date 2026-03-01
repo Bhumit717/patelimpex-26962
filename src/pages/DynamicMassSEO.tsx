@@ -575,9 +575,9 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                             </div>
                         </div>
                         <div className="space-y-12">
-                            <div className="bg-zinc-900 p-10 border border-emerald-500/20">
-                                <h4 className="text-xs font-black text-emerald-500 uppercase tracking-[0.4em] mb-12 flex items-center gap-4">
-                                    <BarChart3 className="w-5 h-5" /> PROTOCOL_RELIABILITY_DATA
+                            <div className="bg-zinc-900 p-6 md:p-10 border border-emerald-500/20">
+                                <h4 className="text-[10px] md:text-xs font-black text-emerald-500 uppercase tracking-[0.2em] md:tracking-[0.4em] mb-12 flex items-center gap-4">
+                                    <BarChart3 className="w-5 h-5 shrink-0" /> PROTOCOL_RELIABILITY_DATA
                                 </h4>
                                 <ul className="space-y-8">
                                     {[
@@ -586,13 +586,13 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                                         { label: 'Logistics Prio', value: 'TIER_1_MUNDRA' },
                                         { label: 'System Uptime', value: '100% EXPORT' }
                                     ].map((stat, i) => (
-                                        <li key={i} className="flex justify-between items-center border-b border-white/5 pb-6">
+                                        <li key={i} className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-6 gap-2">
                                             <span className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">{stat.label}</span>
-                                            <span className="text-white font-mono font-bold tracking-tighter">{stat.value}</span>
+                                            <span className="text-white font-mono font-bold tracking-tighter break-all">{stat.value}</span>
                                         </li>
                                     ))}
                                 </ul>
-                                <Link to="/contact" className="mt-16 block w-full bg-emerald-500 hover:bg-white text-zinc-950 text-center font-black py-6 uppercase text-sm tracking-[0.4em] transition-all">
+                                <Link to="/contact" className="mt-16 block w-full bg-emerald-500 hover:bg-white text-zinc-950 text-center font-black py-6 uppercase text-sm tracking-[0.1em] md:tracking-[0.4em] transition-all">
                                     Initiate Node Contact
                                 </Link>
                             </div>
