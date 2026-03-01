@@ -67,7 +67,7 @@ let currentSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xml
 const sitemapFiles = [];
 const BASE_URL = 'https://patelimpex.com';
 
-const maxUrlsPerSitemap = 45000;
+const maxUrlsPerSitemap = 2000;
 
 for (const product of dictionary.products) {
     for (const location of dictionary.locations) {
