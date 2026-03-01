@@ -60,7 +60,10 @@ async function mergeSitemaps() {
     sitemapIndexContent += `</sitemapindex>`;
     fs.writeFileSync(path.join(sitemapsDir, 'sitemap_index.xml'), sitemapIndexContent);
 
-    console.log(`Successfully generated ${sitemapCount} large sitemaps (50k each) for 100,000 pages.`);
+    // Sync keywords to public for frontend
+    fs.writeFileSync(path.join(sitemapsDir, 'seoKeywords.json'), JSON.stringify(keywordArray));
+
+    console.log(`Successfully packed ${keywordArray.length} keywords into EXACTLY ${sitemapCount} sitemaps with prefix sitemap-data- and updated public index!`);
 }
 
 mergeSitemaps();
