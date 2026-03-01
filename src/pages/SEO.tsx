@@ -231,10 +231,10 @@ const SEO = () => {
               {visibleCount < allKeywords.length && (
                 <div className="text-center mt-12">
                   <button
-                    onClick={() => setVisibleCount(prev => prev + 2000)}
+                    onClick={() => setVisibleCount(prev => prev + 5000)}
                     className="bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-bold py-3 px-8 rounded-full transition-colors uppercase tracking-widest text-sm"
                   >
-                    Load More Routes ({visibleCount} / {allKeywords.length} showing)
+                    Load More Routes ({visibleCount.toLocaleString()} / {allKeywords.length.toLocaleString()} showing)
                   </button>
                 </div>
               )}
@@ -243,7 +243,7 @@ const SEO = () => {
 
           <div className="mt-16 text-center border-t border-slate-800 pt-16">
             <h3 className="text-2xl text-white font-bold mb-4">View Complete XML Mapping</h3>
-            <p className="text-slate-400 mb-8 max-w-2xl mx-auto">Our infrastructure handles more than {allKeywords.length.toLocaleString()} endpoints. For automated crawling and full site indexing, view our Search Engine Sitemap cluster.</p>
+            <p className="text-slate-400 mb-8 max-w-2xl mx-auto">Our infrastructure handles exactly {allKeywords.length.toLocaleString()} endpoints. For automated crawling and full site indexing, view our Search Engine Sitemap cluster.</p>
             <a href="/sitemap_index.xml" target="_blank" className="nm-btn-primary bg-green-600 hover:bg-green-500 text-white border-0 shadow-lg px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm inline-flex items-center">
               Access Sitemap Index <FileText className="w-4 h-4 ml-2" />
             </a>
