@@ -26,6 +26,7 @@ import Admin from "./pages/Admin";
 import BlogPostDetail from "./pages/BlogPostDetail";
 import NewsDetail from "./pages/NewsDetail";
 import OtherSiteBlog from "./pages/OtherSiteBlog";
+import OtherSiteBlogPost from "./pages/OtherSiteBlogPost";
 
 // More pages
 import ExportImportGuide from "./pages/more/ExportImportGuide";
@@ -388,6 +389,7 @@ const App = () => (
           <Route path="/more" element={<More />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/other-site-blog" element={<OtherSiteBlog />} />
+          <Route path="/other-site-blog/:slug" element={<OtherSiteBlogPost />} />
 
           {/* More sub-pages */}
           <Route path="/more/export-import-guide" element={<ExportImportGuide />} />

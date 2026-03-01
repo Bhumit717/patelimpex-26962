@@ -1,51 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import { Calendar, ChevronRight } from 'lucide-react';
-
-const OTHER_SITE_BLOGS = [
-    {
-        title: "Lime Blog - Import Export",
-        excerpt: "Learn the fundamentals of international trade and how to start your export import business successfully.",
-        date: "March 1, 2026",
-        image: "https://limeinstitute.org/wp-content/uploads/2021/04/lime-institute-of-export-import-training.jpg",
-        link: "https://limeinstitute.org/blog/"
-    },
-    {
-        title: "Top 10 Export Products From India",
-        excerpt: "Discover the most profitable products to export from India to international markets in 2026.",
-        date: "February 25, 2026",
-        image: "https://limeinstitute.org/wp-content/uploads/2022/01/Top-10-Export-Products-From-India.jpg",
-        link: "https://limeinstitute.org/blog/top-10-export-products-from-india/"
-    },
-    {
-        title: "How to Find Foreign Buyers",
-        excerpt: "Effective strategies and tools for finding reliable buyers for your export business.",
-        date: "February 20, 2026",
-        image: "https://limeinstitute.org/wp-content/uploads/2021/05/how-to-find-foreign-buyers.jpg",
-        link: "https://limeinstitute.org/blog/how-to-find-foreign-buyers/"
-    },
-    {
-        title: "Export Documentation Required In India",
-        excerpt: "A complete guide to all the mandatory documents needed for export clearance in India.",
-        date: "February 15, 2026",
-        image: "https://limeinstitute.org/wp-content/uploads/2021/06/Export-Documentation-Required-In-India.jpg",
-        link: "https://limeinstitute.org/blog/export-documentation-required-in-india/"
-    },
-    {
-        title: "Incoterms 2020 Explained",
-        excerpt: "Understand the latest International Commercial Terms essential for global trade contracts.",
-        date: "February 10, 2026",
-        image: "https://limeinstitute.org/wp-content/uploads/2021/07/Incoterms-2020.jpg",
-        link: "https://limeinstitute.org/blog/incoterms-2020/"
-    },
-    {
-        title: "How To Calculate Export Pricing",
-        excerpt: "Step-by-step guide on how to calculate accurate pricing for your export products.",
-        date: "February 5, 2026",
-        image: "https://limeinstitute.org/wp-content/uploads/2021/08/Export-Pricing.jpg",
-        link: "https://limeinstitute.org/blog/how-to-calculate-export-pricing/"
-    }
-];
+import blogsData from '@/data/limeBlogs.json';
 
 const OtherSiteBlog = () => {
     return (
@@ -57,62 +14,78 @@ const OtherSiteBlog = () => {
             />
 
             <div className="container mx-auto px-4 max-w-7xl">
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 font-graduate uppercase tracking-tight">
+                <div className="text-center mb-16 relative">
+                    {/* Decorative background circle */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-green-100 rounded-full blur-3xl opacity-50 pointer-events-none" />
+
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 font-graduate uppercase tracking-tight relative z-10">
                         Other Site <span className="text-green-600">Blogs</span>
                     </h1>
-                    <p className="text-lg text-slate-600 font-fondamento italic max-w-2xl mx-auto">
-                        Curated export-import insights and training material from our partners at Lime Institute.
+                    <p className="text-lg text-slate-600 font-fondamento italic max-w-2xl mx-auto relative z-10">
+                        Curated export-import insights and comprehensive training material from our partners at Lime Institute.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {OTHER_SITE_BLOGS.map((post, idx) => (
-                        <article
-                            key={idx}
-                            className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group flex flex-col"
-                        >
-                            <a href={post.link} target="_blank" rel="noopener noreferrer" className="block relative h-64 overflow-hidden bg-slate-200">
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10" />
-                                <img
-                                    src={post.image}
-                                    alt={post.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                                    onError={(e) => {
-                                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1586528116311-ad8ed7c50352?q=80&w=2070&auto=format&fit=crop";
-                                    }}
-                                />
-                            </a>
+                {blogsData && blogsData.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {blogsData.map((post: any, idx: number) => (
+                            <article
+                                key={idx}
+                                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-100 group flex flex-col transform hover:-translate-y-2"
+                            >
+                                <Link to={`/other-site-blog/${post.slug}`} className="block relative h-64 overflow-hidden bg-slate-900 inline-block">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity z-10" />
+                                    {post.image ? (
+                                        <img
+                                            src={post.image}
+                                            alt={post.title}
+                                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                                            onError={(e) => {
+                                                (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1586528116311-ad8ed7c50352?q=80&w=2070&auto=format&fit=crop";
+                                            }}
+                                        />
+                                    ) : (
+                                        <img
+                                            src={"https://images.unsplash.com/photo-1586528116311-ad8ed7c50352?q=80&w=2070&auto=format&fit=crop"}
+                                            alt={post.title}
+                                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out opacity-80"
+                                        />
+                                    )}
+                                    {/* Floating Date Badge */}
+                                    <div className="absolute bottom-4 left-4 z-20 bg-green-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold font-graduate flex items-center shadow-lg">
+                                        <Calendar className="w-3 h-3 mr-1.5" />
+                                        {post.date}
+                                    </div>
+                                </Link>
 
-                            <div className="p-8 flex flex-col flex-grow">
-                                <div className="flex items-center text-sm text-green-600 font-medium mb-4 uppercase tracking-wider font-graduate">
-                                    <Calendar className="w-4 h-4 mr-2" />
-                                    {post.date}
+                                <div className="p-8 flex flex-col flex-grow relative bg-white">
+                                    <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 line-clamp-2 leading-tight group-hover:text-green-600 transition-colors font-graduate">
+                                        <Link to={`/other-site-blog/${post.slug}`}>
+                                            {post.title}
+                                        </Link>
+                                    </h2>
+
+                                    <p className="text-slate-500 mb-8 line-clamp-3 leading-relaxed font-sans text-sm md:text-base flex-grow">
+                                        {post.excerpt}
+                                    </p>
+
+                                    <Link
+                                        to={`/other-site-blog/${post.slug}`}
+                                        className="mt-auto inline-flex items-center text-sm font-black text-slate-800 uppercase tracking-[0.2em] font-graduate group-hover:text-green-600 border-b-2 border-transparent group-hover:border-green-600 pb-1 self-start transition-all"
+                                    >
+                                        Read Full Article
+                                        <ChevronRight className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" />
+                                    </Link>
                                 </div>
-
-                                <h2 className="text-2xl font-bold text-slate-900 mb-4 line-clamp-2 leading-snug group-hover:text-green-600 transition-colors">
-                                    <a href={post.link} target="_blank" rel="noopener noreferrer">
-                                        {post.title}
-                                    </a>
-                                </h2>
-
-                                <p className="text-slate-600 mb-6 line-clamp-3 leading-relaxed font-mono text-sm flex-grow">
-                                    {post.excerpt}
-                                </p>
-
-                                <a
-                                    href={post.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center text-sm font-bold text-slate-900 uppercase tracking-widest font-graduate group-hover:text-green-600"
-                                >
-                                    Read More
-                                    <ChevronRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
-                                </a>
-                            </div>
-                        </article>
-                    ))}
-                </div>
+                            </article>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-300">
+                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-green-600 border-t-transparent mx-auto mb-4"></div>
+                        <p className="text-slate-500 font-fondamento text-lg italic">Fetching latest articles...</p>
+                    </div>
+                )}
             </div>
         </div>
     );
