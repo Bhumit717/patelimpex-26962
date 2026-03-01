@@ -278,20 +278,24 @@ export default function DynamicMassSEO() {
     const capitalizedTitle = keyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
     return (
-        <div className="min-h-screen bg-slate-50 font-sans overflow-x-hidden">
+        <div className="min-h-screen bg-white font-sans overflow-x-hidden selection:bg-green-100 selection:text-slate-900">
             <SEOHead
-                title={`${capitalizedTitle} - Exclusive B2B Export Guide`}
-                description={`Discover premier insights and wholesale advantages for: ${keyword}. Patel Impex provides scalable export pipelines from India directly to your facilities with certified QA.`}
+                title={`${capitalizedTitle} - Professional B2B Export Dossier`}
+                description={`Access strategic insights and procurement advantages for: ${keyword}. Patel Impex provides high-yield supply chains directly from India with certified QA.`}
                 canonicalUrl={`/seo/${slug}`}
             />
 
             <Navigation />
 
-            <div className="pt-24 lg:pt-32">
-                {layoutType === 0 && <ArchitectureCorporate title={capitalizedTitle} image={dynamicImageUrl} fallback={dynamicFallbackUrl} keyword={keyword} seed={seed} />}
-                {layoutType === 1 && <ArchitectureEditorial title={capitalizedTitle} image={dynamicImageUrl} fallback={dynamicFallbackUrl} keyword={keyword} seed={seed} />}
-                {layoutType === 2 && <ArchitectureIndustrial title={capitalizedTitle} image={dynamicImageUrl} fallback={dynamicFallbackUrl} keyword={keyword} seed={seed} />}
-            </div>
+            <main className="pt-24 lg:pt-32">
+                <ProductExpertDossier
+                    title={capitalizedTitle}
+                    image={dynamicImageUrl}
+                    fallback={dynamicFallbackUrl}
+                    keyword={keyword}
+                    seed={seed}
+                />
+            </main>
 
             <Footer />
         </div>
@@ -299,316 +303,151 @@ export default function DynamicMassSEO() {
 }
 
 // -------------------------------------------------------------
-// Layout 0: Corporate B2B Trust Layout (Blue/Gray, Centered)
+// Unified Clean Layout: Product Expert Dossier
 // -------------------------------------------------------------
-function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
+function ProductExpertDossier({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
     return (
-        <div className="bg-white min-h-screen text-slate-900 selection:bg-red-800 selection:text-white overflow-x-hidden">
-            {/* Massive Hero Section */}
-            <section className="relative px-6 pt-32 pb-20 md:pt-48 md:pb-48 bg-slate-50 border-b-[8px] md:border-b-[24px] border-slate-900">
-                <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-                    <div className="mb-10 w-full flex justify-between items-center border-b border-slate-200 pb-4">
-                        <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.5em] text-red-800">Department of Strategic Exports // IPX-{(seed % 99999).toString().padStart(5, '0')}</span>
-                        <span className="text-[10px] md:text-xs font-mono text-slate-400">TIMESTAMP: {new Date().toISOString()}</span>
+        <div className="bg-white">
+            {/* Professional Hero Section */}
+            <section className="bg-slate-50 border-y border-slate-200 py-12 md:py-24 px-6 overflow-hidden">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div className="flex items-center gap-3 mb-6">
+                            <span className="h-[1px] w-8 bg-green-600" />
+                            <span className="text-xs font-graduate tracking-widest text-green-700 uppercase">Export Intellectual Portfolio IPX-{(seed % 99999).toString()}</span>
+                        </div>
+                        <h1 className="text-4xl md:text-7xl font-graduate text-slate-900 leading-[1.1] mb-8">
+                            {title}
+                        </h1>
+                        <p className="text-lg md:text-2xl text-slate-600 font-sans leading-relaxed mb-8 italic">
+                            A strategic technical overview and logistics framework for <strong>{keyword}</strong> exports from the Rajkot industrial cluster.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                            <span className="px-4 py-2 bg-green-50 text-green-700 text-xs font-bold uppercase rounded-full border border-green-100">ISO 9001:2015</span>
+                            <span className="px-4 py-2 bg-blue-50 text-blue-700 text-xs font-bold uppercase rounded-full border border-blue-100">UCP 600 Ready</span>
+                            <span className="px-4 py-2 bg-slate-100 text-slate-700 text-xs font-bold uppercase rounded-full border border-slate-200">Export Tier 1</span>
+                        </div>
                     </div>
-                    <h1 className="text-4xl md:text-8xl lg:text-[10vw] font-black uppercase tracking-tighter leading-[0.85] mb-12 break-words max-w-full">
-                        {title}
-                    </h1>
-                    <div className="w-24 md:w-48 h-4 md:h-8 bg-red-800 mb-16" />
-                    <p className="text-xl md:text-4xl font-serif italic text-slate-600 max-w-4xl leading-relaxed">
-                        Establishing a multi-generational supply chain for <strong>{keyword}</strong> through the Western India Industrial Corridor.
-                    </p>
+                    <div className="relative">
+                        <div className="absolute -inset-2 bg-green-600/10 rounded-2xl blur-2xl" />
+                        <FallbackImage
+                            src={image}
+                            fallbackSrc={fallback}
+                            alt={keyword}
+                            className="relative w-full h-[300px] md:h-[500px] object-cover rounded-2xl shadow-2xl"
+                        />
+                    </div>
                 </div>
             </section>
 
-            <section className="px-6 py-20 md:py-40 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-center mb-40">
-                        <div className="relative">
-                            <div className="absolute -inset-4 bg-slate-900 rotate-1" />
-                            <FallbackImage
-                                src={image}
-                                fallbackSrc={fallback}
-                                alt={keyword}
-                                className="relative w-full h-[300px] md:h-[800px] object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-1000"
-                            />
-                            <div className="absolute -bottom-10 -right-10 bg-red-800 text-white p-12 hidden md:block">
-                                <FileText className="w-16 h-16 mb-4" />
-                                <span className="block text-2xl font-black uppercase leading-tight">Certified<br />Origin<br />Node</span>
-                            </div>
-                        </div>
-                        <div className="prose prose-base md:prose-2xl font-serif text-slate-800 space-y-10 leading-relaxed max-w-none">
-                            <h2 className="text-2xl md:text-6xl font-black uppercase text-slate-900 italic border-b-8 border-slate-900 pb-4 tracking-tighter leading-none">The Export Mandate</h2>
-                            <p className="first-letter:text-5xl md:first-letter:text-9xl first-letter:font-black first-letter:float-left first-letter:mr-6 first-letter:text-red-800 first-letter:leading-none">
+            {/* Strategic Analysis Content */}
+            <section className="py-16 md:py-24 px-6 bg-white">
+                <div className="max-w-4xl mx-auto">
+                    <div className="prose prose-slate prose-lg md:prose-2xl max-w-none space-y-12">
+                        <div className="border-l-4 border-green-600 pl-8 py-4 bg-slate-50/50 rounded-r-lg">
+                            <h2 className="text-2xl md:text-4xl font-graduate text-slate-900 mb-6">Trade Introduction</h2>
+                            <p className="font-sans leading-relaxed text-slate-700">
                                 {TradeIntelligence.getIntroduction(keyword, seed)}
                             </p>
-                            <p>{TradeIntelligence.getTechnicalDeepDive(keyword, seed)}</p>
                         </div>
-                    </div>
 
-                    <div className="grid md:grid-cols-3 gap-0 bg-slate-200 border border-slate-200 mb-40">
-                        <div className="bg-white p-10 md:p-20 border-b md:border-b-0 md:border-r border-slate-100">
-                            <h4 className="text-2xl font-black uppercase mb-8 border-l-4 border-red-800 pl-6 tracking-tight">Supply Chain Resilience</h4>
-                            <p className="text-slate-600 leading-relaxed italic">{TradeIntelligence.getLogisticsThesis(keyword, seed)}</p>
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-graduate text-slate-900 mb-6 flex items-center gap-3">
+                                <FileText className="text-green-600" /> Technical Specification Deck
+                            </h2>
+                            <div className="bg-white border p-6 md:p-10 rounded-xl shadow-sm leading-relaxed text-slate-700">
+                                {TradeIntelligence.getTechnicalDeepDive(keyword, seed)}
+                            </div>
                         </div>
-                        <div className="bg-white p-10 md:p-20 border-b md:border-b-0 md:border-r border-slate-100">
-                            <h4 className="text-2xl font-black uppercase mb-8 border-l-4 border-red-800 pl-6 tracking-tight">Market Intelligence</h4>
-                            <p className="text-slate-600 leading-relaxed italic">{TradeIntelligence.getMarketOutlook(keyword, seed)}</p>
-                        </div>
-                        <div className="bg-white p-10 md:p-20">
-                            <h4 className="text-2xl font-black uppercase mb-8 border-l-4 border-red-800 pl-6 tracking-tight">Regional Dynamics</h4>
-                            <p className="text-slate-600 leading-relaxed italic">{TradeIntelligence.getRegionalDynamics(keyword, seed)}</p>
-                        </div>
-                    </div>
 
-                    <div className="bg-slate-900 text-white p-10 md:p-32 rounded-none mb-40">
-                        <div className="grid lg:grid-cols-2 gap-20 items-center">
-                            <div>
-                                <h2 className="text-4xl md:text-7xl font-black mb-12 uppercase italic leading-none">Financial & Risk Architecture</h2>
-                                <div className="prose prose-invert prose-base md:prose-2xl space-y-10 font-light leading-relaxed">
-                                    <p>{TradeIntelligence.getFinancialThesis(keyword, seed)}</p>
-                                    <p>{TradeIntelligence.getRegulatoryFramework(keyword, seed)}</p>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div className="p-8 bg-slate-900 text-white rounded-2xl">
+                                <h3 className="text-xl font-graduate mb-4 text-green-400">Market Intelligence</h3>
+                                <p className="text-sm md:text-base leading-relaxed text-slate-300 italic">{TradeIntelligence.getMarketOutlook(keyword, seed)}</p>
+                            </div>
+                            <div className="p-8 bg-green-700 text-white rounded-2xl">
+                                <h3 className="text-xl font-graduate mb-4 text-green-100">Logistics Thesis</h3>
+                                <p className="text-sm md:text-base leading-relaxed text-green-50 italic">{TradeIntelligence.getLogisticsThesis(keyword, seed)}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-graduate text-slate-900 mb-6 underline decoration-green-600 decoration-4 underline-offset-8">Compliance & Financial Security</h2>
+                            <div className="space-y-6 text-slate-700">
+                                <p>{TradeIntelligence.getFinancialThesis(keyword, seed)}</p>
+                                <p>{TradeIntelligence.getRegulatoryFramework(keyword, seed)}</p>
+                            </div>
+                        </div>
+
+                        <div className="py-12 px-8 md:px-16 bg-slate-50 border border-slate-200 rounded-2xl">
+                            <h2 className="text-2xl md:text-3xl font-graduate text-slate-900 mb-8 text-center italic">Institutional Sourcing Standards</h2>
+                            <div className="grid md:grid-cols-2 gap-10">
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-green-700 mb-4 flex items-center gap-2">
+                                        <Award className="w-4 h-4" /> Ethical Procurement
+                                    </h4>
+                                    <p className="text-sm text-slate-600 leading-relaxed font-sans">{TradeIntelligence.getEthicalSourcingProof(keyword, seed)}</p>
+                                </div>
+                                <div>
+                                    <h4 className="text-xs font-bold uppercase tracking-widest text-green-700 mb-4 flex items-center gap-2">
+                                        <Activity className="w-4 h-4" /> Processing Excellence
+                                    </h4>
+                                    <p className="text-sm text-slate-600 leading-relaxed font-sans">{TradeIntelligence.getProcessingStandards(keyword, seed)}</p>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-8">
-                                {[
-                                    { label: 'UCP 600 Ready', value: 'YES' },
-                                    { label: 'Bank Tier', value: 'Tier 1' },
-                                    { label: 'ECGC Covered', value: '100%' },
-                                    { label: 'HS Code', value: `${(seed % 99) + 10}00.${seed % 99}` }
-                                ].map((item, i) => (
-                                    <div key={i} className="border-t border-white/20 pt-8">
-                                        <span className="block text-[10px] uppercase text-slate-500 font-bold mb-2 tracking-widest">{item.label}</span>
-                                        <span className="text-xl md:text-4xl font-black">{item.value}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="max-w-4xl mx-auto space-y-20 md:space-y-40">
-                        <div className="border-l-[12px] md:border-l-[24px] border-red-800 pl-10 md:pl-20">
-                            <h3 className="text-3xl md:text-5xl font-black uppercase italic mb-10 text-slate-900">Ethical & Quality Mandates</h3>
-                            <div className="prose prose-base md:prose-2xl font-serif text-slate-800 leading-relaxed space-y-12">
-                                <p>{TradeIntelligence.getEthicalSourcingProof(keyword, seed)}</p>
-                                <p>{TradeIntelligence.getProcessingStandards(keyword, seed)}</p>
-                            </div>
                         </div>
 
-                        <div className="bg-slate-50 p-10 md:p-20 border border-slate-200">
-                            <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-10 text-slate-900 text-center leading-none">2030 Global Roadmap</h3>
-                            <p className="text-xl md:text-3xl font-serif text-slate-600 leading-relaxed italic text-center">
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-graduate text-slate-900 mb-6">Regional Supply Resilience</h2>
+                            <p className="text-slate-700">{TradeIntelligence.getRegionalDynamics(keyword, seed)}</p>
+                        </div>
+
+                        <div className="p-8 md:p-12 border-t border-b border-slate-100 my-16">
+                            <h3 className="text-3xl font-graduate text-center text-slate-900 mb-8">2030 Global Outlook</h3>
+                            <p className="text-lg md:text-xl text-slate-600 text-center font-sans leading-relaxed italic">
                                 {TradeIntelligence.getFutureMarketAnalysis(keyword, seed)}
                             </p>
                         </div>
 
-                        <div className="prose prose-base md:prose-2xl font-serif text-slate-800 space-y-12 max-w-none">
-                            <h3 className="text-3xl md:text-5xl font-black uppercase italic border-b-8 border-slate-900 pb-4 leading-none">Wholesale Framework</h3>
-                            <p>{TradeIntelligence.getWholesaleArchitecture(keyword, seed)}</p>
-                            <p>{TradeIntelligence.getGlobalSupplyThesis(keyword, seed)}</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="bg-slate-900 py-32 md:py-48 px-6 text-center overflow-hidden">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-5xl md:text-[8vw] font-black text-white uppercase italic leading-none mb-16 tracking-tighter">
-                        Secure the <span className="text-red-800">Future.</span>
-                    </h2>
-                    <p className="text-xl md:text-4xl text-slate-400 font-serif italic mb-20 md:mb-32 max-w-5xl mx-auto leading-tight">
-                        The elite procurement of <strong>{keyword}</strong> is a tactical choice. Partner with Patel Impex and redefine your industrial standard.
-                    </p>
-                    <div className="flex flex-col md:flex-row justify-center gap-10">
-                        <Link to="/contact" className="bg-white text-slate-900 px-12 md:px-32 py-8 md:py-12 text-2xl md:text-4xl font-black uppercase hover:bg-red-800 hover:text-white transition-all">
-                            Initiate Contact
-                        </Link>
-                    </div>
-                </div>
-            </section>
-        </div>
-    );
-}
-
-// -------------------------------------------------------------
-// Layout 1: Editorial/Magazine Style (Clean, White, Large Typography)
-// -------------------------------------------------------------
-function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
-    return (
-        <div className="bg-[#faf8f5] pb-24 overflow-x-hidden">
-            <section className="px-4 pt-32 pb-20 md:pt-48 md:pb-32 max-w-7xl mx-auto">
-                <div className="text-center mb-16 md:mb-24">
-                    <span className="text-red-800 font-[900] uppercase tracking-[0.3em] md:tracking-[0.5em] text-xs mb-6 block border-b-2 border-red-800/20 pb-4 inline-block">Global Strategic Dossier: IPX-{(seed % 99999).toString().padStart(5, '0')}</span>
-                    <h1 className="text-3xl md:text-7xl lg:text-[8vw] font-black text-slate-900 mb-10 px-4 leading-[0.8] tracking-tighter uppercase italic break-words">
-                        {title}
-                    </h1>
-                </div>
-
-                <div className="bg-white p-6 md:p-20 rounded-none border-[4px] md:border-[8px] border-slate-900 shadow-xl relative mb-20 md:mb-40">
-                    <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-start">
-                        <div className="relative group overflow-hidden">
-                            <FallbackImage
-                                src={image}
-                                fallbackSrc={fallback}
-                                alt={keyword}
-                                className="w-full h-[400px] md:h-[900px] object-cover scale-110 group-hover:scale-100 transition-all duration-1000"
-                            />
-                            <div className="absolute bottom-0 right-0 bg-red-800 text-white p-6 md:p-12 z-20">
-                                <p className="text-xs md:text-xl font-serif italic leading-relaxed">
-                                    Strategic Node Intelligence for <strong>{keyword}</strong> exports.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="py-2 md:py-8">
-                            <h2 className="text-2xl md:text-5xl font-black uppercase text-slate-900 mb-8 md:mb-12 tracking-tighter italic border-b-8 border-slate-900 pb-4">Analysis & Thesis</h2>
-                            <div className="prose prose-base md:prose-2xl text-slate-800 mb-10 md:mb-16 leading-tight font-serif space-y-8 md:space-y-12">
-                                <p className="first-letter:text-5xl md:first-letter:text-9xl first-letter:font-black first-letter:float-left first-letter:mr-3 md:first-letter:mr-4 first-letter:text-red-800">
-                                    {TradeIntelligence.getIntroduction(keyword, seed)}
-                                </p>
-                                <p>{TradeIntelligence.getTechnicalDeepDive(keyword, seed)}</p>
-                                <p className="text-xl md:text-3xl font-light italic border-l-8 md:border-l-[16px] border-red-800 pl-6 md:pl-12 py-6 bg-slate-50">
-                                    "Navigating the {keyword} market requires origin depth and structural speed."
-                                </p>
-                                <p>{TradeIntelligence.getLogisticsThesis(keyword, seed)}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="space-y-20 md:space-y-40 mb-20 md:mb-40">
-                    <div className="grid md:grid-cols-2 gap-12 md:gap-32 items-center">
-                        <div className="prose prose-base md:prose-2xl font-serif text-slate-800">
-                            <h3 className="text-3xl md:text-5xl font-black text-slate-900 uppercase italic border-b-4 border-red-800 pb-4 mb-10">01. Regional Dynamics</h3>
-                            <p>{TradeIntelligence.getRegionalDynamics(keyword, seed)}</p>
-                            <p className="mt-8">{TradeIntelligence.getRegionalHarvestIntel(keyword, seed)}</p>
-                        </div>
-                        <div className="bg-slate-900 p-8 md:p-16 text-white border-t-[20px] border-red-800">
-                            <h4 className="text-2xl md:text-4xl font-black mb-10 uppercase italic">Supply Matrix</h4>
-                            <div className="space-y-8">
-                                <div className="flex justify-between border-b border-white/10 pb-4">
-                                    <span className="uppercase text-xs font-bold text-slate-400">Yield Consistency</span>
-                                    <span className="font-mono text-xl">99.2% Nominal</span>
-                                </div>
-                                <div className="flex justify-between border-b border-white/10 pb-4">
-                                    <span className="uppercase text-xs font-bold text-slate-400">Purity Target</span>
-                                    <span className="font-mono text-xl">ISO Standard 08</span>
-                                </div>
-                                <div className="flex justify-between border-b border-white/10 pb-4">
-                                    <span className="uppercase text-xs font-bold text-slate-400">Lead Latency</span>
-                                    <span className="font-mono text-xl">{(seed % 5) + 10} Days Port-to-Ship</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-slate-900 text-white p-8 md:p-32 relative overflow-hidden">
-                        <h2 className="text-4xl md:text-8xl font-black mb-12 uppercase italic leading-none text-red-600">Compliance Protocol</h2>
-                        <div className="grid lg:grid-cols-2 gap-12 md:gap-24">
-                            <div className="prose prose-invert prose-base md:prose-2xl font-light space-y-10 leading-relaxed max-w-none">
-                                <p>{TradeIntelligence.getRegulatoryFramework(keyword, seed)}</p>
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-graduate text-slate-900 mb-6">Wholesale Logic & Export Scalability</h2>
+                            <div className="space-y-6 text-slate-700">
+                                <p>{TradeIntelligence.getWholesaleArchitecture(keyword, seed)}</p>
                                 <p>{TradeIntelligence.getGlobalSupplyThesis(keyword, seed)}</p>
-                                <p className="text-slate-400 italic">"Our commitment to {keyword} is verified via a rigorous sequence of quality audits and origin-tracing protocols."</p>
                             </div>
-                            <div className="bg-white/5 p-8 md:p-16 backdrop-blur-md border border-white/10">
-                                <h3 className="text-xl md:text-3xl font-black mb-10 text-red-500 uppercase">Financial Framework</h3>
-                                <p className="text-slate-300 md:text-xl leading-relaxed mb-10">{TradeIntelligence.getFinancialThesis(keyword, seed)}</p>
-                                <div className="grid grid-cols-2 gap-8 text-center">
-                                    <div className="p-6 bg-white/5 border border-white/10">
-                                        <span className="block text-3xl font-black text-white mb-2 underline underline-offset-8 decoration-red-600">UCP 600</span>
-                                        <span className="text-[10px] uppercase text-slate-500 font-bold">Banking Standard</span>
-                                    </div>
-                                    <div className="p-6 bg-white/5 border border-white/10">
-                                        <span className="block text-3xl font-black text-white mb-2 underline underline-offset-8 decoration-red-600">LC / BG</span>
-                                        <span className="text-[10px] uppercase text-slate-500 font-bold">Clearance Ready</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 className="text-4xl md:text-6xl font-black text-slate-900 uppercase italic mb-10 md:mb-20 text-center">Processing Multi-Year Strategy</h3>
-                        <div className="grid md:grid-cols-3 gap-10 md:gap-16">
-                            <div className="bg-white p-10 border-t-8 border-slate-900 shadow-sm">
-                                <h4 className="text-xl font-black mb-6 uppercase">Quality Architecture</h4>
-                                <p className="text-slate-600 font-serif leading-relaxed italic">{TradeIntelligence.getProcessingStandards(keyword, seed)}</p>
-                            </div>
-                            <div className="bg-white p-10 border-t-8 border-red-800 shadow-sm">
-                                <h4 className="text-xl font-black mb-6 uppercase">Ethical Mandate</h4>
-                                <p className="text-slate-600 font-serif leading-relaxed italic">{TradeIntelligence.getEthicalSourcingProof(keyword, seed)}</p>
-                            </div>
-                            <div className="bg-white p-10 border-t-8 border-slate-400 shadow-sm">
-                                <h4 className="text-xl font-black mb-6 uppercase">Market Resilience</h4>
-                                <p className="text-slate-600 font-serif leading-relaxed italic">{TradeIntelligence.getMarketOutlook(keyword, seed)}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-slate-50 p-10 md:p-32 border-x-[20px] md:border-x-[40px] border-slate-900">
-                        <h3 className="text-3xl md:text-5xl font-black uppercase italic mb-10 text-slate-900">Wholesale Thesis & Future Roadmap</h3>
-                        <div className="prose prose-base md:prose-2xl font-serif text-slate-800 space-y-12 max-w-none">
-                            <p>{TradeIntelligence.getWholesaleArchitecture(keyword, seed)}</p>
-                            <p>{TradeIntelligence.getFutureMarketAnalysis(keyword, seed)}</p>
-                            <p>By securing your supply of <strong>{keyword}</strong> with Patel Impex, you are positioning your organization at the forefront of the Gujarati agricultural renaissance.</p>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div className="mt-20 md:mt-40 text-center px-4">
-                    <h2 className="text-4xl md:text-[8rem] font-black text-slate-900 mb-12 uppercase leading-none break-words">
-                        Secure <span className="text-red-800">Link.</span>
+            {/* Strategic Call to Action */}
+            <section className="bg-slate-900 py-20 md:py-32 px-6 text-center">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-graduate text-white mb-10 leading-tight">
+                        Scale your <span className="text-green-500">Supply</span> Pipeline
                     </h2>
-                    <p className="text-xl md:text-3xl text-slate-600 mb-16 max-w-4xl mx-auto font-serif italic border-b border-red-800 pb-8 inline-block">
-                        The professional export of <strong>{keyword}</strong> begins with Patel Impex.
+                    <p className="text-xl text-slate-400 mb-12 italic">
+                        The elite procurement of <strong>{keyword}</strong> begins with an origin intelligence partnership.
                     </p>
-                    <div className="flex flex-col md:flex-row justify-center gap-10 mt-10">
-                        <Link to="/contact" className="bg-slate-900 text-white px-12 md:px-32 py-8 md:py-12 text-2xl md:text-3xl font-black uppercase hover:bg-red-800 transition-all">
-                            Initiate Contact
-                        </Link>
-                    </div>
+                    <Link to="/contact" className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-10 py-6 rounded-full text-xl font-bold transition-all shadow-xl shadow-green-600/20">
+                        Initiate Global Trade <ArrowRight />
+                    </Link>
                 </div>
             </section>
         </div>
     );
 }
-
-// -------------------------------------------------------------
-// Layout 2: Modern Green/Tech Industrial (Green, Left-aligned)
-// -------------------------------------------------------------
-function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
-    return (
-        <div className="bg-zinc-950 min-h-screen text-slate-200 overflow-x-hidden selection:bg-emerald-500 selection:text-zinc-950">
-            {/* Dark Industrial Hero */}
-            <section className="relative h-auto md:h-screen min-h-[600px] flex items-center pt-32 pb-20 px-6 overflow-hidden">
-                <div className="absolute inset-0 opacity-40 grayscale">
-                    <FallbackImage
-                        src={image}
-                        fallbackSrc={fallback}
-                        alt={keyword}
-                        className="w-full h-full object-cover filter contrast-150 brightness-50"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-                </div>
-
-                <div className="max-w-7xl mx-auto relative z-10 w-full">
-                    <div className="flex items-center gap-4 mb-10">
-                        <span className="h-[2px] w-12 md:w-20 bg-emerald-500" />
-                        <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 py-2 px-6 uppercase tracking-[0.5em] text-[10px] md:text-sm font-black">Industrial Vector: IPX-{(seed % 100).toString().padStart(2, '0')}</span>
-                    </div>
-                    <h1 className="text-4xl md:text-8xl lg:text-[12rem] font-black text-white mb-12 uppercase tracking-tighter leading-[0.85] break-words">
-                        {title}
-                    </h1>
-                    <div className="grid md:grid-cols-2 gap-20 items-end">
-                        <p className="text-xl md:text-4xl text-slate-400 font-light border-l-[12px] border-emerald-500 pl-10 leading-tight italic">
-                            {TradeIntelligence.getIntroduction(keyword, seed)}
-                        </p>
-                        <div className="hidden md:flex flex-col items-end gap-6">
-                            <span className="text-6xl font-black text-emerald-500">{(seed % 50) + 150} MT/D</span>
-                            <span className="text-xs uppercase tracking-widest text-slate-600">Certified Daily Export Capacity</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<div className="grid md:grid-cols-2 gap-20 items-end">
+    <p className="text-xl md:text-4xl text-slate-400 font-light border-l-[12px] border-emerald-500 pl-10 leading-tight italic">
+        {TradeIntelligence.getIntroduction(keyword, seed)}
+    </p>
+    <div className="hidden md:flex flex-col items-end gap-6">
+        <span className="text-6xl font-black text-emerald-500">{(seed % 50) + 150} MT/D</span>
+        <span className="text-xs uppercase tracking-widest text-slate-600">Certified Daily Export Capacity</span>
+    </div>
+</div>
+                </div >
+            </section >
 
             <section className="py-20 md:py-48 px-6">
                 <div className="max-w-7xl mx-auto">
@@ -710,7 +549,7 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                     </div>
                 </div>
             </section>
-        </div>
+        </div >
     );
 }
 
