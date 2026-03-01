@@ -14,6 +14,76 @@ const generateSeed = (str: string) => {
     return Math.abs(hash);
 };
 
+// Extremely robust, ultra-fast 1200x800 Unsplash images mapped by business sector
+// This guarantees high-resolution, instant loading relatable images for 30,000+ pages.
+const CATEGORY_IMAGES = {
+    agriculture: [
+        'photo-1508594093409-9060ae0ceb1a', // Spices
+        'photo-1596040033229-a9821ebd058d', // Turmeric 
+        'photo-1550989460-0adf9ea622e2', // Wheat field
+        'photo-1586201375761-83865001e31c', // Rice terraces
+        'photo-1581452140409-51a804ca78ae', // Grain storage
+        'photo-1501179691627-eeaa65ea017c', // Agriculture sunset
+        'photo-1621370845347-15ef74092eb9', // Nuts
+        'photo-1598440702581-d10cae7cb923', // Spices block
+    ],
+    cargo: [
+        'photo-1494412574643-ff11b0a5c1c3', // Container ship
+        'photo-1578575080058-29007fcdca8e', // Containers stacked
+        'photo-1473448912268-2022ce9509d8', // Cargo loading
+        'photo-1580674285054-bed31e145f59', // Pallets
+        'photo-1502422709282-3e284a1e94cc', // Logistics warehouse
+        'photo-1580674684081-37f2ff5efd35', // Cranes
+        'photo-1563214589-edaf88fa5389', // Port harbor
+        'photo-1601584115197-04ecc08560df', // Air freight jet
+        'photo-1517594422361-5e1f0e21a224', // Delivery truck
+    ],
+    textile: [
+        'photo-1605600659873-d808a1014c68', // Yarn rolls
+        'photo-1556905055-8f358a7a47b2', // Clothes rack
+        'photo-1597843467658-00cd77ea724b', // Fabric texture
+        'photo-1528459801416-a9e53bbf4e17', // Cotton field
+        'photo-1585863266937-fd5e6a9fc81f', // Spinning factory
+        'photo-1489987707023-afc827ea80f2', // Textiles
+    ],
+    machinery: [
+        'photo-1581091226825-a6a2a5aee158', // Industrial pressing
+        'photo-1565515267-3754fd4b7264', // Automated robot arms
+        'photo-1531688536830-179069d25514', // Factory interior wide
+        'photo-1563804825-d721def1116c', // CNC Welding
+        'photo-1581092160562-40aa08e78837', // Sparks factory
+        'photo-1504917595217-d4dc5ebe6122', // Engineer blueprint
+        'photo-1530983821644-b03597d5a57a', // Farm tractor
+        'photo-1520632646698-1632f05a5a1f', // Metal gears
+    ],
+    business: [
+        'photo-1454165804606-c3d57bc86b40', // Handshake
+        'photo-1526304640581-d334cdbbf45e', // Financial charts
+        'photo-1451187580459-43490279c0fa', // Global earth network
+        'photo-1556761175-5973dc0f32e7', // Business meeting
+        'photo-1507537362848-9c60e5edc9c6', // Corporate highrises
+    ]
+};
+
+const getDynamicImage = (keyword: string, seed: number) => {
+    const text = keyword.toLowerCase();
+    let catArray = CATEGORY_IMAGES.cargo;
+
+    if (text.includes('rice') || text.includes('wheat') || text.includes('spice') || text.includes('turmeric') || text.includes('seed') || text.includes('agri') || text.includes('sugar') || text.includes('food')) {
+        catArray = CATEGORY_IMAGES.agriculture;
+    } else if (text.includes('cotton') || text.includes('yarn') || text.includes('textile') || text.includes('fabric') || text.includes('garment')) {
+        catArray = CATEGORY_IMAGES.textile;
+    } else if (text.includes('machine') || text.includes('tractor') || text.includes('drill') || text.includes('pipe') || text.includes('steel') || text.includes('motor')) {
+        catArray = CATEGORY_IMAGES.machinery;
+    } else if (text.includes('finance') || text.includes('market') || text.includes('escrow') || text.includes('trade')) {
+        catArray = CATEGORY_IMAGES.business;
+    }
+
+    // Pick deterministically based on keyword seed to guarantee the same HD image stays strapped to exactly the same page URL
+    const imageId = catArray[seed % catArray.length];
+    return `https://images.unsplash.com/${imageId}?auto=format&fit=crop&w=1200&h=800&q=80`;
+};
+
 export default function DynamicMassSEO() {
     const { slug } = useParams();
     const [keyword, setKeyword] = useState('');
@@ -22,14 +92,12 @@ export default function DynamicMassSEO() {
     useEffect(() => {
         if (!slug) return;
 
-        // The slug represents the exact real longtail keyword.
         const parsedKeyword = slug.replace(/-/g, ' ');
         setKeyword(parsedKeyword);
 
         const seed = generateSeed(parsedKeyword);
-        // Generates completely unique, highly relevant industrial/trade images on the fly!
-        const promptString = encodeURIComponent(`${parsedKeyword} cargo export container ship industrial`);
-        setDynamicImageUrl(`https://image.pollinations.ai/prompt/${promptString}?width=1200&height=800&nologo=true&seed=${seed}`);
+        const imageUrl = getDynamicImage(parsedKeyword, seed);
+        setDynamicImageUrl(imageUrl);
 
     }, [slug]);
 
