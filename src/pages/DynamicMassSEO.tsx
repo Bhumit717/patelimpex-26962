@@ -43,19 +43,63 @@ function FallbackImage({ src, fallbackSrc, alt, className }: { src: string, fall
 
 const extractImageKeywords = (keyword: string) => {
     const lower = keyword.toLowerCase();
-    if (lower.includes('rice')) return 'rice,field';
-    if (lower.includes('wheat')) return 'wheat,farm';
-    if (lower.includes('spice') || lower.includes('cumin')) return 'spices,food';
-    if (lower.includes('turmeric')) return 'turmeric';
-    if (lower.includes('cotton') || lower.includes('yarn') || lower.includes('textile') || lower.includes('garment')) return 'textile,factory';
-    if (lower.includes('machine') || lower.includes('tractor') || lower.includes('drill') || lower.includes('steel')) return 'machinery,industrial';
-    if (lower.includes('sugar')) return 'sugar,cane';
-    if (lower.includes('medical') || lower.includes('gloves')) return 'medical,hospital';
 
-    // Geographic / General
+    // Grains & Rice
+    if (lower.includes('rice')) return 'rice,grain';
+    if (lower.includes('wheat') || lower.includes('flour')) return 'wheat,flour';
+    if (lower.includes('corn') || lower.includes('maize')) return 'corn,maize';
+    if (lower.includes('millet') || lower.includes('barley')) return 'grain,seeds';
+
+    // Spices
+    if (lower.includes('turmeric')) return 'turmeric,spices';
+    if (lower.includes('cumin')) return 'cumin,seeds';
+    if (lower.includes('chili') || lower.includes('chilly')) return 'red,chili';
+    if (lower.includes('pepper')) return 'black,pepper';
+    if (lower.includes('ginger')) return 'ginger,root';
+    if (lower.includes('garlic')) return 'garlic,bulb';
+    if (lower.includes('onion')) return 'onion,vegetable';
+    if (lower.includes('cardamom')) return 'cardamom';
+    if (lower.includes('coriander')) return 'coriander';
+    if (lower.includes('fennel')) return 'fennel,seeds';
+    if (lower.includes('spice')) return 'spices,food';
+
+    // Oilseeds & Nuts
+    if (lower.includes('groundnut') || lower.includes('peanut')) return 'peanut,groundnut';
+    if (lower.includes('cashew')) return 'cashew,nuts';
+    if (lower.includes('almond')) return 'almond,nuts';
+    if (lower.includes('sesame')) return 'sesame,seeds';
+    if (lower.includes('soybean') || lower.includes('soya')) return 'soybean,pods';
+    if (lower.includes('sunflower')) return 'sunflower,seeds';
+
+    // Cotton & Textiles
+    if (lower.includes('cotton') || lower.includes('yarn') || lower.includes('textile') || lower.includes('garment')) return 'cotton,fabric';
+
+    // Sugar
+    if (lower.includes('sugar') || lower.includes('jaggery')) return 'sugar,crystals';
+
+    // Machinery & Industrial
+    if (lower.includes('tractor')) return 'tractor,farm';
+    if (lower.includes('machine') || lower.includes('machinery')) return 'industrial,machine';
+    if (lower.includes('drill') || lower.includes('power tool')) return 'power,drill';
+    if (lower.includes('welding')) return 'welding,industrial';
+    if (lower.includes('engine') || lower.includes('motor')) return 'engine,parts';
+    if (lower.includes('steel') || lower.includes('metal')) return 'steel,industrial';
+    if (lower.includes('cnc')) return 'cnc,machine';
+
+    // Medical & Plastic
+    if (lower.includes('medical') || lower.includes('hospital') || lower.includes('gloves')) return 'medical,equipment';
+    if (lower.includes('plastic') || lower.includes('bottle')) return 'plastic,bottles';
+    if (lower.includes('container') || lower.includes('packaging')) return 'cargo,container';
+
+    // Others
+    if (lower.includes('husk') || lower.includes('isabgol') || lower.includes('psyllium')) return 'psyllium,husk';
+    if (lower.includes('dung')) return 'cow,dung';
+
+    // Geographic / General Fallbacks
     if (lower.includes('japan')) return 'japan,business';
-    if (lower.includes('dubai') || lower.includes('uae')) return 'dubai,business';
+    if (lower.includes('dubai') || lower.includes('uae')) return 'dubai,port';
     if (lower.includes('uk') || lower.includes('london')) return 'london,business';
+    if (lower.includes('usa') || lower.includes('america')) return 'usa,business';
 
     return 'cargo,ship';
 };
