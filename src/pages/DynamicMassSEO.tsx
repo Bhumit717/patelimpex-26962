@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Globe, Package, Truck, ShieldCheck, CheckCircle2, Factory, LineChart, Award, ArrowRight, BarChart3, Users, Leaf, Anchors } from 'lucide-react';
+import { Globe, Package, Truck, ShieldCheck, CheckCircle2, Factory, LineChart, Award, ArrowRight, BarChart3, Users, Leaf, Anchor } from 'lucide-react';
 
 const generateSeed = (str: string) => {
     let hash = 0;
@@ -64,7 +64,7 @@ const extractImageKeywords = (keyword: string) => {
     if (lower.includes('spice')) return 'spices,food';
 
     // Oilseeds & Nuts
-    if (lower.includes('groundnut') || lower.includes('peanut')) return 'peanut,groundnut';
+    if (lower.includes('groundnut') || lower.includes('peanut')) return 'peanuts,kernel,bulk';
     if (lower.includes('cashew')) return 'cashew,nuts';
     if (lower.includes('almond')) return 'almond,nuts';
     if (lower.includes('sesame')) return 'sesame,seeds';
@@ -123,8 +123,9 @@ export default function DynamicMassSEO() {
         // Extracting just the core noun prevents image API from 404ing on long 15-word queries
         const noun = extractImageKeywords(parsedKeyword);
 
-        // Primary relatable image feed
-        setDynamicImageUrl(`https://loremflickr.com/1200/800/${encodeURIComponent(noun)}?lock=${newSeed}`);
+        // Primary relatable image feed - using /all/ filter to force product + wholesale context
+        // This ensures we get professional product shots rather than random street scenes
+        setDynamicImageUrl(`https://loremflickr.com/1200/800/all/${encodeURIComponent(noun)},wholesale?lock=${newSeed}`);
         // 100% Unbreakable fallback feed mathematically bound to the same seed
         setDynamicFallbackUrl(`https://picsum.photos/seed/${newSeed}/1200/800`);
 
