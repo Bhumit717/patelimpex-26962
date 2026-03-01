@@ -26,7 +26,7 @@ async function mergeSitemaps() {
     // Delete all current mass sitemaps and index
     const files = fs.readdirSync(sitemapsDir);
     for (const file of files) {
-        if ((file.startsWith('sitemap-mass-') || file === 'sitemap_index.xml') && file.endsWith('.xml')) {
+        if ((file.startsWith('sitemap-mass-') || file.startsWith('sitemap-bulk-') || file === 'sitemap_index.xml') && file.endsWith('.xml')) {
             fs.unlinkSync(path.join(sitemapsDir, file));
         }
     }
@@ -44,12 +44,12 @@ async function mergeSitemaps() {
 
         for (const kw of chunk) {
             const slug = slugify(kw);
-            sitemapContent += `  <url>\n    <loc>${SITE_URL}/seo/${slug}</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+            sitemapContent += `  <url>\n    <loc>${SITE_URL}/seo/${slug}</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>\n`;
         }
 
         sitemapContent += `</urlset>`;
 
-        const filename = `sitemap-mass-${sitemapCount}.xml`;
+        const filename = `sitemap-bulk-${sitemapCount}.xml`;
         fs.writeFileSync(path.join(sitemapsDir, filename), sitemapContent);
 
         sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/${filename}</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>\n`;
@@ -58,7 +58,7 @@ async function mergeSitemaps() {
     sitemapIndexContent += `</sitemapindex>`;
     fs.writeFileSync(path.join(sitemapsDir, 'sitemap_index.xml'), sitemapIndexContent);
 
-    console.log(`Successfully packed ${keywordArray.length} keywords into EXACTLY ${sitemapCount} XML sitemaps!`);
+    console.log(`Successfully packed ${keywordArray.length} keywords into EXACTLY ${sitemapCount} XML sitemaps with prefix sitemap-bulk-!`);
 }
 
 mergeSitemaps();
