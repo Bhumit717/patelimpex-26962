@@ -118,7 +118,7 @@ const SEO = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <span className="bg-slate-800 border border-slate-700 rounded-lg px-6 py-3 font-mono font-bold">{dict.products.length} Products</span>
-              <span className="bg-slate-800 border border-slate-700 rounded-lg px-6 py-3 font-mono font-bold text-green-400">29,232 Active B2B Market Routes</span>
+              <span className="bg-slate-800 border border-slate-700 rounded-lg px-6 py-3 font-mono font-bold text-green-400">{allKeywords.length.toLocaleString()} Active B2B Market Routes</span>
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@ const SEO = () => {
               <Badge className="bg-slate-800 text-green-400 border border-green-500/30 mb-4 px-3 py-1 uppercase tracking-widest text-xs font-bold">Automated Network Search</Badge>
               <h2 className="text-4xl lg:text-5xl font-black text-white font-graduate uppercase">Global Market Dropdown</h2>
               <p className="text-slate-400 text-lg mt-4">
-                Access over {allKeywords.length.toLocaleString()} micro-targeted trading routes specifically optimized for your target geography. Search and select from the dropdown below to explore completely unique market guides.
+                Access over 100,000 micro-targeted trading routes specifically optimized for your target geography. Search and select from the dropdown below to explore completely unique market guides.
               </p>
             </div>
           </div>

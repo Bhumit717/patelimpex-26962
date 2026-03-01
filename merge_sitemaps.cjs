@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const MAX_URLS_PER_SITEMAP = 15000;
+const MAX_URLS_PER_SITEMAP = 50000;
 
 async function mergeSitemaps() {
     console.log("Merging scattered XML node graphs back into 2 massive sitemaps...");
