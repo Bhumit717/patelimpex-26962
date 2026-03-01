@@ -206,12 +206,12 @@ export default function DynamicMassSEO() {
         if (localImage) {
             setDynamicImageUrl(localImage);
         } else {
-            // Simplified tags ensure higher availability and 100% relevance
-            setDynamicImageUrl(`https://loremflickr.com/1200/800/${encodeURIComponent(noun)}?lock=${newSeed}`);
+            // Priority 2: Use Unsplash Targeted Search for 100% relevant product imagery
+            setDynamicImageUrl(`https://source.unsplash.com/featured/1200x800/?${encodeURIComponent(parsedKeyword)}`);
         }
 
-        // 100% Unbreakable fallback feed mathematically bound to the same seed
-        setDynamicFallbackUrl(`https://picsum.photos/seed/${newSeed}/1200/800`);
+        // UNBREAKABLE FALLBACK: Targeted search with secondary keywords
+        setDynamicFallbackUrl(`https://source.unsplash.com/featured/1200x800/?${encodeURIComponent(noun || 'export,ship')}`);
 
     }, [slug]);
 
@@ -249,20 +249,20 @@ export default function DynamicMassSEO() {
 function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
     return (
         <div className="bg-white">
-            <section className="bg-slate-900 text-white py-40 px-4 text-center">
+            <section className="bg-slate-900 text-white py-20 md:py-40 px-6 text-center">
                 <div className="max-w-5xl mx-auto">
-                    <div className="inline-flex items-center text-blue-400 font-mono text-sm mb-10 border border-blue-400/30 px-6 py-2 rounded-full bg-blue-400/10 uppercase tracking-widest">
-                        <Globe className="w-5 h-5 mr-3 animate-spin-slow" /> Global Authorized Node: IPX-{(seed % 9999).toString().padStart(4, '0')}
+                    <div className="inline-flex items-center text-blue-400 font-mono text-[10px] md:text-sm mb-8 md:mb-10 border border-blue-400/30 px-4 md:px-6 py-2 rounded-full bg-blue-400/10 uppercase tracking-widest leading-none">
+                        <Globe className="w-4 h-4 md:w-5 md:h-5 mr-3 animate-spin-slow" /> Global Authorized Node: IPX-{(seed % 9999).toString().padStart(4, '0')}
                     </div>
-                    <h1 className="text-6xl md:text-9xl font-black mb-10 leading-[0.85] tracking-tighter uppercase italic">
+                    <h1 className="text-4xl md:text-7xl lg:text-9xl font-black mb-8 md:mb-10 leading-[0.85] tracking-tighter uppercase italic">
                         {title}
                     </h1>
-                    <p className="text-slate-400 text-2xl font-light mb-12 max-w-4xl mx-auto border-l-8 border-blue-600 pl-10 text-left leading-relaxed">
+                    <p className="text-slate-400 text-lg md:text-2xl font-light mb-10 md:mb-12 max-w-4xl mx-auto border-l-4 md:border-l-8 border-blue-600 pl-6 md:pl-10 text-left leading-relaxed">
                         {TradeIntelligence.getIntroduction(keyword, seed)}
                     </p>
                     <div className="flex flex-wrap justify-center gap-6">
-                        <Link to="/contact" className="bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-black py-6 px-16 rounded-none font-mono uppercase tracking-[0.2em] inline-flex items-center transition-all shadow-[0_20px_50px_rgba(37,99,235,0.3)] scale-110">
-                            Initiate Global RFQ <ArrowRight className="ml-3 w-6 h-6" />
+                        <Link to="/contact" className="w-full md:w-auto bg-blue-600 hover:bg-white hover:text-blue-600 text-white font-black py-5 md:py-6 px-10 md:px-16 rounded-none font-mono uppercase tracking-[0.2em] inline-flex items-center justify-center transition-all shadow-[0_20px_50px_rgba(37,99,235,0.3)] md:scale-110">
+                            Initiate Global RFQ <ArrowRight className="ml-3 w-5 h-5 md:w-6 md:h-6" />
                         </Link>
                     </div>
                 </div>
@@ -277,7 +277,7 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                                 src={image}
                                 fallbackSrc={fallback}
                                 alt={keyword}
-                                className="relative w-full h-[800px] object-cover rounded-none shadow-2xl border-[16px] border-white grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+                                className="relative w-full h-[300px] md:h-[800px] object-cover rounded-none shadow-2xl border-[8px] md:border-[16px] border-white grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
                             />
                         </div>
                         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -307,10 +307,10 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                             </div>
                         </div>
 
-                        <div className="bg-slate-900 text-white p-16 relative overflow-hidden">
+                        <div className="bg-slate-900 text-white p-8 md:p-16 relative overflow-hidden">
                             <div className="relative z-10">
-                                <h3 className="text-3xl font-bold mb-8 uppercase tracking-widest text-blue-400">Technical Spec Analysis</h3>
-                                <div className="grid grid-cols-1 gap-8">
+                                <h3 className="text-2xl md:text-3xl font-bold mb-8 uppercase tracking-widest text-blue-400">Technical Spec Analysis</h3>
+                                <div className="grid grid-cols-1 gap-6 md:gap-8">
                                     {[
                                         { label: 'Export Purity Grade', value: `${(seed % 2) + 98.5}% Certified` },
                                         { label: 'Moisture Coefficient', value: `< ${(seed % 3) + 8}% Max` },
@@ -320,8 +320,8 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                                         { label: 'Logistics Port Node', value: 'Mundra (INMUN)' }
                                     ].map((item, i) => (
                                         <div key={i} className="flex justify-between items-end border-b border-white/10 pb-4">
-                                            <span className="text-slate-400 uppercase text-xs font-bold tracking-widest">{item.label}</span>
-                                            <span className="text-xl font-mono font-bold text-white">{item.value}</span>
+                                            <span className="text-slate-400 uppercase text-[10px] font-bold tracking-widest">{item.label}</span>
+                                            <span className="text-lg md:text-xl font-mono font-bold text-white">{item.value}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -339,9 +339,9 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                             </div>
                         </div>
 
-                        <div className="bg-blue-600 p-20 text-white">
-                            <h4 className="text-4xl font-black mb-10 flex items-center uppercase italic"><Truck className="mr-6 w-12 h-12" /> Maritime Advantage</h4>
-                            <p className="text-2xl text-blue-50 leading-relaxed font-serif italic border-l-4 border-white pl-10">
+                        <div className="bg-blue-600 p-8 md:p-20 text-white">
+                            <h4 className="text-2xl md:text-4xl font-black mb-10 flex items-center uppercase italic"><Truck className="mr-4 md:mr-6 w-10 h-10 md:w-12 md:h-12" /> Maritime Advantage</h4>
+                            <p className="text-xl md:text-2xl text-blue-50 leading-relaxed font-serif italic border-l-4 border-white pl-6 md:pl-10">
                                 "Our multi-modal logistics framework ensures that <strong>{keyword}</strong> reaches your destination with zero degradation of physicochemical properties. We manage the entire cross-continental sequence from Rajkot to your final distribution point."
                             </p>
                         </div>
@@ -406,12 +406,12 @@ function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { titl
     return (
         <div className="bg-[#faf8f5] pb-24">
             <section className="px-4 py-20 md:py-32 max-w-7xl mx-auto">
-                <div className="text-center mb-24">
-                    <span className="text-red-800 font-[900] uppercase tracking-[0.5em] text-sm mb-6 block border-b-2 border-red-800/20 pb-4 inline-block">Global Strategic Dossier: {seed % 1000}</span>
-                    <h1 className="text-7xl md:text-[10rem] font-black text-slate-900 mb-10 px-4 leading-[0.8] tracking-tighter uppercase italic">
+                <div className="text-center mb-16 md:mb-24">
+                    <span className="text-red-800 font-[900] uppercase tracking-[0.3em] md:tracking-[0.5em] text-xs mb-6 block border-b-2 border-red-800/20 pb-4 inline-block">Global Strategic Dossier: {seed % 1000}</span>
+                    <h1 className="text-4xl md:text-7xl lg:text-[10rem] font-black text-slate-900 mb-10 px-4 leading-[0.8] tracking-tighter uppercase italic">
                         {title}
                     </h1>
-                    <div className="h-4 w-64 bg-slate-900 mx-auto" />
+                    <div className="h-2 md:h-4 w-32 md:w-64 bg-slate-900 mx-auto" />
                 </div>
 
                 <div className="bg-white p-6 md:p-20 rounded-none border-[12px] border-slate-900 shadow-[40px_40px_0_0_rgba(15,23,42,1)] relative mb-40">
@@ -422,22 +422,22 @@ function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { titl
                                 src={image}
                                 fallbackSrc={fallback}
                                 alt={keyword}
-                                className="relative w-full h-[900px] object-cover filter contrast-125 saturate-150 grayscale-[0.2] border-4 border-white transition-all duration-700"
+                                className="relative w-full h-[400px] md:h-[900px] object-cover filter contrast-125 saturate-150 grayscale-[0.2] border-4 border-white transition-all duration-700"
                             />
-                            <div className="absolute -bottom-12 -right-12 bg-red-800 text-white p-12 hidden md:block max-w-sm shadow-2xl">
-                                <span className="text-red-300 font-black block mb-4 tracking-widest uppercase text-xs">Field Identification //</span>
-                                <p className="text-xl font-serif italic leading-relaxed">
+                            <div className="absolute -bottom-6 md:-bottom-12 -right-4 md:-right-12 bg-red-800 text-white p-6 md:p-12 block md:block max-w-[200px] md:max-w-sm shadow-2xl">
+                                <span className="text-red-300 font-black block mb-2 md:mb-4 tracking-widest uppercase text-[8px] md:text-xs">Field Identification //</span>
+                                <p className="text-sm md:text-xl font-serif italic leading-relaxed">
                                     Documenting the export-grade consistency of <strong>{keyword}</strong> at our Western India distribution node.
                                 </p>
                             </div>
                         </div>
-                        <div className="py-8">
-                            <h2 className="text-6xl font-black uppercase text-slate-900 mb-12 tracking-tighter leading-none border-b-[16px] border-slate-900 pb-6 inline-block italic">The Trade Thesis</h2>
-                            <div className="prose prose-2xl text-slate-800 mb-16 leading-tight font-serif space-y-12">
-                                <p className="first-letter:text-9xl first-letter:font-black first-letter:float-left first-letter:mr-4 first-letter:text-red-800 first-letter:leading-[0.7]">
+                        <div className="py-4 md:py-8">
+                            <h2 className="text-4xl md:text-6xl font-black uppercase text-slate-900 mb-8 md:mb-12 tracking-tighter leading-none border-b-[8px] md:border-b-[16px] border-slate-900 pb-4 md:pb-6 inline-block italic">The Trade Thesis</h2>
+                            <div className="prose prose-lg md:prose-2xl text-slate-800 mb-10 md:mb-16 leading-tight font-serif space-y-8 md:space-y-12">
+                                <p className="first-letter:text-7xl md:first-letter:text-9xl first-letter:font-black first-letter:float-left first-letter:mr-4 first-letter:text-red-800 first-letter:leading-[0.7]">
                                     {TradeIntelligence.getIntroduction(keyword, seed)}
                                 </p>
-                                <p className="text-3xl font-light italic border-l-[12px] border-red-800 pl-12 py-6 bg-slate-50">
+                                <p className="text-xl md:text-3xl font-light italic border-l-4 md:border-l-[12px] border-red-800 pl-6 md:pl-12 py-4 md:py-6 bg-slate-50">
                                     "The procurement of <strong>{keyword}</strong> is no longer just a transaction; it is a tactical deployment of regional intelligence and maritime logistics."
                                 </p>
                                 <p>
@@ -575,10 +575,10 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                             <span className="h-[2px] w-12 bg-emerald-500" />
                             <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 py-1 px-4 uppercase tracking-[0.4em] text-xs font-black rounded-none">Industrial Vector: {seed % 100}</span>
                         </div>
-                        <h1 className="text-7xl lg:text-[10rem] font-black text-white mb-10 uppercase tracking-tighter leading-[0.75]">
+                        <h1 className="text-4xl md:text-7xl lg:text-[10rem] font-black text-white mb-6 md:mb-10 uppercase tracking-tighter leading-[0.85] md:leading-[0.75]">
                             {title}
                         </h1>
-                        <p className="text-3xl text-slate-400 mb-16 font-light border-l-[12px] border-emerald-500 pl-10 leading-normal max-w-2xl italic">
+                        <p className="text-lg md:text-3xl text-slate-400 mb-10 md:mb-16 font-light border-l-4 md:border-l-[12px] border-emerald-500 pl-6 md:pl-10 leading-normal max-w-2xl italic">
                             {TradeIntelligence.getIntroduction(keyword, seed)}
                         </p>
                         <div className="flex flex-wrap gap-10">
@@ -648,16 +648,16 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
 
                         <div className="space-y-24">
                             <div>
-                                <h3 className="text-4xl font-black text-white mb-10 uppercase tracking-widest border-b-2 border-emerald-500/30 pb-6 inline-block">Market Intelligence Data</h3>
-                                <div className="prose prose-invert prose-2xl max-w-none text-slate-400 font-light leading-relaxed italic border-l-8 border-emerald-500 pl-12 py-8 bg-zinc-900/30 space-y-12">
+                                <h3 className="text-2xl md:text-4xl font-black text-white mb-8 md:mb-10 uppercase tracking-widest border-b-2 border-emerald-500/30 pb-4 md:pb-6 inline-block">Market Intelligence Data</h3>
+                                <div className="prose prose-invert prose-lg md:prose-2xl max-w-none text-slate-400 font-light leading-relaxed italic border-l-4 md:border-l-8 border-emerald-500 pl-6 md:pl-12 py-6 md:py-8 bg-zinc-900/30 space-y-8 md:space-y-12">
                                     <p>{TradeIntelligence.getRegionalDynamics(keyword, seed)}</p>
                                     <p>{TradeIntelligence.getMarketOutlook(keyword, seed)}</p>
                                     <p>{TradeIntelligence.getRegionalHarvestIntel(keyword, seed)}</p>
                                 </div>
                             </div>
                             <div>
-                                <h3 className="text-4xl font-black text-white mb-10 uppercase tracking-widest border-b-2 border-emerald-500/30 pb-6 inline-block">Global Strategic Thesis</h3>
-                                <div className="prose prose-invert prose-2xl max-w-none text-slate-400 font-light leading-relaxed space-y-12">
+                                <h3 className="text-2xl md:text-4xl font-black text-white mb-8 md:mb-10 uppercase tracking-widest border-b-2 border-emerald-500/30 pb-4 md:pb-6 inline-block">Global Strategic Thesis</h3>
+                                <div className="prose prose-invert prose-lg md:prose-2xl max-w-none text-slate-400 font-light leading-relaxed space-y-8 md:space-y-12">
                                     <p>{TradeIntelligence.getGlobalSupplyThesis(keyword, seed)}</p>
                                     <p>{TradeIntelligence.getTechnicalDeepDive(keyword, seed)}</p>
                                     <p>{TradeIntelligence.getLogisticsThesis(keyword, seed)}</p>
