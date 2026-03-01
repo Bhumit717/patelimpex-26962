@@ -1,344 +1,229 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
-import { Globe, Package, Truck, Award, ShieldCheck, ArrowRight, BarChart, CheckCircle2, Factory, LineChart } from 'lucide-react';
-import dict from '../data/seoDictionary.json';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import { Globe, Package, Truck, ShieldCheck, CheckCircle2, Factory, LineChart, Award, ArrowRight } from 'lucide-react';
+
+// Use local static images for guaranteed loading
+import imgRice from '@/assets/products/rice.png';
+import imgCotton from '@/assets/products/raw-cotton.png';
+import imgSpices from '@/assets/products/cumin-seeds.png';
+import imgGroundnut from '@/assets/products/groundnut.png';
+import imgPsyllium from '@/assets/products/psyllium-husk.png';
+import imgDefault from '@/assets/hero-plant.png';
 
 const generateSeed = (str: string) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        hash = (hash << 5) - hash + char;
+        hash = (hash << 5) - hash + str.charCodeAt(i);
         hash |= 0;
     }
     return Math.abs(hash);
 };
 
-const themes = [
-    {
-        bg: 'bg-slate-50',
-        primaryText: 'text-green-600',
-        secondaryBg: 'bg-green-100',
-        secondaryText: 'text-green-800',
-        button: 'bg-green-600 text-white hover:bg-green-700 shadow-md',
-        font: 'font-graduate',
-        rounded: 'rounded-2xl',
-        card: 'border-slate-100 shadow-sm',
-        footerBase: 'bg-slate-900',
-        footerText: 'text-slate-400'
-    },
-    {
-        bg: 'bg-blue-50',
-        primaryText: 'text-blue-700',
-        secondaryBg: 'bg-blue-200',
-        secondaryText: 'text-blue-900',
-        button: 'bg-blue-700 text-white hover:bg-blue-800 shadow-xl rounded-full',
-        font: 'font-sans font-black tracking-tight',
-        rounded: 'rounded-full',
-        card: 'border-blue-100 shadow-lg',
-        footerBase: 'bg-blue-950',
-        footerText: 'text-blue-200'
-    },
-    {
-        bg: 'bg-amber-50',
-        primaryText: 'text-amber-600',
-        secondaryBg: 'bg-amber-100',
-        secondaryText: 'text-amber-800',
-        button: 'bg-amber-600 text-white hover:bg-amber-700 shadow-none border-b-4 border-amber-800',
-        font: 'font-serif italic',
-        rounded: 'rounded-none',
-        card: 'border-amber-200 shadow-none border-2',
-        footerBase: 'bg-stone-900',
-        footerText: 'text-stone-300'
-    },
-    {
-        bg: 'bg-zinc-100',
-        primaryText: 'text-black',
-        secondaryBg: 'bg-zinc-300',
-        secondaryText: 'text-zinc-900',
-        button: 'bg-black text-white hover:bg-zinc-800 rounded-sm border-2 border-black',
-        font: 'font-mono uppercase tracking-widest',
-        rounded: 'rounded-sm',
-        card: 'border-black shadow-none border-2',
-        footerBase: 'bg-black',
-        footerText: 'text-zinc-500'
-    },
-    {
-        bg: 'bg-indigo-50',
-        primaryText: 'text-indigo-600',
-        secondaryBg: 'bg-indigo-100',
-        secondaryText: 'text-indigo-800',
-        button: 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white hover:scale-105 transition-transform shadow-indigo-200/50 shadow-xl',
-        font: 'font-fondamento',
-        rounded: 'rounded-3xl',
-        card: 'border-indigo-100 shadow-2xl bg-white/50 backdrop-blur',
-        footerBase: 'bg-indigo-950',
-        footerText: 'text-indigo-300'
-    }
-];
-
-import img1 from '@/assets/hero-main.png';
-import img2 from '@/assets/hero-plant.png';
-import img3 from '@/assets/products/rice.png';
-import img4 from '@/assets/products/cotton.png';
-import img5 from '@/assets/patel_impex_plaque.png';
-
-const images = [img1, img2, img3, img4, img5];
-
-const contentEssays = [
-    (product: string, location: string, intent: any) => `Establishing a reliable supply chain for ${product} requires navigating volatile sourcing environments, verifying supplier integrities, and overcoming logistical blockades. When you seek to ${intent.originalPrefix} ${product} ${intent.originalSuffix} ${location}, you need absolute certainty from departure port to arrival dock. Patel Impex sits at the nexus of India's manufacturing and agricultural hubs. By choosing us as your dedicated supplier, you bypass fragmented middlemen.`,
-    (product: string, location: string, intent: any) => `The global market for ${product} is expanding rapidly in ${location}. Businesses looking to ${intent.originalPrefix} ${product} ${intent.originalSuffix} ${location} face intense competition and supply unreliability. Patel Impex offers a formidable advantage: secure sourcing pipelines directly originating from top-tier facilities in India. Let us eliminate your procurement bottlenecks.`,
-    (product: string, location: string, intent: any) => `Scaling your enterprise in ${location} depends entirely on input reliability. With Patel Impex handling your requirement to ${intent.originalPrefix} ${product} ${intent.originalSuffix} ${location}, your supply chain becomes bulletproof. We enforce meticulous grading, secure cargo transits, and transparent pricing models that protect your bottom-line profitability.`,
-    (product: string, location: string, intent: any) => `Disruptions in international trade can heavily impact your business in ${location}. That's why top buyers trust Patel Impex as exactly what they are looking for: a strategic partner to ${intent.originalPrefix} ${product} ${intent.originalSuffix} ${location}. From initial sampling to bulk container roll-outs, our dedicated account managers oversee every micro-step of your freight.`
-];
-
-const DynamicMassSEO = () => {
+export default function DynamicMassSEO() {
     const { slug } = useParams();
-    const [data, setData] = useState<any>(null);
+    const [keyword, setKeyword] = useState('');
+    const [image, setImage] = useState(imgDefault);
 
     useEffect(() => {
         if (!slug) return;
 
-        // Parse slug
-        let matchedIntent = null;
-        let fallback = false;
+        // The slug represents the exact real longtail keyword.
+        const parsedKeyword = slug.replace(/-/g, ' ');
+        setKeyword(parsedKeyword);
 
-        for (const i of dict.intents) {
-            if (slug.startsWith(i.prefix + '-') && slug.includes('-' + i.suffix + '-')) {
-                matchedIntent = i;
-                break;
-            }
-        }
+        // Intelligent image mapping based on keywords
+        if (parsedKeyword.includes('rice')) setImage(imgRice);
+        else if (parsedKeyword.includes('cotton') || parsedKeyword.includes('yarn')) setImage(imgCotton);
+        else if (parsedKeyword.includes('turmeric') || parsedKeyword.includes('cumin') || parsedKeyword.includes('coriander')) setImage(imgSpices);
+        else if (parsedKeyword.includes('groundnut') || parsedKeyword.includes('peanut')) setImage(imgGroundnut);
+        else if (parsedKeyword.includes('psyllium')) setImage(imgPsyllium);
+        else setImage(imgDefault);
 
-        let matchedProduct = null;
-        for (const p of dict.products) {
-            if (matchedIntent && slug.includes(`${matchedIntent.prefix}-${p.slug}-${matchedIntent.suffix}`)) {
-                matchedProduct = p;
-                break;
-            }
-        }
-
-        let matchedLocation = null;
-        for (const l of dict.locations) {
-            if (slug.endsWith(`-${l.slug}`)) {
-                matchedLocation = l;
-                break;
-            }
-        }
-
-        if (matchedIntent && matchedProduct && matchedLocation) {
-            setData({ intent: matchedIntent, product: matchedProduct, location: matchedLocation });
-        } else {
-            setData({ fallback: true });
-        }
     }, [slug]);
 
-    if (!data) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-4 border-green-600 border-t-transparent"></div>
-            </div>
-        );
-    }
+    if (!keyword) return null;
 
-    if (data.fallback) {
-        return (
-            <div className="min-h-screen flex items-center justify-center p-8 bg-slate-50">
-                <div className="text-center max-w-md">
-                    <h1 className="text-3xl font-bold font-graduate mb-4 text-slate-900">Market Guide Not Found</h1>
-                    <p className="text-slate-600 mb-8">We could not locate the specific trading portal you were looking for. However, Patel Impex ships globally.</p>
-                    <Link to="/" className="nm-btn-primary rounded-xl py-3 px-6 font-bold uppercase tracking-widest text-sm inline-flex items-center">
-                        Go to Homepage <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
-                </div>
-            </div>
-        );
-    }
+    const seed = generateSeed(keyword);
+    // 3 completely distinct page architectures so they never look like duplicate templates
+    const layoutType = seed % 3;
 
-    const { intent, product, location } = data;
-    const capitalizedPrefix = intent.originalPrefix.split(" ").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-    const capitalizedSuffix = intent.originalSuffix.split(" ").map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-
-    const pageTitle = `${capitalizedPrefix} ${product.original} ${capitalizedSuffix} ${location.original} | B2B Guide`;
-    const pageDescription = `Patel Impex is your ideal partner to ${intent.originalPrefix} ${product.original} ${intent.originalSuffix} ${location.original}. Enjoy competitive wholesale rates, premium sourcing, and secure global freight.`;
-
-    // Deterministic randomizations based on slug
-    const seed = generateSeed(slug || '');
-    const theme = themes[seed % themes.length];
-    const layoutStyle = seed % 3; // 0: Centered, 1: Left-aligned Split, 2: Right-aligned Split
-    const heroImage = images[seed % images.length];
-    const essay = contentEssays[seed % contentEssays.length];
-
-    // Helper arrays for internal link networking
-    const randomLinks = [
-        { title: "Export Guide", url: "/more/export-import-guide" },
-        { title: "Browse Products", url: "/products" },
-        { title: "Trade Finance", url: "/more/trade-finance" },
-        { title: "Quality Standards", url: "/more/quality-standards" },
-        { title: "Global Logistics", url: "/more/sea-freight" },
-        { title: "About Us", url: "/about" },
-        { title: "More Knowledge Base", url: "/more" },
-        { title: "All SEO Profiles", url: "/seo" }
-    ];
-
-    // Select 4 pseudo-random related links
-    const relatedLinks = [];
-    for (let i = 0; i < 4; i++) {
-        relatedLinks.push(randomLinks[(seed + i) % randomLinks.length]);
-    }
+    const capitalizedTitle = keyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
     return (
-        <div className={`min-h-screen ${theme.bg} overflow-hidden font-sans pt-20`}>
+        <div className="min-h-screen bg-slate-50 font-sans">
             <SEOHead
-                title={pageTitle}
-                description={pageDescription}
+                title={`${capitalizedTitle} - Exclusive B2B Export Guide`}
+                description={`Discover premier insights and wholesale advantages for: ${keyword}. Patel Impex provides scalable export pipelines from India directly to your facilities.`}
                 canonicalUrl={`/seo/${slug}`}
             />
 
-            {/* Hero Section */}
-            <section className={`relative py-20 lg:py-32 overflow-hidden border-b border-black/5`}>
-                {/* Dynamic Background Overlays */}
-                <div className={`absolute top-0 right-0 w-[60vw] h-[60vh] ${theme.secondaryBg} rounded-bl-full opacity-60 pointer-events-none mix-blend-multiply`} />
+            {/* VITAL: Main Navigation Included */}
+            <Navigation />
 
-                <div className="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+            {/* Ensure it clears the fixed header */}
+            <div className="pt-24 lg:pt-32">
+                {layoutType === 0 && <ArchitectureCorporate title={capitalizedTitle} image={image} keyword={keyword} />}
+                {layoutType === 1 && <ArchitectureEditorial title={capitalizedTitle} image={image} keyword={keyword} />}
+                {layoutType === 2 && <ArchitectureIndustrial title={capitalizedTitle} image={image} keyword={keyword} />}
+            </div>
 
-                    <div className={`flex-1 ${layoutStyle === 0 ? 'text-center mx-auto max-w-4xl' : (layoutStyle === 1 ? 'text-left lg:order-first' : 'text-left lg:order-last')}`}>
-                        <div className={`inline-flex items-center ${theme.secondaryBg} ${theme.secondaryText} px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${theme.font} shadow-sm`}>
-                            <Globe className="w-4 h-4 mr-2" /> Authorized B2B Network
-                        </div>
-
-                        <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-slate-900 mb-8 ${theme.font} uppercase leading-tight`}>
-                            <span className={theme.primaryText}>{capitalizedPrefix}</span> {product.original} <br />
-                            <span className="text-slate-400 text-3xl md:text-5xl">{capitalizedSuffix}</span> {location.original}
-                        </h1>
-
-                        <p className="text-xl md:text-2xl text-slate-700 font-medium leading-relaxed mb-10 opacity-90">
-                            Securing reliable volume shipments of <strong>{product.original}</strong> to <strong>{location.original}</strong> requires a vetted partner. Patel Impex ensures scale, aggressive pricing, and sustained perfection.
-                        </p>
-
-                        <div className={`flex flex-col sm:flex-row items-center gap-4 ${layoutStyle === 0 ? 'justify-center' : 'justify-start'}`}>
-                            <Link to="/contact" className={`w-full sm:w-auto px-8 py-4 font-bold uppercase text-sm inline-flex justify-center items-center transition-all ${theme.button}`}>
-                                Request Wholesale Quote <ArrowRight className="w-5 h-5 ml-2" />
-                            </Link>
-                            <Link to="/products" className={`w-full sm:w-auto px-8 py-4 font-bold uppercase text-sm inline-flex justify-center items-center transition-all bg-white text-slate-800 border-2 border-slate-300 hover:border-slate-800 ${theme.rounded}`}>
-                                Explore Full Catalog
-                            </Link>
-                        </div>
-                    </div>
-
-                    {layoutStyle !== 0 && (
-                        <div className="flex-1 w-full max-w-xl mx-auto lg:max-w-none">
-                            <div className={`relative ${theme.rounded} overflow-hidden shadow-2xl`}>
-                                <img src={heroImage} alt={`${product.original} Trade`} className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none flex flex-col justify-end p-8">
-                                    <div className="flex items-center text-white/90">
-                                        <CheckCircle2 className="w-5 h-5 mr-3 text-green-400" /> 100% Export Ready
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </section>
-
-            {/* Internal Linking & Dynamic Info Row */}
-            <section className="bg-white py-6 border-b border-slate-200">
-                <div className="container mx-auto px-4 flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-semibold text-slate-500 uppercase tracking-wider">
-                    {relatedLinks.map((link, idx) => (
-                        <Link key={idx} to={link.url} className="hover:text-black transition-colors flex items-center">
-                            {link.title} <ArrowRight className="w-3 h-3 ml-1" />
-                        </Link>
-                    ))}
-                </div>
-            </section>
-
-            {/* Feature Grid */}
-            <section className="py-24">
-                <div className="container mx-auto px-4 max-w-7xl">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {[
-                            { icon: Factory, title: `Pristine ${product.original} Manufacturing`, desc: `Every batch is meticulously analyzed to meet strictly the highest benchmark standards before leaving Indian ports.` },
-                            { icon: Truck, title: `Logistics specifically to ${location.original}`, desc: `Our routing intelligence prevents costly demurrage. We clear customs and hit your exact fulfillment windows.` },
-                            { icon: ShieldCheck, title: "Zero-Risk Protocol", desc: "Escrow structures, letter of credit facilitation, and comprehensive marine insurance to eliminate your wholesale risk." },
-                            { icon: LineChart, title: "Real-time Tracking", desc: "Gain total visibility on your containers as they transit the world's oceans directly to your distribution center." },
-                            { icon: Award, title: "Global Certifications", desc: "FSSAI, ISO, APEDA, and country-specific required documentation are bundled precisely within your invoice package." },
-                            { icon: Package, title: "Custom Packaging", desc: `From 25kg PP bags for agriculture to industrial pallets, we package ${product.original} according to your retail or bulk needs.` }
-                        ].map((feat, idx) => (
-                            <div key={idx} className={`bg-white p-10 ${theme.rounded} ${theme.card} relative overflow-hidden group`}>
-                                <div className={`absolute top-0 right-0 w-32 h-32 ${theme.secondaryBg} rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150 ease-in-out duration-700`} />
-                                <div className={`relative z-10 w-16 h-16 ${theme.bg} rounded-full flex items-center justify-center mb-8 ${theme.primaryText}`}>
-                                    <feat.icon className="w-8 h-8" />
-                                </div>
-                                <h3 className={`text-2xl font-bold text-slate-900 mb-4 ${theme.font}`}>{feat.title}</h3>
-                                <p className="text-slate-600 leading-relaxed text-base relative z-10">{feat.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Content Essay */}
-            <section className="py-24 bg-white/50 backdrop-blur-md">
-                <div className={`container mx-auto px-4 max-w-4xl bg-white p-10 md:p-16 ${theme.rounded} shadow-2xl border border-black/5`}>
-                    <h2 className={`text-3xl lg:text-4xl font-black text-slate-900 mb-8 ${theme.font} uppercase`}>
-                        The Strategic Advantage in {location.original}
-                    </h2>
-                    <div className="prose prose-lg prose-slate text-slate-700 max-w-none leading-loose">
-                        <p className="text-xl font-medium mb-6 text-slate-800">
-                            {essay(product.original, location.original, intent)}
-                        </p>
-                        <p>
-                            Sourcing on the global stage is fraught with miscommunications, sub-standard deliveries, and severe regulatory hurdles. Why risk your brand reputation in <strong>{location.original}</strong>? Patel Impex acts as your outsourced procurement arm in India. We do the heavy lifting regarding multi-point quality inspections.
-                        </p>
-                        <div className={`my-10 p-8 ${theme.secondaryBg} ${theme.rounded} border-l-8 border-slate-900`}>
-                            <h4 className={`text-xl font-bold text-slate-900 mb-4 ${theme.font}`}>Core Deliverables:</h4>
-                            <ul className="space-y-3">
-                                <li className="flex items-start">
-                                    <CheckCircle2 className={`w-6 h-6 mr-3 ${theme.primaryText} flex-shrink-0 mt-1`} />
-                                    <span><strong>Uncompromising {product.original} Quality:</strong> Strictly sorted and graded by industry experts.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <CheckCircle2 className={`w-6 h-6 mr-3 ${theme.primaryText} flex-shrink-0 mt-1`} />
-                                    <span><strong>Transparent Documentation:</strong> Certificates of origin, phytosanitary reports, and SGS inspection availability.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <CheckCircle2 className={`w-6 h-6 mr-3 ${theme.primaryText} flex-shrink-0 mt-1`} />
-                                    <span><strong>Market Agility:</strong> Rapid adaptation to shifting freight dynamics to guarantee the best CIF/FOB rates.</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <p>
-                            Stop guessing. Start growing. Connect with Patel Impex today to revolutionize your procurement matrix. Give your business the competitive edge it truly deserves.
-                        </p>
-                    </div>
-
-                    <div className="mt-12 pt-8 border-t border-slate-200 text-center">
-                        <Link to="/inquiry" className={`px-10 py-5 text-lg font-bold uppercase transition-all inline-block ${theme.button}`}>
-                            Submit a Bulk Inquiry Now
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* Dynamic SEO Footer */}
-            <footer className={`${theme.footerBase} ${theme.footerText} py-16 text-center`}>
-                <div className="container mx-auto px-4 max-w-3xl">
-                    <h4 className={`text-white text-2xl mb-6 ${theme.font}`}>Explore Patel Impex</h4>
-                    <div className="flex flex-wrap justify-center gap-4 mb-10">
-                        <Link to="/about" className="hover:text-white transition-colors">About Us</Link>
-                        <Link to="/products" className="hover:text-white transition-colors">Complete Assortment</Link>
-                        <Link to="/services" className="hover:text-white transition-colors">Export Services</Link>
-                        <Link to="/more/export-import-guide" className="hover:text-white transition-colors">Trade Guidelines</Link>
-                        <Link to="/seo" className="hover:text-white transition-colors">Global Connectivity</Link>
-                    </div>
-                    <p className="opacity-60 text-sm">
-                        This intelligence page detailing the procurement of {product.original} for {location.original} is generated dynamically by Patel Impex's Market Network. © 2026 Patel Impex. All rights reserved.
-                    </p>
-                </div>
-            </footer>
-
+            {/* VITAL: Main Footer Included */}
+            <Footer />
         </div>
     );
-};
+}
 
-export default DynamicMassSEO;
+// -------------------------------------------------------------
+// Layout 0: Corporate B2B Trust Layout (Blue/Gray, Centered)
+// -------------------------------------------------------------
+function ArchitectureCorporate({ title, image, keyword }: { title: string, image: string, keyword: string }) {
+    return (
+        <div className="bg-white">
+            <section className="bg-slate-900 text-white py-24 px-4 text-center">
+                <div className="max-w-4xl mx-auto">
+                    <div className="inline-flex items-center text-blue-400 font-mono text-sm mb-6 border border-blue-400/30 px-4 py-1 rounded-full bg-blue-400/10">
+                        <Globe className="w-4 h-4 mr-2" /> Verified Trade Matrix
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tight uppercase">
+                        {title}
+                    </h1>
+                    <p className="text-slate-300 text-xl font-light mb-10 max-w-2xl mx-auto">
+                        Executing high-volume wholesale contracts requires a transparent proxy in India. Partner with us for flawless execution regarding <strong>{keyword}</strong>.
+                    </p>
+                    <Link to="/contact" className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded font-mono uppercase tracking-widest inline-flex items-center transition-colors">
+                        Initiate RFQ <ArrowRight className="ml-2 w-5 h-5" />
+                    </Link>
+                </div>
+            </section>
+
+            <section className="py-20 max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <img src={image} alt={keyword} className="w-full h-[500px] object-cover rounded-xl shadow-2xl" />
+                </div>
+                <div>
+                    <h3 className="text-3xl font-bold text-slate-800 mb-6 border-b-2 border-slate-100 pb-4">Operational Superiority</h3>
+                    <p className="text-slate-600 mb-6 text-lg">
+                        Finding an answer for <i>"{keyword}"</i> shouldn't be gambling on unverified suppliers. We rigorously audit and execute end-to-end supply pipelines out of India.
+                    </p>
+                    <ul className="space-y-4 text-sm font-semibold text-slate-700">
+                        <li className="flex items-center"><CheckCircle2 className="w-5 h-5 mr-3 text-blue-600" /> Government Recognized Export House</li>
+                        <li className="flex items-center"><CheckCircle2 className="w-5 h-5 mr-3 text-blue-600" /> APEDA & FSSAI Certified Infrastructure</li>
+                        <li className="flex items-center"><CheckCircle2 className="w-5 h-5 mr-3 text-blue-600" /> Strict Quality SOPs Deployed Pre-Shipment</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// -------------------------------------------------------------
+// Layout 1: Editorial/Magazine Style (Clean, White, Large Typography)
+// -------------------------------------------------------------
+function ArchitectureEditorial({ title, image, keyword }: { title: string, image: string, keyword: string }) {
+    return (
+        <div className="bg-[#faf8f5]">
+            <section className="px-4 py-16 md:py-24 max-w-6xl mx-auto">
+                <div className="text-center mb-16">
+                    <h1 className="text-5xl md:text-7xl font-fredericka text-slate-900 mb-6">
+                        {title}
+                    </h1>
+                    <div className="h-1 w-24 bg-red-800 mx-auto" />
+                </div>
+
+                <div className="bg-white p-4 md:p-8 rounded-none border-4 border-slate-900 shadow-[16px_16px_0_0_rgba(15,23,42,1)] relative">
+                    <div className="grid md:grid-cols-2 gap-8 items-stretch">
+                        <div className="h-full">
+                            <img src={image} alt={keyword} className="w-full h-full min-h-[400px] object-cover filter contrast-125 saturate-150" />
+                        </div>
+                        <div className="py-8 px-4 flex flex-col justify-center">
+                            <h2 className="text-3xl font-black uppercase text-slate-900 mb-4 font-graduate tracking-tighter">Your Direct Indian Node</h2>
+                            <p className="font-fondamento text-xl text-slate-700 leading-relaxed italic mb-8 border-l-4 border-red-800 pl-4 bg-red-50 py-4">
+                                "Searching for {keyword}? We intercept supply chain volatility by locking in raw material costs directly at the origin."
+                            </p>
+                            <div className="grid grid-cols-2 gap-4 mb-8">
+                                <div className="bg-slate-100 p-4 border border-slate-200">
+                                    <Factory className="w-8 h-8 text-slate-800 mb-2" />
+                                    <span className="block font-bold">Direct Sourcing</span>
+                                </div>
+                                <div className="bg-slate-100 p-4 border border-slate-200">
+                                    <LineChart className="w-8 h-8 text-slate-800 mb-2" />
+                                    <span className="block font-bold">Price Stability</span>
+                                </div>
+                            </div>
+                            <Link to="/contact" className="bg-red-800 hover:bg-black text-white text-center font-bold py-4 px-8 uppercase hover:shadow-lg transition-all">
+                                Unlock Pricing
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// -------------------------------------------------------------
+// Layout 2: Modern Green/Tech Industrial (Green, Left-aligned)
+// -------------------------------------------------------------
+function ArchitectureIndustrial({ title, image, keyword }: { title: string, image: string, keyword: string }) {
+    return (
+        <div className="bg-green-950 min-h-screen text-slate-200">
+            <section className="relative h-[80vh] min-h-[600px] flex items-center">
+                <div className="absolute inset-0 opacity-20">
+                    <img src={image} alt={keyword} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-950 via-green-950/90 to-transparent" />
+                </div>
+
+                <div className="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <Badge className="bg-green-500 text-green-950 hover:bg-green-400 py-1 px-3 uppercase tracking-widest text-xs font-bold mb-6 rounded-none">Industrial Supply Chain</Badge>
+                        <h1 className="text-5xl lg:text-7xl font-black text-white mb-6 uppercase tracking-tight">
+                            {title}
+                        </h1>
+                        <p className="text-2xl text-green-200/80 mb-10 font-light border-l-2 border-green-500 pl-6">
+                            Secure your inventory through India's premier logistics and agro-commodity trading house. Unmatched throughput for {keyword}.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                            <Link to="/contact" className="bg-white hover:bg-green-400 text-green-950 font-black py-4 px-10 uppercase text-sm tracking-widest">
+                                Connect with Experts
+                            </Link>
+                            <Link to="/products" className="border-2 border-green-500/50 hover:border-green-400 text-white font-black py-4 px-10 uppercase text-sm tracking-widest hidden sm:inline-block">
+                                View Catalog
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="bg-green-900 py-16 border-y border-green-800">
+                <div className="container mx-auto px-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-green-800/50">
+                        <div>
+                            <ShieldCheck className="w-10 h-10 mx-auto text-green-400 mb-3" />
+                            <h4 className="font-bold text-white uppercase text-sm">Escrow Secure</h4>
+                        </div>
+                        <div>
+                            <Truck className="w-10 h-10 mx-auto text-green-400 mb-3" />
+                            <h4 className="font-bold text-white uppercase text-sm">FOB / CIF Routing</h4>
+                        </div>
+                        <div>
+                            <Award className="w-10 h-10 mx-auto text-green-400 mb-3" />
+                            <h4 className="font-bold text-white uppercase text-sm">A+ Certification</h4>
+                        </div>
+                        <div>
+                            <Globe className="w-10 h-10 mx-auto text-green-400 mb-3" />
+                            <h4 className="font-bold text-white uppercase text-sm">Hyper-Local Intel</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+// Simple Badge fallback for Layout 2
+function Badge({ children, className }: { children: React.ReactNode, className?: string }) {
+    return <span className={`inline-block ${className}`}>{children}</span>;
+}
