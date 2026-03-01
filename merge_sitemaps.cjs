@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const MAX_URLS_PER_SITEMAP = 50000;
+const MAX_URLS_PER_SITEMAP = 10000;
 
 async function mergeSitemaps() {
-    console.log("Merging scattered XML node graphs back into 2 massive sitemaps...");
+    console.log("Merging scattered XML node graphs back into scalable sitemaps...");
 
     // 1. Read the keyword array directly to reconstruct them
     const keywordsPath = path.join(__dirname, 'src', 'data', 'seoKeywords.json');
@@ -21,6 +21,7 @@ async function mergeSitemaps() {
 
     const SITE_URL = 'https://patelimpex.com';
     const sitemapsDir = path.join(__dirname, 'public');
+    const currentDate = new Date().toISOString();
 
     // Delete all current mass sitemaps and index
     const files = fs.readdirSync(sitemapsDir);
@@ -31,7 +32,7 @@ async function mergeSitemaps() {
     }
 
     let sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-    sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/sitemap.xml</loc>\n  </sitemap>\n`;
+    sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/sitemap.xml</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>\n`;
 
     let sitemapCount = 0;
 
@@ -43,7 +44,7 @@ async function mergeSitemaps() {
 
         for (const kw of chunk) {
             const slug = slugify(kw);
-            sitemapContent += `  <url>\n    <loc>${SITE_URL}/seo/${slug}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
+            sitemapContent += `  <url>\n    <loc>${SITE_URL}/seo/${slug}</loc>\n    <lastmod>${currentDate}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
         }
 
         sitemapContent += `</urlset>`;
@@ -51,7 +52,7 @@ async function mergeSitemaps() {
         const filename = `sitemap-mass-${sitemapCount}.xml`;
         fs.writeFileSync(path.join(sitemapsDir, filename), sitemapContent);
 
-        sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/${filename}</loc>\n  </sitemap>\n`;
+        sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/${filename}</loc>\n    <lastmod>${currentDate}</lastmod>\n  </sitemap>\n`;
     }
 
     sitemapIndexContent += `</sitemapindex>`;
