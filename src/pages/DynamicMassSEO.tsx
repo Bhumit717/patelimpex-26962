@@ -316,8 +316,8 @@ export default function DynamicMassSEO() {
 // -------------------------------------------------------------
 function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { title: string, image: string, fallback: string, keyword: string, seed: number }) {
     return (
-        <div className="bg-slate-50 pt-32">
-            <section className="px-6 py-12 md:py-24 border-b border-slate-200">
+        <div className="bg-slate-50 pt-32 min-h-screen">
+            <section className="px-6 py-12 md:py-32 border-b border-slate-200 bg-gradient-to-b from-white to-slate-50">
                 <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
                     <div className="space-y-8">
                         <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
@@ -507,15 +507,15 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-20">
                         <div className="space-y-6">
-                            <span className="text-emerald-500 font-mono text-xs tracking-[1em] block uppercase">// SYSTEM_BOOT_SEQUENCE: SUCCESS</span>
-                            <h1 className="text-4xl md:text-8xl font-black uppercase tracking-tighter leading-none break-words">
+                            <span className="text-emerald-500 font-mono text-xs tracking-[1em] block uppercase">[ STATUS: SYSTEM_OPTIMIZED ]</span>
+                            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none break-words">
                                 {title}
                             </h1>
                         </div>
-                        <div className="bg-zinc-900 p-8 border-l-4 border-emerald-500 min-w-[300px]">
-                            <span className="block text-emerald-500 font-mono text-xs mb-2">LATENCY_NODE: RAJKOT_HUB</span>
+                        <div className="bg-zinc-900 p-8 border-l-4 border-emerald-500 min-w-[300px] shadow-2xl">
+                            <span className="block text-emerald-500 font-mono text-[10px] mb-2 uppercase tracking-widest">Global Logistics Hub</span>
                             <span className="text-4xl font-mono font-black text-white">{(seed % 50) + 150} <small className="text-lg opacity-50">MT/D</small></span>
-                            <span className="block text-[10px] text-zinc-500 uppercase mt-2 tracking-widest font-bold">Node Export Capacity</span>
+                            <span className="block text-[10px] text-zinc-500 uppercase mt-2 tracking-widest font-bold">Verified Daily Capacity</span>
                         </div>
                     </div>
                     <div className="grid lg:grid-cols-12 gap-12">
@@ -575,16 +575,16 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                             </div>
                         </div>
                         <div className="space-y-12">
-                            <div className="bg-zinc-900 p-6 md:p-10 border border-emerald-500/20">
+                            <div className="bg-zinc-900 p-6 md:p-10 border border-emerald-500/20 shadow-2xl">
                                 <h4 className="text-[10px] md:text-xs font-black text-emerald-500 uppercase tracking-[0.2em] md:tracking-[0.4em] mb-12 flex items-center gap-4">
-                                    <BarChart3 className="w-5 h-5 shrink-0" /> PROTOCOL_RELIABILITY_DATA
+                                    <BarChart3 className="w-5 h-5 shrink-0" /> TECHNICAL_OPERATIONS_METRICS
                                 </h4>
                                 <ul className="space-y-8">
                                     {[
-                                        { label: 'Latency Node', value: 'RAJ_SUB_SEC_01' },
-                                        { label: 'Security Purity', value: '99.9%' },
-                                        { label: 'Logistics Prio', value: 'TIER_1_MUNDRA' },
-                                        { label: 'System Uptime', value: '100% EXPORT' }
+                                        { label: 'Logistics Latency', value: 'RAJ_SUB_SEC_01' },
+                                        { label: 'Verification rate', value: '99.9%' },
+                                        { label: 'Supply Priority', value: 'TIER_1_MUNDRA' },
+                                        { label: 'Quality Assurance', value: 'ISO_CERTIFIED' }
                                     ].map((stat, i) => (
                                         <li key={i} className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/5 pb-6 gap-2">
                                             <span className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">{stat.label}</span>
@@ -593,7 +593,7 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                                     ))}
                                 </ul>
                                 <Link to="/contact" className="mt-16 block w-full bg-emerald-500 hover:bg-white text-zinc-950 text-center font-black py-6 uppercase text-sm tracking-[0.1em] md:tracking-[0.4em] transition-all">
-                                    Initiate Node Contact
+                                    Initiate Strategic Contact
                                 </Link>
                             </div>
                         </div>
