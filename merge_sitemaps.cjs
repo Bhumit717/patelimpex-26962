@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const MAX_URLS_PER_SITEMAP = 10000;
+const MAX_URLS_PER_SITEMAP = 50000;
 
 async function mergeSitemaps() {
-    console.log("Generating granular 10k sitemaps...");
+    console.log("Generating high-capacity 50k sitemaps...");
 
     const keywordsPath = path.join(__dirname, 'src', 'data', 'seoKeywords.json');
     if (!fs.existsSync(keywordsPath)) {

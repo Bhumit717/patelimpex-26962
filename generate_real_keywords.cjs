@@ -83,7 +83,7 @@ async function generateKeywords() {
     let sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
     sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/sitemap.xml</loc>\n  </sitemap>\n`;
 
-    const maxUrls = 10000;
+    const maxUrls = 50000;
     let sitemapCount = 0;
 
     for (let i = 0; i < keywordArray.length; i += maxUrls) {
