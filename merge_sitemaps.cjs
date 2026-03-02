@@ -46,7 +46,7 @@ async function mergeSitemaps() {
 
         for (const kw of chunk) {
             const slug = slugify(kw);
-            sitemapContent += `  <url>\n    <loc>${SITE_URL}/seo/${slug}</loc>\n    <lastmod>${simpleDate}</lastmod>\n  </url>\n`;
+            sitemapContent += `  <url>\n    <loc>${SITE_URL}/more/${slug}</loc>\n    <lastmod>${simpleDate}</lastmod>\n  </url>\n`;
         }
 
         sitemapContent += `</urlset>`;

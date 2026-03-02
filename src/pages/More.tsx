@@ -169,7 +169,7 @@ const More = () => {
               Resource Library
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent">
-              Export Import Resources
+              More
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Comprehensive guides, market insights, and expert knowledge to help you succeed in international trade.

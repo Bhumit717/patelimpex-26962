@@ -99,7 +99,7 @@ const SEO = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
-      <SEOHead title="Global Trade Explorer | Patel Impex" description="Explore our massive global footprint covering everything from logistics intelligence to top regional market penetrations." canonicalUrl="/seo" />
+      <SEOHead title="More Resources | Patel Impex" description="Explore our massive global footprint covering everything from logistics intelligence to top regional market penetrations." canonicalUrl="/seo" />
       <Navigation />
 
       {/* Hero Section */}
@@ -111,7 +111,7 @@ const SEO = () => {
               <Globe className="w-4 h-4 mr-2" /> Global Trade Knowledge Base
             </Badge>
             <h1 className="text-5xl md:text-7xl font-black mb-6 font-graduate uppercase tracking-tight">
-              Explorer <span className="text-green-500">Hub</span>
+              More
             </h1>
             <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 font-light">
               Your centralized portal bridging Export/Import Intelligence, Product Architectures, and hyper-local B2B trading opportunities spanning {dict.locations.length} countries.
@@ -188,7 +188,7 @@ const SEO = () => {
                   {filteredKeywords.map((kw, idx) => (
                     <Link
                       key={idx}
-                      to={`/seo/${kw.replace(/ /g, '-')}`}
+                      to={`/more/${kw.replace(/ /g, '-')}`}
                       className="block px-6 py-4 hover:bg-slate-800 border-b border-slate-800 transition-colors last:border-0"
                     >
                       <span className="font-bold text-white capitalize block">{kw}</span>
@@ -219,7 +219,7 @@ const SEO = () => {
                 {allKeywords.slice(0, visibleCount).map((kw, idx) => (
                   <Link
                     key={idx}
-                    to={`/seo/${kw.replace(/ /g, '-')}`}
+                    to={`/more/${kw.replace(/ /g, '-')}`}
                     className="text-slate-300 hover:text-green-400 text-sm capitalize truncate block py-1 border-b border-slate-700/50 hover:bg-slate-700/30 px-2 rounded-sm transition-all"
                     title={kw}
                   >

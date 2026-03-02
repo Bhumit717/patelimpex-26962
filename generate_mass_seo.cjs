@@ -67,13 +67,13 @@ let currentSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xml
 const sitemapFiles = [];
 const BASE_URL = 'https://patelimpex.com';
 
-const maxUrlsPerSitemap = 2000;
+const maxUrlsPerSitemap = 50000;
 
 for (const product of dictionary.products) {
     for (const location of dictionary.locations) {
         for (const intent of dictionary.intents) {
             const slug = `${intent.prefix}-${product.slug}-${intent.suffix}-${location.slug}`;
-            const url = `${BASE_URL}/seo/${slug}`;
+            const url = `${BASE_URL}/more/${slug}`;
 
             currentSitemapContent += `  <url>\n    <loc>${url}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
             currentUrlCount++;

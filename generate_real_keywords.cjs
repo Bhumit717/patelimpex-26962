@@ -83,7 +83,7 @@ async function generateKeywords() {
     let sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
     sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/sitemap.xml</loc>\n  </sitemap>\n`;
 
-    const maxUrls = 3000;
+    const maxUrls = 50000;
     let sitemapCount = 0;
 
     for (let i = 0; i < keywordArray.length; i += maxUrls) {
@@ -94,7 +94,7 @@ async function generateKeywords() {
 
         for (const kw of chunk) {
             const slug = slugify(kw);
-            sitemapContent += `  <url>\n    <loc>${SITE_URL}/seo/${slug}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
+            sitemapContent += `  <url>\n    <loc>${SITE_URL}/more/${slug}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
         }
 
         sitemapContent += `</urlset>`;

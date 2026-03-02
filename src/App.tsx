@@ -24,6 +24,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import Admin from "./pages/Admin";
+import Sitemap from "./pages/Sitemap";
 import BlogPostDetail from "./pages/BlogPostDetail";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -384,10 +385,9 @@ const App = () => (
           <Route path="/inquiry" element={<Inquiry />} />
           <Route path="/logo" element={<Logo />} />
           <Route path="/faq" element={<FAQ />} />
-          {/* Unified Hub */}
-          <Route path="/seo" element={<SEO />} />
-          <Route path="/seo/:slug" element={<DynamicMassSEO />} />
+          {/* More Hub */}
           <Route path="/more" element={<SEO />} />
+          <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/admin" element={<Admin />} />
 
           {/* More sub-pages */}
@@ -420,146 +420,146 @@ const App = () => (
           <Route path="/more/technology-integration" element={<TechnologyIntegration />} />
           <Route path="/more/packaging-services" element={<PackagingServices />} />
           <Route path="/more/sugar-export" element={<SugarExport />} />
-          <Route path="/more/:slug" element={<DynamicSEOProductPage />} />
+
 
 
 
           {/* SEO Pages */}
-          <Route path="/seo/usa-market-export" element={<USAMarketExport />} />
-          <Route path="/seo/uk-market-export" element={<UKMarketExport />} />
-          <Route path="/seo/canada-market-export" element={<CanadaMarketExport />} />
-          <Route path="/seo/australia-market-export" element={<AustraliaMarketExport />} />
-          <Route path="/seo/organic-food-export" element={<OrganicFoodExport />} />
-          <Route path="/seo/frozen-food-export" element={<FrozenFoodExport />} />
-          <Route path="/seo/pharmaceutical-export" element={<PharmaceuticalExport />} />
-          <Route path="/seo/air-freight-services" element={<AirFreightServices />} />
-          <Route path="/seo/ocean-freight-services" element={<OceanFreightServices />} />
-          <Route path="/seo/express-shipping-services" element={<ExpressShippingServices />} />
-          <Route path="/seo/germany-market-export" element={<GermanyMarketExport />} />
-          <Route path="/seo/france-market-export" element={<FranceMarketExport />} />
-          <Route path="/seo/italy-market-export" element={<ItalyMarketExport />} />
-          <Route path="/seo/spain-market-export" element={<SpainMarketExport />} />
-          <Route path="/seo/netherlands-market-export" element={<NetherlandsMarketExport />} />
-          <Route path="/seo/japan-market-export" element={<JapanMarketExport />} />
-          <Route path="/seo/belgium-market-export" element={<BelgiumMarketExport />} />
-          <Route path="/seo/singapore-market-export" element={<SingaporeMarketExport />} />
-          <Route path="/seo/tea-export-services" element={<TeaExportServices />} />
-          <Route path="/seo/coffee-export-services" element={<CoffeeExportServices />} />
-          <Route path="/seo/sugar-export-services" element={<SugarExportServices />} />
-          <Route path="/seo/pulses-export-services" element={<PulsesExportServices />} />
-          <Route path="/seo/mango-export-services" element={<MangoExportServices />} />
-          <Route path="/seo/banana-export-services" element={<BananaExportServices />} />
-          <Route path="/seo/grapes-export-services" element={<GrapesExportServices />} />
-          <Route path="/seo/coconut-export-services" element={<CoconutExportServices />} />
-          <Route path="/seo/cotton-export-services" element={<CottonExportServices />} />
-          <Route path="/seo/wheat-flour-export-services" element={<WheatFlourExportServices />} />
-          <Route path="/seo/cashew-oil-export-services" element={<CasheOilExportServices />} />
-          <Route path="/seo/jaggery-export-services" element={<JaggeryExportServices />} />
-          <Route path="/seo/handicrafts-export-services" element={<HandicraftsExportServices />} />
-          <Route path="/seo/leather-products-export-services" element={<LeatherProductsExportServices />} />
-          <Route path="/seo/gems-jewelry-export-services" element={<GemsJewelryExportServices />} />
-          <Route path="/seo/uae-market-export" element={<UAEMarketExport />} />
-          <Route path="/seo/arhar-dal-export" element={<ArharDalExport />} />
-          <Route path="/seo/moong-dal-export" element={<MoongDalExport />} />
-          <Route path="/seo/chana-dal-export" element={<ChanaDalExport />} />
-          <Route path="/seo/urad-dal-export" element={<UradDalExport />} />
-          <Route path="/seo/masoor-dal-export" element={<MasoorDalExport />} />
-          <Route path="/seo/rajma-export" element={<RajmaExport />} />
-          <Route path="/seo/chickpea-export" element={<ChickpeaExport />} />
-          <Route path="/seo/fenugreek-seeds-export" element={<FenugreekSeedsExport />} />
-          <Route path="/seo/mustard-seeds-export" element={<MustardSeedsExport />} />
-          <Route path="/seo/cinnamon-export" element={<CinnamonExport />} />
-          <Route path="/seo/clove-export" element={<CloveExport />} />
-          <Route path="/seo/star-anise-export" element={<StarAniseExport />} />
-          <Route path="/seo/fennel-seeds-export" element={<FennelSeedsExport />} />
-          <Route path="/seo/black-mustard-seeds-export" element={<BlackMustardSeedsExport />} />
-          <Route path="/seo/ajwain-export" element={<AjwainExport />} />
-          <Route path="/seo/celery-seeds" element={<CelerySeeds />} />
-          <Route path="/seo/dill-seeds-export" element={<DillSeedsExport />} />
-          <Route path="/seo/poppy-seeds-export" element={<PopopySeedsExport />} />
-          <Route path="/seo/nigella-seeds-export" element={<NigellaSeedsExport />} />
-          <Route path="/seo/soybean-export" element={<SoybeanExport />} />
-          <Route path="/seo/psyllium-husk-export" element={<PsylliumHuskExport />} />
-          <Route path="/seo/morocco-market-export" element={<MoroccoMarketExport />} />
-          <Route path="/seo/kenya-market-export-services" element={<KenyaMarketExportServices />} />
-          <Route path="/seo/nigeria-market-export-services" element={<NigeriaMarketExportServices />} />
-          <Route path="/seo/walnut-export" element={<WalnutExport />} />
-          <Route path="/seo/pistachio-export" element={<PistachioExport />} />
-          <Route path="/seo/hazelnut-export" element={<HazelnutExport />} />
-          <Route path="/seo/pecan-export" element={<PecanExport />} />
-          <Route path="/seo/pine-nuts-export" element={<PinePnutExport />} />
-          <Route path="/seo/macadamia-export" element={<MacadamiaExport />} />
-          <Route path="/seo/brazil-nut-export" element={<BrazilNutExport />} />
-          <Route path="/seo/raisins-export" element={<RaisinsExport />} />
-          <Route path="/seo/dates-export" element={<DatesExport />} />
-          <Route path="/seo/algeria-market-export" element={<AlgeriaMarketExport />} />
-          <Route path="/seo/angola-market-export" element={<AngolaMarketExport />} />
-          <Route path="/seo/argentina-market-export" element={<ArgentinaMarketExport />} />
-          <Route path="/seo/azerbaijan-market-export" element={<AzerbaijanMarketExport />} />
-          <Route path="/seo/bahrain-market-export" element={<BahrainMarketExport />} />
-          <Route path="/seo/bangladesh-market-export" element={<BangladeshMarketExport />} />
-          <Route path="/seo/belarus-market-export" element={<BelarusMarketExport />} />
-          <Route path="/seo/bolivia-market-export" element={<BoliviaMarketExport />} />
-          <Route path="/seo/botswana-market-export" element={<BotswanaMarketExport />} />
-          <Route path="/seo/brazil-market-export" element={<BrazilMarketExport />} />
-          <Route path="/seo/brunei-market-export" element={<BruneiMarketExport />} />
-          <Route path="/seo/bulgaria-market-export" element={<BulgariaMarketExport />} />
-          <Route path="/seo/cambodia-market-export" element={<CambodiaMarketExport />} />
-          <Route path="/seo/cameroon-market-export" element={<CameroonMarketExport />} />
-          <Route path="/seo/chile-market-export" element={<ChileMarketExport />} />
-          <Route path="/seo/china-market-export" element={<ChinaMarketExport />} />
-          <Route path="/seo/colombia-market-export" element={<ColombiaMarketExport />} />
-          <Route path="/seo/croatia-market-export" element={<CroatiaMarketExport />} />
-          <Route path="/seo/cuba-market-export" element={<CubaMarketExport />} />
-          <Route path="/seo/cyprus-market-export" element={<CyprusMarketExport />} />
-          <Route path="/seo/czech-market-export" element={<CzechMarketExport />} />
-          <Route path="/seo/denmark-market-export" element={<DenmarkMarketExport />} />
-          <Route path="/seo/dominican-republic-market-export" element={<DominicanRepublicMarketExport />} />
-          <Route path="/seo/ecuador-market-export" element={<EcuadorMarketExport />} />
-          <Route path="/seo/egypt-market-export" element={<EgyptMarketExport />} />
-          <Route path="/seo/estonia-market-export" element={<EstoniaMarketExport />} />
-          <Route path="/seo/ethiopia-market-export" element={<EthiopiaMarketExport />} />
-          <Route path="/seo/finland-market-export" element={<FinlandMarketExport />} />
-          <Route path="/seo/gabon-market-export" element={<GabonMarketExport />} />
-          <Route path="/seo/gambia-market-export" element={<GambiaMarketExport />} />
-          <Route path="/seo/georgia-market-export" element={<GeorgiaMarketExport />} />
-          <Route path="/seo/ghana-market-export" element={<GhanaMarketExport />} />
-          <Route path="/seo/greece-market-export" element={<GreeceMarketExport />} />
-          <Route path="/seo/guatemala-market-export" element={<GuatemalaMarketExport />} />
-          <Route path="/seo/guinea-market-export" element={<GuineaMarketExport />} />
-          <Route path="/seo/honduras-market-export" element={<HondurasMarketExport />} />
-          <Route path="/seo/hungary-market-export" element={<HungaryMarketExport />} />
-          <Route path="/seo/iceland-market-export" element={<IcelandMarketExport />} />
-          <Route path="/seo/indonesia-market-export" element={<IndonesiaMarketExport />} />
-          <Route path="/seo/iraq-market-export" element={<IraqMarketExport />} />
-          <Route path="/seo/ireland-market-export" element={<IrelandMarketExport />} />
-          <Route path="/seo/israel-market-export" element={<IsraelMarketExport />} />
-          <Route path="/seo/ivory-coast-market-export" element={<IvoryCoastMarketExport />} />
-          <Route path="/seo/jamaica-market-export" element={<JamaicaMarketExport />} />
-          <Route path="/seo/jordan-market-export" element={<JordanMarketExport />} />
-          <Route path="/seo/kazakhstan-market-export" element={<KazakhstanMarketExport />} />
-          <Route path="/seo/kenya-market-export" element={<KenyaMarketExport />} />
-          <Route path="/seo/kuwait-market-export" element={<KuwaitMarketExport />} />
-          <Route path="/seo/kyrgyzstan-market-export" element={<KyrgyzstanMarketExport />} />
-          <Route path="/seo/laos-market-export" element={<LaosMarketExport />} />
-          <Route path="/seo/latvia-market-export" element={<LatviaMarketExport />} />
-          <Route path="/seo/lebanon-market-export" element={<LebanonMarketExport />} />
-          <Route path="/seo/malaysia-market-export" element={<MalaysiaMarketExport />} />
-          <Route path="/seo/mexico-market-export" element={<MexicoMarketExport />} />
-          <Route path="/seo/myanmar-market-export" element={<MyanmarMarketExport />} />
-          <Route path="/seo/nepal-market-export" element={<NepalMarketExport />} />
-          <Route path="/seo/nigeria-market-export" element={<NigeriaMarketExport />} />
-          <Route path="/seo/pakistan-market-export" element={<PakistanMarketExport />} />
-          <Route path="/seo/peru-market-export" element={<PeruMarketExport />} />
-          <Route path="/seo/philippines-market-export" element={<PhilippinesMarketExport />} />
-          <Route path="/seo/russia-market-export" element={<RussiaMarketExport />} />
-          <Route path="/seo/south-africa-market-export" element={<SouthAfricaMarketExport />} />
-          <Route path="/seo/south-korea-market-export" element={<SouthKoreaMarketExport />} />
-          <Route path="/seo/sri-lanka-market-export" element={<SriLankaMarketExport />} />
-          <Route path="/seo/thailand-market-export" element={<ThailandMarketExport />} />
-          <Route path="/seo/turkey-market-export" element={<TurkeyMarketExport />} />
-          <Route path="/seo/vietnam-market-export" element={<VietnamMarketExport />} />
-          <Route path="/seo/:slug" element={<DynamicSEOProductPage />} />
+          <Route path="/more/usa-market-export" element={<USAMarketExport />} />
+          <Route path="/more/uk-market-export" element={<UKMarketExport />} />
+          <Route path="/more/canada-market-export" element={<CanadaMarketExport />} />
+          <Route path="/more/australia-market-export" element={<AustraliaMarketExport />} />
+          <Route path="/more/organic-food-export" element={<OrganicFoodExport />} />
+          <Route path="/more/frozen-food-export" element={<FrozenFoodExport />} />
+          <Route path="/more/pharmaceutical-export" element={<PharmaceuticalExport />} />
+          <Route path="/more/air-freight-services" element={<AirFreightServices />} />
+          <Route path="/more/ocean-freight-services" element={<OceanFreightServices />} />
+          <Route path="/more/express-shipping-services" element={<ExpressShippingServices />} />
+          <Route path="/more/germany-market-export" element={<GermanyMarketExport />} />
+          <Route path="/more/france-market-export" element={<FranceMarketExport />} />
+          <Route path="/more/italy-market-export" element={<ItalyMarketExport />} />
+          <Route path="/more/spain-market-export" element={<SpainMarketExport />} />
+          <Route path="/more/netherlands-market-export" element={<NetherlandsMarketExport />} />
+          <Route path="/more/japan-market-export" element={<JapanMarketExport />} />
+          <Route path="/more/belgium-market-export" element={<BelgiumMarketExport />} />
+          <Route path="/more/singapore-market-export" element={<SingaporeMarketExport />} />
+          <Route path="/more/tea-export-services" element={<TeaExportServices />} />
+          <Route path="/more/coffee-export-services" element={<CoffeeExportServices />} />
+          <Route path="/more/sugar-export-services" element={<SugarExportServices />} />
+          <Route path="/more/pulses-export-services" element={<PulsesExportServices />} />
+          <Route path="/more/mango-export-services" element={<MangoExportServices />} />
+          <Route path="/more/banana-export-services" element={<BananaExportServices />} />
+          <Route path="/more/grapes-export-services" element={<GrapesExportServices />} />
+          <Route path="/more/coconut-export-services" element={<CoconutExportServices />} />
+          <Route path="/more/cotton-export-services" element={<CottonExportServices />} />
+          <Route path="/more/wheat-flour-export-services" element={<WheatFlourExportServices />} />
+          <Route path="/more/cashew-oil-export-services" element={<CasheOilExportServices />} />
+          <Route path="/more/jaggery-export-services" element={<JaggeryExportServices />} />
+          <Route path="/more/handicrafts-export-services" element={<HandicraftsExportServices />} />
+          <Route path="/more/leather-products-export-services" element={<LeatherProductsExportServices />} />
+          <Route path="/more/gems-jewelry-export-services" element={<GemsJewelryExportServices />} />
+          <Route path="/more/uae-market-export" element={<UAEMarketExport />} />
+          <Route path="/more/arhar-dal-export" element={<ArharDalExport />} />
+          <Route path="/more/moong-dal-export" element={<MoongDalExport />} />
+          <Route path="/more/chana-dal-export" element={<ChanaDalExport />} />
+          <Route path="/more/urad-dal-export" element={<UradDalExport />} />
+          <Route path="/more/masoor-dal-export" element={<MasoorDalExport />} />
+          <Route path="/more/rajma-export" element={<RajmaExport />} />
+          <Route path="/more/chickpea-export" element={<ChickpeaExport />} />
+          <Route path="/more/fenugreek-seeds-export" element={<FenugreekSeedsExport />} />
+          <Route path="/more/mustard-seeds-export" element={<MustardSeedsExport />} />
+          <Route path="/more/cinnamon-export" element={<CinnamonExport />} />
+          <Route path="/more/clove-export" element={<CloveExport />} />
+          <Route path="/more/star-anise-export" element={<StarAniseExport />} />
+          <Route path="/more/fennel-seeds-export" element={<FennelSeedsExport />} />
+          <Route path="/more/black-mustard-seeds-export" element={<BlackMustardSeedsExport />} />
+          <Route path="/more/ajwain-export" element={<AjwainExport />} />
+          <Route path="/more/celery-seeds" element={<CelerySeeds />} />
+          <Route path="/more/dill-seeds-export" element={<DillSeedsExport />} />
+          <Route path="/more/poppy-seeds-export" element={<PopopySeedsExport />} />
+          <Route path="/more/nigella-seeds-export" element={<NigellaSeedsExport />} />
+          <Route path="/more/soybean-export" element={<SoybeanExport />} />
+          <Route path="/more/psyllium-husk-export" element={<PsylliumHuskExport />} />
+          <Route path="/more/morocco-market-export" element={<MoroccoMarketExport />} />
+          <Route path="/more/kenya-market-export-services" element={<KenyaMarketExportServices />} />
+          <Route path="/more/nigeria-market-export-services" element={<NigeriaMarketExportServices />} />
+          <Route path="/more/walnut-export" element={<WalnutExport />} />
+          <Route path="/more/pistachio-export" element={<PistachioExport />} />
+          <Route path="/more/hazelnut-export" element={<HazelnutExport />} />
+          <Route path="/more/pecan-export" element={<PecanExport />} />
+          <Route path="/more/pine-nuts-export" element={<PinePnutExport />} />
+          <Route path="/more/macadamia-export" element={<MacadamiaExport />} />
+          <Route path="/more/brazil-nut-export" element={<BrazilNutExport />} />
+          <Route path="/more/raisins-export" element={<RaisinsExport />} />
+          <Route path="/more/dates-export" element={<DatesExport />} />
+          <Route path="/more/algeria-market-export" element={<AlgeriaMarketExport />} />
+          <Route path="/more/angola-market-export" element={<AngolaMarketExport />} />
+          <Route path="/more/argentina-market-export" element={<ArgentinaMarketExport />} />
+          <Route path="/more/azerbaijan-market-export" element={<AzerbaijanMarketExport />} />
+          <Route path="/more/bahrain-market-export" element={<BahrainMarketExport />} />
+          <Route path="/more/bangladesh-market-export" element={<BangladeshMarketExport />} />
+          <Route path="/more/belarus-market-export" element={<BelarusMarketExport />} />
+          <Route path="/more/bolivia-market-export" element={<BoliviaMarketExport />} />
+          <Route path="/more/botswana-market-export" element={<BotswanaMarketExport />} />
+          <Route path="/more/brazil-market-export" element={<BrazilMarketExport />} />
+          <Route path="/more/brunei-market-export" element={<BruneiMarketExport />} />
+          <Route path="/more/bulgaria-market-export" element={<BulgariaMarketExport />} />
+          <Route path="/more/cambodia-market-export" element={<CambodiaMarketExport />} />
+          <Route path="/more/cameroon-market-export" element={<CameroonMarketExport />} />
+          <Route path="/more/chile-market-export" element={<ChileMarketExport />} />
+          <Route path="/more/china-market-export" element={<ChinaMarketExport />} />
+          <Route path="/more/colombia-market-export" element={<ColombiaMarketExport />} />
+          <Route path="/more/croatia-market-export" element={<CroatiaMarketExport />} />
+          <Route path="/more/cuba-market-export" element={<CubaMarketExport />} />
+          <Route path="/more/cyprus-market-export" element={<CyprusMarketExport />} />
+          <Route path="/more/czech-market-export" element={<CzechMarketExport />} />
+          <Route path="/more/denmark-market-export" element={<DenmarkMarketExport />} />
+          <Route path="/more/dominican-republic-market-export" element={<DominicanRepublicMarketExport />} />
+          <Route path="/more/ecuador-market-export" element={<EcuadorMarketExport />} />
+          <Route path="/more/egypt-market-export" element={<EgyptMarketExport />} />
+          <Route path="/more/estonia-market-export" element={<EstoniaMarketExport />} />
+          <Route path="/more/ethiopia-market-export" element={<EthiopiaMarketExport />} />
+          <Route path="/more/finland-market-export" element={<FinlandMarketExport />} />
+          <Route path="/more/gabon-market-export" element={<GabonMarketExport />} />
+          <Route path="/more/gambia-market-export" element={<GambiaMarketExport />} />
+          <Route path="/more/georgia-market-export" element={<GeorgiaMarketExport />} />
+          <Route path="/more/ghana-market-export" element={<GhanaMarketExport />} />
+          <Route path="/more/greece-market-export" element={<GreeceMarketExport />} />
+          <Route path="/more/guatemala-market-export" element={<GuatemalaMarketExport />} />
+          <Route path="/more/guinea-market-export" element={<GuineaMarketExport />} />
+          <Route path="/more/honduras-market-export" element={<HondurasMarketExport />} />
+          <Route path="/more/hungary-market-export" element={<HungaryMarketExport />} />
+          <Route path="/more/iceland-market-export" element={<IcelandMarketExport />} />
+          <Route path="/more/indonesia-market-export" element={<IndonesiaMarketExport />} />
+          <Route path="/more/iraq-market-export" element={<IraqMarketExport />} />
+          <Route path="/more/ireland-market-export" element={<IrelandMarketExport />} />
+          <Route path="/more/israel-market-export" element={<IsraelMarketExport />} />
+          <Route path="/more/ivory-coast-market-export" element={<IvoryCoastMarketExport />} />
+          <Route path="/more/jamaica-market-export" element={<JamaicaMarketExport />} />
+          <Route path="/more/jordan-market-export" element={<JordanMarketExport />} />
+          <Route path="/more/kazakhstan-market-export" element={<KazakhstanMarketExport />} />
+          <Route path="/more/kenya-market-export" element={<KenyaMarketExport />} />
+          <Route path="/more/kuwait-market-export" element={<KuwaitMarketExport />} />
+          <Route path="/more/kyrgyzstan-market-export" element={<KyrgyzstanMarketExport />} />
+          <Route path="/more/laos-market-export" element={<LaosMarketExport />} />
+          <Route path="/more/latvia-market-export" element={<LatviaMarketExport />} />
+          <Route path="/more/lebanon-market-export" element={<LebanonMarketExport />} />
+          <Route path="/more/malaysia-market-export" element={<MalaysiaMarketExport />} />
+          <Route path="/more/mexico-market-export" element={<MexicoMarketExport />} />
+          <Route path="/more/myanmar-market-export" element={<MyanmarMarketExport />} />
+          <Route path="/more/nepal-market-export" element={<NepalMarketExport />} />
+          <Route path="/more/nigeria-market-export" element={<NigeriaMarketExport />} />
+          <Route path="/more/pakistan-market-export" element={<PakistanMarketExport />} />
+          <Route path="/more/peru-market-export" element={<PeruMarketExport />} />
+          <Route path="/more/philippines-market-export" element={<PhilippinesMarketExport />} />
+          <Route path="/more/russia-market-export" element={<RussiaMarketExport />} />
+          <Route path="/more/south-africa-market-export" element={<SouthAfricaMarketExport />} />
+          <Route path="/more/south-korea-market-export" element={<SouthKoreaMarketExport />} />
+          <Route path="/more/sri-lanka-market-export" element={<SriLankaMarketExport />} />
+          <Route path="/more/thailand-market-export" element={<ThailandMarketExport />} />
+          <Route path="/more/turkey-market-export" element={<TurkeyMarketExport />} />
+          <Route path="/more/vietnam-market-export" element={<VietnamMarketExport />} />
+          <Route path="/more/:slug" element={<DynamicMassSEO />} />
 
 
           {/* Generated SEO Routes */}
