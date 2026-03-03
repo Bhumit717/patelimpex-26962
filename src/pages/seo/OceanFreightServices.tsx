@@ -12,7 +12,7 @@ const OceanFreightServices = () => {
         <title>Ocean Freight Services | Sea Cargo Shipping | Patel Impex</title>
         <meta name="description" content="Cost-effective ocean freight services for international sea cargo shipping. Full container load (FCL), less than container load (LCL), and bulk cargo solutions worldwide." />
         <meta name="keywords" content="ocean freight services, sea freight shipping, container shipping, FCL LCL services, bulk cargo shipping, international sea freight" />
-        <link rel="canonical" href="https://patelimpex.com/seo/ocean-freight-services" />
+        <link rel="canonical" href="https://patelimpex.com/more/ocean-freight-services" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50">

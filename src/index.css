@@ -32,37 +32,37 @@
     --input: 214 32% 91%;
     --ring: 222 47% 11%;
 
-    --radius: 0.75rem;
+    --radius: 0;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+* {
+  @apply border-border;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 /* Perfected Neumorphism Utilities */
 @layer utilities {
   .nm-card {
     background: #ffffff;
-    box-shadow: 20px 20px 60px #e2e8f0, -20px -20px 60px #ffffff;
+    box-shadow: none;
     color: #334155;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 0;
   }
 
   .nm-card-dark {
-    box-shadow: 12px 12px 24px #cbd5e1, -12px -12px 24px #ffffff;
+    box-shadow: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
+    border-radius: 0;
   }
 
   .nm-btn {
     background-color: #fdfdfd;
-    box-shadow: 6px 6px 12px #cbd5e1, -6px -6px 12px #ffffff;
+    box-shadow: none;
     color: #1e293b;
-    border-radius: 50px;
+    border-radius: 0;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid #e2e8f0;
     display: inline-flex;
@@ -76,9 +76,9 @@
 
   .nm-btn-white {
     background-color: #ffffff;
-    box-shadow: 4px 4px 10px #e2e8f0, -4px -4px 10px #ffffff;
+    box-shadow: none;
     color: #0f172a;
-    border-radius: 50px;
+    border-radius: 0;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid #f1f5f9;
     display: inline-flex;
@@ -92,7 +92,7 @@
 
   .nm-btn:hover,
   .nm-btn-white:hover {
-    box-shadow: 2px 2px 5px #cbd5e1, -2px -2px 5px #ffffff;
+    box-shadow: none;
     transform: translateY(-2px);
     background-color: #ffffff;
     border-color: #cbd5e1;
@@ -100,9 +100,9 @@
 
   .nm-btn-dark {
     background: #0f172a;
-    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3), -6px -6px 15px rgba(255, 255, 255, 0.05);
+    box-shadow: none;
     color: #f8fafc;
-    border-radius: 50px;
+    border-radius: 0;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: inline-flex;
@@ -115,16 +115,16 @@
   }
 
   .nm-btn-dark:hover {
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4), -2px -2px 8px rgba(255, 255, 255, 0.08);
+    box-shadow: none;
     transform: translateY(-2px);
     background: #020617;
   }
 
   .nm-btn-green {
     background: #15803d;
-    box-shadow: 0 10px 25px -5px rgba(21, 128, 61, 0.4);
+    box-shadow: none;
     color: #ffffff;
-    border-radius: 12px;
+    border-radius: 0;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: inline-flex;
@@ -139,7 +139,7 @@
   .nm-btn-green:hover {
     background: #166534;
     transform: translateY(-2px);
-    box-shadow: 0 15px 30px -5px rgba(21, 128, 61, 0.5);
+    box-shadow: none;
   }
 
   .nm-btn:active,
@@ -151,16 +151,16 @@
 
   .nm-input {
     background: #ffffff;
-    box-shadow: inset 5px 5px 10px #e2e8f0, inset -5px -5px 10px #ffffff;
+    box-shadow: none;
     color: #1e293b;
-    border-radius: 12px;
+    border-radius: 0;
     border: 1px solid #e2e8f0;
     transition: all 0.3s ease;
     padding: 0.8rem 1.2rem;
   }
 
   .nm-input:focus {
-    box-shadow: inset 2px 2px 5px #e2e8f0, 0 0 0 2px rgba(22, 163, 74, 0.2);
+    box-shadow: none;
     outline: none;
     border-color: #22c55e;
     background: #ffffff;
@@ -238,7 +238,7 @@
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    box-shadow: none;
   }
 
   .reveal {
@@ -322,11 +322,11 @@ textarea.font-mono::-webkit-scrollbar-thumb:hover {
 
 .blog-content-rendered iframe {
   max-width: 100%;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .blog-content-rendered img {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 0;
 }

@@ -77,9 +77,9 @@ const Footer = () => {
                   onChange={e => setEmail(e.target.value)}
                   placeholder="Intelligence Bulletin"
                   required
-                  className="nm-input w-full !py-3 px-4 text-xs font-graduate !rounded-xl"
+                  className="nm-input w-full !py-3 px-4 text-xs font-graduate"
                 />
-                <button type="submit" disabled={isSubmitting} className="nm-btn-dark w-full !py-3 font-bold uppercase tracking-widest font-graduate text-[10px] border-none !rounded-xl">
+                <button type="submit" disabled={isSubmitting} className="nm-btn-dark w-full !py-3 font-bold uppercase tracking-widest font-graduate text-[10px] border-none">
                   {isSubmitting ? '...' : 'Subscribe'}
                 </button>
               </form>

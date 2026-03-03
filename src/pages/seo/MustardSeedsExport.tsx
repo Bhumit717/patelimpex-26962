@@ -12,7 +12,7 @@ const MustardSeedsExport = () => {
       <Helmet>
         <title>Mustard Seeds Exporter from India | Buy Bulk Mustard Seeds | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Mustard Seeds from India. Best quality Mustard Seeds at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/mustard-seeds-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/mustard-seeds-export" />
         <meta property="og:title" content="Mustard Seeds Exporter from India | Buy Bulk Mustard Seeds | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Mustard Seeds from India. Best quality Mustard Seeds at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />

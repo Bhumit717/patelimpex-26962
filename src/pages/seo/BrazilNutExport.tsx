@@ -12,7 +12,7 @@ const BrazilNutExport = () => {
       <Helmet>
         <title>Brazil Nut Exporter from India | Buy Bulk Brazil Nut | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Brazil Nut from India. Best quality Brazil Nut at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/brazil-nut-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/brazil-nut-export" />
         <meta property="og:title" content="Brazil Nut Exporter from India | Buy Bulk Brazil Nut | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Brazil Nut from India. Best quality Brazil Nut at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1532336414008-82923c530dad?auto=format&fit=crop&q=80" />

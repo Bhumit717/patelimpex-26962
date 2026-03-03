@@ -27,7 +27,7 @@ const ExpressShippingServices = () => {
         <title>Express Shipping Services | Fast International Courier | Patel Impex</title>
         <meta name="description" content="Fast express shipping services for urgent international deliveries. Same-day, next-day, and 48-hour express courier solutions with tracking and insurance." />
         <meta name="keywords" content="express shipping, fast courier services, urgent delivery, same day shipping, international express, DHL, FedEx, UPS services" />
-        <link rel="canonical" href="https://patelimpex.com/seo/express-shipping-services" />
+        <link rel="canonical" href="https://patelimpex.com/more/express-shipping-services" />
       </Helmet>
 
       <div className="min-h-screen bg-[#e9edf3]">

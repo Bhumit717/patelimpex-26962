@@ -12,7 +12,7 @@ const GabonMarketExport = () => {
       <Helmet>
         <title>Gabon Import Export Services | Trade with Gabon | Patel Impex</title>
         <meta name="description" content="Comprehensive import export services for Gabon. Patel Impex facilitates trade between India and Gabon with expert logistics and customs support." />
-        <link rel="canonical" href="https://patelimpex.com/seo/gabon-market-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/gabon-market-export" />
         <meta property="og:title" content="Gabon Import Export Services | Trade with Gabon | Patel Impex" />
         <meta property="og:description" content="Comprehensive import export services for Gabon. Patel Impex facilitates trade between India and Gabon with expert logistics and customs support." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" />

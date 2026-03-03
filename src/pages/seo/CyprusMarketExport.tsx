@@ -12,7 +12,7 @@ const CyprusMarketExport = () => {
       <Helmet>
         <title>Cyprus Import Export Services | Trade with Cyprus | Patel Impex</title>
         <meta name="description" content="Comprehensive import export services for Cyprus. Patel Impex facilitates trade between India and Cyprus with expert logistics and customs support." />
-        <link rel="canonical" href="https://patelimpex.com/seo/cyprus-market-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/cyprus-market-export" />
         <meta property="og:title" content="Cyprus Import Export Services | Trade with Cyprus | Patel Impex" />
         <meta property="og:description" content="Comprehensive import export services for Cyprus. Patel Impex facilitates trade between India and Cyprus with expert logistics and customs support." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />

@@ -68,7 +68,7 @@ const Contact = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100 mb-6">
+          <div className="inline-flex items-center px-4 py-2 bg-white border border-slate-100 mb-6">
             <MessageSquare className="h-4 w-4 text-green-600 mr-2" />
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-graduate">Enquiry Hub</span>
           </div>
@@ -87,7 +87,7 @@ const Contact = () => {
               {contactInfo.map((info, index) => (
                 <div key={index} className="nm-card !p-8 group hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center space-x-6">
-                    <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-inner border border-slate-100 group-hover:scale-110 transition-transform">
+                    <div className="w-14 h-14 bg-white flex items-center justify-center border border-slate-100 group-hover:scale-110 transition-transform">
                       <info.icon className={`h-6 w-6 ${info.color}`} />
                     </div>
                     <div>
@@ -103,7 +103,7 @@ const Contact = () => {
 
             {/* Map Preview */}
             <div className="nm-card !p-2 overflow-hidden aspect-video group">
-              <div className="w-full h-full rounded-[25px] overflow-hidden transition-all duration-700">
+              <div className="w-full h-full overflow-hidden transition-all duration-700">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0!2d70.8040941!3d22.1622576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395835617fada2e3%3A0x7046141c800ddc54!2sPATEL%20IMPEX!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
                   width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" title="Location"
@@ -115,7 +115,7 @@ const Contact = () => {
           {/* Form Side */}
           <div className="lg:col-span-7">
             <div className="nm-card !p-12 md:!p-16 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-bl-[100px] opacity-50 -z-10"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-green-50 opacity-50 -z-10"></div>
 
               <h3 className="text-3xl font-black text-slate-900 mb-10 font-graduate uppercase tracking-tighter flex items-center">
                 Business <span className="text-green-600 ml-3">Inquiry Form</span>

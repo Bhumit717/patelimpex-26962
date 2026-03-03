@@ -12,7 +12,7 @@ const CoconutExportServices = () => {
       <Helmet>
         <title>Coconut Exporter from India | Buy Bulk Coconut | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Coconut from India. Best quality Coconut at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/coconut-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/coconut-export" />
         <meta property="og:title" content="Coconut Exporter from India | Buy Bulk Coconut | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Coconut from India. Best quality Coconut at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1532336414008-82923c530dad?auto=format&fit=crop&q=80" />

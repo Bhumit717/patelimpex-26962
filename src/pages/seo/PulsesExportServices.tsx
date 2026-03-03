@@ -12,7 +12,7 @@ const PulsesExportServices = () => {
       <Helmet>
         <title>Pulses Exporter from India | Buy Bulk Pulses | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Pulses from India. Best quality Pulses at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/pulses-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/pulses-export" />
         <meta property="og:title" content="Pulses Exporter from India | Buy Bulk Pulses | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Pulses from India. Best quality Pulses at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" />

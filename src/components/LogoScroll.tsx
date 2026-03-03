@@ -31,7 +31,7 @@ const LogoScroll = () => {
             Trusted by Leading Global Import Export Companies
           </h2>
           <p className="text-lg text-muted-foreground">
-            Partnering with top <a href="/about" className="text-primary hover:underline">import export businesses</a> and 
+            Partnering with top <a href="/about" className="text-primary hover:underline">import export businesses</a> and
             <a href="/services" className="text-primary hover:underline ml-1">export companies</a> worldwide
           </p>
         </div>

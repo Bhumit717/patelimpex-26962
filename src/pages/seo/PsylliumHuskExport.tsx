@@ -12,7 +12,7 @@ const PsylliumHuskExport = () => {
       <Helmet>
         <title>Psyllium Husk Exporter from India | Buy Bulk Psyllium Husk | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Psyllium Husk from India. Best quality Psyllium Husk at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/psyllium-husk-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/psyllium-husk-export" />
         <meta property="og:title" content="Psyllium Husk Exporter from India | Buy Bulk Psyllium Husk | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Psyllium Husk from India. Best quality Psyllium Husk at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" />

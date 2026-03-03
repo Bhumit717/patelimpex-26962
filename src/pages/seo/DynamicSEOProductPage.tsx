@@ -37,7 +37,7 @@ const DynamicSEOProductPage = () => {
         "brand": { "@type": "Brand", "name": "Patel Impex" },
         "offers": {
             "@type": "Offer",
-            "url": `https://patelimpex.com/seo/${slug}`,
+            "url": `https://patelimpex.com/more/${slug}`,
             "priceCurrency": "USD",
             "price": "100", // Indicative price for schema validity
             "priceValidUntil": validUntilDate,
@@ -126,7 +126,7 @@ const DynamicSEOProductPage = () => {
                 <title>{title} | Premium Quality | Patel Impex</title>
                 <meta name="description" content={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`} />
                 <meta name="keywords" content={`${product}, export ${product} to ${country}, ${product} supplier, ${country} importers of ${product}, Indian ${product} exporter, bulk ${product} supplier, agro products export, Patel Impex, buy ${product} in ${country}`} />
-                <link rel="canonical" href={`https://patelimpex.com/seo/${slug}`} />
+                <link rel="canonical" href={`https://patelimpex.com/more/${slug}`} />
                 <meta property="og:title" content={`${title} | Premium Quality | Patel Impex`} />
                 <meta property="og:description" content={`Leading ${product} exporter to ${country}. Patel Impex supplies certified high-quality ${product} with reliable shipping and competitive pricing for the ${country} market.`} />
                 <meta property="og:image" content="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80" />

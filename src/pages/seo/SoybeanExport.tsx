@@ -11,7 +11,7 @@ const SoybeanExport = () => {
             <Helmet>
                 <title>Soybean Meal Exporter in India | High Protein Soya Meal | Patel Impex</title>
                 <meta name="description" content="Patel Impex is a leading exporter of Soybean Meal from India. We supply high-quality, protein-rich soya meal for animal feed and industrial use to global markets." />
-                <link rel="canonical" href="https://patelimpex.com/seo/soybean-export" />
+                <link rel="canonical" href="https://patelimpex.com/more/soybean-export" />
                 <meta property="og:title" content="Soybean Meal Exporter in India | High Protein Soya Meal" />
                 <meta property="og:description" content="Patel Impex is a leading exporter of Soybean Meal from India. We supply high-quality, protein-rich soya meal for animal feed and industrial use." />
             </Helmet>

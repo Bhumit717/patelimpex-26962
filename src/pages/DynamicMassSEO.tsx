@@ -371,7 +371,7 @@ export default function DynamicMassSEO() {
             <SEOHead
                 title={`${capitalizedTitle} - Professional B2B Export Dossier`}
                 description={`Access strategic insights and procurement advantages for: ${keyword}. Patel Impex provides high-yield supply chains directly from India with certified QA.`}
-                canonicalUrl={`/seo/${slug}`}
+                canonicalUrl={`/more/${slug}`}
             />
 
             <Navigation />

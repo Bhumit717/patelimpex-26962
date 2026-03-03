@@ -21,7 +21,7 @@ const About = () => {
                 {/* Header Section */}
                 <div className="max-w-4xl mx-auto text-center mb-24 lg:mb-32">
                     <div className="flex justify-center mb-8">
-                        <div className="px-6 py-2 rounded-full bg-green-50 border border-green-100 text-green-600 font-graduate text-xs uppercase tracking-[0.2em] font-bold">
+                        <div className="px-6 py-2 bg-green-50 border border-green-100 text-green-600 font-graduate text-xs uppercase tracking-[0.2em] font-bold">
                             About Us
                         </div>
                     </div>
@@ -67,14 +67,14 @@ const About = () => {
 
                     {/* Image/Visual Side */}
                     <div className="relative">
-                        <div className="nm-card !p-4 !rounded-[60px] overflow-hidden group shadow-2xl">
+                        <div className="nm-card !p-4 overflow-hidden group">
                             <img
                                 src={qualityControlLabImg}
                                 alt="Quality Inspection"
-                                className="w-full h-full object-cover rounded-[50px] aspect-[4/5] md:aspect-[3/4] group-hover:scale-105 transition-transform duration-[3s]"
+                                className="w-full h-full object-cover aspect-[4/5] md:aspect-[3/4] group-hover:scale-105 transition-transform duration-[3s]"
                             />
                             {/* Overlay Badge */}
-                            <div className="absolute top-12 left-12 w-32 h-32 rounded-full glass-card flex items-center justify-center animate-float">
+                            <div className="absolute top-12 left-12 w-32 h-32 glass-card flex items-center justify-center animate-float">
                                 <div className="text-center">
                                     <span className="block font-graduate text-2xl font-black text-slate-900">100%</span>
                                     <span className="block font-fondamento text-xs italic text-slate-500">Pure Organic</span>
@@ -99,7 +99,7 @@ const About = () => {
                 <div className="mt-32 text-center">
                     <button
                         onClick={openWhatsApp}
-                        className="nm-btn-green border-none !py-8 !px-16 !text-white font-graduate font-bold uppercase tracking-[0.3em] text-sm group shadow-2xl"
+                        className="nm-btn-green border-none !py-8 !px-16 !text-white font-graduate font-bold uppercase tracking-[0.3em] text-sm group"
                     >
                         <MessageCircle className="h-5 w-5 mr-4 group-hover:rotate-12 transition-transform" />
                         Explore Our Expertise

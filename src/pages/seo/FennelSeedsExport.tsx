@@ -12,7 +12,7 @@ const FennelSeedsExport = () => {
       <Helmet>
         <title>Fennel Seeds Exporter from India | Buy Bulk Fennel Seeds | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Fennel Seeds from India. Best quality Fennel Seeds at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/fennel-seeds-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/fennel-seeds-export" />
         <meta property="og:title" content="Fennel Seeds Exporter from India | Buy Bulk Fennel Seeds | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Fennel Seeds from India. Best quality Fennel Seeds at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1588612143735-a774617dfb8f?auto=format&fit=crop&q=80" />

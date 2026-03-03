@@ -12,7 +12,7 @@ const ChickpeaExport = () => {
       <Helmet>
         <title>Chickpea Exporter from India | Buy Bulk Chickpea | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Chickpea from India. Best quality Chickpea at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/chickpea-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/chickpea-export" />
         <meta property="og:title" content="Chickpea Exporter from India | Buy Bulk Chickpea | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Chickpea from India. Best quality Chickpea at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" />

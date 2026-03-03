@@ -12,7 +12,7 @@ const MasoorDalExport = () => {
       <Helmet>
         <title>Masoor Dal Exporter from India | Buy Bulk Masoor Dal | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Masoor Dal from India. Best quality Masoor Dal at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/masoor-dal-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/masoor-dal-export" />
         <meta property="og:title" content="Masoor Dal Exporter from India | Buy Bulk Masoor Dal | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Masoor Dal from India. Best quality Masoor Dal at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />

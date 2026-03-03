@@ -12,7 +12,7 @@ const CelerySeeds = () => {
         <title>Celery Seeds Export | Ajmod Seeds Export from India | Patel Impex</title>
         <meta name="description" content="Premium Celery Seeds (Ajmod) export from India. High-quality celery seeds export with international certifications and global shipping." />
         <meta name="keywords" content="celery seeds export, ajmod seeds export, celery export, India spice export, celery seed supplier, ajmod exporter" />
-        <link rel="canonical" href="https://patelimpex.com/seo/celery-seeds" />
+        <link rel="canonical" href="https://patelimpex.com/more/celery-seeds" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-lime-50">

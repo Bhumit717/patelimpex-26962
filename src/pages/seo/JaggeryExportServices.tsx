@@ -12,7 +12,7 @@ const JaggeryExportServices = () => {
       <Helmet>
         <title>Jaggery Exporter from India | Buy Bulk Jaggery | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Jaggery from India. Best quality Jaggery at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/jaggery-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/jaggery-export" />
         <meta property="og:title" content="Jaggery Exporter from India | Buy Bulk Jaggery | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Jaggery from India. Best quality Jaggery at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1532336414008-82923c530dad?auto=format&fit=crop&q=80" />

@@ -12,7 +12,7 @@ const ChanaDalExport = () => {
       <Helmet>
         <title>Chana Dal Exporter from India | Buy Bulk Chana Dal | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Chana Dal from India. Best quality Chana Dal at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/chana-dal-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/chana-dal-export" />
         <meta property="og:title" content="Chana Dal Exporter from India | Buy Bulk Chana Dal | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Chana Dal from India. Best quality Chana Dal at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" />

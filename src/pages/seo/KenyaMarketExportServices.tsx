@@ -12,7 +12,7 @@ const KenyaMarketExportServices = () => {
       <Helmet>
         <title>Kenya Market Exporter from India | Buy Bulk Kenya Market | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Kenya Market from India. Best quality Kenya Market at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/kenya-market-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/kenya-market-export" />
         <meta property="og:title" content="Kenya Market Exporter from India | Buy Bulk Kenya Market | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Kenya Market from India. Best quality Kenya Market at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" />

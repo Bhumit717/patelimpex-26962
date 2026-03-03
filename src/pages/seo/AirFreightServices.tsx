@@ -12,7 +12,7 @@ const AirFreightServices = () => {
         <title>Air Freight Services | International Air Cargo | Patel Impex</title>
         <meta name="description" content="Fast air freight services for international cargo shipping. Express air cargo solutions with door-to-door delivery, customs clearance, and real-time tracking worldwide." />
         <meta name="keywords" content="air freight services, air cargo shipping, international air freight, express shipping, air logistics, cargo airlines, freight forwarding" />
-        <link rel="canonical" href="https://patelimpex.com/seo/air-freight-services" />
+        <link rel="canonical" href="https://patelimpex.com/more/air-freight-services" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

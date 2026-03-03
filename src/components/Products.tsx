@@ -37,7 +37,7 @@ const Products = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 px-2 gap-8">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100 mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-white border border-slate-100 mb-6">
               <Globe className="h-4 w-4 text-green-600 mr-2" />
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] font-graduate">Global Inventory</span>
             </div>
@@ -58,7 +58,7 @@ const Products = () => {
               className={`hover:-translate-y-3 transition-all duration-500 group animate-slide-up opacity-0`}
               style={{ animationDelay: `${(index + 1) * 200}ms`, animationFillMode: 'forwards' }}
             >
-              <div className="relative h-64 overflow-hidden rounded-[35px] mb-6">
+              <div className="relative h-64 overflow-hidden mb-6">
                 <img
                   src={category.image}
                   alt={category.title}
@@ -66,7 +66,7 @@ const Products = () => {
                 />
                 {/* Removed dark gradient overlay */}
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center">
-                  <span className="bg-white/80 backdrop-blur-md p-3 rounded-2xl shadow-sm">
+                  <span className="bg-white/80 backdrop-blur-md p-3">
                     <category.icon className="h-6 w-6 text-green-600" />
                   </span>
                 </div>

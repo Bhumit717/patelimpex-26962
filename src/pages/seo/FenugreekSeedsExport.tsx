@@ -12,7 +12,7 @@ const FenugreekSeedsExport = () => {
       <Helmet>
         <title>Fenugreek Seeds Exporter from India | Buy Bulk Fenugreek Seeds | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Fenugreek Seeds from India. Best quality Fenugreek Seeds at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/fenugreek-seeds-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/fenugreek-seeds-export" />
         <meta property="og:title" content="Fenugreek Seeds Exporter from India | Buy Bulk Fenugreek Seeds | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Fenugreek Seeds from India. Best quality Fenugreek Seeds at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" />

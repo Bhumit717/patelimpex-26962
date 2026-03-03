@@ -12,7 +12,7 @@ const DillSeedsExport = () => {
       <Helmet>
         <title>Dill Seeds Exporter from India | Buy Bulk Dill Seeds | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Dill Seeds from India. Best quality Dill Seeds at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/dill-seeds-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/dill-seeds-export" />
         <meta property="og:title" content="Dill Seeds Exporter from India | Buy Bulk Dill Seeds | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Dill Seeds from India. Best quality Dill Seeds at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1532336414008-82923c530dad?auto=format&fit=crop&q=80" />

@@ -12,7 +12,7 @@ const PistachioExport = () => {
       <Helmet>
         <title>Pistachio Exporter from India | Buy Bulk Pistachio | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Pistachio from India. Best quality Pistachio at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/pistachio-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/pistachio-export" />
         <meta property="og:title" content="Pistachio Exporter from India | Buy Bulk Pistachio | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Pistachio from India. Best quality Pistachio at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1532336414008-82923c530dad?auto=format&fit=crop&q=80" />

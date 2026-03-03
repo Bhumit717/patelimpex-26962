@@ -12,7 +12,7 @@ const PharmaceuticalExport = () => {
       <Helmet>
         <title>Pharmaceutical Exporter from India | Buy Bulk Pharmaceutical | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Pharmaceutical from India. Best quality Pharmaceutical at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/pharmaceutical-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/pharmaceutical-export" />
         <meta property="og:title" content="Pharmaceutical Exporter from India | Buy Bulk Pharmaceutical | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Pharmaceutical from India. Best quality Pharmaceutical at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" />

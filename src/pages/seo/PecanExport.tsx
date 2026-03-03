@@ -12,7 +12,7 @@ const PecanExport = () => {
       <Helmet>
         <title>Pecan Exporter from India | Buy Bulk Pecan | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Pecan from India. Best quality Pecan at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/pecan-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/pecan-export" />
         <meta property="og:title" content="Pecan Exporter from India | Buy Bulk Pecan | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Pecan from India. Best quality Pecan at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" />

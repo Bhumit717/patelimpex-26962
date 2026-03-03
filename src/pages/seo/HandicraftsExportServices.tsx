@@ -12,7 +12,7 @@ const HandicraftsExportServices = () => {
       <Helmet>
         <title>Handicrafts Exporter from India | Buy Bulk Handicrafts | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Handicrafts from India. Best quality Handicrafts at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/handicrafts-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/handicrafts-export" />
         <meta property="og:title" content="Handicrafts Exporter from India | Buy Bulk Handicrafts | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Handicrafts from India. Best quality Handicrafts at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" />

@@ -12,7 +12,7 @@ const StarAniseExport = () => {
       <Helmet>
         <title>Star Anise Exporter from India | Buy Bulk Star Anise | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Star Anise from India. Best quality Star Anise at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/star-anise-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/star-anise-export" />
         <meta property="og:title" content="Star Anise Exporter from India | Buy Bulk Star Anise | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Star Anise from India. Best quality Star Anise at competitive prices for global markets." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1588612143735-a774617dfb8f?auto=format&fit=crop&q=80" />

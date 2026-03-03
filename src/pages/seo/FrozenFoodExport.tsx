@@ -12,7 +12,7 @@ const FrozenFoodExport = () => {
       <Helmet>
         <title>Frozen Food Exporter from India | Buy Bulk Frozen Food | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Frozen Food from India. Best quality Frozen Food at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/frozen-food-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/frozen-food-export" />
         <meta property="og:title" content="Frozen Food Exporter from India | Buy Bulk Frozen Food | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Frozen Food from India. Best quality Frozen Food at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1588612143735-a774617dfb8f?auto=format&fit=crop&q=80" />

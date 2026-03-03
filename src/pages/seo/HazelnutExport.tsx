@@ -12,7 +12,7 @@ const HazelnutExport = () => {
       <Helmet>
         <title>Hazelnut Exporter from India | Buy Bulk Hazelnut | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Hazelnut from India. Best quality Hazelnut at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/hazelnut-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/hazelnut-export" />
         <meta property="og:title" content="Hazelnut Exporter from India | Buy Bulk Hazelnut | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Hazelnut from India. Best quality Hazelnut at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />

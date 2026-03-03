@@ -20,7 +20,7 @@ const Hero = () => {
           {/* Left Side - Content */}
           <div className="space-y-4 lg:space-y-8 text-slate-700 text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center animate-fade-in">
             <div className="flex justify-center lg:justify-start">
-              <div className="px-6 py-2 rounded-full border border-slate-200 text-green-600 font-graduate text-xs uppercase tracking-[0.2em] font-bold">
+              <div className="px-6 py-2 border border-slate-200 text-green-600 font-graduate text-xs uppercase tracking-[0.2em] font-bold">
                 About Us
               </div>
             </div>

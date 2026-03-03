@@ -12,7 +12,7 @@ const RajmaExport = () => {
       <Helmet>
         <title>Rajma Exporter from India | Buy Bulk Rajma | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Rajma from India. Best quality Rajma at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/rajma-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/rajma-export" />
         <meta property="og:title" content="Rajma Exporter from India | Buy Bulk Rajma | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Rajma from India. Best quality Rajma at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />

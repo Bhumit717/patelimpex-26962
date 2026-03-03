@@ -12,7 +12,7 @@ const ChinaMarketExport = () => {
       <Helmet>
         <title>China Import Export Services | Trade with China | Patel Impex</title>
         <meta name="description" content="Comprehensive import export services for China. Patel Impex facilitates trade between India and China with expert logistics and customs support." />
-        <link rel="canonical" href="https://patelimpex.com/seo/china-market-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/china-market-export" />
         <meta property="og:title" content="China Import Export Services | Trade with China | Patel Impex" />
         <meta property="og:description" content="Comprehensive import export services for China. Patel Impex facilitates trade between India and China with expert logistics and customs support." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80" />

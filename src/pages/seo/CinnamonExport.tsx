@@ -12,7 +12,7 @@ const CinnamonExport = () => {
       <Helmet>
         <title>Cinnamon Exporter from India | Buy Bulk Cinnamon | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Cinnamon from India. Best quality Cinnamon at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/cinnamon-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/cinnamon-export" />
         <meta property="og:title" content="Cinnamon Exporter from India | Buy Bulk Cinnamon | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Cinnamon from India. Best quality Cinnamon at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />

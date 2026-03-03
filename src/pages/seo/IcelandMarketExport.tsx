@@ -12,7 +12,7 @@ const IcelandMarketExport = () => {
       <Helmet>
         <title>Iceland Import Export Services | Trade with Iceland | Patel Impex</title>
         <meta name="description" content="Comprehensive import export services for Iceland. Patel Impex facilitates trade between India and Iceland with expert logistics and customs support." />
-        <link rel="canonical" href="https://patelimpex.com/seo/iceland-market-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/iceland-market-export" />
         <meta property="og:title" content="Iceland Import Export Services | Trade with Iceland | Patel Impex" />
         <meta property="og:description" content="Comprehensive import export services for Iceland. Patel Impex facilitates trade between India and Iceland with expert logistics and customs support." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1532336414008-82923c530dad?auto=format&fit=crop&q=80" />

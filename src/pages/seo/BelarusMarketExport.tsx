@@ -12,7 +12,7 @@ const BelarusMarketExport = () => {
       <Helmet>
         <title>Belarus Import Export Services | Trade with Belarus | Patel Impex</title>
         <meta name="description" content="Comprehensive import export services for Belarus. Patel Impex facilitates trade between India and Belarus with expert logistics and customs support." />
-        <link rel="canonical" href="https://patelimpex.com/seo/belarus-market-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/belarus-market-export" />
         <meta property="og:title" content="Belarus Import Export Services | Trade with Belarus | Patel Impex" />
         <meta property="og:description" content="Comprehensive import export services for Belarus. Patel Impex facilitates trade between India and Belarus with expert logistics and customs support." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1606923829579-0cb9d46a8013?auto=format&fit=crop&q=80" />

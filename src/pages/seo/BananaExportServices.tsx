@@ -12,7 +12,7 @@ const BananaExportServices = () => {
       <Helmet>
         <title>Banana Exporter from India | Buy Bulk Banana | Patel Impex</title>
         <meta name="description" content="Patel Impex is a leading supplier and exporter of Banana from India. Best quality Banana at competitive prices for global markets." />
-        <link rel="canonical" href="https://patelimpex.com/seo/banana-export" />
+        <link rel="canonical" href="https://patelimpex.com/more/banana-export" />
         <meta property="og:title" content="Banana Exporter from India | Buy Bulk Banana | Patel Impex" />
         <meta property="og:description" content="Patel Impex is a leading supplier and exporter of Banana from India. Best quality Banana at competitive prices for global markets." />
          <meta property="og:image" content="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?auto=format&fit=crop&q=80" />

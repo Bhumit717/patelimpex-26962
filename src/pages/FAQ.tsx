@@ -455,7 +455,7 @@ const FAQ = () => {
                 {internalPages.seo.slice(0, 8).map((page, index) => (
                   <Link
                     key={index}
-                    to={`/seo/${page.slug}`}
+                    to={`/more/${page.slug}`}
                     className="text-teal-600 hover:text-teal-800 hover:underline transition-colors p-1"
                   >
                     {page.name}

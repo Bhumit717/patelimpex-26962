@@ -20,7 +20,7 @@ const TranslationBanner = () => {
       <div id="google_translate_element" className="hidden" />
 
       {/* Translation Banner */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-slate-900 text-white shadow-lg font-graduate">
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-slate-900 text-white font-graduate">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -42,11 +42,11 @@ const TranslationBanner = () => {
               <Button
                 onClick={enableTranslation}
                 disabled={isTranslating}
-                className="bg-green-600 text-white hover:bg-green-700 font-bold px-4 py-2 rounded-lg transition-all duration-300 border-none text-xs uppercase tracking-widest"
+                className="bg-green-600 text-white hover:bg-green-700 font-bold px-4 py-2 transition-all duration-300 border-none text-xs uppercase tracking-widest"
               >
                 {isTranslating ? (
                   <>
-                    <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                    <div className="w-3 h-3 border-2 border-white border-t-transparent animate-spin mr-2" />
                     ...
                   </>
                 ) : (
@@ -59,7 +59,7 @@ const TranslationBanner = () => {
 
               <button
                 onClick={dismissTranslation}
-                className="text-white hover:text-slate-400 p-1 rounded-full hover:bg-white/10 transition-all duration-300"
+                className="text-white hover:text-slate-400 p-1 hover:bg-white/10 transition-all duration-300"
                 aria-label="Dismiss translation offer"
               >
                 <X className="h-5 w-5" />

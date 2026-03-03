@@ -92,26 +92,26 @@ async function generateKeywords() {
 
         let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-            sitemapContent += `  <url>\n  
+        sitemapContent += `  <url>\n  
         for (const kw of chunk) {
             const slug = slugify(kw);  <loc>${SITE_URL}/more/${slug}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
-        }
-
-        sitemapContent += `</urlset>`;
-
-        const filename = `sitemap-mass-${sitemapCount}.xml`;
-        fs.writeFileSync(path.join(sitemapsDir, filename), sitemapContent);
-
-        sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/${filename}</loc>\n  </sitemap>\n`;
     }
 
-    sitemapIndexContent += `</sitemapindex>`;
-    fs.writeFileSync(path.join(sitemapsDir, 'sitemap_index.xml'), sitemapIndexContent);
+    sitemapContent += `</urlset>`;
 
-    // Save minimal dict for lookup if needed, but the component will now run on the slug naturally.
-    fs.writeFileSync(path.join(__dirname, 'src', 'data', 'seoKeywords.json'), JSON.stringify(keywordArray, null, 2));
+    const filename = `sitemap-mass-${sitemapCount}.xml`;
+    fs.writeFileSync(path.join(sitemapsDir, filename), sitemapContent);
 
-    console.log(`Successfully mapped ${keywordArray.length} keywords into ${sitemapCount} XML node graphs.`);
+    sitemapIndexContent += `  <sitemap>\n    <loc>${SITE_URL}/${filename}</loc>\n  </sitemap>\n`;
+}
+
+sitemapIndexContent += `</sitemapindex>`;
+fs.writeFileSync(path.join(sitemapsDir, 'sitemap_index.xml'), sitemapIndexContent);
+
+// Save minimal dict for lookup if needed, but the component will now run on the slug naturally.
+fs.writeFileSync(path.join(__dirname, 'src', 'data', 'seoKeywords.json'), JSON.stringify(keywordArray, null, 2));
+
+console.log(`Successfully mapped ${keywordArray.length} keywords into ${sitemapCount} XML node graphs.`);
 }
 
 generateKeywords();
