@@ -92,9 +92,9 @@ async function generateKeywords() {
 
         let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
+            sitemapContent += `  <url>\n  
         for (const kw of chunk) {
-            const slug = slugify(kw);
-            sitemapContent += `  <url>\n    <loc>${SITE_URL}/more/${slug}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
+            const slug = slugify(kw);  <loc>${SITE_URL}/more/${slug}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
         }
 
         sitemapContent += `</urlset>`;
