@@ -68,10 +68,16 @@ const Blog = () => {
   }, [posts]);
 
   const filteredPosts = posts.filter(post => {
+    const matchesCategory = selectedCategory === "All Posts" || post.category === selectedCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (post.content || '').toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesSearch;
+    return matchesCategory && matchesSearch;
   });
+
+  // Reset to page 1 when search or category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedCategory]);
 
   const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
 
@@ -122,17 +128,33 @@ const Blog = () => {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-6 mb-12 justify-center items-center">
+          <div className="flex flex-col md:flex-row gap-6 mb-8 justify-center items-center">
             <div className="relative w-full max-w-xl">
               <input
                 type="text"
                 placeholder="Search trade insights..."
                 value={searchTerm}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                className="nm-input !rounded-full pl-16 pr-6 py-5 w-full !text-lg"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="nm-input !rounded-full !pl-16 pr-6 py-5 w-full !text-lg"
               />
               <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-slate-400" />
             </div>
+          </div>
+
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {keywords.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${selectedCategory === cat
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-white text-slate-600 hover:bg-slate-50 shadow-md border border-slate-100'
+                  }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
 

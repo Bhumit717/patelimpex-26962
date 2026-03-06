@@ -56,8 +56,13 @@ const News = () => {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All News");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Reset to page 1 when search or category changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedCategory]);
 
   const ITEMS_PER_PAGE = 9;
 
@@ -151,7 +156,7 @@ const News = () => {
                     placeholder="Search trade alerts..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="nm-input !rounded-full pl-16 pr-6 py-5 w-full !text-lg font-graduate"
+                    className="nm-input !rounded-full !pl-16 pr-6 py-5 w-full !text-lg font-graduate"
                   />
                   <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-slate-400" />
                 </div>
