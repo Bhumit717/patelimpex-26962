@@ -13,8 +13,14 @@ const Footer = () => {
     setIsSubmitting(true);
     try {
       const messageText = `Newsletter Subscription: ${email}`;
-      const apiUrl = `https://api.callmebot.com/text.php?source=web&user=@bhumitnasit&text=${encodeURIComponent(messageText)}`;
-      await fetch(apiUrl, { method: 'GET', mode: 'no-cors' });
+      const apiUrl1 = `https://api.callmebot.com/text.php?source=web&user=@bhumitnasit&text=${encodeURIComponent(messageText)}`;
+      const apiUrl2 = `https://api.callmebot.com/text.php?source=web&user=@PATEL111206&text=${encodeURIComponent(messageText)}`;
+      
+      await Promise.all([
+        fetch(apiUrl1, { method: 'GET', mode: 'no-cors' }),
+        fetch(apiUrl2, { method: 'GET', mode: 'no-cors' })
+      ]);
+
       setEmail('');
       alert('Newsletter subscription successful!');
     } catch (error) {

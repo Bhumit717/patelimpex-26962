@@ -44,13 +44,21 @@ export const sendLocationToAPI = async (country: string): Promise<void> => {
     const timeoutId = setTimeout(() => controller.abort(), 1500); // Reduced timeout
     
     const message = encodeURIComponent(`Visitor from: ${country} - ${new Date().toISOString()}`);
-    const apiUrl = `https://api.callmebot.com/text.php?source=web&user=@bhumitnasit&text=${message}`;
+    const apiUrl1 = `https://api.callmebot.com/text.php?source=web&user=@bhumitnasit&text=${message}`;
+    const apiUrl2 = `https://api.callmebot.com/text.php?source=web&user=@PATEL111206&text=${message}`;
     
-    await fetch(apiUrl, {
-      method: 'GET',
-      mode: 'no-cors',
-      signal: controller.signal
-    });
+    await Promise.all([
+      fetch(apiUrl1, {
+        method: 'GET',
+        mode: 'no-cors',
+        signal: controller.signal
+      }),
+      fetch(apiUrl2, {
+        method: 'GET',
+        mode: 'no-cors',
+        signal: controller.signal
+      })
+    ]);
     
     clearTimeout(timeoutId);
     console.log(`Location sent to API: ${country}`);
