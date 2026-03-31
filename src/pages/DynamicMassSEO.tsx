@@ -145,19 +145,44 @@ const getSmartContent = (contentGetter: (kw: string, s: number) => string, keywo
     const occurrences = (processed.match(new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')) || []).length;
 
     if (occurrences > 1) {
-        // Replace the first occurrence with the full keyword (for SEO)
-        // Then replace subsequent ones with shorter variations
         let count = 0;
         processed = processed.replace(new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), (match) => {
             count++;
             if (count === 1) return match;
             if (count % 2 === 0) return shortKw;
-            const alternatives = ["this high-grade commodity", "the specified batch", "our origin-direct supply", "this industrial grade"];
+            const alternatives = ["this premium commodity", "the specified batch", "our origin-direct supply", "this industrial grade", "the verified export stock"];
             return alternatives[seed % alternatives.length];
         });
     }
 
+    // Synonym Swapping for industry terms
+    const synonyms: Record<string, string[]> = {
+        'premium': ['high-grade', 'top-tier', 'superior', 'elite', 'prime'],
+        'sourcing': ['procurement', 'acquisition', 'supply chain management', 'logistics orchestration'],
+        'global': ['international', 'cross-border', 'worldwide', 'intercontinental'],
+        'reliable': ['consistent', 'dependable', 'verified', 'guaranteed'],
+        'quality': ['purity', 'grade compliance', 'standardization', 'excellence']
+    };
+
+    Object.keys(synonyms).forEach(key => {
+        const regex = new RegExp(`\\b${key}\\b`, 'gi');
+        processed = processed.replace(regex, (match) => {
+            const list = synonyms[key];
+            return (seed % 3 === 0) ? list[seed % list.length] : match;
+        });
+    });
+
     return processed;
+};
+
+// Helper to shuffle sentences to prevent duplicate content patterns
+const shuffleSentences = (sentences: string[], seed: number) => {
+    const result = [...sentences];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = (seed + i) % (i + 1);
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result.join(' ');
 };
 
 
@@ -171,120 +196,90 @@ const TradeIntelligence = {
         return intros[seed % intros.length];
     },
     getTechnicalDeepDive: (keyword: string, seed: number) => {
-        return `
-            The technical profile of ${keyword} is foundational to its industrial utility and market valuation. Our processing sequence for ${keyword} begins with a multi-stage cleaning protocol that utilizes high-frequency electronic sorting and magnetic separation to remove every trace of foreign matter, ensuring a purity level that exceeds ${(seed % 2) + 98.5}%. 
-            For ${keyword}, moisture control is paramount during the pre-shipment phase. We utilize advanced hydration analytics to maintain a moisture coefficient of less than ${(seed % 3) + 7}%, preventing any risk of fermentation or structural degradation during cross-continental transit. 
-            Furthermore, the physicochemical analysis of ${keyword} is conducted in ISO/IEC 17025 accredited laboratories. This includes testing for technical markers such as grain length, mesh size, oil content, or sucrose concentration, depending on the specific grade of ${keyword} required. We provide full certificate of analysis (COA) dossiers for every batch, allowing for seamless integration into your manufacturing or distribution workflows. 
-            Our Quality Assurance team also monitors the 'Cargo Stress' variables, ensuring that the packaging used for ${keyword}—whether it be 25kg PP bags, jumbo tote bags, or consumer-ready vacuum packs—is optimized for both durability and aeration during the humid maritime journey.
-        `;
+        const sentences = [
+            `The technical profile of ${keyword} is foundational to its industrial utility and market valuation.`,
+            `Our processing sequence for ${keyword} begins with a multi-stage cleaning protocol that utilizes high-frequency electronic sorting and magnetic separation to remove every trace of foreign matter, ensuring a purity level that exceeds ${(seed % 2) + 98.5}%.`,
+            `For ${keyword}, moisture control is paramount during the pre-shipment phase.`,
+            `We utilize advanced hydration analytics to maintain a moisture coefficient of less than ${(seed % 3) + 7}%, preventing any risk of fermentation or structural degradation during cross-continental transit.`,
+            `The physicochemical analysis of ${keyword} is conducted in ISO/IEC 17025 accredited laboratories.`,
+            `This includes testing for technical markers such as grain length, mesh size, oil content, or sucrose concentration, depending on the specific grade of ${keyword} required.`,
+            `We provide full certificate of analysis (COA) dossiers for every batch, allowing for seamless integration into your manufacturing or distribution workflows.`,
+            `Our Quality Assurance team also monitors the 'Cargo Stress' variables, ensuring that the packaging used for ${keyword}—whether it be 25kg PP bags, jumbo tote bags, or consumer-ready vacuum packs—is optimized for both durability and aeration during the humid maritime journey.`
+        ];
+        return shuffleSentences(sentences, seed);
     },
     getLogisticsThesis: (keyword: string, seed: number) => {
-        return `
-            Strategic logistics for ${keyword} are anchored by our proximity to the Mundra Port (INMUN) and Kandla Port, India's premier gateways for containerized and bulk cargo. This geographical advantage allows Patel Impex to maintain a 'Gate-to-Vessel' latency that is 40% lower than the industry average for ${keyword}. 
-            Our logistics desk coordinates a dedicated fleet for the inland transit of ${keyword}, ensuring that cargo is staged in our humidity-controlled warehouses near the port to await vessel berthing. This 'Just-In-Time' staging prevents exposure to monsoon variables and ensures the freshness of the ${keyword}. We offer full multi-modal solutions, including bulk vessel chartering for large-volume ${keyword} contracts and LCL options for boutique distributors.
-        `;
+        const sentences = [
+            `Strategic logistics for ${keyword} are anchored by our proximity to the Mundra Port (INMUN) and Kandla Port, India's premier gateways for containerized and bulk cargo.`,
+            `This geographical advantage allows Patel Impex to maintain a 'Gate-to-Vessel' latency that is 40% lower than the industry average for ${keyword}.`,
+            `Our logistics desk coordinates a dedicated fleet for the inland transit of ${keyword}, ensuring that cargo is staged in our humidity-controlled warehouses near the port to await vessel berthing.`,
+            `This 'Just-In-Time' staging prevents exposure to monsoon variables and ensures the freshness of the ${keyword}.`,
+            `We offer full multi-modal solutions, including bulk vessel chartering for large-volume ${keyword} contracts and LCL options for boutique distributors.`
+        ];
+        return shuffleSentences(sentences, seed);
     },
     getMarketOutlook: (keyword: string, seed: number) => {
-        return `
-            The global demand trajectory for ${keyword} is projected to sustain a CAGR of ${(seed % 4) + 4.5}% over the next five-year cycle, driven by industrial expansion and changing consumer patterns in the EU, GCC, and Southeast Asian regions. Patel Impex utilizes seasonal price hedging and historical crop data for ${keyword} to provide our clients with a competitive pricing buffer. 
-            We monitor the 'Global Yield Index' and political trade barriers in real-time to advise our partners on the optimal 'Procurement Windows' for ${keyword}. This data-driven approach allows our clients to secure volume during market contractions and lock in pricing before the peak-demand surges typical of the ${keyword} trade. 
-        `;
+        const sentences = [
+            `The global demand trajectory for ${keyword} is projected to sustain a CAGR of ${(seed % 4) + 4.5}% over the next five-year cycle, driven by industrial expansion and changing consumer patterns in the EU, GCC, and Southeast Asian regions.`,
+            `Patel Impex utilizes seasonal price hedging and historical crop data for ${keyword} to provide our clients with a competitive pricing buffer.`,
+            `We monitor the 'Global Yield Index' and political trade barriers in real-time to advise our partners on the optimal 'Procurement Windows' for ${keyword}.`,
+            `This data-driven approach allows our clients to secure volume during market contractions and lock in pricing before the peak-demand surges typical of the ${keyword} trade.`
+        ];
+        return shuffleSentences(sentences, seed);
     },
     getRegionalDynamics: (keyword: string, seed: number) => {
-        return `
-            The state of Gujarat, and specifically the Saurashtra region around Rajkot, provides a topological advantage for ${keyword} that is unmatched elsewhere. The mineral-rich soil and controlled irrigation systems result in a grade of ${keyword} that consistently out-performs other origins in technical stress tests. 
-            Patel Impex maintains deep-tier relationships within the primary ${keyword} production clusters, allowing us to source and segregate the highest-grade material before it reaches the standard commodity markets. This 'Origin-Direct' model ensures that your supply of ${keyword} is free from the quality dilution common in multi-origin blending operations.
-        `;
+        const sentences = [
+            `The state of Gujarat, and specifically the Saurashtra region around Rajkot, provides a topological advantage for ${keyword} that is unmatched elsewhere.`,
+            `The mineral-rich soil and controlled irrigation systems result in a grade of ${keyword} that consistently out-performs other origins in technical stress tests.`,
+            `Patel Impex maintains deep-tier relationships within the primary ${keyword} production clusters, allowing us to source and segregate the highest-grade material before it reaches the standard commodity markets.`,
+            `This 'Origin-Direct' model ensures that your supply of ${keyword} is free from the quality dilution common in multi-origin blending operations.`
+        ];
+        return shuffleSentences(sentences, seed);
     },
     getRegionalHarvestIntel: (keyword: string, seed: number) => {
-        return `
-            The harvest analysis for the current season of ${keyword} indicate a robust yield with exceptional technical consistency across the Saurashtra belt. By maintaining field-level intelligence, Patel Impex is able to predict batch quality variances in ${keyword} weeks before the actual factory arrival. 
-            Our seasonal reports for ${keyword} capture critical data on kernel density, color consistency, and size distribution, providing our clients with the clarity needed for long-term inventory budgeting.
-        `;
+        return `The harvest analysis for the current season of ${keyword} indicate a robust yield with exceptional technical consistency across the Saurashtra belt. By maintaining field-level intelligence, Patel Impex is able to predict batch quality variances in ${keyword} weeks before the actual factory arrival. Our seasonal reports for ${keyword} capture critical data on kernel density, color consistency, and size distribution, providing our clients with the clarity needed for long-term inventory budgeting.`;
     },
     getRegulatoryFramework: (keyword: string, seed: number) => {
-        return `
-            Navigating the regulatory landscape for the export of ${keyword} involves a complex mesh of APEDA (Agricultural and Processed Food Products Export Development Authority) filings, FSSAI certificates, and GSP (Generalized System of Preferences) documentation. Our dedicated compliance officers manage the entire digital lifecycle of these licenses for ${keyword}. 
-            We ensure that every container of ${keyword} is accompanied by a full dossier of phytosanitary certificates, certificates of origin, and SGS/Intertek inspection reports as required by your destination port's customs authority.
-        `;
+        return `Navigating the regulatory landscape for the export of ${keyword} involves a complex mesh of APEDA filings, FSSAI certificates, and GSP documentation. Our dedicated compliance officers manage the entire digital lifecycle of these licenses for ${keyword}. We ensure that every container of ${keyword} is accompanied by a full dossier of phytosanitary certificates, certificates of origin, and SGS/Intertek inspection reports as required by your destination port's customs authority.`;
     },
     getGlobalSupplyThesis: (keyword: string, seed: number) => {
-        return `
-            The global supply thesis for ${keyword} is built upon the convergence of traditional Indian agricultural depth and modern 4.0 industrial logistics. As we move towards a more fragmented global trade environment, the importance of a reliable, high-volume origin node like the Rajkot cluster cannot be overstated. 
-            Patel Impex acts as a 'Primary Stabilizer' in the ${keyword} market, providing consistent supply even during periods of extreme volatility. Our multi-year contracts for ${keyword} are designed to protect your manufacturing throughput against the disruptions typical of the modern geopolitical landscape.
-        `;
+        return `The global supply thesis for ${keyword} is built upon the convergence of traditional Indian agricultural depth and modern 4.0 industrial logistics. As we move towards a more fragmented global trade environment, the importance of a reliable, high-volume origin node like the Rajkot cluster cannot be overstated. Patel Impex acts as a 'Primary Stabilizer' in the ${keyword} market, providing consistent supply even during periods of extreme volatility.`;
     },
     getFinancialThesis: (keyword: string, seed: number) => {
-        return `
-            Strategic capital deployment for ${keyword} procurement is facilitated through our Tier-1 banking partnerships with HDFC and ICICI. We offer flexible financial instruments including Irrevocable Letters of Credit (LC) at Sight, Bank Guarantees (BG), and structured standby arrangements for long-term contract fulfillment. 
-            Our financial desk provides 'Currency Volatility Protection' for ${keyword} contracts, effectively insulating their margins from the fluctuations of the Indian Rupee. This fiscal transparency is essential for ${keyword} traders who operating in high-volume, low-margin arbitrage environments. We also facilitate trade credit insurance through ECGC, ensuring that every dollar of your investment in ${keyword} is backed by sovereign-grade risk mitigation.
-        `;
+        return `Strategic capital deployment for ${keyword} procurement is facilitated through our Tier-1 banking partnerships with HDFC and ICICI. We offer flexible financial instruments including Irrevocable Letters of Credit (LC) at Sight, Bank Guarantees (BG), and structured standby arrangements for long-term contract fulfillment. Our financial desk provides 'Currency Volatility Protection' for ${keyword} contracts, effectively insulating their margins from the fluctuations of the Indian Rupee.`;
     },
     getEthicalSourcingProof: (keyword: string, seed: number) => {
-        return `
-            The ethical procurement of ${keyword} is not just a CSR initiative; it is a core operational requirement. Patel Impex enforces a strict Code of Conduct across our entire production network. This ensures that every MT of ${keyword} is sourced from facilities that adhere to ILO (International Labour Organization) standards, with zero-tolerance for child labor or forced labor. 
-            We are actively transitioning our ${keyword} processing nodes towards a 'Carbon-Neutral' footprint. By implementing biomass energy generation and water-recycling systems in our Gujarati facilities, we ensure that your supply chain for ${keyword} contributes to global sustainability targets (SDGs).
-        `;
+        return `The ethical procurement of ${keyword} is not just a CSR initiative; it is a core operational requirement. Patel Impex enforces a strict Code of Conduct across our entire production network. This ensures that every MT of ${keyword} is sourced from facilities that adhere to ILO standards, with zero-tolerance for child labor or forced labor. We are actively transitioning our ${keyword} processing nodes towards a 'Carbon-Neutral' footprint.`;
     },
     getProcessingStandards: (keyword: string, seed: number) => {
-        return `
-            Our industrial processing architecture for ${keyword} is designed around the 'Total Quality Management' (TQM) philosophy. The facility utilizes state-of-the-art Japanese sortex machinery and Swiss-engineered moisture extraction units. 
-            For ${keyword}, the processing environment is maintained under positive pressure with HEPA-grade dust extraction to prevent cross-contamination. Every batch of ${keyword} undergoes a double-pass through multi-spectrum cameras that identify and remove discolored or broken units with 99.99% accuracy. This technical precision is why our ${keyword} grade is consistently selected for high-end retail and pharmaceutical applications.
-        `;
+        return `Our industrial processing architecture for ${keyword} is designed around the 'Total Quality Management' (TQM) philosophy. The facility utilizes state-of-the-art Japanese sortex machinery and Swiss-engineered moisture extraction units. For ${keyword}, the processing environment is maintained under positive pressure with HEPA-grade dust extraction to prevent cross-contamination. Every batch of ${keyword} undergoes a double-pass through multi-spectrum cameras.`;
     },
     getWholesaleArchitecture: (keyword: string, seed: number) => {
-        return `
-            The wholesale architecture for ${keyword} is optimized for maximum scalability. We manage specialized inventory buffers in Rajkot that allow us to fulfill urgent spot-market orders for ${keyword} within 48-72 hours. 
-            For our 'Contractual Partners', we offer a multi-year 'Volume Guarantee' for ${keyword}, ensuring that even during regional harvest failures, your facilities receive priority allocation. Our tiered pricing models are transparent and based on 'Net-Yield' metrics, meaning you only pay for the high-performing grade of ${keyword} you actually receive.
-        `;
+        return `The wholesale architecture for ${keyword} is optimized for maximum scalability. We manage specialized inventory buffers in Rajkot that allow us to fulfill urgent spot-market orders for ${keyword} within 48-72 hours. For our 'Contractual Partners', we offer a multi-year 'Volume Guarantee' for ${keyword}, ensuring that even during regional harvest failures, your facilities receive priority allocation.`;
     },
     getFutureMarketAnalysis: (keyword: string, seed: number) => {
-        return `
-            Looking towards the 2030 horizon, the market for ${keyword} is expected to undergo a radical shift towards 'Precision Traceability'. Patel Impex is already piloting blockchain-enabled tracking for ${keyword}, allowing end-consumers to scan a QR code on a bag to see the GPS coordinates of the specific Gujarati field where their ${keyword} was grown.
-            As global dietary preferences shift and industrial use-cases for ${keyword} derivatives expand, we are investing in advanced R&D to develop ultra-purified variants of ${keyword}. Our predictive analytics engine indicates that ${keyword} will remain a cornerstone of the emerging 'Green Economy' in South Asia.
-        `;
+        return `Looking towards the 2030 horizon, the market for ${keyword} is expected to undergo a radical shift towards 'Precision Traceability'. Patel Impex is already piloting blockchain-enabled tracking for ${keyword}, allowing end-consumers to scan a QR code on a bag to see the GPS coordinates of the specific Gujarati field where their ${keyword} was grown. As global dietary preferences shift, we are investing in advanced R&D for ${keyword} derivatives.`;
     },
     getBatchProcessingIntelligence: (keyword: string, seed: number) => {
-        return `
-            Our batch-level processing for ${keyword} utilizes an automated lifecycle management system. Each grain or unit of ${keyword} is subjected to a triple-spectrum optical analysis that evaluates internal density, geometric symmetry, and surface luminescence. This high-fidelity screening ensures that the 'Physical Signature' of our exported ${keyword} remains consistent regardless of the harvest moon phase. 
-            The processing environment for ${keyword} is strictly regulated with positive pressure differentials and ISO-7 grade air filtration, preventing the ingress of regional micro-allergens or environmental pollutants.
-        `;
+        return `Our batch-level processing for ${keyword} utilizes an automated lifecycle management system. Each grain or unit of ${keyword} is subjected to a triple-spectrum optical analysis that evaluates internal density, geometric symmetry, and surface luminescence. This high-fidelity screening ensures that the 'Physical Signature' of our exported ${keyword} remains consistent regardless of the harvest moon phase.`;
     },
     getGlobalPhytosanitaryProtocol: (keyword: string, seed: number) => {
-        return `
-            The phytosanitary protocol for ${keyword} exports involves a comprehensive three-tier sterilization process. Beyond the standard methyl bromide fumigation, we implement supervised CO2 blanketing for organic variants of ${keyword}. This creates an anaerobic environment that is lethal to polyphagous pests while preserving the organoleptic properties of the product. 
-            Patel Impex coordinates directly with the National Plant Protection Organization (NPPO) to ensure that the phytosanitary certificates for ${keyword} are issued with 100% data accuracy, eliminating the possibility of port-of-entry rejections.
-        `;
+        return `The phytosanitary protocol for ${keyword} exports involves a comprehensive three-tier sterilization process. Beyond the standard methyl bromide fumigation, we implement supervised CO2 blanketing for organic variants of ${keyword}. This creates an anaerobic environment that is lethal to polyphagous pests while preserving the organoleptic properties of the product.`;
     },
     getSupplyChainDigitizationLogic: (keyword: string, seed: number) => {
-        return `
-            Supply chain transparency for ${keyword} is powered by our proprietary 'PatelLink' ERP. This system provides our clients with real-time visibility into the status of their ${keyword} cargo, from the primary cleaning stage in Rajkot to the final container sealing. 
-            By digitizing the documentation trail for ${keyword}, we reduce the 'Administrative Friction' typically associated with Indian exports. Digital Bill of Ladings, blockchain-backed Certificates of Origin, and IoT-enabled moisture sensors in the container ensure that the narrative of your ${keyword} is as clear as the product itself.
-        `;
+        return `Supply chain transparency for ${keyword} is powered by our proprietary 'PatelLink' ERP. This system provides our clients with real-time visibility into the status of their ${keyword} cargo, from the primary cleaning stage in Rajkot to the final container sealing. By digitizing the documentation trail for ${keyword}, we reduce the administrative friction typically associated with Indian exports.`;
     },
     getIndustrialApplicationSpectrum: (keyword: string, seed: number) => {
-        return `
-            The industrial utility of ${keyword} extends across multiple high-value sectors. In the pharmaceutical grade space, ${keyword} is processed for maximum solubility and chemical stability. For the food-service industry, our ${keyword} is graded for specific 'Aroma Profiles' and 'Structural Integrity' during high-temperature convection cooking. 
-            The versatility of ${keyword} makes it an essential raw material for high-volume manufacturers who require a predictable feedstock that behaves consistently under variable pressure and temperature conditions.
-        `;
+        return `The industrial utility of ${keyword} extends across multiple high-value sectors. In the pharmaceutical grade space, ${keyword} is processed for maximum solubility and chemical stability. For the food-service industry, our ${keyword} is graded for specific 'Aroma Profiles' and 'Structural Integrity' during high-temperature convection cooking. The versatility of ${keyword} makes it an essential raw material.`;
     },
     getTradeHazardMitigation: (keyword: string, seed: number) => {
-        return `
-            Mitigating trade hazards for ${keyword} requires an anticipation of maritime and geopolitical volatility. Patel Impex maintains a 'Reserve Storage Buffer' of high-grade ${keyword} to fulfill contracts even during sudden export bans or regional crop failures. 
-            Our insurance framework for ${keyword} covers everything from 'General Average' maritime losses to strike-related delays at the port. This level of risk-insulation is why institutional buyers prefer Patel Impex for their long-range ${keyword} procurement strategies.
-        `;
+        return `Mitigating trade hazards for ${keyword} requires an anticipation of maritime and geopolitical volatility. Patel Impex maintains a 'Reserve Storage Buffer' of high-grade ${keyword} to fulfill contracts even during sudden export bans or regional crop failures. Our insurance framework for ${keyword} covers everything from 'General Average' maritime losses to strike-related delays at the port.`;
     },
     getPortTerminalExecutionLogic: (keyword: string, seed: number) => {
-        return `
-            Terminal execution for ${keyword} at Mundra Port is optimized through our dedicated CFs (Container Freight Station) partnerships. We utilize pre-staged container allocation for ${keyword}, ensuring that your cargo is the first to be loaded onto the mother-vessel during the berthing window. 
-            This 'Prime-Slot' allocation prevents the ${keyword} from sitting in the sun on the terminal tarmac, preserving the cellular integrity and moisture levels of the product. Our logistics officers personally supervise the 'Last-Mile' stuffing of ${keyword} at the port to ensure cargo weight distribution is mathematically balanced for maritime stability.
-        `;
+        return `Terminal execution for ${keyword} at Mundra Port is optimized through our dedicated CFs partnerships. We utilize pre-staged container allocation for ${keyword}, ensuring that your cargo is the first to be loaded onto the mother-vessel during the berthing window. This 'Prime-Slot' allocation prevents the ${keyword} from sitting in the sun on the terminal tarmac, preserving the cellular integrity.`;
     },
     getLaboratoryAnalysisSpectrum: (keyword: string, seed: number) => {
-        return `
-            The laboratory analysis matrix for ${keyword} covers over 40 distinct chemical and physical markers. Using high-performance liquid chromatography (HPLC) and atomic absorption spectroscopy, we verify that ${keyword} is free from pesticide residues, heavy metals, and mycotoxins. 
-            For our high-specification ${keyword} clients, we provide a 'Digital Lab Passport' that includes high-resolution micro-imagery of the batch's cross-section, proving the internal quality consistency that standard macro-inspections might overlook.
-        `;
+        return `The laboratory analysis matrix for ${keyword} covers over 40 distinct chemical and physical markers. Using high-performance liquid chromatography (HPLC) and atomic absorption spectroscopy, we verify that ${keyword} is free from pesticide residues, heavy metals, and mycotoxins. For our high-specification ${keyword} clients, we provide a 'Digital Lab Passport' for every batch.`;
     }
 };
 
@@ -292,7 +287,6 @@ const extractImageKeywords = (keyword: string) => {
     const lower = keyword.toLowerCase();
     const hasWord = (word: string) => new RegExp(`\\b${word}\\b`, 'i').test(lower);
 
-    // Stricter separation to prevent "rice" in "price" or "cashew"
     if (hasWord('rice')) return 'rice,grains';
     if (hasWord('cashew')) return 'cashew,nuts,dryfruit';
     if (hasWord('wheat') || hasWord('flour')) return 'wheat,flour,grain';
@@ -305,6 +299,59 @@ const extractImageKeywords = (keyword: string) => {
 
     return 'logistics,container,cargo';
 };
+
+const getRelatedKeywords = (keyword: string, seed: number) => {
+    const lower = keyword.toLowerCase();
+    const allKeywords = [
+        "White Crystal Sugar M30", "Refined Sugar Grade A", "Raw Brown Sugar", "Organic Jaggery Powder",
+        "Basmati Rice 1121", "Sona Masoori Rice", "IR64 Parboiled Rice", "Golden Sella Rice",
+        "Bhalia Wheat", "Sharbati Wheat", "Durum Wheat Semolina", "Lokwan Wheat Grade 1",
+        "Java Peanut Kernels", "Bold Runner Groundnuts", "Blanched Peanuts", "Peanut Butter Export",
+        "Natural White Sesame Seeds", "Hulled Sesame Seeds", "Black Sesame Seeds", "Sesame Oil Bulk",
+        "Psyllium Husk 99%", "Isabgol Powder", "Psyllium Industrial Grade",
+        "Raw Upland Cotton", "Combed Cotton Yarn", "Organic Cotton Fiber",
+        "Cumin Seeds Europe Grade", "Fennel Seeds Singapore Quality", "Green Cardamom 8mm", "Soybean Meal"
+    ];
+
+    // Filter to find some related and some random to ensure diversity
+    const related = allKeywords.filter(k => {
+        const parts = k.toLowerCase().split(' ');
+        return parts.some(p => lower.includes(p) && p.length > 3);
+    });
+
+    const pool = related.length >= 4 ? related : allKeywords;
+    const shuffled = [...pool].sort(() => 0.5 - ((seed % 10) / 10));
+    return shuffled.slice(0, 6);
+};
+
+function RelatedInterlinking({ keyword, seed }: { keyword: string, seed: number }) {
+    const related = getRelatedKeywords(keyword, seed);
+    return (
+        <section className="py-24 px-6 bg-slate-50 border-t border-slate-200">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+                    <div className="max-w-2xl">
+                        <span className="text-green-600 font-black tracking-[0.4em] text-[10px] uppercase block mb-4">Internal Network</span>
+                        <h2 className="text-4xl font-bold text-slate-900 tracking-tight leading-none uppercase">Related Procurement <span className="text-green-600 font-serif lowercase italic tracking-normal">intelligence</span></h2>
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {related.map((k, i) => (
+                        <Link 
+                            key={i} 
+                            to={`/more/${k.toLowerCase().replace(/\s+/g, '-')}`}
+                            className="p-6 bg-white border border-slate-100 rounded-2xl hover:border-green-500 hover:shadow-xl transition-all group"
+                        >
+                            <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest block mb-4">Dossier {seed + i}</span>
+                            <span className="text-sm font-bold text-slate-900 group-hover:text-green-600 transition-colors">{k}</span>
+                            <ArrowUpRight className="w-4 h-4 mt-4 text-slate-300 group-hover:text-green-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
 
 const cleanQueryForSearch = (keyword: string) => {
     const noiseWords = ['cif', 'fob', 'price', 'cost', 'to', 'port', 'per', 'mt', 'metric', 'ton', '2024', '2025', '2026', 'grade', 'export', 'wholesale', 'buy', 'bulk', 'indian', 'india'];
@@ -363,16 +410,105 @@ export default function DynamicMassSEO() {
 
     // 3 completely distinct page architectures so they never look like duplicate templates
     const layoutType = seed % 3;
-
     const capitalizedTitle = keyword.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+    const titles = [
+        `${capitalizedTitle} - Professional B2B Export Dossier`,
+        `Buy ${capitalizedTitle} Wholesale - Direct India Supplier`,
+        `${capitalizedTitle} Export from India - 2026 Bulk Pricing Intelligence`,
+        `Premium ${capitalizedTitle} for Industry - Verified Export Quality`
+    ];
+
+    const descriptions = [
+        `Access strategic insights and procurement advantages for: ${keyword}. Patel Impex provides high-yield supply chains directly from India with certified QA.`,
+        `Looking for ${keyword}? Secure your supply with our origin-direct logistics framework from India. ISO certified and trade-ready.`,
+        `Technical specifications, logistics thesis, and market outlook for ${keyword} exports. Tier-1 sourcing from the Rajkot industrial cluster.`
+    ];
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": capitalizedTitle,
+        "description": descriptions[seed % descriptions.length],
+        "brand": {
+            "@type": "Brand",
+            "name": "Patel Impex"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "offerCount": "10",
+            "lowPrice": (seed % 500) + 200,
+            "highPrice": (seed % 1000) + 1500,
+            "availability": "https://schema.org/InStock"
+        }
+    };
+
+    const faqJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": `How to import ${keyword} from India?`,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": `Importing ${keyword} requires a verified partner like Patel Impex. We handle APEDA filings, FSSAI certification, and logistics to your destination port.`
+                }
+            },
+            {
+                "@type": "Question",
+                "name": `What is the wholesale price of ${keyword}?`,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": `The price for ${keyword} varies based on technical specifications and volume. Contact our trade desk for a real-time CIF quote.`
+                }
+            }
+        ]
+    };
+
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://patelimpex.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Market Intelligence",
+                "item": "https://patelimpex.com/services"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": capitalizedTitle,
+                "item": `https://patelimpex.com/more/${slug}`
+            }
+        ]
+    };
 
     return (
         <div className="min-h-screen bg-white font-sans overflow-x-hidden selection:bg-green-100 selection:text-slate-900">
             <SEOHead
-                title={`${capitalizedTitle} - Professional B2B Export Dossier`}
-                description={`Access strategic insights and procurement advantages for: ${keyword}. Patel Impex provides high-yield supply chains directly from India with certified QA.`}
+                title={titles[seed % titles.length]}
+                description={descriptions[seed % descriptions.length]}
                 canonicalUrl={`/more/${slug}`}
             />
+
+            <script type="application/ld+json">
+                {JSON.stringify(jsonLd)}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify(faqJsonLd)}
+            </script>
+            <script type="application/ld+json">
+                {JSON.stringify(breadcrumbJsonLd)}
+            </script>
 
             <Navigation />
 
@@ -597,6 +733,8 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                     </div>
                 </div>
             </section>
+
+            <RelatedInterlinking keyword={keyword} seed={seed} />
         </div>
     );
 }
@@ -735,6 +873,8 @@ function ArchitectureEditorial({ title, image, fallback, keyword, seed }: { titl
                     </Link>
                 </div>
             </section>
+
+            <RelatedInterlinking keyword={keyword} seed={seed} />
         </div>
     );
 }
@@ -873,6 +1013,8 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                     </div>
                 </div>
             </section>
+
+            <RelatedInterlinking keyword={keyword} seed={seed} />
         </div>
     );
 }
@@ -1046,6 +1188,8 @@ function ProductExpertDossier({ title, image, fallback, keyword, seed }: { title
                     </Link>
                 </div>
             </section>
+
+            <RelatedInterlinking keyword={keyword} seed={seed} />
         </div>
     );
 }
