@@ -126,14 +126,12 @@ const Sitemap = () => {
             ]
         },
         {
-            title: "Industrial & Services",
+            title: "Trade & Compliance Services",
             icon: Activity,
             color: "text-slate-600",
             bgColor: "bg-slate-100",
             links: [
-                { name: "CNC Machining Center", path: "/products/cnc-machine-export", icon: Activity },
-                { name: "Industrial Motors", path: "/products/industrial-export", icon: Activity },
-                { name: "Textile Machinery", path: "/products/textiles-export", icon: Activity },
+                { name: "Textile Machinery", path: "/products/textile-machinery-export", icon: Activity },
                 { name: "Cotton Fiber & Yarn", path: "/more/cotton-export", icon: Activity },
                 { name: "Legal Compliance", path: "/more/legal-compliance", icon: Shield },
                 { name: "Buyer Verification", path: "/more/buyer-verification", icon: Users },

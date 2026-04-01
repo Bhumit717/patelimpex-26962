@@ -62,16 +62,7 @@ const Products = () => {
       description: "Premium Indian cotton, designer fabrics, and high-quality ready-to-wear garments for global fashion.",
       features: ["BCI & GOTS Certified", "Staple Length Range", "Bulk Fabric Supply"]
     },
-    {
-      id: "industrial",
-      name: "Industrial & Engineering",
-      icon: Cog,
-      image: industrialImg,
-      link: "/products/industrial",
-      color: "bg-slate-600",
-      description: "Precision engineered machinery, hardware tools, and industrial metal components for global projects.",
-      features: ["ISO Certified Quality", "High-Precision Build", "Global Project Specs"]
-    }
+
   ];
 
   return (

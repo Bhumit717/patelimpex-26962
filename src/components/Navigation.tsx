@@ -23,7 +23,7 @@ const Navigation = () => {
         { name: "Tiles & Sanitaryware", href: "/products/tiles-export" },
         { name: "Earthing Solutions", href: "/products/earthing-export" },
         { name: "Textiles & Garments", href: "/products/cotton" },
-        { name: "Industrial & Engineering", href: "/products/industrial" }
+
       ]
     },
     { name: "Blog", href: "/blog" },

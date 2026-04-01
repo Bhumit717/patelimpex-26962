@@ -196,26 +196,8 @@ import PowerTillerExport from "./pages/products/PowerTillerExport";
 import ThresherExport from "./pages/products/ThresherExport";
 import FarmTrailerExport from "./pages/products/FarmTrailerExport";
 import HandToolsExport from "./pages/products/HandToolsExport";
-import CNCMachineExport from "./pages/products/CNCMachineExport";
-import PowerDrillSetExport from "./pages/products/PowerDrillSetExport";
-import IndustrialMotorExport from "./pages/products/IndustrialMotorExport";
-import EnginePartsExport from "./pages/products/EnginePartsExport";
-import SteelSheetsExport from "./pages/products/SteelSheetsExport";
-import WeldingMachineExport from "./pages/products/WeldingMachineExport";
-import HydraulicPressExport from "./pages/products/HydraulicPressExport";
-import BallBearingsExport from "./pages/products/BallBearingsExport";
-import HardwareFittingsExport from "./pages/products/HardwareFittingsExport";
-import ConveyorBeltExport from "./pages/products/ConveyorBeltExport";
-import StorageContainersExport from "./pages/products/StorageContainersExport";
-import PackagingBoxesExport from "./pages/products/PackagingBoxesExport";
-import IndustrialPipesExport from "./pages/products/IndustrialPipesExport";
-import HouseholdBucketsExport from "./pages/products/HouseholdBucketsExport";
-import MedicalContainersExport from "./pages/products/MedicalContainersExport";
-import AutomotiveBumpersExport from "./pages/products/AutomotiveBumpersExport";
-import PlasticBottlesExport from "./pages/products/PlasticBottlesExport";
-import FoodContainersExport from "./pages/products/FoodContainersExport";
-import PlasticSheetsExport from "./pages/products/PlasticSheetsExport";
-import MoldedPartsExport from "./pages/products/MoldedPartsExport";
+
+
 import BedLinenExport from "./pages/products/BedLinenExport";
 import DesignerFabricsExport from "./pages/products/DesignerFabricsExport";
 import CottonYarnExport from "./pages/products/CottonYarnExport";
@@ -257,7 +239,7 @@ import EarthingStripsDetail from "./pages/products/EarthingStripsDetail";
 import PitCoversDetail from "./pages/products/PitCoversDetail";
 import LightningArresterDetail from "./pages/products/LightningArresterDetail";
 import FullBodyVitrifiedDetail from "./pages/products/FullBodyVitrifiedDetail";
-import IndustrialExport from "./pages/products/IndustrialExport";
+
 import AgricultureProductsPage from "./pages/products/AgricultureProductsPage";
 
 
@@ -677,7 +659,7 @@ const App = () => (
           <Route path="/products/agriculture" element={<AgricultureProductsPage />} />
           <Route path="/products/tiles-export" element={<TilesExport />} />
           <Route path="/products/earthing-export" element={<EarthingExport />} />
-          <Route path="/products/industrial" element={<IndustrialExport />} />
+
           <Route path="/more/tiles-export-info" element={<TilesMore />} />
           <Route path="/more/earthing-export-info" element={<EarthingMore />} />
 
@@ -778,28 +760,7 @@ const App = () => (
           <Route path="/products/psyllium-husk-powder" element={<PsylliumHuskPowderDetail />} />
           <Route path="/products/psyllium-husk-products" element={<PsylliumHuskProducts />} />
 
-          {/* Industrial Machines */}
-          <Route path="/products/cnc-machine-export" element={<CNCMachineExport />} />
-          <Route path="/products/power-drill-set-export" element={<PowerDrillSetExport />} />
-          <Route path="/products/industrial-motor-export" element={<IndustrialMotorExport />} />
-          <Route path="/products/industrial-pipes-export" element={<IndustrialPipesExport />} />
-          <Route path="/products/engine-parts-export" element={<EnginePartsExport />} />
-          <Route path="/products/steel-sheets-export" element={<SteelSheetsExport />} />
-          <Route path="/products/welding-machine-export" element={<WeldingMachineExport />} />
-          <Route path="/products/hydraulic-press-export" element={<HydraulicPressExport />} />
-          <Route path="/products/ball-bearings-export" element={<BallBearingsExport />} />
-          <Route path="/products/hardware-fittings-export" element={<HardwareFittingsExport />} />
-          <Route path="/products/conveyor-belt-export" element={<ConveyorBeltExport />} />
-          <Route path="/products/storage-containers-export" element={<StorageContainersExport />} />
-          <Route path="/products/packaging-boxes-export" element={<PackagingBoxesExport />} />
-          <Route path="/products/industrial-pipes-export" element={<IndustrialPipesExport />} />
-          <Route path="/products/household-buckets-export" element={<HouseholdBucketsExport />} />
-          <Route path="/products/medical-containers-export" element={<MedicalContainersExport />} />
-          <Route path="/products/automotive-bumpers-export" element={<AutomotiveBumpersExport />} />
-          <Route path="/products/plastic-bottles-export" element={<PlasticBottlesExport />} />
-          <Route path="/products/food-containers-export" element={<FoodContainersExport />} />
-          <Route path="/products/plastic-sheets-export" element={<PlasticSheetsExport />} />
-          <Route path="/products/molded-parts-export" element={<MoldedPartsExport />} />
+
           <Route path="/products/bed-linen-export" element={<BedLinenExport />} />
           <Route path="/products/designer-fabrics-export" element={<DesignerFabricsExport />} />
           <Route path="/products/cotton-yarn-export" element={<CottonYarnExport />} />
