@@ -131,12 +131,50 @@ const Sitemap = () => {
             color: "text-slate-600",
             bgColor: "bg-slate-100",
             links: [
-                { name: "Textile Machinery", path: "/products/textile-machinery-export", icon: Activity },
-                { name: "Cotton Fiber & Yarn", path: "/more/cotton-export", icon: Activity },
                 { name: "Legal Compliance", path: "/more/legal-compliance", icon: Shield },
                 { name: "Buyer Verification", path: "/more/buyer-verification", icon: Users },
                 { name: "Trade Insurance", path: "/more/insurance-services", icon: Shield },
                 { name: "Market Trends", path: "/more/market-research", icon: TrendingUp },
+            ]
+        },
+        {
+            title: "Healthcare & Pharma",
+            icon: Activity,
+            color: "text-rose-500",
+            bgColor: "bg-rose-50",
+            links: [
+                { name: "Veterinary Medicines", path: "/more/veterinary-medicines-export", icon: Activity },
+                { name: "Health Caps Exporter", path: "/more/health-capsules-export", icon: Activity },
+                { name: "Diagnostic Test Kits", path: "/more/diagnostic-kits-export", icon: Activity },
+                { name: "Herbal Supplements", path: "/more/herbal-supplements-export", icon: Activity },
+                { name: "Medical Safety Gloves", path: "/more/medical-gloves-export", icon: Activity },
+            ]
+        },
+        {
+            title: "Agri-Machinery & Tools",
+            icon: Sprout,
+            color: "text-emerald-700",
+            bgColor: "bg-emerald-50",
+            links: [
+                { name: "Mini Tractor Export", path: "/more/mini-tractor-export", icon: Sprout },
+                { name: "Combine Harvester", path: "/more/combine-harvester-export", icon: Sprout },
+                { name: "Drip Irrigation Tech", path: "/more/drip-irrigation-export", icon: Sprout },
+                { name: "Power Tiller Hub", path: "/more/power-tiller-export", icon: Sprout },
+                { name: "Farming Hand Tools", path: "/more/hand-tools-export", icon: Sprout },
+            ]
+        },
+        {
+            title: "Textiles & Home Decor",
+            icon: ShoppingBag,
+            color: "text-purple-600",
+            bgColor: "bg-purple-50",
+            links: [
+                { name: "Premium Cotton Fiber", path: "/more/cotton-export", icon: ShoppingBag },
+                { name: "Organic Cotton Yarn", path: "/more/cotton-yarn-export", icon: ShoppingBag },
+                { name: "Designer Textile Fabrics", path: "/more/designer-fabrics-export", icon: ShoppingBag },
+                { name: "Luxury Bed Linen", path: "/more/bed-linen-export", icon: ShoppingBag },
+                { name: "Home Curtains Hub", path: "/more/curtains-export", icon: ShoppingBag },
+                { name: "Premium Towel Sets", path: "/more/towel-sets-export", icon: ShoppingBag },
             ]
         },
         {
