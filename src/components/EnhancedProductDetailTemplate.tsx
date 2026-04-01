@@ -472,7 +472,7 @@ const EnhancedProductDetailTemplate = ({
                 <div className="whatsapp_btn">
                   <button onClick={() => setIsQuoteModalOpen(true)}>
                     <MessageSquare className="h-5 w-5" />
-                    <span>Whatsapp Enquiry</span>
+                    <span>Enquiry</span>
                   </button>
                 </div>
 

@@ -45,13 +45,13 @@ const ProductDetailTemplate = ({
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-24">
         {/* Breadcrumb */}
         <div className="bg-gradient-to-r from-blue-600 to-teal-600 py-12">
           <div className="container mx-auto px-4">
-            <Link 
-              to={backLink} 
+            <Link
+              to={backLink}
               className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -100,7 +100,7 @@ const ProductDetailTemplate = ({
                 </div>
               </div>
 
-              {/* WhatsApp Enquiry */}
+              {/* Enquiry */}
               <a
                 href={`https://wa.me/919924386998?text=${whatsappMessage}`}
                 target="_blank"
