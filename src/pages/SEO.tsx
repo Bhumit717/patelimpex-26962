@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -6,35 +6,46 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
-import { Search, Globe, Target, BarChart3, Users, FileText, ArrowRight, BookOpen, Package, Wheat, Truck, Shield } from "lucide-react";
+import { Search, Globe, Target, BarChart3, Users, FileText, ArrowRight, BookOpen, Package, Wheat, Truck, Shield, Loader2 } from "lucide-react";
 import dict from '../data/seoDictionary.json';
 
 const SEO = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [allKeywords, setAllKeywords] = useState<string[]>([]);
-  const [filteredKeywords, setFilteredKeywords] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(1000); // Pagination for the massive list
+  const [visibleCount, setVisibleCount] = useState(1000);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
 
-  // Fetch full keywords list
+  // Fetch full keywords list with simulation of progress for better UX
   useEffect(() => {
+    setIsLoading(true);
+    const timer = setInterval(() => {
+      setLoadProgress(prev => (prev < 90 ? prev + 10 : prev));
+    }, 100);
+
     fetch('/seoKeywords.json')
       .then(res => res.json())
       .then(data => {
         setAllKeywords(data || []);
+        setIsLoading(false);
+        setLoadProgress(100);
+        clearInterval(timer);
       })
-      .catch(err => console.error("Could not load keywords", err));
+      .catch(err => {
+        console.error("Could not load keywords", err);
+        setIsLoading(false);
+        clearInterval(timer);
+      });
   }, []);
 
-  // Filter logic for dropdown
-  useEffect(() => {
+  // Filter logic for dropdown using useMemo for performance
+  const filteredKeywords = useMemo(() => {
     if (!searchTerm.trim()) {
-      setFilteredKeywords(allKeywords.slice(0, 50)); // show 50 default in dropdown
-      return;
+      return allKeywords.slice(0, 50); // show 50 default in dropdown
     }
     const lowerSearch = searchTerm.toLowerCase();
-    const filtered = allKeywords.filter(kw => kw.toLowerCase().includes(lowerSearch)).slice(0, 100);
-    setFilteredKeywords(filtered);
+    return allKeywords.filter(kw => kw.toLowerCase().includes(lowerSearch)).slice(0, 100);
   }, [searchTerm, allKeywords]);
 
   // Handle clicking outside to close
@@ -51,48 +62,75 @@ const SEO = () => {
 
   const resourceCategories = [
     {
-      title: "Export Import Basics & Logistics",
-      description: "Essential guides for international trade and freight forwarding.",
-      icon: Truck,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-      pages: [
-        { title: "Definitive Export Guide", slug: "/more/export-import-guide" },
-        { title: "Customs Clearance", slug: "/more/customs-clearance" },
-        { title: "Trade Finance", slug: "/more/trade-finance" },
-        { title: "Sea Freight Logistics", slug: "/more/sea-freight" },
-        { title: "Warehouse Services", slug: "/more/warehouse-services" },
-        { title: "Export Documentation", slug: "/more/export-documentation" },
-      ]
-    },
-    {
-      title: "Core Product Capabilities",
-      description: "Direct access to our certified agricultural and industrial indexes.",
-      icon: Package,
+      title: "Agricultural Exports",
+      description: "India's finest agro-commodities including Rice, Spices, Grains, and Oil seeds.",
+      icon: Wheat,
       color: "text-green-600",
       bgColor: "bg-green-50",
-      pages: [
-        { title: "Premium Rice Export", slug: "/products/rice" },
-        { title: "World-Class Spices", slug: "/more/spices-export" },
-        { title: "Agricultural Index", slug: "/more/agricultural-products" },
-        { title: "Textiles & Cotton", slug: "/more/textile-export" },
-        { title: "Industrial Machinery", slug: "/products/mini-tractor-export" },
-        { title: "Medical & Synthetics", slug: "/products/medical-gloves-export" },
+      links: [
+        { title: "Premium Basmati Rice", slug: "/products/rice" },
+        { title: "Psyllium Husk Hub", slug: "/products/psyllium-husk" },
+        { title: "Machine Cleaned Fennel", slug: "/products/fennel-seeds" },
+        { title: "Bold Cumin Seeds", slug: "/products/cumin-seeds" },
+        { title: "Sesame Oil Seeds", slug: "/products/sesame-seeds" },
+        { title: "Groundnut Kernels", slug: "/products/groundnut" },
+        { title: "Non-GMO Soybeans", slug: "/products/soybeans" },
+        { title: "Wheat & Flour range", slug: "/products/wheat" },
+        { title: "Animal Dung Products", slug: "/products/animal-dung" },
+        { title: "Animal Dung Powder", slug: "/products/animal-dung-powder" },
       ]
     },
     {
-      title: "Corporate Governance",
-      description: "Compliance, risk mitigation, and international buyer verification.",
+      title: "Tiles & Construction",
+      description: "High-end flooring and sanitaryware solutions for global architectural projects.",
+      icon: Package,
+      color: "text-blue-600",
+      bgColor: "bg-blue-50",
+      links: [
+        { title: "GVT & PGVT Tiles", slug: "/products/tiles/gvt-pgvt" },
+        { title: "Double Charge Vitrified", slug: "/products/tiles/double-charge" },
+        { title: "Full Body Vitrified", slug: "/products/tiles/full-body" },
+        { title: "Digital Wall Collection", slug: "/products/tiles/wall" },
+        { title: "Elevation Wall Skins", slug: "/products/tiles/elevation" },
+        { title: "Parking & Outdoor Tiles", slug: "/products/tiles/parking" },
+        { title: "Luxury Porcelain Slabs", slug: "/products/tiles/slabs" },
+        { title: "Designer Wash Basins", slug: "/products/tiles/sanitary-basin" },
+        { title: "Modern Water Closets", slug: "/products/tiles/sanitary-closet" },
+        { title: "Sanitaryware Sets", slug: "/products/sanitaryware" },
+        { title: "Premium Bath Fittings", slug: "/products/bath-fittings" },
+      ]
+    },
+    {
+      title: "Earthing Solutions",
+      description: "Advanced electrical safety, grounding electrodes, and lightning protection systems.",
       icon: Shield,
       color: "text-red-600",
       bgColor: "bg-red-50",
-      pages: [
-        { title: "Quality Standards", slug: "/more/quality-standards" },
-        { title: "Legal Compliance", slug: "/more/legal-compliance" },
-        { title: "Insurance Coverings", slug: "/more/insurance-services" },
-        { title: "Buyer Verification", slug: "/more/buyer-verification" },
+      links: [
+        { title: "GI Chemical Earthing", slug: "/products/earthing/gi-electrode" },
+        { title: "Copper Bonded Hub", slug: "/products/earthing/copper-electrode" },
+        { title: "Copper Grounding Rods", slug: "/products/earthing/copper-rods" },
+        { title: "Backfill Compounds", slug: "/products/earthing/backfill" },
+        { title: "Grounding Strips", slug: "/products/earthing/strips" },
+        { title: "Earth Pit Covers", slug: "/products/earthing/pit-covers" },
+        { title: "Lightning Arresters", slug: "/products/earthing/lightning-arresters" },
+        { title: "Technical Accessories", slug: "/products/earthing/clamps" },
+      ]
+    },
+    {
+      title: "Global Trade Support",
+      description: "Policy, documentation, and compliance guides for international trade.",
+      icon: Globe,
+      color: "text-amber-600",
+      bgColor: "bg-amber-50",
+      links: [
+        { title: "Export Import Guide", slug: "/more/export-import-guide" },
+        { title: "Trade Documentation", slug: "/more/export-documentation" },
         { title: "Market Research", slug: "/more/market-research" },
-        { title: "Digital Security", slug: "/more/digital-marketing" },
+        { title: "Rice Export Hub", slug: "/more/rice-export" },
+        { title: "Spices Trade Desk", slug: "/more/spices-export" },
+        { title: "Tiles Export Guide", slug: "/more/tiles-export-info" },
+        { title: "Earthing Safety Desk", slug: "/more/earthing-export-info" },
       ]
     }
   ];
@@ -144,7 +182,7 @@ const SEO = () => {
                 </div>
                 <div className="p-8 flex-1 bg-white">
                   <ul className="space-y-4">
-                    {category.pages.map((p, i) => (
+                    {category.links.map((p, i) => (
                       <li key={i}>
                         <Link to={p.slug} className="group flex items-center text-slate-700 hover:text-green-600 font-semibold transition-colors">
                           <span className="w-2 h-2 rounded-full bg-slate-200 group-hover:bg-green-500 mr-3 transition-colors" /> {p.title}
@@ -214,29 +252,50 @@ const SEO = () => {
               <h3 className="text-3xl font-black text-white font-graduate uppercase">All Export Routes Directory</h3>
               <p className="text-slate-400 mt-2">Browse the massive index of available trade routes natively.</p>
             </div>
-            <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 md:p-10">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3">
-                {allKeywords.slice(0, visibleCount).map((kw, idx) => (
-                  <Link
-                    key={idx}
-                    to={`/more/${kw.replace(/ /g, '-')}`}
-                    className="text-slate-300 hover:text-green-400 text-sm capitalize truncate block py-1 border-b border-slate-700/50 hover:bg-slate-700/30 px-2 rounded-sm transition-all"
-                    title={kw}
-                  >
-                    • {kw}
-                  </Link>
-                ))}
-              </div>
-
-              {visibleCount < allKeywords.length && (
-                <div className="text-center mt-12">
-                  <button
-                    onClick={() => setVisibleCount(prev => prev + 5000)}
-                    className="bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-bold py-3 px-8 rounded-full transition-colors uppercase tracking-widest text-sm"
-                  >
-                    Load More Routes ({visibleCount.toLocaleString()} / {allKeywords.length.toLocaleString()} showing)
-                  </button>
+            <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 md:p-10 min-h-[400px] flex flex-col items-center justify-center relative">
+              {isLoading ? (
+                <div className="w-full max-w-md space-y-6 text-center">
+                  <div className="flex justify-center">
+                    <Loader2 className="w-12 h-12 text-green-500 animate-spin" />
+                  </div>
+                  <div className="space-y-4">
+                    <div className="h-2 w-full bg-slate-700 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-green-500 transition-all duration-300 ease-out"
+                        style={{ width: `${loadProgress}%` }}
+                      />
+                    </div>
+                    <p className="text-slate-400 font-mono text-sm uppercase tracking-widest animate-pulse">
+                      Indexing Global Routes... {loadProgress}%
+                    </p>
+                  </div>
                 </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-3 w-full">
+                    {allKeywords.slice(0, visibleCount).map((kw, idx) => (
+                      <Link
+                        key={idx}
+                        to={`/more/${kw.replace(/ /g, '-')}`}
+                        className="text-slate-300 hover:text-green-400 text-sm capitalize truncate block py-1 border-b border-slate-700/50 hover:bg-slate-700/30 px-2 rounded-sm transition-all"
+                        title={kw}
+                      >
+                        • {kw}
+                      </Link>
+                    ))}
+                  </div>
+
+                  {visibleCount < allKeywords.length && (
+                    <div className="text-center mt-12 w-full">
+                      <button
+                        onClick={() => setVisibleCount(prev => prev + 5000)}
+                        className="bg-transparent border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-bold py-3 px-8 rounded-full transition-colors uppercase tracking-widest text-sm"
+                      >
+                        Load More Routes ({visibleCount.toLocaleString()} / {allKeywords.length.toLocaleString()} showing)
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>

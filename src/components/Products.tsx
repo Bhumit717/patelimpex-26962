@@ -1,7 +1,9 @@
-import { Package, Globe, ShieldCheck, Truck, ChevronRight, ArrowRight } from "lucide-react";
+import { Package, Globe, ShieldCheck, Truck, ChevronRight, ArrowRight, LayoutGrid, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import agriImg from "@/assets/products/seeds.png";
 import textilesImg from "@/assets/products/cotton.png";
+import tilesImg from "@/assets/products/ceramic-floor-tiles.png";
+import earthingImg from "@/assets/products/copper-bonded-earthing-rods.png";
 import logisticsImg from "@/assets/global-export-shipping.jpg";
 
 const Products = () => {
@@ -11,8 +13,24 @@ const Products = () => {
       description: "Premium selection of pulses, spices, and grains sourced directly from Indian farms.",
       icon: Package,
       image: agriImg,
-      link: "/products",
+      link: "/products/agriculture",
       items: ["Spices & Condiments", "Grains & Pulses", "Oil Seeds"]
+    },
+    {
+      title: "Tiles & Sanitaryware",
+      description: "Indian's premium export range of vitrified, digital wall, and specialized parking tiles.",
+      icon: LayoutGrid,
+      image: tilesImg,
+      link: "/products/tiles-export",
+      items: ["GVT & PGVT Tiles", "Digital Wall Tiles", "Sanitary Solutions"]
+    },
+    {
+      title: "Earthing & Safety",
+      description: "Professional electrical grounding solutions and industrial safety equipment.",
+      icon: Zap,
+      image: earthingImg,
+      link: "/products/earthing-export",
+      items: ["Copper Bonded Rods", "Chemical Earthing", "Safety Accessories"]
     },
     {
       title: "Textiles & Garments",
@@ -24,7 +42,7 @@ const Products = () => {
     },
     {
       title: "Industrial & Engineering",
-      description: "Precision engineered components, hardware, and industrial equipment from leading manufacturers.",
+      description: "Precision engineered components, hardware, and industrial equipment.",
       icon: Truck,
       image: logisticsImg,
       link: "/products",

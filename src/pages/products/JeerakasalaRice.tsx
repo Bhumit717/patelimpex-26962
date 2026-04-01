@@ -35,8 +35,8 @@ const JeerakasalaRice = () => {
         { label: "Port of Loading", value: "Mundra Port, Nhava Sheva" },
         { label: "Sample Policy", value: "Free samples available (Freight by buyer)" },
       ]}
-      backLink="/products/rice-products"
-      backLinkText="Back to Rice Products"
+      backLink="/products/rice"
+      backLinkText="Back to Rice Range"
     />
   );
 };

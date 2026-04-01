@@ -46,6 +46,7 @@ const getProductImage = (keyword: string) => {
 
     // Comprehensive lookup table for all local assets
     const mapping: Record<string, string> = {
+        // SUGAR & SWEETENERS
         'white crystal sugar': '/assets/products/subtypes/refined-white-sugar-m30.png',
         'm30 sugar': '/assets/products/subtypes/refined-white-sugar-m30.png',
         'raw sugar': '/assets/products/subtypes/raw-sugar.png',
@@ -55,6 +56,7 @@ const getProductImage = (keyword: string) => {
         'jaggery': '/assets/products/subtypes/jaggery-rounds.png',
         'sugar': '/assets/products/sugar.png',
 
+        // RICE VARIETIES
         'basmati': '/assets/products/steam-basmati-rice.png',
         'sella': '/assets/products/golden-sella-rice.png',
         'masoori': '/assets/products/sona-masoori-rice.png',
@@ -62,52 +64,144 @@ const getProductImage = (keyword: string) => {
         'ir64': '/assets/products/ir64-parboiled-rice.png',
         'rice': '/assets/products/rice.png',
 
+        // WHEAT & GRAINS
         'sharbati': '/assets/products/sharbati-wheat.png',
         'bhalia': '/assets/products/bhalia-wheat.png',
         'durum': '/assets/products/durum-wheat.png',
         'lokwan': '/assets/products/lokwan-wheat.png',
         'wheat': '/assets/products/bhalia-wheat.png',
+        'flour': '/assets/products/wheat-flour.png',
+        'maize': 'https://images.unsplash.com/photo-1551748629-88d3e3358749?auto=format&fit=crop&q=80&w=1200',
+        'corn': 'https://images.unsplash.com/photo-1551748629-88d3e3358749?auto=format&fit=crop&q=80&w=1200',
+        'barley': 'https://images.unsplash.com/photo-1528498033373-3c6c08e93d79?auto=format&fit=crop&q=80&w=1200',
 
+        // OIL SEEDS & NUTS
         'groundnut': '/assets/products/groundnut.png',
         'peanut': '/assets/products/groundnut.png',
-        'bold': '/assets/products/bold-runner-groundnut.png',
-        'java': '/assets/products/java-spanish-groundnut.png',
-
+        'bold runner': '/assets/products/bold-runner-groundnut.png',
+        'java spanish': '/assets/products/java-spanish-groundnut.png',
         'sesame': '/assets/products/sesame-seeds.png',
         'natural sesame': '/assets/products/natural-sesame.png',
         'hulled sesame': '/assets/products/hulled-sesame.png',
+        'sunflower seeds': 'https://images.unsplash.com/photo-1546816751-d4ba389bc70b?auto=format&fit=crop&q=80&w=1200',
+        'cashew': '/assets/products/cashew.png',
+        'almond': '/assets/products/almond.png',
 
+        // SPYLLIUM & HEALTH
         'psyllium': '/assets/products/psyllium-husk.png',
         'husk': '/assets/products/psyllium-husk.png',
         'isabgol': '/assets/products/psyllium-husk.png',
+        'medical gloves': 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200',
+        'supplement': 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&q=80&w=1200',
 
-        'cotton': '/assets/products/cotton.png',
-        'yarn': '/assets/products/cotton-yarn.png',
-
+        // SPICES
         'cumin': '/assets/products/cumin-seeds.png',
         'fennel': '/assets/products/fennel-seeds.png',
         'cardamom': '/assets/products/cardamom.png',
+        'turmeric': '/assets/products/turmeric.png',
+        'coriander': '/assets/products/coriander-seeds.png',
+        'pepper': '/assets/products/black-pepper.png',
+        'chili': '/assets/products/red-chili.png',
+        'ginger': '/assets/products/ginger.png',
+        'garlic': '/assets/products/garlic.png',
+        'onion': '/assets/products/onion.png',
         'soybean': '/assets/products/soybean.png',
+        'pickles': 'https://images.unsplash.com/photo-1589135398302-388cd35095a0?auto=format&fit=crop&q=80&w=1200',
 
+        // TEXTILES
+        'cotton': '/assets/products/cotton.png',
+        'yarn': '/assets/products/cotton-yarn.png',
+        'linen': 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=1200',
+        'fabric': 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=1200',
+        'towels': 'https://images.unsplash.com/photo-1616627686419-7561f52d5b62?auto=format&fit=crop&q=80&w=1200',
+
+        // INDUSTRIAL & AGRI-TECH
         'cow dung': '/assets/products/cow-dung-cake.png',
         'dung': '/assets/products/animal-dung.png',
-        'cashew': 'https://images.unsplash.com/photo-1509358111104-5858089f81df?auto=format&fit=crop&q=80&w=1200',
-        'cashew nut': 'https://images.unsplash.com/photo-1509358111104-5858089f81df?auto=format&fit=crop&q=80&w=1200'
+        'tractor': '/assets/products/tractor-industrial.png',
+        'harvester': '/assets/products/combine-harvester.png',
+        'irrigation': '/assets/products/drip-irrigation.png',
+        'tiller': '/assets/products/power-tiller.png',
+        'cnc': '/assets/products/cnc-machine.png',
+        'motor': '/assets/products/industrial-motor.png',
+        'welding': '/assets/products/welding-machine.png',
+        'bearing': '/assets/products/ball-bearings.png',
+        'conveyor': '/assets/products/conveyor-belts.png',
+        'pesticides': 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&q=80&w=1200',
+        
+        // TILES & SANITARYWARE
+        'tile': '/assets/products/ceramic-floor-tiles.png',
+        'tiles': '/assets/products/ceramic-floor-tiles.png',
+        'wall tiles': '/assets/products/decorative-wall-tiles.png',
+        'floor tiles': '/assets/products/ceramic-floor-tiles.png',
+        'vitrified tiles': '/assets/products/grey-vitrified-tiles.png',
+        'marble tiles': '/assets/products/marble-tiles-white.png',
+        'porcelain tiles': '/assets/products/stone-look-tiles.png',
+        'sanitaryware': '/assets/products/sanitaryware-set-complete.png',
+        'toilet': '/assets/products/modern-toilets.png',
+        'basin': '/assets/products/bathroom-sinks-modern.png',
+        'wash basin': '/assets/products/bathroom-sinks-modern.png',
+        'water closet': '/assets/products/modern-toilets.png',
+        'bathroom': '/assets/products/sanitaryware-set-complete.png',
+        'bath fittings': '/assets/products/bath-fittings-taps.png',
+        'gvt tiles': '/assets/products/grey-vitrified-tiles.png',
+        'pgvt tiles': '/assets/products/grey-vitrified-tiles.png',
+        'double charge tiles': '/assets/products/stone-look-tiles.png',
+        'full body vitrified tiles': '/assets/products/marble-tiles-white.png',
+        'digital wall tiles': '/assets/products/decorative-wall-tiles.png',
+        'elevation tiles': '/assets/products/elevation-wall-tiles.png',
+        'parking tiles': '/assets/products/patterned-ceramic-tiles.png',
+        'porcelain slabs': '/assets/products/grey-vitrified-tiles.png',
+        'sanitaryware sets': '/assets/products/sanitaryware-set-complete.png',
+        'designer wash basins': '/assets/products/bathroom-sinks-modern.png',
+        'water closets': '/assets/products/modern-toilets.png',
+        'shower': '/assets/products/bath-fittings-taps.png',
+        'shower set': '/assets/products/bath-fittings-taps.png',
+        'faucets': '/assets/products/bath-fittings-taps.png',
+
+        // EARTHING SYSTEMS
+        'gi earthing electrode': '/assets/products/earthing-rod-with-clamp.png',
+        'copper earthing electrode': '/assets/products/chemical-earthing-electrode.png',
+        'copper bonded rods': '/assets/products/copper-bonded-earthing-rods.png',
+        'backfill compound': '/assets/products/backfill-compound-sack.png',
+        'earthing strips': '/assets/products/gi-earthing-flat-bar.png',
+        'lightning arrester': '/assets/products/earthing-terminal-rod.png',
+        'earthing clamps': '/assets/products/earthing-c-clamps.png',
+        'earth pit covers': '/assets/products/earth-pit-covers.png',
+        'u-bolt': '/assets/products/u-bolt-earthing-clamps.png',
+        'maintenance free earthing': '/assets/products/chemical-earthing-electrode.png',
+        'earthing rod': '/assets/products/earthing-rod-with-clamp.png',
+        'grounding electrode': '/assets/products/chemical-earthing-electrode.png',
+        'earth pit': '/assets/products/earth-pit-covers.png',
+        'bentonite powder': '/assets/products/backfill-compound-sack.png',
+        'earthing kit': '/assets/products/chemical-earthing-electrode.png',
+        'soluble salt tiles': '/assets/products/grey-vitrified-tiles.png',
+        'nano vitrified tiles': '/assets/products/grey-vitrified-tiles.png',
+        'polished vitrified tiles': '/assets/products/grey-vitrified-tiles.png',
+        'subway tiles': '/assets/products/decorative-wall-tiles.png',
+        'glass mosaic': '/assets/products/decorative-wall-tiles.png',
+        'mosaic floor tiles': '/assets/products/patterned-ceramic-tiles.png',
+        'ceramic wall tiles': '/assets/products/decorative-wall-tiles.png',
+        'terracotta tiles': '/assets/products/elevation-wall-tiles.png'
     };
 
     // Precise priority search with word boundary protection
-    const words = lowerKeyword.split(/[\s-]+/);
+    const words = new Set(lowerKeyword.split(/[\s-]+/));
 
     // Sort keys by length descending to match most specific terms first
     const sortedKeys = Object.keys(mapping).sort((a, b) => b.length - a.length);
 
     for (const k of sortedKeys) {
-        if (k.includes(' ')) {
+        const keyWords = k.split(' ');
+        // If the mapping key is a multi-word phrase, check if it's contained as a continuous block
+        if (keyWords.length > 1) {
             if (lowerKeyword.includes(k)) return mapping[k];
+            
+            // Fallback: check if all words of the key are present in the keyword (unordered match)
+            if (keyWords.every(word => words.has(word))) return mapping[k];
         } else {
-            // Ensure strict whole word match using regex boundary for single words
-            const regex = new RegExp(`\\b${k}\\b`, 'i');
-            if (regex.test(lowerKeyword)) return mapping[k];
+            // Strict whole word match for single word keys
+            if (words.has(k)) return mapping[k];
         }
     }
 
@@ -227,6 +321,67 @@ const TradeIntelligence = {
         ];
         return shuffleSentences(sentences, seed);
     },
+    getLaboratoryAnalysisSpectrum: (keyword: string, seed: number) => {
+        const sentences = [
+            `The laboratory analysis matrix for ${keyword} covers over 40 distinct chemical and physical markers.`,
+            `Using high-performance liquid chromatography (HPLC) and atomic absorption spectroscopy, we verify that ${keyword} is free from pesticide residues, heavy metals, and mycotoxins.`,
+            `For our high-specification ${keyword} clients, we provide a 'Digital Lab Passport' for every batch.`,
+            `This exhaustive verification ensures that the structural and chemical integrity of ${keyword} remains uncompromised during multi-port handling and varying thermal conditions.`
+        ];
+        return shuffleSentences(sentences, seed);
+    },
+    getProductFacts: (keyword: string, seed: number) => {
+        const lower = keyword.toLowerCase();
+        if (lower.includes('rice')) return {
+            origin: 'Punjab / Haryana / Gujarat Belts',
+            grade: '1121 / 1509 / PR11 Grade',
+            purity: '95% to 99% Sortex Cleaned',
+            moisture: '12% to 14% Max',
+            packaging: 'Non-Woven / Jute / PP Bags'
+        };
+        if (lower.includes('cashew')) return {
+            origin: 'Kollam / Guinea Bissau / Vietnam',
+            grade: 'WW180 to WW450 / SW / LWP',
+            purity: 'AFLATOXIN Certified',
+            moisture: '5% Max',
+            packaging: 'Vacuum Tins / Flexi Packs'
+        };
+        if (lower.includes('sugar')) return {
+            origin: 'Maharashtra / Uttar Pradesh / Gujarat',
+            grade: 'M-30 / S-30 / ICUMSA 45',
+            purity: 'Refined / Poly-lined',
+            moisture: '0.04% Max',
+            packaging: '50kg Double PP Bags'
+        };
+        if (lower.includes('peanut') || lower.includes('groundnut')) return {
+            origin: 'Saurashtra / Rajasthan Belts',
+            grade: 'Bold / Java / Runner',
+            purity: '99.5% Free from Aflatoxin',
+            moisture: '7% to 8% Max',
+            packaging: 'Jute Bags / Vacuum Packs'
+        };
+        if (lower.includes('tile') || lower.includes('sanitary')) return {
+            origin: 'Morbi Industrial Cluster',
+            grade: 'First Grade / AAA / High Gloss',
+            purity: 'Nano-Polished / Rectified',
+            moisture: 'Water Absorption < 0.05%',
+            packaging: 'Palletized Corrugated Boxes'
+        };
+        if (lower.includes('earthing') || lower.includes('electrode') || lower.includes('lightning')) return {
+            origin: 'Rajkot / Jamnagar Engineering Clusters',
+            grade: 'CPRI Tested / UL Listed',
+            purity: 'High Conductivity Electrolytic Copper',
+            moisture: 'Corrosion Resistant Coating',
+            packaging: 'Industrial Wood Crates'
+        };
+        return {
+            origin: 'North-Western India (Gujarat Cluster)',
+            grade: 'Export Standard / Prime Quality',
+            purity: 'Certified Grade Compliance',
+            moisture: 'Optimized per Commodity',
+            packaging: 'Standard Export Containers'
+        };
+    },
     getRegionalDynamics: (keyword: string, seed: number) => {
         const sentences = [
             `The state of Gujarat, and specifically the Saurashtra region around Rajkot, provides a topological advantage for ${keyword} that is unmatched elsewhere.`,
@@ -277,9 +432,6 @@ const TradeIntelligence = {
     },
     getPortTerminalExecutionLogic: (keyword: string, seed: number) => {
         return `Terminal execution for ${keyword} at Mundra Port is optimized through our dedicated CFs partnerships. We utilize pre-staged container allocation for ${keyword}, ensuring that your cargo is the first to be loaded onto the mother-vessel during the berthing window. This 'Prime-Slot' allocation prevents the ${keyword} from sitting in the sun on the terminal tarmac, preserving the cellular integrity.`;
-    },
-    getLaboratoryAnalysisSpectrum: (keyword: string, seed: number) => {
-        return `The laboratory analysis matrix for ${keyword} covers over 40 distinct chemical and physical markers. Using high-performance liquid chromatography (HPLC) and atomic absorption spectroscopy, we verify that ${keyword} is free from pesticide residues, heavy metals, and mycotoxins. For our high-specification ${keyword} clients, we provide a 'Digital Lab Passport' for every batch.`;
     }
 };
 
@@ -365,6 +517,53 @@ const cleanQueryForSearch = (keyword: string) => {
     return cleaned.slice(0, 2).join(',');
 };
 
+function TechnicalDatasheet({ keyword, seed }: { keyword: string, seed: number }) {
+    const facts = TradeIntelligence.getProductFacts(keyword, seed);
+    return (
+        <div className="bg-slate-900 text-white rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative group">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -mr-32 -mt-32" />
+            <h3 className="text-2xl font-black uppercase tracking-tighter mb-8 border-b border-white/10 pb-6 flex items-center gap-3">
+                <BarChart3 className="text-green-500" /> Technical Data Sheet
+            </h3>
+            <div className="grid gap-6">
+                {Object.entries(facts).map(([key, value], i) => (
+                    <div key={i} className="flex justify-between items-center border-b border-white/5 pb-4 group/row">
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover/row:text-green-400 transition-colors">{key}</span>
+                        <span className="text-sm font-bold text-slate-200">{value}</span>
+                    </div>
+                ))}
+            </div>
+            <div className="mt-10 p-6 bg-white/5 rounded-2xl border border-white/10 italic text-[10px] text-slate-400 leading-relaxed">
+                * Specifications are batch-specific and subject to final laboratory variance. Patel Impex guarantees compliance within ±{(seed % 3) + 1}% of the stated values.
+            </div>
+        </div>
+    );
+}
+
+function TradeRouteGlossary({ keyword, seed }: { keyword: string, seed: number }) {
+    const terms = [
+        { t: "FOB (Free on Board)", d: "Seller delivers once goods pass the ship's rail at the named port of shipment." },
+        { t: "CIF (Cost, Insurance, Freight)", d: "Price includes cost of goods, insurance, and freight to the destination port." },
+        { t: "Phytosanitary Certificate", d: "Official document verifying that the agricultural goods are free from pests and diseases." },
+        { t: "Bill of Lading", d: "Legal document between the shipper and carrier detailing the type, quantity, and destination of the cargo." },
+        { t: "SGS Inspection", d: "Third-party audit of weight and quality before container sealing at terminal." }
+    ];
+    
+    return (
+        <div className="space-y-8 mt-12">
+            <h4 className="text-sm font-black uppercase tracking-[0.3em] text-slate-400 border-l-2 border-green-500 pl-4">Trade Context Definitions</h4>
+            <div className="grid md:grid-cols-2 gap-4">
+                {terms.slice(seed % 2, (seed % 2) + 4).map((term, i) => (
+                    <div key={i} className="p-6 bg-slate-50 border border-slate-100 rounded-2xl">
+                        <span className="block font-bold text-slate-900 mb-2">{term.t}</span>
+                        <span className="text-xs text-slate-500 leading-relaxed font-light">{term.d}</span>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function DynamicMassSEO() {
     const { slug } = useParams();
     const [keyword, setKeyword] = useState('');
@@ -387,18 +586,37 @@ export default function DynamicMassSEO() {
         if (localImage) {
             setDynamicImageUrl(localImage);
         } else {
-            // Using a high-precision Unsplash search pattern
-            setDynamicImageUrl(`https://images.unsplash.com/photo-1623341214825-9f4f963727da?auto=format&fit=crop&q=80&w=1200&h=800`); // Default high quality ag
-
-            // Try to find a specific one
-            const specificSearch = `https://source.unsplash.com/featured/?${encodeURIComponent(searchTerms)},product`;
-            // Note: Since unsplash source is flaky, we actually prefer specialized terms or a better fallback
-            if (searchTerms.includes('cashew')) {
-                setDynamicImageUrl('https://images.unsplash.com/photo-1509358111104-5858089f81df?auto=format&fit=crop&q=80&w=1200');
-            } else if (searchTerms.includes('rice')) {
+            // High-stability fallback strategy: Use search-optimized high-res images from Unsplash
+            // This replaces the unreliable loremflickr which returns random animals
+            const searchTerms = cleanQueryForSearch(parsedKeyword) || 'agriculture,export';
+            const seedAdjust = (newSeed % 5);
+            
+            if (searchTerms.includes('rice')) {
                 setDynamicImageUrl('https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('millet') || searchTerms.includes('bajra')) {
+                // Specific high-quality Pearl Millet/Bajra image
+                setDynamicImageUrl('https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('wheat') || searchTerms.includes('flour') || searchTerms.includes('grain')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('sugar') || searchTerms.includes('sweet') || searchTerms.includes('jaggery')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1581009137042-c552e485697a?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('pharma') || searchTerms.includes('medical') || searchTerms.includes('medicine')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('cashew') || searchTerms.includes('peanut') || searchTerms.includes('nut') || searchTerms.includes('almond')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('spice') || searchTerms.includes('pepper') || searchTerms.includes('cumin') || searchTerms.includes('chili') || searchTerms.includes('turmeric')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('tile') || searchTerms.includes('ceramic') || searchTerms.includes('porcelain') || searchTerms.includes('sanitary') || searchTerms.includes('bathroom') || searchTerms.includes('shower') || searchTerms.includes('basin') || searchTerms.includes('toilet')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('earthing') || searchTerms.includes('grounding') || searchTerms.includes('electrode')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('cotton') || searchTerms.includes('yarn') || searchTerms.includes('textile') || searchTerms.includes('fabric') || searchTerms.includes('linen')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=1200');
+            } else if (searchTerms.includes('industrial') || searchTerms.includes('machine') || searchTerms.includes('tool') || searchTerms.includes('bearing')) {
+                setDynamicImageUrl('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200');
             } else {
-                setDynamicImageUrl(`https://loremflickr.com/1200/800/${encodeURIComponent(searchTerms.split(',')[0])},agriculture/all`);
+                // Universal professional export fallback (industrial warehouse / cargo)
+                setDynamicImageUrl(`https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200`);
             }
         }
 
@@ -597,6 +815,7 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
                                     <p className="mt-8">
                                         {TradeIntelligence.getProcessingStandards(keyword, seed)}
                                     </p>
+                                    <TradeRouteGlossary keyword={keyword} seed={seed} />
                                 </div>
                             </div>
 
@@ -621,6 +840,8 @@ function ArchitectureCorporate({ title, image, fallback, keyword, seed }: { titl
 
                         {/* Sidebar Widgets */}
                         <div className="space-y-8">
+                            <TechnicalDatasheet keyword={keyword} seed={seed} />
+
                             <div className="p-10 bg-slate-900 text-white rounded-[2.5rem] space-y-8 relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 p-8 opacity-10 scale-150 rotate-12 group-hover:rotate-0 transition-transform duration-700">
                                     <Zap className="w-24 h-24 text-green-500" />
@@ -947,7 +1168,7 @@ function ArchitectureIndustrial({ title, image, fallback, keyword, seed }: { tit
                                             <div className="w-2 h-2 bg-emerald-500 rounded-full" />
                                             <span className="text-[10px] font-mono font-bold text-white uppercase tracking-widest">REALTIME_ASSET_SCAN</span>
                                         </div>
-                                        <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">{shortKw} // Processing Node</h3>
+                                        <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">{shortKw} // Production Origin</h3>
                                     </div>
                                     <div className="bg-emerald-500 text-black p-4 md:p-6 rounded-2xl flex items-center justify-center font-black text-xl shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:scale-110 transition-transform">
                                         <Zap className="w-6 h-6 md:w-8 md:h-8" />

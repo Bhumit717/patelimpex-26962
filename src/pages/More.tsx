@@ -5,9 +5,13 @@ import Navigation from "@/components/Navigation";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Briefcase, Globe, Truck, FileText, DollarSign, Shield, Users, BarChart3, Target, Zap, Award, Package, Ship, Plane, Building, Factory, Wheat, Spade, Scale, Calendar } from "lucide-react";
+import { useState, useMemo } from "react";
+import { ArrowRight, BookOpen, Briefcase, Globe, Truck, FileText, DollarSign, Shield, Users, BarChart3, Target, Zap, Award, Package, Ship, Plane, Building, Factory, Wheat, Spade, Scale, Calendar, Search, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const More = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const resourceCategories = [
     {
       title: "Export Import Basics",
@@ -134,6 +138,44 @@ const More = () => {
       ]
     },
     {
+      title: "Construction & Industrial",
+      description: "Premium ceramics and building materials",
+      icon: Building,
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-50",
+      pages: [
+        { title: "Tiles Export Guide", slug: "tiles-export-info", description: "Comprehensive guide to GVT, PGVT and slabs" },
+        { title: "GVT & PGVT Tiles", slug: "gvt-pgvt-tiles-export", description: "Glazed vitrified tiles for premium floors" },
+        { title: "Double Charge Tiles", slug: "double-charge-tiles-export", description: "Heavy duty double layer tiles" },
+        { title: "Full Body Vitrified", slug: "full-body-tiles-export", description: "Homogeneous tiles for high traffic" },
+        { title: "Digital Wall Tiles", slug: "digital-wall-tiles-export", description: "Decorative ceramics for interiors" },
+        { title: "Elevation Tiles", slug: "elevation-tiles-export", description: "Exterior wall cladding solutions" },
+        { title: "Parking Tiles", slug: "parking-tiles-export", description: "Heavy duty anti-skid floor tiles" },
+        { title: "Porcelain Slabs", slug: "porcelain-slabs-export", description: "Large format luxury porcelain" },
+        { title: "Sanitaryware Sets", slug: "sanitaryware-sets-export", description: "Complete bathroom ceramic sets" },
+        { title: "Designer Wash Basins", slug: "designer-wash-basins-export", description: "Luxury tabletop and pedestal basins" },
+        { title: "Water Closets", slug: "water-closets-export", description: "Modern ceramic toilet solutions" }
+      ]
+    },
+    {
+      title: "Earthing & Safety",
+      description: "Industrial grounding and electrical protection",
+      icon: Zap,
+      color: "text-amber-600",
+      bgColor: "bg-amber-50",
+      pages: [
+        { title: "Earthing Info Desk", slug: "earthing-export-info", description: "Technical grounding solutions and kits" },
+        { title: "GI Earthing Electrode", slug: "gi-earthing-electrode-export", description: "Galvanized iron grounding rods" },
+        { title: "Copper Electrode", slug: "copper-earthing-electrode-export", description: "Solid copper and bonded electrodes" },
+        { title: "Copper Bonded Rods", slug: "copper-bonded-rods-export", description: "High conductivity protection rods" },
+        { title: "Backfill Compound", slug: "backfill-compound-export", description: "Ground enhancement material" },
+        { title: "Earthing Strips", slug: "earthing-strips-export", description: "GI and Copper conductor strips" },
+        { title: "Lightning Arrester", slug: "lightning-arrester-export", description: "ESE and conventional systems" },
+        { title: "Earthing Clamps", slug: "earthing-clamps-export", description: "Heavy duty electrical connectors" },
+        { title: "Earth Pit Covers", slug: "earth-pit-covers-export", description: "Protective covers for ground pits" }
+      ]
+    },
+    {
       title: "Compliance & Services",
       description: "Trade regulations and business services",
       icon: Shield,
@@ -153,7 +195,20 @@ const More = () => {
     }
   ];
 
-  const totalPages = resourceCategories.reduce((total, category) => total + category.pages.length, 0);
+  const filteredCategories = useMemo(() => {
+    if (!searchTerm.trim()) return resourceCategories;
+    
+    const term = searchTerm.toLowerCase();
+    return resourceCategories.map(category => ({
+      ...category,
+      pages: category.pages.filter(page => 
+        page.title.toLowerCase().includes(term) || 
+        page.description.toLowerCase().includes(term)
+      )
+    })).filter(category => category.pages.length > 0);
+  }, [searchTerm, resourceCategories]);
+
+  const totalPages = filteredCategories.reduce((total, category) => total + category.pages.length, 0);
 
   return (
     <div className="min-h-screen bg-white">
@@ -171,50 +226,88 @@ const More = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-secondary bg-clip-text text-transparent">
               More
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
               Comprehensive guides, market insights, and expert knowledge to help you succeed in international trade.
-              Access {totalPages}+ specialized pages covering every aspect of export-import business.
+              Access specialized pages covering every aspect of export-import business.
             </p>
+
+            {/* Search Implementation */}
+            <div className="max-w-xl mx-auto relative group">
+              <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+              </div>
+              <Input
+                type="text"
+                placeholder="Search resources, markets, or products..."
+                className="pl-12 pr-12 py-6 text-lg rounded-2xl border-2 focus:border-primary shadow-sm bg-white"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {searchTerm && (
+                <button 
+                  onClick={() => setSearchTerm("")}
+                  className="absolute inset-y-0 right-4 flex items-center text-muted-foreground hover:text-primary"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Resource Categories */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 min-h-[400px]">
         <div className="container mx-auto max-w-6xl space-y-16">
-          {resourceCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex}>
-              <div className="text-center mb-8">
-                <div className={`w-16 h-16 ${category.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                  <category.icon className={`w-8 h-8 ${category.color}`} />
+          {filteredCategories.length > 0 ? (
+            filteredCategories.map((category, categoryIndex) => (
+              <div key={categoryIndex} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="text-center mb-8">
+                  <div className={`w-16 h-16 ${category.bgColor} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm`}>
+                    <category.icon className={`w-8 h-8 ${category.color}`} />
+                  </div>
+                  <h2 className="text-3xl font-bold mb-2 font-graduate uppercase tracking-tight">{category.title}</h2>
+                  <p className="text-lg text-muted-foreground">{category.description}</p>
                 </div>
-                <h2 className="text-3xl font-bold mb-4">{category.title}</h2>
-                <p className="text-xl text-muted-foreground">{category.description}</p>
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.pages.map((page, pageIndex) => (
-                  <Card key={pageIndex} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardHeader>
-                      <CardTitle className="text-lg flex items-center justify-between">
-                        {page.title}
-                        <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                      </CardTitle>
-                      <CardDescription>{page.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Button variant="ghost" size="sm" className="w-full" asChild>
-                        <Link to={`/more/${page.slug}`}>
-                          Read More
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.pages.map((page, pageIndex) => (
+                    <Card key={pageIndex} className="group hover:shadow-xl transition-all duration-300 border-slate-100 hover:border-primary/20">
+                      <CardHeader className="pb-4">
+                        <CardTitle className="text-lg flex items-center justify-between group-hover:text-primary transition-colors">
+                          {page.title}
+                          <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
+                        </CardTitle>
+                        <CardDescription className="line-clamp-2">{page.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <Button variant="secondary" size="sm" className="w-full group-hover:bg-primary group-hover:text-white transition-all rounded-lg" asChild>
+                          <Link to={`/more/${page.slug}`}>
+                            Quick Access
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+              <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
+                <Search className="w-8 h-8 text-slate-300" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-800">No matching resources found</h3>
+              <p className="text-slate-500 mt-2">Try searching for something else, like "Rice" or "Documentation"</p>
+              <Button 
+                variant="outline" 
+                className="mt-6"
+                onClick={() => setSearchTerm("")}
+              >
+                Clear Search
+              </Button>
             </div>
-          ))}
+          )}
         </div>
       </section>
 

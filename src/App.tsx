@@ -33,6 +33,8 @@ import ExportImportGuide from "./pages/more/ExportImportGuide";
 import InternationalTradeBasics from "./pages/more/InternationalTradeBasics";
 import RiceExport from "./pages/more/RiceExport";
 import SpicesExport from "./pages/more/SpicesExport";
+import TilesMore from "./pages/more/TilesMore";
+import EarthingMore from "./pages/more/EarthingMore";
 import AsianMarkets from "./pages/more/AsianMarkets";
 import SeaFreight from "./pages/more/SeaFreight";
 import ExportDocumentation from "./pages/more/ExportDocumentation";
@@ -92,6 +94,28 @@ import SesameSeedsExport from "./pages/more/SesameSeedsExport";
 import SunflowerSeedsExport from "./pages/more/SunflowerSeedsExport";
 import SugarExport from "./pages/more/SugarExport";
 
+// Tiles More Pages
+import GvtPgvtTilesExport from "./pages/more/GvtPgvtTilesExport";
+import DoubleChargeTilesExport from "./pages/more/DoubleChargeTilesExport";
+import FullBodyVitrifiedTilesExport from "./pages/more/FullBodyVitrifiedTilesExport";
+import DigitalWallTilesExport from "./pages/more/DigitalWallTilesExport";
+import ElevationTilesExport from "./pages/more/ElevationTilesExport";
+import ParkingTilesExport from "./pages/more/ParkingTilesExport";
+import PorcelainSlabsExport from "./pages/more/PorcelainSlabsExport";
+import SanitarywareSetsExport from "./pages/more/SanitarywareSetsExport";
+import DesignerWashBasinsExport from "./pages/more/DesignerWashBasinsExport";
+import WaterClosetsExport from "./pages/more/WaterClosetsExport";
+
+// Earthing More Pages
+import GiEarthingElectrodeExport from "./pages/more/GiEarthingElectrodeExport";
+import CopperEarthingElectrodeExport from "./pages/more/CopperEarthingElectrodeExport";
+import CopperBondedRodsExport from "./pages/more/CopperBondedRodsExport";
+import BackfillCompoundExport from "./pages/more/BackfillCompoundExport";
+import EarthingStripsExport from "./pages/more/EarthingStripsExport";
+import LightningArresterExport from "./pages/more/LightningArresterExport";
+import EarthingClampsExport from "./pages/more/EarthingClampsExport";
+import EarthPitCoversExport from "./pages/more/EarthPitCoversExport";
+
 
 // Product Pages - Main Categories
 import IsabgolProducts from "./pages/products/IsabgolProducts";
@@ -111,6 +135,8 @@ import SesameSeedsProducts from "./pages/products/SesameSeedsProducts";
 import SugarProductsPage from "./pages/products/SugarProductsPage";
 import HulledSesameSeedsDetail from "./pages/products/HulledSesameSeedsDetail";
 import NaturalSesameSeedsDetail from "./pages/products/NaturalSesameSeedsDetail";
+import PsylliumHuskPowderDetail from "./pages/products/PsylliumHuskPowderDetail";
+import PsylliumHuskProducts from "./pages/products/PsylliumHuskProducts";
 
 // Cotton Subproduct Pages
 import RawCottonDetail from "./pages/products/RawCottonDetail";
@@ -133,6 +159,7 @@ import SteamBasmatiRice1121Detail from "./pages/products/SteamBasmatiRice1121Det
 import IR64ParboiledRiceDetail from "./pages/products/IR64ParboiledRiceDetail";
 import IR64RawRiceDetail from "./pages/products/IR64RawRiceDetail";
 import SonaMasooriRiceDetail from "./pages/products/SonaMasooriRiceDetail";
+import JeerakasalaRice from "./pages/products/JeerakasalaRice";
 
 // Sugar Subproduct Pages
 import RawSugarDetail from "./pages/products/sugar/RawSugarDetail";
@@ -208,6 +235,30 @@ import FashionJewelryExport from "./pages/products/FashionJewelryExport";
 import AnimalDungPage from "./pages/products/AnimalDungPage";
 import AnimalDungCakeDetail from "./pages/products/AnimalDungCakeDetail";
 import AnimalDungPowderDetail from "./pages/products/AnimalDungPowderDetail";
+import TilesExport from "./pages/products/TilesExport";
+import EarthingExport from "./pages/products/EarthingExport";
+import DesignerWashBasinsDetail from "./pages/products/DesignerWashBasinsDetail";
+import WaterClosetsDetail from "./pages/products/WaterClosetsDetail";
+import VitrifiedTilesDetail from "./pages/products/VitrifiedTilesDetail";
+import ChemicalEarthingDetail from "./pages/products/ChemicalEarthingDetail";
+import WallTilesDetail from "./pages/products/WallTilesDetail";
+import FloorTilesDetail from "./pages/products/FloorTilesDetail";
+import CopperRodsDetail from "./pages/products/CopperRodsDetail";
+import EarthingAccessoriesDetail from "@/pages/products/EarthingAccessoriesDetail";
+import DoubleChargeTilesDetail from "./pages/products/DoubleChargeTilesDetail";
+import ElevationTilesDetail from "./pages/products/ElevationTilesDetail";
+import ParkingTilesDetail from "./pages/products/ParkingTilesDetail";
+import PorcelainSlabsDetail from "./pages/products/PorcelainSlabsDetail";
+import SanitarywareDetail from "./pages/products/SanitarywareDetail";
+import BathFittingsDetail from "./pages/products/BathFittingsDetail";
+import GiElectrodeDetail from "./pages/products/GiElectrodeDetail";
+import BackfillCompoundDetail from "./pages/products/BackfillCompoundDetail";
+import EarthingStripsDetail from "./pages/products/EarthingStripsDetail";
+import PitCoversDetail from "./pages/products/PitCoversDetail";
+import LightningArresterDetail from "./pages/products/LightningArresterDetail";
+import FullBodyVitrifiedDetail from "./pages/products/FullBodyVitrifiedDetail";
+import IndustrialExport from "./pages/products/IndustrialExport";
+import AgricultureProductsPage from "./pages/products/AgricultureProductsPage";
 
 
 // SEO Pages
@@ -420,6 +471,62 @@ const App = () => (
           <Route path="/more/technology-integration" element={<TechnologyIntegration />} />
           <Route path="/more/packaging-services" element={<PackagingServices />} />
           <Route path="/more/sugar-export" element={<SugarExport />} />
+          <Route path="/more/north-american-markets" element={<NorthAmericanMarkets />} />
+          <Route path="/more/south-american-markets" element={<SouthAmericanMarkets />} />
+          <Route path="/more/oceania-markets" element={<OceaniaMarkets />} />
+          <Route path="/more/eastern-european-markets" element={<EasternEuropeanMarkets />} />
+          <Route path="/more/central-asian-markets" element={<CentralAsianMarkets />} />
+          <Route path="/more/southeast-asian-markets" element={<SoutheastAsianMarkets />} />
+          <Route path="/more/northeast-asian-markets" element={<NortheastAsianMarkets />} />
+          <Route path="/more/southern-african-markets" element={<SouthernAfricanMarkets />} />
+          <Route path="/more/west-african-markets" element={<WestAfricanMarkets />} />
+          <Route path="/more/east-african-markets" element={<EastAfricanMarkets />} />
+          <Route path="/more/north-african-markets" element={<NorthAfricanMarkets />} />
+          <Route path="/more/gulf-cooperation-council" element={<GulfCooperationCouncil />} />
+          <Route path="/more/levant-markets" element={<LevantMarkets />} />
+          <Route path="/more/scandinavian-markets" element={<ScandinavianMarkets />} />
+          <Route path="/more/mediterranean-markets" element={<MediterraneanMarkets />} />
+          
+          <Route path="/more/wheat-export" element={<WheatExport />} />
+          <Route path="/more/corn-export" element={<CornExport />} />
+          <Route path="/more/millet-export" element={<MilletExport />} />
+          <Route path="/more/barley-export" element={<BarleyExport />} />
+          <Route path="/more/turmeric-export" element={<TurmericExport />} />
+          <Route path="/more/cumin-export" element={<CuminExport />} />
+          <Route path="/more/coriander-export" element={<CorianderExport />} />
+          <Route path="/more/cardamom-export" element={<CardamomExport />} />
+          <Route path="/more/black-pepper-export" element={<BlackPepperExport />} />
+          <Route path="/more/red-chili-export" element={<RedChiliExport />} />
+          <Route path="/more/ginger-export" element={<GingerExport />} />
+          <Route path="/more/garlic-export" element={<GarlicExport />} />
+          <Route path="/more/onion-export" element={<OnionExport />} />
+          <Route path="/more/cashew-export" element={<CashewExport />} />
+          <Route path="/more/almond-export" element={<AlmondExport />} />
+          <Route path="/more/sesame-seeds-export" element={<SesameSeedsExport />} />
+          <Route path="/more/sunflower-seeds-export" element={<SunflowerSeedsExport />} />
+
+          {/* Tiles More Pages */}
+          <Route path="/more/gvt-pgvt-tiles-export" element={<GvtPgvtTilesExport />} />
+          <Route path="/more/double-charge-tiles-export" element={<DoubleChargeTilesExport />} />
+          <Route path="/more/full-body-tiles-export" element={<FullBodyVitrifiedTilesExport />} />
+          <Route path="/more/digital-wall-tiles-export" element={<DigitalWallTilesExport />} />
+          <Route path="/more/elevation-tiles-export" element={<ElevationTilesExport />} />
+          <Route path="/more/parking-tiles-export" element={<ParkingTilesExport />} />
+          <Route path="/more/porcelain-slabs-export" element={<PorcelainSlabsExport />} />
+          <Route path="/more/sanitaryware-sets-export" element={<SanitarywareSetsExport />} />
+          <Route path="/more/designer-wash-basins-export" element={<DesignerWashBasinsExport />} />
+          <Route path="/more/water-closets-export" element={<WaterClosetsExport />} />
+
+          {/* Earthing More Pages */}
+          <Route path="/more/gi-earthing-electrode-export" element={<GiEarthingElectrodeExport />} />
+          <Route path="/more/copper-earthing-electrode-export" element={<CopperEarthingElectrodeExport />} />
+          <Route path="/more/copper-bonded-rods-export" element={<CopperBondedRodsExport />} />
+          <Route path="/more/backfill-compound-export" element={<BackfillCompoundExport />} />
+          <Route path="/more/earthing-strips-export" element={<EarthingStripsExport />} />
+          <Route path="/more/lightning-arrester-export" element={<LightningArresterExport />} />
+          <Route path="/more/earthing-clamps-export" element={<EarthingClampsExport />} />
+          <Route path="/more/earth-pit-covers-export" element={<EarthPitCoversExport />} />
+
 
 
 
@@ -565,7 +672,16 @@ const App = () => (
           {/* Generated SEO Routes */}
 
 
-          {/* Main Product Pages */}
+          {/* Main Product Category Hubs */}
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/agriculture" element={<AgricultureProductsPage />} />
+          <Route path="/products/tiles-export" element={<TilesExport />} />
+          <Route path="/products/earthing-export" element={<EarthingExport />} />
+          <Route path="/products/industrial" element={<IndustrialExport />} />
+          <Route path="/more/tiles-export-info" element={<TilesMore />} />
+          <Route path="/more/earthing-export-info" element={<EarthingMore />} />
+
+          {/* Main Product Detail Hubs (Sub-categories) */}
           <Route path="/products/psyllium-husk" element={<IsabgolProducts />} />
           <Route path="/products/psyllium-husk/husk" element={<PsylliumHuskDetailPage />} />
           <Route path="/products/psyllium-husk/powder" element={<PsylliumPowderDetailPage />} />
@@ -609,6 +725,7 @@ const App = () => (
           <Route path="/products/ir64-parboiled-rice" element={<IR64ParboiledRiceDetail />} />
           <Route path="/products/ir64-raw-rice" element={<IR64RawRiceDetail />} />
           <Route path="/products/sona-masoori-rice" element={<SonaMasooriRiceDetail />} />
+          <Route path="/products/jeerakasala-rice" element={<JeerakasalaRice />} />
 
           {/* Sugar Subproduct Routes */}
           <Route path="/products/sugar/raw-sugar" element={<RawSugarDetail />} />
@@ -645,9 +762,27 @@ const App = () => (
           <Route path="/products/thresher-export" element={<ThresherExport />} />
           <Route path="/products/farm-trailer-export" element={<FarmTrailerExport />} />
           <Route path="/products/hand-tools-export" element={<HandToolsExport />} />
+          {/* Agricultural Sector Hubs */}
+          <Route path="/products/rice" element={<RiceProductsPage />} />
+          <Route path="/products/wheat" element={<WheatProductsPage />} />
+          <Route path="/products/wheat-flour" element={<WheatFlourPage />} />
+          <Route path="/products/fennel-seeds" element={<FennelSeedsPage />} />
+          <Route path="/products/cumin-seeds" element={<CuminSeedsPage />} />
+          <Route path="/products/cardamom" element={<CardamomPage />} />
+          <Route path="/products/groundnut" element={<GroundnutProductsPage />} />
+          <Route path="/products/animal-dung" element={<AnimalDungPage />} />
+          <Route path="/products/soybeans" element={<SoybeansPage />} />
+          <Route path="/products/sesame-seeds" element={<SesameSeedsProducts />} />
+          <Route path="/products/cotton" element={<CottonProductsPage />} />
+          <Route path="/products/psyllium-husk" element={<IsabgolProducts />} />
+          <Route path="/products/psyllium-husk-powder" element={<PsylliumHuskPowderDetail />} />
+          <Route path="/products/psyllium-husk-products" element={<PsylliumHuskProducts />} />
+
+          {/* Industrial Machines */}
           <Route path="/products/cnc-machine-export" element={<CNCMachineExport />} />
           <Route path="/products/power-drill-set-export" element={<PowerDrillSetExport />} />
           <Route path="/products/industrial-motor-export" element={<IndustrialMotorExport />} />
+          <Route path="/products/industrial-pipes-export" element={<IndustrialPipesExport />} />
           <Route path="/products/engine-parts-export" element={<EnginePartsExport />} />
           <Route path="/products/steel-sheets-export" element={<SteelSheetsExport />} />
           <Route path="/products/welding-machine-export" element={<WeldingMachineExport />} />
@@ -681,6 +816,28 @@ const App = () => (
           <Route path="/products/wall-hangings-export" element={<WallHangingsExport />} />
           <Route path="/products/decorative-lamps-export" element={<DecorativeLampsExport />} />
           <Route path="/products/fashion-jewelry-export" element={<FashionJewelryExport />} />
+          <Route path="/products/earthing-export" element={<EarthingExport />} />
+           <Route path="/products/tiles/gvt-pgvt" element={<VitrifiedTilesDetail />} />
+          <Route path="/products/tiles/double-charge" element={<DoubleChargeTilesDetail />} />
+          <Route path="/products/tiles/full-body" element={<FullBodyVitrifiedDetail />} />
+          <Route path="/products/tiles/wall" element={<WallTilesDetail />} />
+          <Route path="/products/tiles/floor" element={<FloorTilesDetail />} />
+          <Route path="/products/tiles/elevation" element={<ElevationTilesDetail />} />
+          <Route path="/products/tiles/parking" element={<ParkingTilesDetail />} />
+          <Route path="/products/tiles/slabs" element={<PorcelainSlabsDetail />} />
+          <Route path="/products/tiles/sanitary-basin" element={<DesignerWashBasinsDetail />} />
+          <Route path="/products/tiles/sanitary-closet" element={<WaterClosetsDetail />} />
+          <Route path="/products/sanitaryware" element={<SanitarywareDetail />} />
+          <Route path="/products/bath-fittings" element={<BathFittingsDetail />} />
+          
+          <Route path="/products/earthing/gi-electrode" element={<GiElectrodeDetail />} />
+          <Route path="/products/earthing/copper-electrode" element={<ChemicalEarthingDetail />} />
+          <Route path="/products/earthing/copper-rods" element={<CopperRodsDetail />} />
+          <Route path="/products/earthing/backfill" element={<BackfillCompoundDetail />} />
+          <Route path="/products/earthing/strips" element={<EarthingStripsDetail />} />
+          <Route path="/products/earthing/pit-covers" element={<PitCoversDetail />} />
+          <Route path="/products/earthing/lightning-arresters" element={<LightningArresterDetail />} />
+          <Route path="/products/earthing/clamps" element={<EarthingAccessoriesDetail />} />
 
           {/* Legal Pages */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

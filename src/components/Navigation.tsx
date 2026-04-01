@@ -15,7 +15,17 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Products", href: "/products" },
+    { 
+      name: "Products", 
+      href: "/products",
+      dropdown: [
+        { name: "Agricultural Exports", href: "/products/agriculture" },
+        { name: "Tiles & Sanitaryware", href: "/products/tiles-export" },
+        { name: "Earthing Solutions", href: "/products/earthing-export" },
+        { name: "Textiles & Garments", href: "/products/cotton" },
+        { name: "Industrial & Engineering", href: "/products/industrial" }
+      ]
+    },
     { name: "Blog", href: "/blog" },
     { name: "News", href: "/news" },
     { name: "Contact", href: "/contact" }
@@ -45,16 +55,41 @@ const Navigation = () => {
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`px-6 py-3 text-[11px] font-bold uppercase tracking-[0.2em] font-graduate transition-all duration-300 relative group overflow-hidden ${location.pathname === item.href ? 'bg-emerald-600 text-white' : 'text-slate-500 hover:text-slate-900'}`}
-              >
-                <span className="relative z-10">{item.name}</span>
-                {location.pathname !== item.href && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              <div key={item.name} className="relative group/nav">
+                {item.dropdown ? (
+                  <div className="flex flex-col items-center">
+                    <Link
+                      to={item.href}
+                      className={`px-6 py-3 text-[11px] font-bold uppercase tracking-[0.2em] font-graduate transition-all duration-300 relative overflow-hidden flex items-center gap-1 ${location.pathname === item.href ? 'bg-emerald-600 text-white' : 'text-slate-500 hover:text-slate-900 group-hover/nav:text-emerald-600'}`}
+                    >
+                      <span className="relative z-10">{item.name}</span>
+                      <ChevronRight className={`w-3 h-3 transition-transform group-hover/nav:rotate-90 ${location.pathname === item.href ? 'text-white' : 'text-slate-400'}`} />
+                    </Link>
+                    {/* Dropdown Menu */}
+                    <div className="absolute top-full left-0 w-64 bg-white border border-slate-100 shadow-2xl opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-300 translate-y-2 group-hover/nav:translate-y-0 z-50 py-2">
+                       {item.dropdown.map((sub, idx) => (
+                         <Link 
+                            key={idx} 
+                            to={sub.href}
+                            className="block px-6 py-3 text-[10px] font-bold text-slate-600 hover:text-emerald-600 hover:bg-slate-50 transition-all uppercase tracking-widest"
+                          >
+                           {sub.name}
+                         </Link>
+                       ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className={`px-6 py-3 text-[11px] font-bold uppercase tracking-[0.2em] font-graduate transition-all duration-300 relative overflow-hidden ${location.pathname === item.href ? 'bg-emerald-600 text-white' : 'text-slate-500 hover:text-slate-900'}`}
+                  >
+                    <span className="relative z-10">{item.name}</span>
+                    {location.pathname !== item.href && (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                    )}
+                  </Link>
                 )}
-              </Link>
+              </div>
             ))}
           </div>
 
@@ -85,23 +120,41 @@ const Navigation = () => {
 
       {/* Mobile Menu */}
       <div className={`lg:hidden fixed inset-x-0 top-[90px] px-4 transition-all duration-500 ease-out z-40 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'}`}>
-        <div className="nm-card !p-6 md:!p-8 flex flex-col space-y-6 bg-white border-2 border-slate-50">
+        <div className="nm-card !p-6 md:!p-8 flex flex-col bg-white border-2 border-slate-50">
           {/* Language Selector - Mobile Menu */}
           <div className="flex justify-center pb-2 border-b border-slate-100">
             <CustomLanguageSelector />
           </div>
 
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.href}
-              onClick={() => setIsOpen(false)}
-              className={`flex items-center justify-between p-4 transition-all ${location.pathname === item.href ? 'bg-green-50 text-green-700' : 'hover:bg-white text-slate-700'}`}
-            >
-              <span className="text-lg font-black font-graduate uppercase tracking-tight">{item.name}</span>
-              <ChevronRight size={20} className={location.pathname === item.href ? 'text-green-600' : 'text-slate-300'} />
-            </Link>
-          ))}
+          <div className="max-h-[60vh] overflow-y-auto space-y-2 py-4">
+            {navItems.map((item) => (
+              <div key={item.name}>
+                <Link
+                  to={item.href}
+                  onClick={() => !item.dropdown && setIsOpen(false)}
+                  className={`flex items-center justify-between p-4 transition-all ${location.pathname === item.href ? 'bg-green-50 text-green-700' : 'hover:bg-emerald-50 text-slate-700'}`}
+                >
+                  <span className="text-lg font-black font-graduate uppercase tracking-tight">{item.name}</span>
+                  <ChevronRight size={20} className={`${location.pathname === item.href ? 'text-green-600' : 'text-slate-300'} ${item.dropdown ? 'rotate-90' : ''}`} />
+                </Link>
+                {item.dropdown && (
+                  <div className="pl-6 py-2 space-y-1">
+                    {item.dropdown.map((sub, idx) => (
+                      <Link 
+                        key={idx}
+                        to={sub.href}
+                        onClick={() => setIsOpen(false)}
+                        className="block p-3 text-sm font-bold text-slate-500 hover:text-emerald-600 uppercase tracking-widest"
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
           <Link to="/inquiry" onClick={() => setIsOpen(false)} className="pt-2">
             <button className="nm-btn-dark w-full !h-16 text-lg font-black font-graduate bg-slate-900 !text-white uppercase tracking-widest transition-all duration-300 border-none">
               REQUEST FREE QUOTE
