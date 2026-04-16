@@ -43,6 +43,7 @@ export const sendLocationToAPI = async (country: string): Promise<void> => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 1500); // Reduced timeout
     
+    /* 
     const message = encodeURIComponent(`Visitor from: ${country} - ${new Date().toISOString()}`);
     const apiUrl1 = `https://api.callmebot.com/text.php?source=web&user=@bhumitnasit&text=${message}`;
     const apiUrl2 = `https://api.callmebot.com/text.php?source=web&user=@PATEL111206&text=${message}`;
@@ -59,9 +60,9 @@ export const sendLocationToAPI = async (country: string): Promise<void> => {
         signal: controller.signal
       })
     ]);
-    
+    */
     clearTimeout(timeoutId);
-    console.log(`Location sent to API: ${country}`);
+    console.log(`Visitor location notification (CallMeBot) is currently disabled. Country: ${country}`);
   } catch (error) {
     // Fail silently to not impact user experience
     console.warn('Error sending location to API (non-blocking):', error);
