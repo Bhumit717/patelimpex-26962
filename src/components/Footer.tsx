@@ -33,19 +33,19 @@ const Footer = () => {
 
   const footerLinks = {
     "Products": [
-      { name: "IR-64 Rice Varieties", href: "/more/basmati-rice-export" },
+      { name: "Basmati Rice Varieties", href: "/products/rice" },
       { name: "Cotton & Textiles", href: "/products/cotton" },
-      { name: "Soybean & Meals", href: "/products/soybeans" },
+      { name: "Soybean & Grains", href: "/products/soybeans" },
       { name: "Groundnut / Peanuts", href: "/products/groundnut" },
       { name: "Psyllium Products", href: "/products/psyllium-husk" }
     ],
 
     "Regional Trade": [
-      { name: "European Markets", href: "/more/european-markets" },
-      { name: "African Trade Guide", href: "/more/african-markets" },
-      { name: "Middle East Logistics", href: "/more/middle-east-markets" },
-      { name: "USA Market Entry", href: "/seo/usa-market-export" },
-      { name: "Asian Market Reach", href: "/more/asian-markets" }
+      { name: "Agricultural Exports", href: "/products/agriculture" },
+      { name: "Tiles & Sanitaryware", href: "/products/tiles-export" },
+      { name: "Earthing Solutions", href: "/products/earthing-export" },
+      { name: "Textiles & Garments", href: "/products/cotton" },
+      { name: "Global Logistics", href: "/services" }
     ],
     "Company": [
       { name: "About Patel Impex", href: "/about" },
@@ -54,8 +54,7 @@ const Footer = () => {
       { name: "Contact & Support", href: "/contact" },
       { name: "Trade Inquiry", href: "/inquiry" },
       { name: "Admin Terminal", href: "/admin" },
-      { name: "Privacy & Terms", href: "/privacy-policy" },
-      { name: "More", href: "/more" }
+      { name: "Privacy & Terms", href: "/privacy-policy" }
     ]
   };
 

@@ -68,6 +68,15 @@ interface NewsArticle {
     link: string; // Custom URL slug or external link
 }
 
+interface CustomPage {
+    id: string;
+    title: string;
+    slug: string;
+    content: string;
+    timestamp: any;
+    updatedAt?: any;
+}
+
 // ============================================================
 // RICH TEXT EDITOR WITH FULL HTML PASTE SUPPORT
 // Single editor — paste content directly, everything is preserved
@@ -290,6 +299,7 @@ const Admin = () => {
     const [inquiries, setInquiries] = useState<any[]>([]);
     const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
     const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
+    const [customPages, setCustomPages] = useState<CustomPage[]>([]);
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
     const { toast } = useToast();
@@ -318,6 +328,14 @@ const Admin = () => {
     const [newsImageFile, setNewsImageFile] = useState<File | null>(null);
     const [newsEditingId, setNewsEditingId] = useState<string | null>(null);
     const [newsExistingImageUrl, setNewsExistingImageUrl] = useState<string | null>(null);
+
+    // Page Form State
+    const [pageForm, setPageForm] = useState({
+        title: "",
+        slug: "",
+        content: ""
+    });
+    const [pageEditingId, setPageEditingId] = useState<string | null>(null);
 
     const [storedPassword, setStoredPassword] = useState<string | null>(null);
 
@@ -371,10 +389,18 @@ const Admin = () => {
             setLoading(false);
         });
 
+        // Fetch Custom Pages
+        const qPages = query(collection(db, "custom_pages"), orderBy("timestamp", "desc"));
+        const unsubPages = onSnapshot(qPages, (snapshot) => {
+            setCustomPages(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as CustomPage[]);
+            setLoading(false);
+        });
+
         return () => {
             unsubInquiries();
             unsubBlog();
             unsubNews();
+            unsubPages();
         };
     }, [isAuthenticated]);
 
@@ -650,6 +676,61 @@ const Admin = () => {
         }
     };
 
+    // Page Handlers
+    const handleAddPage = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if (!pageForm.title || !pageForm.slug || !pageForm.content) {
+            toast({ title: "Error", description: "Please fill all fields.", variant: "destructive" });
+            return;
+        }
+
+        try {
+            setUploading(true);
+            const pageData = {
+                title: pageForm.title,
+                slug: pageForm.slug.trim().toLowerCase().replace(/\s+/g, '-'),
+                content: pageForm.content,
+                timestamp: serverTimestamp(),
+                ...(pageEditingId ? { updatedAt: serverTimestamp() } : {})
+            };
+
+            if (pageEditingId) {
+                await setDoc(doc(db, "custom_pages", pageEditingId), pageData, { merge: true });
+                toast({ title: "Page Updated!", description: "Changes have been saved." });
+            } else {
+                await addDoc(collection(db, "custom_pages"), pageData);
+                toast({ title: "Page Created!", description: "Page is now live." });
+            }
+
+            setPageForm({ title: "", slug: "", content: "" });
+            setPageEditingId(null);
+            setActiveTab("pages");
+        } catch (error: any) {
+            console.error("Page Save Error:", error);
+            toast({ title: "Error", description: error.message, variant: "destructive" });
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleEditPage = (page: CustomPage) => {
+        setPageForm({
+            title: page.title,
+            slug: page.slug,
+            content: page.content
+        });
+        setPageEditingId(page.id);
+        setActiveTab("add-page");
+    };
+
+    const handleDeletePage = async (id: string) => {
+        if (window.confirm("Delete this page permanently?")) {
+            await deleteDoc(doc(db, "custom_pages", id));
+            toast({ title: "Page Removed" });
+        }
+    };
+
 
 
 
@@ -703,6 +784,7 @@ const Admin = () => {
                                 {[
                                     { id: "blog", label: "Blog Factory", icon: FileText },
                                     { id: "news", label: "News Factory", icon: Newspaper },
+                                    { id: "pages", label: "Page Factory", icon: LayoutDashboard },
                                 ].map((item) => (
                                     <button
                                         key={item.id}
@@ -1056,6 +1138,108 @@ const Admin = () => {
                             </div>
                         )}
 
+                        {activeTab === "pages" && (
+                            <div className="space-y-8">
+                                <div className="flex justify-between items-center bg-white p-6 rounded-[30px] shadow-sm border border-slate-100">
+                                    <h2 className="text-3xl font-black text-slate-800 font-graduate tracking-tight">Page Repository</h2>
+                                    <Button onClick={() => setActiveTab("add-page")} className="nm-btn-green !px-8">
+                                        <Plus className="mr-2" size={20} /> CREATE PAGE
+                                    </Button>
+                                </div>
+
+                                <div className="grid md:grid-cols-1 gap-4">
+                                    {customPages.map((page) => (
+                                        <Card key={page.id} className="nm-card !p-6 flex flex-col md:flex-row items-center gap-6 group hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                                            <div className="flex-1 space-y-2 text-center md:text-left">
+                                                <h3 className="text-xl font-black text-slate-800 font-graduate">{page.title}</h3>
+                                                <p className="text-blue-500 text-xs font-mono">/p/{page.slug}</p>
+                                                <div
+                                                    className="text-slate-500 text-xs line-clamp-2 italic font-fondamento text-lg"
+                                                    dangerouslySetInnerHTML={{ __html: (page.content || '').replace(/<[^>]+>/g, '').substring(0, 150) + "..." }}
+                                                />
+                                            </div>
+                                            <div className="flex space-x-2">
+                                                <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-colors"
+                                                    onClick={() => handleEditPage(page)}
+                                                >
+                                                    <Edit size={20} />
+                                                </Button>
+                                                <Button variant="ghost" size="icon" className="h-12 w-12 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-colors"
+                                                    onClick={() => handleDeletePage(page.id)}
+                                                >
+                                                    <Trash2 size={20} />
+                                                </Button>
+                                            </div>
+                                        </Card>
+                                    ))}
+                                    {customPages.length === 0 && (
+                                        <div className="nm-card !p-20 text-center text-slate-300">
+                                            <Loader2 size={48} className="mx-auto mb-4 animate-spin opacity-20" />
+                                            <p className="font-graduate uppercase tracking-[0.3em] text-sm">No custom pages found...</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === "add-page" && (
+                            <div className="space-y-8 animate-slide-up">
+                                <div className="flex items-center space-x-6">
+                                    <Button variant="ghost" onClick={() => setActiveTab("pages")} className="nm-btn !w-14 !h-14 !p-0 shadow-lg">←</Button>
+                                    <div>
+                                        <h2 className="text-4xl font-black text-slate-800 font-graduate">{pageEditingId ? "Edit Page" : "New Page"}</h2>
+                                        <p className="text-slate-400 font-graduate uppercase text-[10px] tracking-widest mt-1">Page Builder Active</p>
+                                    </div>
+                                </div>
+
+                                <form onSubmit={handleAddPage} className="nm-card !p-12 !rounded-[60px] space-y-8 bg-white border-2 border-slate-100 shadow-2xl">
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="space-y-4">
+                                            <label className="nm-label">Page Title</label>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="nm-input w-full"
+                                                value={pageForm.title}
+                                                onChange={e => setPageForm({ ...pageForm, title: e.target.value })}
+                                                placeholder="e.g. Export Guide"
+                                            />
+                                        </div>
+                                        <div className="space-y-4">
+                                            <label className="nm-label">URL Slug</label>
+                                            <div className="flex items-center space-x-2">
+                                                <span className="text-slate-400 text-xs font-mono">/p/</span>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    className="nm-input w-full"
+                                                    value={pageForm.slug}
+                                                    onChange={e => setPageForm({ ...pageForm, slug: e.target.value })}
+                                                    placeholder="export-guide"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <label className="nm-label">Page Content (HTML/Rich Text)</label>
+                                        <RichTextEditor
+                                            value={pageForm.content}
+                                            onChange={(val) => setPageForm({ ...pageForm, content: val })}
+                                        />
+                                    </div>
+
+                                    <Button
+                                        type="submit"
+                                        disabled={uploading}
+                                        className="nm-btn-dark w-full !py-6 font-black tracking-widest"
+                                    >
+                                        {uploading ? <Loader2 className="animate-spin mr-2" /> : <CheckCircle2 className="mr-2" />}
+                                        {pageEditingId ? "UPDATE PAGE CONTENT" : "PUBLISH NEW PAGE"}
+                                    </Button>
+                                </form>
+                            </div>
+                        )}
                     </main >
                 </div >
             </div >
