@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
-import { Calendar, ExternalLink, Globe, TrendingUp, Newspaper, RefreshCw, ChevronLeft, ChevronRight, Zap, Clock, Search, Filter, ArrowRight } from "lucide-react";
+import { Calendar, Newspaper, ChevronLeft, ChevronRight, Zap, Clock, Search, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Helmet } from "react-helmet";
 import { db } from "@/lib/firebase";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, orderBy, limit, getDocs, startAfter, getCountFromServer, DocumentSnapshot } from "firebase/firestore";
 
 interface NewsArticle {
   id: string;
@@ -19,87 +19,103 @@ interface NewsArticle {
   date: string;
   tags: string[];
   category: string;
-  link?: string; // Custom URL from admin
+  link?: string;
 }
 
-// Get today's date for static news
-const getDateString = (daysAgo: number = 0) => {
-  const date = new Date();
-  date.setDate(date.getDate() - daysAgo);
-  return date.toISOString();
-};
-
-// Static fallback news for when API fails
-const staticNews: NewsArticle[] = [
-  {
-    id: "1",
-    title: "India's Agricultural Exports Reach Record High in 2025",
-    content: "India's agricultural exports have reached unprecedented levels, with spices and grains leading the growth. The country continues to strengthen its position as a major global exporter.",
-    date: getDateString(0), // Today
-    image: "",
-    tags: ["trade", "agriculture"],
-    category: "Global Trade"
-  },
-  {
-    id: "2",
-    title: "Global Spice Trade Trends: What Exporters Need to Know in 2025",
-    content: "The global spice market is evolving with new consumer preferences and sustainability requirements. Key insights for exporters navigating these changes.",
-    date: getDateString(0), // Today
-    image: "",
-    tags: ["spices", "export"],
-    category: "Market Trends"
-  }
-];
+const ITEMS_PER_PAGE = 9;
 
 const News = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("All News");
   const [searchTerm, setSearchTerm] = useState("");
+  const [pageCursors, setPageCursors] = useState<Record<number, DocumentSnapshot>>({});
 
-  // Reset to page 1 when search or category changes
+  const fetchPage = useCallback(async (pageNum: number) => {
+    setLoading(true);
+    try {
+      let q;
+      if (pageNum === 1) {
+        q = query(collection(db, "news_articles"), orderBy("timestamp", "desc"), limit(ITEMS_PER_PAGE));
+      } else {
+        const lastCursor = pageCursors[pageNum - 1];
+        if (!lastCursor) {
+          setLoading(false);
+          return;
+        }
+        q = query(collection(db, "news_articles"), orderBy("timestamp", "desc"), startAfter(lastCursor), limit(ITEMS_PER_PAGE));
+      }
+
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as NewsArticle[];
+
+      setArticles(prev => {
+        const newArticles = [...prev];
+        const startIdx = (pageNum - 1) * ITEMS_PER_PAGE;
+        data.forEach((article, i) => {
+          newArticles[startIdx + i] = article;
+        });
+        return newArticles;
+      });
+
+      if (snapshot.docs.length > 0) {
+        setPageCursors(prev => ({ ...prev, [pageNum]: snapshot.docs[snapshot.docs.length - 1] }));
+      }
+    } catch (error) {
+      console.error("Error fetching news:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [pageCursors]);
+
+  useEffect(() => {
+    const init = async () => {
+      setLoading(true);
+      try {
+        const countSnapshot = await getCountFromServer(collection(db, "news_articles"));
+        const total = countSnapshot.data().count;
+        setTotalPages(Math.ceil(total / ITEMS_PER_PAGE));
+      } catch (e) {
+        console.error("Error getting count:", e);
+      }
+      await fetchPage(1);
+    };
+    init();
+  }, [fetchPage]);
+
+  useEffect(() => {
+    const idx = (currentPage - 1) * ITEMS_PER_PAGE;
+    if (!articles[idx]) {
+      fetchPage(currentPage);
+    }
+  }, [currentPage, articles, fetchPage]);
+
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, selectedCategory]);
 
-  const ITEMS_PER_PAGE = 9;
-
-  useEffect(() => {
-    const q = query(collection(db, "news_articles"), orderBy("timestamp", "desc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const newsData = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as NewsArticle[];
-      setArticles(newsData);
-      setLoading(false);
-    }, (error) => {
-      console.error("Error fetching news:", error);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const currentArticles = useMemo(() => {
+    const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+    return articles.slice(startIdx, startIdx + ITEMS_PER_PAGE).filter(Boolean);
+  }, [articles, currentPage]);
 
   const categories = [
     "All News", "Global Trade", "Industry News", "Company Updates", "Market Trends", "Export Alerts"
   ];
 
-  const filteredArticles = articles.filter(article => {
+  const filteredArticles = currentArticles.filter(article => {
+    if (!article) return false;
     const matchesCategory = selectedCategory === "All News" || article.category === selectedCategory;
     const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (article.content || '').toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
-
-  const paginatedNews = filteredArticles.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
-
-  const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
 
   const handleArticleClick = (article: NewsArticle) => {
     if (article.link && article.link.trim()) {
@@ -127,7 +143,6 @@ const News = () => {
       <Navigation />
 
       <main className="min-h-screen bg-white pt-32 pb-20">
-        {/* Hero Section */}
         <section className="container mx-auto px-4 mb-20 relative z-10">
           <div className="relative overflow-hidden rounded-[40px] nm-bg shadow-[10px_10px_20px_#cfd6e0,-10px_-10px_20px_#ffffff] p-12 lg:p-20 text-center border-4 border-[#e9edf3]">
             <div className="relative z-10 max-w-4xl mx-auto">
@@ -148,26 +163,24 @@ const News = () => {
                 Navigating the complexities of international trade with precision and strategic depth.
               </p>
 
-              {/* Search Bar */}
               <div className="flex flex-col md:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
                 <div className="relative w-full">
                   <input
                     type="text"
                     placeholder="Search trade alerts..."
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
                     className="nm-input !rounded-full !pl-16 pr-6 py-5 w-full !text-lg font-graduate"
                   />
                   <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-slate-400" />
                 </div>
               </div>
 
-              {/* Category Filters */}
               <div className="flex flex-wrap justify-center gap-3 mt-12">
                 {categories.map(cat => (
                   <button
                     key={cat}
-                    onClick={() => setSelectedCategory(cat)}
+                    onClick={() => { setSelectedCategory(cat); setCurrentPage(1); }}
                     className={`px-6 py-3 rounded-full text-xs font-black font-graduate uppercase tracking-widest transition-all duration-300 ${selectedCategory === cat
                       ? 'bg-blue-600 text-white shadow-lg'
                       : 'bg-white text-slate-600 hover:bg-slate-50 shadow-md'
@@ -181,11 +194,8 @@ const News = () => {
           </div>
         </section>
 
-
-
-        {/* News Grid */}
         <section className="container mx-auto px-4">
-          {loading ? (
+          {loading && articles.length === 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(9)].map((_, i) => (
                 <div key={i} className="nm-card p-0 overflow-hidden h-96">
@@ -201,7 +211,7 @@ const News = () => {
           ) : (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {paginatedNews.map((article) => (
+                {filteredArticles.map((article) => (
                   <div
                     key={article.id}
                     className="group block h-full cursor-pointer"
@@ -276,7 +286,6 @@ const News = () => {
                 </div>
               )}
 
-              {/* Pagination */}
               {totalPages > 1 && (
                 <div className="flex justify-center items-center gap-4 mt-16">
                   <Button
@@ -314,27 +323,9 @@ const News = () => {
                   </Button>
                 </div>
               )}
-
-              {/* Refresh Button */}
-              <div className="text-center mt-12">
-                <Button
-                  onClick={() => {
-                    setLoading(true);
-                    // The onSnapshot will automatically re-fire on data change or we can manually trigger a loading state reset if needed
-                    // For now, let's just simulate a refresh by toggling loading
-                    setTimeout(() => setLoading(false), 500);
-                  }}
-                  className="nm-btn !w-auto text-slate-700 hover:text-blue-600"
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  Refresh News
-                </Button>
-              </div>
             </>
           )}
         </section>
-
-
       </main>
 
       <Footer />
@@ -343,4 +334,3 @@ const News = () => {
 };
 
 export default News;
-

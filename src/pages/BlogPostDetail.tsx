@@ -6,7 +6,7 @@ import { doc, getDoc, collection, query, where, getDocs } from "firebase/firesto
 import Navigation from "@/components/Navigation";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
-import { Calendar, Clock, ChevronLeft, Loader2, Share2, Tag } from "lucide-react";
+import { Calendar, Clock, ChevronLeft, Loader2, Share2, Tag, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 
@@ -113,16 +113,17 @@ const BlogPostDetail = () => {
                                     <span>8 min read</span>
                                 </div>
                             </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-800 mb-8 leading-tight font-graduate">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-slate-800 mb-8 leading-tight font-graduate">
                                 {post.title}
                             </h1>
                         </header>
                     </article>
                 </div>
 
-                {/* Hero Image - Fixed to 900x700 aspect ratio */}
+                {/* Hero Image */}
+                {post.image && (
                 <div className="w-full max-w-[900px] mx-auto px-4 mb-16">
-                    <div className="relative aspect-[9/7] rounded-[40px] overflow-hidden shadow-2xl border-8 border-white group">
+                    <div className="relative aspect-[16/10] md:aspect-[9/7] rounded-[24px] md:rounded-[40px] overflow-hidden shadow-2xl border-4 md:border-8 border-white group">
                         <img
                             src={post.image}
                             alt={post.title}
@@ -130,6 +131,7 @@ const BlogPostDetail = () => {
                         />
                     </div>
                 </div>
+                )}
 
 
                 <div className="container mx-auto px-4 max-w-4xl">

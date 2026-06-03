@@ -24,7 +24,6 @@ import Admin from "./pages/Admin";
 import Sitemap from "./pages/Sitemap";
 import BlogPostDetail from "./pages/BlogPostDetail";
 import NewsDetail from "./pages/NewsDetail";
-import CustomPageRenderer from "./pages/CustomPageRenderer";
 
 // More pages removed - replaced by dynamic system
 
@@ -197,9 +196,6 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/admin" element={<Admin />} />
-
-          <Route path="/p/:slug" element={<CustomPageRenderer />} />
-
 
           {/* Generated SEO Routes */}
 

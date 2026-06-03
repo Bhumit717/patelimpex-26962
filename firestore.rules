@@ -23,11 +23,6 @@ service cloud.firestore {
       allow create: if true;
     }
     
-    match /custom_pages/{document=**} {
-      allow read: if true;
-      allow write: if true;
-    }
-    
     // Admin Config: Securely stored
     match /admin_config/{document=**} {
       allow read, write: if true;

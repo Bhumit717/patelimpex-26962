@@ -1,25 +1,27 @@
 import Navigation from "@/components/Navigation";
 import SEOHead from "@/components/SEOHead";
 import Footer from "@/components/Footer";
-import { Calendar, Clock, ArrowRight, Search, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight, Search, Loader2, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { db } from "@/lib/firebase";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, query, orderBy, limit, getDocs, startAfter, getCountFromServer, DocumentSnapshot } from "firebase/firestore";
 
 interface BlogPost {
   id: string;
   title: string;
-  content: string; // Changed from intro to content
+  content: string;
   image: string;
   date: string;
   readTime: string;
   category: string;
   tags: string[];
   featured?: boolean;
-  link?: string; // Custom URL / slug from admin
+  link?: string;
 }
+
+const ITEMS_PER_PAGE = 9;
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -28,65 +30,99 @@ const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [pageCursors, setPageCursors] = useState<Record<number, DocumentSnapshot>>({});
 
-  const ITEMS_PER_PAGE = 9;
+  const fetchPage = useCallback(async (pageNum: number) => {
+    setLoading(true);
+    try {
+      let q;
+      if (pageNum === 1) {
+        q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"), limit(ITEMS_PER_PAGE));
+      } else {
+        const lastCursor = pageCursors[pageNum - 1];
+        if (!lastCursor) {
+          setLoading(false);
+          return;
+        }
+        q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"), startAfter(lastCursor), limit(ITEMS_PER_PAGE));
+      }
 
-  useEffect(() => {
-    const q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const snapshot = await getDocs(q);
       const postsData = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       })) as BlogPost[];
-      setPosts(postsData);
-      setLoading(false);
-    }, (error) => {
-      console.error("Error fetching blog posts:", error);
-      setLoading(false);
-    });
 
-    return () => unsubscribe();
-  }, []);
+      setPosts(prev => {
+        const newPosts = [...prev];
+        const startIdx = (pageNum - 1) * ITEMS_PER_PAGE;
+        postsData.forEach((post, i) => {
+          newPosts[startIdx + i] = post;
+        });
+        return newPosts;
+      });
+
+      if (snapshot.docs.length > 0) {
+        setPageCursors(prev => ({ ...prev, [pageNum]: snapshot.docs[snapshot.docs.length - 1] }));
+      }
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [pageCursors]);
+
+  useEffect(() => {
+    const init = async () => {
+      setLoading(true);
+      try {
+        const countSnapshot = await getCountFromServer(collection(db, "blog_posts"));
+        const total = countSnapshot.data().count;
+        setTotalPages(Math.ceil(total / ITEMS_PER_PAGE));
+      } catch (e) {
+        console.error("Error getting count:", e);
+      }
+      await fetchPage(1);
+    };
+    init();
+  }, [fetchPage]);
+
+  useEffect(() => {
+    const idx = (currentPage - 1) * ITEMS_PER_PAGE;
+    if (!posts[idx]) {
+      fetchPage(currentPage);
+    }
+  }, [currentPage, posts, fetchPage]);
+
+  const currentPosts = useMemo(() => {
+    const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+    return posts.slice(startIdx, startIdx + ITEMS_PER_PAGE).filter(Boolean);
+  }, [posts, currentPage]);
 
   const keywords = useMemo(() => {
-    // Collect all tags (keywords) used in posts
     const tagCounts: Record<string, number> = {};
     posts.forEach(post => {
-      post.tags?.forEach(tag => {
+      post?.tags?.forEach(tag => {
         const normalized = tag.trim();
         tagCounts[normalized] = (tagCounts[normalized] || 0) + 1;
       });
     });
-
-    // Sort by count descending and take top 5
     const top5 = Object.entries(tagCounts)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 5)
       .map(([name]) => name);
-
     return ["All Posts", ...top5];
   }, [posts]);
 
-  const filteredPosts = posts.filter(post => {
+  const filteredPosts = currentPosts.filter(post => {
+    if (!post) return false;
     const matchesCategory = selectedCategory === "All Posts" || post.category === selectedCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (post.content || '').toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  // Reset to page 1 when search or category changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, selectedCategory]);
-
-  const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
-
-  const paginatedPosts = filteredPosts.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
-
-  // Reset to page 1 when search changes
   const handleSearchChange = (val: string) => {
     setSearchTerm(val);
     setCurrentPage(1);
@@ -104,8 +140,6 @@ const Blog = () => {
     }
     navigate(`/blog/${post.id}`);
   };
-
-  const featuredPost = posts.find(post => post.featured) || posts[0];
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
@@ -134,19 +168,18 @@ const Blog = () => {
                 type="text"
                 placeholder="Search trade insights..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="nm-input !rounded-full !pl-16 pr-6 py-5 w-full !text-lg"
               />
               <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-slate-400" />
             </div>
           </div>
 
-          {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {keywords.map(cat => (
               <button
                 key={cat}
-                onClick={() => setSelectedCategory(cat)}
+                onClick={() => { setSelectedCategory(cat); setCurrentPage(1); }}
                 className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${selectedCategory === cat
                   ? 'bg-blue-600 text-white shadow-lg'
                   : 'bg-white text-slate-600 hover:bg-slate-50 shadow-md border border-slate-100'
@@ -157,9 +190,7 @@ const Blog = () => {
             ))}
           </div>
 
-
-
-          {loading ? (
+          {loading && posts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20">
               <Loader2 className="h-12 w-12 text-blue-600 animate-spin mb-4" />
               <p className="text-slate-500 font-medium">Loading trade insights...</p>
@@ -167,18 +198,24 @@ const Blog = () => {
           ) : posts.length > 0 ? (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {paginatedPosts.map((post) => (
+                {filteredPosts.map((post) => (
                   <article
                     key={post.id}
                     onClick={() => handleReadMore(post)}
                     className="nm-card !p-0 overflow-hidden group hover:-translate-y-2 transition-transform duration-300 cursor-pointer"
                   >
-                    <div className="relative overflow-hidden aspect-[9/7] border-b border-white">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                    <div className="relative overflow-hidden aspect-[9/7] border-b border-white bg-gradient-to-br from-blue-50 to-indigo-50">
+                      {post.image ? (
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <FileText className="h-16 w-16 text-blue-200" />
+                        </div>
+                      )}
                       <div className="absolute top-4 left-4">
                         <span className="bg-white/90 backdrop-blur-sm text-blue-600 px-3 py-1 rounded-full text-xs font-medium shadow-sm">
                           {post.category}
@@ -198,7 +235,7 @@ const Blog = () => {
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2 capitalize">
+                      <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2 capitalize">
                         {post.title}
                       </h3>
 
@@ -221,7 +258,6 @@ const Blog = () => {
                 </div>
               )}
 
-              {/* Pagination */}
               {totalPages > 1 && (
                 <div className="flex justify-center items-center gap-4 mt-16">
                   <Button
@@ -266,8 +302,6 @@ const Blog = () => {
               <p className="text-slate-600">Check back soon for latest trade insights and market updates.</p>
             </div>
           )}
-
-
         </div>
       </section>
 
@@ -277,4 +311,3 @@ const Blog = () => {
 };
 
 export default Blog;
-
