@@ -73,15 +73,17 @@ const RichTextEditor = ({ value, onChange }: { value: string; onChange: (val: st
     const editorRef = useRef<HTMLDivElement>(null);
     const colorInputRef = useRef<HTMLInputElement>(null);
     const bgColorInputRef = useRef<HTMLInputElement>(null);
+    const htmlTextareaRef = useRef<HTMLTextAreaElement>(null);
+    const [mode, setMode] = useState<"editor" | "preview" | "html">("editor");
 
     // Sync contentEditable div with value on mount and when value changes externally
     useEffect(() => {
-        if (editorRef.current) {
+        if (editorRef.current && mode === "editor") {
             if (editorRef.current.innerHTML !== value) {
                 editorRef.current.innerHTML = value;
             }
         }
-    }, [value]);
+    }, [value, mode]);
 
     // Handle paste - preserve ALL HTML including divs, styles, animations, themes, fonts
     const handlePaste = useCallback((e: React.ClipboardEvent<HTMLDivElement>) => {
@@ -163,113 +165,161 @@ const RichTextEditor = ({ value, onChange }: { value: string; onChange: (val: st
 
     const Separator = () => <div className="w-px h-6 bg-slate-200 mx-0.5" />;
 
+    const ModeTab = ({ tab, label }: { tab: "editor" | "preview" | "html"; label: string }) => (
+        <button
+            type="button"
+            onClick={() => setMode(tab)}
+            className={`px-4 py-2 text-xs font-bold font-graduate uppercase tracking-wider transition-colors ${
+                mode === tab
+                    ? "bg-white text-slate-800 border-b-2 border-green-500"
+                    : "bg-transparent text-slate-400 hover:text-slate-600"
+            }`}
+        >
+            {label}
+        </button>
+    );
+
     return (
         <div className="rounded-xl border-2 border-slate-200 overflow-hidden bg-white">
-            {/* Toolbar Row 1 — Headers, Font, Size */}
-            <div className="flex flex-wrap items-center gap-0.5 px-2 py-1.5 bg-slate-50 border-b border-slate-200">
-                <select
-                    onChange={(e) => { if (e.target.value) execCommand('formatBlock', e.target.value); }}
-                    className="text-xs border border-slate-200 rounded px-2 py-1 bg-white text-slate-700 focus:outline-none cursor-pointer"
-                    defaultValue=""
-                >
-                    <option value="" disabled>Heading</option>
-                    <option value="h1">Heading 1</option>
-                    <option value="h2">Heading 2</option>
-                    <option value="h3">Heading 3</option>
-                    <option value="h4">Heading 4</option>
-                    <option value="h5">Heading 5</option>
-                    <option value="h6">Heading 6</option>
-                    <option value="p">Normal</option>
-                </select>
-
-                <select
-                    onChange={(e) => { if (e.target.value) execCommand('fontName', e.target.value); }}
-                    className="text-xs border border-slate-200 rounded px-2 py-1 bg-white text-slate-700 focus:outline-none cursor-pointer"
-                    defaultValue=""
-                >
-                    <option value="" disabled>Font</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                    <option value="Courier New">Courier New</option>
-                    <option value="Verdana">Verdana</option>
-                    <option value="Trebuchet MS">Trebuchet MS</option>
-                    <option value="Impact">Impact</option>
-                </select>
-
-                <select
-                    onChange={(e) => { if (e.target.value) execCommand('fontSize', e.target.value); }}
-                    className="text-xs border border-slate-200 rounded px-2 py-1 bg-white text-slate-700 focus:outline-none cursor-pointer"
-                    defaultValue=""
-                >
-                    <option value="" disabled>Size</option>
-                    <option value="1">Small</option>
-                    <option value="3">Normal</option>
-                    <option value="5">Large</option>
-                    <option value="7">Huge</option>
-                </select>
-
-                <Separator />
-
-                <ToolBtn onClick={() => execCommand('bold')} title="Bold"><b>B</b></ToolBtn>
-                <ToolBtn onClick={() => execCommand('italic')} title="Italic"><i>I</i></ToolBtn>
-                <ToolBtn onClick={() => execCommand('underline')} title="Underline"><u>U</u></ToolBtn>
-                <ToolBtn onClick={() => execCommand('strikeThrough')} title="Strikethrough"><s>S</s></ToolBtn>
-
-                <Separator />
-
-                {/* Text Color */}
-                <div className="relative">
-                    <ToolBtn onClick={() => colorInputRef.current?.click()} title="Text Color">
-                        <span style={{ borderBottom: '3px solid #e11d48' }}>A</span>
-                    </ToolBtn>
-                    <input ref={colorInputRef} type="color" className="absolute opacity-0 w-0 h-0"
-                        onChange={(e) => execCommand('foreColor', e.target.value)} />
-                </div>
-
-                {/* Background Color */}
-                <div className="relative">
-                    <ToolBtn onClick={() => bgColorInputRef.current?.click()} title="Background Color">
-                        <span className="bg-yellow-200 px-1 rounded">A</span>
-                    </ToolBtn>
-                    <input ref={bgColorInputRef} type="color" className="absolute opacity-0 w-0 h-0"
-                        onChange={(e) => execCommand('hiliteColor', e.target.value)} />
-                </div>
-
-                <Separator />
-
-                <ToolBtn onClick={() => execCommand('insertUnorderedList')} title="Bullet List">• List</ToolBtn>
-                <ToolBtn onClick={() => execCommand('insertOrderedList')} title="Numbered List">1. List</ToolBtn>
-
-                <Separator />
-
-                <ToolBtn onClick={() => execCommand('justifyLeft')} title="Align Left">⫷</ToolBtn>
-                <ToolBtn onClick={() => execCommand('justifyCenter')} title="Align Center">⫼</ToolBtn>
-                <ToolBtn onClick={() => execCommand('justifyRight')} title="Align Right">⫸</ToolBtn>
-
-                <Separator />
-
-                <ToolBtn onClick={insertLink} title="Insert Link">🔗</ToolBtn>
-                <ToolBtn onClick={insertImage} title="Insert Image">🖼</ToolBtn>
-
-                <Separator />
-
-                <ToolBtn onClick={() => execCommand('removeFormat')} title="Clear Formatting" className="text-red-400 hover:text-red-600 hover:bg-red-50">
-                    ✕ Clear
-                </ToolBtn>
+            {/* View Mode Tabs */}
+            <div className="flex items-center border-b border-slate-200 bg-slate-50">
+                <ModeTab tab="editor" label="Editor" />
+                <ModeTab tab="preview" label="Preview" />
+                <ModeTab tab="html" label="HTML" />
             </div>
 
-            {/* Editor Area — single contentEditable, full HTML paste support */}
-            <div
-                ref={editorRef}
-                contentEditable
-                suppressContentEditableWarning
-                onInput={handleInput}
-                onPaste={handlePaste}
-                className="min-h-[400px] max-h-[600px] overflow-y-auto p-6 prose prose-slate prose-lg max-w-none focus:outline-none"
-                style={{ wordBreak: 'break-word' }}
-                data-placeholder="Write your blog content here or paste any content — animations, themes, fonts, divs, and styles will be preserved..."
-            />
+            {/* Toolbar Row — only visible in editor mode */}
+            {mode === "editor" && (
+                <div className="flex flex-wrap items-center gap-0.5 px-2 py-1.5 bg-slate-50 border-b border-slate-200">
+                    <select
+                        onChange={(e) => { if (e.target.value) execCommand('formatBlock', e.target.value); }}
+                        className="text-xs border border-slate-200 rounded px-2 py-1 bg-white text-slate-700 focus:outline-none cursor-pointer"
+                        defaultValue=""
+                    >
+                        <option value="" disabled>Heading</option>
+                        <option value="h1">Heading 1</option>
+                        <option value="h2">Heading 2</option>
+                        <option value="h3">Heading 3</option>
+                        <option value="h4">Heading 4</option>
+                        <option value="h5">Heading 5</option>
+                        <option value="h6">Heading 6</option>
+                        <option value="p">Normal</option>
+                    </select>
+
+                    <select
+                        onChange={(e) => { if (e.target.value) execCommand('fontName', e.target.value); }}
+                        className="text-xs border border-slate-200 rounded px-2 py-1 bg-white text-slate-700 focus:outline-none cursor-pointer"
+                        defaultValue=""
+                    >
+                        <option value="" disabled>Font</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Trebuchet MS">Trebuchet MS</option>
+                        <option value="Impact">Impact</option>
+                    </select>
+
+                    <select
+                        onChange={(e) => { if (e.target.value) execCommand('fontSize', e.target.value); }}
+                        className="text-xs border border-slate-200 rounded px-2 py-1 bg-white text-slate-700 focus:outline-none cursor-pointer"
+                        defaultValue=""
+                    >
+                        <option value="" disabled>Size</option>
+                        <option value="1">Small</option>
+                        <option value="3">Normal</option>
+                        <option value="5">Large</option>
+                        <option value="7">Huge</option>
+                    </select>
+
+                    <Separator />
+
+                    <ToolBtn onClick={() => execCommand('bold')} title="Bold"><b>B</b></ToolBtn>
+                    <ToolBtn onClick={() => execCommand('italic')} title="Italic"><i>I</i></ToolBtn>
+                    <ToolBtn onClick={() => execCommand('underline')} title="Underline"><u>U</u></ToolBtn>
+                    <ToolBtn onClick={() => execCommand('strikeThrough')} title="Strikethrough"><s>S</s></ToolBtn>
+
+                    <Separator />
+
+                    {/* Text Color */}
+                    <div className="relative">
+                        <ToolBtn onClick={() => colorInputRef.current?.click()} title="Text Color">
+                            <span style={{ borderBottom: '3px solid #e11d48' }}>A</span>
+                        </ToolBtn>
+                        <input ref={colorInputRef} type="color" className="absolute opacity-0 w-0 h-0"
+                            onChange={(e) => execCommand('foreColor', e.target.value)} />
+                    </div>
+
+                    {/* Background Color */}
+                    <div className="relative">
+                        <ToolBtn onClick={() => bgColorInputRef.current?.click()} title="Background Color">
+                            <span className="bg-yellow-200 px-1 rounded">A</span>
+                        </ToolBtn>
+                        <input ref={bgColorInputRef} type="color" className="absolute opacity-0 w-0 h-0"
+                            onChange={(e) => execCommand('hiliteColor', e.target.value)} />
+                    </div>
+
+                    <Separator />
+
+                    <ToolBtn onClick={() => execCommand('insertUnorderedList')} title="Bullet List">• List</ToolBtn>
+                    <ToolBtn onClick={() => execCommand('insertOrderedList')} title="Numbered List">1. List</ToolBtn>
+
+                    <Separator />
+
+                    <ToolBtn onClick={() => execCommand('justifyLeft')} title="Align Left">⫷</ToolBtn>
+                    <ToolBtn onClick={() => execCommand('justifyCenter')} title="Align Center">⫼</ToolBtn>
+                    <ToolBtn onClick={() => execCommand('justifyRight')} title="Align Right">⫸</ToolBtn>
+
+                    <Separator />
+
+                    <ToolBtn onClick={insertLink} title="Insert Link">🔗</ToolBtn>
+                    <ToolBtn onClick={insertImage} title="Insert Image">🖼</ToolBtn>
+
+                    <Separator />
+
+                    <ToolBtn onClick={() => execCommand('removeFormat')} title="Clear Formatting" className="text-red-400 hover:text-red-600 hover:bg-red-50">
+                        ✕ Clear
+                    </ToolBtn>
+                </div>
+            )}
+
+            {/* Editor Area */}
+            {mode === "editor" && (
+                <div
+                    ref={editorRef}
+                    contentEditable
+                    suppressContentEditableWarning
+                    onInput={handleInput}
+                    onPaste={handlePaste}
+                    className="min-h-[400px] max-h-[600px] overflow-y-auto p-6 prose prose-slate prose-lg max-w-none focus:outline-none"
+                    style={{ wordBreak: 'break-word' }}
+                    data-placeholder="Write your blog content here or paste any content — animations, themes, fonts, divs, and styles will be preserved..."
+                />
+            )}
+
+            {/* Preview Mode */}
+            {mode === "preview" && (
+                <div className="min-h-[400px] max-h-[600px] overflow-y-auto p-6 prose prose-slate prose-lg max-w-none bg-white">
+                    {value ? (
+                        <div dangerouslySetInnerHTML={{ __html: value }} />
+                    ) : (
+                        <p className="text-slate-300 italic">Nothing to preview yet...</p>
+                    )}
+                </div>
+            )}
+
+            {/* HTML Source Mode */}
+            {mode === "html" && (
+                <textarea
+                    ref={htmlTextareaRef}
+                    value={value}
+                    onChange={(e) => onChange(e.target.value)}
+                    className="min-h-[400px] max-h-[600px] w-full p-6 font-mono text-sm bg-slate-900 text-green-400 border-none focus:outline-none resize-none"
+                    spellCheck={false}
+                    placeholder="<!-- Paste or edit HTML directly here -->"
+                />
+            )}
         </div>
     );
 };
