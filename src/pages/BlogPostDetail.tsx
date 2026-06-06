@@ -94,7 +94,7 @@ const BlogPostDetail = () => {
 
             (
             <main className="pt-32 pb-20 animate-fade-in">
-                <div className="container mx-auto px-4 max-w-4xl mb-8">
+                <div className="container mx-auto px-4 max-w-4xl lg:max-w-5xl xl:max-w-6xl mb-8">
                     <Link to="/blog" className="inline-flex items-center text-slate-500 hover:text-blue-600 mb-8 transition-colors group">
                         <ChevronLeft className="mr-1 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
                         Back to all articles
@@ -122,7 +122,7 @@ const BlogPostDetail = () => {
 
                 {/* Hero Image */}
                 {post.image && (
-                <div className="w-full max-w-[900px] mx-auto px-4 mb-16">
+                <div className="w-full max-w-[900px] lg:max-w-[1200px] xl:max-w-[1400px] mx-auto px-4 mb-16">
                     <div className="relative aspect-[16/10] md:aspect-[9/7] rounded-[24px] md:rounded-[40px] overflow-hidden shadow-2xl border-4 md:border-8 border-white group">
                         <img
                             src={post.image}
@@ -134,28 +134,47 @@ const BlogPostDetail = () => {
                 )}
 
 
-                <div className="container mx-auto px-4 max-w-4xl">
+                <div className="container mx-auto px-4 max-w-4xl lg:max-w-5xl xl:max-w-6xl">
                     <article>
                         {/* Content */}
                         <div className="space-y-8">
                             {/* Main Content - Full HTML Rendering with embedded styles support */}
                             <div
-                                className="prose prose-slate prose-lg max-w-none text-slate-600 leading-relaxed blog-content-rendered"
+                                className="prose prose-slate prose-lg lg:prose-xl max-w-none text-slate-600 leading-relaxed blog-content-rendered"
                                 dangerouslySetInnerHTML={{ __html: post.content }}
                             />
 
                             {/* Base styles for blog content */}
                             <style>{`
                             .blog-content-rendered h1, .blog-content-rendered h2, .blog-content-rendered h3 { font-family: 'Graduate', serif; margin-top: 2rem; margin-bottom: 1rem; color: #1e293b; }
-                            .blog-content-rendered p { margin-bottom: 1.5rem; }
+                            .blog-content-rendered p { margin-bottom: 1.5rem; line-height: 1.8; }
                             .blog-content-rendered ul, .blog-content-rendered ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
                             .blog-content-rendered li { margin-bottom: 0.5rem; }
-                            .blog-content-rendered blockquote { border-left: 4px solid #cbd5e1; padding-left: 1rem; font-style: italic; }
-                            .blog-content-rendered img { border-radius: 0.75rem; margin-top: 2rem; margin-bottom: 2rem; max-width: 100%; }
-                            .blog-content-rendered iframe { max-width: 100%; border-radius: 0.75rem; }
-                            .blog-content-rendered pre { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 0.75rem; overflow-x: auto; }
+                            .blog-content-rendered blockquote { border-left: 4px solid #cbd5e1; padding-left: 1.5rem; font-style: italic; margin: 2rem 0; }
+                            .blog-content-rendered img { border-radius: 0.75rem; margin-top: 2rem; margin-bottom: 2rem; width: 100%; height: auto; }
+                            .blog-content-rendered iframe { width: 100%; border-radius: 0.75rem; aspect-ratio: 16/9; }
+                            .blog-content-rendered pre { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 0.75rem; overflow-x: auto; margin: 2rem 0; }
                             .blog-content-rendered code { background: #f1f5f9; padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.875em; }
                             .blog-content-rendered pre code { background: transparent; padding: 0; }
+                            .blog-content-rendered table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+                            .blog-content-rendered th, .blog-content-rendered td { border: 1px solid #e2e8f0; padding: 0.75rem; text-align: left; }
+                            .blog-content-rendered th { background: #f8fafc; font-weight: 600; }
+                            .blog-content-rendered figure { margin: 2rem 0; }
+                            .blog-content-rendered figcaption { text-align: center; font-size: 0.875rem; color: #94a3b8; margin-top: 0.5rem; }
+                            @media (min-width: 1024px) {
+                                .blog-content-rendered { font-size: 1.125rem; }
+                                .blog-content-rendered h1 { font-size: 2.5rem; }
+                                .blog-content-rendered h2 { font-size: 2rem; }
+                                .blog-content-rendered h3 { font-size: 1.5rem; }
+                                .blog-content-rendered p { margin-bottom: 1.75rem; }
+                                .blog-content-rendered img { border-radius: 1rem; }
+                                .blog-content-rendered blockquote { padding-left: 2rem; }
+                            }
+                            @media (min-width: 1280px) {
+                                .blog-content-rendered { font-size: 1.25rem; }
+                                .blog-content-rendered p { line-height: 1.9; }
+                                .blog-content-rendered img { border-radius: 1.25rem; }
+                            }
                         `}
                             </style>
                         </div>

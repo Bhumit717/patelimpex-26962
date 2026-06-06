@@ -315,18 +315,16 @@ textarea.font-mono::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
-/* Blog post content - allow all embedded styles and animations */
+/* Blog post content - responsive sizing for all screens */
 .blog-content-rendered * {
   max-width: 100%;
 }
 
 .blog-content-rendered iframe {
   max-width: 100%;
-  border-radius: 0;
 }
 
 .blog-content-rendered img {
   max-width: 100%;
   height: auto;
-  border-radius: 0;
 }
