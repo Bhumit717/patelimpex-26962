@@ -155,7 +155,7 @@ const News = () => {
 
               <h1 className="text-6xl md:text-8xl font-black text-slate-800 mb-8 leading-tight font-graduate">
                 <span className="text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-600 bg-clip-text">
-                  Trade News
+                  Information
                 </span>
               </h1>
 
