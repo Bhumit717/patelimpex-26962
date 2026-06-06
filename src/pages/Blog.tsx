@@ -144,7 +144,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
       <SEOHead
-        title="Latest News & Insights | Patel Impex"
+        title="Latest Information & Insights | Patel Impex"
         description="Stay updated with the latest trends in international trade and global markets."
         canonicalUrl="/blog"
       />
