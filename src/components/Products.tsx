@@ -1,52 +1,32 @@
-import { Package, Globe, ShieldCheck, Truck, ChevronRight, ArrowRight, LayoutGrid, Zap } from "lucide-react";
+import { Package, Globe, ShieldCheck, ArrowRight, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import agriImg from "@/assets/products/seeds.png";
-import textilesImg from "@/assets/products/cotton.png";
-import tilesImg from "@/assets/products/ceramic-floor-tiles.png";
-import earthingImg from "@/assets/products/copper-bonded-earthing-rods.png";
-import logisticsImg from "@/assets/global-export-shipping.jpg";
 
 const Products = () => {
   const categories = [
     {
-      title: "Agricultural Products",
-      description: "Premium selection of pulses, spices, and grains sourced directly from Indian farms.",
+      title: "Basmati Rice",
+      description: "Premium long-grain Basmati rice varieties including 1121, Sella, Steam, and traditional aged Basmati. Sourced from the Himalayan foothills.",
       icon: Package,
       image: agriImg,
-      link: "/products/agriculture",
-      items: ["Spices & Condiments", "Grains & Pulses", "Oil Seeds"]
+      link: "/products/rice",
+      items: ["1121 Basmati", "Sella Basmati", "Steam Basmati"]
     },
     {
-      title: "Tiles & Sanitaryware",
-      description: "Indian's premium export range of vitrified, digital wall, and specialized parking tiles.",
-      icon: LayoutGrid,
-      image: tilesImg,
-      link: "/products/tiles-export",
-      items: ["GVT & PGVT Tiles", "Digital Wall Tiles", "Sanitary Solutions"]
+      title: "Non-Basmati Rice",
+      description: "High-quality non-basmati rice varieties including IR-64, Sona Masoori, and Jeerakasala for diverse global requirements.",
+      icon: Globe,
+      image: agriImg,
+      link: "/products/rice",
+      items: ["IR-64 Rice", "Sona Masoori", "Jeerakasala"]
     },
     {
-      title: "Earthing & Safety",
-      description: "Professional electrical grounding solutions and industrial safety equipment.",
-      icon: Zap,
-      image: earthingImg,
-      link: "/products/earthing-export",
-      items: ["Copper Bonded Rods", "Chemical Earthing", "Safety Accessories"]
-    },
-    {
-      title: "Textiles & Garments",
-      description: "High-quality cotton, fabrics, and ready-to-wear garments meeting global standards.",
+      title: "Rice Export Services",
+      description: "End-to-end rice export solutions with global logistics, quality certification, and bulk shipping capabilities.",
       icon: ShieldCheck,
-      image: textilesImg,
-      link: "/products/cotton",
-      items: ["Raw Cotton", "Finished Fabrics", "Designer Apparel"]
-    },
-    {
-      title: "Industrial & Engineering",
-      description: "Precision engineered components, hardware, and industrial equipment.",
-      icon: Truck,
-      image: logisticsImg,
-      link: "/products",
-      items: ["Machinery Parts", "Hardware Tools", "Industrial Components"]
+      image: agriImg,
+      link: "/products/rice",
+      items: ["Global Logistics", "Quality Certifications", "Bulk Shipping"]
     }
   ];
 
@@ -82,7 +62,6 @@ const Products = () => {
                   alt={category.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                 />
-                {/* Removed dark gradient overlay */}
                 <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center">
                   <span className="bg-white/80 backdrop-blur-md p-3">
                     <category.icon className="h-6 w-6 text-green-600" />
@@ -118,4 +97,3 @@ const Products = () => {
 };
 
 export default Products;
-

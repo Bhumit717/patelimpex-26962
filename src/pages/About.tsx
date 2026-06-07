@@ -20,7 +20,7 @@ const About = () => {
   }, []);
 
   const principles = [
-    { id: 1, title: "Creating Tomorrow, Today", desc: "We are committed to shaping a brighter tomorrow through sustainable trade, ethical sourcing, and eco-friendly solutions that leave a lasting impact." },
+    { id: 1, title: "Creating Tomorrow, Today", desc: "We are committed to shaping a brighter tomorrow through sustainable trade, ethical sourcing, and agricultural solutions that leave a lasting impact." },
     { id: 2, title: "Growing Together", desc: "For us, growth is meaningful only when it is shared. We uplift farmers, suppliers, employees, and partners, ensuring that everyone thrives together." },
     { id: 3, title: "Power of Innovation", desc: "We embrace change and creativity—offering custom private labeling, OEM packaging, and tailored trade solutions that help brands tell their unique story." },
     { id: 4, title: "Inspiring Future Exporters", desc: "Through our initiatives to educate and guide aspiring entrepreneurs, we are nurturing the next generation of exporters and making global trade accessible to youth." },
@@ -68,10 +68,10 @@ const About = () => {
             {/* Right Side: Text */}
             <div className="space-y-6 text-slate-600 leading-relaxed reveal" style={{ animationDelay: '200ms' }}>
               <p>
-                Patel Impex is a dynamic export company from India, dedicated to bridging global markets and delivering premium agro, herbal, and eco-friendly products that meet EU, USA, and worldwide standards.
+                Patel Impex is a dynamic export company from India, dedicated to bridging global markets and delivering premium agricultural products that meet EU, USA, and worldwide standards.
               </p>
               <p>
-                Founded with a clear vision to simplify global trade, we focus on ethical, transparent, and efficient exports—from spices, rice, pulses, and moringa to psyllium husk, jute bags, clayware, and areca leaf products.
+                Founded with a clear vision to simplify global trade, we focus on ethical, transparent, and efficient exports—from rice, wheat, cumin seeds, psyllium husk, and groundnut to a wide range of premium agricultural products.
               </p>
               <p>
                 Our mission is simple: connect quality Indian products with international buyers, creating partnerships built on trust, consistency, and long-term growth.
@@ -80,7 +80,7 @@ const About = () => {
                 At Patel Impex, you don't just get a supplier—you gain a reliable export partner committed to helping your business succeed in the global marketplace.
               </p>
               <p>
-                Whether it's agricultural products, herbal products, eco-friendly items, or consumer goods, our team ensures timely delivery, competitive pricing, and dependable service. With a global outlook and a dedication to excellence, Patel Impex is more than just an exporter—we are your reliable gateway to international markets, helping businesses expand and succeed worldwide.
+                Whether it's rice, wheat, cumin seeds, psyllium husk, or groundnut, our team ensures timely delivery, competitive pricing, and dependable service. With a global outlook and a dedication to excellence, Patel Impex is more than just an exporter—we are your reliable gateway to international markets, helping businesses expand and succeed worldwide.
               </p>
               <Button onClick={() => window.location.href = '/contact'} className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-8 py-6 h-auto flex items-center gap-3 mt-8">
                 Meet The Visionaries
@@ -103,7 +103,7 @@ const About = () => {
                   <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Spices" />
                   <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-8 text-white">
                     <span className="text-5xl font-black mb-2">15+</span>
-                    <p className="text-xs font-medium uppercase tracking-tighter leading-tight">Product Categories From spices, rice, pulses, moringa, psyllium husk to eco-friendly items — offering a diverse export portfolio</p>
+                    <p className="text-xs font-medium uppercase tracking-tighter leading-tight">Product Categories From rice, wheat, cumin seeds, psyllium husk to groundnut — offering a diverse export portfolio</p>
                   </div>
                 </div>
               </div>

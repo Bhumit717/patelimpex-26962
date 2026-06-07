@@ -9,34 +9,20 @@ interface RelatedLink {
 
 interface RelatedLinksProps {
   currentPage?: string;
-  category?: "agricultural" | "spices" | "markets" | "services" | "products";
+  category?: "agricultural" | "markets" | "services";
 }
 
-const RelatedLinks = ({ currentPage, category = "products" }: RelatedLinksProps) => {
+const RelatedLinks = ({ currentPage, category = "agricultural" }: RelatedLinksProps) => {
   const allLinks: Record<string, RelatedLink[]> = {
     agricultural: [
       { title: "Basmati Rice Export", url: "/more/basmati-rice-export", category: "Rice" },
       { title: "Non-Basmati Rice Export", url: "/more/non-basmati-rice-export", category: "Rice" },
+      { title: "Rice Export", url: "/more/rice-export", category: "Rice" },
+      { title: "Cumin Seeds Export", url: "/more/cumin-export", category: "Cumin" },
+      { title: "Psyllium Husk Export", url: "/more/psyllium-husk-export", category: "Psyllium" },
+      { title: "Groundnut Export", url: "/more/groundnut-export", category: "Groundnut" },
       { title: "Wheat Export Services", url: "/more/wheat-export", category: "Grains" },
-      { title: "Corn Export Guide", url: "/more/corn-export", category: "Grains" },
-      { title: "Millet Export", url: "/more/millet-export", category: "Grains" },
-      { title: "Barley Export", url: "/more/barley-export", category: "Grains" },
-      { title: "Tea Export Services", url: "/more/tea-export-services", category: "Beverages" },
-      { title: "Coffee Export Services", url: "/more/coffee-export-services", category: "Beverages" },
-      { title: "Sugar Export Services", url: "/more/sugar-export-services", category: "Food" },
       { title: "Wheat Flour Export", url: "/more/wheat-flour-export-services", category: "Food" },
-    ],
-    spices: [
-      { title: "Turmeric Export", url: "/more/turmeric-export", category: "Spices" },
-      { title: "Cumin Seeds Export", url: "/more/cumin-export", category: "Spices" },
-      { title: "Coriander Export", url: "/more/coriander-export", category: "Spices" },
-      { title: "Cardamom Export", url: "/more/cardamom-export", category: "Spices" },
-      { title: "Black Pepper Export", url: "/more/black-pepper-export", category: "Spices" },
-      { title: "Red Chili Export", url: "/more/red-chili-export", category: "Spices" },
-      { title: "Ginger Export", url: "/more/ginger-export", category: "Spices" },
-      { title: "Garlic Export", url: "/more/garlic-export", category: "Vegetables" },
-      { title: "Onion Export", url: "/more/onion-export", category: "Vegetables" },
-      { title: "Cinnamon Export", url: "/more/cinnamon-export", category: "Spices" },
     ],
     markets: [
       { title: "USA Market Export", url: "/more/usa-market-export", category: "North America" },
@@ -44,39 +30,19 @@ const RelatedLinks = ({ currentPage, category = "products" }: RelatedLinksProps)
       { title: "Germany Market Export", url: "/more/germany-market-export", category: "Europe" },
       { title: "UAE Market Export", url: "/more/uae-market-export", category: "Middle East" },
       { title: "Canada Market Export", url: "/more/canada-market-export", category: "North America" },
-      { title: "Australia Market Export", url: "/more/australia-market-export", category: "Oceania" },
       { title: "Singapore Market Export", url: "/more/singapore-market-export", category: "Asia" },
-      { title: "Japan Market Export", url: "/more/japan-market-export", category: "Asia" },
-      { title: "France Market Export", url: "/more/france-market-export", category: "Europe" },
-      { title: "Italy Market Export", url: "/more/italy-market-export", category: "Europe" },
     ],
     services: [
       { title: "Air Freight Services", url: "/more/air-freight-services", category: "Shipping" },
       { title: "Ocean Freight Services", url: "/more/ocean-freight-services", category: "Shipping" },
-      { title: "Express Shipping", url: "/more/express-shipping-services", category: "Shipping" },
       { title: "Customs Clearance", url: "/more/customs-clearance", category: "Documentation" },
       { title: "Export Documentation", url: "/more/export-documentation", category: "Documentation" },
       { title: "Quality Standards", url: "/more/quality-standards", category: "Compliance" },
       { title: "Trade Finance", url: "/more/trade-finance", category: "Finance" },
-      { title: "Market Research", url: "/more/market-research", category: "Research" },
-      { title: "Warehouse Services", url: "/more/warehouse-services", category: "Logistics" },
-    ],
-    products: [
-      { title: "Organic Food Export", url: "/more/organic-food-export", category: "Food" },
-      { title: "Frozen Food Export", url: "/more/frozen-food-export", category: "Food" },
-      { title: "Pharmaceutical Export", url: "/more/pharmaceutical-export", category: "Pharma" },
-      { title: "Cotton Export", url: "/more/cotton-export-services", category: "Textiles" },
-      { title: "Textile Export", url: "/more/textile-export", category: "Textiles" },
-      { title: "Handicrafts Export", url: "/more/handicrafts-export-services", category: "Handicrafts" },
-      { title: "Gems & Jewelry Export", url: "/more/gems-jewelry-export-services", category: "Jewelry" },
-      { title: "Leather Products Export", url: "/more/leather-products-export-services", category: "Leather" },
-      { title: "Animal Dung Products", url: "/products/animal-dung", category: "Organic" },
-      { title: "Cashew Export", url: "/more/cashew-export", category: "Nuts" },
-      { title: "Almond Export", url: "/more/almond-export", category: "Nuts" },
     ],
   };
 
-  const links = allLinks[category] || allLinks.products;
+  const links = allLinks[category] || allLinks.agricultural;
   const filteredLinks = links.filter(link => link.url !== currentPage);
 
   return (

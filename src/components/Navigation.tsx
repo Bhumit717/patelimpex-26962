@@ -19,11 +19,11 @@ const Navigation = () => {
       name: "Products", 
       href: "/products",
       dropdown: [
-        { name: "Agricultural Exports", href: "/products/agriculture" },
-        { name: "Tiles & Sanitaryware", href: "/products/tiles-export" },
-        { name: "Earthing Solutions", href: "/products/earthing-export" },
-        { name: "Textiles & Garments", href: "/products/cotton" },
-
+        { name: "Rice Products", href: "/products/rice" },
+        { name: "Wheat Products", href: "/products/wheat" },
+        { name: "Psyllium Husk", href: "/products/psyllium-husk" },
+        { name: "Groundnuts", href: "/products/groundnut" },
+        { name: "Cumin Seeds", href: "/products/cumin-seeds" },
       ]
     },
     { name: "Blog", href: "/blog" },

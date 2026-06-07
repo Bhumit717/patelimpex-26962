@@ -4,72 +4,32 @@ import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import{ 
   Wheat, 
-  LayoutGrid, 
-  Zap, 
   ChevronRight,
   ArrowRight,
-  Shirt,
-  Cog
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-// Import hub-representative images
 import agricultureImg from "@/assets/products/rice.png";
-import tilesImg from "@/assets/products/grey-vitrified-tiles.png";
-import earthingImg from "@/assets/products/earthing-rod-with-clamp.png";
-import cottonImg from "@/assets/products/cotton.png";
-import industrialImg from "@/assets/global-export-shipping.jpg";
 
 const Products = () => {
   const sectors = [
     {
-      id: "agriculture",
-      name: "Agricultural Exports",
+      id: "rice",
+      name: "Rice Exports",
       icon: Wheat,
       image: agricultureImg,
-      link: "/products/agriculture",
+      link: "/products/rice",
       color: "bg-green-600",
-      description: "Indian's finest agro-commodities including Rice, Spices, Grains, and specialized Organic Fertilizers.",
-      features: ["50+ Multi-Country Reach", "Certified Quality", "Direct Farm Sourcing"]
+      description: "Premium Indian rice varieties including Basmati 1121, Sella, Steam, IR-64, Sona Masoori, and Jeerakasala. Sourced from Punjab, Haryana, and Andhra Pradesh.",
+      features: ["Basmati & Non-Basmati", "Premium Grain Quality", "Bulk Export Capability"]
     },
-    {
-      id: "tiles",
-      name: "Tiles & Sanitaryware",
-      icon: LayoutGrid,
-      image: tilesImg,
-      link: "/products/tiles-export",
-      color: "bg-blue-600",
-      description: "Complete flooring and bathroom solutions: GVT, PGVT, Industrial Tiles, and Designer Sanitaryware.",
-      features: ["Morbi Sourced Premium", "Heavy-Duty Options", "Global Project Supply"]
-    },
-    {
-      id: "earthing",
-      name: "Earthing & Safety",
-      icon: Zap,
-      image: earthingImg,
-      link: "/products/earthing-export",
-      color: "bg-orange-600",
-      description: "Technical grounding solutions, copper-bonded rods, and advanced electrical safety accessories.",
-      features: ["Certified Standards", "Maintenance-Free", "Industrial Protection"]
-    },
-    {
-      id: "textiles",
-      name: "Textiles & Garments",
-      icon: Shirt,
-      image: cottonImg,
-      link: "/products/cotton",
-      color: "bg-purple-600",
-      description: "Premium Indian cotton, designer fabrics, and high-quality ready-to-wear garments for global fashion.",
-      features: ["BCI & GOTS Certified", "Staple Length Range", "Bulk Fabric Supply"]
-    },
-
   ];
 
   return (
     <>
       <SEOHead 
         title="Export Product Catalog | Patel Impex" 
-        description="Explore our specialized export segments: Agriculture, Tiles, Earthing, Textiles, and Industrial Engineering. Premium Indian quality for global markets." 
+        description="Explore our premium agricultural export products including rice, wheat, psyllium husk, groundnuts, and cumin seeds. Premium Indian quality for global markets." 
       />
 
       <style>{`
@@ -96,7 +56,6 @@ const Products = () => {
       <div className="min-h-screen products-hub bg-slate-50/50">
         <Navigation />
 
-        {/* Dynamic Hero */}
         <section className="pt-40 pb-24 px-6 bg-slate-900 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[60vw] h-full bg-green-500/5 -skew-x-12 transform origin-top pointer-events-none" />
           
@@ -104,16 +63,15 @@ const Products = () => {
             <div className="max-w-4xl">
               <Badge className="bg-green-600 mb-8 px-6 py-2 text-xs uppercase tracking-[0.2em] font-black border-0">Global Trade Portfolio</Badge>
               <h1 className="text-6xl md:text-8xl font-black mb-8 font-graduate uppercase tracking-tighter leading-none">
-                Specialized <span className="text-green-500 italic font-fredericka lowercase">Sectors</span>
+                Specialized <span className="text-green-500 italic font-fredericka lowercase">Products</span>
               </h1>
               <p className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-2xl">
-                Choose an industrial segment to explore our technical specifications, international certifications, and bulk export capabilities.
+                Explore our premium export products with technical specifications, international certifications, and bulk export capabilities.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Sector Grid */}
         <section className="py-24 px-6">
           <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -155,7 +113,7 @@ const Products = () => {
 
                     <div className="mt-auto pt-8 border-t border-slate-50 flex items-center justify-between">
                       <span className="text-sm font-black uppercase tracking-widest text-slate-900 group-hover:translate-x-2 transition-transform inline-flex items-center gap-2">
-                        Enter Catalog <ArrowRight className="w-4 h-4" />
+                        View Products <ArrowRight className="w-4 h-4" />
                       </span>
                     </div>
                   </div>
@@ -165,7 +123,6 @@ const Products = () => {
           </div>
         </section>
 
-        {/* Support CTA */}
         <section className="pb-24 px-6">
           <div className="container mx-auto max-w-7xl">
             <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl">

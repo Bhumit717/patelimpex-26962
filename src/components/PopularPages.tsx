@@ -1,24 +1,17 @@
 
 import { Link } from "react-router-dom";
-import { ArrowRight, Globe, Package, Wheat, FileText } from "lucide-react";
+import { ArrowRight, Globe, Package, FileText } from "lucide-react";
 
 const PopularPages = () => {
   const popularLinks = {
     "Top Export Products": [
       { title: "Basmati Rice Export", href: "/more/basmati-rice-export" },
-      { title: "Turmeric Export", href: "/more/turmeric-export" },
+      { title: "Non-Basmati Rice Export", href: "/more/non-basmati-rice-export" },
       { title: "Cumin Seeds Export", href: "/more/cumin-export" },
-      { title: "Black Pepper Export", href: "/more/black-pepper-export" },
-      { title: "Textile Export", href: "/more/textile-export" },
-      { title: "Spices Export", href: "/more/spices-export" }
-    ],
-    "Top Country Markets": [
-      { title: "USA Market Export", href: "/seo/usa-market-export" },
-      { title: "UK Market Export", href: "/seo/uk-market-export" },
-      { title: "UAE Market Export", href: "/seo/uae-market-export" },
-      { title: "Germany Market Export", href: "/seo/germany-market-export" },
-      { title: "Canada Market Export", href: "/seo/canada-market-export" },
-      { title: "Singapore Market Export", href: "/seo/singapore-market-export" }
+      { title: "Psyllium Husk Export", href: "/more/psyllium-husk-export" },
+      { title: "Groundnut Export", href: "/more/groundnut-export" },
+      { title: "Wheat Export", href: "/more/wheat-export" },
+      { title: "Rice Export", href: "/more/rice-export" }
     ],
     "Export Resources": [
       { title: "Export Import Guide", href: "/more/export-import-guide" },
@@ -28,22 +21,20 @@ const PopularPages = () => {
       { title: "Sea Freight Services", href: "/more/sea-freight" },
       { title: "Customs Clearance", href: "/more/customs-clearance" }
     ],
-    "More Products": [
-      { title: "Wheat Export", href: "/more/wheat-export" },
-      { title: "Rice Export", href: "/more/rice-export" },
-      { title: "Cardamom Export", href: "/more/cardamom-export" },
-      { title: "Ginger Export", href: "/more/ginger-export" },
-      { title: "Onion Export", href: "/more/onion-export" },
-      { title: "Sugar Export", href: "/more/sugar-export" },
-      { title: "Cashew Export", href: "/more/cashew-export" }
+    "Key Markets": [
+      { title: "USA Market Export", href: "/seo/usa-market-export" },
+      { title: "UK Market Export", href: "/seo/uk-market-export" },
+      { title: "UAE Market Export", href: "/seo/uae-market-export" },
+      { title: "Europe Market Export", href: "/seo/europe-market-export" },
+      { title: "Canada Market Export", href: "/seo/canada-market-export" },
+      { title: "Singapore Market Export", href: "/seo/singapore-market-export" }
     ]
   };
 
   const icons: { [key: string]: any } = {
     "Top Export Products": Package,
-    "Top Country Markets": Globe,
     "Export Resources": FileText,
-    "More Products": Wheat
+    "Key Markets": Globe
   };
 
   return (

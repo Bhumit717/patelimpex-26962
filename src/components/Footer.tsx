@@ -34,17 +34,17 @@ const Footer = () => {
   const footerLinks = {
     "Products": [
       { name: "Basmati Rice Varieties", href: "/products/rice" },
-      { name: "Cotton & Textiles", href: "/products/cotton" },
-      { name: "Soybean & Grains", href: "/products/soybeans" },
+      { name: "Wheat & Wheat Flour", href: "/products/wheat" },
       { name: "Groundnut / Peanuts", href: "/products/groundnut" },
-      { name: "Psyllium Products", href: "/products/psyllium-husk" }
+      { name: "Psyllium Husk", href: "/products/psyllium-husk" },
+      { name: "Cumin Seeds", href: "/products/cumin-seeds" }
     ],
 
-    "Regional Trade": [
-      { name: "Agricultural Exports", href: "/products/agriculture" },
-      { name: "Tiles & Sanitaryware", href: "/products/tiles-export" },
-      { name: "Earthing Solutions", href: "/products/earthing-export" },
-      { name: "Textiles & Garments", href: "/products/cotton" },
+    "Agriculture": [
+      { name: "Rice Exports", href: "/products/rice" },
+      { name: "Wheat Products", href: "/products/wheat" },
+      { name: "Groundnuts", href: "/products/groundnut" },
+      { name: "Psyllium Husk", href: "/products/psyllium-husk" },
       { name: "Global Logistics", href: "/services" }
     ],
     "Company": [
