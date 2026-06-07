@@ -33,7 +33,6 @@
   <url><loc>https://patelimpex.com/products/wheat</loc><priority>0.7</priority></url>
   <url><loc>https://patelimpex.com/products/rice</loc><priority>0.7</priority></url>
   <url><loc>https://patelimpex.com/products/groundnut</loc><priority>0.7</priority></url>
-  <url><loc>https://patelimpex.com/products/cotton</loc><priority>0.7</priority></url>
   <url><loc>https://patelimpex.com/products/sesame-seeds</loc><priority>0.7</priority></url>
   <url><loc>https://patelimpex.com/products/sesame-seeds/hulled</loc><priority>0.7</priority></url>
   <url><loc>https://patelimpex.com/products/sesame-seeds/natural</loc><priority>0.7</priority></url>
@@ -41,14 +40,6 @@
   <url><loc>https://patelimpex.com/products/animal-dung</loc><priority>0.7</priority></url>
   <url><loc>https://patelimpex.com/products/animal-dung/cake</loc><priority>0.7</priority></url>
   <url><loc>https://patelimpex.com/products/animal-dung/powder</loc><priority>0.7</priority></url>
-
-  <!-- Cotton Subproducts -->
-  <url><loc>https://patelimpex.com/products/raw-cotton</loc><priority>0.6</priority></url>
-  <url><loc>https://patelimpex.com/products/cotton-yarn</loc><priority>0.6</priority></url>
-  <url><loc>https://patelimpex.com/products/comber-noil-cotton</loc><priority>0.6</priority></url>
-  <url><loc>https://patelimpex.com/products/cotton-carding-dropping</loc><priority>0.6</priority></url>
-  <url><loc>https://patelimpex.com/products/processed-cotton</loc><priority>0.6</priority></url>
-  <url><loc>https://patelimpex.com/products/cotton-roving</loc><priority>0.6</priority></url>
 
   <!-- Groundnut Subproducts -->
   <url><loc>https://patelimpex.com/products/bold-runner-groundnut</loc><priority>0.6</priority></url>
@@ -104,7 +95,6 @@
   <url><loc>https://patelimpex.com/products/psyllium-husk-products</loc><priority>0.6</priority></url>
   <url><loc>https://patelimpex.com/products/bed-linen-export</loc><priority>0.6</priority></url>
   <url><loc>https://patelimpex.com/products/designer-fabrics-export</loc><priority>0.6</priority></url>
-  <url><loc>https://patelimpex.com/products/cotton-yarn-export</loc><priority>0.6</priority></url>
   <url><loc>https://patelimpex.com/products/curtains-export</loc><priority>0.6</priority></url>
   <url><loc>https://patelimpex.com/products/towel-sets-export</loc><priority>0.6</priority></url>
   <url><loc>https://patelimpex.com/products/wool-blankets-export</loc><priority>0.6</priority></url>
