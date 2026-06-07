@@ -10,6 +10,10 @@ import{
 import { Badge } from "@/components/ui/badge";
 
 import agricultureImg from "@/assets/products/rice.png";
+import wheatImg from "@/assets/products/sharbati-wheat.png";
+import psylliumImg from "@/assets/products/psyllium-husk.png";
+import groundnutImg from "@/assets/products/groundnut.png";
+import cuminImg from "@/assets/products/cumin-seeds.png";
 
 const Products = () => {
   const sectors = [
@@ -22,6 +26,46 @@ const Products = () => {
       color: "bg-green-600",
       description: "Premium Indian rice varieties including Basmati 1121, Sella, Steam, IR-64, Sona Masoori, and Jeerakasala. Sourced from Punjab, Haryana, and Andhra Pradesh.",
       features: ["Basmati & Non-Basmati", "Premium Grain Quality", "Bulk Export Capability"]
+    },
+    {
+      id: "wheat",
+      name: "Wheat Products",
+      icon: Wheat,
+      image: wheatImg,
+      link: "/products/wheat",
+      color: "bg-amber-600",
+      description: "Premium quality wheat varieties from India including Sharbati, Durum, Lokwan, Bread Wheat, Bhalia, and HD 2687. Sourced from India's finest growing regions.",
+      features: ["Multiple Premium Varieties", "High Protein Content", "Bulk Export Capability"]
+    },
+    {
+      id: "psyllium",
+      name: "Psyllium (Isabgol)",
+      icon: Wheat,
+      image: psylliumImg,
+      link: "/products/psyllium-husk",
+      color: "bg-stone-600",
+      description: "Premium-grade Psyllium (Plantago ovata) products including husk, powder, and seeds. Processed under strict international quality standards.",
+      features: ["High Purity Grade", "Pharmaceutical Quality", "Global Certifications"]
+    },
+    {
+      id: "groundnut",
+      name: "Groundnut (Peanut)",
+      icon: Wheat,
+      image: groundnutImg,
+      link: "/products/groundnut",
+      color: "bg-orange-600",
+      description: "Premium groundnuts in multiple varieties including Bold, Java, TJ, and G-series. Available in raw kernels, blanched, roasted, and peanut butter formats.",
+      features: ["Multiple Varieties", "Multiple Processing Formats", "Global Export Quality"]
+    },
+    {
+      id: "cumin",
+      name: "Cumin Seeds",
+      icon: Wheat,
+      image: cuminImg,
+      link: "/products/cumin-seeds",
+      color: "bg-yellow-700",
+      description: "Premium-quality cumin seeds sourced directly from trusted farmers. 99% purity with high volatile oil content, machine cleaned for international quality standards.",
+      features: ["99% Minimum Purity", "High Volatile Oil", "Machine Cleaned"]
     },
   ];
 

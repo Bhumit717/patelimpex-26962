@@ -1,32 +1,52 @@
-import { Package, Globe, ShieldCheck, ArrowRight, ChevronRight } from "lucide-react";
+import { Package, Globe, ShieldCheck, ArrowRight, ChevronRight, Wheat as WheatIcon, Sprout, Bean, Flower2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import agriImg from "@/assets/products/seeds.png";
+import riceImg from "@/assets/products/rice.png";
+import wheatImg from "@/assets/products/sharbati-wheat.png";
+import psylliumImg from "@/assets/products/psyllium-husk.png";
+import groundnutImg from "@/assets/products/groundnut.png";
+import cuminImg from "@/assets/products/cumin-seeds.png";
 
 const Products = () => {
   const categories = [
     {
-      title: "Basmati Rice",
-      description: "Premium long-grain Basmati rice varieties including 1121, Sella, Steam, and traditional aged Basmati. Sourced from the Himalayan foothills.",
+      title: "Rice",
+      description: "Premium Indian rice varieties including Basmati 1121, Sella, Steam, IR-64, Sona Masoori, and Jeerakasala. Sourced from Punjab, Haryana, and Andhra Pradesh.",
       icon: Package,
-      image: agriImg,
+      image: riceImg,
       link: "/products/rice",
-      items: ["1121 Basmati", "Sella Basmati", "Steam Basmati"]
+      items: ["Basmati Rice", "Non-Basmati Rice", "Bulk Export"]
     },
     {
-      title: "Non-Basmati Rice",
-      description: "High-quality non-basmati rice varieties including IR-64, Sona Masoori, and Jeerakasala for diverse global requirements.",
-      icon: Globe,
-      image: agriImg,
-      link: "/products/rice",
-      items: ["IR-64 Rice", "Sona Masoori", "Jeerakasala"]
+      title: "Wheat",
+      description: "Premium quality wheat varieties from India including Sharbati, Durum, Lokwan, Bread Wheat, Bhalia, and HD 2687. Superior quality for global markets.",
+      icon: WheatIcon,
+      image: wheatImg,
+      link: "/products/wheat",
+      items: ["Sharbati Wheat", "Durum Wheat", "Bread Wheat"]
     },
     {
-      title: "Rice Export Services",
-      description: "End-to-end rice export solutions with global logistics, quality certification, and bulk shipping capabilities.",
-      icon: ShieldCheck,
-      image: agriImg,
-      link: "/products/rice",
-      items: ["Global Logistics", "Quality Certifications", "Bulk Shipping"]
+      title: "Psyllium (Isabgol)",
+      description: "Premium-grade Psyllium products including husk, powder, and seeds. Processed under strict international quality standards for global markets.",
+      icon: Sprout,
+      image: psylliumImg,
+      link: "/products/psyllium-husk",
+      items: ["Psyllium Husk", "Psyllium Powder", "Psyllium Seeds"]
+    },
+    {
+      title: "Groundnuts",
+      description: "Premium groundnuts in multiple varieties including Bold, Java, TJ, and G-series. Available in raw, blanched, roasted, and peanut butter formats.",
+      icon: Bean,
+      image: groundnutImg,
+      link: "/products/groundnut",
+      items: ["Bold Runner", "Java Spanish", "TJ Groundnut"]
+    },
+    {
+      title: "Cumin Seeds",
+      description: "Premium-quality cumin seeds with 99% minimum purity and high volatile oil content. Machine cleaned and sourced directly from trusted farmers.",
+      icon: Flower2,
+      image: cuminImg,
+      link: "/products/cumin-seeds",
+      items: ["Whole Seeds", "Ground Powder", "Machine Cleaned"]
     }
   ];
 
