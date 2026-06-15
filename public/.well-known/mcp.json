@@ -1,23 +1,12 @@
 {
   "name": "Patel Impex Blog Manager",
-  "description": "Manage blog posts on the Patel Impex website — create, edit, delete, publish, schedule, and optimize content with full SEO support. Add this connector to allow ChatGPT to directly manage your Patel Impex blog.",
+  "description": "Manage blog posts on the Patel Impex website — create, edit, delete, publish, schedule, and optimize content with full SEO support.",
   "url": "https://patelimpex.com/api/gpt/mcp",
-  "endpoints": {
-    "sse": {
-      "url": "https://patelimpex.com/api/gpt/mcp",
-      "method": "GET"
-    },
-    "message": {
-      "url": "https://patelimpex.com/api/gpt/mcp",
-      "method": "POST",
-      "headers": {
-        "Content-Type": "application/json"
-      }
-    }
-  },
+  "version": "2.0.0",
   "capabilities": {
+    "transports": ["streamable-http", "sse"],
     "tools": {
-      "create_blog": "Create a new blog post with full SEO, categories, tags, and scheduled publishing",
+      "create_blog": "Create a new blog post with full SEO, categories, tags, and scheduling",
       "update_blog": "Update any field of an existing blog post",
       "delete_blog": "Permanently delete a blog post",
       "list_blogs": "List blog posts with filters and pagination",
@@ -28,9 +17,5 @@
       "generate_seo": "Analyze content and generate SEO recommendations",
       "bulk_create_blogs": "Create multiple blog posts in a single operation"
     }
-  },
-  "version": "2.0.0",
-  "website": "https://patelimpex.com",
-  "privacyPolicy": "https://patelimpex.com/privacy-policy",
-  "termsOfService": "https://patelimpex.com/terms-of-service"
+  }
 }

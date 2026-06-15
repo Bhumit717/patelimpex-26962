@@ -73,8 +73,21 @@ export default async function handler(req, res) {
         return res.status(auth.status).json({ error: auth.error });
     }
 
-    // ─── SSE CONNECTION (GET) ─────────────────────────────────────────────
+    // ─── SSE CONNECTION (GET) / STATUS (GET) ─────────────────────────────
     if (req.method === "GET") {
+        // If client doesn't accept text/event-stream, return JSON status
+        const accept = req.headers.accept || "";
+        if (!accept.includes("text/event-stream")) {
+            return res.status(200).json({
+                server: "patel-impex-mcp",
+                version: MCP_VERSION,
+                protocol: MCP_PROTOCOL_VERSION,
+                transport: "streamable-http",
+                status: "active",
+                tools: getToolDefinitions().length,
+                docs: "https://patelimpex.com/.well-known/mcp.json"
+            });
+        }
         return handleSSE(req, res);
     }
 
@@ -175,15 +188,12 @@ async function handleMessage(req, res) {
     const sessionId = req.query.sessionId;
     const body = req.body;
 
-    if (!sessionId) {
-        return res.status(400).json({ error: "Missing sessionId parameter" });
-    }
     if (!body || !body.method) {
         return res.status(400).json({ error: "Invalid JSON-RPC request" });
     }
 
     log("INFO", "JSON-RPC request", {
-        sessionId,
+        sessionId: sessionId || "none",
         method: body.method,
         toolName: body.params?.name || body.method
     });
@@ -191,11 +201,24 @@ async function handleMessage(req, res) {
     try {
         const responsePayload = await handleJsonRpc(body);
 
+        // For notifications, return simple acknowledgment
+        if (body.method === "notifications/initialized" || body.method === "notifications/cancelled") {
+            return res.status(200).json({ success: true });
+        }
+
+        // Return JSON-RPC response directly in the POST response body
+        // This enables Streamable HTTP transport (used by ChatGPT Apps)
         if (responsePayload) {
-            await setDoc(doc(db, SESSION_COLLECTION, sessionId), {
-                response: responsePayload,
-                lastActivity: serverTimestamp()
-            }, { merge: true });
+            // Also write to Firestore if sessionId is provided (for SSE clients)
+            if (sessionId) {
+                setDoc(doc(db, SESSION_COLLECTION, sessionId), {
+                    response: responsePayload,
+                    lastActivity: serverTimestamp()
+                }, { merge: true }).catch((err) => {
+                    log("ERROR", "Failed to write session response", { error: err.message });
+                });
+            }
+            return res.status(200).json(responsePayload);
         }
 
         return res.status(200).json({ success: true });
