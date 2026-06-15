@@ -5,23 +5,15 @@
   "endpoints": {
     "sse": {
       "url": "https://patelimpex.com/api/gpt/mcp",
-      "method": "GET",
-      "headers": {
-        "Authorization": "Bearer ${GPT_API_KEY}"
-      }
+      "method": "GET"
     },
     "message": {
       "url": "https://patelimpex.com/api/gpt/mcp",
       "method": "POST",
       "headers": {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer ${GPT_API_KEY}"
+        "Content-Type": "application/json"
       }
     }
-  },
-  "auth": {
-    "type": "bearer",
-    "instructions": "Set the GPT_API_KEY environment variable in Vercel and use the same key as the Bearer token in the Authorization header."
   },
   "capabilities": {
     "tools": {

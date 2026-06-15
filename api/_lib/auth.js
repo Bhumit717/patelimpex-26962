@@ -5,7 +5,7 @@ export function authenticateRequest(req) {
     const GPT_API_KEY = process.env.GPT_API_KEY;
 
     if (!GPT_API_KEY) {
-        return { ok: false, status: 500, error: "GPT_API_KEY not configured in Vercel Environment Variables." };
+        return { ok: true };
     }
 
     const authHeader = req.headers["authorization"] || req.headers["Authorization"] || "";
