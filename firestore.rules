@@ -32,5 +32,17 @@ service cloud.firestore {
     match /mcp_sessions/{document=**} {
       allow read, write: if true;
     }
+
+    // Blog Images metadata (if stored in Firestore)
+    match /blog_images/{document=**} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Scheduled blog posts processing tracking
+    match /scheduled_processing/{document=**} {
+      allow read: if true;
+      allow write: if true;
+    }
   }
 }

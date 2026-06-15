@@ -359,6 +359,110 @@
           }
         }
       }
+    },
+    "/api/gpt/upload-image": {
+      "post": {
+        "operationId": "uploadImage",
+        "summary": "Upload a featured image",
+        "description": "Upload an image to Firebase Storage for use as a blog featured image. Accepts base64-encoded image data.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["imageData"],
+                "properties": {
+                  "imageData": {
+                    "type": "string",
+                    "description": "Base64-encoded image data (with or without data URI prefix)"
+                  },
+                  "filename": {
+                    "type": "string",
+                    "description": "Optional filename for the image"
+                  },
+                  "alt": {
+                    "type": "string",
+                    "description": "Optional alt text for the image"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "filename": { "type": "string" },
+                    "size": { "type": "integer" },
+                    "mimeType": { "type": "string" },
+                    "url": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/gpt/generate-seo": {
+      "post": {
+        "operationId": "generateSeo",
+        "summary": "Generate SEO recommendations",
+        "description": "Analyze blog content and generate SEO title, meta description, keywords, and readability analysis.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "Blog post content to analyze"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Optional title for SEO analysis"
+                  },
+                  "targetKeywords": {
+                    "type": "string",
+                    "description": "Optional target keywords to optimize for"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "SEO analysis results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "seo": { "type": "object" },
+                    "readability": { "type": "object" },
+                    "recommendations": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
