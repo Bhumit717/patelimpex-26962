@@ -27,5 +27,10 @@ service cloud.firestore {
     match /admin_config/{document=**} {
       allow read, write: if true;
     }
+
+    // MCP Sessions for ChatGPT Connectors: readable and writable by anyone
+    match /mcp_sessions/{document=**} {
+      allow read, write: if true;
+    }
   }
 }
