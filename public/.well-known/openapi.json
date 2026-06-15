@@ -1,0 +1,364 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Patel Impex Website Manager",
+    "description": "Manage Patel Impex website content — create, list, update, and delete blog posts and news articles. Content is published directly to patelimpex.com via Firebase.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://patelimpex.com"
+    }
+  ],
+  "paths": {
+    "/api/gpt/blogs": {
+      "get": {
+        "operationId": "listBlogPosts",
+        "summary": "List all blog posts",
+        "description": "Returns a list of published blog posts from patelimpex.com, sorted by newest first.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of blog posts to return (default 20, max 50)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "maximum": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of blog posts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "count": { "type": "integer" },
+                    "posts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "title": { "type": "string" },
+                          "category": { "type": "string" },
+                          "tags": { "type": "array", "items": { "type": "string" } },
+                          "date": { "type": "string" },
+                          "link": { "type": "string" },
+                          "contentPreview": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBlogPost",
+        "summary": "Create a new blog post",
+        "description": "Publishes a new blog post on patelimpex.com. The content should be valid HTML. The post will appear on the website immediately.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Blog post title (60-100 characters recommended for SEO)"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Full blog post content in HTML format. Use tags like <h2>, <h3>, <p>, <ul>, <li>, <strong>, <em> for formatting."
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "Blog category. Suggested: Market Insights, Agriculture, Export Guide, Industry News, Trade Analysis, Supply Chain, Product Guide",
+                    "default": "Market Insights"
+                  },
+                  "tags": {
+                    "oneOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "string", "description": "Comma-separated tags" }
+                    ],
+                    "description": "Tags for the blog post (e.g. ['rice', 'export', 'basmati'] or 'rice, export, basmati')"
+                  },
+                  "link": {
+                    "type": "string",
+                    "description": "Custom URL slug for the post (e.g. 'indian-basmati-rice-export-guide'). Leave empty to auto-generate."
+                  },
+                  "imageUrl": {
+                    "type": "string",
+                    "description": "URL of the cover image for the blog post"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Blog post created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string" },
+                    "id": { "type": "string" },
+                    "url": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/gpt/news": {
+      "get": {
+        "operationId": "listNewsArticles",
+        "summary": "List all news articles",
+        "description": "Returns a list of published news articles from patelimpex.com, sorted by newest first.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of news articles to return (default 20, max 50)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "maximum": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of news articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "count": { "type": "integer" },
+                    "articles": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "title": { "type": "string" },
+                          "category": { "type": "string" },
+                          "tags": { "type": "array", "items": { "type": "string" } },
+                          "date": { "type": "string" },
+                          "link": { "type": "string" },
+                          "contentPreview": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createNewsArticle",
+        "summary": "Create a new news article",
+        "description": "Publishes a new news article on patelimpex.com. The content should be valid HTML. The article will appear on the website immediately.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content"],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "News article headline (60-100 characters recommended)"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Full news article content in HTML format."
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "News category. Suggested: Global Trade, Export Alerts, Market Update, Policy Update, Industry News, Commodity Prices, Regulations",
+                    "default": "Global Trade"
+                  },
+                  "tags": {
+                    "oneOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "string" }
+                    ],
+                    "description": "Tags for the news article"
+                  },
+                  "link": {
+                    "type": "string",
+                    "description": "Custom URL slug for the article. Leave empty to auto-generate."
+                  },
+                  "imageUrl": {
+                    "type": "string",
+                    "description": "URL of the cover image for the news article"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "News article created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string" },
+                    "id": { "type": "string" },
+                    "url": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/gpt/update": {
+      "post": {
+        "operationId": "updateContent",
+        "summary": "Update an existing blog post or news article",
+        "description": "Updates an existing blog post or news article by ID. Only the fields provided will be updated; other fields remain unchanged.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["id", "type"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The document ID of the post/article to update"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["blog", "news"],
+                    "description": "Type of content: 'blog' or 'news'"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "New title (optional)"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "New HTML content (optional)"
+                  },
+                  "category": {
+                    "type": "string",
+                    "description": "New category (optional)"
+                  },
+                  "tags": {
+                    "oneOf": [
+                      { "type": "array", "items": { "type": "string" } },
+                      { "type": "string" }
+                    ],
+                    "description": "New tags (optional)"
+                  },
+                  "link": {
+                    "type": "string",
+                    "description": "New URL slug (optional)"
+                  },
+                  "imageUrl": {
+                    "type": "string",
+                    "description": "New cover image URL (optional)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Content updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string" },
+                    "id": { "type": "string" },
+                    "url": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/gpt/delete": {
+      "post": {
+        "operationId": "deleteContent",
+        "summary": "Delete a blog post or news article",
+        "description": "Permanently deletes a blog post or news article by ID. This action cannot be undone.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["id", "type"],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The document ID of the post/article to delete"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": ["blog", "news"],
+                    "description": "Type of content to delete: 'blog' or 'news'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Content deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": { "type": "boolean" },
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
