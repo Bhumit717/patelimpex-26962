@@ -1,0 +1,85 @@
+
+import { Link } from "react-router-dom";
+import { ArrowRight, Globe, Package, FileText } from "lucide-react";
+
+const PopularPages = () => {
+  const popularLinks = {
+ "Top Export Products": [
+      { title: "Basmati Rice Export", href: "/more/basmati-rice-export" },
+      { title: "Non-Basmati Rice Export", href: "/more/non-basmati-rice-export" },
+      { title: "Cumin Seeds Export", href: "/more/cumin-export" },
+      { title: "Psyllium Husk Export", href: "/more/psyllium-husk-export" },
+      { title: "Groundnut Export", href: "/more/groundnut-export" },
+      { title: "Wheat Export", href: "/more/wheat-export" },
+      { title: "Rice Export", href: "/more/rice-export" }
+    ],
+ "Export Resources": [
+      { title: "Export Import Guide", href: "/more/export-import-guide" },
+      { title: "Trade Finance", href: "/more/trade-finance" },
+      { title: "Export Documentation", href: "/more/export-documentation" },
+      { title: "Quality Standards", href: "/more/quality-standards" },
+      { title: "Sea Freight Services", href: "/more/sea-freight" },
+      { title: "Customs Clearance", href: "/more/customs-clearance" }
+    ],
+ "Key Markets": [
+      { title: "USA Market Export", href: "/seo/usa-market-export" },
+      { title: "UK Market Export", href: "/seo/uk-market-export" },
+      { title: "UAE Market Export", href: "/seo/uae-market-export" },
+      { title: "Europe Market Export", href: "/seo/europe-market-export" },
+      { title: "Canada Market Export", href: "/seo/canada-market-export" },
+      { title: "Singapore Market Export", href: "/seo/singapore-market-export" }
+    ]
+  };
+
+  const icons: { [key: string]: any } = {
+ "Top Export Products": Package,
+ "Export Resources": FileText,
+ "Key Markets": Globe
+  };
+
+  return (
+    <section className="py-24 bg-card" aria-label="Popular export pages and resources">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4 font-graduate uppercase tracking-tighter">
+            Explore Our <span className="text-accent-ink font-fredericka tracking-tight">Export Resources</span>
+          </h2>
+          <p className="text-muted-foreground font-fondamento text-xl italic max-w-2xl mx-auto">
+            Discover detailed guides for 200+ pages covering products and markets.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {Object.entries(popularLinks).map(([category, links]) => {
+            const Icon = icons[category];
+            return (
+              <div key={category} className="nm-card !p-8 bg-card border-none transition-all hover:-translate-y-2">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-card flex items-center justify-center rounded-2xl shadow-inner border border-border">
+                    <Icon className="h-6 w-6 text-accent-ink" />
+                  </div>
+                  <h3 className="text-lg font-black text-foreground font-graduate uppercase tracking-tight">{category}</h3>
+                </div>
+                <ul className="space-y-4">
+                  {links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        to={link.href}
+                        className="flex items-center text-muted-foreground hover:text-accent-ink transition-colors font-fondamento text-lg italic group"
+                      >
+                        <ArrowRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-all -ml-6 group-hover:ml-0" />
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default PopularPages;

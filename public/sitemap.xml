@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://patelimpex.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://patelimpex.com/about</loc><priority>0.8</priority></url>
+  <url><loc>https://patelimpex.com/products</loc><priority>0.9</priority></url>
+  <url><loc>https://patelimpex.com/services</loc><priority>0.8</priority></url>
+  <url><loc>https://patelimpex.com/blog</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/news</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/contact</loc><priority>0.8</priority></url>
+  <url><loc>https://patelimpex.com/inquiry</loc><priority>0.8</priority></url>
+  <url><loc>https://patelimpex.com/logo</loc><priority>0.5</priority></url>
+  <url><loc>https://patelimpex.com/faq</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/sitemap</loc><priority>0.5</priority></url>
+  <url><loc>https://patelimpex.com/privacy-policy</loc><priority>0.3</priority></url>
+  <url><loc>https://patelimpex.com/terms-of-service</loc><priority>0.3</priority></url>
+  <url><loc>https://patelimpex.com/cookie-policy</loc><priority>0.3</priority></url>
+
+  <!-- Product Categories -->
+  <url><loc>https://patelimpex.com/products/agriculture</loc><priority>0.8</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles-export</loc><priority>0.8</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing-export</loc><priority>0.8</priority></url>
+  
+  <!-- Detailed Products -->
+  <url><loc>https://patelimpex.com/products/psyllium-husk</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-husk/husk</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-husk/powder</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-husk/seeds</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/fennel-seeds</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/cardamom</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/cumin-seeds</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/soybeans</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat-flour</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/rice</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/groundnut</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/sesame-seeds</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/sesame-seeds/hulled</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/sesame-seeds/natural</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/sugar</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/animal-dung</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/animal-dung/cake</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/animal-dung/powder</loc><priority>0.7</priority></url>
+
+  <!-- Groundnut Subproducts -->
+  <url><loc>https://patelimpex.com/products/bold-runner-groundnut</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/java-spanish-groundnut</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/tj-groundnut</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/g10-g20-groundnut</loc><priority>0.6</priority></url>
+
+  <!-- Rice Subproducts -->
+  <url><loc>https://patelimpex.com/products/golden-sella-basmati-rice-1121</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/white-sella-basmati-rice-1121</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/steam-basmati-rice-1121</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/ir64-parboiled-rice</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/ir64-raw-rice</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sona-masoori-rice</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/jeerakasala-rice</loc><priority>0.6</priority></url>
+
+  <!-- Sugar Subproducts -->
+  <url><loc>https://patelimpex.com/products/sugar/raw-sugar</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sugar/refined-white-sugar</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sugar/organic-sugar</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sugar/jaggery</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sugar/pharmaceutical-sugar</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sugar/white-crystal-sugar</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sugar/brown-sugar</loc><priority>0.6</priority></url>
+
+  <!-- Wheat Subproducts -->
+  <url><loc>https://patelimpex.com/products/wheat/sharbati</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat/durum</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat/lokwan</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat/bread-wheat</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat/bhalia</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat/hd-2687</loc><priority>0.6</priority></url>
+
+  <!-- Other Products -->
+  <url><loc>https://patelimpex.com/products/organic-pesticides-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/bio-fertilizers-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/veterinary-medicines-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/health-capsules-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/diagnostic-kits-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/herbal-supplements-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/medical-gloves-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/mini-tractor-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/combine-harvester-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/drip-irrigation-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/cultivator-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/sprinkler-system-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/seeding-machine-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/power-tiller-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/thresher-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/farm-trailer-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/hand-tools-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-husk-powder</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-husk-products</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/bed-linen-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/designer-fabrics-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/curtains-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/towel-sets-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wool-blankets-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/spice-pickles-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/ready-meals-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/snack-packets-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/dairy-ghee-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/silver-earrings-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/pearl-jewelry-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/brass-statues-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wall-hangings-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/decorative-lamps-export</loc><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/fashion-jewelry-export</loc><priority>0.6</priority></url>
+
+  <!-- Tiles & Sanitary -->
+  <url><loc>https://patelimpex.com/products/tiles/gvt-pgvt</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/double-charge</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/full-body</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/wall</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/floor</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/elevation</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/parking</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/slabs</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/sanitary-basin</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/tiles/sanitary-closet</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/sanitaryware</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/bath-fittings</loc><priority>0.7</priority></url>
+
+  <!-- Earthing -->
+  <url><loc>https://patelimpex.com/products/earthing/gi-electrode</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing/copper-electrode</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing/copper-rods</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing/backfill</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing/strips</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing/pit-covers</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing/lightning-arresters</loc><priority>0.7</priority></url>
+  <url><loc>https://patelimpex.com/products/earthing/clamps</loc><priority>0.7</priority></url>
+</urlset>

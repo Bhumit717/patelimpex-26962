@@ -1,0 +1,21 @@
+{
+  "name": "Patel Impex Blog Manager",
+  "description": "Manage blog posts on the Patel Impex website — create, edit, delete, publish, schedule, and optimize content with full SEO support.",
+  "url": "https://patelimpex.com/api/gpt/mcp",
+  "version": "2.0.0",
+  "capabilities": {
+    "transports": ["streamable-http", "sse"],
+    "tools": {
+      "create_blog": "Create a new blog post with full SEO, categories, tags, and scheduling",
+      "update_blog": "Update any field of an existing blog post",
+      "delete_blog": "Permanently delete a blog post",
+      "list_blogs": "List blog posts with filters and pagination",
+      "get_blog": "Get a single blog post by ID or URL slug",
+      "publish_blog": "Publish a draft or scheduled blog post immediately",
+      "schedule_blog": "Schedule a blog post for future publication",
+      "upload_featured_image": "Upload a featured image and get a public URL",
+      "generate_seo": "Analyze content and generate SEO recommendations",
+      "bulk_create_blogs": "Create multiple blog posts in a single operation"
+    }
+  }
+}

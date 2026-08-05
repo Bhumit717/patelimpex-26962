@@ -1,0 +1,16 @@
+# robots.txt for patelimpex.com
+# Ensure Google can fetch logo/favicon and all assets
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://patelimpex.com/sitemap.xml

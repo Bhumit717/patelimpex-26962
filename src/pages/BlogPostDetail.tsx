@@ -1,0 +1,227 @@
+
+import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { db } from "@/lib/firebase";
+import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import Navigation from "@/components/Navigation";
+import SEOHead from "@/components/SEOHead";
+import Footer from "@/components/Footer";
+import { Calendar, Clock, ChevronLeft, Loader2, Share2, Tag, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+
+
+interface BlogPost {
+    title: string;
+    content: string; // Single content field
+    image: string;
+    date: string;
+    tags: string[];
+}
+
+const BlogPostDetail = () => {
+    const { id } = useParams<{ id: string }>();
+    const [post, setPost] = useState<BlogPost | null>(null);
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        const fetchPost = async () => {
+            if (!id) return;
+            try {
+                // First try getting by document ID
+                const docRef = doc(db, "blog_posts", id);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setPost(docSnap.data() as BlogPost);
+                } else {
+                    // If not found by ID, try querying by custom link field
+                    const q = query(collection(db, "blog_posts"), where("link", "==", id));
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty) {
+                        setPost(querySnapshot.docs[0].data() as BlogPost);
+                    } else {
+                        setPost(null);
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching post:", error);
+                setPost(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchPost();
+    }, [id]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-card flex flex-col">
+                <Navigation />
+                <div className="flex-1 flex items-center justify-center">
+                    <Loader2 className="h-12 w-12 text-accent-ink animate-spin" />
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
+    if (!post) {
+        return (
+            <div className="min-h-screen bg-card flex flex-col">
+                <Navigation />
+                <div className="flex-1 flex flex-col items-center justify-center space-y-4">
+                    <h1 className="text-4xl font-bold text-foreground">Post Not Found</h1>
+                    <Link to="/blog">
+                        <Button className="nm-btn">Back to Blog</Button>
+                    </Link>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-card">
+            <SEOHead
+                title={`${post.title} | Patel Impex Blog`}
+                description={post.content.replace(/<[^>]+>/g, '').substring(0, 160)}
+                canonicalUrl={`/blog/${id}`}
+            />
+            <Navigation />
+
+            (
+            <main className="pt-32 pb-20 animate-fade-in">
+                <div className="container mx-auto px-4 max-w-4xl lg:max-w-5xl xl:max-w-6xl mb-8">
+                    <Link to="/blog" className="inline-flex items-center text-muted-foreground hover:text-accent-ink mb-8 transition-colors group">
+                        <ChevronLeft className="mr-1 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                        Back to all articles
+                    </Link>
+
+                    <article>
+                        {/* Header */}
+                        <header className="mb-12">
+                            <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
+                                <div className="flex items-center space-x-2">
+                                    <Calendar className="h-4 w-4" />
+                                    <span>{post.date}</span>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <Clock className="h-4 w-4" />
+                                    <span>8 min read</span>
+                                </div>
+                            </div>
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-foreground mb-8 leading-tight font-graduate">
+                                {post.title}
+                            </h1>
+                        </header>
+                    </article>
+                </div>
+
+                {/* Hero Image */}
+                {post.image && (
+                <div className="w-full max-w-[900px] lg:max-w-[1200px] xl:max-w-[1400px] mx-auto px-4 mb-16">
+                    <div className="relative aspect-[16/10] md:aspect-[9/7] rounded-[24px] md:rounded-[40px] overflow-hidden  border-4 md:border-8 border-white group">
+                        <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                        />
+                    </div>
+                </div>
+                )}
+
+
+                <div className="container mx-auto px-4 max-w-4xl lg:max-w-5xl xl:max-w-6xl">
+                    <article>
+                        {/* Content */}
+                        <div className="space-y-8">
+                            {/* Main Content - Full HTML Rendering with embedded styles support */}
+                            <div
+                                className="prose prose-slate prose-lg lg:prose-xl max-w-none text-muted-foreground leading-relaxed blog-content-rendered"
+                                dangerouslySetInnerHTML={{ __html: post.content }}
+                            />
+
+                            {/* Base styles for blog content */}
+                            <style>{`
+                            .blog-content-rendered h1, .blog-content-rendered h2, .blog-content-rendered h3 { font-family: 'Graduate', serif; margin-top: 2rem; margin-bottom: 1rem; color: #1e293b; }
+                            .blog-content-rendered p { margin-bottom: 1.5rem; line-height: 1.8; }
+                            .blog-content-rendered ul, .blog-content-rendered ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+                            .blog-content-rendered li { margin-bottom: 0.5rem; }
+                            .blog-content-rendered blockquote { border-left: 4px solid #cbd5e1; padding-left: 1.5rem; font-style: italic; margin: 2rem 0; }
+                            .blog-content-rendered img { border-radius: 0.75rem; margin-top: 2rem; margin-bottom: 2rem; width: 100%; height: auto; }
+                            .blog-content-rendered iframe { width: 100%; border-radius: 0.75rem; aspect-ratio: 16/9; }
+                            .blog-content-rendered pre { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 0.75rem; overflow-x: auto; margin: 2rem 0; }
+                            .blog-content-rendered code { background: #f1f5f9; padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.875em; }
+                            .blog-content-rendered pre code { background: transparent; padding: 0; }
+                            .blog-content-rendered table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+                            .blog-content-rendered th, .blog-content-rendered td { border: 1px solid #e2e8f0; padding: 0.75rem; text-align: left; }
+                            .blog-content-rendered th { background: #f8fafc; font-weight: 600; }
+                            .blog-content-rendered figure { margin: 2rem 0; }
+                            .blog-content-rendered figcaption { text-align: center; font-size: 0.875rem; color: #94a3b8; margin-top: 0.5rem; }
+                            @media (min-width: 1024px) {
+                                .blog-content-rendered { font-size: 1.125rem; }
+                                .blog-content-rendered h1 { font-size: 2.5rem; }
+                                .blog-content-rendered h2 { font-size: 2rem; }
+                                .blog-content-rendered h3 { font-size: 1.5rem; }
+                                .blog-content-rendered p { margin-bottom: 1.75rem; }
+                                .blog-content-rendered img { border-radius: 1rem; }
+                                .blog-content-rendered blockquote { padding-left: 2rem; }
+                            }
+                            @media (min-width: 1280px) {
+                                .blog-content-rendered { font-size: 1.25rem; }
+                                .blog-content-rendered p { line-height: 1.9; }
+                                .blog-content-rendered img { border-radius: 1.25rem; }
+                            }
+                        `}
+                            </style>
+                        </div>
+
+                        {/* Footer Meta */}
+                        <footer className="mt-20 pt-12 border-t border-border flex flex-col md:flex-row md:items-center justify-between gap-8">
+                            <div className="flex flex-wrap gap-2">
+                                {post.tags?.map(tag => (
+                                    <span key={tag} className="flex items-center space-x-1 bg-secondary text-muted-foreground px-4 py-2 rounded-full text-sm font-medium border border-border">
+                                        <Tag className="h-3 w-3" />
+                                        <span>{tag}</span>
+                                    </span>
+                                ))}
+                            </div>
+
+                            <div className="flex items-center space-x-4">
+                                <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest font-graduate">Share this insight:</span>
+                                <Button
+                                    size="icon"
+                                    variant="ghost"
+                                    className="nm-btn border-none !w-12 !h-12"
+                                    onClick={() => {
+                                        if (navigator.share) {
+                                            navigator.share({
+                                                title: post.title,
+                                                text: `Check out this article: ${post.title}`,
+                                                url: window.location.href,
+                                            }).catch(console.error);
+                                        } else {
+                                            navigator.clipboard.writeText(window.location.href);
+                                            // Simple alert or toast could be added here
+                                            alert("Link copied to clipboard!");
+                                        }
+                                    }}
+                                >
+                                    <Share2 className="h-5 w-5 text-accent-ink" />
+                                </Button>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </main>
+            )
+
+            <Footer />
+        </div>
+    );
+};
+
+export default BlogPostDetail;

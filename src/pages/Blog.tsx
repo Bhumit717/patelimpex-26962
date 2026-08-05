@@ -1,0 +1,313 @@
+import Navigation from "@/components/Navigation";
+import SEOHead from "@/components/SEOHead";
+import Footer from "@/components/Footer";
+import { Calendar, Clock, ArrowRight, Search, Loader2, ChevronLeft, ChevronRight, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { db } from "@/lib/firebase";
+import { collection, query, orderBy, limit, getDocs, startAfter, getCountFromServer, DocumentSnapshot } from "firebase/firestore";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  content: string;
+  image: string;
+  date: string;
+  readTime: string;
+  category: string;
+  tags: string[];
+  featured?: boolean;
+  link?: string;
+}
+
+const ITEMS_PER_PAGE = 9;
+
+const Blog = () => {
+  const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState("All Posts");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [pageCursors, setPageCursors] = useState<Record<number, DocumentSnapshot>>({});
+
+  const fetchPage = useCallback(async (pageNum: number) => {
+    setLoading(true);
+    try {
+      let q;
+      if (pageNum === 1) {
+        q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"), limit(ITEMS_PER_PAGE));
+      } else {
+        const lastCursor = pageCursors[pageNum - 1];
+        if (!lastCursor) {
+          setLoading(false);
+          return;
+        }
+        q = query(collection(db, "blog_posts"), orderBy("timestamp", "desc"), startAfter(lastCursor), limit(ITEMS_PER_PAGE));
+      }
+
+      const snapshot = await getDocs(q);
+      const postsData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...(doc.data() as Record<string, unknown>)
+      })) as BlogPost[];
+
+      setPosts(prev => {
+        const newPosts = [...prev];
+        const startIdx = (pageNum - 1) * ITEMS_PER_PAGE;
+        postsData.forEach((post, i) => {
+          newPosts[startIdx + i] = post;
+        });
+        return newPosts;
+      });
+
+      if (snapshot.docs.length > 0) {
+        setPageCursors(prev => ({ ...prev, [pageNum]: snapshot.docs[snapshot.docs.length - 1] }));
+      }
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [pageCursors]);
+
+  useEffect(() => {
+    const init = async () => {
+      setLoading(true);
+      try {
+        const countSnapshot = await getCountFromServer(collection(db, "blog_posts"));
+        const total = countSnapshot.data().count;
+        setTotalPages(Math.ceil(total / ITEMS_PER_PAGE));
+      } catch (e) {
+        console.error("Error getting count:", e);
+      }
+      await fetchPage(1);
+    };
+    init();
+  }, [fetchPage]);
+
+  useEffect(() => {
+    const idx = (currentPage - 1) * ITEMS_PER_PAGE;
+    if (!posts[idx]) {
+      fetchPage(currentPage);
+    }
+  }, [currentPage, posts, fetchPage]);
+
+  const currentPosts = useMemo(() => {
+    const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+    return posts.slice(startIdx, startIdx + ITEMS_PER_PAGE).filter(Boolean);
+  }, [posts, currentPage]);
+
+  const keywords = useMemo(() => {
+    const tagCounts: Record<string, number> = {};
+    posts.forEach(post => {
+      post?.tags?.forEach(tag => {
+        const normalized = tag.trim();
+        tagCounts[normalized] = (tagCounts[normalized] || 0) + 1;
+      });
+    });
+    const top5 = Object.entries(tagCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([name]) => name);
+    return ["All Posts", ...top5];
+  }, [posts]);
+
+  const filteredPosts = currentPosts.filter(post => {
+    if (!post) return false;
+    const matchesCategory = selectedCategory === "All Posts" || post.category === selectedCategory;
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (post.content || '').toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  const handleSearchChange = (val: string) => {
+    setSearchTerm(val);
+    setCurrentPage(1);
+  };
+
+  const handleReadMore = (post: BlogPost) => {
+    if (post.link && post.link.trim()) {
+      const url = post.link.trim();
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+        navigate(`/blog/${url.replace(/^\/+/, '')}`);
+      }
+      return;
+    }
+    navigate(`/blog/${post.id}`);
+  };
+
+  return (
+    <div className="min-h-screen bg-card relative overflow-hidden">
+      <SEOHead
+        title="Latest Information & Insights | Patel Impex"
+        description="Stay updated with the latest trends in international trade and global markets."
+        canonicalUrl="/blog"
+      />
+
+      <Navigation />
+
+      <section className="pt-32 pb-20 relative z-10 w-full animate-fade-in">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl lg:text-6xl font-black text-foreground mb-6">
+              Trade <span className="text-accent-ink">Insights</span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Stay ahead in international trade with expert insights, market analysis, and practical guides.
+            </p>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-6 mb-8 justify-center items-center">
+            <div className="relative w-full max-w-xl">
+              <input
+                type="text"
+                placeholder="Search trade insights..."
+                value={searchTerm}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="nm-input !rounded-full !pl-16 pr-6 py-5 w-full !text-lg"
+              />
+              <Search className="absolute left-6 top-1/2 transform -translate-y-1/2 h-6 w-6 text-muted-foreground" />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {keywords.map(cat => (
+              <button
+                key={cat}
+                onClick={() => { setSelectedCategory(cat); setCurrentPage(1); }}
+                className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${selectedCategory === cat
+                  ? 'bg-accent-ink text-[hsl(var(--paper))] '
+                  : 'bg-card text-muted-foreground hover:bg-secondary  border border-border'
+                  }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {loading && posts.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20">
+              <Loader2 className="h-12 w-12 text-accent-ink animate-spin mb-4" />
+              <p className="text-muted-foreground font-medium">Loading trade insights...</p>
+            </div>
+          ) : posts.length > 0 ? (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredPosts.map((post) => (
+                  <article
+                    key={post.id}
+                    onClick={() => handleReadMore(post)}
+                    className="nm-card !p-0 overflow-hidden group hover:-translate-y-2 transition-transform duration-300 cursor-pointer"
+                  >
+                    <div className="relative overflow-hidden aspect-[9/7] border-b border-white bg-accent-ink">
+                      {post.image ? (
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <FileText className="h-16 w-16 text-accent-ink" />
+                        </div>
+                      )}
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-card/90 backdrop-blur-sm text-accent-ink px-3 py-1 rounded-full text-xs font-medium ">
+                          {post.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <div className="flex items-center space-x-4 text-xs text-muted-foreground mb-3">
+                        <div className="flex items-center space-x-1">
+                          <Calendar className="h-3 w-3" />
+                          <span>{post.date}</span>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Clock className="h-3 w-3" />
+                          <span>{post.readTime}</span>
+                        </div>
+                      </div>
+
+                      <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-accent-ink transition-colors line-clamp-2 capitalize">
+                        {post.title}
+                      </h3>
+
+                      <p className="text-muted-foreground mb-4 line-clamp-3">
+                        {(post.content || '').replace(/<[^>]+>/g, '').substring(0, 150)}...
+                      </p>
+
+                      <button className="inline-flex items-center text-accent-ink font-medium group-hover:text-accent-ink transition-colors group/link cursor-pointer bg-transparent border-none p-0">
+                        Read More
+                        <ArrowRight className="ml-1 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              {filteredPosts.length === 0 && (
+                <div className="text-center py-20">
+                  <p className="text-muted-foreground text-lg">No articles found matching your criteria.</p>
+                </div>
+              )}
+
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-4 mt-16">
+                  <Button
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPage === 1}
+                    className="nm-btn !w-10 !h-10 !p-0 flex items-center justify-center disabled:opacity-50"
+                  >
+                    <ChevronLeft className="h-4 w-4 text-muted-foreground" />
+                  </Button>
+
+                  <div className="flex items-center gap-2">
+                    {[...Array(totalPages)].map((_, i) => {
+                      const pageNum = i + 1;
+                      return (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`w-10 h-10 rounded-[10px] font-semibold transition-all duration-300 ${pageNum === currentPage
+                            ? 'bg-card text-accent-ink shadow-[inset_3px_3px_6px_#cfd6e0,inset_-3px_-3px_6px_#ffffff]'
+                            : 'bg-card text-muted-foreground shadow-[5px_5px_10px_#cfd6e0,-5px_-5px_10px_#ffffff] hover:text-accent-ink'
+                            }`}
+                        >
+                          {pageNum}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <Button
+                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                    disabled={currentPage === totalPages}
+                    className="nm-btn !w-10 !h-10 !p-0 flex items-center justify-center disabled:opacity-50"
+                  >
+                    <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                  </Button>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center py-20 nm-card">
+              <h2 className="text-2xl font-bold text-foreground mb-2">No Articles Yet</h2>
+              <p className="text-muted-foreground">Check back soon for latest trade insights and market updates.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Blog;

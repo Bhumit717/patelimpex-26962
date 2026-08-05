@@ -1,4 +1,40 @@
 {
-  "framework": null,
-  "outputDirectory": "."
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap_index.xml"
+    },
+    {
+      "source": "/sitemap-data-(.*).xml",
+      "destination": "/sitemap-data-$1.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/.well-known/(.*)",
+      "destination": "/.well-known/$1"
+    },
+    {
+      "source": "/mcp",
+      "destination": "/api/gpt/mcp"
+    },
+    {
+      "source": "/mcp-discovery",
+      "destination": "/.well-known/mcp.json"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }
