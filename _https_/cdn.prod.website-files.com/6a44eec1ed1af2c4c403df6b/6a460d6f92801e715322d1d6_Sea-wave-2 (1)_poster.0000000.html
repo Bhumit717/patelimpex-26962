@@ -6,10 +6,7 @@
   .container-column {
     display: none;
   }
-  [data-init-hidden],
-  [data-init-loader] {
-    opacity: 0;
-  }
+  [data-init-hidden], [data-init-loader] { opacity: 1 !important; visibility: visible !important; }
   .article-layout[data-init-hidden] {
     display: none;
   }
@@ -25,12 +22,7 @@
     }
   }
   @media only screen and (min-width: 768px) {
-    body.body {
-      overflow: hidden;
-      position: fixed;
-      max-height: 100vh;
-      inset: 0;
-    }
+    body.body { overflow: auto !important; position: relative !important; max-height: none !important; }
   }
   @media only screen and (max-width: 767px) {
     .home-hero-stick {
@@ -50,7 +42,19 @@
 
 <script async type="module" src="https://cdn.jsdelivr.net/npm/@finsweet/attributes@2/attributes.js" fs-list></script>
 
-<!-- Paste this right before your closing </head> tag -->
+<!-- Paste this right before your closing <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-init-hidden]').forEach(function(el) {
+      el.style.opacity = '1';
+      el.style.visibility = 'visible';
+    });
+    var loader = document.querySelector('.loader');
+    if (loader) loader.style.display = 'none';
+    document.body.style.position = 'relative';
+    document.body.style.overflow = 'auto';
+  });
+</script>
+</head> tag -->
 <script type="text/javascript">
   (function (e, c) {
     if (!c.__SV) {
@@ -107,7 +111,19 @@
     debug: true,
     persistence: 'localStorage',
   });
-</script><script src="https://js.stripe.com/v3/" type="text/javascript" data-wf-ecomm-key="pk_live_nyPnaDuxaj8zDxRbuaPHJjip" data-wf-ecomm-acct-id="acct_1ToLBEKRbk1YnZ5t"></script><script type="text/javascript">window.__WEBFLOW_CURRENCY_SETTINGS = {"currencyCode":"INR","symbol":"₹","decimal":".","fractionDigits":2,"group":",","template":"{{wf {&quot;path&quot;:&quot;amount&quot;,&quot;type&quot;:&quot;CommercePrice&quot;\\} }} {{wf {&quot;path&quot;:&quot;currencyCode&quot;,&quot;type&quot;:&quot;PlainText&quot;\\} }}","hideDecimalForWholeNumbers":false};</script></head><body class="body"><div class="component-global"><div class="css-layout embed-css w-embed"><style>
+</script><script src="https://js.stripe.com/v3/" type="text/javascript" data-wf-ecomm-key="pk_live_nyPnaDuxaj8zDxRbuaPHJjip" data-wf-ecomm-acct-id="acct_1ToLBEKRbk1YnZ5t"></script><script type="text/javascript">window.__WEBFLOW_CURRENCY_SETTINGS = {"currencyCode":"INR","symbol":"₹","decimal":".","fractionDigits":2,"group":",","template":"{{wf {&quot;path&quot;:&quot;amount&quot;,&quot;type&quot;:&quot;CommercePrice&quot;\\} }} {{wf {&quot;path&quot;:&quot;currencyCode&quot;,&quot;type&quot;:&quot;PlainText&quot;\\} }}","hideDecimalForWholeNumbers":false};</script><script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-init-hidden]').forEach(function(el) {
+      el.style.opacity = '1';
+      el.style.visibility = 'visible';
+    });
+    var loader = document.querySelector('.loader');
+    if (loader) loader.style.display = 'none';
+    document.body.style.position = 'relative';
+    document.body.style.overflow = 'auto';
+  });
+</script>
+</head><body class="body"><div class="component-global"><div class="css-layout embed-css w-embed"><style>
   html {
     font-size: 0.57870370373vw;
     height: -webkit-fill-available;
