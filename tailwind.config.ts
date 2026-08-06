@@ -20,13 +20,14 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Epilogue', 'system-ui', 'sans-serif'],
-				display: ['Urbanist', 'system-ui', 'sans-serif'],
-				// Legacy aliases mapped onto the editorial type system
-				montecarlo: ['Urbanist', 'system-ui', 'sans-serif'],
-				fredericka: ['Urbanist', 'system-ui', 'sans-serif'],
-				fondamento: ['Epilogue', 'system-ui', 'sans-serif'],
-				graduate: ['Urbanist', 'system-ui', 'sans-serif'],
+				sans: ['Inter', 'Helvetica Neue', 'system-ui', 'sans-serif'],
+				display: ['Archivo', 'Helvetica Neue', 'system-ui', 'sans-serif'],
+				mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
+				// Legacy aliases mapped onto the current type system
+				montecarlo: ['Archivo', 'system-ui', 'sans-serif'],
+				fredericka: ['Archivo', 'system-ui', 'sans-serif'],
+				fondamento: ['Inter', 'system-ui', 'sans-serif'],
+				graduate: ['Archivo', 'system-ui', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
