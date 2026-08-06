@@ -3,6 +3,34 @@ import { useLocation } from "react-router-dom";
 
 type Entry = { route: string; file: string; title: string; description: string };
 
+const WEBFLOW_SITE_ID = "6a44eec1ed1af2c4c403df6b";
+const WEBFLOW_PAGE_IDS: Record<string, string> = {
+  "/": "6a44eec1ed1af2c4c403df38",
+  "/about": "6a44eec1ed1af2c4c403df51",
+  "/services": "6a44eec1ed1af2c4c403df58",
+  "/industries": "6a44eec1ed1af2c4c403df5e",
+  "/insights": "6a44eec1ed1af2c4c403df49",
+  "/careers": "6a44eec1ed1af2c4c403df3d",
+  "/community": "6a44eec1ed1af2c4c403df5b",
+  "/contact": "6a44eec1ed1af2c4c403df47",
+  "/merchandises": "6a44eec1ed1af2c4c403df97",
+  "/checkout": "6a44eec1ed1af2c4c403df62",
+  "/qhse": "6a44eec1ed1af2c4c403e02d",
+  "/privacy-policy": "6a44eec1ed1af2c4c403df65",
+  "/terms-conditions": "6a44eec1ed1af2c4c403df48",
+  "/delivery-shipping-policy": "6a44eec1ed1af2c4c403e012",
+  "/refund-returns-policy": "6a44eec1ed1af2c4c403e02a",
+  "/payment-policy": "6a44eec1ed1af2c4c403dfd4",
+};
+
+const getWebflowPageId = (path: string) => {
+  if (WEBFLOW_PAGE_IDS[path]) return WEBFLOW_PAGE_IDS[path];
+  if (path.startsWith("/insights/")) return "6a44eec1ed1af2c4c403df4a";
+  if (path.startsWith("/ai-news/")) return "6a44eec1ed1af2c4c403df4c";
+  if (path.startsWith("/product/")) return "6a44eec1ed1af2c4c403df61";
+  return undefined;
+};
+
 let manifestCache: Entry[] | null = null;
 
 const loadManifest = async () => {
@@ -72,6 +100,15 @@ const SitePage = () => {
       }
       const html = await fetch(entry.file).then((r) => r.text());
       if (cancelled || !hostRef.current) return;
+
+      // Webflow uses these document-level values to select the correct page
+      // interaction graph. They were lost when only <body> markup was imported.
+      const pageId = getWebflowPageId(path);
+      document.documentElement.classList.add("w-mod-js");
+      document.documentElement.dataset.wfSite = WEBFLOW_SITE_ID;
+      if (pageId) document.documentElement.dataset.wfPage = pageId;
+      else delete document.documentElement.dataset.wfPage;
+      document.body.classList.add("body");
 
       hostRef.current.innerHTML = html;
       document.title = entry.title;
