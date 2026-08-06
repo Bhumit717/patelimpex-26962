@@ -1,0 +1,338 @@
+[
+ {
+  "route": "/about",
+  "file": "/site/about.html",
+  "title": "About us",
+  "description": ""
+ },
+ {
+  "route": "/careers",
+  "file": "/site/careers.html",
+  "title": "Careers",
+  "description": ""
+ },
+ {
+  "route": "/community",
+  "file": "/site/community.html",
+  "title": "Community",
+  "description": ""
+ },
+ {
+  "route": "/contact",
+  "file": "/site/contact.html",
+  "title": "Contact",
+  "description": ""
+ },
+ {
+  "route": "/delivery-shipping-policy",
+  "file": "/site/delivery-shipping-policy.html",
+  "title": "Delivery & Shipping Policy",
+  "description": ""
+ },
+ {
+  "route": "/",
+  "file": "/site/index.html",
+  "title": "Patel Impex | One operator every leg of the journey",
+  "description": ""
+ },
+ {
+  "route": "/industries",
+  "file": "/site/industries.html",
+  "title": "Industries",
+  "description": ""
+ },
+ {
+  "route": "/insights",
+  "file": "/site/insights.html",
+  "title": "Insights",
+  "description": ""
+ },
+ {
+  "route": "/merchandises",
+  "file": "/site/merchandises.html",
+  "title": "Merchandises",
+  "description": ""
+ },
+ {
+  "route": "/payment-policy",
+  "file": "/site/payment-policy.html",
+  "title": "Payment Policy",
+  "description": ""
+ },
+ {
+  "route": "/privacy-policy",
+  "file": "/site/privacy-policy.html",
+  "title": "Privacy Policy",
+  "description": ""
+ },
+ {
+  "route": "/qhse",
+  "file": "/site/qhse.html",
+  "title": "QHSE",
+  "description": ""
+ },
+ {
+  "route": "/refund-returns-policy",
+  "file": "/site/refund-returns-policy.html",
+  "title": "Refund & Returns Policy",
+  "description": ""
+ },
+ {
+  "route": "/services",
+  "file": "/site/services.html",
+  "title": "Services",
+  "description": ""
+ },
+ {
+  "route": "/terms-conditions",
+  "file": "/site/terms-conditions.html",
+  "title": "Terms & Conditions",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/americas",
+  "file": "/site/ai-news/americas.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/asia-pacific",
+  "file": "/site/ai-news/asia-pacific.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/asia",
+  "file": "/site/ai-news/asia.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/europe",
+  "file": "/site/ai-news/europe.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/global",
+  "file": "/site/ai-news/global.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/middle-east-africa",
+  "file": "/site/ai-news/middle-east-africa.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/rest-of-world-d2yv8",
+  "file": "/site/ai-news/rest-of-world-d2yv8.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/case-studies",
+  "file": "/site/articles/case-studies.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/company-news",
+  "file": "/site/articles/company-news.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/featured",
+  "file": "/site/articles/featured.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/industry-news",
+  "file": "/site/articles/industry-news.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/2-million-people-evacuated-as-typhoon-makes-landfall-in-china",
+  "file": "/site/insights/2-million-people-evacuated-as-typhoon-makes-landfall-in-china.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/a-new-era-for-shippers-with-blanked-sailings-now-a-fact-of-life",
+  "file": "/site/insights/a-new-era-for-shippers-with-blanked-sailings-now-a-fact-of-life.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/confidential-national-infrastructure-manufacturer",
+  "file": "/site/insights/confidential-national-infrastructure-manufacturer.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/cost-optimised-and-speed-to-market-import-program-for-new-truck-launch-in-australia",
+  "file": "/site/insights/cost-optimised-and-speed-to-market-import-program-for-new-truck-launch-in-australia.html",
+  "title": "Cost-Optimised and Speed to market Import Program for New Truck Launch in Australia",
+  "description": ""
+ },
+ {
+  "route": "/insights/global-shipping-rates-soar-as-retailers-race-to-beat-looming-tariffs",
+  "file": "/site/insights/global-shipping-rates-soar-as-retailers-race-to-beat-looming-tariffs.html",
+  "title": "Global shipping rates soar as retailers race to beat looming tariffs",
+  "description": ""
+ },
+ {
+  "route": "/insights/grid-scale-battery-project-logistics-delivery-for-renewable-energy-infrastructure",
+  "file": "/site/insights/grid-scale-battery-project-logistics-delivery-for-renewable-energy-infrastructure.html",
+  "title": "Grid-Scale Battery Project Logistics Delivery for Renewable Energy Infrastructure",
+  "description": ""
+ },
+ {
+  "route": "/insights/has-the-peak-peaked-or-has-space-raced",
+  "file": "/site/insights/has-the-peak-peaked-or-has-space-raced.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/hong-kong-europe-air-cargo-volumes-plummet",
+  "file": "/site/insights/hong-kong-europe-air-cargo-volumes-plummet.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/major-fleet-wide-fuel-efficiency-agreement-signals-ongoing-focus-on-shipping-performance-and-decarbonisation",
+  "file": "/site/insights/major-fleet-wide-fuel-efficiency-agreement-signals-ongoing-focus-on-shipping-performance-and-decarbonisation.html",
+  "title": "Major Fleet-Wide Fuel Efficiency Agreement Signals Ongoing Focus on Shipping Performance and Decarbonisation",
+  "description": ""
+ },
+ {
+  "route": "/insights/reduced-import-delays-storage-costs-across-700-containers",
+  "file": "/site/insights/reduced-import-delays-storage-costs-across-700-containers.html",
+  "title": "Reduced Import Delays & Storage Costs Across 700+ Containers",
+  "description": ""
+ },
+ {
+  "route": "/insights/south-east-asia-now-making-the-rates-running",
+  "file": "/site/insights/south-east-asia-now-making-the-rates-running.html",
+  "title": "South East Asia Now Making the Rates Running",
+  "description": ""
+ },
+ {
+  "route": "/insights/the-panama-canal-is-growing-more-important",
+  "file": "/site/insights/the-panama-canal-is-growing-more-important.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/time-critical-oversized-sewer-tank-delivery-to-residential-estate-development",
+  "file": "/site/insights/time-critical-oversized-sewer-tank-delivery-to-residential-estate-development.html",
+  "title": "Time-Critical Oversized Sewer Tank Delivery to Residential Estate Development",
+  "description": ""
+ },
+ {
+  "route": "/insights/typhoon-rips-roofs-off-buildings-and-floods-southern-china",
+  "file": "/site/insights/typhoon-rips-roofs-off-buildings-and-floods-southern-china.html",
+  "title": "Typhoon Rips Roofs Off Buildings and Floods Southern China",
+  "description": ""
+ },
+ {
+  "route": "/insights/typhoon-signal-unlikely-in-hong-kong-this-weekend-as-flights-to-japan-cancelled",
+  "file": "/site/insights/typhoon-signal-unlikely-in-hong-kong-this-weekend-as-flights-to-japan-cancelled.html",
+  "title": "Typhoon Signal Unlikely in Hong Kong This Weekend as Flights to Japan Cancelled",
+  "description": ""
+ },
+ {
+  "route": "/insights/us-announces-new-tariffs-on-more-than-60-trading-partners",
+  "file": "/site/insights/us-announces-new-tariffs-on-more-than-60-trading-partners.html",
+  "title": "US Announces New Tariffs on More Than 60 Trading Partners",
+  "description": ""
+ },
+ {
+  "route": "/insights/world-container-index---16-july-2026",
+  "file": "/site/insights/world-container-index---16-july-2026.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/product/aircraft-keychain",
+  "file": "/site/product/aircraft-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/baseball-cap",
+  "file": "/site/product/baseball-cap.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/beanie",
+  "file": "/site/product/beanie.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/bottle-opener-keychain",
+  "file": "/site/product/bottle-opener-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/ceramic-mug",
+  "file": "/site/product/ceramic-mug.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/folding-camping-chair",
+  "file": "/site/product/folding-camping-chair.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/ship-keychain",
+  "file": "/site/product/ship-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/stainless-steel-water-bottle",
+  "file": "/site/product/stainless-steel-water-bottle.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/straw-tote-bag",
+  "file": "/site/product/straw-tote-bag.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/stubby-holder-1",
+  "file": "/site/product/stubby-holder-1.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/truck-keychain",
+  "file": "/site/product/truck-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/united-carriers-canvas-tote-bag",
+  "file": "/site/product/united-carriers-canvas-tote-bag.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/united-carriers-logo-fabric-patch-gsvwb",
+  "file": "/site/product/united-carriers-logo-fabric-patch-gsvwb.html",
+  "title": "Patel Impex",
+  "description": ""
+ }
+]
