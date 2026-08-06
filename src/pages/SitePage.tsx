@@ -145,6 +145,15 @@ const SitePage = () => {
     return () => host.removeEventListener("click", onClick);
   }, []);
 
+  // The imported GSAP/Barba runtime owns long-lived timelines and observers.
+  // A document reload is required on browser history navigation as well as
+  // link clicks, otherwise the next page inherits stale animation bindings.
+  useEffect(() => {
+    const reloadOnHistoryNavigation = () => window.location.reload();
+    window.addEventListener("popstate", reloadOnHistoryNavigation);
+    return () => window.removeEventListener("popstate", reloadOnHistoryNavigation);
+  }, []);
+
   return (
     <>
       <div ref={hostRef} />
