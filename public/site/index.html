@@ -1,4 +1,52 @@
-<div class="component-global"><div class="css-layout embed-css w-embed"><style>
+<style>
+  .home-hero-background-intro {
+    transform: translate(0%, 0%);
+  }
+  .home-service-empty-block.first-screen {
+    height: 600vh;
+  }
+  .home-service-empty-block.second-screen {
+    height: 1100vh;
+  }
+  .home-service-main-inner {
+    display: flex;
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+  .home-service-road-big {
+    transform: translateX(-100vw);
+  }
+  .home-service-third-screen {
+    margin-top: -200vh;
+  }
+  .home-why-ocean-img.overlay {
+    mix-blend-mode: soft-light;
+  }
+  .home-testi {
+    margin-top: -200vh;
+    --overlap-clip: 60;
+  }
+  .home-testi-plane,
+  .home-testi-screen-overlap {
+    opacity: 1;
+  }
+  @media only screen and (max-width: 991px) {
+    .home-service-main-inner {
+      flex-direction: column;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .home-service-mb-label {
+      clip-path: inset(calc(100% + min(10rem, 14svh)) 0% 0% 0%);
+    }
+    .home-service-mb-truck.truck-body {
+      opacity: 0;
+    }
+    .home-testi {
+      margin-top: -100vh;
+    }
+  }
+</style><div class="component-global"><div class="css-layout embed-css w-embed"><style>
   html {
     font-size: 0.57870370373vw;
     height: -webkit-fill-available;
