@@ -3,64 +3,59 @@
 @tailwind utilities;
 
 /* ==========================================================
-   Patel Impex — Paper & Ink editorial design system
-   Palette: #f5f3ee / #e8e4dd / #2d2d2d / #0d0d0d
-   Type: Urbanist (display) + Epilogue (body)
+   Patel Impex — Swiss logistics design system
+   Palette: #ffffff / #f4f4f4 / #111111 / #0016cb (single accent)
+   Type: Archivo (display) + Inter (body) + IBM Plex Mono (labels)
    ========================================================== */
 
 @layer base {
   :root {
-    --background: 44 24% 95%;
-    --foreground: 0 0% 18%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 18%;
+    --card-foreground: 0 0% 7%;
 
-    --popover: 44 24% 95%;
-    --popover-foreground: 0 0% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 0 0% 5%;
-    --primary-foreground: 44 24% 95%;
+    --primary: 232 100% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 18% 89%;
-    --secondary-foreground: 0 0% 18%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 40 18% 89%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
 
-    --accent: 40 18% 89%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 232 100% 40%;
 
-    --destructive: 0 60% 42%;
-    --destructive-foreground: 44 24% 95%;
+    --destructive: 0 74% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 40 18% 89%;
-    --input: 40 18% 89%;
-    --ring: 0 0% 18%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 232 100% 40%;
 
-    /* Editorial extras */
-    --ink: 0 0% 5%;
-    --paper: 44 24% 95%;
-    --paper-deep: 40 18% 89%;
-    --hairline: 40 14% 82%;
+    /* Surfaces */
+    --ink: 0 0% 7%;
+    --paper: 0 0% 100%;
+    --paper-deep: 0 0% 96%;
+    --hairline: 0 0% 89%;
 
-    /* Single-accent premium system:
-       one neutral family (paper/ink) + ONE accent (deep pine).
-       Rule: never more than one colour per element. */
-    --accent-ink: 158 36% 15%;
-    --accent-ink-soft: 158 22% 32%;
-    --accent-wash: 158 24% 96%;
+    /* Single accent: electric blue. Never more than one colour per element. */
+    --accent-ink: 232 100% 40%;
+    --accent-ink-soft: 232 100% 55%;
+    --accent-wash: 232 100% 97%;
 
-
-    --radius: 0;
+    --radius: 0.25rem;
   }
 }
 
 
 * {
   @apply border-border;
-  border-radius: 0 !important;
-  box-shadow: none !important;
 }
 
 html {
@@ -70,29 +65,30 @@ html {
 body {
   @apply bg-background text-foreground font-sans antialiased;
   font-feature-settings: "ss01", "cv01";
+  letter-spacing: -0.01em;
 }
 
 ::selection {
-  background: hsl(var(--ink));
+  background: hsl(var(--accent-ink));
   color: hsl(var(--paper));
 }
 
-/* ---------- Editorial primitives ---------- */
+/* ---------- Swiss primitives ---------- */
 @layer utilities {
   .font-display {
-    font-family: 'Urbanist', system-ui, sans-serif;
+    font-family: 'Archivo', 'Helvetica Neue', system-ui, sans-serif;
   }
 
   .display-xl {
-    @apply font-display font-black uppercase tracking-tighter leading-[0.85];
+    @apply font-display font-semibold tracking-[-0.045em] leading-[0.92];
   }
 
   .display-lg {
-    @apply font-display font-bold uppercase tracking-tight leading-[0.95];
+    @apply font-display font-semibold tracking-[-0.03em] leading-[1];
   }
 
   .micro-label {
-    @apply text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground;
+    @apply font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground;
   }
 
   .hairline {
@@ -100,11 +96,11 @@ body {
   }
 
   .editorial-shell {
-    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+    @apply mx-auto w-full max-w-[1400px] px-6 md:px-12;
   }
 
   .section-rhythm {
-    @apply py-24 md:py-32;
+    @apply py-20 md:py-28;
   }
 
   .link-underline {
@@ -128,26 +124,27 @@ body {
     transform: scaleX(1);
   }
 
-  /* Legacy component classes, restyled to Paper & Ink + single accent */
+  /* Legacy component classes, restyled to the Swiss logistics system */
   .nm-card {
-    @apply bg-card text-foreground border border-border transition-all duration-700;
+    @apply bg-card text-foreground border border-border rounded-[var(--radius)] transition-all duration-500;
   }
 
   .nm-card:hover {
-    border-color: hsl(var(--accent-ink) / 0.55);
-    transform: translateY(-3px);
+    border-color: hsl(var(--accent-ink) / 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -28px hsl(var(--ink) / 0.35);
   }
 
   .nm-card-dark {
-    @apply border transition-all duration-700;
-    background: hsl(var(--accent-ink));
+    @apply border rounded-[var(--radius)] transition-all duration-500;
+    background: hsl(var(--ink));
     color: hsl(var(--paper));
-    border-color: hsl(var(--accent-ink));
+    border-color: hsl(var(--ink));
   }
 
   .nm-btn,
   .nm-btn-white {
-    @apply inline-flex items-center justify-center border bg-transparent px-7 py-3 text-[11px] font-bold uppercase tracking-[0.22em] transition-all duration-500;
+    @apply inline-flex items-center justify-center rounded-[var(--radius)] border bg-transparent px-6 py-3 font-mono text-[11px] font-medium uppercase tracking-[0.18em] transition-all duration-300;
     border-color: hsl(var(--accent-ink));
     color: hsl(var(--accent-ink));
   }
@@ -160,7 +157,7 @@ body {
 
   .nm-btn-dark,
   .nm-btn-green {
-    @apply inline-flex items-center justify-center border px-7 py-3 text-[11px] font-bold uppercase tracking-[0.22em] transition-all duration-500;
+    @apply inline-flex items-center justify-center rounded-[var(--radius)] border px-6 py-3 font-mono text-[11px] font-medium uppercase tracking-[0.18em] transition-all duration-300;
     background: hsl(var(--accent-ink));
     color: hsl(var(--paper));
     border-color: hsl(var(--accent-ink));
@@ -168,12 +165,13 @@ body {
 
   .nm-btn-dark:hover,
   .nm-btn-green:hover {
-    background: transparent;
-    color: hsl(var(--accent-ink));
+    background: hsl(var(--ink));
+    border-color: hsl(var(--ink));
+    color: hsl(var(--paper));
   }
 
   .nm-input {
-    @apply w-full bg-transparent border-b border-border px-0 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 transition-colors duration-500;
+    @apply w-full bg-transparent border-b border-border px-0 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 transition-colors duration-300;
   }
 
   .nm-input:focus {
@@ -182,12 +180,12 @@ body {
   }
 
   .nm-label {
-    @apply block text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground mb-2;
+    @apply block font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground mb-2;
   }
 
   .glass-card {
-    background: hsl(var(--paper) / 0.86);
-    backdrop-filter: blur(14px);
+    background: hsl(var(--paper) / 0.82);
+    backdrop-filter: blur(16px);
     border: 1px solid hsl(var(--hairline));
   }
 
@@ -223,8 +221,8 @@ body {
 
   /* Eyebrow / chip: outline only, one colour */
   .accent-chip {
-    @apply inline-flex items-center gap-2 border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em];
-    border-color: hsl(var(--accent-ink) / 0.35);
+    @apply inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.2em];
+    border-color: hsl(var(--accent-ink) / 0.3);
     color: hsl(var(--accent-ink));
     background: transparent;
   }
@@ -234,6 +232,7 @@ body {
     width: max-content;
     animation: marquee 38s linear infinite;
   }
+
 
   .marquee-mask:hover .marquee-track {
     animation-play-state: paused;
