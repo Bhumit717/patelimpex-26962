@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.1",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "patelimpex",
+      "version": "0.1.0",
+      "title": "patelimpex"
+    },
+    "tools": [
+      {
+        "name": "list_pages",
+        "title": "List website pages",
+        "description": "List every public page on the Patel Impex website with its route and title. Use this to discover what content is available before calling get_page.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "search_pages",
+        "title": "Search website pages",
+        "description": "Find Patel Impex website pages whose route or title matches a keyword. Returns matching routes to read with get_page.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Keyword to match, e.g. 'services' or 'policy'."
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_page",
+        "title": "Read a website page",
+        "description": "Fetch the readable text content of one public Patel Impex website page. Pass a route from list_pages, for example '/services' or '/'.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "route": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Page route from list_pages, e.g. '/about'. Use '/' for the home page."
+            }
+          },
+          "required": [
+            "route"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_company_info",
+        "title": "Get company & contact info",
+        "description": "Get Patel Impex's published company details: business summary, email, phone number and office locations.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
