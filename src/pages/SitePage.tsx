@@ -118,9 +118,11 @@ const SitePage = () => {
 
       window.scrollTo(0, 0);
       setStatus("ready");
+      initSiteForms(hostRef.current);
       requestAnimationFrame(() => {
         void startRuntime();
       });
+
     })();
 
     return () => {
