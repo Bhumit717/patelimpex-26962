@@ -20,10 +20,6 @@ var SITE_PAGES = [
     "title": "Careers"
   },
   {
-    "route": "/community",
-    "title": "Community"
-  },
-  {
     "route": "/contact",
     "title": "Contact"
   },
@@ -36,8 +32,8 @@ var SITE_PAGES = [
     "title": "Patel Impex | One operator every leg of the journey"
   },
   {
-    "route": "/industries",
-    "title": "Industries"
+    "route": "/what-we-serve",
+    "title": "What we serve? | Patel Impex"
   },
   {
     "route": "/insights",
@@ -72,8 +68,60 @@ var SITE_PAGES = [
     "title": "Terms & Conditions"
   },
   {
+    "route": "/ai-news/americas",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/ai-news/asia-pacific",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/ai-news/asia",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/ai-news/europe",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
     "route": "/ai-news/global",
     "title": "Patel Impex"
+  },
+  {
+    "route": "/ai-news/middle-east-africa",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/ai-news/rest-of-world-d2yv8",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/articles/case-studies",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/articles/company-news",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/articles/featured",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/articles/industry-news",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/insights/2-million-people-evacuated-as-typhoon-makes-landfall-in-china",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/insights/a-new-era-for-shippers-with-blanked-sailings-now-a-fact-of-life",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/insights/confidential-national-infrastructure-manufacturer",
+    "title": "cdn.webflow.com | 502: Bad gateway"
   },
   {
     "route": "/insights/cost-optimised-and-speed-to-market-import-program-for-new-truck-launch-in-australia",
@@ -88,6 +136,14 @@ var SITE_PAGES = [
     "title": "Grid-Scale Battery Project Logistics Delivery for Renewable Energy Infrastructure"
   },
   {
+    "route": "/insights/has-the-peak-peaked-or-has-space-raced",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
+    "route": "/insights/hong-kong-europe-air-cargo-volumes-plummet",
+    "title": "cdn.webflow.com | 502: Bad gateway"
+  },
+  {
     "route": "/insights/major-fleet-wide-fuel-efficiency-agreement-signals-ongoing-focus-on-shipping-performance-and-decarbonisation",
     "title": "Major Fleet-Wide Fuel Efficiency Agreement Signals Ongoing Focus on Shipping Performance and Decarbonisation"
   },
@@ -98,6 +154,10 @@ var SITE_PAGES = [
   {
     "route": "/insights/south-east-asia-now-making-the-rates-running",
     "title": "South East Asia Now Making the Rates Running"
+  },
+  {
+    "route": "/insights/the-panama-canal-is-growing-more-important",
+    "title": "cdn.webflow.com | 502: Bad gateway"
   },
   {
     "route": "/insights/time-critical-oversized-sewer-tank-delivery-to-residential-estate-development",
@@ -114,6 +174,10 @@ var SITE_PAGES = [
   {
     "route": "/insights/us-announces-new-tariffs-on-more-than-60-trading-partners",
     "title": "US Announces New Tariffs on More Than 60 Trading Partners"
+  },
+  {
+    "route": "/insights/world-container-index---16-july-2026",
+    "title": "cdn.webflow.com | 502: Bad gateway"
   },
   {
     "route": "/product/aircraft-keychain",
