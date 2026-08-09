@@ -12,12 +12,6 @@
   "description": ""
  },
  {
-  "route": "/community",
-  "file": "/site/community.html",
-  "title": "Community",
-  "description": ""
- },
- {
   "route": "/contact",
   "file": "/site/contact.html",
   "title": "Contact",
@@ -36,9 +30,9 @@
   "description": ""
  },
  {
-  "route": "/industries",
-  "file": "/site/industries.html",
-  "title": "Industries",
+  "route": "/what-we-serve",
+  "file": "/site/what-we-serve.html",
+  "title": "What we serve? | Patel Impex",
   "description": ""
  },
  {
