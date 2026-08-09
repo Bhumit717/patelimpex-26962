@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { initSiteForms } from "@/lib/siteForms";
+
 
 type Entry = { route: string; file: string; title: string; description: string };
 
