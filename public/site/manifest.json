@@ -12,12 +12,6 @@
   "description": ""
  },
  {
-  "route": "/community",
-  "file": "/site/community.html",
-  "title": "Community",
-  "description": ""
- },
- {
   "route": "/contact",
   "file": "/site/contact.html",
   "title": "Contact",
@@ -32,13 +26,13 @@
  {
   "route": "/",
   "file": "/site/index.html",
-  "title": "Patel Impex | One operator every leg of the journey",
-  "description": ""
+  "title": "Patel Impex | Indian agro commodity exporter",
+  "description": "Patel Impex supplies Indian rice, flours, spices, psyllium and packaging products to international buyers, importers and distributors."
  },
  {
-  "route": "/industries",
-  "file": "/site/industries.html",
-  "title": "Industries",
+  "route": "/what-we-serve",
+  "file": "/site/what-we-serve.html",
+  "title": "What we serve? | Patel Impex",
   "description": ""
  },
  {

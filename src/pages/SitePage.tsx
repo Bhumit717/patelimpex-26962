@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { initSiteForms } from "@/lib/siteForms";
+
 
 type Entry = { route: string; file: string; title: string; description: string };
 
@@ -8,10 +10,9 @@ const WEBFLOW_PAGE_IDS: Record<string, string> = {
   "/": "6a44eec1ed1af2c4c403df38",
   "/about": "6a44eec1ed1af2c4c403df51",
   "/services": "6a44eec1ed1af2c4c403df58",
-  "/industries": "6a44eec1ed1af2c4c403df5e",
+  "/what-we-serve": "6a44eec1ed1af2c4c403df5e",
   "/insights": "6a44eec1ed1af2c4c403df49",
   "/careers": "6a44eec1ed1af2c4c403df3d",
-  "/community": "6a44eec1ed1af2c4c403df5b",
   "/contact": "6a44eec1ed1af2c4c403df47",
   "/merchandises": "6a44eec1ed1af2c4c403df97",
   "/checkout": "6a44eec1ed1af2c4c403df62",
@@ -117,9 +118,11 @@ const SitePage = () => {
 
       window.scrollTo(0, 0);
       setStatus("ready");
+      initSiteForms(hostRef.current);
       requestAnimationFrame(() => {
         void startRuntime();
       });
+
     })();
 
     return () => {
