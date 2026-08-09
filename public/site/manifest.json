@@ -1,644 +1,338 @@
 [
-  {
-    "route": "/about",
-    "file": "/site/about.html",
-    "title": "About Patel Impex | Indian Agri & Food Products Exporter",
-    "description": "Learn how Patel Impex sources, inspects and ships Indian agricultural commodities, food products, spices, flours and packaging to buyers worldwide."
-  },
-  {
-    "route": "/careers",
-    "file": "/site/careers.html",
-    "title": "Careers at Patel Impex | Export & Sourcing Roles",
-    "description": "Join Patel Impex and work in sourcing, quality control, export documentation and international trade from our Rajkot head office."
-  },
-  {
-    "route": "/community",
-    "file": "/site/community.html",
-    "title": "Community & Responsibility | Patel Impex",
-    "description": "How Patel Impex supports farming communities, responsible sourcing and the causes our team stands behind."
-  },
-  {
-    "route": "/contact",
-    "file": "/site/contact.html",
-    "title": "Request a Quote | Contact Patel Impex Exporters India",
-    "description": "Send your product requirement, quantity and destination port. Patel Impex replies with pricing, specifications and packing details for export orders."
-  },
-  {
-    "route": "/delivery-shipping-policy",
-    "file": "/site/delivery-shipping-policy.html",
-    "title": "Delivery & Shipping Policy",
-    "description": "Delivery & Shipping Policy \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/",
-    "file": "/site/index.html",
-    "title": "Indian Agricultural & Food Products Exporter | Patel Impex",
-    "description": "Patel Impex is an Indian exporter and international supplier of rice, flours, spices, psyllium and packaging products. Send your requirement for a quote."
-  },
-  {
-    "route": "/industries",
-    "file": "/site/industries.html",
-    "title": "Buyers We Supply | Importers, Distributors & Food Processors",
-    "description": "Patel Impex supplies importers, wholesalers, distributors, food processors, retail chains and packaging converters across global markets."
-  },
-  {
-    "route": "/insights",
-    "file": "/site/insights.html",
-    "title": "Export Insights & Market Updates | Patel Impex",
-    "description": "Market updates, shipping notes and export insights for buyers importing Indian agricultural commodities, food products and packaging."
-  },
-  {
-    "route": "/merchandises",
-    "file": "/site/merchandises.html",
-    "title": "Export Product Catalogue | Patel Impex",
-    "description": "Browse the Patel Impex export catalogue of Indian rice, flours, spices, psyllium husk and packaging products with specifications and packing options."
-  },
-  {
-    "route": "/payment-policy",
-    "file": "/site/payment-policy.html",
-    "title": "Payment Policy",
-    "description": "Payment Policy \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/privacy-policy",
-    "file": "/site/privacy-policy.html",
-    "title": "Privacy Policy",
-    "description": "Privacy Policy \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/qhse",
-    "file": "/site/qhse.html",
-    "title": "Quality, Food Safety & Compliance | Patel Impex",
-    "description": "Quality control, food safety standards, inspection and export documentation practices followed by Patel Impex on every agricultural and food shipment."
-  },
-  {
-    "route": "/refund-returns-policy",
-    "file": "/site/refund-returns-policy.html",
-    "title": "Refund & Returns Policy",
-    "description": "Refund & Returns Policy \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/services",
-    "file": "/site/services.html",
-    "title": "Product Categories | Rice, Flours, Spices, Psyllium & Packaging",
-    "description": "Explore Patel Impex export categories: basmati and non-basmati rice, wheat flour, suji, besan, whole and ground spices, psyllium and packaging products."
-  },
-  {
-    "route": "/terms-conditions",
-    "file": "/site/terms-conditions.html",
-    "title": "Terms & Conditions",
-    "description": "Terms & Conditions \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/ai-news/americas",
-    "file": "/site/ai-news/americas.html",
-    "title": "Americas | Patel Impex",
-    "description": "Americas \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/ai-news/asia-pacific",
-    "file": "/site/ai-news/asia-pacific.html",
-    "title": "Asia Pacific | Patel Impex",
-    "description": "Asia Pacific \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/ai-news/asia",
-    "file": "/site/ai-news/asia.html",
-    "title": "Asia | Patel Impex",
-    "description": "Asia \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/ai-news/europe",
-    "file": "/site/ai-news/europe.html",
-    "title": "Europe | Patel Impex",
-    "description": "Europe \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/ai-news/global",
-    "file": "/site/ai-news/global.html",
-    "title": "Global | Patel Impex",
-    "description": "Global \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/ai-news/middle-east-africa",
-    "file": "/site/ai-news/middle-east-africa.html",
-    "title": "Middle East Africa | Patel Impex",
-    "description": "Middle East Africa \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/ai-news/rest-of-world-d2yv8",
-    "file": "/site/ai-news/rest-of-world-d2yv8.html",
-    "title": "Rest Of World D2Yv8 | Patel Impex",
-    "description": "Rest Of World D2Yv8 \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/articles/case-studies",
-    "file": "/site/articles/case-studies.html",
-    "title": "Case Studies | Patel Impex",
-    "description": "Case Studies \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/articles/company-news",
-    "file": "/site/articles/company-news.html",
-    "title": "Company News | Patel Impex",
-    "description": "Company News \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/articles/featured",
-    "file": "/site/articles/featured.html",
-    "title": "Featured | Patel Impex",
-    "description": "Featured \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/articles/industry-news",
-    "file": "/site/articles/industry-news.html",
-    "title": "Industry News | Patel Impex",
-    "description": "Industry News \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/insights/2-million-people-evacuated-as-typhoon-makes-landfall-in-china",
-    "file": "/site/insights/2-million-people-evacuated-as-typhoon-makes-landfall-in-china.html",
-    "title": "2 Million People Evacuated As Typhoon Makes Landfall In China | Patel Impex",
-    "description": "2 Million People Evacuated As Typhoon Makes Landfall In China \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/insights/a-new-era-for-shippers-with-blanked-sailings-now-a-fact-of-life",
-    "file": "/site/insights/a-new-era-for-shippers-with-blanked-sailings-now-a-fact-of-life.html",
-    "title": "A New Era For Shippers With Blanked Sailings Now A Fact Of Life | Patel Impex",
-    "description": "A New Era For Shippers With Blanked Sailings Now A Fact Of Life \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/insights/confidential-national-infrastructure-manufacturer",
-    "file": "/site/insights/confidential-national-infrastructure-manufacturer.html",
-    "title": "Confidential National Infrastructure Manufacturer | Patel Impex",
-    "description": "Confidential National Infrastructure Manufacturer \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/insights/cost-optimised-and-speed-to-market-import-program-for-new-truck-launch-in-australia",
-    "file": "/site/insights/cost-optimised-and-speed-to-market-import-program-for-new-truck-launch-in-australia.html",
-    "title": "Cost-Optimised and Speed to market Import Program for New Truck Launch in Australia",
-    "description": "Cost-Optimised and Speed to market Import Program for New Truck Launch in Australia \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/global-shipping-rates-soar-as-retailers-race-to-beat-looming-tariffs",
-    "file": "/site/insights/global-shipping-rates-soar-as-retailers-race-to-beat-looming-tariffs.html",
-    "title": "Global shipping rates soar as retailers race to beat looming tariffs",
-    "description": "Global shipping rates soar as retailers race to beat looming tariffs \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/grid-scale-battery-project-logistics-delivery-for-renewable-energy-infrastructure",
-    "file": "/site/insights/grid-scale-battery-project-logistics-delivery-for-renewable-energy-infrastructure.html",
-    "title": "Grid-Scale Battery Project Logistics Delivery for Renewable Energy Infrastructure",
-    "description": "Grid-Scale Battery Project Logistics Delivery for Renewable Energy Infrastructure \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/has-the-peak-peaked-or-has-space-raced",
-    "file": "/site/insights/has-the-peak-peaked-or-has-space-raced.html",
-    "title": "Has The Peak Peaked Or Has Space Raced | Patel Impex",
-    "description": "Has The Peak Peaked Or Has Space Raced \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/insights/hong-kong-europe-air-cargo-volumes-plummet",
-    "file": "/site/insights/hong-kong-europe-air-cargo-volumes-plummet.html",
-    "title": "Hong Kong Europe Air Cargo Volumes Plummet | Patel Impex",
-    "description": "Hong Kong Europe Air Cargo Volumes Plummet \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/insights/major-fleet-wide-fuel-efficiency-agreement-signals-ongoing-focus-on-shipping-performance-and-decarbonisation",
-    "file": "/site/insights/major-fleet-wide-fuel-efficiency-agreement-signals-ongoing-focus-on-shipping-performance-and-decarbonisation.html",
-    "title": "Major Fleet-Wide Fuel Efficiency Agreement Signals Ongoing Focus on Shipping Performance and Decarbonisation",
-    "description": "Major Fleet-Wide Fuel Efficiency Agreement Signals Ongoing Focus on Shipping Performance and Decarbonisation \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/reduced-import-delays-storage-costs-across-700-containers",
-    "file": "/site/insights/reduced-import-delays-storage-costs-across-700-containers.html",
-    "title": "Reduced Import Delays & Storage Costs Across 700+ Containers",
-    "description": "Reduced Import Delays & Storage Costs Across 700+ Containers \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/south-east-asia-now-making-the-rates-running",
-    "file": "/site/insights/south-east-asia-now-making-the-rates-running.html",
-    "title": "South East Asia Now Making the Rates Running",
-    "description": "South East Asia Now Making the Rates Running \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/the-panama-canal-is-growing-more-important",
-    "file": "/site/insights/the-panama-canal-is-growing-more-important.html",
-    "title": "The Panama Canal Is Growing More Important | Patel Impex",
-    "description": "The Panama Canal Is Growing More Important \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/insights/time-critical-oversized-sewer-tank-delivery-to-residential-estate-development",
-    "file": "/site/insights/time-critical-oversized-sewer-tank-delivery-to-residential-estate-development.html",
-    "title": "Time-Critical Oversized Sewer Tank Delivery to Residential Estate Development",
-    "description": "Time-Critical Oversized Sewer Tank Delivery to Residential Estate Development \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/typhoon-rips-roofs-off-buildings-and-floods-southern-china",
-    "file": "/site/insights/typhoon-rips-roofs-off-buildings-and-floods-southern-china.html",
-    "title": "Typhoon Rips Roofs Off Buildings and Floods Southern China",
-    "description": "Typhoon Rips Roofs Off Buildings and Floods Southern China \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/typhoon-signal-unlikely-in-hong-kong-this-weekend-as-flights-to-japan-cancelled",
-    "file": "/site/insights/typhoon-signal-unlikely-in-hong-kong-this-weekend-as-flights-to-japan-cancelled.html",
-    "title": "Typhoon Signal Unlikely in Hong Kong This Weekend as Flights to Japan Cancelled",
-    "description": "Typhoon Signal Unlikely in Hong Kong This Weekend as Flights to Japan Cancelled \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/us-announces-new-tariffs-on-more-than-60-trading-partners",
-    "file": "/site/insights/us-announces-new-tariffs-on-more-than-60-trading-partners.html",
-    "title": "US Announces New Tariffs on More Than 60 Trading Partners",
-    "description": "US Announces New Tariffs on More Than 60 Trading Partners \u2014 Patel Impex, Indian exporter of agricultural commodities, food products, spices, flours and packaging products."
-  },
-  {
-    "route": "/insights/world-container-index---16-july-2026",
-    "file": "/site/insights/world-container-index---16-july-2026.html",
-    "title": "World Container Index   16 July 2026 | Patel Impex",
-    "description": "World Container Index   16 July 2026 \u2014 Patel Impex, Indian exporter and international supplier of agricultural commodities, food products, spices, flours and packaging."
-  },
-  {
-    "route": "/product/basmati-rice",
-    "file": "/site/product/basmati-rice.html",
-    "title": "Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore Basmati Rice from Patel Impex, a trusted India-based exporter. Commonly used in everyday household cooking, biryani and pulao preparations, and in the f"
-  },
-  {
-    "route": "/product/1509-basmati-rice",
-    "file": "/site/product/1509-basmati-rice.html",
-    "title": "1509 Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore 1509 Basmati Rice from Patel Impex, a trusted India-based exporter. Suited for retail packaging, catering operations and biryani-style rice dishes. Cont"
-  },
-  {
-    "route": "/product/1401-basmati-rice",
-    "file": "/site/product/1401-basmati-rice.html",
-    "title": "1401 Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore 1401 Basmati Rice from Patel Impex, a trusted India-based exporter. Used in home cooking, restaurants and rice-based regional dishes. Contact us for bul"
-  },
-  {
-    "route": "/product/1121-basmati-rice",
-    "file": "/site/product/1121-basmati-rice.html",
-    "title": "1121 Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore 1121 Basmati Rice from Patel Impex, a trusted India-based exporter. Widely used for biryani, pulao and other signature rice preparations across internat"
-  },
-  {
-    "route": "/product/1718-pusa-basmati-rice",
-    "file": "/site/product/1718-pusa-basmati-rice.html",
-    "title": "1718 Pusa Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore 1718 Pusa Basmati Rice from Patel Impex, a trusted India-based exporter. Suitable for household consumption and bulk catering use in rice-based cuisines"
-  },
-  {
-    "route": "/product/non-basmati-rice",
-    "file": "/site/product/non-basmati-rice.html",
-    "title": "Non-Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore Non-Basmati Rice from Patel Impex, a trusted India-based exporter. Commonly used as a staple food grain in daily cooking and institutional catering. Con"
-  },
-  {
-    "route": "/product/pr-14-non-basmati-rice",
-    "file": "/site/product/pr-14-non-basmati-rice.html",
-    "title": "PR 14 Non-Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore PR 14 Non-Basmati Rice from Patel Impex, a trusted India-based exporter. Used as a staple food grain in household and institutional cooking. Contact us "
-  },
-  {
-    "route": "/product/pr-11-non-basmati-rice",
-    "file": "/site/product/pr-11-non-basmati-rice.html",
-    "title": "PR 11 Non-Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore PR 11 Non-Basmati Rice from Patel Impex, a trusted India-based exporter. Suitable for daily household meals and bulk food service preparation. Contact u"
-  },
-  {
-    "route": "/product/ir-64-non-basmati-rice",
-    "file": "/site/product/ir-64-non-basmati-rice.html",
-    "title": "IR 64 Non-Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore IR 64 Non-Basmati Rice from Patel Impex, a trusted India-based exporter. Used as a staple rice in household cooking and commercial kitchens. Contact us "
-  },
-  {
-    "route": "/product/parmal-non-basmati-rice",
-    "file": "/site/product/parmal-non-basmati-rice.html",
-    "title": "Parmal Non-Basmati Rice Exporter from India | Patel Impex",
-    "description": "Explore Parmal Non-Basmati Rice from Patel Impex, a trusted India-based exporter. Suitable for household meals and institutional food service use. Contact us fo"
-  },
-  {
-    "route": "/product/whole-wheat-flour",
-    "file": "/site/product/whole-wheat-flour.html",
-    "title": "Whole Wheat Flour Exporter from India | Patel Impex",
-    "description": "Explore Whole Wheat Flour from Patel Impex, a trusted India-based exporter. Used in bread, flatbreads such as chapati and roti, and various bakery preparations."
-  },
-  {
-    "route": "/product/tandoori-atta",
-    "file": "/site/product/tandoori-atta.html",
-    "title": "Tandoori Atta Exporter from India | Patel Impex",
-    "description": "Explore Tandoori Atta from Patel Impex, a trusted India-based exporter. Used in preparing naan, tandoori roti and related flatbread items in restaurants and hou"
-  },
-  {
-    "route": "/product/suji",
-    "file": "/site/product/suji.html",
-    "title": "Suji Exporter from India | Patel Impex",
-    "description": "Explore Suji from Patel Impex, a trusted India-based exporter. Used in preparing upma, halwa, idli and a range of traditional and bakery recipes. Contact us for"
-  },
-  {
-    "route": "/product/rawa",
-    "file": "/site/product/rawa.html",
-    "title": "Rawa Exporter from India | Patel Impex",
-    "description": "Explore Rawa from Patel Impex, a trusted India-based exporter. Common in porridge, savoury snacks, desserts and bakery applications. Contact us for bulk B2B exp"
-  },
-  {
-    "route": "/product/corn-flour",
-    "file": "/site/product/corn-flour.html",
-    "title": "Corn Flour Exporter from India | Patel Impex",
-    "description": "Explore Corn Flour from Patel Impex, a trusted India-based exporter. Used in sauces, soups, batters and as an ingredient in various processed food formulations."
-  },
-  {
-    "route": "/product/besan",
-    "file": "/site/product/besan.html",
-    "title": "Besan Exporter from India | Patel Impex",
-    "description": "Explore Besan from Patel Impex, a trusted India-based exporter. Used in batters, snacks, sweets and as a thickening ingredient in various recipes. Contact us fo"
-  },
-  {
-    "route": "/product/cumin-seeds",
-    "file": "/site/product/cumin-seeds.html",
-    "title": "Cumin Seeds Exporter from India | Patel Impex",
-    "description": "Explore Cumin Seeds from Patel Impex, a trusted India-based exporter. Used in tempering, spice blends, and as a flavouring ingredient across many cuisines. Cont"
-  },
-  {
-    "route": "/product/coriander-seeds",
-    "file": "/site/product/coriander-seeds.html",
-    "title": "Coriander Seeds Exporter from India | Patel Impex",
-    "description": "Explore Coriander Seeds from Patel Impex, a trusted India-based exporter. Used in spice blends, pickling, and as a base ingredient for ground coriander powder. "
-  },
-  {
-    "route": "/product/fennel-seeds",
-    "file": "/site/product/fennel-seeds.html",
-    "title": "Fennel Seeds Exporter from India | Patel Impex",
-    "description": "Explore Fennel Seeds from Patel Impex, a trusted India-based exporter. Used in spice blends, confectionery, beverages and after-meal preparations. Contact us fo"
-  },
-  {
-    "route": "/product/fenugreek-seeds",
-    "file": "/site/product/fenugreek-seeds.html",
-    "title": "Fenugreek Seeds Exporter from India | Patel Impex",
-    "description": "Explore Fenugreek Seeds from Patel Impex, a trusted India-based exporter. Used in spice blends, pickles, and traditional cooking preparations. Contact us for bu"
-  },
-  {
-    "route": "/product/mustard-seeds",
-    "file": "/site/product/mustard-seeds.html",
-    "title": "Mustard Seeds Exporter from India | Patel Impex",
-    "description": "Explore Mustard Seeds from Patel Impex, a trusted India-based exporter. Used in tempering, pickling and as an ingredient in condiments and spice blends. Contact"
-  },
-  {
-    "route": "/product/red-chilli",
-    "file": "/site/product/red-chilli.html",
-    "title": "Red Chilli Exporter from India | Patel Impex",
-    "description": "Explore Red Chilli from Patel Impex, a trusted India-based exporter. Used whole or processed into powder for seasoning, sauces and spice blends. Contact us for "
-  },
-  {
-    "route": "/product/psyllium-seed",
-    "file": "/site/product/psyllium-seed.html",
-    "title": "Psyllium Seed Exporter from India | Patel Impex",
-    "description": "Explore Psyllium Seed from Patel Impex, a trusted India-based exporter. Used as a raw material for dietary fibre products and various processed formulations. Co"
-  },
-  {
-    "route": "/product/turmeric",
-    "file": "/site/product/turmeric.html",
-    "title": "Turmeric Exporter from India | Patel Impex",
-    "description": "Explore Turmeric from Patel Impex, a trusted India-based exporter. Used whole or ground into powder for cooking, spice blends and food colouring applications. C"
-  },
-  {
-    "route": "/product/black-pepper",
-    "file": "/site/product/black-pepper.html",
-    "title": "Black Pepper Exporter from India | Patel Impex",
-    "description": "Explore Black Pepper from Patel Impex, a trusted India-based exporter. Used whole or ground for seasoning dishes and formulating spice blends. Contact us for bu"
-  },
-  {
-    "route": "/product/red-chilli-powder",
-    "file": "/site/product/red-chilli-powder.html",
-    "title": "Red Chilli Powder Exporter from India | Patel Impex",
-    "description": "Explore Red Chilli Powder from Patel Impex, a trusted India-based exporter. Used in everyday cooking, spice blends, sauces and processed food seasoning. Contact"
-  },
-  {
-    "route": "/product/turmeric-powder",
-    "file": "/site/product/turmeric-powder.html",
-    "title": "Turmeric Powder Exporter from India | Patel Impex",
-    "description": "Explore Turmeric Powder from Patel Impex, a trusted India-based exporter. Used in cooking, spice blends and as a colouring ingredient in food preparations. Cont"
-  },
-  {
-    "route": "/product/black-pepper-powder",
-    "file": "/site/product/black-pepper-powder.html",
-    "title": "Black Pepper Powder Exporter from India | Patel Impex",
-    "description": "Explore Black Pepper Powder from Patel Impex, a trusted India-based exporter. Used in everyday cooking, seasoning blends and food processing. Contact us for bul"
-  },
-  {
-    "route": "/product/coriander-seeds-powder",
-    "file": "/site/product/coriander-seeds-powder.html",
-    "title": "Coriander Powder Exporter from India | Patel Impex",
-    "description": "Explore Coriander Powder from Patel Impex, a trusted India-based exporter. Used in curries, spice blends and various savoury preparations. Contact us for bulk B"
-  },
-  {
-    "route": "/product/garlic-powder",
-    "file": "/site/product/garlic-powder.html",
-    "title": "Garlic Powder Exporter from India | Patel Impex",
-    "description": "Explore Garlic Powder from Patel Impex, a trusted India-based exporter. Used in spice blends, marinades, snack seasoning and processed food formulations. Contac"
-  },
-  {
-    "route": "/product/dry-mango-powder",
-    "file": "/site/product/dry-mango-powder.html",
-    "title": "Dry Mango Powder Exporter from India | Patel Impex",
-    "description": "Explore Dry Mango Powder from Patel Impex, a trusted India-based exporter. Used in chutneys, spice blends and as a souring agent in cooking. Contact us for bulk"
-  },
-  {
-    "route": "/product/garam-masala",
-    "file": "/site/product/garam-masala.html",
-    "title": "Garam Masala Exporter from India | Patel Impex",
-    "description": "Explore Garam Masala from Patel Impex, a trusted India-based exporter. Used as a finishing spice blend in curries, rice dishes and a variety of savoury recipes."
-  },
-  {
-    "route": "/product/white-pepper-powder",
-    "file": "/site/product/white-pepper-powder.html",
-    "title": "White Pepper Powder Exporter from India | Patel Impex",
-    "description": "Explore White Pepper Powder from Patel Impex, a trusted India-based exporter. Used in light-coloured sauces, soups and seasoning blends. Contact us for bulk B2B"
-  },
-  {
-    "route": "/product/nutmeg-powder",
-    "file": "/site/product/nutmeg-powder.html",
-    "title": "Nutmeg Powder Exporter from India | Patel Impex",
-    "description": "Explore Nutmeg Powder from Patel Impex, a trusted India-based exporter. Used in baking, beverages, and savoury and sweet spice blends. Contact us for bulk B2B e"
-  },
-  {
-    "route": "/product/dry-ginger-powder",
-    "file": "/site/product/dry-ginger-powder.html",
-    "title": "Dry Ginger Powder Exporter from India | Patel Impex",
-    "description": "Explore Dry Ginger Powder from Patel Impex, a trusted India-based exporter. Used in cooking, spice blends, beverages and traditional preparations. Contact us fo"
-  },
-  {
-    "route": "/product/clove-powder",
-    "file": "/site/product/clove-powder.html",
-    "title": "Clove Powder Exporter from India | Patel Impex",
-    "description": "Explore Clove Powder from Patel Impex, a trusted India-based exporter. Used in spice blends, baking and traditional recipes requiring a warm, intense aroma. Con"
-  },
-  {
-    "route": "/product/mono-carton-box",
-    "file": "/site/product/mono-carton-box.html",
-    "title": "Mono Carton Box Exporter from India | Patel Impex",
-    "description": "Explore Mono Carton Box from Patel Impex, a trusted India-based exporter. Used for packaging consumer goods, cosmetics, pharmaceuticals and food items at retail"
-  },
-  {
-    "route": "/product/paper-takeaway-box",
-    "file": "/site/product/paper-takeaway-box.html",
-    "title": "Paper Takeaway Box Exporter from India | Patel Impex",
-    "description": "Explore Paper Takeaway Box from Patel Impex, a trusted India-based exporter. Used by restaurants, caterers and food delivery businesses for packaging meals. Con"
-  },
-  {
-    "route": "/product/paper-bags",
-    "file": "/site/product/paper-bags.html",
-    "title": "Paper Bags Exporter from India | Patel Impex",
-    "description": "Explore Paper Bags from Patel Impex, a trusted India-based exporter. Used for retail shopping, gift packaging and food takeaway applications. Contact us for bul"
-  },
-  {
-    "route": "/product/paper-containers",
-    "file": "/site/product/paper-containers.html",
-    "title": "Paper Containers Exporter from India | Patel Impex",
-    "description": "Explore Paper Containers from Patel Impex, a trusted India-based exporter. Used for packaging food items, bakery products and other goods requiring disposable c"
-  },
-  {
-    "route": "/product/corrugated-fiberboard",
-    "file": "/site/product/corrugated-fiberboard.html",
-    "title": "Corrugated Fiberboard Exporter from India | Patel Impex",
-    "description": "Explore Corrugated Fiberboard from Patel Impex, a trusted India-based exporter. Used in the production of shipping boxes, protective packaging and display packa"
-  },
-  {
-    "route": "/product/aluminium-foil-container",
-    "file": "/site/product/aluminium-foil-container.html",
-    "title": "Aluminium Foil Container Exporter from India | Patel Impex",
-    "description": "Explore Aluminium Foil Container from Patel Impex, a trusted India-based exporter. Used in food service, catering, bakery and ready-to-eat meal packaging. Conta"
-  },
-  {
-    "route": "/product/plastic-trays",
-    "file": "/site/product/plastic-trays.html",
-    "title": "Plastic Trays Exporter from India | Patel Impex",
-    "description": "Explore Plastic Trays from Patel Impex, a trusted India-based exporter. Used in food packaging, retail display and product organisation applications. Contact us"
-  },
-  {
-    "route": "/product/tote-bags",
-    "file": "/site/product/tote-bags.html",
-    "title": "Tote Bags Exporter from India | Patel Impex",
-    "description": "Explore Tote Bags from Patel Impex, a trusted India-based exporter. Used in retail, promotional giveaways and general everyday use. Contact us for bulk B2B expo"
-  },
-  {
-    "route": "/product/jute-bags",
-    "file": "/site/product/jute-bags.html",
-    "title": "Jute Bags Exporter from India | Patel Impex",
-    "description": "Explore Jute Bags from Patel Impex, a trusted India-based exporter. Used for packaging agricultural produce, retail shopping bags and promotional packaging. Con"
-  },
-  {
-    "route": "/product/eco-friendly-bags",
-    "file": "/site/product/eco-friendly-bags.html",
-    "title": "Eco-Friendly Bags Exporter from India | Patel Impex",
-    "description": "Explore Eco-Friendly Bags from Patel Impex, a trusted India-based exporter. Used for retail shopping, promotional packaging and general carrying purposes. Conta"
-  },
-  {
-    "route": "/product/cotton-bag-printing",
-    "file": "/site/product/cotton-bag-printing.html",
-    "title": "Cotton Bag Printing Exporter from India | Patel Impex",
-    "description": "Explore Cotton Bag Printing from Patel Impex, a trusted India-based exporter. Used for branded retail packaging, promotional giveaways and everyday carry bags. "
-  },
-  {
-    "route": "/product/corrugated-boxes",
-    "file": "/site/product/corrugated-boxes.html",
-    "title": "Corrugated Boxes Exporter from India | Patel Impex",
-    "description": "Explore Corrugated Boxes from Patel Impex, a trusted India-based exporter. Used for shipping, storage and general product packaging across industries. Contact u"
-  },
-  {
-    "route": "/product/regular-slotted-container-rsc",
-    "file": "/site/product/regular-slotted-container-rsc.html",
-    "title": "Regular Slotted Container (RSC) Exporter from India | Patel Impex",
-    "description": "Explore Regular Slotted Container (RSC) from Patel Impex, a trusted India-based exporter. Used for shipping and storing a wide range of products across industri"
-  },
-  {
-    "route": "/product/full-flap-slotted-container-ffsc",
-    "file": "/site/product/full-flap-slotted-container-ffsc.html",
-    "title": "Full Flap Slotted Container (FFSC) Exporter from India | Patel Impex",
-    "description": "Explore Full Flap Slotted Container (FFSC) from Patel Impex, a trusted India-based exporter. Used for packaging heavier or bulkier items requiring additional su"
-  },
-  {
-    "route": "/product/half-slotted-container-hsc",
-    "file": "/site/product/half-slotted-container-hsc.html",
-    "title": "Half Slotted Container (HSC) Exporter from India | Patel Impex",
-    "description": "Explore Half Slotted Container (HSC) from Patel Impex, a trusted India-based exporter. Used for packaging applications requiring easy access or a separate lid a"
-  },
-  {
-    "route": "/product/die-cut-boxes",
-    "file": "/site/product/die-cut-boxes.html",
-    "title": "Die Cut Boxes Exporter from India | Patel Impex",
-    "description": "Explore Die Cut Boxes from Patel Impex, a trusted India-based exporter. Used for custom retail packaging and products requiring a specific box shape. Contact us"
-  },
-  {
-    "route": "/product/five-panel-folder",
-    "file": "/site/product/five-panel-folder.html",
-    "title": "Five Panel Folder Exporter from India | Patel Impex",
-    "description": "Explore Five Panel Folder from Patel Impex, a trusted India-based exporter. Used for packaging flat products such as electronics, glass panels or similar items."
-  },
-  {
-    "route": "/product/creased-slotted-trays",
-    "file": "/site/product/creased-slotted-trays.html",
-    "title": "Creased Slotted Trays Exporter from India | Patel Impex",
-    "description": "Explore Creased Slotted Trays from Patel Impex, a trusted India-based exporter. Used for packaging and organising products that require open-tray style packagin"
-  },
-  {
-    "route": "/product/corner-cut-folder",
-    "file": "/site/product/corner-cut-folder.html",
-    "title": "Corner Cut Folder Exporter from India | Patel Impex",
-    "description": "Explore Corner Cut Folder from Patel Impex, a trusted India-based exporter. Used for wrapping and protecting products during storage and transit. Contact us for"
-  },
-  {
-    "route": "/product/corrugated-cardboard-sheets",
-    "file": "/site/product/corrugated-cardboard-sheets.html",
-    "title": "Corrugated Cardboard Sheets Exporter from India | Patel Impex",
-    "description": "Explore Corrugated Cardboard Sheets from Patel Impex, a trusted India-based exporter. Used for making custom packaging, dividers, and protective layers for vari"
-  },
-  {
-    "route": "/product/corrugated-pads",
-    "file": "/site/product/corrugated-pads.html",
-    "title": "Corrugated Pads Exporter from India | Patel Impex",
-    "description": "Explore Corrugated Pads from Patel Impex, a trusted India-based exporter. Used for protecting fragile products and separating layered items during transit. Cont"
-  },
-  {
-    "route": "/product/partitions-dividers",
-    "file": "/site/product/partitions-dividers.html",
-    "title": "Partitions & Dividers Exporter from India | Patel Impex",
-    "description": "Explore Partitions & Dividers from Patel Impex, a trusted India-based exporter. Used for packaging multiple or fragile items such as bottles, jars and glassware"
-  },
-  {
-    "route": "/product/corrugated-cardboard-rolls",
-    "file": "/site/product/corrugated-cardboard-rolls.html",
-    "title": "Corrugated Cardboard Rolls Exporter from India | Patel Impex",
-    "description": "Explore Corrugated Cardboard Rolls from Patel Impex, a trusted India-based exporter. Used for wrapping products and providing cushioning during storage and tran"
-  },
-  {
-    "route": "/product/kraft-paper",
-    "file": "/site/product/kraft-paper.html",
-    "title": "Kraft Paper Exporter from India | Patel Impex",
-    "description": "Explore Kraft Paper from Patel Impex, a trusted India-based exporter. Used in the production of paper bags, wrapping paper and corrugated packaging materials. C"
-  },
-  {
-    "route": "/product/occ-waste",
-    "file": "/site/product/occ-waste.html",
-    "title": "OCC Waste Exporter from India | Patel Impex",
-    "description": "Explore OCC Waste from Patel Impex, a trusted India-based exporter. Used as a raw material input for recycled paper and packaging board production. Contact us f"
-  },
-  {
-    "route": "/product/occ-pulp-for-repulping-paper",
-    "file": "/site/product/occ-pulp-for-repulping-paper.html",
-    "title": "OCC Pulp for Repulping Paper Exporter from India | Patel Impex",
-    "description": "Explore OCC Pulp for Repulping Paper from Patel Impex, a trusted India-based exporter. Used by paper mills as a raw material for producing recycled paper and pa"
-  },
-  {
-    "route": "/product/paper-tubes",
-    "file": "/site/product/paper-tubes.html",
-    "title": "Paper Tubes Exporter from India | Patel Impex",
-    "description": "Explore Paper Tubes from Patel Impex, a trusted India-based exporter. Used as cores for textile rolls, film rolls, and as packaging tubes for various products. "
-  },
-  {
-    "route": "/product/coreboard-paper",
-    "file": "/site/product/coreboard-paper.html",
-    "title": "Coreboard Paper Exporter from India | Patel Impex",
-    "description": "Explore Coreboard Paper from Patel Impex, a trusted India-based exporter. Used as a raw material for manufacturing paper cores, tubes and related packaging comp"
-  }
+ {
+  "route": "/about",
+  "file": "/site/about.html",
+  "title": "About us",
+  "description": ""
+ },
+ {
+  "route": "/careers",
+  "file": "/site/careers.html",
+  "title": "Careers",
+  "description": ""
+ },
+ {
+  "route": "/community",
+  "file": "/site/community.html",
+  "title": "Community",
+  "description": ""
+ },
+ {
+  "route": "/contact",
+  "file": "/site/contact.html",
+  "title": "Contact",
+  "description": ""
+ },
+ {
+  "route": "/delivery-shipping-policy",
+  "file": "/site/delivery-shipping-policy.html",
+  "title": "Delivery & Shipping Policy",
+  "description": ""
+ },
+ {
+  "route": "/",
+  "file": "/site/index.html",
+  "title": "Patel Impex | One operator every leg of the journey",
+  "description": ""
+ },
+ {
+  "route": "/industries",
+  "file": "/site/industries.html",
+  "title": "Industries",
+  "description": ""
+ },
+ {
+  "route": "/insights",
+  "file": "/site/insights.html",
+  "title": "Insights",
+  "description": ""
+ },
+ {
+  "route": "/merchandises",
+  "file": "/site/merchandises.html",
+  "title": "Merchandises",
+  "description": ""
+ },
+ {
+  "route": "/payment-policy",
+  "file": "/site/payment-policy.html",
+  "title": "Payment Policy",
+  "description": ""
+ },
+ {
+  "route": "/privacy-policy",
+  "file": "/site/privacy-policy.html",
+  "title": "Privacy Policy",
+  "description": ""
+ },
+ {
+  "route": "/qhse",
+  "file": "/site/qhse.html",
+  "title": "QHSE",
+  "description": ""
+ },
+ {
+  "route": "/refund-returns-policy",
+  "file": "/site/refund-returns-policy.html",
+  "title": "Refund & Returns Policy",
+  "description": ""
+ },
+ {
+  "route": "/services",
+  "file": "/site/services.html",
+  "title": "Services",
+  "description": ""
+ },
+ {
+  "route": "/terms-conditions",
+  "file": "/site/terms-conditions.html",
+  "title": "Terms & Conditions",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/americas",
+  "file": "/site/ai-news/americas.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/asia-pacific",
+  "file": "/site/ai-news/asia-pacific.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/asia",
+  "file": "/site/ai-news/asia.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/europe",
+  "file": "/site/ai-news/europe.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/global",
+  "file": "/site/ai-news/global.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/middle-east-africa",
+  "file": "/site/ai-news/middle-east-africa.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/ai-news/rest-of-world-d2yv8",
+  "file": "/site/ai-news/rest-of-world-d2yv8.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/case-studies",
+  "file": "/site/articles/case-studies.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/company-news",
+  "file": "/site/articles/company-news.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/featured",
+  "file": "/site/articles/featured.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/articles/industry-news",
+  "file": "/site/articles/industry-news.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/2-million-people-evacuated-as-typhoon-makes-landfall-in-china",
+  "file": "/site/insights/2-million-people-evacuated-as-typhoon-makes-landfall-in-china.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/a-new-era-for-shippers-with-blanked-sailings-now-a-fact-of-life",
+  "file": "/site/insights/a-new-era-for-shippers-with-blanked-sailings-now-a-fact-of-life.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/confidential-national-infrastructure-manufacturer",
+  "file": "/site/insights/confidential-national-infrastructure-manufacturer.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/cost-optimised-and-speed-to-market-import-program-for-new-truck-launch-in-australia",
+  "file": "/site/insights/cost-optimised-and-speed-to-market-import-program-for-new-truck-launch-in-australia.html",
+  "title": "Cost-Optimised and Speed to market Import Program for New Truck Launch in Australia",
+  "description": ""
+ },
+ {
+  "route": "/insights/global-shipping-rates-soar-as-retailers-race-to-beat-looming-tariffs",
+  "file": "/site/insights/global-shipping-rates-soar-as-retailers-race-to-beat-looming-tariffs.html",
+  "title": "Global shipping rates soar as retailers race to beat looming tariffs",
+  "description": ""
+ },
+ {
+  "route": "/insights/grid-scale-battery-project-logistics-delivery-for-renewable-energy-infrastructure",
+  "file": "/site/insights/grid-scale-battery-project-logistics-delivery-for-renewable-energy-infrastructure.html",
+  "title": "Grid-Scale Battery Project Logistics Delivery for Renewable Energy Infrastructure",
+  "description": ""
+ },
+ {
+  "route": "/insights/has-the-peak-peaked-or-has-space-raced",
+  "file": "/site/insights/has-the-peak-peaked-or-has-space-raced.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/hong-kong-europe-air-cargo-volumes-plummet",
+  "file": "/site/insights/hong-kong-europe-air-cargo-volumes-plummet.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/major-fleet-wide-fuel-efficiency-agreement-signals-ongoing-focus-on-shipping-performance-and-decarbonisation",
+  "file": "/site/insights/major-fleet-wide-fuel-efficiency-agreement-signals-ongoing-focus-on-shipping-performance-and-decarbonisation.html",
+  "title": "Major Fleet-Wide Fuel Efficiency Agreement Signals Ongoing Focus on Shipping Performance and Decarbonisation",
+  "description": ""
+ },
+ {
+  "route": "/insights/reduced-import-delays-storage-costs-across-700-containers",
+  "file": "/site/insights/reduced-import-delays-storage-costs-across-700-containers.html",
+  "title": "Reduced Import Delays & Storage Costs Across 700+ Containers",
+  "description": ""
+ },
+ {
+  "route": "/insights/south-east-asia-now-making-the-rates-running",
+  "file": "/site/insights/south-east-asia-now-making-the-rates-running.html",
+  "title": "South East Asia Now Making the Rates Running",
+  "description": ""
+ },
+ {
+  "route": "/insights/the-panama-canal-is-growing-more-important",
+  "file": "/site/insights/the-panama-canal-is-growing-more-important.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/insights/time-critical-oversized-sewer-tank-delivery-to-residential-estate-development",
+  "file": "/site/insights/time-critical-oversized-sewer-tank-delivery-to-residential-estate-development.html",
+  "title": "Time-Critical Oversized Sewer Tank Delivery to Residential Estate Development",
+  "description": ""
+ },
+ {
+  "route": "/insights/typhoon-rips-roofs-off-buildings-and-floods-southern-china",
+  "file": "/site/insights/typhoon-rips-roofs-off-buildings-and-floods-southern-china.html",
+  "title": "Typhoon Rips Roofs Off Buildings and Floods Southern China",
+  "description": ""
+ },
+ {
+  "route": "/insights/typhoon-signal-unlikely-in-hong-kong-this-weekend-as-flights-to-japan-cancelled",
+  "file": "/site/insights/typhoon-signal-unlikely-in-hong-kong-this-weekend-as-flights-to-japan-cancelled.html",
+  "title": "Typhoon Signal Unlikely in Hong Kong This Weekend as Flights to Japan Cancelled",
+  "description": ""
+ },
+ {
+  "route": "/insights/us-announces-new-tariffs-on-more-than-60-trading-partners",
+  "file": "/site/insights/us-announces-new-tariffs-on-more-than-60-trading-partners.html",
+  "title": "US Announces New Tariffs on More Than 60 Trading Partners",
+  "description": ""
+ },
+ {
+  "route": "/insights/world-container-index---16-july-2026",
+  "file": "/site/insights/world-container-index---16-july-2026.html",
+  "title": "cdn.webflow.com | 502: Bad gateway",
+  "description": ""
+ },
+ {
+  "route": "/product/aircraft-keychain",
+  "file": "/site/product/aircraft-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/baseball-cap",
+  "file": "/site/product/baseball-cap.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/beanie",
+  "file": "/site/product/beanie.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/bottle-opener-keychain",
+  "file": "/site/product/bottle-opener-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/ceramic-mug",
+  "file": "/site/product/ceramic-mug.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/folding-camping-chair",
+  "file": "/site/product/folding-camping-chair.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/ship-keychain",
+  "file": "/site/product/ship-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/stainless-steel-water-bottle",
+  "file": "/site/product/stainless-steel-water-bottle.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/straw-tote-bag",
+  "file": "/site/product/straw-tote-bag.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/stubby-holder-1",
+  "file": "/site/product/stubby-holder-1.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/truck-keychain",
+  "file": "/site/product/truck-keychain.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/united-carriers-canvas-tote-bag",
+  "file": "/site/product/united-carriers-canvas-tote-bag.html",
+  "title": "Patel Impex",
+  "description": ""
+ },
+ {
+  "route": "/product/united-carriers-logo-fabric-patch-gsvwb",
+  "file": "/site/product/united-carriers-logo-fabric-patch-gsvwb.html",
+  "title": "Patel Impex",
+  "description": ""
+ }
 ]
