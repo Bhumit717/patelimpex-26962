@@ -139,9 +139,12 @@ const SitePage = () => {
       document.body.classList.add("body");
 
       hostRef.current.innerHTML = html;
-      document.title = entry.title;
+      document.title = title;
       const meta = document.querySelector('meta[name="description"]');
-      if (meta && entry.description) meta.setAttribute("content", entry.description);
+      if (meta && description) meta.setAttribute("content", description);
+      const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+      if (canonical) canonical.href = `https://patelimpex.com${path === "/" ? "/" : path}`;
+
 
       window.scrollTo(0, 0);
       setStatus("ready");
