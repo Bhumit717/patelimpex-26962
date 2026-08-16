@@ -26,11 +26,13 @@ const WEBFLOW_PAGE_IDS: Record<string, string> = {
 
 const getWebflowPageId = (path: string) => {
   if (WEBFLOW_PAGE_IDS[path]) return WEBFLOW_PAGE_IDS[path];
+  if (path === "/more" || path.startsWith("/more/")) return WEBFLOW_PAGE_IDS["/qhse"];
   if (path.startsWith("/insights/")) return "6a44eec1ed1af2c4c403df4a";
   if (path.startsWith("/ai-news/")) return "6a44eec1ed1af2c4c403df4c";
   if (path.startsWith("/product/")) return "6a44eec1ed1af2c4c403df61";
   return undefined;
 };
+
 
 let manifestCache: Entry[] | null = null;
 
