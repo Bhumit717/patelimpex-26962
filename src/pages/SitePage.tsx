@@ -26,11 +26,13 @@ const WEBFLOW_PAGE_IDS: Record<string, string> = {
 
 const getWebflowPageId = (path: string) => {
   if (WEBFLOW_PAGE_IDS[path]) return WEBFLOW_PAGE_IDS[path];
+  if (path === "/more" || path.startsWith("/more/")) return WEBFLOW_PAGE_IDS["/qhse"];
   if (path.startsWith("/insights/")) return "6a44eec1ed1af2c4c403df4a";
   if (path.startsWith("/ai-news/")) return "6a44eec1ed1af2c4c403df4c";
   if (path.startsWith("/product/")) return "6a44eec1ed1af2c4c403df61";
   return undefined;
 };
+
 
 let manifestCache: Entry[] | null = null;
 
@@ -90,17 +92,44 @@ const SitePage = () => {
   useEffect(() => {
     let cancelled = false;
     const path = location.pathname.replace(/\/$/, "") || "/";
+    const isMore = path === "/more" || path.startsWith("/more/");
 
     (async () => {
       setStatus("loading");
-      const manifest = await loadManifest();
-      const entry = manifest.find((e) => e.route === path);
-      if (!entry) {
-        if (!cancelled) setStatus("missing");
-        return;
+
+      let html: string;
+      let title: string;
+      let description = "";
+
+      if (isMore) {
+        const slug = path === "/more" ? "index" : path.slice("/more/".length);
+        const [template, data] = await Promise.all([
+          fetch("/site/more/_template.html").then((r) => r.text()),
+          fetch(`/site/more/pages/${slug}.json`).then((r) => (r.ok ? r.json() : null)),
+        ]);
+        if (!data) {
+          if (!cancelled) setStatus("missing");
+          return;
+        }
+        html = template
+          .replace("__PAGE_TITLE__", data.h1)
+          .replace("__PAGE_BODY__", data.html);
+        title = data.title;
+        description = data.description || "";
+      } else {
+        const manifest = await loadManifest();
+        const entry = manifest.find((e) => e.route === path);
+        if (!entry) {
+          if (!cancelled) setStatus("missing");
+          return;
+        }
+        html = await fetch(entry.file).then((r) => r.text());
+        title = entry.title;
+        description = entry.description;
       }
-      const html = await fetch(entry.file).then((r) => r.text());
+
       if (cancelled || !hostRef.current) return;
+
 
       // Webflow uses these document-level values to select the correct page
       // interaction graph. They were lost when only <body> markup was imported.
@@ -112,9 +141,12 @@ const SitePage = () => {
       document.body.classList.add("body");
 
       hostRef.current.innerHTML = html;
-      document.title = entry.title;
+      document.title = title;
       const meta = document.querySelector('meta[name="description"]');
-      if (meta && entry.description) meta.setAttribute("content", entry.description);
+      if (meta && description) meta.setAttribute("content", description);
+      const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+      if (canonical) canonical.href = `https://patelimpex.com${path === "/" ? "/" : path}`;
+
 
       window.scrollTo(0, 0);
       setStatus("ready");
