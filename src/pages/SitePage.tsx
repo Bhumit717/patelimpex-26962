@@ -90,17 +90,44 @@ const SitePage = () => {
   useEffect(() => {
     let cancelled = false;
     const path = location.pathname.replace(/\/$/, "") || "/";
+    const isMore = path === "/more" || path.startsWith("/more/");
 
     (async () => {
       setStatus("loading");
-      const manifest = await loadManifest();
-      const entry = manifest.find((e) => e.route === path);
-      if (!entry) {
-        if (!cancelled) setStatus("missing");
-        return;
+
+      let html: string;
+      let title: string;
+      let description = "";
+
+      if (isMore) {
+        const slug = path === "/more" ? "index" : path.slice("/more/".length);
+        const [template, data] = await Promise.all([
+          fetch("/site/more/_template.html").then((r) => r.text()),
+          fetch(`/site/more/pages/${slug}.json`).then((r) => (r.ok ? r.json() : null)),
+        ]);
+        if (!data) {
+          if (!cancelled) setStatus("missing");
+          return;
+        }
+        html = template
+          .replace("__PAGE_TITLE__", data.h1)
+          .replace("__PAGE_BODY__", data.html);
+        title = data.title;
+        description = data.description || "";
+      } else {
+        const manifest = await loadManifest();
+        const entry = manifest.find((e) => e.route === path);
+        if (!entry) {
+          if (!cancelled) setStatus("missing");
+          return;
+        }
+        html = await fetch(entry.file).then((r) => r.text());
+        title = entry.title;
+        description = entry.description;
       }
-      const html = await fetch(entry.file).then((r) => r.text());
+
       if (cancelled || !hostRef.current) return;
+
 
       // Webflow uses these document-level values to select the correct page
       // interaction graph. They were lost when only <body> markup was imported.
