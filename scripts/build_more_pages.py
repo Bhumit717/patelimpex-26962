@@ -358,7 +358,7 @@ def build_body(product, market, related_same_product, related_same_market):
          f"Each lot is sampled at intake and again after packing. We test moisture, foreign matter, microbiology and pesticide residues against the limits that apply in {country}, "
          "and we are happy to appoint SGS, Bureau Veritas or Intertek for pre-shipment inspection at the buyer's request."),
     ]
-    faq_html = "".join(f"<p><strong>{esc(q)}</strong></p><p>{esc(a)}</p>" for q, a in faqs)
+    faq_html = "".join(f"<h3 style=\"margin:2rem 0 0.6rem;font-weight:600;\">{esc(q)}</h3><p>{esc(a)}</p>" for q, a in faqs)
 
     rel_prod = "".join(
         f'<li><a href="/more/{s}">{esc(t)}</a></li>' for s, t in related_same_product)
@@ -370,9 +370,9 @@ def build_body(product, market, related_same_product, related_same_market):
 We buy at the source in India's producing belts, process and pack to the specification the buyer signs off, and ship through Mundra and Kandla so every container leaves with the same documentation set and the same quality file.</p>
 <p>This page covers everything a buyer in {c} needs before placing an order: technical specification, available grades, packing formats, quality controls, the paperwork customs will ask for, realistic transit times and the factors that move the price. If your requirement sits outside what is listed, send us the specification and we will quote against it.</p>
 
-<p><img src="/images/products/{img}.jpg" alt="{p} for export from India to {c}" loading="lazy" style="width:100%;height:auto;border-radius:0.8rem;margin:1.6rem 0;" /></p>
+<p><img src="/images/products/{img}.jpg" alt="{p} for export from India to {c}" loading="lazy" style="width:100%;max-height:38rem;object-fit:cover;border-radius:0.8rem;margin:1.6rem 0;" /></p>
 
-<p><strong>Why buyers in {c} source {p} from India</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Why buyers in {c} source {p} from India</h2>
 <p>India is the volume origin for {category.lower()} of this type, and that scale is what keeps pricing workable for a {c} importer buying container loads rather than pallets. Three things matter in practice:</p>
 <ul role="list">
 <li><strong>Consistent origin.</strong> We work with the same growing regions and processing partners season after season, so the lot you approve in March behaves like the lot you receive in September.</li>
@@ -381,7 +381,7 @@ We buy at the source in India's producing belts, process and pack to the specifi
 <li><strong>One counterpart.</strong> Sourcing, processing, packing, inspection, freight booking and documentation sit with one team, so there is no gap between the supplier and the forwarder.</li>
 </ul>
 
-<p><strong>{p} technical specification</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">{p} technical specification</h2>
 <div style="overflow-x:auto;margin:1.2rem 0 2rem;"><table style="width:100%;border-collapse:collapse;font-size:1.4rem;">
 <tbody>{spec_rows}
 <tr><td style="padding:0.8rem 1.2rem;border-bottom:1px solid rgba(0,0,0,0.08);"><strong>HS code</strong></td><td style="padding:0.8rem 1.2rem;border-bottom:1px solid rgba(0,0,0,0.08);">{esc(hs)}</td></tr>
@@ -390,42 +390,42 @@ We buy at the source in India's producing belts, process and pack to the specifi
 </tbody></table></div>
 <p>Values above are the standard export specification. Tighter tolerances are available on contract - buyers supplying industrial bakeries, spice blenders and pharmaceutical customers in {c} routinely ask us to hold a narrower moisture or mesh band, and we quote that as a distinct grade rather than shipping against a general specification.</p>
 
-<p><strong>Grades we ship to {c}</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Grades we ship to {c}</h2>
 <ul role="list">{grade_items}</ul>
 <p>If your {c} customers sit across more than one price point, we can run two or three grades in the same container with separate lot codes and separate certificates of analysis, so retail and food-service volumes move on one bill of lading.</p>
 
-<p><strong>Packing and container loading</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Packing and container loading</h2>
 <ul role="list">{pack_items}</ul>
 <p>Standard export packing is palletised and stretch-wrapped, with desiccant and container liners on request for the humidity a {port} discharge can involve. A 20 ft container carries roughly 18 - 20 MT in bags; a 40 ft high cube is used where volume rather than weight is the constraint, which is common for bulky or light-density lines. Palletised loading is available where your {c} warehouse handles forklifts only.</p>
 
-<p><strong>Quality control and certification</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Quality control and certification</h2>
 <p>Quality is checked three times: at intake, in process and after packing. Raw material is rejected at intake if moisture or foreign matter is out of band - it is far cheaper than reworking a finished lot.
 Finished goods are tested for the parameters listed above plus microbiology and pesticide residues where the commodity and destination require it, and a certificate of analysis travels with every shipment.</p>
 <p>We operate to FSSAI registration in India and support APEDA and Spices Board documentation, ISO 22000 and HACCP-aligned processing partners, halal and kosher certification on request, and organic certification for the lines where it is offered. Third-party pre-shipment inspection by SGS, Bureau Veritas or Intertek can be arranged and is billed at cost.</p>
 
-<p><strong>Export documentation for {c}</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Export documentation for {c}</h2>
 <p>{esc(compliance)} Alongside destination paperwork, each shipment carries the commercial invoice, packing list with lot-level detail, bill of lading or airway bill, certificate of origin, phytosanitary certificate where applicable, fumigation certificate where the packing requires it, insurance certificate on CIF terms and the certificate of analysis.
 We send the full draft set for your approval before the originals are couriered, which is the simplest way to avoid a demurrage bill at {port}.</p>
 
-<p><strong>Shipping and lead time</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Shipping and lead time</h2>
 <p>Production and quality clearance take about 5 - 7 working days for stock grades and 10 - 15 days where a custom specification or printed private-label packing is involved.
 Sea transit from Mundra or Kandla to {port} is typically {transit} on direct services, longer where the routing transships. Air freight is practical for samples and for pharma-grade or high-value spice lots.
 We quote FOB, CFR and CIF, and can work with your nominated forwarder in {c} if you prefer to control the freight leg yourself.</p>
 
-<p><strong>What moves the price</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">What moves the price</h2>
 <p>Four things: the crop position in the producing belt, the grade and tolerance you specify, the packing format, and the freight rate on the India - {c} lane at the time of booking.
 Because these move independently, our quotes are valid for a defined window and state the grade, packing, Incoterm and payment terms explicitly. For programme buyers we hold seasonal contracts that fix the specification and the price band for an agreed volume, which removes most of the volatility from your landed cost.</p>
 
-<p><strong>How to order</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">How to order</h2>
 <p>Send us the product, grade, quantity, packing and delivery port. We reply with a written quotation, a specification sheet and a sample dispatch where you need one. Once the specification is approved we confirm the contract, produce, inspect, stuff and ship - with progress updates at each stage and full document scans before the vessel sails. <a href="/contact">Contact Patel Impex</a> or call +91 99748 73171 to start.</p>
 
-<p><strong>Frequently asked questions</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Frequently asked questions</h2>
 {faq_html}
 
-<p><strong>Related {p} export destinations</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Related {p} export destinations</h2>
 <ul role="list">{rel_prod}</ul>
 
-<p><strong>Other products we export to {c}</strong></p>
+<h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Other products we export to {c}</h2>
 <ul role="list">{rel_mkt}</ul>
 <p>See the full catalogue on <a href="/what-we-serve">what we serve</a> or read more about <a href="/about">Patel Impex</a>.</p>
 """
@@ -489,7 +489,7 @@ def main():
     hub = ["<p>Patel Impex exports Indian rice, flours, spices, psyllium, oilseeds and packaging materials to buyers in twenty markets. "
            "Each guide below sets out the specification, grades, packing, certification, documentation and shipping detail for one product into one destination.</p>"]
     for cat, items in cats.items():
-        hub.append(f"<p><strong>{esc(cat)} ({len(items)} guides)</strong></p><ul role=\"list\">")
+        hub.append(f"<h2 class=\"heading h4\" style=\"margin:3.2rem 0 1.2rem;\">{esc(cat)} ({len(items)} guides)</h2><ul role=\"list\">")
         hub.append("".join(f'<li><a href="/more/{it["slug"]}">{esc(it["title"])}</a></li>' for it in items))
         hub.append("</ul>")
     hub.append('<p>Cannot see your market? <a href="/contact">Talk to our export desk</a> - we ship worldwide from Mundra and Kandla.</p>')
