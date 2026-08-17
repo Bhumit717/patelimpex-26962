@@ -13,6 +13,6 @@ Allow: /
 User-agent: *
 Allow: /
 
+Sitemap: https://patelimpex.com/sitemap_index.xml
 Sitemap: https://patelimpex.com/sitemap.xml
-
 Sitemap: https://patelimpex.com/sitemap-more.xml
