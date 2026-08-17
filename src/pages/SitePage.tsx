@@ -117,6 +117,7 @@ const SitePage = () => {
 
     (async () => {
       setStatus("loading");
+      setNoindex(false);
 
       let html: string;
       let title: string;
@@ -129,7 +130,10 @@ const SitePage = () => {
           fetch(`/site/more/pages/${slug}.json`).then((r) => (r.ok ? r.json() : null)),
         ]);
         if (!data) {
-          if (!cancelled) setStatus("missing");
+          if (!cancelled) {
+            setStatus("missing");
+            setNoindex(true);
+          }
           return;
         }
         html = template
@@ -141,7 +145,10 @@ const SitePage = () => {
         const manifest = await loadManifest();
         const entry = manifest.find((e) => e.route === path);
         if (!entry) {
-          if (!cancelled) setStatus("missing");
+          if (!cancelled) {
+            setStatus("missing");
+            setNoindex(true);
+          }
           return;
         }
         html = await fetch(entry.file).then((r) => r.text());
