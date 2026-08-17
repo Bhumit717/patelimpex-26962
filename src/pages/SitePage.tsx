@@ -86,10 +86,29 @@ const startRuntime = async () => {
   await loadScript("/site/app/main.js", true);
 };
 
+// Retired URLs (old product routes still in Google's index) render the
+// not-found state; tag them noindex so Search Console stops reporting them
+// as soft 404s and drops them on the next crawl.
+const setNoindex = (on: boolean) => {
+  let tag = document.querySelector<HTMLMetaElement>('meta[name="robots"][data-notfound]');
+  if (on) {
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.name = "robots";
+      tag.dataset.notfound = "true";
+      document.head.appendChild(tag);
+    }
+    tag.content = "noindex, follow";
+  } else if (tag) {
+    tag.remove();
+  }
+};
+
 const SitePage = () => {
   const location = useLocation();
   const hostRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "missing">("loading");
+
 
   useEffect(() => {
     let cancelled = false;
