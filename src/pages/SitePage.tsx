@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { initSiteForms } from "@/lib/siteForms";
+import { initMoreReveal } from "@/lib/moreReveal";
+
 
 
 type Entry = { route: string; file: string; title: string; description: string };
@@ -151,9 +153,11 @@ const SitePage = () => {
       window.scrollTo(0, 0);
       setStatus("ready");
       initSiteForms(hostRef.current);
+      if (isMore) initMoreReveal(hostRef.current);
       requestAnimationFrame(() => {
         void startRuntime();
       });
+
 
     })();
 
