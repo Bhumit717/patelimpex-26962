@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { initSiteForms } from "@/lib/siteForms";
+import { initMoreReveal } from "@/lib/moreReveal";
+
 
 
 type Entry = { route: string; file: string; title: string; description: string };
