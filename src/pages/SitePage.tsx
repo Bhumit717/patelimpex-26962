@@ -86,10 +86,29 @@ const startRuntime = async () => {
   await loadScript("/site/app/main.js", true);
 };
 
+// Retired URLs (old product routes still in Google's index) render the
+// not-found state; tag them noindex so Search Console stops reporting them
+// as soft 404s and drops them on the next crawl.
+const setNoindex = (on: boolean) => {
+  let tag = document.querySelector<HTMLMetaElement>('meta[name="robots"][data-notfound]');
+  if (on) {
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.name = "robots";
+      tag.dataset.notfound = "true";
+      document.head.appendChild(tag);
+    }
+    tag.content = "noindex, follow";
+  } else if (tag) {
+    tag.remove();
+  }
+};
+
 const SitePage = () => {
   const location = useLocation();
   const hostRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "missing">("loading");
+
 
   useEffect(() => {
     let cancelled = false;
@@ -98,6 +117,7 @@ const SitePage = () => {
 
     (async () => {
       setStatus("loading");
+      setNoindex(false);
 
       let html: string;
       let title: string;
@@ -110,7 +130,10 @@ const SitePage = () => {
           fetch(`/site/more/pages/${slug}.json`).then((r) => (r.ok ? r.json() : null)),
         ]);
         if (!data) {
-          if (!cancelled) setStatus("missing");
+          if (!cancelled) {
+            setStatus("missing");
+            setNoindex(true);
+          }
           return;
         }
         html = template
@@ -122,7 +145,10 @@ const SitePage = () => {
         const manifest = await loadManifest();
         const entry = manifest.find((e) => e.route === path);
         if (!entry) {
-          if (!cancelled) setStatus("missing");
+          if (!cancelled) {
+            setStatus("missing");
+            setNoindex(true);
+          }
           return;
         }
         html = await fetch(entry.file).then((r) => r.text());
