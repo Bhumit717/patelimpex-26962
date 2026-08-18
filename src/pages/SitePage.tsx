@@ -104,6 +104,19 @@ const setNoindex = (on: boolean) => {
   }
 };
 
+const labelMoreMenuLinks = (root: HTMLElement) => {
+  root.querySelectorAll<HTMLAnchorElement>('header a[href="/more"]').forEach((link) => {
+    const walker = document.createTreeWalker(link, NodeFilter.SHOW_TEXT);
+    let node = walker.nextNode();
+    while (node) {
+      if (node.textContent?.trim().toLowerCase() === "export guides") {
+        node.textContent = "More";
+      }
+      node = walker.nextNode();
+    }
+  });
+};
+
 const SitePage = () => {
   const location = useLocation();
   const hostRef = useRef<HTMLDivElement>(null);
@@ -169,6 +182,7 @@ const SitePage = () => {
       document.body.classList.add("body");
 
       hostRef.current.innerHTML = html;
+      labelMoreMenuLinks(hostRef.current);
       document.title = title;
       const meta = document.querySelector('meta[name="description"]');
       if (meta && description) meta.setAttribute("content", description);
