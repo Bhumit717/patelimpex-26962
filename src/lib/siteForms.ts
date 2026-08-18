@@ -2,7 +2,7 @@
 // The markup comes from the Webflow export, so the handler is attached at
 // runtime after the page HTML is injected.
 
-const CALLMEBOT_USERS = ["@bhumitnasit", "@PATEL111206"];
+const CALLMEBOT_USERS = ["@Shubhamsavaliya111206"];
 
 const notifyCallMeBot = (text: string) => {
   const message = encodeURIComponent(text);
