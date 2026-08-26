@@ -59,3 +59,56 @@ body {
     transition: none !important;
   }
 }
+
+/* /what-we-serve product group dropdowns */
+.pi-group-head {
+  cursor: pointer;
+}
+.pi-group-head-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.4rem 0 1.6rem;
+}
+.pi-group-head-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 52rem;
+}
+.pi-group-head-toggle {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+  flex: none;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pi-group-head:hover .pi-group-head-toggle {
+  opacity: 1;
+}
+.pi-group-plus,
+.pi-group-plus::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.2rem;
+  height: 1px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+.pi-group-plus::before {
+  transform: translate(-50%, -50%) rotate(90deg);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+.pi-group-head.is-open .pi-group-plus::before {
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
+}
+.pi-hidden {
+  display: none !important;
+}

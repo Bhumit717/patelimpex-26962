@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { initSiteForms } from "@/lib/siteForms";
 import { initMoreReveal } from "@/lib/moreReveal";
+import { initProductGroups } from "@/lib/productGroups";
 
 
 
@@ -194,6 +195,7 @@ const SitePage = () => {
       setStatus("ready");
       initSiteForms(hostRef.current);
       if (isMore) initMoreReveal(hostRef.current);
+      initProductGroups(hostRef.current);
       requestAnimationFrame(() => {
         void startRuntime();
       });

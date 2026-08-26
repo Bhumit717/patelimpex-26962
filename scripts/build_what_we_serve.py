@@ -85,11 +85,11 @@ def esc(t):
     return H.escape(t, quote=True)
 
 
-def item(name, sub, paras, bullets, img, cta, label):
+def item(name, sub, paras, bullets, img, cta, label, group_key=''):
     ps = "".join("<p>%s</p>" % esc(p) for p in paras)
     lis = "".join("<li>%s</li>" % esc(b) for b in bullets)
     return (
-        '<div data-popup-industry="open" role="listitem" class="industry-our-item w-dyn-item">'
+        '<div data-popup-industry="open" data-pi-member="%(gk)s" role="listitem" class="industry-our-item w-dyn-item">'
         '<div class="industry-our-item-inner">'
         '<div class="industry-our-item-head hidden-mb"><div class="industry-our-item-head-inner">'
         '<div class="industry-our-item-number"><div data-wf--text--text-styles="mono" class="txt w-variant-3648de38-311e-0b18-0c7d-747bd60ae1a8 fs-12"></div></div>'
@@ -110,20 +110,50 @@ def item(name, sub, paras, bullets, img, cta, label):
         '<img src="%(img)s" loading="lazy" data-pop-industry="thumb" alt="%(name)s supplied by Patel Impex" class="img-df img-fill"/>'
         '</div><div class="industry-our-item-number hidden-dsk"><div data-wf--text--text-styles="mono" class="txt w-variant-3648de38-311e-0b18-0c7d-747bd60ae1a8 fs-12"></div></div></div>'
         '</div><div class="industry-our-item-line"></div></div></div>'
-    ) % dict(name=esc(name), sub=esc(sub), ps=ps, lis=lis, img=IMG % img, cta=esc(cta), label=esc(label))
+    ) % dict(name=esc(name), sub=esc(sub), ps=ps, lis=lis, img=IMG % img, cta=esc(cta), label=esc(label), gk=esc(group_key))
+
+
+GROUPS = [
+    ("agriculture", "Agriculture", "Rice, flours, spices and psyllium products sourced from Indian growing regions",
+     ["Basmati Rice", "Non-Basmati Rice", "Variety of Flours", "Whole Spices", "Spice Powders", "Psyllium Products"]),
+    ("packaging", "Packaging", "Corrugated, paper and flexible packaging supplied to buyer specifications",
+     ["Packaging Products"]),
+]
+
+CATS_BY_NAME = {c[0]: c for c in CATS}
+
+
+def group_head(key, title, sub, count):
+    return (
+        '<div data-pi-group="%(key)s" role="listitem" class="industry-our-item w-dyn-item pi-group-head">'
+        '<div class="industry-our-item-inner"><div class="pi-group-head-inner">'
+        '<div class="pi-group-head-left">'
+        '<div data-wf--text--text-styles="mono" class="txt w-variant-3648de38-311e-0b18-0c7d-747bd60ae1a8 fs-10">%(count)s products</div>'
+        '<h2 class="heading h5">%(title)s</h2>'
+        '<div data-wf--text--text-styles="standard" class="txt fs-16 fs-14-tb">%(sub)s</div>'
+        '</div>'
+        '<div class="pi-group-head-toggle"><span class="pi-group-plus"></span></div>'
+        '</div><div class="industry-our-item-line"></div></div></div>'
+    ) % dict(key=esc(key), title=esc(title), sub=esc(sub), count=count)
 
 
 items = []
-for cat_name, group, cat_img, prods in CATS:
-    desc, sub = CAT_DESC[cat_name]
-    cta = "Request Psyllium Quote" if group == "Psyllium" else "Request Quote"
-    items.append(item(cat_name, sub, [desc], [p[0] for p in prods], cat_img, cta, "Products in this range"))
-    for pname, pdesc, pimg in prods:
-        items.append(item(pname, "%s / %s" % (group, cat_name), [pdesc],
-                          ["Bulk international sourcing",
-                           "Export packing to buyer requirements",
-                           "Documentation and shipping handled end to end"],
-                          pimg, cta, "Available for"))
+for key, gtitle, gsub, cat_names in GROUPS:
+    body = []
+    for cat_name in cat_names:
+        _, group, cat_img, prods = CATS_BY_NAME[cat_name]
+        desc, sub = CAT_DESC[cat_name]
+        cta = "Request Psyllium Quote" if group == "Psyllium" else "Request Quote"
+        body.append(item(cat_name, sub, [desc], [p[0] for p in prods], cat_img, cta,
+                         "Products in this range", key))
+        for pname, pdesc, pimg in prods:
+            body.append(item(pname, "%s / %s" % (group, cat_name), [pdesc],
+                             ["Bulk international sourcing",
+                              "Export packing to buyer requirements",
+                              "Documentation and shipping handled end to end"],
+                             pimg, cta, "Available for", key))
+    items.append(group_head(key, gtitle, gsub, len(body)))
+    items.extend(body)
 
 new_list = "".join(items)
 
