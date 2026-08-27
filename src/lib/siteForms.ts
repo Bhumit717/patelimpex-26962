@@ -4,17 +4,36 @@
 
 const CALLMEBOT_USERS = ["@Shubham111206"];
 
+// CallMeBot only answers plain GETs and sends no CORS headers, so a fetch()
+// response can never be read from the browser. Firing the request through an
+// <img> beacon is the reliable way to make the hit land.
+const beacon = (url: string) =>
+  new Promise<void>((resolve) => {
+    const img = new Image();
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      resolve();
+    };
+    img.onload = finish;
+    img.onerror = finish;
+    img.referrerPolicy = "no-referrer";
+    img.src = url;
+    window.setTimeout(finish, 6000);
+  });
+
 const notifyCallMeBot = (text: string) => {
   const message = encodeURIComponent(text);
   return Promise.all(
     CALLMEBOT_USERS.map((user) =>
-      fetch(
-        `https://api.callmebot.com/text.php?source=web&user=${encodeURIComponent(user)}&text=${message}`,
-        { method: "GET", mode: "no-cors" },
-      ).catch(() => undefined),
+      beacon(
+        `https://api.callmebot.com/text.php?source=web&user=${encodeURIComponent(user)}&text=${message}&_=${Date.now()}`,
+      ),
     ),
   );
 };
+
 
 const fieldValue = (form: HTMLFormElement, name: string) => {
   const el = form.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
