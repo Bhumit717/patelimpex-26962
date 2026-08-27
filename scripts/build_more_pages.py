@@ -417,7 +417,7 @@ We quote FOB, CFR and CIF, and can work with your nominated forwarder in {c} if 
 Because these move independently, our quotes are valid for a defined window and state the grade, packing, Incoterm and payment terms explicitly. For programme buyers we hold seasonal contracts that fix the specification and the price band for an agreed volume, which removes most of the volatility from your landed cost.</p>
 
 <h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">How to order</h2>
-<p>Send us the product, grade, quantity, packing and delivery port. We reply with a written quotation, a specification sheet and a sample dispatch where you need one. Once the specification is approved we confirm the contract, produce, inspect, stuff and ship - with progress updates at each stage and full document scans before the vessel sails. <a href="/contact">Contact Patel Impex</a> or call +91 99748 73171 to start.</p>
+<p>Send us the product, grade, quantity, packing and delivery port. We reply with a written quotation, a specification sheet and a sample dispatch where you need one. Once the specification is approved we confirm the contract, produce, inspect, stuff and ship - with progress updates at each stage and full document scans before the vessel sails. <a href="/contact">Contact Patel Impex</a> or call +91 79841 33417 to start.</p>
 
 <h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Frequently asked questions</h2>
 {faq_html}
