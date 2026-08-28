@@ -63,6 +63,14 @@ body {
 /* /what-we-serve product group dropdowns */
 .pi-group-head {
   cursor: pointer;
+  position: relative;
+  z-index: 5;
+  background: #111111;
+}
+.pi-group-head .industry-our-item-inner {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
 }
 .pi-group-head-inner {
   display: flex;
