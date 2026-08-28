@@ -64,8 +64,6 @@ body {
 .pi-group-head {
   cursor: pointer;
   position: relative;
-  z-index: 5;
-  background: #111111;
 }
 .pi-group-head .industry-our-item-inner {
   height: auto;
@@ -77,7 +75,7 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   gap: 2rem;
-  padding: 2.4rem 0 1.6rem;
+  padding: 4rem 3rem 12rem;
   color: #f4f4f4;
 }
 .pi-group-count,
