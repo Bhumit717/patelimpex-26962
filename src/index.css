@@ -100,7 +100,7 @@ body {
   letter-spacing: -0.01em;
 }
 .pi-group-sub {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 1.45;
   opacity: 0.65;
 }
@@ -108,7 +108,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  max-width: 52rem;
+  max-width: 78rem;
 }
 .pi-group-head-toggle {
 
