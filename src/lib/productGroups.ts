@@ -17,8 +17,8 @@ export const initProductGroups = (root: HTMLElement) => {
     });
   };
 
-  heads.forEach((head, index) => {
-    setOpen(head, index === 0);
+  heads.forEach((head) => {
+    setOpen(head, false);
     head.addEventListener("click", () => {
       setOpen(head, !head.classList.contains("is-open"));
     });
