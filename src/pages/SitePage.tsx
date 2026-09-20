@@ -7,6 +7,27 @@ import { initProductGroups } from "@/lib/productGroups";
 
 
 type Entry = { route: string; file: string; title: string; description: string };
+type Product = {
+  slug: string;
+  name: string;
+  category: string;
+  eyebrow: string;
+  intro: string;
+  overview: string;
+  varieties: string[];
+  specs: [string, string][];
+  physical: string;
+  applications: string[];
+  processing: string;
+  packaging: string;
+  storage: string;
+  quality: string;
+  faq: [string, string][];
+  image: string;
+  alt: string;
+  title: string;
+  description: string;
+};
 
 const WEBFLOW_SITE_ID = "6a44eec1ed1af2c4c403df6b";
 const WEBFLOW_PAGE_IDS: Record<string, string> = {
@@ -44,6 +65,82 @@ const loadManifest = async () => {
   const res = await fetch("/site/manifest.json");
   manifestCache = (await res.json()) as Entry[];
   return manifestCache;
+};
+
+let productsCache: Product[] | null = null;
+
+const loadProducts = async () => {
+  if (productsCache) return productsCache;
+  const res = await fetch("/site/products/products.json");
+  productsCache = (await res.json()) as Product[];
+  return productsCache;
+};
+
+const escapeHtml = (value: string) =>
+  value.replace(/[&<>'"]/g, (character) => {
+    const entities: Record<string, string> = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "'": "&#39;",
+      '"': "&quot;",
+    };
+    return entities[character] ?? character;
+  });
+
+const list = (items: string[]) =>
+  `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+
+const renderProductBody = (product: Product) => `
+  <div class="pi-product-overview">
+    <div class="pi-product-section-label">Product overview</div>
+    <div><h2>${escapeHtml(product.name)} for international buyers</h2><p>${escapeHtml(product.overview)}</p></div>
+  </div>
+  <div class="pi-product-spec-layout">
+    <div class="pi-product-section-label">Indicative specification</div>
+    <div class="pi-product-spec-table">${product.specs
+      .map(
+        ([label, value]) =>
+          `<div class="pi-product-spec-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`,
+      )
+      .join("")}</div>
+  </div>
+  <div class="pi-product-content-grid">
+    <article><div class="pi-product-section-label">Varieties / grades</div>${list(product.varieties)}</article>
+    <article><div class="pi-product-section-label">Physical characteristics</div><p>${escapeHtml(product.physical)}</p></article>
+    <article><div class="pi-product-section-label">Applications</div>${list(product.applications)}</article>
+    <article><div class="pi-product-section-label">Processing</div><p>${escapeHtml(product.processing)}</p></article>
+    <article><div class="pi-product-section-label">Packaging & bulk supply</div><p>${escapeHtml(product.packaging)}</p></article>
+    <article><div class="pi-product-section-label">Storage</div><p>${escapeHtml(product.storage)}</p></article>
+  </div>
+  <div class="pi-product-quality"><div class="pi-product-section-label">Quality note</div><p>${escapeHtml(product.quality)}</p></div>
+  <div class="pi-product-faq"><div class="pi-product-section-label">Frequently asked questions</div><div>${product.faq
+    .map(
+      ([question, answer]) =>
+        `<details><summary>${escapeHtml(question)}</summary><p>${escapeHtml(answer)}</p></details>`,
+    )
+    .join("")}</div></div>
+  <div class="pi-product-related"><div class="pi-product-section-label">Explore products</div><p><a href="/what-we-serve">View the full product range</a> or <a href="/contact?product=${encodeURIComponent(product.slug)}">send a product inquiry</a>.</p></div>
+`;
+
+const setMetaContent = (selector: string, attribute: "name" | "property", key: string, content: string) => {
+  let meta = document.querySelector<HTMLMetaElement>(selector);
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute(attribute, key);
+    document.head.appendChild(meta);
+  }
+  meta.content = content;
+};
+
+const setPageMetadata = (title: string, description: string, path: string) => {
+  document.title = title;
+  setMetaContent('meta[name="description"]', "name", "description", description);
+  setMetaContent('meta[property="og:title"]', "property", "og:title", title);
+  setMetaContent('meta[property="og:description"]', "property", "og:description", description);
+  setMetaContent('meta[property="og:url"]', "property", "og:url", `https://patelimpex.com${path}`);
+  setMetaContent('meta[name="twitter:title"]', "name", "twitter:title", title);
+  setMetaContent('meta[name="twitter:description"]', "name", "twitter:description", description);
 };
 
 // Runtime the exported site expects, in strict load order.
@@ -128,6 +225,7 @@ const SitePage = () => {
     let cancelled = false;
     const path = location.pathname.replace(/\/$/, "") || "/";
     const isMore = path === "/more" || path.startsWith("/more/");
+    const isCatalogueProduct = path.startsWith("/products/");
 
     (async () => {
       setStatus("loading");
@@ -137,7 +235,33 @@ const SitePage = () => {
       let title: string;
       let description = "";
 
-      if (isMore) {
+      if (isCatalogueProduct) {
+        const slug = path.slice("/products/".length);
+        const [template, products] = await Promise.all([
+          fetch("/site/products/_template.html").then((r) => r.text()),
+          loadProducts(),
+        ]);
+        const product = products.find((item) => item.slug === slug);
+        if (!product) {
+          if (!cancelled) {
+            setStatus("missing");
+            setNoindex(true);
+          }
+          return;
+        }
+        html = template
+          .replaceAll("__PAGE_TITLE__", escapeHtml(product.name))
+          .replace("__PAGE_BODY__", renderProductBody(product))
+          .replaceAll("__CATEGORY__", escapeHtml(product.category))
+          .replaceAll("__EYEBROW__", escapeHtml(product.eyebrow))
+          .replaceAll("__INTRO__", escapeHtml(product.intro))
+          .replaceAll("__PRODUCT_SLUG__", encodeURIComponent(product.slug))
+          .replaceAll("__PRODUCT_IMAGE__", escapeHtml(product.image))
+          .replaceAll("__PRODUCT_ALT__", escapeHtml(product.alt))
+          .replaceAll("__PRODUCT_EMAIL__", encodeURIComponent(product.name));
+        title = product.title;
+        description = product.description;
+      } else if (isMore) {
         const slug = path === "/more" ? "index" : path.slice("/more/".length);
         const [template, data] = await Promise.all([
           fetch("/site/more/_template.html").then((r) => r.text()),
@@ -184,9 +308,7 @@ const SitePage = () => {
 
       hostRef.current.innerHTML = html;
       labelMoreMenuLinks(hostRef.current);
-      document.title = title;
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta && description) meta.setAttribute("content", description);
+      setPageMetadata(title, description, path);
       const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
       if (canonical) canonical.href = `https://patelimpex.com${path === "/" ? "/" : path}`;
 

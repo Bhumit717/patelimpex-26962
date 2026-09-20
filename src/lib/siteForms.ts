@@ -67,6 +67,7 @@ const submitForm = async (form: HTMLFormElement) => {
   const company = fieldValue(form, "Company");
   const reason = fieldValue(form, "Reason-of-enquiry") || fieldValue(form, "Reason of enquiry");
   const message = fieldValue(form, "Message");
+  const product = new URLSearchParams(window.location.search).get("product")?.trim() ?? "";
 
   if (!name || !email) {
     const invalid = !name ? "Full-name" : "Email";
@@ -85,6 +86,7 @@ const submitForm = async (form: HTMLFormElement) => {
       `Email: ${email}`,
       phone && `Phone: ${phone}`,
       reason && `Enquiry: ${reason}`,
+      product && `Product: ${product.replace(/-/g, " ")}`,
       message && `Message: ${message}`,
       `Page: ${window.location.pathname}`,
     ]
@@ -115,6 +117,12 @@ export const initSiteForms = (root: HTMLElement) => {
     if (form.dataset.piBound === "1") return;
     form.dataset.piBound = "1";
     form.setAttribute("novalidate", "novalidate");
+
+    const product = new URLSearchParams(window.location.search).get("product")?.trim();
+    const message = form.querySelector<HTMLTextAreaElement>('[name="Message"]');
+    if (product && message && !message.value) {
+      message.value = `I would like a quote for ${product.replace(/-/g, " ")}.`;
+    }
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
