@@ -88,6 +88,9 @@ const escapeHtml = (value: string) =>
     return entities[character] ?? character;
   });
 
+const replaceEvery = (value: string, search: string, replacement: string) =>
+  value.split(search).join(replacement);
+
 const list = (items: string[]) =>
   `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
 
@@ -249,16 +252,21 @@ const SitePage = () => {
           }
           return;
         }
-        html = template
-          .replaceAll("__PAGE_TITLE__", escapeHtml(product.name))
-          .replace("__PAGE_BODY__", renderProductBody(product))
-          .replaceAll("__CATEGORY__", escapeHtml(product.category))
-          .replaceAll("__EYEBROW__", escapeHtml(product.eyebrow))
-          .replaceAll("__INTRO__", escapeHtml(product.intro))
-          .replaceAll("__PRODUCT_SLUG__", encodeURIComponent(product.slug))
-          .replaceAll("__PRODUCT_IMAGE__", escapeHtml(product.image))
-          .replaceAll("__PRODUCT_ALT__", escapeHtml(product.alt))
-          .replaceAll("__PRODUCT_EMAIL__", encodeURIComponent(product.name));
+        html = template;
+        const replacements: [string, string][] = [
+          ["__PAGE_TITLE__", escapeHtml(product.name)],
+          ["__PAGE_BODY__", renderProductBody(product)],
+          ["__CATEGORY__", escapeHtml(product.category)],
+          ["__EYEBROW__", escapeHtml(product.eyebrow)],
+          ["__INTRO__", escapeHtml(product.intro)],
+          ["__PRODUCT_SLUG__", encodeURIComponent(product.slug)],
+          ["__PRODUCT_IMAGE__", escapeHtml(product.image)],
+          ["__PRODUCT_ALT__", escapeHtml(product.alt)],
+          ["__PRODUCT_EMAIL__", encodeURIComponent(product.name)],
+        ];
+        replacements.forEach(([search, replacement]) => {
+          html = replaceEvery(html, search, replacement);
+        });
         title = product.title;
         description = product.description;
       } else if (isMore) {
