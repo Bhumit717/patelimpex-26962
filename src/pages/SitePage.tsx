@@ -30,6 +30,11 @@ type Product = {
 };
 
 const WEBFLOW_SITE_ID = "6a44eec1ed1af2c4c403df6b";
+type WebflowRuntime = {
+  destroy?: () => void;
+  ready?: () => void;
+  require?: (name: string) => { init?: () => void } | undefined;
+};
 const WEBFLOW_PAGE_IDS: Record<string, string> = {
   "/": "6a44eec1ed1af2c4c403df38",
   "/about": "6a44eec1ed1af2c4c403df51",
@@ -87,6 +92,9 @@ const escapeHtml = (value: string) =>
     };
     return entities[character] ?? character;
   });
+
+const replaceEvery = (value: string, search: string, replacement: string) =>
+  value.split(search).join(replacement);
 
 const list = (items: string[]) =>
   `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
@@ -172,7 +180,7 @@ const startRuntime = async () => {
   runtimeStarted = true;
   for (const src of RUNTIME) await loadScript(src);
   // Webflow interactions on freshly injected DOM.
-  const wf = (window as unknown as { Webflow?: any }).Webflow;
+  const wf = (window as unknown as { Webflow?: WebflowRuntime }).Webflow;
   try {
     wf?.destroy?.();
     wf?.ready?.();
@@ -249,16 +257,21 @@ const SitePage = () => {
           }
           return;
         }
-        html = template
-          .replaceAll("__PAGE_TITLE__", escapeHtml(product.name))
-          .replace("__PAGE_BODY__", renderProductBody(product))
-          .replaceAll("__CATEGORY__", escapeHtml(product.category))
-          .replaceAll("__EYEBROW__", escapeHtml(product.eyebrow))
-          .replaceAll("__INTRO__", escapeHtml(product.intro))
-          .replaceAll("__PRODUCT_SLUG__", encodeURIComponent(product.slug))
-          .replaceAll("__PRODUCT_IMAGE__", escapeHtml(product.image))
-          .replaceAll("__PRODUCT_ALT__", escapeHtml(product.alt))
-          .replaceAll("__PRODUCT_EMAIL__", encodeURIComponent(product.name));
+        html = template;
+        const replacements: [string, string][] = [
+          ["__PAGE_TITLE__", escapeHtml(product.name)],
+          ["__PAGE_BODY__", renderProductBody(product)],
+          ["__CATEGORY__", escapeHtml(product.category)],
+          ["__EYEBROW__", escapeHtml(product.eyebrow)],
+          ["__INTRO__", escapeHtml(product.intro)],
+          ["__PRODUCT_SLUG__", encodeURIComponent(product.slug)],
+          ["__PRODUCT_IMAGE__", escapeHtml(product.image)],
+          ["__PRODUCT_ALT__", escapeHtml(product.alt)],
+          ["__PRODUCT_EMAIL__", encodeURIComponent(product.name)],
+        ];
+        replacements.forEach(([search, replacement]) => {
+          html = replaceEvery(html, search, replacement);
+        });
         title = product.title;
         description = product.description;
       } else if (isMore) {

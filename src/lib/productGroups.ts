@@ -12,6 +12,7 @@ export const initProductGroups = (root: HTMLElement) => {
   const setOpen = (head: HTMLElement, open: boolean) => {
     const key = head.dataset.piGroup ?? "";
     head.classList.toggle("is-open", open);
+    head.setAttribute("aria-expanded", String(open));
     members(key).forEach((el) => {
       el.classList.toggle("pi-hidden", !open);
     });
@@ -19,8 +20,14 @@ export const initProductGroups = (root: HTMLElement) => {
 
   heads.forEach((head) => {
     setOpen(head, false);
-    head.addEventListener("click", () => {
+    const toggle = () => {
       setOpen(head, !head.classList.contains("is-open"));
+    };
+    head.addEventListener("click", toggle);
+    head.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      toggle();
     });
   });
 };

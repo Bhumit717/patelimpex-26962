@@ -7,6 +7,8 @@ BASE = "https://patelimpex.com"
 manifest = json.load(open(os.path.join(ROOT, "public/site/manifest.json"), encoding="utf-8"))
 routes = sorted({e["route"] for e in manifest})
 routes = [r for r in routes if r not in ("/checkout",)]
+products = json.load(open(os.path.join(ROOT, "public/site/products/products.json"), encoding="utf-8"))
+routes += [f'/products/{p["slug"]}' for p in products]
 
 def prio(r):
     if r == "/": return "1.0"
