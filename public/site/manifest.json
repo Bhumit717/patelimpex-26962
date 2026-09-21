@@ -252,81 +252,51 @@
   "description": ""
  },
  {
-  "route": "/product/aircraft-keychain",
-  "file": "/site/product/aircraft-keychain.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/basmati-rice",
+  "file": "/site/products/_template.html",
+  "title": "Basmati Rice Exporter from India | Patel Impex",
+  "description": "Source basmati rice from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  },
  {
-  "route": "/product/baseball-cap",
-  "file": "/site/product/baseball-cap.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/non-basmati-rice",
+  "file": "/site/products/_template.html",
+  "title": "Non-Basmati Rice Exporter from India | Patel Impex",
+  "description": "Source non-basmati rice from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  },
  {
-  "route": "/product/beanie",
-  "file": "/site/product/beanie.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/wheat-flour",
+  "file": "/site/products/_template.html",
+  "title": "Wheat Flour Exporter from India | Patel Impex",
+  "description": "Source wheat flour from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  },
  {
-  "route": "/product/bottle-opener-keychain",
-  "file": "/site/product/bottle-opener-keychain.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/whole-wheat-flour",
+  "file": "/site/products/_template.html",
+  "title": "Whole Wheat Flour Exporter from India | Patel Impex",
+  "description": "Source whole wheat flour from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  },
  {
-  "route": "/product/ceramic-mug",
-  "file": "/site/product/ceramic-mug.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/cumin",
+  "file": "/site/products/_template.html",
+  "title": "Cumin Exporter from India | Patel Impex",
+  "description": "Source cumin from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  },
  {
-  "route": "/product/folding-camping-chair",
-  "file": "/site/product/folding-camping-chair.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/peanuts",
+  "file": "/site/products/_template.html",
+  "title": "Peanuts Exporter from India | Patel Impex",
+  "description": "Source peanuts from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  },
  {
-  "route": "/product/ship-keychain",
-  "file": "/site/product/ship-keychain.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/psyllium-seed",
+  "file": "/site/products/_template.html",
+  "title": "Psyllium Seed Exporter from India | Patel Impex",
+  "description": "Source psyllium seed from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  },
  {
-  "route": "/product/stainless-steel-water-bottle",
-  "file": "/site/product/stainless-steel-water-bottle.html",
-  "title": "Patel Impex",
-  "description": ""
- },
- {
-  "route": "/product/straw-tote-bag",
-  "file": "/site/product/straw-tote-bag.html",
-  "title": "Patel Impex",
-  "description": ""
- },
- {
-  "route": "/product/stubby-holder-1",
-  "file": "/site/product/stubby-holder-1.html",
-  "title": "Patel Impex",
-  "description": ""
- },
- {
-  "route": "/product/truck-keychain",
-  "file": "/site/product/truck-keychain.html",
-  "title": "Patel Impex",
-  "description": ""
- },
- {
-  "route": "/product/united-carriers-canvas-tote-bag",
-  "file": "/site/product/united-carriers-canvas-tote-bag.html",
-  "title": "Patel Impex",
-  "description": ""
- },
- {
-  "route": "/product/united-carriers-logo-fabric-patch-gsvwb",
-  "file": "/site/product/united-carriers-logo-fabric-patch-gsvwb.html",
-  "title": "Patel Impex",
-  "description": ""
+  "route": "/products/psyllium-husk",
+  "file": "/site/products/_template.html",
+  "title": "Psyllium Husk Exporter from India | Patel Impex",
+  "description": "Source psyllium husk from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
  }
 ]
