@@ -56,4 +56,13 @@
   <url><loc>https://patelimpex.com/services</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://patelimpex.com/terms-conditions</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://patelimpex.com/what-we-serve</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://patelimpex.com/products/basmati-rice</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/non-basmati-rice</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/wheat-flour</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/whole-wheat-flour</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/cumin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/peanuts</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-seed</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-husk</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://patelimpex.com/products/psyllium-husk-powder</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
 </urlset>
