@@ -30,6 +30,11 @@ type Product = {
 };
 
 const WEBFLOW_SITE_ID = "6a44eec1ed1af2c4c403df6b";
+type WebflowRuntime = {
+  destroy?: () => void;
+  ready?: () => void;
+  require?: (name: string) => { init?: () => void } | undefined;
+};
 const WEBFLOW_PAGE_IDS: Record<string, string> = {
   "/": "6a44eec1ed1af2c4c403df38",
   "/about": "6a44eec1ed1af2c4c403df51",
@@ -175,7 +180,7 @@ const startRuntime = async () => {
   runtimeStarted = true;
   for (const src of RUNTIME) await loadScript(src);
   // Webflow interactions on freshly injected DOM.
-  const wf = (window as unknown as { Webflow?: any }).Webflow;
+  const wf = (window as unknown as { Webflow?: WebflowRuntime }).Webflow;
   try {
     wf?.destroy?.();
     wf?.ready?.();
