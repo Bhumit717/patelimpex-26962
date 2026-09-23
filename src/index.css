@@ -159,6 +159,15 @@ body {
   width: auto;
 }
 
+.pi-product-card[data-pi-product-link] {
+  cursor: pointer;
+}
+
+.pi-product-card[data-pi-product-link]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
 .pi-product-page {
   background: var(--_color---m-white);
   color: var(--_color---m-black);
@@ -172,11 +181,14 @@ body {
 }
 
 .pi-product-hero {
-  padding: 18rem 0 8rem;
+  min-height: 100svh;
+  padding: 15rem 0 7rem;
+  border-bottom: 1px solid var(--_color---border--primary);
 }
 
 .pi-product-hero .container {
-  row-gap: 5rem;
+  min-height: calc(100svh - 22rem);
+  row-gap: 4rem;
 }
 
 .pi-product-breadcrumb {
@@ -190,20 +202,21 @@ body {
 }
 
 .pi-product-heading {
-  grid-column: 1 / 9;
-  align-self: end;
+  grid-column: 1 / 10;
+  align-self: center;
+  padding-block: 5rem;
 }
 
 .pi-product-heading h1 {
-  max-width: 10ch;
+  max-width: 12ch;
   font-family: Archivo, sans-serif;
-  font-size: clamp(5.6rem, 7vw, 12rem);
-  line-height: 0.94;
+  font-size: clamp(5.6rem, 7vw, 11rem);
+  line-height: 0.92;
   text-transform: uppercase;
 }
 
 .pi-product-heading > p {
-  max-width: 70rem;
+  max-width: 64rem;
   margin-top: 3rem;
   font-size: 2rem;
   line-height: 1.5;
@@ -223,21 +236,58 @@ body {
 }
 
 .pi-product-visual {
-  grid-column: 10 / -1;
-  aspect-ratio: 4 / 5;
+  position: relative;
+  grid-column: 11 / -1;
+  align-self: center;
+  aspect-ratio: 1;
   overflow: hidden;
-  background: var(--_color---content--disable);
+  border: 1px solid var(--_color---border--primary);
+  background: var(--_color---m-white);
 }
 
 .pi-product-visual img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 7%;
   transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .pi-product-visual:hover img {
-  transform: scale(1.035);
+  transform: scale(1.025) translateY(-0.8%);
+}
+
+.pi-product-visual-index {
+  position: absolute;
+  z-index: 1;
+  top: 1.8rem;
+  left: 1.8rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.pi-product-hero-note {
+  grid-column: 11 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding-top: 2rem;
+  border-top: 1px solid var(--_color---border--primary);
+}
+
+.pi-product-hero-note span,
+.pi-product-hero-note p {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.pi-product-hero-note span {
+  opacity: 0.4;
 }
 
 .pi-product-actions {
@@ -271,12 +321,16 @@ body {
 }
 
 .pi-product-body {
-  padding: 8rem 0 12rem;
-  border-top: 1px solid var(--_color---border--primary);
+  padding: 4rem 0 12rem;
 }
 
 .pi-product-body .container {
-  row-gap: 8rem;
+  row-gap: 0;
+}
+
+.pi-product-section {
+  padding-block: 8rem;
+  border-bottom: 1px solid var(--_color---border--primary);
 }
 
 .pi-product-overview,
@@ -315,6 +369,10 @@ body {
   text-transform: uppercase;
 }
 
+.pi-product-overview h2 {
+  max-width: 12ch;
+}
+
 .pi-product-overview p,
 .pi-product-quality > p,
 .pi-product-related > p {
@@ -345,12 +403,12 @@ body {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--_color---border--primary);
+  border-top: 0;
   border-left: 1px solid var(--_color---border--primary);
 }
 
 .pi-product-content-grid article {
-  min-height: 30rem;
+  min-height: 28rem;
   padding: 3rem;
   border-right: 1px solid var(--_color---border--primary);
   border-bottom: 1px solid var(--_color---border--primary);
@@ -374,6 +432,10 @@ body {
 .pi-product-faq details {
   padding: 2rem 0;
   border-bottom: 1px solid var(--_color---border--primary);
+}
+
+.pi-product-faq details:first-child {
+  border-top: 1px solid var(--_color---border--primary);
 }
 
 .pi-product-faq summary {
@@ -424,7 +486,8 @@ body {
 
 @media (max-width: 991px) {
   .pi-product-heading { grid-column: 1 / 6; }
-  .pi-product-visual { grid-column: 6 / -1; }
+  .pi-product-visual,
+  .pi-product-hero-note { grid-column: 6 / -1; }
   .pi-product-content-grid { grid-template-columns: repeat(2, 1fr); }
   .pi-product-overview,
   .pi-product-spec-layout,
@@ -450,15 +513,18 @@ body {
   }
   .pi-group-title { font-size: 2.8rem; }
   .pi-group-sub { font-size: 1.3rem; }
-  .pi-product-hero { padding: 12rem 0 5rem; }
+  .pi-product-hero { min-height: 0; padding: 10rem 0 4rem; }
+  .pi-product-hero .container { min-height: 0; row-gap: 2.8rem; }
   .pi-product-breadcrumb,
   .pi-product-heading,
-  .pi-product-visual { grid-column: 1 / -1; }
-  .pi-product-heading h1 { font-size: 4.8rem; }
+  .pi-product-visual,
+  .pi-product-hero-note { grid-column: 1 / -1; }
+  .pi-product-heading { padding-block: 1.5rem 0; }
+  .pi-product-heading h1 { font-size: 4.6rem; }
   .pi-product-heading > p { font-size: 1.6rem; }
-  .pi-product-visual { aspect-ratio: 4 / 3; }
-  .pi-product-body { padding: 6rem 0 8rem; }
-  .pi-product-body .container { row-gap: 5rem; }
+  .pi-product-visual { aspect-ratio: 1; }
+  .pi-product-body { padding: 0 0 7rem; }
+  .pi-product-section { padding-block: 5rem; }
   .pi-product-overview,
   .pi-product-spec-layout,
   .pi-product-quality,
@@ -477,6 +543,10 @@ body {
   .pi-product-inquiry .container > div:first-child,
   .pi-product-inquiry .container > .pi-product-actions { grid-column: 1 / -1; }
   .pi-product-inquiry .container > .pi-product-actions { justify-content: flex-start; }
+  .pi-product-actions { width: 100%; }
+  .pi-product-actions .pi-product-button { flex: 1 1 15rem; }
+  .pi-product-card .industry-our-item-body { pointer-events: auto; }
+  .pi-product-card .industry-our-item-main-thumb { pointer-events: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

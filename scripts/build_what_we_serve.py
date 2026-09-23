@@ -91,6 +91,7 @@ while depth:
 close_end = source.find('>', cursor) + 1
 inner_end = source.rfind('</div', open_end, close_end)
 source = source[:open_end] + new_list + source[inner_end:]
-source = source.replace('Our product portfolio includes rice, flours, spices and psyllium products suitable for bulk international sourcing.', 'Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and three distinct psyllium products, alongside buyer-specified packaging.')
+source = source.replace('Our product portfolio includes rice, flours, spices and psyllium products suitable for bulk international sourcing.', 'Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and two distinct psyllium products, alongside buyer-specified packaging.')
+source = source.replace('Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and three distinct psyllium products, alongside buyer-specified packaging.', 'Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and two distinct psyllium products, alongside buyer-specified packaging.')
 PATH.write_text(source, encoding="utf-8")
 print(f"what-we-serve: {len(PRODUCTS)} agriculture products, {len(PACKAGING)} packaging products")
