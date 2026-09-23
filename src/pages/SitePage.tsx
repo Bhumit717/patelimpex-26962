@@ -100,11 +100,11 @@ const list = (items: string[]) =>
   `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
 
 const renderProductBody = (product: Product) => `
-  <div class="pi-product-overview">
+  <section class="pi-product-overview pi-product-section">
     <div class="pi-product-section-label">Product overview</div>
     <div><h2>${escapeHtml(product.name)} for international buyers</h2><p>${escapeHtml(product.overview)}</p></div>
-  </div>
-  <div class="pi-product-spec-layout">
+  </section>
+  <section class="pi-product-spec-layout pi-product-section">
     <div class="pi-product-section-label">Indicative specification</div>
     <div class="pi-product-spec-table">${product.specs
       .map(
@@ -112,23 +112,23 @@ const renderProductBody = (product: Product) => `
           `<div class="pi-product-spec-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`,
       )
       .join("")}</div>
-  </div>
-  <div class="pi-product-content-grid">
+  </section>
+  <section class="pi-product-content-grid pi-product-section">
     <article><div class="pi-product-section-label">Varieties / grades</div>${list(product.varieties)}</article>
     <article><div class="pi-product-section-label">Physical characteristics</div><p>${escapeHtml(product.physical)}</p></article>
     <article><div class="pi-product-section-label">Applications</div>${list(product.applications)}</article>
     <article><div class="pi-product-section-label">Processing</div><p>${escapeHtml(product.processing)}</p></article>
     <article><div class="pi-product-section-label">Packaging & bulk supply</div><p>${escapeHtml(product.packaging)}</p></article>
     <article><div class="pi-product-section-label">Storage</div><p>${escapeHtml(product.storage)}</p></article>
-  </div>
-  <div class="pi-product-quality"><div class="pi-product-section-label">Quality note</div><p>${escapeHtml(product.quality)}</p></div>
-  <div class="pi-product-faq"><div class="pi-product-section-label">Frequently asked questions</div><div>${product.faq
+  </section>
+  <section class="pi-product-quality pi-product-section"><div class="pi-product-section-label">Quality note</div><p>${escapeHtml(product.quality)}</p></section>
+  <section class="pi-product-faq pi-product-section"><div class="pi-product-section-label">Frequently asked questions</div><div>${product.faq
     .map(
       ([question, answer]) =>
         `<details><summary>${escapeHtml(question)}</summary><p>${escapeHtml(answer)}</p></details>`,
     )
-    .join("")}</div></div>
-  <div class="pi-product-related"><div class="pi-product-section-label">Explore products</div><p><a href="/what-we-serve">View the full product range</a> or <a href="/contact?product=${encodeURIComponent(product.slug)}">send a product inquiry</a>.</p></div>
+    .join("")}</div></section>
+  <section class="pi-product-related pi-product-section"><div class="pi-product-section-label">Explore products</div><p><a href="/what-we-serve">View the full product range</a> or <a href="/contact?product=${encodeURIComponent(product.slug)}">send a product inquiry</a>.</p></section>
 `;
 
 const setMetaContent = (selector: string, attribute: "name" | "property", key: string, content: string) => {
@@ -348,12 +348,13 @@ const SitePage = () => {
   useEffect(() => {
     const host = hostRef.current;
     if (!host) return;
-    const onClick = (event: MouseEvent) => {
+      const onClick = (event: MouseEvent) => {
       const anchor = (event.target as HTMLElement)?.closest?.("a");
       if (!anchor) return;
       const href = anchor.getAttribute("href");
       if (!href || !href.startsWith("/") || anchor.getAttribute("target") === "_blank") return;
       if (href.startsWith("/#")) return;
+      if (href.startsWith("#")) return;
       event.preventDefault();
       window.location.assign(href);
     };

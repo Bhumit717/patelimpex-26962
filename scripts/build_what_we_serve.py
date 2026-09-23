@@ -39,8 +39,9 @@ def card(name, category, description, image, alt, group, slug=None):
     else:
         view = '/contact?product=' + esc(name.lower().replace(' ', '-').replace('&', 'and'))
         quote = view
+    card_link = f' data-pi-product-link="{view}" tabindex="0" aria-label="View {esc(name)}"' if slug else ''
     return (
-        f'<article data-pi-member="{esc(group)}" role="listitem" class="industry-our-item w-dyn-item pi-product-card">'
+        f'<article data-pi-member="{esc(group)}" role="listitem" class="industry-our-item w-dyn-item pi-product-card"{card_link}>'
         '<div class="industry-our-item-inner">'
         '<div class="industry-our-item-head hidden-mb"><div class="industry-our-item-head-inner">'
         '<div class="industry-our-item-number"><div class="txt fs-12"></div></div>'
