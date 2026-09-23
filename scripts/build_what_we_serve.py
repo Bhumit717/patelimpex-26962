@@ -39,8 +39,9 @@ def card(name, category, description, image, alt, group, slug=None):
     else:
         view = '/contact?product=' + esc(name.lower().replace(' ', '-').replace('&', 'and'))
         quote = view
+    card_link = f' data-pi-product-link="{view}" tabindex="0" aria-label="View {esc(name)}"' if slug else ''
     return (
-        f'<article data-pi-member="{esc(group)}" role="listitem" class="industry-our-item w-dyn-item pi-product-card">'
+        f'<article data-pi-member="{esc(group)}" role="listitem" class="industry-our-item w-dyn-item pi-product-card"{card_link}>'
         '<div class="industry-our-item-inner">'
         '<div class="industry-our-item-head hidden-mb"><div class="industry-our-item-head-inner">'
         '<div class="industry-our-item-number"><div class="txt fs-12"></div></div>'
@@ -90,6 +91,7 @@ while depth:
 close_end = source.find('>', cursor) + 1
 inner_end = source.rfind('</div', open_end, close_end)
 source = source[:open_end] + new_list + source[inner_end:]
-source = source.replace('Our product portfolio includes rice, flours, spices and psyllium products suitable for bulk international sourcing.', 'Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and three distinct psyllium products, alongside buyer-specified packaging.')
+source = source.replace('Our product portfolio includes rice, flours, spices and psyllium products suitable for bulk international sourcing.', 'Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and two distinct psyllium products, alongside buyer-specified packaging.')
+source = source.replace('Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and three distinct psyllium products, alongside buyer-specified packaging.', 'Our focused portfolio covers Basmati rice, Non-Basmati rice, wheat flour, whole wheat flour, cumin, peanuts and two distinct psyllium products, alongside buyer-specified packaging.')
 PATH.write_text(source, encoding="utf-8")
 print(f"what-we-serve: {len(PRODUCTS)} agriculture products, {len(PACKAGING)} packaging products")

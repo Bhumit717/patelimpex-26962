@@ -30,4 +30,22 @@ export const initProductGroups = (root: HTMLElement) => {
       toggle();
     });
   });
+
+  root.querySelectorAll<HTMLElement>("[data-pi-product-link]").forEach((card) => {
+    const openProduct = () => {
+      const href = card.dataset.piProductLink;
+      if (href) window.location.assign(href);
+    };
+
+    card.addEventListener("click", (event) => {
+      if ((event.target as HTMLElement).closest("a")) return;
+      openProduct();
+    });
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      if ((event.target as HTMLElement).closest("a")) return;
+      event.preventDefault();
+      openProduct();
+    });
+  });
 };
