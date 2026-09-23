@@ -7,3 +7,7 @@
 - [x] Add per-product SEO metadata and internal links
 - [x] Verify quote/inquiry actions, forms, links, and responsive behavior
 - [x] Run scoped validation (repository-wide lint still has unrelated legacy failures)
+- [ ] Make product cards open reliably from the full card on touch devices
+- [ ] Rebuild product detail pages with a clearer editorial structure
+- [ ] Replace all agriculture product visuals with transparent cutout imagery
+- [ ] Verify the original home truck animation remains unchanged and smooth
