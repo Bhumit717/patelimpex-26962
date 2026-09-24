@@ -1,16 +1,18 @@
 [
   {
     "slug": "basmati-rice",
+    "heroImage": "/images/products/hero/basmati-rice.webp",
     "name": "Basmati Rice",
     "category": "Rice",
     "eyebrow": "Aromatic long-grain rice from India",
     "intro": "Basmati rice is recognised for its slender grain, delicate aroma and pronounced elongation after cooking. Patel Impex coordinates Indian sourcing, buyer-defined processing and export packing for importers, distributors and food-service buyers.",
-    "overview": "Available programs can cover raw, steam, white sella and golden sella processing. Variety, crop year, ageing, grain length, broken percentage and packing are confirmed against the buyer’s order before supply.",
+    "overview": "Available programs can cover raw, steam, white sella and golden sella processing. Variety, crop year, ageing, grain length, broken percentage and packing are confirmed against the buyer's order before supply.",
     "varieties": [
       "1121 Basmati",
       "1509 Basmati",
       "1401 Basmati",
       "Pusa Basmati",
+      "Sharbati Basmati",
       "Traditional Basmati"
     ],
     "specs": [
@@ -21,6 +23,14 @@
       [
         "Typical grain length",
         "Approximately 7.5–8.4 mm for selected long-grain lots"
+      ],
+      [
+        "Length-to-breadth ratio",
+        "Indicative range: approximately 3.5:1 to 4:1"
+      ],
+      [
+        "Elongation on cooking",
+        "Indicative range: approximately 1.8–2.0 times uncooked length"
       ],
       [
         "Moisture",
@@ -49,7 +59,7 @@
     "processing": "Paddy is cleaned, de-stoned, milled and graded. Depending on the order, it may be steamed or parboiled before milling, then colour-sorted and inspected. Ageing and polish are agreed with the buyer.",
     "packaging": "Common options include food-grade PP, non-woven, jute and laminated retail bags in buyer-agreed sizes. Private-label artwork and packing configuration are subject to order review.",
     "storage": "Store sealed bags in a cool, dry, clean and pest-controlled area, protected from moisture, odours and direct sunlight.",
-    "quality": "Quality is managed against an approved pre-shipment specification. Numeric values shown here are indicative trade ranges, not fixed claims for every lot.",
+    "quality": "Quality is managed against an approved pre-shipment specification. Numeric values shown here are indicative trade ranges, not fixed claims for every lot. Independent laboratory testing against the agreed specification, including residue analysis where required by the buyer or destination, can be arranged for a contracted lot.",
     "faq": [
       [
         "Which Basmati varieties can I request?",
@@ -64,13 +74,14 @@
         "No. Grain length, moisture, broken percentage and other parameters are confirmed for the contracted lot."
       ]
     ],
-    "image": "/images/products/cutouts/basmati-rice.png",
+    "image": "/images/products/cutouts/basmati-rice.svg",
     "alt": "Basmati Rice product supplied for export from India by Patel Impex",
     "title": "Basmati Rice Exporter from India | Patel Impex",
     "description": "Source basmati rice from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
   },
   {
     "slug": "non-basmati-rice",
+    "heroImage": "/images/products/hero/non-basmati-rice.webp",
     "name": "Non-Basmati Rice",
     "category": "Rice",
     "eyebrow": "Versatile rice for volume food programs",
@@ -79,6 +90,7 @@
     "varieties": [
       "IR 64",
       "Sona Masoori",
+      "Ponni",
       "PR 11 / PR 14",
       "Swarna",
       "Parmal"
@@ -91,6 +103,10 @@
       [
         "Typical grain length",
         "Approximately 5–6.5 mm"
+      ],
+      [
+        "Length-to-breadth ratio",
+        "Indicative range: approximately 2.5:1 to 3:1"
       ],
       [
         "Moisture",
@@ -119,7 +135,7 @@
     "processing": "Rice is cleaned, de-stoned, milled, graded and colour-sorted. Parboiling, polishing and sortex selection are specified according to the required end use.",
     "packaging": "Food-grade PP, non-woven, jute or laminated bags in retail and bulk formats can be discussed. Final pack size and marking follow the purchase contract.",
     "storage": "Keep in a cool, dry, ventilated and pest-controlled warehouse. Protect bags from floor moisture, strong odours and direct sunlight.",
-    "quality": "Indicative ranges support enquiry planning. Contract values, testing and tolerance are agreed for each product lot.",
+    "quality": "Indicative ranges support enquiry planning. Contract values, testing and tolerance are agreed for each product lot. Independent laboratory testing against the agreed specification, including residue analysis where required by the buyer or destination, can be arranged for a contracted lot.",
     "faq": [
       [
         "How is Non-Basmati different from Basmati?",
@@ -134,21 +150,22 @@
         "State the variety, processing, grain length, broken percentage, moisture limit, quantity, destination and pack size."
       ]
     ],
-    "image": "/images/products/cutouts/non-basmati-rice.png",
+    "image": "/images/products/cutouts/non-basmati-rice.svg",
     "alt": "Non-Basmati Rice product supplied for export from India by Patel Impex",
     "title": "Non-Basmati Rice Exporter from India | Patel Impex",
     "description": "Source non-basmati rice from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
   },
   {
     "slug": "wheat-flour",
+    "heroImage": "/images/products/hero/wheat-flour.webp",
     "name": "Wheat Flour",
     "category": "Wheat & Flour",
     "eyebrow": "Buyer-defined flour for food production",
     "intro": "Wheat flour is milled to deliver the protein, ash, granulation and handling properties required by different food applications. Patel Impex coordinates flour sourcing for distributors, bakeries, food-service buyers and processors.",
-    "overview": "Standard white flour programs may include all-purpose and baker’s flour profiles. Flour is not ready to eat and should be thoroughly cooked before consumption.",
+    "overview": "Standard white flour programs may include all-purpose and baker's flour profiles. Flour is not ready to eat and should be thoroughly cooked before consumption.",
     "varieties": [
       "All-purpose flour",
-      "Baker’s flour",
+      "Baker's flour",
       "Standard patent flour"
     ],
     "specs": [
@@ -186,12 +203,12 @@
     ],
     "processing": "Wheat is cleaned and conditioned before roller milling. Bran and germ are separated for refined flour, then streams are blended to the required functional profile and sieved before packing.",
     "packaging": "Common formats include lined paper bags, woven PP bags and buyer-approved food-grade packs. Pack size, labels and palletisation are confirmed with the order.",
-    "storage": "Store cool and dry in sealed packaging, away from moisture, pests and odorous materials. Use stock rotation and follow the lot’s stated best-before period.",
+    "storage": "Store cool and dry in sealed packaging, away from moisture, pests and odorous materials. Use stock rotation and follow the lot's stated best-before period.",
     "quality": "Protein and ash figures from source research describe common flour classes; PATEL IMPEX confirms actual lot values before shipment.",
     "faq": [
       [
         "Which flour is suitable for bread?",
-        "A baker’s flour with stronger gluten and a higher protein target is commonly selected."
+        "A baker's flour with stronger gluten and a higher protein target is commonly selected."
       ],
       [
         "Is raw flour ready to eat?",
@@ -202,13 +219,14 @@
         "Yes. Share the target application and protein range with the enquiry."
       ]
     ],
-    "image": "/images/products/cutouts/wheat-flour.png",
+    "image": "/images/products/cutouts/wheat-flour.svg",
     "alt": "Wheat Flour product supplied for export from India by Patel Impex",
     "title": "Wheat Flour Exporter from India | Patel Impex",
     "description": "Source wheat flour from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
   },
   {
     "slug": "whole-wheat-flour",
+    "heroImage": "/images/products/hero/whole-wheat-flour.webp",
     "name": "Whole Wheat Flour",
     "category": "Wheat & Flour",
     "eyebrow": "Whole-grain flour with bran and germ",
@@ -255,7 +273,7 @@
     "processing": "Cleaned wheat is conditioned and milled while retaining the whole-kernel components. Streams are recombined and sieved to achieve the required granulation.",
     "packaging": "Food-grade lined bags or woven PP sacks are available in buyer-agreed retail and bulk formats.",
     "storage": "Because whole wheat flour contains the germ, careful cool, dry storage and stock rotation are important. Keep sealed and protected from heat, humidity and pests.",
-    "quality": "Specifications are agreed per contract. Product suitability should be validated in the buyer’s own formulation and process.",
+    "quality": "Specifications are agreed per contract. Product suitability should be validated in the buyer's own formulation and process.",
     "faq": [
       [
         "How does whole wheat flour differ from refined flour?",
@@ -270,13 +288,14 @@
         "Tell us the end use, target protein, granulation, quantity, destination and packing requirement."
       ]
     ],
-    "image": "/images/products/cutouts/whole-wheat-flour.png",
+    "image": "/images/products/cutouts/whole-wheat-flour.svg",
     "alt": "Whole Wheat Flour product supplied for export from India by Patel Impex",
     "title": "Whole Wheat Flour Exporter from India | Patel Impex",
     "description": "Source whole wheat flour from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
   },
   {
     "slug": "cumin",
+    "heroImage": "/images/products/hero/cumin.webp",
     "name": "Cumin",
     "category": "Spices",
     "eyebrow": "Whole Indian cumin for spice buyers",
@@ -309,6 +328,14 @@
         "Indicative range: approximately 2.5–4%"
       ],
       [
+        "Total ash",
+        "Common trade target: up to approximately 7.5%"
+      ],
+      [
+        "Acid-insoluble ash",
+        "Common trade target: up to approximately 1.5%"
+      ],
+      [
         "Foreign matter",
         "Buyer-defined; commonly up to 0.5–1%"
       ]
@@ -338,13 +365,14 @@
         "No. The final contracted purity is confirmed on the lot specification and supporting test documents."
       ]
     ],
-    "image": "/images/products/cutouts/cumin.png",
+    "image": "/images/products/cutouts/cumin.svg",
     "alt": "Cumin product supplied for export from India by Patel Impex",
     "title": "Cumin Exporter from India | Patel Impex",
     "description": "Source cumin from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
   },
   {
     "slug": "peanuts",
+    "heroImage": "/images/products/hero/peanuts.webp",
     "name": "Peanuts",
     "category": "Agricultural Products",
     "eyebrow": "Indian groundnut kernels for bulk buyers",
@@ -353,6 +381,7 @@
     "varieties": [
       "Bold / Runner type",
       "Java / Spanish type",
+      "Red Natal type",
       "TJ (Tiny Java)",
       "Raw peanut kernels"
     ],
@@ -389,7 +418,7 @@
       "Peanut butter and paste",
       "Edible-oil processing"
     ],
-    "processing": "Pods are shelled, aspirated, cleaned and graded by size. Colour sorting and additional food-safety controls may be specified. No absolute “zero aflatoxin” or pathogen claim is made.",
+    "processing": "Pods are shelled, aspirated, cleaned and graded by size. Colour sorting and additional food-safety controls may be specified. No absolute 'zero aflatoxin' or pathogen claim is made.",
     "packaging": "Common options include food-grade vacuum packs, lined woven sacks or cartons in buyer-agreed weights. Container configuration depends on pack and destination.",
     "storage": "Store cool, dry and protected from heat, humidity, pests and direct sunlight. Peanuts should be managed carefully to limit moisture uptake and rancidity.",
     "quality": "Aflatoxin, pesticide residue and microbiological limits are market-specific and must be agreed in the contract and verified for the shipment.",
@@ -407,18 +436,19 @@
         "Raw peanuts require appropriate processing or cooking before consumption."
       ]
     ],
-    "image": "/images/products/cutouts/peanuts.png",
+    "image": "/images/products/cutouts/peanuts.svg",
     "alt": "Peanuts product supplied for export from India by Patel Impex",
     "title": "Peanuts Exporter from India | Patel Impex",
     "description": "Source peanuts from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
   },
   {
     "slug": "psyllium-seed",
+    "heroImage": "/images/products/hero/psyllium-seed.webp",
     "name": "Psyllium Seed",
     "category": "Psyllium",
     "eyebrow": "Plantago ovata seed from India",
     "intro": "Psyllium seed, also known as isabgol seed, is the whole seed of Plantago ovata. It is the agricultural raw material from which psyllium husk is mechanically separated.",
-    "overview": "Seed lots can be discussed by purity, moisture, foreign matter and swelling index. Final parameters are aligned to the processor or buyer’s intended use.",
+    "overview": "Seed lots can be discussed by purity, moisture, foreign matter and swelling index. Final parameters are aligned to the processor or buyer's intended use.",
     "varieties": [
       "Premium-cleaned seed",
       "Standard-cleaned seed"
@@ -474,18 +504,19 @@
         "Yes, this product page concerns Plantago ovata psyllium."
       ]
     ],
-    "image": "/images/products/cutouts/psyllium-seed.png",
+    "image": "/images/products/cutouts/psyllium-seed.svg",
     "alt": "Psyllium Seed product supplied for export from India by Patel Impex",
     "title": "Psyllium Seed Exporter from India | Patel Impex",
     "description": "Source psyllium seed from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
   },
   {
     "slug": "psyllium-husk",
+    "heroImage": "/images/products/hero/psyllium-husk.webp",
     "name": "Psyllium Husk",
     "category": "Psyllium",
     "eyebrow": "Fibre-rich husk for food and ingredient buyers",
     "intro": "Psyllium husk is the cleaned outer seed coat of Plantago ovata. It hydrates rapidly and forms a mucilaginous gel, making it useful as a dietary-fibre ingredient and functional binder.",
-    "overview": "Husk grades are commonly differentiated by purity, colour, swelling volume, ash and microbiological parameters. PATEL IMPEX confirms the buyer’s intended use and required test plan before supply.",
+    "overview": "Husk grades are commonly differentiated by purity, colour, swelling volume, ash and microbiological parameters. PATEL IMPEX confirms the buyer's intended use and required test plan before supply.",
     "varieties": [
       "85% purity grade",
       "95% purity grade",
@@ -543,9 +574,83 @@
         "Yes, subject to product protection, quantity and destination requirements."
       ]
     ],
-    "image": "/images/products/cutouts/psyllium-husk.png",
+    "image": "/images/products/cutouts/psyllium-husk.svg",
     "alt": "Psyllium Husk product supplied for export from India by Patel Impex",
     "title": "Psyllium Husk Exporter from India | Patel Impex",
     "description": "Source psyllium husk from India with buyer-defined specifications, export packaging and documentation support from Patel Impex."
+  },
+  {
+    "slug": "psyllium-husk-powder",
+    "heroImage": "/images/products/hero/psyllium-husk-powder.webp",
+    "name": "Psyllium Husk Powder",
+    "category": "Psyllium",
+    "eyebrow": "Pulverised husk for food and supplement buyers",
+    "intro": "Psyllium husk powder is husk that has been milled and sieved into a fine, uniform powder. It belongs to the same Plantago ovata seed-coat material as whole husk and shares its rapid water-binding, gel-forming behaviour.",
+    "overview": "Powder grades are commonly defined by particle or mesh size together with purity, swelling volume, moisture, ash and microbiological parameters. The buyer's application and target particle size should be stated in the enquiry.",
+    "varieties": [
+      "Fine powder (standard mesh)",
+      "Ultra-fine powder",
+      "Coarse-ground powder",
+      "Purity-graded lots (commonly 85–99%)"
+    ],
+    "specs": [
+      [
+        "Botanical name",
+        "Plantago ovata"
+      ],
+      [
+        "Form",
+        "Milled husk; particle size specified by mesh or sieve"
+      ],
+      [
+        "Purity",
+        "Indicative commercial grades: 85–99%"
+      ],
+      [
+        "Moisture",
+        "Common maximum: 12%"
+      ],
+      [
+        "Swelling volume",
+        "Indicative grade-dependent range: approximately 32–55 ml/g"
+      ],
+      [
+        "Particle size",
+        "Buyer-defined; commonly agreed by mesh specification"
+      ],
+      [
+        "Ash",
+        "Grade and method dependent"
+      ]
+    ],
+    "physical": "Fine to very fine powder with a cream or pale-buff colour and a faint characteristic odour. It hydrates rapidly when mixed with water and forms a translucent mucilaginous gel.",
+    "applications": [
+      "Dietary-fibre supplement blends",
+      "Pharmaceutical and nutraceutical formulations",
+      "Gluten-free bakery and functional foods",
+      "Instant beverage and smoothie mixes"
+    ],
+    "processing": "Cleaned husk is milled, then classified by sieving and air systems to the required particle size. The finished powder is blended, tested and packed under food-grade conditions.",
+    "packaging": "Typical formats include lined HDPE, laminated paper or food-grade bags in 10 kg, 15 kg, 25 kg and 50 kg sizes. Final pack and closure are confirmed to protect the product from moisture.",
+    "storage": "Keep in well-closed packaging in a cool, dry, pest-controlled space. The product is hygroscopic, so protect it from moisture, humidity and strong odours after opening.",
+    "quality": "Particle size and purity alone do not prove pharmacopoeial compliance. Any USP, EP, IP, organic or microbiological requirement must be expressly contracted and documented for the lot.",
+    "faq": [
+      [
+        "How is Psyllium Husk Powder different from Psyllium Husk?",
+        "Powder is the same husk material milled to a finer, more uniform particle size for applications that need a smoother dispersion and faster hydration."
+      ],
+      [
+        "Can the particle size be specified?",
+        "Yes. Targets are usually expressed as a mesh or sieve size and are confirmed against the buyer's intended application."
+      ],
+      [
+        "Are powder grades equivalent to pharmaceutical grades?",
+        "No. A compendial or food-safety grade requires the applicable specification, test methods and documentation for the specific lot."
+      ]
+    ],
+    "image": "/images/products/cutouts/psyllium-husk-powder.svg",
+    "alt": "Psyllium Husk Powder product supplied for export from India by Patel Impex",
+    "title": "Psyllium Husk Powder Exporter from India | Patel Impex",
+    "description": "Source psyllium husk powder from India with buyer-defined particle size, purity and export packaging support from Patel Impex."
   }
 ]
