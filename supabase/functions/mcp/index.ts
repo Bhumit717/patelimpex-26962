@@ -3,10 +3,10 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.26.2";
+import { defineMcp } from "npm:@lovable.dev/mcp-js@0.26.1";
 
 // src/lib/mcp/tools/get-company-info.ts
-import { defineTool } from "npm:@lovable.dev/mcp-js@0.26.2";
+import { defineTool } from "npm:@lovable.dev/mcp-js@0.26.1";
 
 // src/lib/mcp/pages.ts
 var SITE_URL = "https://patelimpex.com";
@@ -260,7 +260,7 @@ var get_company_info_default = defineTool({
 });
 
 // src/lib/mcp/tools/get-page.ts
-import { defineTool as defineTool2, ToolError } from "npm:@lovable.dev/mcp-js@0.26.2";
+import { defineTool as defineTool2, ToolError } from "npm:@lovable.dev/mcp-js@0.26.1";
 import { z } from "npm:zod@^4.4.3";
 function htmlToText(html) {
   return html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<svg[\s\S]*?<\/svg>/gi, " ").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/[ \t]+/g, " ").replace(/\s*\n\s*/g, "\n").trim();
@@ -298,7 +298,7 @@ ${text}` }],
 });
 
 // src/lib/mcp/tools/list-pages.ts
-import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.26.2";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.26.1";
 var list_pages_default = defineTool3({
   name: "list_pages",
   title: "List website pages",
@@ -318,7 +318,7 @@ var list_pages_default = defineTool3({
 });
 
 // src/lib/mcp/tools/search-site.ts
-import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.2";
+import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.1";
 import { z as z2 } from "npm:zod@^4.4.3";
 var search_site_default = defineTool4({
   name: "search_pages",
@@ -358,5 +358,5 @@ var mcp_default = defineMcp({
 });
 
 // lovable-mcp-supabase-entry.ts
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.26.2/stacks/supabase";
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.26.1/stacks/supabase";
 Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));
