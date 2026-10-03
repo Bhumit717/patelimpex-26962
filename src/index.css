@@ -11,6 +11,15 @@ body {
   min-height: 100vh;
 }
 
+/* Target for the header "Inquiry" link. Clears the fixed header so the contact
+   form is not hidden underneath it when the fragment is opened. */
+#inquiry {
+  display: block;
+  position: relative;
+  top: -12rem;
+  visibility: hidden;
+}
+
 /* /more export-guide pages: scroll reveal + stagger (see src/lib/moreReveal.ts) */
 .more-reveal {
   opacity: 0;
@@ -168,6 +177,29 @@ body {
   outline-offset: -2px;
 }
 
+/* Product photography is square, but the Webflow card frame is a fixed-height
+   band -- 29.4rem on desktop, 12.2 by 7.2rem on mobile -- whose width grows
+   with the viewport, while .img-fill sets object-fit:cover on the picture. The
+   frame is therefore wider than the shot and cover sliced the top and bottom
+   off every product. Pin the frame to the photograph's own square ratio so the
+   frame and the image always agree and nothing is ever cropped. */
+.pi-product-card .industry-our-item-main-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  height: auto;
+}
+
+/* Laid over the frame rather than sized from it, so the picture fills the
+   square exactly and cover has nothing left to trim. */
+.pi-product-card .industry-our-item-main-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .pi-product-page {
   background: var(--_color---m-white);
   color: var(--_color---m-black);
@@ -182,8 +214,10 @@ body {
 
 .pi-product-hero {
   min-height: 100svh;
-  padding: 15rem 0 7rem;
-  border-bottom: 1px solid var(--_color---border--primary);
+  /* The imported .container is max-width: 100vw with no side padding, so every
+     section sat flush against the viewport edge. These sections pad 4rem in. */
+  padding: 15rem 4rem 7rem;
+  border-bottom: 1px solid var(--_color---border--main);
 }
 
 .pi-product-hero .container {
@@ -216,16 +250,16 @@ body {
 }
 
 .pi-product-heading > p {
-  max-width: 64rem;
+  max-width: 34rem;
   margin-top: 3rem;
-  font-size: 2rem;
+  font-size: 2.2rem;
   line-height: 1.5;
 }
 
 .pi-product-kicker,
 .pi-product-section-label {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   line-height: 1.4;
   text-transform: uppercase;
 }
@@ -241,15 +275,12 @@ body {
   align-self: center;
   aspect-ratio: 1;
   overflow: hidden;
-  border: 1px solid var(--_color---border--primary);
-  background: var(--_color---m-white);
 }
 
 .pi-product-visual img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 7%;
   transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -275,13 +306,13 @@ body {
   gap: 1.5rem;
   align-items: start;
   padding-top: 2rem;
-  border-top: 1px solid var(--_color---border--primary);
+  border-top: 1px solid var(--_color---border--main);
 }
 
 .pi-product-hero-note span,
 .pi-product-hero-note p {
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1rem;
+  font-size: 1.15rem;
   line-height: 1.5;
   text-transform: uppercase;
 }
@@ -321,7 +352,7 @@ body {
 }
 
 .pi-product-body {
-  padding: 4rem 0 12rem;
+  padding: 4rem 4rem 12rem;
 }
 
 .pi-product-body .container {
@@ -330,13 +361,14 @@ body {
 
 .pi-product-section {
   padding-block: 8rem;
-  border-bottom: 1px solid var(--_color---border--primary);
+  border-bottom: 1px solid var(--_color---border--main);
 }
 
 .pi-product-overview,
 .pi-product-spec-layout,
 .pi-product-quality,
 .pi-product-faq,
+.pi-product-gallery,
 .pi-product-related {
   grid-column: 1 / -1;
   display: grid;
@@ -348,6 +380,7 @@ body {
 .pi-product-spec-layout > .pi-product-section-label,
 .pi-product-quality > .pi-product-section-label,
 .pi-product-faq > .pi-product-section-label,
+.pi-product-gallery > .pi-product-section-label,
 .pi-product-related > .pi-product-section-label {
   grid-column: 1 / 5;
   opacity: 0.48;
@@ -357,14 +390,36 @@ body {
 .pi-product-spec-table,
 .pi-product-quality > p,
 .pi-product-faq > div:last-child,
+.pi-product-gallery-grid,
 .pi-product-related > p {
   grid-column: 6 / -1;
+}
+
+/* Extra verified angles of one form, shown only where more than one image
+   genuinely depicts it. */
+.pi-product-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--container--column-gap);
+}
+
+.pi-product-gallery-grid figure {
+  margin: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--_color---bg--main);
+}
+
+@media screen and (max-width: 767px) {
+  .pi-product-gallery-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .pi-product-overview h2,
 .pi-product-inquiry h2 {
   font-family: Archivo, sans-serif;
-  font-size: clamp(4rem, 4vw, 7rem);
+  font-size: clamp(4.4rem, 4.6vw, 8rem);
   line-height: 1;
   text-transform: uppercase;
 }
@@ -378,12 +433,12 @@ body {
 .pi-product-related > p {
   max-width: 88rem;
   margin-top: 2rem;
-  font-size: 1.8rem;
+  font-size: 2rem;
   line-height: 1.6;
 }
 
 .pi-product-spec-table {
-  border-top: 1px solid var(--_color---border--primary);
+  border-top: 1px solid var(--_color---border--main);
 }
 
 .pi-product-spec-row {
@@ -391,12 +446,29 @@ body {
   grid-template-columns: 1fr 2fr;
   gap: 2rem;
   padding: 1.8rem 0;
-  border-bottom: 1px solid var(--_color---border--primary);
-  font-size: 1.5rem;
+  border-bottom: 1px solid var(--_color---border--main);
+  font-size: 1.65rem;
 }
 
 .pi-product-spec-row strong {
   font-weight: 500;
+}
+
+/* Visually hidden, still announced by screen readers. */
+.pi-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pi-product-spec-layout .pi-product-spec-row:first-child {
+  border-top: 0;
 }
 
 .pi-product-content-grid {
@@ -404,14 +476,14 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-top: 0;
-  border-left: 1px solid var(--_color---border--primary);
+  border-left: 1px solid var(--_color---border--main);
 }
 
 .pi-product-content-grid article {
   min-height: 28rem;
   padding: 3rem;
-  border-right: 1px solid var(--_color---border--primary);
-  border-bottom: 1px solid var(--_color---border--primary);
+  border-right: 1px solid var(--_color---border--main);
+  border-bottom: 1px solid var(--_color---border--main);
 }
 
 .pi-product-content-grid p,
@@ -431,11 +503,11 @@ body {
 
 .pi-product-faq details {
   padding: 2rem 0;
-  border-bottom: 1px solid var(--_color---border--primary);
+  border-bottom: 1px solid var(--_color---border--main);
 }
 
 .pi-product-faq details:first-child {
-  border-top: 1px solid var(--_color---border--primary);
+  border-top: 1px solid var(--_color---border--main);
 }
 
 .pi-product-faq summary {
@@ -456,8 +528,32 @@ body {
   text-underline-offset: 0.2em;
 }
 
+.pi-product-related-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.6rem;
+  margin-top: 2.4rem;
+  list-style: none;
+  padding: 0;
+}
+
+.pi-product-related-list li {
+  font-size: 1.5rem;
+}
+
+.pi-product-related-list li::before {
+  content: "";
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.8rem;
+  border-radius: 50%;
+  background: var(--_color---primary);
+  vertical-align: middle;
+}
+
 .pi-product-inquiry {
-  padding: 9rem 0;
+  padding: 9rem 4rem;
   background: var(--_color---m-black);
   color: var(--_color---m-white);
 }
@@ -484,6 +580,111 @@ body {
   color: var(--_color---m-white);
 }
 
+/* The imported .grid is a single-column grid (grid-template-columns: 1fr), so
+   every grid-column in the product template resolved into implicit grid-auto
+   tracks instead of real ones: the hero image was placed from column 11 while
+   the heading started at column 1, and the body sections had no track list at
+   all, which is where the dead bands came from. Declare the tracks. */
+/* Hero: text left, image right, with the image weighted to about 65% of the row
+   from 1200px up. The side-by-side layout starts at 768px rather than at a
+   laptop breakpoint, because the viewport a browser reports depends on zoom and
+   window size, not on the screen: a 1366px laptop at 125% zoom, or with the
+   window not maximised, reports well under 992px. Below 768px the row is too
+   narrow to give the image real size beside the headline, so it stacks there.
+
+   The grid-column values are restated below because the base rules still place
+   the heading at column 1/10 and the image at 11/-1, which build implicit tracks
+   again once the tracks are declared.
+
+   These declarations are !important on purpose. `.pi-product-hero .container`
+   and the Webflow `.container.grid` rule have identical specificity (0,2,0), so
+   the winner depends only on stylesheet order in the document, and the hero kept
+   rendering as a single narrow column whenever the imported sheet was applied
+   last. The !important flags make the layout independent of source order,
+   browser zoom, and window size. Nothing else in this file uses !important. */
+@media (min-width: 768px) {
+  .pi-product-hero .container {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    column-gap: clamp(1.6rem, 3vw, 4rem) !important;
+  }
+  /* Two columns: heading left, image right. Every child is placed explicitly
+     because the base rules still use 1/10 and 11/-1. */
+  .pi-product-hero .pi-product-breadcrumb { grid-column: 1 / -1 !important; }
+  .pi-product-hero .pi-product-heading {
+    grid-column: 1 !important;
+    align-self: center !important;
+    /* The template pads the heading block 5rem from the top, which pushed the
+       h1 down below the top of the image. */
+    padding-block: 0 !important;
+  }
+  .pi-product-hero .pi-product-visual,
+  .pi-product-hero .pi-product-hero-note {
+    grid-column: 2 !important;
+    align-self: center !important;
+  }
+  /* The image shares the row with the headline, which is capped at
+     max-width: 12ch. Left at the template's 7vw the h1 is far wider than the
+     column it sits in and pushes the layout around, so it scales down, but it
+     is still far larger than the 12ch measure can hold at the template size. */
+  .pi-product-hero .pi-product-heading h1 { font-size: clamp(3rem, 5.2vw, 5.2rem); }
+  .pi-product-hero .pi-product-hero-note { max-width: 34rem !important; }
+}
+
+/* From 1200px there is room to weight the row towards the image. 0.85fr / 1.15fr
+   keeps a ~530px measure for the headline at 1440 while still giving the image
+   ~720px, up from the 539px it used to get. A literal 2x image (1078px) is not
+   reachable while text stays beside it: at 1440 the row is 1312px wide once the
+   4rem section padding is taken off. */
+@media (min-width: 1200px) {
+  .pi-product-hero .container {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr) !important;
+  }
+  .pi-product-hero .pi-product-visual { max-width: 64rem !important; }
+}
+
+@media (min-width: 992px) {
+  /* Enquiry: copy left, buttons right. */
+  .pi-product-inquiry .container {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .pi-product-inquiry .container > div:first-child { grid-column: 1 / 9; }
+  .pi-product-inquiry .container > .pi-product-actions {
+    grid-column: 9 / -1;
+    align-self: end;
+    justify-content: flex-end;
+  }
+
+  /* Body sections: section label in a narrow left column, content beside it,
+     mirroring the tablet layout rather than stacking both at full width. */
+  .pi-product-overview,
+  .pi-product-spec-layout,
+  .pi-product-quality,
+  .pi-product-faq,
+  .pi-product-related {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .pi-product-overview > .pi-product-section-label,
+  .pi-product-spec-layout > .pi-product-section-label,
+  .pi-product-quality > .pi-product-section-label,
+  .pi-product-faq > .pi-product-section-label,
+  .pi-product-related > .pi-product-section-label { grid-column: 1 / 3; }
+  .pi-product-overview > div:last-child,
+  .pi-product-spec-table,
+  .pi-product-quality > p,
+  .pi-product-faq > div:last-child,
+  .pi-product-related > p,
+  .pi-product-related-list { grid-column: 3 / -1; }
+}
+
+/* Tablet already carries an 8-column intent (heading 1/6, image 6/-1, section
+   label 1/3, content 3/-1) that could not resolve without these tracks. */
+@media (min-width: 768px) and (max-width: 991px) {
+  .pi-product-inquiry .container {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 991px) {
   .pi-product-heading { grid-column: 1 / 6; }
   .pi-product-visual,
@@ -503,7 +704,8 @@ body {
   .pi-product-spec-table,
   .pi-product-quality > p,
   .pi-product-faq > div:last-child,
-  .pi-product-related > p { grid-column: 3 / -1; }
+  .pi-product-related > p,
+  .pi-product-related-list { grid-column: 3 / -1; }
 }
 
 @media (max-width: 767px) {
@@ -513,7 +715,7 @@ body {
   }
   .pi-group-title { font-size: 2.8rem; }
   .pi-group-sub { font-size: 1.3rem; }
-  .pi-product-hero { min-height: 0; padding: 10rem 0 4rem; }
+  .pi-product-hero { min-height: 0; padding: 10rem 1.6rem 4rem; }
   .pi-product-hero .container { min-height: 0; row-gap: 2.8rem; }
   .pi-product-breadcrumb,
   .pi-product-heading,
@@ -523,7 +725,7 @@ body {
   .pi-product-heading h1 { font-size: 4.6rem; }
   .pi-product-heading > p { font-size: 1.6rem; }
   .pi-product-visual { aspect-ratio: 1; }
-  .pi-product-body { padding: 0 0 7rem; }
+  .pi-product-body { padding: 0 1.6rem 7rem; }
   .pi-product-section { padding-block: 5rem; }
   .pi-product-overview,
   .pi-product-spec-layout,
@@ -535,11 +737,13 @@ body {
   .pi-product-quality > p,
   .pi-product-faq > div:last-child,
   .pi-product-related > p { margin-top: 2rem; }
+  /* Two-column detail rows would squeeze the URL on narrow screens. */
+  .pi-product-spec-row { grid-template-columns: 1fr; gap: 0.7rem; }
   .pi-product-overview h2,
+  .pi-product-inquiry { padding: 5.5rem 1.6rem; }
   .pi-product-inquiry h2 { font-size: 3.6rem; }
   .pi-product-content-grid { grid-template-columns: 1fr; }
   .pi-product-content-grid article { min-height: 0; padding: 2.4rem; }
-  .pi-product-spec-row { grid-template-columns: 1fr; gap: 0.7rem; }
   .pi-product-inquiry .container > div:first-child,
   .pi-product-inquiry .container > .pi-product-actions { grid-column: 1 / -1; }
   .pi-product-inquiry .container > .pi-product-actions { justify-content: flex-start; }

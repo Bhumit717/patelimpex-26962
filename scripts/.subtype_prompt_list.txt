@@ -1,0 +1,58 @@
+01. basmati-rice/1121-basmati  |  1121 Basmati  |  product: Basmati Rice
+02. basmati-rice/1509-basmati  |  1509 Basmati  |  product: Basmati Rice
+03. basmati-rice/1401-basmati  |  1401 Basmati  |  product: Basmati Rice
+04. basmati-rice/pusa-basmati  |  Pusa Basmati  |  product: Basmati Rice
+05. basmati-rice/sharbati-basmati  |  Sharbati Basmati  |  product: Basmati Rice
+06. basmati-rice/traditional-basmati  |  Traditional Basmati  |  product: Basmati Rice
+07. non-basmati-rice/ir-64  |  IR 64  |  product: Non-Basmati Rice
+08. non-basmati-rice/sona-masoori  |  Sona Masoori  |  product: Non-Basmati Rice
+09. non-basmati-rice/ponni  |  Ponni  |  product: Non-Basmati Rice
+10. non-basmati-rice/pr-11-pr-14  |  PR 11 / PR 14  |  product: Non-Basmati Rice
+11. non-basmati-rice/swarna  |  Swarna  |  product: Non-Basmati Rice
+12. non-basmati-rice/parmal  |  Parmal  |  product: Non-Basmati Rice
+13. pesticide-free-basmati-rice/1121-basmati  |  1121 Basmati  |  product: Pesticide-Free Basmati Rice
+14. pesticide-free-basmati-rice/1509-basmati  |  1509 Basmati  |  product: Pesticide-Free Basmati Rice
+15. pesticide-free-basmati-rice/pusa-basmati  |  Pusa Basmati  |  product: Pesticide-Free Basmati Rice
+16. pesticide-free-basmati-rice/sharbati-basmati  |  Sharbati Basmati  |  product: Pesticide-Free Basmati Rice
+17. pesticide-free-basmati-rice/traditional-basmati  |  Traditional Basmati  |  product: Pesticide-Free Basmati Rice
+18. wheat-flour/all-purpose-flour  |  All-purpose flour  |  product: Wheat Flour
+19. wheat-flour/bakers-flour  |  Baker's flour  |  product: Wheat Flour
+20. wheat-flour/standard-patent-flour  |  Standard patent flour  |  product: Wheat Flour
+21. whole-wheat-flour/fine-whole-wheat-flour  |  Fine whole wheat flour  |  product: Whole Wheat Flour
+22. whole-wheat-flour/stone-ground-style-flour  |  Stone-ground style flour  |  product: Whole Wheat Flour
+23. whole-wheat-flour/coarse-whole-wheat-flour  |  Coarse whole wheat flour  |  product: Whole Wheat Flour
+24. tandoori-flour/standard-tandoori-blend  |  Standard tandoori blend  |  product: Tandoori Flour
+25. tandoori-flour/coarse-granulation-tandoori-flour  |  Coarse-granulation tandoori flour  |  product: Tandoori Flour
+26. tandoori-flour/buyer-specified-blend  |  Buyer-specified blend  |  product: Tandoori Flour
+27. suji-semolina/coarse-granulation-semolina  |  Coarse granulation semolina  |  product: Suji / Semolina
+28. suji-semolina/medium-granulation-semolina  |  Medium granulation semolina  |  product: Suji / Semolina
+29. suji-semolina/fine-granulation-semolina-rava  |  Fine granulation semolina (rava)  |  product: Suji / Semolina
+30. maida-refined-wheat-flour/all-purpose-maida  |  All-purpose maida  |  product: Maida / Refined Wheat Flour
+31. maida-refined-wheat-flour/baker-s-bread-flour  |  Baker's (bread) flour  |  product: Maida / Refined Wheat Flour
+32. maida-refined-wheat-flour/cake-and-biscuit-flour  |  Cake and biscuit flour  |  product: Maida / Refined Wheat Flour
+33. raw-corn-flour/raw-corn-flour-fine-granulation  |  Raw corn flour, fine granulation  |  product: Raw Corn Flour
+34. raw-corn-flour/raw-corn-flour-medium-granulation  |  Raw corn flour, medium granulation  |  product: Raw Corn Flour
+35. raw-corn-flour/raw-corn-flour-coarse-granulation  |  Raw corn flour, coarse granulation  |  product: Raw Corn Flour
+36. peanut-groundnut/bold-runner-type  |  Bold / Runner type  |  product: Peanut / Groundnut
+37. peanut-groundnut/java-spanish-type  |  Java / Spanish type  |  product: Peanut / Groundnut
+38. peanut-groundnut/red-natal-type  |  Red Natal type  |  product: Peanut / Groundnut
+39. peanut-groundnut/tj-tiny-java  |  TJ (Tiny Java)  |  product: Peanut / Groundnut
+40. peanut-groundnut/raw-peanut-kernels  |  Raw peanut kernels  |  product: Peanut / Groundnut
+41. cumin-seeds/whole-cumin-seeds  |  Whole cumin seeds  |  product: Cumin Seeds
+42. cumin-seeds/machine-cleaned-cumin  |  Machine-cleaned cumin  |  product: Cumin Seeds
+43. cumin-seeds/sortex-cleaned-cumin  |  Sortex-cleaned cumin  |  product: Cumin Seeds
+44. psyllium-seeds/premium-cleaned-seed  |  Premium-cleaned seed  |  product: Psyllium Seeds
+45. psyllium-seeds/standard-cleaned-seed  |  Standard-cleaned seed  |  product: Psyllium Seeds
+46. psyllium-husk/purity-85-percent  |  85% purity grade  |  product: Psyllium Husk
+47. psyllium-husk/purity-95-percent  |  95% purity grade  |  product: Psyllium Husk
+48. psyllium-husk/purity-98-percent  |  98% purity grade  |  product: Psyllium Husk
+49. psyllium-husk/purity-99-percent  |  99% purity grade  |  product: Psyllium Husk
+50. psyllium-husk-powder/fine-powder-standard-mesh  |  Fine powder (standard mesh)  |  product: Psyllium Husk Powder
+51. psyllium-husk-powder/ultra-fine-powder  |  Ultra-fine powder  |  product: Psyllium Husk Powder
+52. psyllium-husk-powder/coarse-ground-powder  |  Coarse-ground powder  |  product: Psyllium Husk Powder
+53. psyllium-husk-powder/purity-graded-lots  |  Purity-graded lots (commonly 85–99%)  |  product: Psyllium Husk Powder
+54. dehydrated-products/sliced  |  Sliced  |  product: Dehydrated Products
+55. dehydrated-products/flaked  |  Flaked  |  product: Dehydrated Products
+56. dehydrated-products/diced  |  Diced  |  product: Dehydrated Products
+57. dehydrated-products/powdered-or-granulated  |  Powdered or granulated  |  product: Dehydrated Products
+58. dehydrated-products/treated-and-untreated-grades  |  Treated and untreated grades  |  product: Dehydrated Products

@@ -1,4 +1,5 @@
-// Collapsible product groups (Agriculture / Packaging) on /what-we-serve.
+// Collapsible product category groups (Rice, Flours, Oilseeds, Spices, Psyllium,
+// Dehydrated Products) on /what-we-serve.
 // The markup is generated into the imported Webflow list, so the toggle is
 // wired up at runtime after the HTML is injected.
 
@@ -19,6 +20,9 @@ export const initProductGroups = (root: HTMLElement) => {
   };
 
   heads.forEach((head) => {
+    // Groups start collapsed so the page opens on the six category headers
+    // rather than all 15 product cards. Each category is expanded on demand
+    // via its header (click, Enter or Space).
     setOpen(head, false);
     const toggle = () => {
       setOpen(head, !head.classList.contains("is-open"));

@@ -10,10 +10,18 @@ routes = [r for r in routes if r not in ("/checkout",)]
 products = json.load(open(os.path.join(ROOT, "public/site/products/products.json"), encoding="utf-8"))
 routes += [f'/products/{p["slug"]}' for p in products]
 
+# Every form of a product has its own page under the product route.
+subtypes_path = os.path.join(ROOT, "public/site/products/subtypes.json")
+if os.path.exists(subtypes_path):
+    subtypes = json.load(open(subtypes_path, encoding="utf-8"))
+    for product_slug, forms in subtypes.items():
+        routes += [f'/products/{product_slug}/{s["slug"]}' for s in forms]
+
 def prio(r):
     if r == "/": return "1.0"
     if r.count("/") == 1: return "0.8"
-    return "0.6"
+    if r.count("/") == 2: return "0.6"
+    return "0.5"
 
 urls = [("/", "1.0"), ("/more", "0.8")]
 urls += [(r, prio(r)) for r in routes if r not in ("/", "/more")]

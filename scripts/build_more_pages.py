@@ -243,54 +243,6 @@ PRODUCTS = [
       ("Oil content", "48% min"), ("Origin", "Saurashtra, Gujarat")],
      ["Jute / PP bags 25 / 50 kg", "Vacuum packs 25 kg on request"],
      ["Java (Bold)", "Bold 40/50", "TJ counts", "Blanched"], "12 months"),
-    ("Flexible Packaging Pouches", "packaging-pouches", "Packaging", "3923.21",
-     [("Structure", "PET / MET-PET / PE laminate"), ("Thickness", "60 - 160 micron"),
-      ("Formats", "Stand-up, centre-seal, three-side seal"),
-      ("Print", "Rotogravure up to 8 colours"), ("Features", "Zipper, spout, valve, tear notch"),
-      ("MOQ", "10,000 pouches per SKU")],
-     ["Cartons of 1,000 - 5,000 pcs", "Palletised export cartons"],
-     ["Food grade", "Retort", "Barrier / high-barrier"], "Not applicable"),
-    ("Printed Laminated Rolls", "packaging-pouches", "Packaging", "3920.62",
-     [("Web width", "Up to 1,000 mm"), ("Thickness", "50 - 150 micron"),
-      ("Print", "Rotogravure, 8 colours"), ("Core", "76 mm"),
-      ("Structures", "PET/PE, BOPP/CPP, PET/AL/PE"), ("MOQ", "500 kg per design")],
-     ["Shrink-wrapped rolls on pallets", "Export cartons"],
-     ["Food grade", "Barrier", "Retort"], "Not applicable"),
-    ("Corrugated Export Boxes", "packaging-boxes", "Packaging", "4819.10",
-     [("Ply", "3 / 5 / 7 ply"), ("Bursting strength", "8 - 20 kg/cm2"),
-      ("Board", "Kraft 120 - 180 GSM"), ("Print", "Flexo / offset laminated"),
-      ("Sizes", "Made to buyer drawing"), ("MOQ", "1,000 boxes")],
-     ["Flat-packed bundles", "Palletised and strapped"],
-     ["Regular slotted", "Die-cut", "Heavy duty"], "Not applicable"),
-    ("Kraft Paper Bags", "packaging-paper", "Packaging", "4819.30",
-     [("Paper", "70 - 120 GSM virgin kraft"), ("Plies", "2 / 3 / 4 ply"),
-      ("Capacity", "1 - 25 kg"), ("Print", "Flexo up to 4 colours"),
-      ("Options", "PE liner, valve, gusset"), ("MOQ", "10,000 bags")],
-     ["Bundles of 250 / 500 bags", "Export cartons on pallets"],
-     ["Open mouth", "Valve", "Block bottom"], "Not applicable"),
-    ("Woven PP Bags", "packaging-boxes", "Packaging", "6305.33",
-     [("GSM", "60 - 120 GSM"), ("Mesh", "8x8 to 12x12"), ("Capacity", "5 - 50 kg"),
-      ("Lamination", "BOPP / PP laminated"), ("Print", "Up to 6 colours"), ("MOQ", "20,000 bags")],
-     ["Bales of 500 / 1,000 bags", "Palletised"],
-     ["Laminated", "Unlaminated", "BOPP printed"], "Not applicable"),
-    ("Food Grade Barrier Films", "packaging-paper", "Packaging", "3920.20",
-     [("Type", "BOPP, CPP, MET-BOPP, PET"), ("Thickness", "12 - 80 micron"),
-      ("OTR / WVTR", "Low to ultra-low"), ("Width", "Up to 1,250 mm"),
-      ("Treatment", "Corona both sides optional"), ("MOQ", "1,000 kg")],
-     ["Rolls on pallets", "Shrink wrapped"],
-     ["Plain", "Metallised", "High barrier"], "Not applicable"),
-    ("Jute Bags", "packaging-boxes", "Packaging", "6305.10",
-     [("Fabric", "B-Twill / food grade hessian"), ("Capacity", "25 / 50 kg"),
-      ("Weight", "580 - 1,020 g per bag"), ("Treatment", "Batching-oil free (food safe)"),
-      ("Print", "Screen printed"), ("MOQ", "5,000 bags")],
-     ["Bales of 300 / 500 bags", "Palletised"],
-     ["Food grade", "Standard", "Laminated"], "Not applicable"),
-    ("Shrink & Stretch Films", "packaging-paper", "Packaging", "3920.10",
-     [("Type", "LDPE shrink, LLDPE stretch"), ("Thickness", "15 - 100 micron"),
-      ("Width", "100 - 1,500 mm"), ("Stretch", "Up to 300%"),
-      ("Colour", "Clear / black / printed"), ("MOQ", "1,000 kg")],
-     ["Rolls on pallets", "Export cartons"],
-     ["Hand grade", "Machine grade", "Shrink hood"], "Not applicable"),
 ]
 
 MARKETS = [
@@ -370,7 +322,7 @@ def build_body(product, market, related_same_product, related_same_market):
 We buy at the source in India's producing belts, process and pack to the specification the buyer signs off, and ship through Mundra and Kandla so every container leaves with the same documentation set and the same quality file.</p>
 <p>This page covers everything a buyer in {c} needs before placing an order: technical specification, available grades, packing formats, quality controls, the paperwork customs will ask for, realistic transit times and the factors that move the price. If your requirement sits outside what is listed, send us the specification and we will quote against it.</p>
 
-<p><img src="/images/products/{img}.jpg" alt="{p} for export from India to {c}" loading="lazy" style="width:100%;max-height:38rem;object-fit:cover;border-radius:0.8rem;margin:1.6rem 0;" /></p>
+<p><img src="/images/products/{img}.jpg" alt="{p} for export from India to {c}" loading="lazy" width="1024" height="768" style="width:100%;max-width:50.7rem;height:auto;border-radius:0.8rem;margin:1.6rem auto;display:block;" /></p>
 
 <h2 class="heading h4" style="margin:3.2rem 0 1.2rem;">Why buyers in {c} source {p} from India</h2>
 <p>India is the volume origin for {category.lower()} of this type, and that scale is what keeps pricing workable for a {c} importer buying container loads rather than pallets. Three things matter in practice:</p>
@@ -435,16 +387,41 @@ Because these move independently, our quotes are valid for a defined window and 
 
 def build_template():
     src = open(os.path.join(SITE, "qhse.html"), encoding="utf-8").read()
-    start = src.index('<section data-init-hidden="" class="terms-main">')
-    end_marker = '</section></div><div data-cursor="link" data-section="dark"'
-    end = src.index(end_marker, start)
-    shell = """<section data-init-hidden="" class="terms-main"><div class="terms-main-head"><div class="w-layout-blockcontainer container grid w-container"><div class="qhse-main-title"><h1 class="heading h3 h2-mb">__PAGE_TITLE__</h1></div></div></div><div class="terms-main-divider"></div><div class="terms-main-body"><div class="w-layout-blockcontainer container grid w-container"><div class="qhse-main-content"><div class="policy-main-content-text w-richtext">__PAGE_BODY__</div></div></div></div>"""
+    open_tag = re.search(r'<section[^>]*class="terms-main"[^>]*>', src)
+    if open_tag is None:
+        raise SystemExit("build_template: no terms-main section found in qhse.html")
+    start = open_tag.start()
+    depth = 0
+    end = None
+    for tag in re.finditer(r"<section[^>]*>|</section>", src[start:]):
+        if tag.group(0) == "</section>":
+            depth -= 1
+            if depth == 0:
+                end = start + tag.end()
+                break
+        else:
+            depth += 1
+    if end is None:
+        raise SystemExit("build_template: unbalanced terms-main section in qhse.html")
+    shell = (open_tag.group(0)
+             + '<div class="terms-main-head"><div class="w-layout-blockcontainer container grid w-container">'
+             + '<div class="qhse-main-title"><h1 class="heading h3 h2-mb">__PAGE_TITLE__</h1></div>'
+             + '</div></div>'
+             + '<div class="terms-main-divider"></div>'
+             + '<div class="terms-main-body"><div class="w-layout-blockcontainer container grid w-container">'
+             + '<div class="qhse-main-content"><div class="policy-main-content-text w-richtext">'
+             + '__PAGE_BODY__</div></div></div></div>'
+             + '</section>')
     return src[:start] + shell + src[end:]
 
 
 # --------------------------------------------------------------------------- build
 
 def main():
+    # Build the shell before touching the output dir: a stale source marker must
+    # never leave a truncated template or a half-generated set of pages behind.
+    template = build_template()
+
     os.makedirs(PAGES, exist_ok=True)
     for f in os.listdir(PAGES):
         os.remove(os.path.join(PAGES, f))
@@ -486,7 +463,7 @@ def main():
     cats = {}
     for it in index:
         cats.setdefault(it["category"], []).append(it)
-    hub = ["<p>Patel Impex exports Indian rice, flours, spices, psyllium, oilseeds and packaging materials to buyers in twenty markets. "
+    hub = ["<p>Patel Impex exports Indian rice, flours, spices, psyllium and oilseeds to buyers in twenty markets. "
            "Each guide below sets out the specification, grades, packing, certification, documentation and shipping detail for one product into one destination.</p>"]
     for cat, items in cats.items():
         hub.append(f"<h2 class=\"heading h4\" style=\"margin:3.2rem 0 1.2rem;\">{esc(cat)} ({len(items)} guides)</h2><ul role=\"list\">")
@@ -495,11 +472,12 @@ def main():
     hub.append('<p>Cannot see your market? <a href="/contact">Talk to our export desk</a> - we ship worldwide from Mundra and Kandla.</p>')
     json.dump({"title": "Export guides by product and destination | Patel Impex",
                "h1": "Export guides by product and destination",
-               "description": f"{len(index)} country-by-country export guides from Patel Impex covering Indian rice, flour, spices, psyllium, oilseeds and packaging materials.",
+               "description": f"{len(index)} country-by-country export guides from Patel Impex covering Indian rice, flour, spices, psyllium and oilseeds.",
                "html": "".join(hub)},
               open(os.path.join(PAGES, "index.json"), "w", encoding="utf-8"), ensure_ascii=False)
 
-    open(os.path.join(OUT, "_template.html"), "w", encoding="utf-8").write(build_template())
+    with open(os.path.join(OUT, "_template.html"), "w", encoding="utf-8") as fh:
+        fh.write(template)
 
     # sitemap
     from datetime import date

@@ -67,7 +67,13 @@ const submitForm = async (form: HTMLFormElement) => {
   const company = fieldValue(form, "Company");
   const reason = fieldValue(form, "Reason-of-enquiry") || fieldValue(form, "Reason of enquiry");
   const message = fieldValue(form, "Message");
-  const product = new URLSearchParams(window.location.search).get("product")?.trim() ?? "";
+  const params = new URLSearchParams(window.location.search);
+  const product = params.get("product")?.trim() ?? "";
+  const variant = params.get("variant")?.trim() ?? "";
+  const subject = [product, variant]
+    .map((value) => value.replace(/-/g, " "))
+    .filter(Boolean)
+    .join(" - ");
 
   if (!name || !email) {
     const invalid = !name ? "Full-name" : "Email";
@@ -86,7 +92,7 @@ const submitForm = async (form: HTMLFormElement) => {
       `Email: ${email}`,
       phone && `Phone: ${phone}`,
       reason && `Enquiry: ${reason}`,
-      product && `Product: ${product.replace(/-/g, " ")}`,
+      product && `Product: ${subject}`,
       message && `Message: ${message}`,
       `Page: ${window.location.pathname}`,
     ]
@@ -118,10 +124,16 @@ export const initSiteForms = (root: HTMLElement) => {
     form.dataset.piBound = "1";
     form.setAttribute("novalidate", "novalidate");
 
-    const product = new URLSearchParams(window.location.search).get("product")?.trim();
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get("product")?.trim();
+    const variant = params.get("variant")?.trim();
+    const subject = [product, variant]
+      .map((value) => value?.replace(/-/g, " "))
+      .filter(Boolean)
+      .join(" - ");
     const message = form.querySelector<HTMLTextAreaElement>('[name="Message"]');
-    if (product && message && !message.value) {
-      message.value = `I would like a quote for ${product.replace(/-/g, " ")}.`;
+    if (subject && message && !message.value) {
+      message.value = `I would like a quote for ${subject}.`;
     }
 
     form.addEventListener("submit", (event) => {
