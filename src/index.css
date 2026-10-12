@@ -7,6 +7,35 @@ body {
   padding: 0;
 }
 
+/* Restore page scrolling.
+   The imported Webflow CSS pins the body for its own transform-based smooth
+   scroll: index.html sets `body.body { position: fixed; overflow: hidden;
+   max-height: 100vh; inset: 0 }` from 768px up, and the page HTML sets
+   `body, .body { position: fixed; overscroll-behavior: none }` at 767px and
+   down. SitePage adds the `body` class to <body> on every route, so on a phone
+   the first rule fires and on a desktop the second one does.
+
+   Both expect Webflow's JS to translate .body-inner each frame. These pages do
+   not load it -- startRuntime() loads /site/app/main.js and scrolls with Lenis,
+   which moves the window instead. A fixed body takes the document out of flow,
+   so the window has no scrollable height and the page cannot be scrolled by
+   wheel, touch or keyboard. keepPageScrollable() only clears the inline
+   `overflow` that Lenis' own cart guard sets, so it cannot undo this.
+
+   Unpin the body and hand scrolling back to the browser/Lenis. The `html body`
+   pairing is deliberate: it outranks both `body` and `body.body` whatever the
+   cascade order, so this wins without depending on where the imported sheet
+   sits. */
+html body,
+html body.body {
+  position: static;
+  inset: auto;
+  max-height: none;
+  overflow: visible;
+  overscroll-behavior-y: auto;
+  overscroll-behavior-x: auto;
+}
+
 #root {
   min-height: 100vh;
 }
@@ -177,6 +206,74 @@ body {
   outline-offset: -2px;
 }
 
+/* One layout unit for the card: the main product photo is 1x, every subtype
+   tile is exactly half of that, so the sizes stay in proportion at any
+   breakpoint without hard-coding a second scale. */
+.pi-product-card {
+  --pi-card-unit: 42rem;
+  --pi-sub-unit: calc(var(--pi-card-unit) / 2);
+  /* Each card is a Webflow .industry-our-item: a near-black panel that redefines
+     --_color---content--main to white for its own text, plus the three border
+     tokens to their on-dark values (#ffffff29, #ffffff14, #ffffff52).
+     Everything inside the card inherits from here, so the subtype names land on
+     the card's own content colour instead of the page's near-black body text,
+     which was invisible on the panel, and the strip's hairlines pick up the
+     panel's own border weight. The .done variant that flips a card to a light
+     panel flips these tokens with it. */
+  color: var(--_color---content--main, #fff);
+}
+
+/* The card carries no copy beyond the two labels below: the product title on
+   the 1x photo and the subtype name on each 0.5x tile. Description, enquiry
+   list, buttons and the category headers are all gone from the markup, so
+   nothing else is left to size the card but the photography and those labels.
+   Pin the chain to full width -- otherwise the photo and tiles collapse to
+   their intrinsic size and the right of the row stays empty. */
+.pi-product-card,
+.pi-product-card .industry-our-item-inner,
+.pi-product-card .industry-our-item-body {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
+/* The row has to use the whole content area. Webflow applies the same container
+   gutter three times on the way in -- .container, then .industry-our-list, then
+   .industry-our-item-body -- so the card was losing 8rem of width to a second
+   and third copy of a margin it already had, and never reached 100%. Keep the
+   outer .container gutter as the page margin and drop the two inner copies.
+   Vertical padding is left alone so the rhythm between cards is unchanged. */
+.pi-product-card .industry-our-item-body {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.industry-our-cms .industry-our-list {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* Main photo on the left at 1x, subtype tiles stacked two rows deep on the
+   right at 0.5x. Both sides are exactly one unit tall, so the row is square.
+   flex-basis 0 makes the tile block claim every pixel the photo does not. */
+.pi-product-card .industry-our-item-main-right {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+/* A product with no subtypes at all (Psyllium Husk) has no strip to fill the
+   right of the row, so the photo would sit at 1x with the rest of the width
+   empty. Let it run the full width of the row at the row's height instead, so
+   the card still reaches 100%. Kept as a banner rather than a square: a square
+   at full width would be taller than the viewport. */
+.pi-product-card .industry-our-item-main-right:not(:has(.pi-subtype-strip)) .industry-our-item-main-thumb {
+  width: 100%;
+  height: var(--pi-card-unit);
+  aspect-ratio: auto;
+}
+
 /* Product photography is square, but the Webflow card frame is a fixed-height
    band -- 29.4rem on desktop, 12.2 by 7.2rem on mobile -- whose width grows
    with the viewport, while .img-fill sets object-fit:cover on the picture. The
@@ -185,6 +282,8 @@ body {
    frame and the image always agree and nothing is ever cropped. */
 .pi-product-card .industry-our-item-main-thumb {
   position: relative;
+  flex: 0 0 auto;
+  width: var(--pi-card-unit);
   aspect-ratio: 1;
   height: auto;
 }
@@ -198,6 +297,207 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+/* Subtype tiles inside each product card on /what-we-serve. The tiles carry no
+   picture, only the name, centred in its box. Each chip is its own link to the
+   subtype page; the card-level click handler in productGroups.ts bails out on
+   anchors, so a chip opens its own page instead of the parent product.
+
+   The boxes sit to the right of the main photo and flow as flexible rows. Each
+   one is sized by its own name and then stretched, so every row reaches the full
+   width of the strip: nothing is ever narrower than its text, nothing is
+   clipped, and there is no dead space at the right edge.
+
+   The number of subtype names swings from 2 to 31, and no fixed geometry can
+   serve both. Two rows wide would crush wheat flour's 31 names into 59px
+   columns; a fixed column count wide would leave a 31-name card scrolling
+   sideways and still not filling. Wrapping rows resolve it instead: each row is
+   at least half the photo's height (--pi-sub-unit, the 0.5x the layout was
+   specced with), a row grows taller when a product has few enough subtypes to
+   leave the strip short of the photo, and a busy product simply gains rows.
+
+   Dividers are the design system's own hairlines rather than solid borders.
+   .industry-our-item redefines the tokens for its dark panel --
+   --_color---border--main to #ffffff29 and --_color---border--light to #ffffff14
+   -- and --border--size is max(1px, .1rem), so a single token covers every
+   weight from a phone to a 4k display. The rule lines only, as on the reference
+   card's .industry-our-item-why-line: no vertical borders and no closed cells,
+   so the group reads as a list of names divided by hairlines rather than as a
+   bordered table. */
+.pi-subtype-strip {
+  display: flex;
+  flex-flow: row wrap;
+  /* Distribute any height left over once the rows are placed, so a short row
+     (peanut's 3 names) expands to the photo's height instead of leaving a gap
+     beneath it. */
+  align-content: stretch;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--pi-card-unit);
+  border-top: var(--border--size) solid var(--_color---border--main);
+  pointer-events: auto;
+}
+
+.pi-subtype-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Never narrower than the name it holds, then grow to share whatever the row
+     has left over. flex-basis:auto lets the packing algorithm use the real name
+     widths, so rows break at sensible points rather than at a fixed column.
+     The min() cap keeps a long name from pushing the box past the viewport on a
+     phone: there it may take the full width and wrap instead. */
+  flex: 1 1 auto;
+  min-width: min(max-content, 100%);
+  min-height: var(--pi-sub-unit);
+  padding: 1.1rem 1.8rem;
+  /* Takes the card's content colour (set on .pi-product-card) rather than the
+     page's body colour, so the name stays legible on the dark panel. */
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+  /* Row separators, one per row, running the full width of the strip. These
+     take --_color---border--main (16% white, 1.59:1 on #111) rather than
+     --_color---border--light: the lighter token composites to rgb(36,36,36)
+     against the panel, a 1.21:1 difference that is effectively invisible, and a
+     rule nobody can see does not divide anything. Chips stretch to the full row
+     height, so the short rules meet edge to edge and read as one line per row. */
+  border-bottom: var(--border--size) solid var(--_color---border--main);
+  transition: background-color 0.3s ease;
+}
+
+.pi-subtype-chip:hover,
+.pi-subtype-chip:focus-visible {
+  /* Neutral grey reads on the dark panel and on the light .done panel alike. */
+  background-color: rgba(127, 127, 127, 0.18);
+  outline: none;
+}
+
+/* The subtype name is the whole content of the tile now. It clamps at three
+   lines so a long name ("Onion Powder (White, Pink & Red)") can never spill
+   out of its box, and the anchor's title attribute still carries it in full. */
+.pi-subtype-chip-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  margin: 0;
+  font-family: Archivo, "Archivo", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+/* The product title is the one label still laid over a picture. It sits on a
+   scrim rather than under the photo, because a caption in normal flow would
+   push the card taller than its 1x photo and break the proportion the layout is
+   built on. The scrim runs to a transparent top edge so it darkens the foot of
+   the photograph without drawing a hard band across it, and the label clamps at
+   two lines so a long name can never spill out of the frame. */
+.pi-product-card .pi-product-card-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  margin: 0;
+  padding: 4rem 2rem 1.6rem;
+  font-family: Archivo, "Archivo", sans-serif;
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1.2;
+  color: #fff;
+  background: linear-gradient(
+    to top,
+    rgba(12, 12, 12, 0.82) 0%,
+    rgba(12, 12, 12, 0.62) 45%,
+    rgba(12, 12, 12, 0) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Card sizing per display tier.
+
+   The breakpoints are the design system's own four -- 479 / 767 / 991 -- not
+   arbitrary round numbers, so the cards step down with the rest of the page.
+
+   Sizing is in rem, and rem is NOT 16px on these pages. The page sets
+   html { font-size: 0.5787vw } at desktop, 1.009vw at <=991 and 2.5445vw at
+   <=767, each normalised so the root is 10px at that tier's reference width
+   (1728 / 991 / 393). So one rem is 8.3px at a 1440px viewport and 11.1px at
+   1920, and every value here is ~2x the number it looks like: the 42rem photo
+   is 350px at 1440, and the 1.9rem subtype label is 15.8px. Judge these numbers
+   as multiples of the tier's root, not as pixels.
+   Two things drive the values:
+
+   --pi-card-unit is the photo's side, and --pi-sub-unit is half of it, so a row
+   of boxes is exactly as tall as the photo beside it at every tier. The unit
+   scales with the viewport because a fixed 22rem photo leaves the boxes only a
+   sliver of a 768px tablet.
+
+   The label sizes are steps from each tier's own type scale rather than one size
+   shrunk by hand, which is what put a 0.82rem label on phones -- below the
+   system's 0.9rem floor. Sizes step down toward the phone tiers, where the
+   photo is narrower but the reader is closer, so the label loses less than the
+   photograph does.
+   --------------------------------------------------------------------------- */
+
+/* Tablet: 991px and down. The design gives the card 3 of 8 columns here, so the
+   unit comes down with it and the boxes keep a workable share of the row. */
+@media screen and (max-width: 991px) {
+  .pi-product-card { --pi-card-unit: 31rem; }
+  .pi-product-card .pi-product-card-name { font-size: 2.4rem; }
+  .pi-subtype-chip-name { font-size: 2rem; }
+  .pi-subtype-chip { padding: 1rem 1.6rem; }
+}
+
+/* Phone: 767px and down. Webflow's own rule flips .industry-our-item-body to
+   column-reverse here, i.e. the design stacks the card on narrow screens, so the
+   photo and the boxes stop competing for one horizontal band: the photo takes
+   the full width and the boxes take a full-width row of their own beneath it.
+   Keeping them side by side at this width left the strip about 130px, which is
+   why the boxes wrapped into unreadable slivers. */
+@media screen and (max-width: 767px) {
+  .pi-product-card { --pi-card-unit: 22rem; }
+
+  /* Webflow repaints the card as a light panel below 767px
+     (background-color: var(--_color---bg--sf-1) = #f4f4f4), which would put this
+     card's white labels and near-black hairlines on near-white. Matching the
+     class selector raises specificity above that single-class rule, so the dark
+     panel holds at every width whatever the cascade order. */
+  .pi-product-card.industry-our-item { background: var(--_color---bg--main, #111); }
+
+  .pi-product-card .industry-our-item-main-right { flex-direction: column; }
+  .pi-product-card .industry-our-item-main-thumb { width: 100%; }
+  /* The no-subtype banner needs no tier override: the rule above is outside any
+     media query, so Psyllium Husk's photo is already a full-width band at the
+     unit's height rather than a full-width square. */
+  .pi-subtype-strip { min-height: 0; }
+
+  .pi-product-card .pi-product-card-name {
+    padding: 3rem 1.6rem 1.2rem;
+    font-size: 1.9rem;
+  }
+  .pi-subtype-chip { padding: 0.9rem 1.4rem; }
+  .pi-subtype-chip-name { font-size: 1.65rem; }
+}
+
+/* Small phone: 479px and down, where the system drops to a flat 16px body. */
+@media screen and (max-width: 479px) {
+  .pi-product-card { --pi-card-unit: 19rem; }
+  .pi-product-card .pi-product-card-name { font-size: 1.8rem; }
+  .pi-subtype-chip { padding: 0.8rem 1.2rem; }
+  .pi-subtype-chip-name { font-size: 1.75rem; }
 }
 
 .pi-product-page {

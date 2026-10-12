@@ -21,7 +21,7 @@ export const initProductGroups = (root: HTMLElement) => {
 
   heads.forEach((head) => {
     // Groups start collapsed so the page opens on the six category headers
-    // rather than all 15 product cards. Each category is expanded on demand
+    // rather than all 9 product cards. Each category is expanded on demand
     // via its header (click, Enter or Space).
     setOpen(head, false);
     const toggle = () => {

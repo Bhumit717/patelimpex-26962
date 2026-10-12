@@ -36,6 +36,20 @@ type Product = {
   reference?: string;
 };
 
+// A named variety or form of a product, taken from the product's reference site
+// and published at /products/{product}/{subtype}. Only the rows that identify
+// the form are held here; the B-E specification tables are the parent product's,
+// because the reference publishes one set of figures for the product as a whole.
+type Subtype = {
+  slug: string;
+  name: string;
+  details: ProductRow[];
+  image: string;
+  alt: string;
+};
+
+type SubtypeMap = Record<string, Subtype[]>;
+
 const WEBFLOW_SITE_ID = "6a44eec1ed1af2c4c403df6b";
 type WebflowRuntime = {
   destroy?: () => void;
@@ -90,6 +104,15 @@ const loadProducts = async () => {
 
 
 
+let subtypesCache: SubtypeMap | null = null;
+
+const loadSubtypes = async () => {
+  if (subtypesCache) return subtypesCache;
+  const res = await fetch("/site/products/subtypes.json");
+  subtypesCache = (await res.json()) as SubtypeMap;
+  return subtypesCache;
+};
+
 const escapeHtml = (value: string) =>
   value.replace(/[&<>'"]/g, (character) => {
     const entities: Record<string, string> = {
@@ -112,7 +135,8 @@ const isExternalUrl = (value: string | undefined): value is string =>
 
 const firstImage = (...values: (string | undefined)[]) => values.find(Boolean) ?? "";
 
-const productImage = (product: Product) => firstImage(product.heroImage, product.image);
+const productImage = (product: Product, subtypes: Subtype[] = []) =>
+  firstImage(product.heroImage, product.image, ...subtypes.map((subtype) => subtype.image));
 
 const specRow = ([label, value]: ProductRow) =>
   `<div class="pi-product-spec-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(
@@ -130,7 +154,7 @@ const renderSpecSection = (heading: string, rows?: ProductRow[]) =>
       </section>`
     : "";
 
-const renderProductBody = (product: Product, allProducts: Product[]) => {
+const renderProductBody = (product: Product, allProducts: Product[], subtypes: Subtype[] = []) => {
   // Siblings from the same category are the most useful next step. Categories
   // with a single product would otherwise have no internal product link at all,
   // so fall back to the rest of the catalogue to keep every page connected.
@@ -147,11 +171,30 @@ const renderProductBody = (product: Product, allProducts: Product[]) => {
     )
     .join("");
 
+  // The named varieties and forms the reference lists for this product. Each one
+  // has its own page, its own image and its own identifying rows.
+  const subtypeIndex = subtypes.length
+    ? `<section class="pi-product-related pi-product-section">
+        <div class="pi-product-section-label">Available ${escapeHtml(
+          product.category.toLowerCase(),
+        )} types</div>
+        <ul class="pi-product-related-list">${subtypes
+          .map(
+            (subtype) =>
+              `<li><a href="/products/${encodeURIComponent(
+                product.slug,
+              )}/${encodeURIComponent(subtype.slug)}">${escapeHtml(subtype.name)}</a></li>`,
+          )
+          .join("")}</ul>
+      </section>`
+    : "";
+
   return `
   <section class="pi-product-overview pi-product-section">
     <div class="pi-product-section-label">Product overview</div>
     <div><h2>${escapeHtml(product.name)}</h2><p>${escapeHtml(product.overview)}</p></div>
   </section>
+  ${subtypeIndex}
   ${renderSpecSection("A. Product Details", product.details)}
   ${renderSpecSection("B. Packing and Shipping Details", product.packing)}
   ${renderSpecSection("C. Physical Specifications", product.physical)}
@@ -159,6 +202,64 @@ const renderProductBody = (product: Product, allProducts: Product[]) => {
   ${renderSpecSection("E. Grades / Varieties", product.grades)}
   ${renderSpecSection("Nutritional Information (per 100 g)", product.nutrition)}
   <section class="pi-product-related pi-product-section"><div class="pi-product-section-label">${siblings.length ? `More in ${escapeHtml(product.category)}` : "Other products"}</div><p><a href="/what-we-serve">View the full product range</a> or <a href="/contact?product=${encodeURIComponent(product.slug)}">send a product inquiry</a>.</p>${relatedLinks ? `<ul class="pi-product-related-list">${relatedLinks}</ul>` : ""}</section>
+  `;
+};
+
+// A subtype page leads with the rows that identify the form, then repeats the
+// parent product's B-E tables because the reference publishes a single set of
+// figures for the product as a whole rather than per variety.
+const renderSubtypeBody = (
+  product: Product,
+  subtype: Subtype,
+  siblings: Subtype[],
+  allProducts: Product[],
+) => {
+  const related = allProducts.filter((item) => item.slug !== product.slug).slice(0, 6);
+  const siblingLinks = siblings
+    .map(
+      (item) =>
+        `<li><a href="/products/${encodeURIComponent(
+          product.slug,
+        )}/${encodeURIComponent(item.slug)}">${escapeHtml(item.name)}</a></li>`,
+    )
+    .join("");
+
+  return `
+  <section class="pi-product-overview pi-product-section">
+    <div class="pi-product-section-label">Product overview</div>
+    <div><h2>${escapeHtml(subtype.name)}</h2><p>${escapeHtml(
+      product.overview,
+    )}</p><p><a href="/products/${encodeURIComponent(product.slug)}">Back to ${escapeHtml(
+      product.name,
+    )}</a></p></div>
+  </section>
+  ${renderSpecSection("A. Product Details", subtype.details)}
+  ${renderSpecSection("B. Packing and Shipping Details", product.packing)}
+  ${renderSpecSection("C. Physical Specifications", product.physical)}
+  ${renderSpecSection("D. Chemical Specifications", product.chemical)}
+  ${renderSpecSection("E. Grades / Varieties", product.grades)}
+  ${renderSpecSection("Nutritional Information (per 100 g)", product.nutrition)}
+  ${
+    siblingLinks
+      ? `<section class="pi-product-related pi-product-section"><div class="pi-product-section-label">Other ${escapeHtml(
+          product.category.toLowerCase(),
+        )} types</div><ul class="pi-product-related-list">${siblingLinks}</ul></section>`
+      : ""
+  }
+  <section class="pi-product-related pi-product-section"><div class="pi-product-section-label">Other products</div><p><a href="/what-we-serve">View the full product range</a> or <a href="/contact?product=${encodeURIComponent(
+    product.slug,
+  )}">send a product inquiry</a>.</p>${
+    related.length
+      ? `<ul class="pi-product-related-list">${related
+          .map(
+            (item) =>
+              `<li><a href="/products/${encodeURIComponent(item.slug)}">${escapeHtml(
+                item.name,
+              )}</a></li>`,
+          )
+          .join("")}</ul>`
+      : ""
+  }</section>
   `;
 };
 
@@ -187,8 +288,8 @@ const SITE_URL = "https://patelimpex.com";
 // Product structured data. Prices are not published on this site, so `offers`
 // is deliberately omitted rather than publishing a placeholder figure. Every
 // documented row across the A-E tables is published as a property.
-const productJsonLd = (product: Product) => {
-  const image = productImage(product);
+const productJsonLd = (product: Product, subtypes: Subtype[] = []) => {
+  const image = productImage(product, subtypes);
   const origin = product.details?.find(([label]) => label.toLowerCase() === "origin")?.[1];
   const properties = [
     ...(product.details ?? []),
@@ -214,8 +315,41 @@ const productJsonLd = (product: Product) => {
       name,
       value,
     })),
+    ...(subtypes.length
+      ? {
+          hasVariant: subtypes.map((subtype) => ({
+            "@type": "Product",
+            name: subtype.name,
+            url: `${SITE_URL}/products/${product.slug}/${subtype.slug}`,
+            image: isExternalUrl(subtype.image) ? subtype.image : `${SITE_URL}${subtype.image}`,
+          })),
+        }
+      : {}),
   };
 };
+
+// A subtype is published as its own Product linked back to the parent range with
+// isVariantOf, so the two pages describe one item rather than two products.
+const subtypeJsonLd = (product: Product, subtype: Subtype) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: `${subtype.name} – ${product.name}`,
+  description: `${subtype.name} from the ${product.name} range. ${product.description}`,
+  category: product.category,
+  image: isExternalUrl(subtype.image) ? subtype.image : `${SITE_URL}${subtype.image}`,
+  url: `${SITE_URL}/products/${product.slug}/${subtype.slug}`,
+  brand: { "@type": "Brand", name: "Patel Impex" },
+  isVariantOf: {
+    "@type": "Product",
+    name: product.name,
+    url: `${SITE_URL}/products/${product.slug}`,
+  },
+  additionalProperty: subtype.details.map(([name, value]) => ({
+    "@type": "PropertyValue",
+    name,
+    value,
+  })),
+});
 
 const setJsonLd = (data: unknown) => {
   let script = document.querySelector<HTMLScriptElement>("script[data-pi-jsonld]");
@@ -530,10 +664,10 @@ const SitePage = () => {
       let jsonLd: unknown = null;
 
       if (isCatalogueProduct) {
-        // Each product is a single page. The former per-form subtype routes
-        // (/products/{product}/{subtype}) are retired: their forms now sit in the
-        // parent's tables, so the extra segment resolves to the not-found state
-        // and is tagged noindex rather than rendering a thin duplicate page.
+        // /products/{product} is the range page and /products/{product}/{subtype}
+        // is one named variety or form of it. Both are built from the same
+        // reference tables; the subtype page leads with the rows that identify
+        // that form and inherits the product-wide B-E tables.
         const segments = path.slice("/products/".length).split("/").filter(Boolean);
         const slug = decodeURIComponent(segments[0] ?? "");
 
@@ -543,12 +677,14 @@ const SitePage = () => {
           return;
         }
 
-        const [template, products] = await Promise.all([
+        const [template, products, subtypeMap] = await Promise.all([
           fetch("/site/products/_template.html").then((r) => r.text()),
           loadProducts(),
+          loadSubtypes(),
         ]);
         const product = products.find((item) => item.slug === slug);
-        if (!product || segments.length > 1) {
+        const subtypes = product ? subtypeMap[product.slug] ?? [] : [];
+        if (!product) {
           if (!cancelled) {
             setStatus("missing");
             setNoindex(true);
@@ -556,24 +692,58 @@ const SitePage = () => {
           return;
         }
 
+        const subtypeSlug = segments[1] ? decodeURIComponent(segments[1]) : undefined;
+        const subtype = subtypeSlug
+          ? subtypes.find((item) => item.slug === subtypeSlug)
+          : undefined;
+        // An unknown second segment is a bad URL, not a thin page.
+        if (subtypeSlug && !subtype) {
+          if (!cancelled) {
+            setStatus("missing");
+            setNoindex(true);
+          }
+          return;
+        }
+
+        const pageName = subtype ? subtype.name : product.name;
+        const pageImage = subtype ? subtype.image : productImage(product, subtypes);
+        const pageAlt = subtype ? subtype.alt : product.alt;
+        const pageIntro = subtype
+          ? `${subtype.name} from the ${product.name} range. ${product.intro}`
+          : product.intro;
+
         html = template;
         const replacements: [string, string][] = [
-          ["__PAGE_TITLE__", escapeHtml(product.name)],
-          ["__PAGE_BODY__", renderProductBody(product, products)],
+          ["__PAGE_TITLE__", escapeHtml(pageName)],
+          [
+            "__PAGE_BODY__",
+            subtype
+              ? renderSubtypeBody(
+                  product,
+                  subtype,
+                  subtypes.filter((item) => item.slug !== subtype.slug),
+                  products,
+                )
+              : renderProductBody(product, products, subtypes),
+          ],
           ["__CATEGORY__", escapeHtml(product.category)],
           ["__EYEBROW__", escapeHtml(product.eyebrow)],
-          ["__INTRO__", escapeHtml(product.intro)],
+          ["__INTRO__", escapeHtml(pageIntro)],
           ["__PRODUCT_SLUG__", encodeURIComponent(product.slug)],
-          ["__PRODUCT_IMAGE__", escapeHtml(productImage(product))],
-          ["__PRODUCT_ALT__", escapeHtml(product.alt)],
-          ["__PRODUCT_EMAIL__", encodeURIComponent(product.name)],
+          ["__PRODUCT_IMAGE__", escapeHtml(pageImage)],
+          ["__PRODUCT_ALT__", escapeHtml(pageAlt)],
+          ["__PRODUCT_EMAIL__", encodeURIComponent(pageName)],
         ];
         replacements.forEach(([search, replacement]) => {
           html = replaceEvery(html, search, replacement);
         });
-        title = product.title;
-        description = product.description;
-        jsonLd = productJsonLd(product);
+        title = subtype
+          ? `${subtype.name} | ${product.name} | Patel Impex`
+          : product.title;
+        description = subtype
+          ? `${subtype.name} supplied by Patel Impex. ${product.description}`
+          : product.description;
+        jsonLd = subtype ? subtypeJsonLd(product, subtype) : productJsonLd(product, subtypes);
       } else if (isMore) {
         const slug = path === "/more" ? "index" : path.slice("/more/".length);
         const [template, data] = await Promise.all([

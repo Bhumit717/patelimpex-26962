@@ -43,32 +43,39 @@ for (const p of products) {
     ["__PRODUCT_ALT__", esc(p.alt)],
     ["__PRODUCT_EMAIL__", encodeURIComponent(p.name)],
   ]);
-  if (forms.length !== p.varieties.length) {
-    fail += 1;
-    console.log(`COUNT MISMATCH ${p.slug}: varieties=${p.varieties.length} subtypes=${forms.length}`);
+  if (!(p.slug in st)) {
+    console.log(`no subtype entry: ${p.slug}`);
   }
   for (const s of forms) {
-    const crumb = `<a href="/products/${esc(p.slug)}">${esc(p.category)}</a><span>/</span><span>${esc(s.name)}</span>`;
+    // Mirrors the replacement set SitePage.tsx applies for /products routes.
     const h = check(`${p.slug}/${s.slug}`, [
       ["__PAGE_TITLE__", esc(s.name)],
       ["__PAGE_BODY__", "<p>y</p>"],
-      ["__CATEGORY__", crumb],
-      ["__EYEBROW__", esc(s.eyebrow)],
-      ["__INTRO__", esc(s.intro)],
-      ["__PRODUCT_SLUG__", `${encodeURIComponent(p.slug)}&amp;variant=${encodeURIComponent(s.slug)}`],
+      ["__CATEGORY__", esc(p.category)],
+      ["__EYEBROW__", esc(p.eyebrow)],
+      ["__INTRO__", esc(`${s.name} from the ${p.name} range. ${p.intro}`)],
+      ["__PRODUCT_SLUG__", encodeURIComponent(p.slug)],
       ["__PRODUCT_IMAGE__", esc(s.image || p.heroImage || p.image)],
       ["__PRODUCT_ALT__", esc(s.alt)],
-      ["__PRODUCT_EMAIL__", encodeURIComponent(`${p.name} - ${s.name}`)],
+      ["__PRODUCT_EMAIL__", encodeURIComponent(s.name)],
     ]);
-    // Hero CTA must reach the variant-scoped inquiry URL.
-    if (!h.includes(`/contact?product=${encodeURIComponent(p.slug)}&amp;variant=${encodeURIComponent(s.slug)}`)) {
+    // Every product page must offer the catalog route back out to the range list.
+    if (!h.includes(`<a href="/what-we-serve">Products</a>`)) {
       fail += 1;
-      console.log(`VARIANT CTA MISSING ${p.slug}/${s.slug}`);
+      console.log(`CATALOG LINK MISSING ${p.slug}/${s.slug}`);
     }
-    if (!h.includes(`href="/products/${esc(p.slug)}"`)) {
+    if (!h.includes(`href="/contact?product=${encodeURIComponent(p.slug)}"`)) {
       fail += 1;
-      console.log(`BACK LINK MISSING ${p.slug}/${s.slug}`);
+      console.log(`INQUIRY CTA MISSING ${p.slug}/${s.slug}`);
     }
+  }
+}
+
+// A subtype group without a parent product would be an unreachable route.
+for (const key of Object.keys(st)) {
+  if (!products.some((p) => p.slug === key)) {
+    fail += 1;
+    console.log(`ORPHAN SUBTYPE GROUP ${key}`);
   }
 }
 

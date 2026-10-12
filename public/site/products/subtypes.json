@@ -1,1 +1,1894 @@
-{}
+{
+  "basmati-rice": [
+    {
+      "slug": "1121",
+      "name": "1121 Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1121 Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/1121.webp",
+      "alt": "1121 Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "1885",
+      "name": "1885 Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1885 Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/1885.webp",
+      "alt": "1885 Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "1718",
+      "name": "1718 Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1718 Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/1718.webp",
+      "alt": "1718 Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "1509",
+      "name": "1509 Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1509 Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/1509.webp",
+      "alt": "1509 Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "1847",
+      "name": "1847 Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1847 Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/1847.webp",
+      "alt": "1847 Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "1401",
+      "name": "1401 Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1401 Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/1401.webp",
+      "alt": "1401 Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "pusa-basmati-rice",
+      "name": "Pusa Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "Pusa Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/pusa-basmati-rice.webp",
+      "alt": "Pusa Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "white-sella-basmati-rice",
+      "name": "White Sella Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "White Sella Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ],
+        [
+          "Form",
+          "Creamy/White Sella"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/white-sella-basmati-rice.webp",
+      "alt": "White Sella Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "golden-sella-basmati-rice",
+      "name": "Golden Sella Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "Golden Sella Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ],
+        [
+          "Form",
+          "Golden Sella"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/golden-sella-basmati-rice.webp",
+      "alt": "Golden Sella Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "steam-basmati-rice",
+      "name": "Steam Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "Steam Basmati Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ],
+        [
+          "Form",
+          "Steam"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/steam-basmati-rice.webp",
+      "alt": "Steam Basmati Rice — Basmati Rice"
+    },
+    {
+      "slug": "raw-rice",
+      "name": "Raw Rice",
+      "details": [
+        [
+          "Product Name",
+          "Raw Rice"
+        ],
+        [
+          "Rice Type",
+          "Basmati Rice"
+        ],
+        [
+          "Form",
+          "Raw"
+        ]
+      ],
+      "image": "/images/products/subtypes/basmati-rice/raw-rice.webp",
+      "alt": "Raw Rice — Basmati Rice"
+    }
+  ],
+  "non-basmati-rice": [
+    {
+      "slug": "non-basmati-parboiled-rice",
+      "name": "Non Basmati Parboiled Rice",
+      "details": [
+        [
+          "Product Name",
+          "Non Basmati Parboiled Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Parboiled Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/non-basmati-parboiled-rice.webp",
+      "alt": "Non Basmati Parboiled Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "ir-64-parboiled-rice",
+      "name": "IR 64 Parboiled Rice",
+      "details": [
+        [
+          "Product Name",
+          "IR 64 Parboiled Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Parboiled Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/ir-64-parboiled-rice.webp",
+      "alt": "IR 64 Parboiled Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "ir-36-parboiled-rice",
+      "name": "IR 36 Parboiled Rice",
+      "details": [
+        [
+          "Product Name",
+          "IR 36 Parboiled Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Parboiled Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/ir-36-parboiled-rice.webp",
+      "alt": "IR 36 Parboiled Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "pr-11-parboiled-rice",
+      "name": "PR 11 Parboiled Rice",
+      "details": [
+        [
+          "Product Name",
+          "PR 11 Parboiled Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Parboiled Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/pr-11-parboiled-rice.webp",
+      "alt": "PR 11 Parboiled Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "pr-14-parboiled-rice",
+      "name": "PR 14 Parboiled Rice",
+      "details": [
+        [
+          "Product Name",
+          "PR 14 Parboiled Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Parboiled Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/pr-14-parboiled-rice.webp",
+      "alt": "PR 14 Parboiled Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "sona-masoori-parboiled-rice",
+      "name": "Sona Masoori Parboiled Rice",
+      "details": [
+        [
+          "Product Name",
+          "Sona Masoori Parboiled Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Parboiled Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/sona-masoori-parboiled-rice.webp",
+      "alt": "Sona Masoori Parboiled Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "swarna-parboiled-rice",
+      "name": "Swarna Parboiled Rice",
+      "details": [
+        [
+          "Product Name",
+          "Swarna Parboiled Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Parboiled Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/swarna-parboiled-rice.webp",
+      "alt": "Swarna Parboiled Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "non-basmati-raw-rice",
+      "name": "Non Basmati Raw Rice",
+      "details": [
+        [
+          "Product Name",
+          "Non Basmati Raw Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Raw Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/non-basmati-raw-rice.webp",
+      "alt": "Non Basmati Raw Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "ir-64-raw-rice",
+      "name": "IR 64 Raw Rice",
+      "details": [
+        [
+          "Product Name",
+          "IR 64 Raw Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Raw Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/ir-64-raw-rice.webp",
+      "alt": "IR 64 Raw Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "pr-14-raw-rice",
+      "name": "PR 14 Raw Rice",
+      "details": [
+        [
+          "Product Name",
+          "PR 14 Raw Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Raw Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/pr-14-raw-rice.webp",
+      "alt": "PR 14 Raw Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "swarna-raw-rice",
+      "name": "Swarna Raw Rice",
+      "details": [
+        [
+          "Product Name",
+          "Swarna Raw Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Raw Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/swarna-raw-rice.webp",
+      "alt": "Swarna Raw Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "pr-11-raw-rice",
+      "name": "PR 11 Raw Rice",
+      "details": [
+        [
+          "Product Name",
+          "PR 11 Raw Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Raw Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/pr-11-raw-rice.webp",
+      "alt": "PR 11 Raw Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "long-grain-white-rice",
+      "name": "Long Grain White Rice",
+      "details": [
+        [
+          "Product Name",
+          "Long Grain White Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Raw Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/long-grain-white-rice.webp",
+      "alt": "Long Grain White Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "non-basmati-steam-rice",
+      "name": "Non Basmati Steam Rice",
+      "details": [
+        [
+          "Product Name",
+          "Non Basmati Steam Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Steam Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/non-basmati-steam-rice.webp",
+      "alt": "Non Basmati Steam Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "pr-11-steam-rice",
+      "name": "PR 11 Steam Rice",
+      "details": [
+        [
+          "Product Name",
+          "PR 11 Steam Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Steam Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/pr-11-steam-rice.webp",
+      "alt": "PR 11 Steam Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "pr-14-steam-rice",
+      "name": "PR 14 Steam Rice",
+      "details": [
+        [
+          "Product Name",
+          "PR 14 Steam Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Steam Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/pr-14-steam-rice.webp",
+      "alt": "PR 14 Steam Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "swarna-steam-rice",
+      "name": "Swarna steam Rice",
+      "details": [
+        [
+          "Product Name",
+          "Swarna steam Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Steam Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/swarna-steam-rice.webp",
+      "alt": "Swarna steam Rice — Non-Basmati Rice"
+    },
+    {
+      "slug": "sona-masoori-steam-rice",
+      "name": "Sona Masoori Steam Rice",
+      "details": [
+        [
+          "Product Name",
+          "Sona Masoori Steam Rice"
+        ],
+        [
+          "Rice Type",
+          "Non Basmati Steam Rice"
+        ]
+      ],
+      "image": "/images/products/subtypes/non-basmati-rice/sona-masoori-steam-rice.webp",
+      "alt": "Sona Masoori Steam Rice — Non-Basmati Rice"
+    }
+  ],
+  "pesticide-free-basmati-rice": [
+    {
+      "slug": "1121-pesticide-free-basmati-rice",
+      "name": "1121 Pesticide Free Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1121 Pesticide Free Basmati Rice"
+        ],
+        [
+          "Variety",
+          "1121"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/1121-pesticide-free-basmati-rice.webp",
+      "alt": "1121 Pesticide Free Basmati Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "1718-pesticide-free-basmati-rice",
+      "name": "1718 Pesticide Free Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1718 Pesticide Free Basmati Rice"
+        ],
+        [
+          "Variety",
+          "1718"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/1718-pesticide-free-basmati-rice.webp",
+      "alt": "1718 Pesticide Free Basmati Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "1509-pesticide-free-basmati-rice",
+      "name": "1509 Pesticide Free Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1509 Pesticide Free Basmati Rice"
+        ],
+        [
+          "Variety",
+          "1509"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/1509-pesticide-free-basmati-rice.webp",
+      "alt": "1509 Pesticide Free Basmati Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "sugandha-pesticide-free-rice",
+      "name": "Sugandha Pesticide Free Rice",
+      "details": [
+        [
+          "Product Name",
+          "Sugandha Pesticide Free Rice"
+        ],
+        [
+          "Variety",
+          "Sugandha"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/sugandha-pesticide-free-rice.webp",
+      "alt": "Sugandha Pesticide Free Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "sharbati-pesticide-free-rice",
+      "name": "Sharbati Pesticide Free Rice",
+      "details": [
+        [
+          "Product Name",
+          "Sharbati Pesticide Free Rice"
+        ],
+        [
+          "Variety",
+          "Sharbati"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/sharbati-pesticide-free-rice.webp",
+      "alt": "Sharbati Pesticide Free Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "1121-pesticide-free-steam-basmati-rice",
+      "name": "1121 Pesticide Free Steam Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1121 Pesticide Free Steam Basmati Rice"
+        ],
+        [
+          "Variety",
+          "1121"
+        ],
+        [
+          "Form",
+          "Steam"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/1121-pesticide-free-steam-basmati-rice.webp",
+      "alt": "1121 Pesticide Free Steam Basmati Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "1718-pesticide-free-steam-basmati-rice",
+      "name": "1718 Pesticide Free Steam Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1718 Pesticide Free Steam Basmati Rice"
+        ],
+        [
+          "Variety",
+          "1718"
+        ],
+        [
+          "Form",
+          "Steam"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/1718-pesticide-free-steam-basmati-rice.webp",
+      "alt": "1718 Pesticide Free Steam Basmati Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "1509-pesticide-free-steam-basmati-rice",
+      "name": "1509 Pesticide Free Steam Basmati Rice",
+      "details": [
+        [
+          "Product Name",
+          "1509 Pesticide Free Steam Basmati Rice"
+        ],
+        [
+          "Variety",
+          "1509"
+        ],
+        [
+          "Form",
+          "Steam"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/1509-pesticide-free-steam-basmati-rice.webp",
+      "alt": "1509 Pesticide Free Steam Basmati Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "pesticide-free-raw-rice",
+      "name": "Pesticide Free Raw Rice",
+      "details": [
+        [
+          "Product Name",
+          "Pesticide Free Raw Rice"
+        ],
+        [
+          "Variety",
+          "Pesticide Free Basmati"
+        ],
+        [
+          "Form",
+          "Raw"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/pesticide-free-raw-rice.webp",
+      "alt": "Pesticide Free Raw Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "pesticide-free-steam-rice",
+      "name": "Pesticide Free Steam Rice",
+      "details": [
+        [
+          "Product Name",
+          "Pesticide Free Steam Rice"
+        ],
+        [
+          "Variety",
+          "Pesticide Free Basmati"
+        ],
+        [
+          "Form",
+          "Steam"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/pesticide-free-steam-rice.webp",
+      "alt": "Pesticide Free Steam Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "pesticide-free-white-sella-rice",
+      "name": "Pesticide Free White Sella Rice",
+      "details": [
+        [
+          "Product Name",
+          "Pesticide Free White Sella Rice"
+        ],
+        [
+          "Variety",
+          "Pesticide Free Basmati"
+        ],
+        [
+          "Form",
+          "White Sella"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/pesticide-free-white-sella-rice.webp",
+      "alt": "Pesticide Free White Sella Rice — Pesticide-Free Basmati Rice"
+    },
+    {
+      "slug": "pesticide-free-golden-sella-rice",
+      "name": "Pesticide Free Golden Sella Rice",
+      "details": [
+        [
+          "Product Name",
+          "Pesticide Free Golden Sella Rice"
+        ],
+        [
+          "Variety",
+          "Pesticide Free Basmati"
+        ],
+        [
+          "Form",
+          "Golden Sella"
+        ]
+      ],
+      "image": "/images/products/subtypes/pesticide-free-basmati-rice/pesticide-free-golden-sella-rice.webp",
+      "alt": "Pesticide Free Golden Sella Rice — Pesticide-Free Basmati Rice"
+    }
+  ],
+  "wheat-flour": [
+    {
+      "slug": "premium-high-gluten-flour",
+      "name": "Premium high-gluten flour",
+      "details": [
+        [
+          "Product Name",
+          "Premium high-gluten flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/premium-high-gluten-flour.webp",
+      "alt": "Premium high-gluten flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "mid-protein-flour",
+      "name": "Mid-protein flour",
+      "details": [
+        [
+          "Product Name",
+          "Mid-protein flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/mid-protein-flour.webp",
+      "alt": "Mid-protein flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "standard-patent-flour",
+      "name": "Standard patent flour",
+      "details": [
+        [
+          "Product Name",
+          "Standard patent flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/standard-patent-flour.webp",
+      "alt": "Standard patent flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "premium-patent-flour",
+      "name": "Premium patent flour",
+      "details": [
+        [
+          "Product Name",
+          "Premium patent flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/premium-patent-flour.webp",
+      "alt": "Premium patent flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "occident-short-patent-flour",
+      "name": "Occident short patent flour",
+      "details": [
+        [
+          "Product Name",
+          "Occident short patent flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/occident-short-patent-flour.webp",
+      "alt": "Occident short patent flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "bakers-flour",
+      "name": "Bakers flour",
+      "details": [
+        [
+          "Product Name",
+          "Bakers flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/bakers-flour.webp",
+      "alt": "Bakers flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "low-protein-bread-tortilla-flour",
+      "name": "Low protein bread & tortilla flour",
+      "details": [
+        [
+          "Product Name",
+          "Low protein bread & tortilla flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/low-protein-bread-tortilla-flour.webp",
+      "alt": "Low protein bread & tortilla flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "hotel-and-restaurant-hr-all-purpose-flour",
+      "name": "Hotel and restaurant (H&R) all purpose flour",
+      "details": [
+        [
+          "Product Name",
+          "Hotel and restaurant (H&R) all purpose flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/hotel-and-restaurant-hr-all-purpose-flour.webp",
+      "alt": "Hotel and restaurant (H&R) all purpose flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "self-rising-flour",
+      "name": "Self-rising flour",
+      "details": [
+        [
+          "Product Name",
+          "Self-rising flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/self-rising-flour.webp",
+      "alt": "Self-rising flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "clear-flour",
+      "name": "Clear flour",
+      "details": [
+        [
+          "Product Name",
+          "Clear flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/clear-flour.webp",
+      "alt": "Clear flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "cake-flour",
+      "name": "Cake flour",
+      "details": [
+        [
+          "Product Name",
+          "Cake flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/cake-flour.webp",
+      "alt": "Cake flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "pastry-flour",
+      "name": "Pastry flour",
+      "details": [
+        [
+          "Product Name",
+          "Pastry flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/pastry-flour.webp",
+      "alt": "Pastry flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "semolina-durum-flour",
+      "name": "Semolina / durum flour",
+      "details": [
+        [
+          "Product Name",
+          "Semolina / durum flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/semolina-durum-flour.webp",
+      "alt": "Semolina / durum flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "pizza-flour",
+      "name": "Pizza flour",
+      "details": [
+        [
+          "Product Name",
+          "Pizza flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/pizza-flour.webp",
+      "alt": "Pizza flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "patent-flour-asian-noodle",
+      "name": "Patent flour – Asian noodle",
+      "details": [
+        [
+          "Product Name",
+          "Patent flour – Asian noodle"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/patent-flour-asian-noodle.webp",
+      "alt": "Patent flour – Asian noodle — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "atta-flour",
+      "name": "Atta flour",
+      "details": [
+        [
+          "Product Name",
+          "Atta flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/atta-flour.webp",
+      "alt": "Atta flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "yoshon-flour",
+      "name": "Yoshon flour",
+      "details": [
+        [
+          "Product Name",
+          "Yoshon flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/yoshon-flour.webp",
+      "alt": "Yoshon flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "farina-flour",
+      "name": "Farina flour",
+      "details": [
+        [
+          "Product Name",
+          "Farina flour"
+        ],
+        [
+          "Range",
+          "Standard flour wholesale"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/farina-flour.webp",
+      "alt": "Farina flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "whole-wheat-flour",
+      "name": "Whole wheat flour",
+      "details": [
+        [
+          "Product Name",
+          "Whole wheat flour"
+        ],
+        [
+          "Range",
+          "Whole wheat flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/whole-wheat-flour.webp",
+      "alt": "Whole wheat flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "organic-ultragrain-hard-white-wheat-flour",
+      "name": "Organic UltraGrain® hard white wheat flour",
+      "details": [
+        [
+          "Product Name",
+          "Organic UltraGrain® hard white wheat flour"
+        ],
+        [
+          "Range",
+          "Whole wheat flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/organic-ultragrain-hard-white-wheat-flour.webp",
+      "alt": "Organic UltraGrain® hard white wheat flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "ultragrain-hard-whole-wheat-flour",
+      "name": "UltraGrain® hard whole wheat flour",
+      "details": [
+        [
+          "Product Name",
+          "UltraGrain® hard whole wheat flour"
+        ],
+        [
+          "Range",
+          "Whole wheat flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/ultragrain-hard-whole-wheat-flour.webp",
+      "alt": "UltraGrain® hard whole wheat flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "ultragrain-all-purpose-flour-blend-type-2",
+      "name": "UltraGrain® all purpose flour blend type 2",
+      "details": [
+        [
+          "Product Name",
+          "UltraGrain® all purpose flour blend type 2"
+        ],
+        [
+          "Range",
+          "Whole wheat flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/ultragrain-all-purpose-flour-blend-type-2.webp",
+      "alt": "UltraGrain® all purpose flour blend type 2 — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "ultragrain-soft-whole-wheat-flour",
+      "name": "UltraGrain® soft whole wheat flour",
+      "details": [
+        [
+          "Product Name",
+          "UltraGrain® soft whole wheat flour"
+        ],
+        [
+          "Range",
+          "Whole wheat flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/ultragrain-soft-whole-wheat-flour.webp",
+      "alt": "UltraGrain® soft whole wheat flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "organic-all-purpose-flour",
+      "name": "Organic all-purpose flour",
+      "details": [
+        [
+          "Product Name",
+          "Organic all-purpose flour"
+        ],
+        [
+          "Range",
+          "Organic flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/organic-all-purpose-flour.webp",
+      "alt": "Organic all-purpose flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "organic-bread-flour",
+      "name": "Organic bread Flour",
+      "details": [
+        [
+          "Product Name",
+          "Organic bread Flour"
+        ],
+        [
+          "Range",
+          "Organic flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/organic-bread-flour.webp",
+      "alt": "Organic bread Flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "organic-pastry-flour",
+      "name": "Organic pastry flour",
+      "details": [
+        [
+          "Product Name",
+          "Organic pastry flour"
+        ],
+        [
+          "Range",
+          "Organic flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/organic-pastry-flour.webp",
+      "alt": "Organic pastry flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "organic-premium-bakers-flour",
+      "name": "Organic premium bakers flour",
+      "details": [
+        [
+          "Product Name",
+          "Organic premium bakers flour"
+        ],
+        [
+          "Range",
+          "Organic flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/organic-premium-bakers-flour.webp",
+      "alt": "Organic premium bakers flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "organic-whole-wheat-flour",
+      "name": "Organic whole wheat flour",
+      "details": [
+        [
+          "Product Name",
+          "Organic whole wheat flour"
+        ],
+        [
+          "Range",
+          "Organic flours"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/organic-whole-wheat-flour.webp",
+      "alt": "Organic whole wheat flour — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "aleurone",
+      "name": "Aleurone",
+      "details": [
+        [
+          "Product Name",
+          "Aleurone"
+        ],
+        [
+          "Range",
+          "Additional wheat products"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/aleurone.webp",
+      "alt": "Aleurone — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "wheat-bran",
+      "name": "Wheat bran",
+      "details": [
+        [
+          "Product Name",
+          "Wheat bran"
+        ],
+        [
+          "Range",
+          "Additional wheat products"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/wheat-bran.webp",
+      "alt": "Wheat bran — Wheat Flour / Traditional Wheat"
+    },
+    {
+      "slug": "wheat-germ",
+      "name": "Wheat germ",
+      "details": [
+        [
+          "Product Name",
+          "Wheat germ"
+        ],
+        [
+          "Range",
+          "Additional wheat products"
+        ]
+      ],
+      "image": "/images/products/subtypes/wheat-flour/wheat-germ.webp",
+      "alt": "Wheat germ — Wheat Flour / Traditional Wheat"
+    }
+  ],
+  "peanut-groundnut": [
+    {
+      "slug": "bold",
+      "name": "Bold Peanuts",
+      "details": [
+        [
+          "Product Name",
+          "Bold Peanuts"
+        ],
+        [
+          "Type",
+          "Bold"
+        ],
+        [
+          "Size",
+          "40–50, 50–60, 60–70 counts/ounce"
+        ],
+        [
+          "Color",
+          "Reddish-brown skin"
+        ],
+        [
+          "Shape",
+          "Oval"
+        ],
+        [
+          "Moisture Content",
+          "≤ 7%"
+        ],
+        [
+          "Purity",
+          "≥ 99%"
+        ],
+        [
+          "Foreign Matter",
+          "≤ 0.5%"
+        ],
+        [
+          "Admixture",
+          "≤ 1%"
+        ]
+      ],
+      "image": "/images/products/subtypes/peanut-groundnut/bold.webp",
+      "alt": "Bold Peanuts — Peanut / Groundnut Kernels"
+    },
+    {
+      "slug": "java",
+      "name": "Java Peanuts",
+      "details": [
+        [
+          "Product Name",
+          "Java Peanuts"
+        ],
+        [
+          "Type",
+          "Java"
+        ],
+        [
+          "Size",
+          "50–60, 60–70, 70–80 counts/ounce"
+        ],
+        [
+          "Color",
+          "Pinkish-red skin"
+        ],
+        [
+          "Shape",
+          "Round"
+        ],
+        [
+          "Moisture Content",
+          "≤ 7%"
+        ],
+        [
+          "Purity",
+          "≥ 99%"
+        ],
+        [
+          "Foreign Matter",
+          "≤ 0.5%"
+        ],
+        [
+          "Admixture",
+          "≤ 1%"
+        ]
+      ],
+      "image": "/images/products/subtypes/peanut-groundnut/java.webp",
+      "alt": "Java Peanuts — Peanut / Groundnut Kernels"
+    },
+    {
+      "slug": "tj-tiny-java",
+      "name": "TJ Peanuts",
+      "details": [
+        [
+          "Product Name",
+          "TJ Peanuts"
+        ],
+        [
+          "Type",
+          "TJ (Tiny Java)"
+        ],
+        [
+          "Size",
+          "0–90, 90–100 counts/ounce"
+        ],
+        [
+          "Color",
+          "Pinkish-red skin"
+        ],
+        [
+          "Shape",
+          "Smaller and rounder"
+        ],
+        [
+          "Moisture Content",
+          "≤ 7%"
+        ],
+        [
+          "Purity",
+          "≥ 99%"
+        ],
+        [
+          "Foreign Matter",
+          "≤ 0.5%"
+        ],
+        [
+          "Admixture",
+          "≤ 1%"
+        ]
+      ],
+      "image": "/images/products/subtypes/peanut-groundnut/tj-tiny-java.webp",
+      "alt": "TJ Peanuts — Peanut / Groundnut Kernels"
+    }
+  ],
+  "cumin-seeds": [
+    {
+      "slug": "premium-grade",
+      "name": "Premium Grade",
+      "details": [
+        [
+          "Grade",
+          "Premium Grade"
+        ],
+        [
+          "Purity",
+          "99.5%"
+        ],
+        [
+          "Characteristics",
+          "Uniform size, strong aroma"
+        ]
+      ],
+      "image": "/images/products/subtypes/cumin-seeds/premium-grade.webp",
+      "alt": "Premium Grade — Cumin Seeds"
+    },
+    {
+      "slug": "regular-grade",
+      "name": "Regular Grade",
+      "details": [
+        [
+          "Grade",
+          "Regular Grade"
+        ],
+        [
+          "Purity",
+          "98%"
+        ],
+        [
+          "Characteristics",
+          "Good flavor"
+        ]
+      ],
+      "image": "/images/products/subtypes/cumin-seeds/regular-grade.webp",
+      "alt": "Regular Grade — Cumin Seeds"
+    },
+    {
+      "slug": "industrial-grade",
+      "name": "Industrial Grade",
+      "details": [
+        [
+          "Grade",
+          "Industrial Grade"
+        ],
+        [
+          "Characteristics",
+          "Suitable for processing"
+        ]
+      ],
+      "image": "/images/products/subtypes/cumin-seeds/industrial-grade.webp",
+      "alt": "Industrial Grade — Cumin Seeds"
+    }
+  ],
+  "psyllium-seeds": [
+    {
+      "slug": "premium-grade",
+      "name": "Premium Grade",
+      "details": [
+        [
+          "Grade",
+          "Premium Grade"
+        ],
+        [
+          "Purity",
+          "99.5%"
+        ],
+        [
+          "Swelling Index",
+          "12-14 ml/g"
+        ]
+      ],
+      "image": "/images/products/subtypes/psyllium-seeds/premium-grade.webp",
+      "alt": "Premium Grade — Psyllium Seeds"
+    },
+    {
+      "slug": "standard-grade",
+      "name": "Standard Grade",
+      "details": [
+        [
+          "Grade",
+          "Standard Grade"
+        ],
+        [
+          "Purity",
+          "99%"
+        ],
+        [
+          "Swelling Index",
+          "10-12 ml/g"
+        ]
+      ],
+      "image": "/images/products/subtypes/psyllium-seeds/standard-grade.webp",
+      "alt": "Standard Grade — Psyllium Seeds"
+    }
+  ],
+  "dehydrated-products": [
+    {
+      "slug": "onion-powder",
+      "name": "Onion Powder (White, Pink & Red)",
+      "details": [
+        [
+          "Product Name",
+          "Onion Powder (White, Pink & Red)"
+        ],
+        [
+          "Botanical Name",
+          "Allium cepa"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Color",
+          "White to off-white (varies slightly by form)"
+        ],
+        [
+          "Aroma",
+          "Strong, pungent onion aroma"
+        ],
+        [
+          "Particle Size",
+          "Fine, 80–100 mesh"
+        ],
+        [
+          "Appearance",
+          "Smooth, white to off-white powder"
+        ],
+        [
+          "Applications",
+          "Spice blends, snacks, instant foods, soups, and seasonings"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-powder.webp",
+      "alt": "Onion Powder (White, Pink & Red) — Dehydrated Products"
+    },
+    {
+      "slug": "onion-flakes",
+      "name": "Onion Flakes (White, Pink & Red)",
+      "details": [
+        [
+          "Product Name",
+          "Onion Flakes (White, Pink & Red)"
+        ],
+        [
+          "Botanical Name",
+          "Allium cepa"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Color",
+          "White to off-white (varies slightly by form)"
+        ],
+        [
+          "Aroma",
+          "Strong, pungent onion aroma"
+        ],
+        [
+          "Particle Size",
+          "Thin slices, 8mm to 15mm"
+        ],
+        [
+          "Appearance",
+          "Uniform white to light beige flakes"
+        ],
+        [
+          "Applications",
+          "Soups, stews, sauces, and toppings for salads"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-flakes.webp",
+      "alt": "Onion Flakes (White, Pink & Red) — Dehydrated Products"
+    },
+    {
+      "slug": "onion-granules",
+      "name": "Onion Granules (White, Pink & Red)",
+      "details": [
+        [
+          "Product Name",
+          "Onion Granules (White, Pink & Red)"
+        ],
+        [
+          "Botanical Name",
+          "Allium cepa"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Color",
+          "White to off-white (varies slightly by form)"
+        ],
+        [
+          "Aroma",
+          "Strong, pungent onion aroma"
+        ],
+        [
+          "Particle Size",
+          "0.5mm to 2mm"
+        ],
+        [
+          "Appearance",
+          "Coarser than powder, fine and uniform granules"
+        ],
+        [
+          "Applications",
+          "Spice mixes, marinades, and dressings"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-granules.webp",
+      "alt": "Onion Granules (White, Pink & Red) — Dehydrated Products"
+    },
+    {
+      "slug": "onion-chopped",
+      "name": "Onion Chopped (White, Pink & Red)",
+      "details": [
+        [
+          "Product Name",
+          "Onion Chopped (White, Pink & Red)"
+        ],
+        [
+          "Botanical Name",
+          "Allium cepa"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Color",
+          "White to off-white (varies slightly by form)"
+        ],
+        [
+          "Aroma",
+          "Strong, pungent onion aroma"
+        ],
+        [
+          "Particle Size",
+          "3mm to 5mm"
+        ],
+        [
+          "Appearance",
+          "Coarsely chopped onion pieces, pale beige"
+        ],
+        [
+          "Applications",
+          "Soups, stews, and industrial food preparation"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-chopped.webp",
+      "alt": "Onion Chopped (White, Pink & Red) — Dehydrated Products"
+    },
+    {
+      "slug": "onion-minced",
+      "name": "Onion Minced (White, Pink & Red)",
+      "details": [
+        [
+          "Product Name",
+          "Onion Minced (White, Pink & Red)"
+        ],
+        [
+          "Botanical Name",
+          "Allium cepa"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Color",
+          "White to off-white (varies slightly by form)"
+        ],
+        [
+          "Aroma",
+          "Strong, pungent onion aroma"
+        ],
+        [
+          "Particle Size",
+          "1mm to 3mm (small, coarse particles)"
+        ],
+        [
+          "Appearance",
+          "Uniform granules, white to light beige"
+        ],
+        [
+          "Applications",
+          "Seasonings, ready-to-eat meals, and curries"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-minced.webp",
+      "alt": "Onion Minced (White, Pink & Red) — Dehydrated Products"
+    },
+    {
+      "slug": "garlic-powder",
+      "name": "Garlic Powder",
+      "details": [
+        [
+          "Product Name",
+          "Garlic Powder"
+        ],
+        [
+          "Botanical Name",
+          "Allium sativum"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Particle Size",
+          "Fine, 80-100 mesh"
+        ],
+        [
+          "Appearance",
+          "Smooth, white to pale yellow powder"
+        ],
+        [
+          "Applications",
+          "Spice blends, instant foods, snacks, and sauces"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/garlic-powder.webp",
+      "alt": "Garlic Powder — Dehydrated Products"
+    },
+    {
+      "slug": "garlic-flakes",
+      "name": "Garlic Flakes",
+      "details": [
+        [
+          "Product Name",
+          "Garlic Flakes"
+        ],
+        [
+          "Botanical Name",
+          "Allium sativum"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Particle Size",
+          "Thin slices, 8mm to 15mm"
+        ],
+        [
+          "Appearance",
+          "Uniform white to creamy flakes"
+        ],
+        [
+          "Applications",
+          "Soups, stews, curries, and snack toppings"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/garlic-flakes.webp",
+      "alt": "Garlic Flakes — Dehydrated Products"
+    },
+    {
+      "slug": "garlic-granules",
+      "name": "Garlic Granules",
+      "details": [
+        [
+          "Product Name",
+          "Garlic Granules"
+        ],
+        [
+          "Botanical Name",
+          "Allium sativum"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Particle Size",
+          "0.5mm to 2mm"
+        ],
+        [
+          "Appearance",
+          "Coarser than powder, fine and uniform granules"
+        ],
+        [
+          "Applications",
+          "Spice mixes, dressings, and marinades"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/garlic-granules.webp",
+      "alt": "Garlic Granules — Dehydrated Products"
+    },
+    {
+      "slug": "garlic-chopped",
+      "name": "Garlic Chopped",
+      "details": [
+        [
+          "Product Name",
+          "Garlic Chopped"
+        ],
+        [
+          "Botanical Name",
+          "Allium sativum"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Particle Size",
+          "3mm to 5mm"
+        ],
+        [
+          "Appearance",
+          "Uniform white to creamy flakes"
+        ],
+        [
+          "Applications",
+          "Soups, stews, curries, and snack toppings"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/garlic-chopped.webp",
+      "alt": "Garlic Chopped — Dehydrated Products"
+    },
+    {
+      "slug": "garlic-minced",
+      "name": "Garlic Minced",
+      "details": [
+        [
+          "Product Name",
+          "Garlic Minced"
+        ],
+        [
+          "Botanical Name",
+          "Allium sativum"
+        ],
+        [
+          "Origin",
+          "India"
+        ],
+        [
+          "Particle Size",
+          "1mm to 3mm (small, coarse particles)"
+        ],
+        [
+          "Appearance",
+          "Uniform granules, white to yellowish"
+        ],
+        [
+          "Applications",
+          "Ready-to-eat meals, soups, and sauces"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/garlic-minced.webp",
+      "alt": "Garlic Minced — Dehydrated Products"
+    },
+    {
+      "slug": "fried-onion",
+      "name": "Fried Onion (Crispy)",
+      "details": [
+        [
+          "Product Name",
+          "Fried Onion (Crispy)"
+        ],
+        [
+          "Description",
+          "Crispy fried onion"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/fried-onion.webp",
+      "alt": "Fried Onion (Crispy) — Dehydrated Products"
+    },
+    {
+      "slug": "toasted-onion",
+      "name": "Toasted Onion",
+      "details": [
+        [
+          "Product Name",
+          "Toasted Onion"
+        ],
+        [
+          "Description",
+          "Toasted onion products"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/toasted-onion.webp",
+      "alt": "Toasted Onion — Dehydrated Products"
+    },
+    {
+      "slug": "onion-slices",
+      "name": "Onion Slices",
+      "details": [
+        [
+          "Product Name",
+          "Onion Slices"
+        ],
+        [
+          "Cut Size",
+          "Slices"
+        ],
+        [
+          "Available Variants",
+          "White, Pink & Red"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-slices.webp",
+      "alt": "Onion Slices — Dehydrated Products"
+    },
+    {
+      "slug": "onion-kibbled-15-35mm",
+      "name": "Onion Kibbled (15-35mm)",
+      "details": [
+        [
+          "Product Name",
+          "Onion Kibbled (15-35mm)"
+        ],
+        [
+          "Cut Size",
+          "kibbled (15-35mm)"
+        ],
+        [
+          "Available Variants",
+          "White, Pink & Red"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-kibbled-15-35mm.webp",
+      "alt": "Onion Kibbled (15-35mm) — Dehydrated Products"
+    },
+    {
+      "slug": "onion-large-chopped",
+      "name": "Onion Large Chopped",
+      "details": [
+        [
+          "Product Name",
+          "Onion Large Chopped"
+        ],
+        [
+          "Cut Size",
+          "Large Chopped"
+        ],
+        [
+          "Available Variants",
+          "White, Pink & Red"
+        ]
+      ],
+      "image": "/images/products/subtypes/dehydrated-products/onion-large-chopped.webp",
+      "alt": "Onion Large Chopped — Dehydrated Products"
+    }
+  ]
+}
